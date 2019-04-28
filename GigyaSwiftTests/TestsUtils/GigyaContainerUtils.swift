@@ -24,7 +24,7 @@ class GigyaContainerUtils {
         }
 
         container.register(service: IOCProviderFactoryProtocol.self) { _ in
-            return ProviderFactory()
+            return ProviderFactoryMock()
         }
 
         container.register(service: IOCApiServiceProtocol.self) { resolver in

@@ -41,7 +41,6 @@ class GoogleWrapper: NSObject, ProviderWrapperProtocol {
         completionHandler = completion
 
         googleLogin.signIn()
-
     }
 
     func logout() {

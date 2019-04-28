@@ -15,7 +15,7 @@ public struct AnyCodable {
         self.value = value ?? ()
     }
 }
-// swiftlint:disable cyclomatic_complexity
+
 extension AnyCodable: Codable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
@@ -122,5 +122,3 @@ extension AnyCodable: ExpressibleByNilLiteral, ExpressibleByBooleanLiteral, Expr
         self.init([AnyHashable: Any](elements, uniquingKeysWith: { (first, _) in first }))
     }
 }
-
-// swiftlint:enable cyclomatic_complexity

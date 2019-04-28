@@ -33,7 +33,6 @@
 //        // Encode body request to params
 //        do {
 //
-//            //swiftlint:disable:next force_cast
 //            let bodyData = try prepareSignature(session: gsession, path: path, body: body) as! [String: String]
 //            let bodyString: String = bodyData.sorted(by: <).reduce("") { "\($0)\($1.0)=\($1.1.addingPercentEncoding(withAllowedCharacters: urlAllowed) ?? "")&" }
 //
@@ -85,16 +84,13 @@
 //        let signatureModel = GigyaRequestSignature(oauthToken: session.token, apikey: "", nonce: nonce, timestamp: String(timestamp), ucid: "iyrFXHFzHMLUL97/YDimSQ==", gmid: "RSZiPg/1J8AxSits1VENBXRXCKKj4DrOrI2oOXqiUz0=")
 //
 //        let encoderPrepareData = try JSONEncoder().encode(signatureModel)
-//        //swiftlint:disable:next force_cast
 //        let bodyPrepareData = try JSONSerialization.jsonObject(with: encoderPrepareData, options: .allowFragments) as! [String: Any]
 //
 //        let encoderBodyData = try JSONEncoder().encode(body)
-//        //swiftlint:disable:next force_cast
 //        let bodyData = try JSONSerialization.jsonObject(with: encoderBodyData, options: .allowFragments) as! [String: String]
 //
 //        var combinedData = bodyPrepareData.merging(bodyData) { $1 }
 //
-//        //swiftlint:disable:next force_cast
 //        let sig = sigUtils.hmac(algorithm: .SHA1, url: sigUtils.oauth1SignatureBaseString(path, combinedData as! [String: String]), secret: session.secret)
 //        combinedData["sig"] = sig
 //

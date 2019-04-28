@@ -35,6 +35,10 @@
 		E733744722675CA000ADEDBB /* ApiServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E733744622675CA000ADEDBB /* ApiServiceMock.swift */; };
 		E73374622268B25B00ADEDBB /* ProviderFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73374612268B25B00ADEDBB /* ProviderFactory.swift */; };
 		E7337467226C538300ADEDBB /* DecodeTestUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7337466226C538300ADEDBB /* DecodeTestUtils.swift */; };
+		E756A2992275CB5C007FA801 /* GoogleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E756A2982275CB5C007FA801 /* GoogleTests.swift */; };
+		E756A29C2275CC13007FA801 /* ProviderFactoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E756A29B2275CC13007FA801 /* ProviderFactoryMock.swift */; };
+		E756A29E2275CC59007FA801 /* GoogleWrapperMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E756A29D2275CC59007FA801 /* GoogleWrapperMock.swift */; };
+		E756A2A02275D46D007FA801 /* GoogleProviderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E756A29F2275D46D007FA801 /* GoogleProviderMock.swift */; };
 		E774A54B224283DF00BC67D1 /* ApiRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E774A54A224283DF00BC67D1 /* ApiRequestModel.swift */; };
 		E774A54D2242A12800BC67D1 /* AnyCodableUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E774A54C2242A12800BC67D1 /* AnyCodableUtils.swift */; };
 		E774A5622243D7D300BC67D1 /* RequestTestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E774A5612243D7D300BC67D1 /* RequestTestModel.swift */; };
@@ -199,6 +203,10 @@
 		E733744622675CA000ADEDBB /* ApiServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiServiceMock.swift; sourceTree = "<group>"; };
 		E73374612268B25B00ADEDBB /* ProviderFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderFactory.swift; sourceTree = "<group>"; };
 		E7337466226C538300ADEDBB /* DecodeTestUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecodeTestUtils.swift; sourceTree = "<group>"; };
+		E756A2982275CB5C007FA801 /* GoogleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleTests.swift; sourceTree = "<group>"; };
+		E756A29B2275CC13007FA801 /* ProviderFactoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderFactoryMock.swift; sourceTree = "<group>"; };
+		E756A29D2275CC59007FA801 /* GoogleWrapperMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleWrapperMock.swift; sourceTree = "<group>"; };
+		E756A29F2275D46D007FA801 /* GoogleProviderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleProviderMock.swift; sourceTree = "<group>"; };
 		E774A54A224283DF00BC67D1 /* ApiRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiRequestModel.swift; sourceTree = "<group>"; };
 		E774A54C2242A12800BC67D1 /* AnyCodableUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyCodableUtils.swift; sourceTree = "<group>"; };
 		E774A54E22438DDA00BC67D1 /* GigyaSDK.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GigyaSDK.xcodeproj; path = "../../../gigya-ios-sdk/GigyaSDK.xcodeproj"; sourceTree = "<group>"; };
@@ -440,6 +448,25 @@
 			path = Session;
 			sourceTree = "<group>";
 		};
+		E756A2972275CB44007FA801 /* Providers */ = {
+			isa = PBXGroup;
+			children = (
+				E756A29A2275CC04007FA801 /* Mocks */,
+				E756A2982275CB5C007FA801 /* GoogleTests.swift */,
+			);
+			path = Providers;
+			sourceTree = "<group>";
+		};
+		E756A29A2275CC04007FA801 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				E756A29B2275CC13007FA801 /* ProviderFactoryMock.swift */,
+				E756A29F2275D46D007FA801 /* GoogleProviderMock.swift */,
+				E756A29D2275CC59007FA801 /* GoogleWrapperMock.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
 		E774A54F22438DDA00BC67D1 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -462,6 +489,7 @@
 			children = (
 				E7A6E0B6224256390063638F /* GigyaSwiftTests.swift */,
 				E73373D4225E326100ADEDBB /* GigyaLoggerTest.swift */,
+				E756A2972275CB44007FA801 /* Providers */,
 				E73373D6225F222000ADEDBB /* Utils */,
 				E7E80D94224D073200D3B663 /* Services */,
 				E7E80D86224BBF1A00D3B663 /* TestsUtils */,
@@ -963,6 +991,7 @@
 				E713E18C224A2E5800181328 /* NetworkAdapterMock.swift in Sources */,
 				E7E80D8F224D045000D3B663 /* BusinessApiServiceMock.swift in Sources */,
 				E7E80D88224BBF2400D3B663 /* XCTestCase+FatalError.swift in Sources */,
+				E756A2A02275D46D007FA801 /* GoogleProviderMock.swift in Sources */,
 				E7337445226754C400ADEDBB /* BusinessApiTest.swift in Sources */,
 				E73373D8225F222F00ADEDBB /* AnyCodableTest.swift in Sources */,
 				E7E80DA522535A5700D3B663 /* ResponseDataGlobal.swift in Sources */,
@@ -970,6 +999,7 @@
 				E7A6E0B7224256390063638F /* GigyaSwiftTests.swift in Sources */,
 				E7E80D96224D101C00D3B663 /* GigyaApiServiceTest.swift in Sources */,
 				E774A5622243D7D300BC67D1 /* RequestTestModel.swift in Sources */,
+				E756A29C2275CC13007FA801 /* ProviderFactoryMock.swift in Sources */,
 				E73373DA225F7ED100ADEDBB /* GSRequestMock.swift in Sources */,
 				E7A6E0CA224258C80063638F /* GigyaRequstTest.swift in Sources */,
 				E774A5642243D88900BC67D1 /* RequestTestParseFailModel.swift in Sources */,
@@ -978,6 +1008,8 @@
 				E733744722675CA000ADEDBB /* ApiServiceMock.swift in Sources */,
 				E7E80D98224D15B600D3B663 /* GigyaWrapperMock.swift in Sources */,
 				E7E80D8D224CF55300D3B663 /* GigyaCoreTest.swift in Sources */,
+				E756A29E2275CC59007FA801 /* GoogleWrapperMock.swift in Sources */,
+				E756A2992275CB5C007FA801 /* GoogleTests.swift in Sources */,
 				E7E80D91224D052000D3B663 /* GigyaSessionServiceMock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

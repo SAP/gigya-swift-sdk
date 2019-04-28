@@ -13,7 +13,8 @@ protocol Provider: class {
     
     var delegate: BusinessApiDelegate? { get set }
 
-    func login<T: Codable>(params: [String: Any], viewController: UIViewController?, loginMode: String, completion: @escaping (GigyaApiResult<T>) -> Void)
+    func login<T: Codable>(params: [String: Any], viewController: UIViewController?,
+                           loginMode: String, completion: @escaping (GigyaApiResult<T>) -> Void)
 
     func logout()
 
@@ -22,7 +23,8 @@ protocol Provider: class {
 
 extension Provider {
 
-    func loginSuccess<T: Codable>(providerSessions: String, loginMode: String, params: [String: Any], completion: @escaping (GigyaApiResult<T>) -> Void) {
+    func loginSuccess<T: Codable>(providerSessions: String, loginMode: String,
+                                  params: [String: Any], completion: @escaping (GigyaApiResult<T>) -> Void) {
         GigyaLogger.log(with: self, message: "start LoginSuccess - providerSessions: \(providerSessions)")
 
         let newParams = ["providerSessions": providerSessions, "loginMode": loginMode]

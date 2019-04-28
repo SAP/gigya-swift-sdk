@@ -163,4 +163,3 @@ public struct GigyaProfile: Codable {
 //    var contacts: Bool?
 //    var photos: Bool?
 //}
-

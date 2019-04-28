@@ -20,7 +20,8 @@ class ApiService: IOCApiServiceProtocol {
     }
 
     // Send request to server
-    func send<T: Codable>(model: ApiRequestModel, responseType: T.Type, completion: @escaping (GigyaApiResult<T>) -> Void) {
+    func send<T: Codable>(model: ApiRequestModel, responseType: T.Type,
+                          completion: @escaping (GigyaApiResult<T>) -> Void) {
         self.networkAdapter?.send(model: model) { (data, error) in
             if error == nil {
                 self.validateResult(responseType: responseType, data: data, completion: completion)
@@ -43,7 +44,8 @@ class ApiService: IOCApiServiceProtocol {
     }
 
     // Validate and decode the result to GigyaApiResult
-    private func validateResult<T: Codable>(responseType: T.Type, data: NSData?, completion: @escaping (GigyaApiResult<T>) -> Void) {
+    private func validateResult<T: Codable>(responseType: T.Type, data: NSData?,
+                                            completion: @escaping (GigyaApiResult<T>) -> Void) {
         guard let data = data else {
             GigyaLogger.log(with: self, message: "Error: data not found)")
             return completion(.failure(NetworkError.dataNotFound))

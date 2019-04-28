@@ -10,8 +10,6 @@ import Foundation
 
 class WebViewProvider: Provider {
 
-    //    var didFinish: (GigyaResult<Any>) -> Void = { _ in }
-
     weak var delegate: BusinessApiDelegate?
 
     let provider: ProviderWrapperProtocol
@@ -34,8 +32,6 @@ class WebViewProvider: Provider {
     func login<T: Codable>(params: [String: Any], viewController: UIViewController? = nil, loginMode: String, completion: @escaping (GigyaApiResult<T>) -> Void) {
 
         provider.login(params: params, viewController: viewController, completion: completionHandler)
-
-
     }
 
     func logout() {

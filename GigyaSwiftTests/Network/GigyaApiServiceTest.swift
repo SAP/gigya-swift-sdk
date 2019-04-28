@@ -38,7 +38,7 @@ class GigyaApiService: XCTestCase {
 
     func testSendApiService() {
         // This is an example of a functional test case.
-        let responseDic: [String: Any] = ["callId": "fasfsaf", "errorCode": 123, "statusCode": 200]
+        let responseDic: [String: Any] = ["callId": "fasfsaf", "errorCode": 0, "statusCode": 200]
         //swiftlint:disable:next force_try
         let objData = try! JSONSerialization.data(withJSONObject: responseDic, options: .prettyPrinted)
 
@@ -160,7 +160,7 @@ class GigyaApiService: XCTestCase {
     }
 
     func testResponseGenericParseError() {
-        let dic: [String: Any] = ["callId": "fasfsaf", "errorCode": 123, "statusCode": 200]
+        let dic: [String: Any] = ["callId": "fasfsaf", "errorcode": 0, "statusCode": 200]
 
         // swiftlint:disable force_try
         let jsonData = try! JSONSerialization.data(withJSONObject: dic, options: .prettyPrinted)
@@ -184,7 +184,6 @@ class GigyaApiService: XCTestCase {
         }
 
     }
-
 
     func testPerformanceExample() {
         // This is an example of a performance test case.

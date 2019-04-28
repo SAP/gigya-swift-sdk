@@ -10,5 +10,7 @@ import Foundation
 
 class ResponseDataTest {
     static var resData: Any?
+    static var providerToken: String?
+    static var clientID: String?
     static var error: Error?
 }

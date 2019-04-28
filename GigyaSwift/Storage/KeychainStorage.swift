@@ -26,7 +26,7 @@
 //                                                                  kSecAttrAccessibleWhenPasscodeSetThisDeviceOnly,
 //                                                                  SecAccessControlCreateFlags.userPresence,
 //                                                                  nil) else {
-//                                                                    //                    completionHandler?(GSError(withMessage: "Can not require passcode on current version of iOS"));
+//                                                                                   completionHandler?(GSError(withMessage: "Can not require passcode on current version of iOS"));
 //                                                                    return
 //        }
 //

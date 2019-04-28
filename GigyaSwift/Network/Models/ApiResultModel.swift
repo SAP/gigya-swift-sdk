@@ -14,4 +14,3 @@ public struct GigyaResponseModel: Codable {
     var callId: String
     let errorMessage: String?
 }
-

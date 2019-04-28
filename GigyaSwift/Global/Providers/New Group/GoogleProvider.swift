@@ -35,9 +35,8 @@ class GoogleProvider: Provider {
         }
 
         provider.login(params: nil, viewController: nil) { (serverAuthCode, error) in
-            
             guard error == nil else {
-                let errorDesc = error?.localizedDescription ?? "error not found"
+                let errorDesc = error!.localizedDescription
                 self.loginFailed(error: errorDesc, completion: completion)
                 GigyaLogger.log(with: GoogleProvider.self, message: errorDesc)
                 return
@@ -61,9 +60,5 @@ class GoogleProvider: Provider {
 
     func getProviderSessions(token: String) -> String {
         return "{\"\(GigyaSocielProviders.google.rawValue)\": {code: \"\(token)\"}}"
-    }
-
-    deinit {
-        print("[GoogleProvider deinit]")
     }
 }

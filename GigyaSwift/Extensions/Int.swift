@@ -14,7 +14,6 @@ extension Int {
     }
 }
 
-
 extension NSObject {
 
 }
