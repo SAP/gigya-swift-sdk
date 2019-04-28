@@ -1,0 +1,6 @@
+framework module FBSDKMarketingKit {
+    umbrella header "FBSDKMarketingKit.h"
+
+    export *
+    module * { export * }
+}
