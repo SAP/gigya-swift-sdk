@@ -13,18 +13,29 @@ protocol IOCProviderFactoryProtocol {
 }
 
 class ProviderFactory: IOCProviderFactoryProtocol {
+    let config: GigyaConfig
+
+    let sessionService: IOCSessionServiceProtocol
+
+    init(sessionService: IOCSessionServiceProtocol, config: GigyaConfig) {
+        self.sessionService = sessionService
+        self.config = config
+    }
+
     func getProvider(with socialProvider: GigyaSocielProviders, delegate: BusinessApiDelegate) -> Provider {
         switch socialProvider {
         case .facebook:
-            return FacebookProvider(provider: FacebookWrapper(), delegate: delegate)
+            if FacebookProvider.isAvailable() {
+                return FacebookProvider(provider: FacebookWrapper(), delegate: delegate)
+            }
         case .google:
             if GoogleProvider.isAvailable() {
                 return GoogleProvider(provider: GoogleWrapper(), delegate: delegate)
             }
-        case .web:
-            return WebViewProvider(provider: WebViewWrapper(), delegate: delegate)
+        default:
+            break
         }
 
-        return GoogleProvider(provider: GoogleWrapper(), delegate: delegate) // TODO: Need to return web provider
+        return WebViewProvider(sessionService: sessionService, provider: WebViewWrapper(config: config, providerType: socialProvider), delegate: delegate)
     }
 }

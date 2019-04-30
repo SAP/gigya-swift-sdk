@@ -26,7 +26,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GigyaSwiftTests/Network/GigyaApiServiceTest.swift"
-            timestampString = "578150256.75536"
+            timestampString = "578229532.463012"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "12"
@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TestApp/ViewController.swift"
-            timestampString = "577723464.8066109"
+            timestampString = "578241709.256099"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "102"
-            endingLineNumber = "102"
+            startingLineNumber = "111"
+            endingLineNumber = "111"
             landmarkName = "getAccount(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -87,13 +87,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GigyaSwift/Global/Providers/Safari.temp_caseinsensitive_rename./WebViewWrapper.swift"
-            timestampString = "577723464.806706"
+            filePath = "GigyaSwiftTests/GigyaLoggerTest.swift"
+            timestampString = "578241709.25623"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "50"
-            endingLineNumber = "50"
-            landmarkName = "safariViewController(_:initialLoadDidRedirectTo:)"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
+            landmarkName = "testss()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -103,13 +103,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GigyaSwift/Global/Providers/Safari.temp_caseinsensitive_rename./WebViewWrapper.swift"
-            timestampString = "577723464.807062"
+            filePath = "TestApp/ViewController.swift"
+            timestampString = "578241733.875572"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "53"
-            endingLineNumber = "53"
-            landmarkName = "safariViewController(_:didCompleteInitialLoad:)"
+            startingLineNumber = "83"
+            endingLineNumber = "83"
+            landmarkName = "checkValidateLogin(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

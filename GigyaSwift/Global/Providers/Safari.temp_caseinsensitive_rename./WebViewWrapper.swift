@@ -7,36 +7,67 @@
 //
 
 import Foundation
-import SafariServices
+import WebKit
 
 class WebViewWrapper: NSObject, ProviderWrapperProtocol {
     var clientID: String?
 
-    var safariController: SFSafariViewController?
+    var webViewController: WebViewController
 
-    private var completionHandler: (String?, Error?) -> Void = { _, _  in }
+    var config: GigyaConfig
 
-    override init() {
+    let providerType: GigyaSocielProviders
+
+    var navigationController: UINavigationController?
+
+    private var completionHandler: (String?, String?, Error?) -> Void = { _, _, _  in }
+
+    init(config: GigyaConfig, providerType: GigyaSocielProviders) {
+        self.providerType = providerType
+        self.config = config
+        self.webViewController = WebViewController()
 
         super.init()
-        let urlString = "https://google.com"
+
+        let urlString = getUrl()
 
         guard let url = URL(string: urlString) else {
             return
         }
-        safariController = SFSafariViewController(url: url, entersReaderIfAvailable: true)
+
+        webViewController.setDelegate(delegate: self)
+
+        webViewController.loadUrl(url: url)
 
     }
 
-    func login(params: [String: Any]?, viewController: UIViewController?, completion: @escaping (String?, Error?) -> Void) {
+    func login(params: [String: Any]?, viewController: UIViewController?, completion: @escaping (String?, String?, Error?) -> Void) {
         completionHandler = completion
+        
+        navigationController = UINavigationController(rootViewController: webViewController)
 
-        safariController?.delegate = self
-        viewController?.present(safariController!, animated: true, completion: nil)
+        if let navigationController = navigationController {
+            viewController?.show(navigationController, sender: nil)
+        }
     }
 
     func logout() {
 
+    }
+
+    func getUrl() -> String {
+        var url = "https://socialize.\(config.apiDomain ?? "")/socialize.login?"
+        url.append("redirect_uri=gsapi://login_result&")
+        url.append("response_type=token&")
+        url.append("client_id=\(config.apiKey ?? "")&")
+        url.append("gmid=\(config.gmid ?? "")&")
+        url.append("ucid=\(config.ucid ?? "")&")
+        url.append("x_secret_type=oauth1&")
+        url.append("x_endPoint=socialize.login&")
+        url.append("x_sdk=\(InternalConfig.General.version)&")
+        url.append("x_provider=\(providerType.rawValue)")
+
+        return url
     }
 
     deinit {
@@ -44,11 +75,20 @@ class WebViewWrapper: NSObject, ProviderWrapperProtocol {
     }
 }
 
-extension WebViewWrapper: SFSafariViewControllerDelegate {
-    func safariViewController(_ controller: SFSafariViewController, initialLoadDidRedirectTo URL: URL) {
-        print(URL)
-    }
-    func safariViewController(_ controller: SFSafariViewController, didCompleteInitialLoad didLoadSuccessfully: Bool) {
-
+extension WebViewWrapper: WKNavigationDelegate {
+    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        if navigationAction.navigationType == .other {
+            if let url = navigationAction.request.url {
+                print("Url: \(url)")
+                if let accessToken = url["access_token"], let tokenSecret = url["x_access_token_secret"] {
+                    print(accessToken)
+                    print(tokenSecret)
+                    completionHandler(accessToken, tokenSecret, nil)
+                    // make login
+                    navigationController?.dismiss(animated: true, completion: nil)
+                }
+            }
+        }
+        decisionHandler(.allow)
     }
 }

@@ -30,6 +30,7 @@ class GigyaApiService: XCTestCase {
         businessApi =  ioc?.container.resolve(IOCBusinessApiServiceProtocol.self)
 
         ResponseDataTest.resData = nil
+        ResponseDataTest.error = nil
     }
 
     override func tearDown() {

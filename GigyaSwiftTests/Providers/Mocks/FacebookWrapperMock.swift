@@ -7,3 +7,19 @@
 //
 
 import Foundation
+@testable import GigyaSwift
+
+class FacebookWrapperMock: ProviderWrapperProtocol {
+
+    var clientID: String? = {
+        return ResponseDataTest.clientID
+    }()
+
+    func login(params: [String: Any]? = nil, viewController: UIViewController? = nil, completion: @escaping (String?, Error?) -> Void) {
+        completion(ResponseDataTest.providerToken, ResponseDataTest.error)
+    }
+
+    func logout() {
+
+    }
+}

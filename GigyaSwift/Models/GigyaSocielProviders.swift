@@ -11,5 +11,6 @@ import Foundation
 public enum GigyaSocielProviders: String {
     case facebook
     case google = "googleplus"
-    case web
+    case yahoo
+    case twitter
 }

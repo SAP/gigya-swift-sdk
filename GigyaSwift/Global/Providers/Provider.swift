@@ -19,6 +19,9 @@ protocol Provider: class {
     func logout()
 
     func getProviderSessions(token: String) -> String
+
+    var didFinish: () -> Void { get set }
+
 }
 
 extension Provider {

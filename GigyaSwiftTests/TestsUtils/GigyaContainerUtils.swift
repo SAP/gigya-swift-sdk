@@ -23,8 +23,8 @@ class GigyaContainerUtils {
             return NetworkAdapterMock()
         }
 
-        container.register(service: IOCProviderFactoryProtocol.self) { _ in
-            return ProviderFactoryMock()
+        container.register(service: IOCProviderFactoryProtocol.self) { resolver in
+            return ProviderFactoryMock(config: resolver.resolve(GigyaConfig.self)!)
         }
 
         container.register(service: IOCApiServiceProtocol.self) { resolver in

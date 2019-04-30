@@ -59,6 +59,7 @@ class GoogleTests: XCTestCase {
         // swiftlint:enable force_try
         ResponseDataTest.clientID = "123"
         ResponseDataTest.resData = jsonData
+        ResponseDataTest.providerToken = nil
 
         GigyaSwift.sharedInstance().login(with: .google, viewController: viewController) { (result) in
             switch result {

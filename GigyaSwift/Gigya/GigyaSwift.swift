@@ -46,10 +46,6 @@ public class GigyaSwift {
             return NetworkAdapter()
         }
 
-        container.register(service: IOCProviderFactoryProtocol.self) { _ in
-            return ProviderFactory()
-        }
-
         container.register(service: IOCApiServiceProtocol.self) { resolver in
             return ApiService(with: resolver.resolve(IOCNetworkAdapterProtocol.self)!)
         }
@@ -61,6 +57,13 @@ public class GigyaSwift {
         container.register(service: IOCSessionServiceProtocol.self, isSingleton: true) { resolver in
             let gigyaApi = resolver.resolve(IOCGigyaWrapperProtocol.self)
             return SessionService(gigyaApi: gigyaApi!)
+        }
+
+        container.register(service: IOCProviderFactoryProtocol.self) { resolver in
+            let config = resolver.resolve(GigyaConfig.self)
+            let sessionService = resolver.resolve(IOCSessionServiceProtocol.self)
+
+            return ProviderFactory(sessionService: sessionService!, config: config!)
         }
 
         container.register(service: IOCBusinessApiServiceProtocol.self, isSingleton: true) { resolver in

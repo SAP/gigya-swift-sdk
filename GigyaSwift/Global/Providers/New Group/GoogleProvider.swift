@@ -13,6 +13,8 @@ class GoogleProvider: Provider {
 
     weak var delegate: BusinessApiDelegate?
 
+    var didFinish: () -> Void = { }
+
     let provider: ProviderWrapperProtocol
 
     init(provider: ProviderWrapperProtocol, delegate: BusinessApiDelegate) {
@@ -34,7 +36,9 @@ class GoogleProvider: Provider {
             GigyaLogger.error(with: GoogleProvider.self, message: "Missing server client id. Check plist implementation")
         }
 
-        provider.login(params: nil, viewController: nil) { (serverAuthCode, error) in
+        provider.login(params: nil, viewController: nil) { [weak self] (serverAuthCode, _, error) in
+            guard let self = self else { return }
+
             guard error == nil else {
                 let errorDesc = error!.localizedDescription
                 self.loginFailed(error: errorDesc, completion: completion)
@@ -56,6 +60,7 @@ class GoogleProvider: Provider {
 
     func logout() {
         provider.logout()
+        didFinish()
     }
 
     func getProviderSessions(token: String) -> String {
