@@ -1,0 +1,6 @@
+module GigyaSDK {
+    umbrella header "GigyaSDK.framework/Headers/Gigya.h"
+    export *
+    
+    module * { export * }
+}
