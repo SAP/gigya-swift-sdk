@@ -72,11 +72,20 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+
+        let loginin = gigya.isLoggedIn()
+
+        
     }
 
     @IBAction func checkValidateLogin(_ sender: Any) {
-        gigya.login(with: .web, viewController: self) { (res) in
-
+        gigya.login(with: .facebook, viewController: self) { (res) in
+            switch res {
+            case .success(let data):
+                print(data)
+            case .failure(_):
+                break
+            }
         }
         
 //        GigyaSwift.sharedInstance().login(loginId: "sagi.shmuel@sap.com", password: "151515") { res in

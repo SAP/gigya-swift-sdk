@@ -46,8 +46,8 @@ struct GigyaDefinitions {
     }
 
     public struct Plugin {
-        public static let  finished = "finished"
-        public static let  canceled = "canceled"
+        public static let finished = "finished"
+        public static let canceled = "canceled"
     }
 
 }

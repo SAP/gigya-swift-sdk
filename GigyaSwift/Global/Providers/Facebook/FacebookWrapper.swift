@@ -12,7 +12,7 @@ import FBSDKLoginKit
 
 class FacebookWrapper: NSObject, ProviderWrapperProtocol {
 
-    private var completionHandler: (String?, Error?) -> Void = { _, _  in }
+    private var completionHandler: (String?, String?, Error?) -> Void = { _, _, _  in }
 
     var clientID: String?
 
@@ -22,11 +22,7 @@ class FacebookWrapper: NSObject, ProviderWrapperProtocol {
         return FBSDKLoginManager()
     }()
 
-    override init() {
-        super.init()
-    }
-
-    func login(params: [String: Any]?, viewController: UIViewController?, completion: @escaping (String?, Error?) -> Void) {
+    func login(params: [String: Any]?, viewController: UIViewController?, completion: @escaping (String?, String?, Error?) -> Void) {
         completionHandler = completion
 
         if let loginBehavior = params?["facebookLoginBehavior"] as? FBSDKLoginBehavior {
@@ -35,15 +31,20 @@ class FacebookWrapper: NSObject, ProviderWrapperProtocol {
 
         fbLogin.logIn(withReadPermissions: defaultReadPermissions, from: viewController) { (result, error) in
             if result?.isCancelled != false {
-                let error = NSError(domain: "gigya", code: 123, userInfo: ["isCancelled": true]) as Error
-                completion(nil, error)
+                let error = NSError(domain: InternalConfig.General.sdkDomain, code: 200001, userInfo: ["isCancelled": true]) as Error
+                completion(nil, nil, error)
                 return
             }
-            completion(result?.token.tokenString, error)
+            completion(result?.token.tokenString, nil, error)
+            
         }
     }
 
     func logout() {
         fbLogin.logOut()
+    }
+
+    deinit {
+        print("[FacebookWrapper deinit]")
     }
 }

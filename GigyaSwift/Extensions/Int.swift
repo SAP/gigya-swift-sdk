@@ -13,7 +13,3 @@ extension Int {
         return (self * 60) 
     }
 }
-
-extension NSObject {
-
-}
