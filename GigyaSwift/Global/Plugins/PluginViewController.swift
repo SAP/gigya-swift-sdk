@@ -53,6 +53,7 @@ class PluginViewController: WebViewController, WKScriptMessageHandler {
         
         super.init(configuration: webViewConfiguration)
 
+        self.setDelegate(delegate: self)
         contentController.add(self, name: "gsapi")
 
 
@@ -73,7 +74,7 @@ class PluginViewController: WebViewController, WKScriptMessageHandler {
     }
     
     // MARK: - WKScriptMessageHandler protocol
-    
+
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         //bridge.onJSMessage(message: message)
         if let json = message.body as? [String:Any] {
@@ -110,5 +111,34 @@ extension Array {
     func toJSON() -> String {
         let jsonData: Data? = try? JSONSerialization.data(withJSONObject: self, options: [])
         return String(data: jsonData ?? Data(), encoding: .utf8)!
+    }
+}
+
+extension PluginViewController: WKNavigationDelegate {
+
+    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        if navigationAction.navigationType == .other {
+            if let url = navigationAction.request.url {
+                print("Url: \(url)")
+                if url.absoluteString.contains("get_ids") {
+                    let callbackID = url["callbackID"]
+                    let ids = [
+                        "ucid": "\(UserDefaults.standard.object(forKey: InternalConfig.Storage.UCID) ?? "")",
+                        "gcid": "\(UserDefaults.standard.object(forKey: InternalConfig.Storage.GMID) ?? "")"
+                    ]
+                    let script = "gigya._.apiAdapters.mobile.mobileCallbacks['\(callbackID!)'](\(ids.toJsonString));"
+                    webView.evaluateJavaScript(script)
+
+                }
+                if url.absoluteString.contains("is_session_valid") {
+                    let callbackID = url["callbackID"]
+                    let script = "gigya._.apiAdapters.mobile.mobileCallbacks['\(callbackID!)'](\(Gigya.isSessionValid()));"
+                    webView.evaluateJavaScript(script)
+                }
+
+
+            }
+        }
+        decisionHandler(.allow)
     }
 }
