@@ -16,16 +16,16 @@ class BusinessApiService: NSObject, IOCBusinessApiServiceProtocol {
 
     var accountService: IOCAccountServiceProtocol
 
-    var providerFactory: IOCProviderFactoryProtocol
+    var socialProviderFactory: IOCSocialProviderFactoryProtocol
 
     var providerAdapter: Provider?
 
     required init(apiService: IOCApiServiceProtocol, sessionService: IOCSessionServiceProtocol,
-                  accountService: IOCAccountServiceProtocol, providerFactory: IOCProviderFactoryProtocol) {
+                  accountService: IOCAccountServiceProtocol, providerFactory: IOCSocialProviderFactoryProtocol) {
         self.apiService = apiService
         self.sessionService = sessionService
         self.accountService = accountService
-        self.providerFactory = providerFactory
+        self.socialProviderFactory = providerFactory
     }
 
     // Send regular request
@@ -98,7 +98,7 @@ class BusinessApiService: NSObject, IOCBusinessApiServiceProtocol {
 
     func login<T: Codable>(provider: GigyaSocielProviders, viewController: UIViewController,
                            params: [String: Any], dataType: T.Type, completion: @escaping (GigyaApiResult<T>) -> Void) {
-        providerAdapter = providerFactory.getProvider(with: provider, delegate: self)
+        providerAdapter = socialProviderFactory.getProvider(with: provider, delegate: self)
 
         providerAdapter?.login(params: params, viewController: viewController, loginMode: "login") { (res) in
             completion(res)

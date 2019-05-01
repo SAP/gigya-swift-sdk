@@ -23,8 +23,9 @@ class GigyaContainerUtils {
             return NetworkAdapterMock()
         }
 
-        container.register(service: IOCProviderFactoryProtocol.self) { resolver in
-            return ProviderFactoryMock(config: resolver.resolve(GigyaConfig.self)!)
+        container.register(service: IOCSocialProviderFactoryProtocol.self) { resolver in
+            let sessionService = resolver.resolve(IOCSessionServiceProtocol.self)
+            return ProviderFactoryMock(sessionService: sessionService!, config: resolver.resolve(GigyaConfig.self)!)
         }
 
         container.register(service: IOCApiServiceProtocol.self) { resolver in
@@ -37,14 +38,16 @@ class GigyaContainerUtils {
 
         container.register(service: IOCSessionServiceProtocol.self, isSingleton: true) { resolver in
             let gigyaApi = resolver.resolve(IOCGigyaWrapperProtocol.self)
-            return GigyaSessionServiceMock(gigyaApi: gigyaApi!)
+            let accountService = resolver.resolve(IOCAccountServiceProtocol.self)
+
+            return GigyaSessionServiceMock(gigyaApi: gigyaApi!, accountService: accountService!)
         }
 
         container.register(service: IOCBusinessApiServiceProtocol.self) { resolver in
             let apiService = resolver.resolve(IOCApiServiceProtocol.self)
             let sessionService = resolver.resolve(IOCSessionServiceProtocol.self)
             let accountService = resolver.resolve(IOCAccountServiceProtocol.self)
-            let providerFactory = resolver.resolve(IOCProviderFactoryProtocol.self)
+            let providerFactory = resolver.resolve(IOCSocialProviderFactoryProtocol.self)
 
             return BusinessApiService(apiService: apiService!,
                                         sessionService: sessionService!,

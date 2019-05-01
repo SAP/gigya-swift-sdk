@@ -14,4 +14,6 @@ protocol IOCAccountServiceProtocol: class {
     func getAccount<T: Codable>() -> T
 
     func isCachedAccount() -> Bool
+
+    func clear()
 }

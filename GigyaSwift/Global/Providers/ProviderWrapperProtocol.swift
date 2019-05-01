@@ -11,7 +11,8 @@ import Foundation
 protocol ProviderWrapperProtocol {
     var clientID: String? { get set }
     
-    func login(params: [String: Any]?, viewController: UIViewController?, completion: @escaping (String?, String?, Error?) -> Void)
+    func login(params: [String: Any]?, viewController: UIViewController?,
+               completion: @escaping (_ token: String?, _ secret: String?, _ error: String?) -> Void)
 
     func logout()
 

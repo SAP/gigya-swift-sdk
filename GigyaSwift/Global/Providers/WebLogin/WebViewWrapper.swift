@@ -9,18 +9,18 @@
 import Foundation
 import WebKit
 
-class WebViewWrapper: NSObject, ProviderWrapperProtocol {
+class WebLoginWrapper: NSObject, ProviderWrapperProtocol {
     var clientID: String?
 
     var webViewController: WebViewController
 
-    var config: GigyaConfig
+    private var config: GigyaConfig
 
-    let providerType: GigyaSocielProviders
+    private let providerType: GigyaSocielProviders
 
-    var navigationController: UINavigationController?
+    private var navigationController: UINavigationController?
 
-    private var completionHandler: (String?, String?, Error?) -> Void = { _, _, _  in }
+    private var completionHandler: (_ token: String?, _ secret: String?, _ error: String?) -> Void = { _, _, _  in }
 
     init(config: GigyaConfig, providerType: GigyaSocielProviders) {
         self.providerType = providerType
@@ -29,6 +29,10 @@ class WebViewWrapper: NSObject, ProviderWrapperProtocol {
 
         super.init()
 
+        webViewConfig()
+    }
+
+    func webViewConfig() {
         let urlString = getUrl()
 
         guard let url = URL(string: urlString) else {
@@ -39,9 +43,14 @@ class WebViewWrapper: NSObject, ProviderWrapperProtocol {
 
         webViewController.loadUrl(url: url)
 
+        webViewController.userDidCancel = { [weak self] in
+            self?.completionHandler(nil, nil, "sign in cancelled")
+        }
+
     }
 
-    func login(params: [String: Any]?, viewController: UIViewController?, completion: @escaping (String?, String?, Error?) -> Void) {
+    func login(params: [String: Any]?, viewController: UIViewController?,
+               completion: @escaping (_ token: String?, _ secret: String?, _ error: String?) -> Void) {
         completionHandler = completion
         
         navigationController = UINavigationController(rootViewController: webViewController)
@@ -75,17 +84,22 @@ class WebViewWrapper: NSObject, ProviderWrapperProtocol {
     }
 }
 
-extension WebViewWrapper: WKNavigationDelegate {
+extension WebLoginWrapper: WKNavigationDelegate {
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         if navigationAction.navigationType == .other {
             if let url = navigationAction.request.url {
-                print("Url: \(url)")
-                if let accessToken = url["access_token"], let tokenSecret = url["x_access_token_secret"] {
-                    print(accessToken)
-                    print(tokenSecret)
-                    completionHandler(accessToken, tokenSecret, nil)
-                    // make login
-                    navigationController?.dismiss(animated: true, completion: nil)
+                GigyaLogger.log(with: providerType.rawValue, message: "Log redirect url: \(url)")
+                if
+                    let status = url["status"],
+                    status == "ok",
+                    let accessToken = url["access_token"],
+                    let tokenSecret = url["x_access_token_secret"] {
+                        completionHandler(accessToken, tokenSecret, nil)
+
+                        // dismiss viewController
+                        navigationController?.dismiss(animated: true, completion: nil)
+                } else if let status = url["status"], status != "ok" {
+                    completionHandler(nil, nil, "Failed to login")
                 }
             }
         }

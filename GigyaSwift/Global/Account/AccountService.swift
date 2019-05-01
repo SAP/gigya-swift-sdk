@@ -34,4 +34,9 @@ class AccountService: IOCAccountServiceProtocol {
         return false
     }
 
+    func clear() {
+        account = nil
+        accountInvalidationTimestamp = 0
+    }
+
 }

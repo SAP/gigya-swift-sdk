@@ -40,7 +40,7 @@ class GoogleProvider: Provider {
             guard let self = self else { return }
 
             guard error == nil else {
-                let errorDesc = error!.localizedDescription
+                let errorDesc = error!
                 self.loginFailed(error: errorDesc, completion: completion)
                 GigyaLogger.log(with: GoogleProvider.self, message: errorDesc)
                 return

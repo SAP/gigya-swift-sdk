@@ -15,10 +15,10 @@ protocol IOCBusinessApiServiceProtocol {
 
     var accountService: IOCAccountServiceProtocol { get }
 
-    var providerFactory: IOCProviderFactoryProtocol { get }
+    var socialProviderFactory: IOCSocialProviderFactoryProtocol { get }
 
     init(apiService: IOCApiServiceProtocol, sessionService: IOCSessionServiceProtocol,
-         accountService: IOCAccountServiceProtocol, providerFactory: IOCProviderFactoryProtocol)
+         accountService: IOCAccountServiceProtocol, providerFactory: IOCSocialProviderFactoryProtocol)
 
     func send(api: String, params: [String: String], completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void)
 

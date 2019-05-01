@@ -9,10 +9,12 @@
 import Foundation
 @testable import GigyaSwift
 
-class ProviderFactoryMock: IOCProviderFactoryProtocol {
+class ProviderFactoryMock: IOCSocialProviderFactoryProtocol {
     let config: GigyaConfig
+    let sessionService: IOCSessionServiceProtocol
 
-    init(config: GigyaConfig) {
+    init(sessionService: IOCSessionServiceProtocol, config: GigyaConfig) {
+        self.sessionService = sessionService
         self.config = config
     }
 
@@ -26,12 +28,10 @@ class ProviderFactoryMock: IOCProviderFactoryProtocol {
             if GoogleProvider.isAvailable() {
                 return GoogleProviderMock(provider: GoogleWrapperMock(), delegate: delegate)
             }
-        case .yahoo:
-            return WebViewProvider(provider: WebViewWrapper(config: config, providerType: socialProvider), delegate: delegate)
-        case .web:
-            return WebViewProvider(provider: WebViewWrapper(config: config, providerType: socialProvider), delegate: delegate)
+        default:
+            break
         }
 
-        return WebViewProvider(provider: WebViewWrapper(config: config, providerType: socialProvider), delegate: delegate) // TODO: Need to return web provider
+        return WebLoginProvider(sessionService: sessionService, provider: WebLoginWrapper(config: config, providerType: socialProvider), delegate: delegate)
     }
 }

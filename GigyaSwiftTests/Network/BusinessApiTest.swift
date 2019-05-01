@@ -46,7 +46,9 @@ class BusinessApiTest: XCTestCase {
         businessApi?.login(dataType: RequestTestModel.self, loginId: "tes@test.com", password: "151515", completion: { (result) in
             switch result {
             case .success(let data):
-                XCTAssertNotNil(data)
+                XCTAssertNotNil(data.callId)
+                XCTAssertNotNil(data.errorCode)
+                XCTAssertNotNil(data.statusCode)
             case .failure:
                 XCTFail("Fail")
             }
@@ -78,7 +80,9 @@ class BusinessApiTest: XCTestCase {
         businessApi?.getAccount(dataType: RequestTestModel.self, completion: { (result) in
             switch result {
             case .success(let data):
-                XCTAssertNotNil(data)
+                XCTAssertNotNil(data.callId)
+                XCTAssertNotNil(data.errorCode)
+                XCTAssertNotNil(data.statusCode)
             case .failure:
                 XCTFail("Fail")
             }
@@ -96,7 +100,9 @@ class BusinessApiTest: XCTestCase {
         businessApi?.getAccount(dataType: [String: AnyCodable].self, completion: { (result) in
             switch result {
             case .success(let data):
-                XCTAssertNotNil(data )
+                XCTAssertNotNil(data["callId"])
+                XCTAssertNotNil(data["errorCode"])
+                XCTAssertNotNil(data["statusCode"])
             case .failure(let error):
                 XCTFail("Fail: \(error)")
             }

@@ -35,7 +35,7 @@ class FacebookProvider: Provider {
             guard let self = self else { return }
 
             guard let token = token, error == nil else {
-                self.loginFailed(error: error?.localizedDescription ?? "Id token no available", completion: completion)
+                self.loginFailed(error: error ?? "Id token no available", completion: completion)
                 return
             }
             self.loginSuccess(providerSessions: self.getProviderSessions(token: token), loginMode: loginMode, params: params, completion: completion)

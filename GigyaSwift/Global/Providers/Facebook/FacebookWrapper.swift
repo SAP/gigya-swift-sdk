@@ -12,7 +12,7 @@ import FBSDKLoginKit
 
 class FacebookWrapper: NSObject, ProviderWrapperProtocol {
 
-    private var completionHandler: (String?, String?, Error?) -> Void = { _, _, _  in }
+    private var completionHandler: (_ token: String?, _ secret: String?, _ error: String?) -> Void = { _, _, _  in }
 
     var clientID: String?
 
@@ -22,7 +22,8 @@ class FacebookWrapper: NSObject, ProviderWrapperProtocol {
         return FBSDKLoginManager()
     }()
 
-    func login(params: [String: Any]?, viewController: UIViewController?, completion: @escaping (String?, String?, Error?) -> Void) {
+    func login(params: [String: Any]?, viewController: UIViewController?,
+               completion: @escaping (_ token: String?, _ secret: String?, _ error: String?) -> Void) {
         completionHandler = completion
 
         if let loginBehavior = params?["facebookLoginBehavior"] as? FBSDKLoginBehavior {
@@ -31,12 +32,16 @@ class FacebookWrapper: NSObject, ProviderWrapperProtocol {
 
         fbLogin.logIn(withReadPermissions: defaultReadPermissions, from: viewController) { (result, error) in
             if result?.isCancelled != false {
-                let error = NSError(domain: InternalConfig.General.sdkDomain, code: 200001, userInfo: ["isCancelled": true]) as Error
-                completion(nil, nil, error)
+                completion(nil, nil, "sign in cancelled")
                 return
             }
-            completion(result?.token.tokenString, nil, error)
-            
+
+            if let error = error {
+                completion(nil, nil, error.localizedDescription)
+            }
+
+            completion(result?.token.tokenString, nil, nil)
+
         }
     }
 
