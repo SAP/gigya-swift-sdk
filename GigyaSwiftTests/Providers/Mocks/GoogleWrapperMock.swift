@@ -15,8 +15,8 @@ class GoogleWrapperMock: ProviderWrapperProtocol {
         return ResponseDataTest.clientID
     }()
 
-    func login(params: [String: Any]? = nil, viewController: UIViewController? = nil, completion: @escaping (String?, Error?) -> Void) {
-        completion(ResponseDataTest.providerToken, ResponseDataTest.error)
+    func login(params: [String: Any]? = nil, viewController: UIViewController? = nil, completion: @escaping ( String?, String?, String?) -> Void) {
+        completion(ResponseDataTest.providerToken, ResponseDataTest.providerSecret, ResponseDataTest.providerError)
     }
 
     func logout() {

@@ -79,11 +79,12 @@ class ViewController: UIViewController {
     }
 
     @IBAction func checkValidateLogin(_ sender: Any) {
-        gigya.login(with: .facebook, viewController: self) { (res) in
+        gigya.login(with: .twitter, viewController: self) { (res) in
             switch res {
             case .success(let data):
                 print(data)
-            case .failure(_):
+            case .failure(let error):
+                print(error)
                 break
             }
         }

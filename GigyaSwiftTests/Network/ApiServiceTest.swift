@@ -60,16 +60,25 @@ class GigyaApiService: XCTestCase {
     func testSendReturnError() {
         let dic: [String: Any] = ["callId": "fasfsaf", "errorCode": 123, "statusCode": 200]
 
-        ResponseDataTest.resData = dic
+        //swiftlint:disable:next force_try
+        let objData = try! JSONSerialization.data(withJSONObject: dic, options: .prettyPrinted)
+
+        ResponseDataTest.resData = objData as NSData
 
         let requestModel = ApiRequestModel(method: "test")
 
         apiService?.send(model: requestModel, responseType: [String: AnyCodable].self) { (res) in
             switch res {
             case .failure(let error):
-                if case .networkError = error {
-                    XCTAssert(true)
+                switch error {
+                case .gigyaError(let data):
+                    XCTAssertNotNil(data.callId)
+                    XCTAssertNotNil(data.errorCode)
+                    XCTAssertNotNil(data.statusCode)
+                default:
+                    XCTFail("Fail")
                 }
+
             default:
                 XCTFail("Fail")
             }
@@ -88,7 +97,7 @@ class GigyaApiService: XCTestCase {
             switch res {
             case .failure(let error):
                 if case .gigyaError(let eee) = error {
-                    XCTAssertNotNil(eee)
+                    XCTAssertNotNil(eee) // TODO: Check object
                 } else {
                     XCTFail("Fail")
                 }
@@ -99,7 +108,7 @@ class GigyaApiService: XCTestCase {
 
     }
 
-    func testResponseFailed() {
+    func testGigyaResponseFailed() {
         let dic: [String: Any] = ["callId": "fasfsaf", "errorCode": 123, "statusCode": 403]
 
         // swiftlint:disable force_try
@@ -115,7 +124,7 @@ class GigyaApiService: XCTestCase {
             case .success:
                 XCTFail("Fail")
             case .failure(let error):
-                XCTAssertNotNil(error)
+                XCTAssertNotNil(error) // TODO: Check oject
             }
         }
     }

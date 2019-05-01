@@ -8,11 +8,11 @@
 
 import Foundation
 
-protocol IOCProviderFactoryProtocol {
+protocol IOCSocialProviderFactoryProtocol {
     func getProvider(with socialProvider: GigyaSocielProviders, delegate: BusinessApiDelegate) -> Provider
 }
 
-class ProviderFactory: IOCProviderFactoryProtocol {
+class SocialProviderFactory: IOCSocialProviderFactoryProtocol {
     let config: GigyaConfig
 
     let sessionService: IOCSessionServiceProtocol
@@ -36,6 +36,6 @@ class ProviderFactory: IOCProviderFactoryProtocol {
             break
         }
 
-        return WebViewProvider(sessionService: sessionService, provider: WebViewWrapper(config: config, providerType: socialProvider), delegate: delegate)
+        return WebLoginProvider(sessionService: sessionService, provider: WebLoginWrapper(config: config, providerType: socialProvider), delegate: delegate)
     }
 }

@@ -25,7 +25,7 @@ class GoogleWrapper: NSObject, ProviderWrapperProtocol {
         return GIDSignIn.sharedInstance()
     }()
 
-    private var completionHandler: (String?, String?, Error?) -> Void = { _, _, _  in }
+    private var completionHandler: (_ token: String?, _ secret: String?, _ error: String?) -> Void = { _, _, _  in }
 
     override init() {
         super.init()
@@ -37,7 +37,8 @@ class GoogleWrapper: NSObject, ProviderWrapperProtocol {
         googleLogin.delegate = self
     }
 
-    func login(params: [String: Any]? = nil, viewController: UIViewController? = nil, completion: @escaping (String?, String?, Error?) -> Void) {
+    func login(params: [String: Any]? = nil, viewController: UIViewController? = nil,
+               completion: @escaping (_ token: String?, _ secret: String?, _ error: String?) -> Void) {
         completionHandler = completion
 
         googleLogin.signIn()
@@ -55,7 +56,7 @@ class GoogleWrapper: NSObject, ProviderWrapperProtocol {
 extension GoogleWrapper: GIDSignInDelegate, GIDSignInUIDelegate {
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         guard error == nil else {
-            completionHandler(nil, nil, error)
+            completionHandler(nil, nil, error.localizedDescription)
             return
         }
         completionHandler(user.serverAuthCode, nil, nil)

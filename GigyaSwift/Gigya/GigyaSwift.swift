@@ -56,21 +56,23 @@ public class GigyaSwift {
 
         container.register(service: IOCSessionServiceProtocol.self, isSingleton: true) { resolver in
             let gigyaApi = resolver.resolve(IOCGigyaWrapperProtocol.self)
-            return SessionService(gigyaApi: gigyaApi!)
+            let accountService = resolver.resolve(IOCAccountServiceProtocol.self)
+
+            return SessionService(gigyaApi: gigyaApi!, accountService: accountService!)
         }
 
-        container.register(service: IOCProviderFactoryProtocol.self) { resolver in
+        container.register(service: IOCSocialProviderFactoryProtocol.self) { resolver in
             let config = resolver.resolve(GigyaConfig.self)
             let sessionService = resolver.resolve(IOCSessionServiceProtocol.self)
 
-            return ProviderFactory(sessionService: sessionService!, config: config!)
+            return SocialProviderFactory(sessionService: sessionService!, config: config!)
         }
 
         container.register(service: IOCBusinessApiServiceProtocol.self, isSingleton: true) { resolver in
             let apiService = resolver.resolve(IOCApiServiceProtocol.self)
             let sessionService = resolver.resolve(IOCSessionServiceProtocol.self)
             let accountService = resolver.resolve(IOCAccountServiceProtocol.self)
-            let providerFactory = resolver.resolve(IOCProviderFactoryProtocol.self)
+            let providerFactory = resolver.resolve(IOCSocialProviderFactoryProtocol.self)
 
             return BusinessApiService(apiService: apiService!,
                               sessionService: sessionService!,

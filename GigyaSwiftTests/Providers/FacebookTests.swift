@@ -41,7 +41,7 @@ class FacebookTests: XCTestCase {
         GigyaSwift.sharedInstance().login(with: .facebook, viewController: viewController, params: ["testParam": "test"]) { (result) in
             switch result {
             case .success(let data):
-                XCTAssertNotNil(data )
+                XCTAssertNotNil(data)
             case .failure(let error):
                 XCTFail("Fail: \(error)")
             }

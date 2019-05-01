@@ -14,7 +14,7 @@ class BusinessApiServiceMock: BusinessApiService {
 
     var showError: Bool = false
 
-    required init(apiService: IOCApiServiceProtocol, sessionService: IOCSessionServiceProtocol, accountService: IOCAccountServiceProtocol, providerFactory: IOCProviderFactoryProtocol) {
+    required init(apiService: IOCApiServiceProtocol, sessionService: IOCSessionServiceProtocol, accountService: IOCAccountServiceProtocol, providerFactory: IOCSocialProviderFactoryProtocol) {
         super.init(apiService: apiService, sessionService: sessionService, accountService: accountService, providerFactory: providerFactory)
     }
 //

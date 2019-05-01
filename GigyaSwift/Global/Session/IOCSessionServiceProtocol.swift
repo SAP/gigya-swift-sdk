@@ -11,9 +11,11 @@ import Foundation
 protocol IOCSessionServiceProtocol {
     var gigyaApi: IOCGigyaWrapperProtocol { get }
 
+    var accountService: IOCAccountServiceProtocol { get }
+
     var session: GigyaSession? { get set }
 
-    init(gigyaApi: IOCGigyaWrapperProtocol)
+    init(gigyaApi: IOCGigyaWrapperProtocol, accountService: IOCAccountServiceProtocol)
 
     func isValidSession() -> Bool
 

@@ -11,10 +11,14 @@ import Foundation
 class SessionService: IOCSessionServiceProtocol {
 
     var gigyaApi: IOCGigyaWrapperProtocol
+
+    var accountService: IOCAccountServiceProtocol
+
     var session: GigyaSession?
 
-    required init(gigyaApi: IOCGigyaWrapperProtocol) {
+    required init(gigyaApi: IOCGigyaWrapperProtocol, accountService: IOCAccountServiceProtocol) {
         self.gigyaApi = gigyaApi
+        self.accountService = accountService
     }
 
     func isValidSession() -> Bool {
@@ -34,5 +38,6 @@ class SessionService: IOCSessionServiceProtocol {
 
     func clear() {
         gigyaApi.logout()
+        accountService.clear()
     }
 }

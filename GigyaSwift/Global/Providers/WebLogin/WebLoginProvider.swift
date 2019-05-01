@@ -8,7 +8,7 @@
 
 import Foundation
 
-class WebViewProvider: Provider {
+class WebLoginProvider: Provider {
 
     weak var delegate: BusinessApiDelegate?
 
@@ -34,9 +34,10 @@ class WebViewProvider: Provider {
 
         provider.login(params: params, viewController: viewController) { [weak self] token, secret, error in
             guard error == nil else {
-                let errorDesc = error!.localizedDescription
+                let errorDesc = error!
                 self?.loginFailed(error: errorDesc, completion: completion)
-                GigyaLogger.log(with: WebViewProvider.self, message: errorDesc)
+
+                GigyaLogger.log(with: WebLoginProvider.self, message: errorDesc)
                 return
             }
 
@@ -44,7 +45,10 @@ class WebViewProvider: Provider {
                 let token = token,
                 let secret = secret,
                 let sessionObject = GigyaSession(sessionToken: token, secret: secret) else {
-                    self?.loginFailed(error: "token no available", completion: completion)
+                    let errorDesc = "token no available"
+                    self?.loginFailed(error: errorDesc, completion: completion)
+
+                    GigyaLogger.log(with: WebLoginProvider.self, message: errorDesc)
                     return
             }
 
@@ -53,9 +57,9 @@ class WebViewProvider: Provider {
             self?.delegate?.callGetAccount(completion: { (result) in
                 completion(result)
             })
+
             self?.logout()
         }
-
     }
 
     func logout() {

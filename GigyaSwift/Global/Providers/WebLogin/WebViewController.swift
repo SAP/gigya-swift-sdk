@@ -12,22 +12,23 @@ import WebKit
 class WebViewController: UIViewController {
     let webView: WKWebView
 
+    var userDidCancel: () -> Void = { }
+
     init() {
         webView = WKWebView(frame: .zero)
 
         super.init(nibName: nil, bundle: nil)
-
-        self.view.backgroundColor = .white
     }
 
     override func viewDidLoad() {
         buildUI()
 
         setWebViewLayout()
-
     }
 
     private func buildUI() {
+        self.view.backgroundColor = .white
+
         self.view.addSubview(webView)
 
         webView.translatesAutoresizingMaskIntoConstraints = false
@@ -66,5 +67,6 @@ class WebViewController: UIViewController {
 
     @objc private func dismissView() {
         self.dismiss(animated: true, completion: nil)
+        userDidCancel()
     }
 }
