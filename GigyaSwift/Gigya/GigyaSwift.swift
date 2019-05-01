@@ -79,6 +79,12 @@ public class GigyaSwift {
         }
 
         container.register(service: IOCAccountServiceProtocol.self, isSingleton: true) { _ in AccountService() }
+        
+        container.register(service: IOCWebBridgeProtocol.self) { resolver in
+            let config = resolver.resolve(GigyaConfig.self)
+            
+            return WebBridge(config: config!)
+        }
 
     }
 

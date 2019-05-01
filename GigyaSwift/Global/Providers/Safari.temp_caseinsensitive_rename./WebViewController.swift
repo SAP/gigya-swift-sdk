@@ -12,8 +12,8 @@ import WebKit
 class WebViewController: UIViewController {
     let webView: WKWebView
 
-    init() {
-        webView = WKWebView(frame: .zero)
+    init(configuration: WKWebViewConfiguration = WKWebViewConfiguration()) {
+        webView = WKWebView(frame: .zero, configuration: configuration)
 
         super.init(nibName: nil, bundle: nil)
 

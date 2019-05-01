@@ -33,6 +33,14 @@
                                     <action selector="getAccount:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ucB-U6-yhy"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oP0-L2-dyn">
+                                <rect key="frame" x="145" y="291" width="84" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Show plugin"/>
+                                <connections>
+                                    <action selector="showPlugin:" destination="BYZ-38-t0r" eventType="touchUpInside" id="BLH-Mn-ayj"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>

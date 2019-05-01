@@ -34,6 +34,10 @@ public class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
     private var sessionService: IOCSessionServiceProtocol {
         return (container?.resolve(IOCSessionServiceProtocol.self))!
     }
+    
+    private var webBridge: IOCWebBridgeProtocol {
+        return (container?.resolve(IOCWebBridgeProtocol.self))!
+    }
 
     // MARK: - Initialize
     internal init(container: IOCContainer, plistConfig: PlistConfig) {
@@ -197,8 +201,9 @@ public class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
     - Parameter completion:  Plugin completion.
     */
 
-    public func showScreenSet(name: String, params: [String: String], completion: (GigyaApiResult<Any>) -> Void) {
-        
+    public func showScreenSet(name: String, viewController: UIViewController, params: [String: Any] = [:], completion: (GigyaApiResult<Any>) -> Void) {
+        let wrapper = PluginViewWrapper(config: config, bridge: webBridge, plugin: "accounts.screenSet", params: params)
+        wrapper.present(viewController: viewController, screenSet: name)
     }
 
     /**

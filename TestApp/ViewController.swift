@@ -115,6 +115,7 @@ class ViewController: UIViewController {
                 print(error)
             }
         }
+        
 
 //        gigya.getAccount { [weak self] res in
 //            switch res {
@@ -165,5 +166,13 @@ class ViewController: UIViewController {
 //        }
 
 //    }
+    
+    
+    @IBAction func showPlugin(_ sender: Any) {
+        gigya.showScreenSet(name: "Default-RegistrationLogin", viewController: self) { (result) in
+            
+        }
+    }
+    
 }
 

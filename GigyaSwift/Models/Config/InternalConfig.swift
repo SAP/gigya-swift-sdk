@@ -22,7 +22,7 @@ struct InternalConfig {
         internal static let defaultTouchIDMessage = "Please authenticate to proceed"
 
         // UserDefaults objects
-        internal static let UCID = "com.gigya.Gigya:ucid"
-        internal static let GMID = "com.gigya.Gigya:gmid"
+        internal static let UCID = "com.gigya.GigyaSDK:ucid"
+        internal static let GMID = "com.gigya.GigyaSDK:gmid"
     }
 }
