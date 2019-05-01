@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import GigyaSDK
 import WebKit
 
 class PluginViewController: WebViewController, WKScriptMessageHandler {
@@ -18,14 +19,16 @@ class PluginViewController: WebViewController, WKScriptMessageHandler {
     var plugin: String
     
     var params: [String:Any]
-    
+
+    let contentController = WKUserContentController()
+
     init(config: GigyaConfig, bridge: IOCWebBridgeProtocol, plugin: String, params: [String: Any]) {
         self.config = config
         self.bridge = bridge
         self.plugin = plugin
         self.params = params
         
-        let contentController = WKUserContentController()
+
         let webViewConfiguration = WKWebViewConfiguration()
         webViewConfiguration.userContentController = contentController
         
@@ -35,21 +38,24 @@ class PluginViewController: WebViewController, WKScriptMessageHandler {
 
 //        let script = "window.__gigAPIAdapterSettings = { getAdapterName: function() { return 'mobile'; }, getAPIKey: function() { return '\(config.apiKey!)'; }, getFeatures: function() { return '\(json)';}}"
         let script = """
-    window.__gigAPIAdapterSettings = { getAdapterName: function() { return 'mobile'; },getAPIKey: function() { return '3_Rnp81vcr2T8l9ikyU7zXDeT2BqhFoaEMK-X5_CGssphkkfNITZIU7FafZqJpJl5H'; },getFeatures: function() { return '["is_session_valid","send_request","send_oauth_request","get_ids","on_plugin_event","on_custom_event","register_for_namespace_events","on_js_exception","on_js_log","clear_session"]'; },getSettings: function() { return '{"logLevel":"error"}';}, sendToMobile: function(action,method,queryStringParams) {
-         var postObject = {
+    window.__gigAPIAdapterSettings = { getAdapterName: function() { return 'mobile'; },getAPIKey: function() { return '3_Rnp81vcr2T8l9ikyU7zXDeT2BqhFoaEMK-X5_CGssphkkfNITZIU7FafZqJpJl5H'; },getFeatures: function() { return '["is_session_valid","send_request","send_oauth_request","get_ids","on_plugin_event","on_custom_event","register_for_namespace_events","on_js_exception","on_js_log","clear_session"]'; },getSettings: function() { return '{"logLevel":"error"}';},sendToMobile: function(action,method,queryStringParams) {
+            var postObject = {
                 action: action,
                 method: method,
                 params: queryStringParams
-        };
-        window.webkit.messageHandlers.gsapi.postMessage(postObject);}
-};
+            };
+            window.webkit.messageHandlers.gsapi.postMessage(postObject);return true}
+        }
 """
+
         let userScript = WKUserScript(source: script, injectionTime: .atDocumentStart, forMainFrameOnly: false)
         contentController.addUserScript(userScript)
         
         super.init(configuration: webViewConfiguration)
-        
+
         contentController.add(self, name: "gsapi")
+
+
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -79,7 +85,15 @@ class PluginViewController: WebViewController, WKScriptMessageHandler {
                     "ucid": "\(UserDefaults.standard.object(forKey: InternalConfig.Storage.UCID) ?? "")",
                     "gcid": "\(UserDefaults.standard.object(forKey: InternalConfig.Storage.GMID) ?? "")"
                 ]
-                let script = "gigya._.apiAdapters.mobile.mobileCallbacks[\(callbackID!)](\(ids.toJsonString));"
+                let script = "gigya._.apiAdapters.mobile.mobileCallbacks['\(callbackID!)'](\(ids.toJsonString));"
+                webView.evaluateJavaScript(script)
+                print(script)
+            }
+
+            if action == "is_session_valid" {
+                let params = json["params"] as! String
+                let callbackID = params["callbackID"]
+                let script = "gigya._.apiAdapters.mobile.mobileCallbacks['\(callbackID!)'](\(Gigya.isSessionValid()));"
                 webView.evaluateJavaScript(script)
             }
         }
@@ -98,4 +112,3 @@ extension Array {
         return String(data: jsonData ?? Data(), encoding: .utf8)!
     }
 }
-

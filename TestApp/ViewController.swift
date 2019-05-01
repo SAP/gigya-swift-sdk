@@ -169,8 +169,9 @@ class ViewController: UIViewController {
     
     
     @IBAction func showPlugin(_ sender: Any) {
+//        Gigya.showPluginDialogOver(self, plugin: "accounts.screenSet", parameters: ["screenSet": "Default-RegistrationLogin"])
         gigya.showScreenSet(name: "Default-RegistrationLogin", viewController: self) { (result) in
-            
+
         }
     }
     
