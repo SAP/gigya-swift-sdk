@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D52F88E622795947007DE20F /* WebBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52F88E522795947007DE20F /* WebBridge.swift */; };
 		D52F88EA22795F39007DE20F /* PluginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52F88E922795F39007DE20F /* PluginViewController.swift */; };
 		D58EF441227993C6003DB878 /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58EF440227993C6003DB878 /* Dictionary.swift */; };
 		D58EF4432279948B003DB878 /* PluginViewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58EF4422279948B003DB878 /* PluginViewWrapper.swift */; };
 		D58EF4452279CB38003DB878 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58EF4442279CB38003DB878 /* String.swift */; };
+		D5C9DD3D227B0C9200E47095 /* PluginEventDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C9DD3C227B0C9200E47095 /* PluginEventDelegate.swift */; };
 		E713E0CC2247773100181328 /* GigyaSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7BE36732224219200A108D9 /* GigyaSwift.framework */; };
 		E713E0CD2247773100181328 /* GigyaSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E7BE36732224219200A108D9 /* GigyaSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E713E0FC2247C6E700181328 /* SignatureUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E713E0FB2247C6E700181328 /* SignatureUtils.swift */; };
@@ -189,11 +189,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		D52F88E522795947007DE20F /* WebBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebBridge.swift; sourceTree = "<group>"; };
 		D52F88E922795F39007DE20F /* PluginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluginViewController.swift; sourceTree = "<group>"; };
 		D58EF440227993C6003DB878 /* Dictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dictionary.swift; sourceTree = "<group>"; };
 		D58EF4422279948B003DB878 /* PluginViewWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluginViewWrapper.swift; sourceTree = "<group>"; };
 		D58EF4442279CB38003DB878 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		D5C9DD3C227B0C9200E47095 /* PluginEventDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluginEventDelegate.swift; sourceTree = "<group>"; };
 		E713E0FB2247C6E700181328 /* SignatureUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignatureUtils.swift; sourceTree = "<group>"; };
 		E713E0FD2248C83D00181328 /* GigyaConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigyaConfig.swift; sourceTree = "<group>"; };
 		E713E1012248E41400181328 /* GigyaRequestSignature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigyaRequestSignature.swift; sourceTree = "<group>"; };
@@ -375,9 +375,9 @@
 		D52F88E422795793007DE20F /* Plugins */ = {
 			isa = PBXGroup;
 			children = (
-				D52F88E522795947007DE20F /* WebBridge.swift */,
 				D52F88E922795F39007DE20F /* PluginViewController.swift */,
 				D58EF4422279948B003DB878 /* PluginViewWrapper.swift */,
+				D5C9DD3C227B0C9200E47095 /* PluginEventDelegate.swift */,
 			);
 			path = Plugins;
 			sourceTree = "<group>";
@@ -1078,6 +1078,7 @@
 				E7A6E0AC224245D00063638F /* ApiResultModel.swift in Sources */,
 				E7CBAFC0222D1F5B000B6C11 /* ApiService.swift in Sources */,
 				E7CBAFD42230232D000B6C11 /* AccountService.swift in Sources */,
+				D5C9DD3D227B0C9200E47095 /* PluginEventDelegate.swift in Sources */,
 				E7CBAFD0222EB89D000B6C11 /* BusinessApiService.swift in Sources */,
 				E73374292264B99C00ADEDBB /* GoogleWrapper.swift in Sources */,
 				E774A54D2242A12800BC67D1 /* AnyCodableUtils.swift in Sources */,
@@ -1109,7 +1110,6 @@
 				E7ACF9CC226F2A4100900C65 /* ProviderWrapperProtocol.swift in Sources */,
 				D52F88EA22795F39007DE20F /* PluginViewController.swift in Sources */,
 				E7CBB03B22356068000B6C11 /* GigyaCore.swift in Sources */,
-				D52F88E622795947007DE20F /* WebBridge.swift in Sources */,
 				E7CBAFA022282C56000B6C11 /* KeychainPasscode.swift in Sources */,
 				E73373B02254FD4800ADEDBB /* Int.swift in Sources */,
 			);

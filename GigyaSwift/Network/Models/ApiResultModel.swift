@@ -13,4 +13,12 @@ public struct GigyaResponseModel: Codable {
     var errorCode: Int
     var callId: String
     let errorMessage: String?
+    
+    func toDictionary() -> [String: Any] {
+        return ["statusCode": statusCode, "errorCode": errorCode, "callId": callId, "errorMessage": errorMessage ?? ""]
+    }
+    
+    func asJson() -> String {
+        return toDictionary().asJson
+    }
 }

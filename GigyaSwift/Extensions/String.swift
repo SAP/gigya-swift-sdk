@@ -26,4 +26,18 @@ extension String {
         }
         return nil
     }
+    
+    func asDictionary() -> [String: String] {
+        var map = [String:String]()
+        let decoded = self.removingPercentEncoding ?? ""
+        for pair in decoded.components(separatedBy: "&") {
+            let key = pair.components(separatedBy: "=")[0]
+            let value = pair
+                .components(separatedBy:"=")[1]
+                .replacingOccurrences(of: "+", with: " ")
+                .removingPercentEncoding ?? ""
+            map[key] = value
+        }
+        return map
+    }
 }

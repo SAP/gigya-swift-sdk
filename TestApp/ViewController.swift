@@ -170,10 +170,23 @@ class ViewController: UIViewController {
     
     @IBAction func showPlugin(_ sender: Any) {
 //        Gigya.showPluginDialogOver(self, plugin: "accounts.screenSet", parameters: ["screenSet": "Default-RegistrationLogin"])
-        gigya.showScreenSet(name: "Default-RegistrationLogin", viewController: self) { (result) in
-
-        }
+        gigya.showScreenSet(name: "Default-RegistrationLogin", viewController: self, delegate: self)
     }
     
 }
 
+extension ViewController: PluginEventDelegate {
+   
+    func onError(error: GigyaResponseModel) {
+        
+    }
+    
+    func onEvent(event: PluginEvent) {
+        switch event {
+        case .onLogin(let account):
+            print(account)
+        default:
+             break
+        }
+    }
+}

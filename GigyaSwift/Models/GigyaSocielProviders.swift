@@ -13,4 +13,8 @@ public enum GigyaSocielProviders: String {
     case google = "googleplus"
     case yahoo
     case twitter
+    
+    static func byName(name: String) -> GigyaSocielProviders? {
+        return self.init(rawValue: name)
+    }
 }

@@ -10,34 +10,42 @@ import Foundation
 
 protocol PluginViewWrapperProtocol {
     
-    func present(viewController: UIViewController, screenSet: String?)
+    func present<T: GigyaAccountProtocol>(viewController: UIViewController, dataType: T.Type, screenSet: String?)
 }
 
 class PluginViewWrapper: PluginViewWrapperProtocol {
     
     let config: GigyaConfig
     
-    let bridge: IOCWebBridgeProtocol
+    let sessionService: IOCSessionServiceProtocol
+    
+    let businessApiService: IOCBusinessApiServiceProtocol
+    
+    weak var pluginDelegate: PluginEventDelegate?
     
     var plugin: String
     
     var params: [String:Any]
     
-    init(config: GigyaConfig, bridge: IOCWebBridgeProtocol, plugin: String, params: [String: Any]) {
+    init(config: GigyaConfig, sessionService: IOCSessionServiceProtocol, businessApiService: IOCBusinessApiServiceProtocol, delegate: PluginEventDelegate?, plugin: String, params: [String: Any]) {
         self.config = config
-        self.bridge = bridge
+        self.sessionService = sessionService
+        self.businessApiService = businessApiService
+        self.pluginDelegate = delegate
         self.plugin = plugin
         self.params = params
     }
     
-    func present(viewController: UIViewController, screenSet: String? = nil) {
+    func present<T: GigyaAccountProtocol>(viewController: UIViewController, dataType: T.Type, screenSet: String? = nil) {
         if let screenSet = screenSet {
             params["screenSet"] =  screenSet
         }
         
         let html = getHtml(self.plugin)
+        GigyaLogger.log(with: self, message: "Initial HTML:\n\(html)")
         
-        let pluginViewController = PluginViewController(config: config, bridge: bridge, plugin: self.plugin, params: self.params)
+        // Present plugin view controller.
+        let pluginViewController = PluginViewController<T>(config: config, sessionService: sessionService, businessApiService: businessApiService, delegate: pluginDelegate)
         let navigationController = UINavigationController(rootViewController: pluginViewController)
         viewController.present(navigationController, animated: true) {
             pluginViewController.load(html: html)
@@ -95,7 +103,7 @@ class PluginViewWrapper: PluginViewWrapperProtocol {
         <script>
         "\(enableTestNetworksScript)"
         try {
-        gigya._.apiAdapters.mobile.showPlugin('\(plugin)', \(params.toJsonString));
+        gigya._.apiAdapters.mobile.showPlugin('\(plugin)', \(params.asJson));
         } catch (ex) { onJSException(ex); }
         </script>
         </body>

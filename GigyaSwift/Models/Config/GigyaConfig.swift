@@ -17,8 +17,16 @@ class GigyaConfig {
     var apiDomain: String?
     //TODO: Need to check if need isInitSdk
     var isInitSdk: Bool = false
-    var gmid: String?
-    var ucid: String?
+    var gmid: String? {
+        get {
+            return UserDefaults.standard.object(forKey: InternalConfig.Storage.GMID) as? String
+        }
+    }
+    var ucid: String? {
+        get {
+           return UserDefaults.standard.object(forKey: InternalConfig.Storage.UCID) as? String
+        }
+    }
 //    var sessionInfo: SessionInfo?
 
 }
