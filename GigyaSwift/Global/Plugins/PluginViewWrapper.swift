@@ -54,7 +54,7 @@ class PluginViewWrapper: PluginViewWrapperProtocol {
     
     // MARK: - HTML
     
-    func getHtml(_ plugin: String) -> String {
+    private func getHtml(_ plugin: String) -> String {
         guard let apiKey = config.apiKey, let apiDomain = config.apiDomain else { return "" }
         
         params["containerID"] = "pluginContainer"

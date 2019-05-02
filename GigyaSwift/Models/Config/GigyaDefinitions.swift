@@ -25,6 +25,7 @@ struct GigyaDefinitions {
         public static let notifyLogin = "accounts.notifyLogin"
         public static let verifyLogin = "accounts.verifyLogin"
         public static let notifySocialLogin = "accounts.notifySocialLogin"
+        public static let removeConnection = "socialize.removeConnection"
         // TFA
         public static let initTFA = "accounts.tfa.initTFA"
         public static let tfaGetProviders = "accounts.tfa.getProviders"

@@ -54,7 +54,7 @@ class PluginViewController<T: GigyaAccountProtocol>: WebViewController, WKScript
     
     // MARK: - JS Interface
     
-    func getJSInterface() -> String {
+    private func getJSInterface() -> String {
         let JSFeatures =  ["is_session_valid","send_request","send_oauth_request","get_ids","on_plugin_event","on_custom_event","register_for_namespace_events","on_js_exception","on_js_log","clear_session"];
         
         let JSInterface =  """
@@ -128,19 +128,50 @@ class PluginViewController<T: GigyaAccountProtocol>: WebViewController, WKScript
             }
             sendOauthRequest(id: callbackId, apiMethod: apiMethod, params: params.asDictionary())
         case "on_plugin_event":
+            guard let params = data["params"] else { return }
+            if let sourceContainerId = params["sourceContainerID"] {
+                if (sourceContainerId == "pluginContainer") {
+                    onPluginEvent(params: params.asDictionary())
+                }
+            }
             break
         default:
             break
         }
     }
     
-    func invokeCallback(id: String, and result: String) {
+    private func invokeCallback(id: String, and result: String) {
         let JS = "gigya._.apiAdapters.mobile.mobileCallbacks['\(id)'](\(result));"
         GigyaLogger.log(with: self, message: "invokeCallback:\n\(JS)")
         webView.evaluateJavaScript(JS)
     }
     
-    func sendRequest(id: String, apiMethod: String, params: [String:String]) {
+    private func onPluginEvent(params: [String: String]) {
+        if let eventName = params["eventName"] {
+            switch eventName {
+            case "beforeScreenLoad":
+                delegate?.onEvent(event: .onBeforeScreenLoad(event: params))
+            case "afterScreenLoad":
+                delegate?.onEvent(event: .onAfterScreenLoad(event: params))
+            case "beforeSubmit":
+                delegate?.onEvent(event: .onBeforeSubmit(event: params))
+            case "submit":
+                delegate?.onEvent(event: .onSubmit(event: params))
+            case "afterSubmit":
+                delegate?.onEvent(event: .onAfterSubmit(event: params))
+            case "hide":
+                delegate?.onEvent(event: .onHide(event: params))
+                dismissPluginController()
+            case "error":
+//                delegate?.onError(error: DecodeEncodeUtils.decode(fromType: GigyaResponseModel.self, data: params))
+                break
+            default:
+                break
+            }
+        }
+    }
+    
+    private func sendRequest(id: String, apiMethod: String, params: [String: String]) {
         GigyaLogger.log(with: self, message: "sendRequest: with apiMethod = \(apiMethod)")
         businessApiService.send(api: apiMethod, params: params) { [weak self] result in
             guard let self = self else { return }
@@ -163,7 +194,7 @@ class PluginViewController<T: GigyaAccountProtocol>: WebViewController, WKScript
         }
     }
     
-    func sendLoginRequest(id: String, apiMethod: String, params: [String:String]) {
+    private func sendLoginRequest(id: String, apiMethod: String, params: [String: String]) {
         GigyaLogger.log(with: self, message: "sendLoginRequest: with params:\n\(params)")
         businessApiService.send(dataType: T.self, api: apiMethod, params: params) { [weak self] result in
             guard let self = self else { return }
@@ -185,15 +216,46 @@ class PluginViewController<T: GigyaAccountProtocol>: WebViewController, WKScript
         }
     }
     
-    func sendAddConnectionRequest(id: String, params: [String:String]) {
+    private func sendAddConnectionRequest(id: String, params: [String: String]) {
         GigyaLogger.log(with: self, message: "sendAddConnectionRequest: with params:\n\(params)")
+        guard let providerToAdd = params["provider"] else { return }
+        if let provider = GigyaSocielProviders.byName(name: providerToAdd) {
+            businessApiService.addConnection(provider: provider, viewController: self, params: params, dataType: T.self) { [weak self] result in
+                guard let self = self else { return }
+                switch result {
+                case .success( _):
+                    GigyaLogger.log(with: self, message: "sendOauthRequest success")
+                    self.delegate?.onEvent(event: .onConnectionAdded)
+                    self.dismissPluginController()
+                case .failure(let error):
+                    GigyaLogger.log(with: self, message: "sendOauthRequest: error:\n\(error.localizedDescription)")
+                    self.invokeError(id: id, error: error)
+                }
+            }
+        }
     }
     
-    func sendRemoveConnectionRequest(id: String, params: [String:String]) {
+    private func sendRemoveConnectionRequest(id: String, params: [String: String]) {
         GigyaLogger.log(with: self, message: "sendRemoveConnectionRequest: with params:\n\(params)")
+        if let provider = params["provider"] {
+            businessApiService.removeConnection(providerName: provider) { [weak self] result in
+                guard let self = self else { return }
+                 switch result {
+                 case .success(let data):
+                    GigyaLogger.log(with: self, message: "sendRemoveConnectionRequest success")
+                    let mapped: [String: Any] = data.mapValues { value in return value.value }
+                    self.invokeCallback(id: id, and: mapped.asJson)
+                    self.delegate?.onEvent(event: .onConnectionRemoved)
+                    self.dismissPluginController()
+                 case .failure(let error):
+                    GigyaLogger.log(with: self, message: "sendRemoveConnectionRequest: error:\n\(error.localizedDescription)")
+                    self.invokeError(id: id, error: error)
+                }
+            }
+        }
     }
     
-    func sendOauthRequest(id: String, apiMethod: String, params: [String:String]) {
+    private func sendOauthRequest(id: String, apiMethod: String, params: [String: String]) {
         GigyaLogger.log(with: self, message: "sendOauthRequest: with apiMethod = \(apiMethod)")
         guard let providerName = params["provider"] else { return }
         if let provider = GigyaSocielProviders.byName(name: providerName) {
@@ -206,19 +268,23 @@ class PluginViewController<T: GigyaAccountProtocol>: WebViewController, WKScript
                     self.dismissPluginController()
                 case .failure(let error):
                     GigyaLogger.log(with: self, message: "sendOauthRequest: error:\n\(error.localizedDescription)")
-                    switch error {
-                    case .gigyaError(let data):
-                        self.delegate?.onError(error: data)
-                        self.invokeCallback(id: id, and: data.asJson())
-                    default:
-                        break
-                    }
+                    self.invokeError(id: id, error: error)
                 }
             }
         }
     }
     
-    func dismissPluginController() {
+    private func invokeError(id: String, error: NetworkError) {
+        switch error {
+        case .gigyaError(let data):
+            self.delegate?.onError(error: data)
+            self.invokeCallback(id: id, and: data.asJson())
+        default:
+            break
+        }
+    }
+    
+    private func dismissPluginController() {
         self.dismiss(animated: true, completion: nil)
     }
     

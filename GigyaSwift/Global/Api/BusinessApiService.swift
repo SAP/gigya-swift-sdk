@@ -121,6 +121,23 @@ class BusinessApiService: NSObject, IOCBusinessApiServiceProtocol {
             }
         }
     }
+    
+    func addConnection<T: Codable>(provider: GigyaSocielProviders, viewController: UIViewController, params: [String: Any], dataType: T.Type, completion: @escaping (GigyaApiResult<T>) -> Void) {
+        providerAdapter = providerFactory.getProvider(with: provider, delegate: self)
+        providerAdapter?.login(params: params, viewController: viewController, loginMode: "connect") { (res) in
+            completion(res)
+        }
+        
+        providerAdapter?.didFinish = { [weak self] in
+            self?.providerAdapter = nil
+        }
+    }
+    
+    func removeConnection(providerName: String, completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void) {
+        let params = ["provider": providerName]
+        let model = ApiRequestModel(method: GigyaDefinitions.API.removeConnection, params: params)
+        apiService.send(model: model, responseType: GigyaDictionary.self, completion: completion)
+    }
 
     deinit {
         print("[BusinessService]")
