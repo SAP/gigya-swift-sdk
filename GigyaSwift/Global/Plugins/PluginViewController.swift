@@ -39,9 +39,9 @@ class PluginViewController<T: GigyaAccountProtocol>: WebViewController, WKScript
         let JSInterface = getJSInterface()
         let userScript = WKUserScript(source: JSInterface, injectionTime: .atDocumentStart, forMainFrameOnly: false)
         contentController.addUserScript(userScript)
-        GigyaLogger.log(with: self, message: "JS Interface:\n\(JSInterface)")
-        
         contentController.add(self, name: JSEventHandler)
+        
+        GigyaLogger.log(with: self, message: "JS Interface:\n\(JSInterface)")
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -54,9 +54,15 @@ class PluginViewController<T: GigyaAccountProtocol>: WebViewController, WKScript
     
     // MARK: - JS Interface
     
+    /**
+     Get the JS interface declaretion needed for injection.
+     Without correctly declaring the JS interface the web JS plugin would not be able to bridge communicate with the application.
+     */
     private func getJSInterface() -> String {
+        // List of available JS communication features - not all are used.
         let JSFeatures =  ["is_session_valid","send_request","send_oauth_request","get_ids","on_plugin_event","on_custom_event","register_for_namespace_events","on_js_exception","on_js_log","clear_session"];
         
+        // Declare the JS interface.
         let JSInterface =  """
         window.__gigAPIAdapterSettings = {
         getAdapterName: function() { return 'mobile'; },
@@ -76,7 +82,13 @@ class PluginViewController<T: GigyaAccountProtocol>: WebViewController, WKScript
     }
     
     // MARK: - WKScriptMessageHandler protocol
-
+    
+    private func invokeCallback(callbackId: String, and result: String) {
+        let JS = "gigya._.apiAdapters.mobile.mobileCallbacks['\(callbackId)'](\(result));"
+        GigyaLogger.log(with: self, message: "invokeCallback:\n\(JS)")
+        webView.evaluateJavaScript(JS)
+    }
+    
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         // Parse message.
         guard let messageMap = message.body as? [String:Any] else {
@@ -99,34 +111,23 @@ class PluginViewController<T: GigyaAccountProtocol>: WebViewController, WKScript
         switch action {
         case "get_ids":
             let ids = ["ucid": config.ucid ?? "","gcid": config.gmid ?? ""]
-            invokeCallback(id: callbackId, and: ids.asJson)
+            invokeCallback(callbackId: callbackId, and: ids.asJson)
         case "is_session_valid":
             let isValid = sessionService.isValidSession()
-            invokeCallback(id: callbackId, and: "\(isValid)")
+            invokeCallback(callbackId: callbackId, and: "\(isValid)")
         case "send_request":
             guard let apiMethod = messageMap["method"] as? String, let params = data["params"] else {
                 GigyaLogger.log(with: self, message: "WKScriptMessage: error - failed to parse api method & request parameters")
                 return
             }
-            switch apiMethod {
-            case "accounts.register", "accounts.login":
-                sendLoginRequest(id: callbackId, apiMethod: apiMethod, params: params.asDictionary())
-                break;
-            case "socialize.addConnection, accounts.addConnection":
-                sendAddConnectionRequest(id: callbackId, params: params.asDictionary())
-                break
-            case "socialize.removeConnection":
-                sendRemoveConnectionRequest(id: callbackId, params: params.asDictionary())
-                break;
-            default:
-                sendRequest(id: callbackId, apiMethod: apiMethod, params: params.asDictionary())
-            }
+            // Some API methods require different handling due to mobile relevant endpoint updates.
+            mapSendRequest(callbackId: callbackId, apiMethod: apiMethod, params: params.asDictionary())
         case "send_oauth_request":
             guard let apiMethod = messageMap["method"] as? String, let params = data["params"] else {
                 GigyaLogger.log(with: self, message: "WKScriptMessage: error - failed to parse api method & request parameters")
                 return
             }
-            sendOauthRequest(id: callbackId, apiMethod: apiMethod, params: params.asDictionary())
+            sendOauthRequest(callbackId: callbackId, apiMethod: apiMethod, params: params.asDictionary())
         case "on_plugin_event":
             guard let params = data["params"] else { return }
             if let sourceContainerId = params["sourceContainerID"] {
@@ -134,18 +135,34 @@ class PluginViewController<T: GigyaAccountProtocol>: WebViewController, WKScript
                     onPluginEvent(params: params.asDictionary())
                 }
             }
-            break
         default:
             break
         }
     }
     
-    private func invokeCallback(id: String, and result: String) {
-        let JS = "gigya._.apiAdapters.mobile.mobileCallbacks['\(id)'](\(result));"
-        GigyaLogger.log(with: self, message: "invokeCallback:\n\(JS)")
-        webView.evaluateJavaScript(JS)
+    /**
+     Mapping received api method to the relevant "sendRequest" logic.
+     */
+    private func mapSendRequest(callbackId: String, apiMethod: String, params: [String: String]) {
+        switch apiMethod {
+        case "socialize.socialLogin", "accounts.socialLogin":
+            sendOauthRequest(callbackId: callbackId, apiMethod: apiMethod, params: params)
+            break
+        case "accounts.register", "accounts.login":
+            sendLoginRequest(callbackId: callbackId, apiMethod: apiMethod, params: params)
+            break;
+        case "socialize.addConnection, accounts.addConnection":
+            sendAddConnectionRequest(callbackId: callbackId, params: params)
+        case "socialize.removeConnection":
+            sendRemoveConnectionRequest(callbackId: callbackId, params: params)
+        default:
+            sendRequest(callbackId: callbackId, apiMethod: apiMethod, params: params)
+        }
     }
     
+    /**
+     Delegate received plugin events to client.
+     */
     private func onPluginEvent(params: [String: String]) {
         if let eventName = params["eventName"] {
             switch eventName {
@@ -163,7 +180,7 @@ class PluginViewController<T: GigyaAccountProtocol>: WebViewController, WKScript
                 delegate?.onEvent(event: .onHide(event: params))
                 dismissPluginController()
             case "error":
-//                delegate?.onError(error: DecodeEncodeUtils.decode(fromType: GigyaResponseModel.self, data: params))
+                delegate?.onEvent(event: .error(event: params))
                 break
             default:
                 break
@@ -171,7 +188,10 @@ class PluginViewController<T: GigyaAccountProtocol>: WebViewController, WKScript
         }
     }
     
-    private func sendRequest(id: String, apiMethod: String, params: [String: String]) {
+    /**
+     Generic send request method.
+     */
+    private func sendRequest(callbackId: String, apiMethod: String, params: [String: String]) {
         GigyaLogger.log(with: self, message: "sendRequest: with apiMethod = \(apiMethod)")
         businessApiService.send(api: apiMethod, params: params) { [weak self] result in
             guard let self = self else { return }
@@ -180,13 +200,13 @@ class PluginViewController<T: GigyaAccountProtocol>: WebViewController, WKScript
                 GigyaLogger.log(with: self, message: "sendRequest: success")
                 // Mapping AnyCodable values. Otherwise we will crash in the JSON dictionary conversion.
                 let mapped: [String: Any] = data.mapValues { value in return value.value }
-                self.invokeCallback(id: id, and: mapped.asJson)
+                self.invokeCallback(callbackId: callbackId, and: mapped.asJson)
             case .failure(let error):
                 GigyaLogger.log(with: self, message: "sendRequest: error:\n\(error.localizedDescription)")
                 switch error {
                 case .gigyaError(let data):
                     self.delegate?.onError(error: data)
-                    self.invokeCallback(id: id, and: data.asJson())
+                    self.invokeCallback(callbackId: callbackId, and: data.asJson())
                 default:
                     break
                 }
@@ -194,9 +214,13 @@ class PluginViewController<T: GigyaAccountProtocol>: WebViewController, WKScript
         }
     }
     
-    private func sendLoginRequest(id: String, apiMethod: String, params: [String: String]) {
+    /**
+     Send a login/register request. Response data is typed to the current provided account.
+     */
+    private func sendLoginRequest(callbackId: String, apiMethod: String, params: [String: String]) {
         GigyaLogger.log(with: self, message: "sendLoginRequest: with params:\n\(params)")
-        businessApiService.send(dataType: T.self, api: apiMethod, params: params) { [weak self] result in
+        let newparam = params.mapValues { value in return "\(value)"}
+        businessApiService.send(dataType: T.self, api: apiMethod, params: newparam) { [weak self] result in
             guard let self = self else { return }
             switch result {
             case .success(let data):
@@ -204,19 +228,16 @@ class PluginViewController<T: GigyaAccountProtocol>: WebViewController, WKScript
                 self.delegate?.onEvent(event: .onLogin(account: data))
                 self.dismissPluginController()
             case .failure(let error):
-                GigyaLogger.log(with: self, message: "sendRequest: error:\n\(error.localizedDescription)")
-                switch error {
-                case .gigyaError(let data):
-                    self.delegate?.onError(error: data)
-                    self.invokeCallback(id: id, and: data.asJson())
-                default:
-                    break
-                }
+                GigyaLogger.log(with: self, message: "sendLoginRequest: error:\n\(error.localizedDescription)")
+                self.invokeError(callbackId: callbackId, error: error)
             }
         }
     }
     
-    private func sendAddConnectionRequest(id: String, params: [String: String]) {
+    /**
+     Send a request to add a social connection to the current active account/session.
+     */
+    private func sendAddConnectionRequest(callbackId: String, params: [String: String]) {
         GigyaLogger.log(with: self, message: "sendAddConnectionRequest: with params:\n\(params)")
         guard let providerToAdd = params["provider"] else { return }
         if let provider = GigyaSocielProviders.byName(name: providerToAdd) {
@@ -229,33 +250,39 @@ class PluginViewController<T: GigyaAccountProtocol>: WebViewController, WKScript
                     self.dismissPluginController()
                 case .failure(let error):
                     GigyaLogger.log(with: self, message: "sendOauthRequest: error:\n\(error.localizedDescription)")
-                    self.invokeError(id: id, error: error)
+                    self.invokeError(callbackId: callbackId, error: error)
                 }
             }
         }
     }
     
-    private func sendRemoveConnectionRequest(id: String, params: [String: String]) {
+    /**
+     Send a request to remove a social connection from the current active account/session.
+     */
+    private func sendRemoveConnectionRequest(callbackId: String, params: [String: String]) {
         GigyaLogger.log(with: self, message: "sendRemoveConnectionRequest: with params:\n\(params)")
         if let provider = params["provider"] {
             businessApiService.removeConnection(providerName: provider) { [weak self] result in
                 guard let self = self else { return }
-                 switch result {
-                 case .success(let data):
+                switch result {
+                case .success(let data):
                     GigyaLogger.log(with: self, message: "sendRemoveConnectionRequest success")
                     let mapped: [String: Any] = data.mapValues { value in return value.value }
-                    self.invokeCallback(id: id, and: mapped.asJson)
+                    self.invokeCallback(callbackId: callbackId, and: mapped.asJson)
                     self.delegate?.onEvent(event: .onConnectionRemoved)
                     self.dismissPluginController()
-                 case .failure(let error):
+                case .failure(let error):
                     GigyaLogger.log(with: self, message: "sendRemoveConnectionRequest: error:\n\(error.localizedDescription)")
-                    self.invokeError(id: id, error: error)
+                    self.invokeError(callbackId: callbackId, error: error)
                 }
             }
         }
     }
     
-    private func sendOauthRequest(id: String, apiMethod: String, params: [String: String]) {
+    /**
+     Send a social login request that is dependent on a specific social provider login process.
+     */
+    private func sendOauthRequest(callbackId: String, apiMethod: String, params: [String: String]) {
         GigyaLogger.log(with: self, message: "sendOauthRequest: with apiMethod = \(apiMethod)")
         guard let providerName = params["provider"] else { return }
         if let provider = GigyaSocielProviders.byName(name: providerName) {
@@ -268,22 +295,28 @@ class PluginViewController<T: GigyaAccountProtocol>: WebViewController, WKScript
                     self.dismissPluginController()
                 case .failure(let error):
                     GigyaLogger.log(with: self, message: "sendOauthRequest: error:\n\(error.localizedDescription)")
-                    self.invokeError(id: id, error: error)
+                    self.invokeError(callbackId: callbackId, error: error)
                 }
             }
         }
     }
     
-    private func invokeError(id: String, error: NetworkError) {
+    /**
+     Delegate received error to client.
+     */
+    private func invokeError(callbackId: String, error: NetworkError) {
         switch error {
         case .gigyaError(let data):
             self.delegate?.onError(error: data)
-            self.invokeCallback(id: id, and: data.asJson())
+            self.invokeCallback(callbackId: callbackId, and: data.asJson())
         default:
             break
         }
     }
     
+    /**
+     Dismiss the encapsulating view controller after a task has been completed.
+     */
     private func dismissPluginController() {
         self.dismiss(animated: true, completion: nil)
     }

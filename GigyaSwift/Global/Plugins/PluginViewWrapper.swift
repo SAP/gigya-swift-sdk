@@ -36,6 +36,13 @@ class PluginViewWrapper: PluginViewWrapperProtocol {
         self.params = params
     }
     
+    /**
+     Present the PluginViewController with requested screenSet.
+     
+     - Parameter viewController: Current active view controller.
+     - Parameter dataType: Account scheme.
+     - Parameter screenSet: Requested screen set.
+     */
     func present<T: GigyaAccountProtocol>(viewController: UIViewController, dataType: T.Type, screenSet: String? = nil) {
         if let screenSet = screenSet {
             params["screenSet"] =  screenSet

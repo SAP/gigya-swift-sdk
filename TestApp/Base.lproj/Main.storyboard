@@ -17,32 +17,46 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DK6-Cv-sDy">
-                                <rect key="frame" x="147" y="167" width="81" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DK6-Cv-sDy">
+                                <rect key="frame" x="147" y="160" width="81" height="30"/>
                                 <state key="normal" title="Check login"/>
                                 <connections>
                                     <action selector="checkValidateLogin:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VpU-DK-9ha"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yyy-Y2-ZHe">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yyy-Y2-ZHe">
                                 <rect key="frame" x="86" y="230" width="203" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Check login with generic type"/>
                                 <connections>
                                     <action selector="getAccount:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ucB-U6-yhy"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oP0-L2-dyn">
-                                <rect key="frame" x="145" y="291" width="84" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oP0-L2-dyn">
+                                <rect key="frame" x="145.5" y="300" width="84" height="30"/>
                                 <state key="normal" title="Show plugin"/>
                                 <connections>
                                     <action selector="showPlugin:" destination="BYZ-38-t0r" eventType="touchUpInside" id="BLH-Mn-ayj"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jkr-xe-GiC">
+                                <rect key="frame" x="163.5" y="567" width="48" height="30"/>
+                                <state key="normal" title="Logout"/>
+                                <connections>
+                                    <action selector="logout:" destination="BYZ-38-t0r" eventType="touchUpInside" id="kR3-L0-aIN"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="yyy-Y2-ZHe" firstAttribute="top" secondItem="DK6-Cv-sDy" secondAttribute="bottom" constant="40" id="0gv-7q-5lM"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Jkr-xe-GiC" secondAttribute="bottom" constant="70" id="FO8-cZ-Nvl"/>
+                            <constraint firstItem="DK6-Cv-sDy" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Plo-WR-maJ"/>
+                            <constraint firstItem="oP0-L2-dyn" firstAttribute="top" secondItem="yyy-Y2-ZHe" secondAttribute="bottom" constant="40" id="aQm-0X-yWd"/>
+                            <constraint firstItem="Jkr-xe-GiC" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="gGG-jS-6eq"/>
+                            <constraint firstItem="yyy-Y2-ZHe" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="jyk-PO-3bZ"/>
+                            <constraint firstItem="oP0-L2-dyn" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ozV-rh-eyP"/>
+                            <constraint firstItem="DK6-Cv-sDy" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="140" id="uoZ-E6-b3t"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>

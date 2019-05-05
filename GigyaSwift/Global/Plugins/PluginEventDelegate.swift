@@ -28,4 +28,5 @@ public enum PluginEvent {
     case onLogout
     case onConnectionAdded
     case onConnectionRemoved
+    case error(event: PluginEventE)
 }

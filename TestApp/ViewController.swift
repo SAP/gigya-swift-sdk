@@ -173,6 +173,10 @@ class ViewController: UIViewController {
         gigya.showScreenSet(name: "Default-RegistrationLogin", viewController: self, delegate: self)
     }
     
+    @IBAction func logout(_ sender: Any) {
+        gigya.logout()
+    }
+    
 }
 
 extension ViewController: PluginEventDelegate {
