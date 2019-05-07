@@ -112,8 +112,9 @@ public class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
     /**
      * Logout of Gigya services.
      */
-    public func logout() {
+    public func logout(completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void) {
         sessionService.clear()
+        businessApiService.logout(completion: completion)
     }
 
     // MARK: - Business Api׳s
@@ -196,10 +197,10 @@ public class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
     - Parameter params:      General ScreenSet parameters.
     - Parameter completion:  Plugin completion.
     */
-
-    public func showScreenSet(name: String, viewController: UIViewController, params: [String: Any] = [:], delegate: PluginEventDelegate) {
-        let wrapper = PluginViewWrapper(config: config, sessionService: sessionService, businessApiService: businessApiService, delegate: delegate, plugin: "accounts.screenSet", params: params)
-        wrapper.present(viewController: viewController, dataType: T.self, screenSet: name)
+    
+    public func showScreenSet(name: String, viewController: UIViewController, params: [String: Any] = [:], completion: @escaping (PluginEvent<T>) -> Void) {
+        let wrapper = PluginViewWrapper(config: config, sessionService: sessionService, businessApiService: businessApiService, plugin: "accounts.screenSet", params: params, completion: completion)
+        wrapper.presentPluginController(viewController: viewController, dataType: T.self, screenSet: name)
     }
 
     /**

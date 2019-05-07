@@ -57,7 +57,7 @@ class ApiService: IOCApiServiceProtocol {
             if gigyaResponse.errorCode == 0 {
                 let typedResponse = try DecodeEncodeUtils.decode(fromType: responseType.self, data: data as Data)
                 completion(GigyaApiResult.success(data: typedResponse))
-            } else {
+            } else {    
                 GigyaLogger.log(with: self, message: "Failed: \(gigyaResponse)")
                 completion(.failure(.gigyaError(data: gigyaResponse)))
             }

@@ -14,8 +14,6 @@ class PluginViewController<T: GigyaAccountProtocol>: WebViewController, WKScript
     
     let config: GigyaConfig
     
-    weak var delegate: PluginEventDelegate?
-    
     let sessionService: IOCSessionServiceProtocol
     
     let businessApiService: IOCBusinessApiServiceProtocol
@@ -23,12 +21,16 @@ class PluginViewController<T: GigyaAccountProtocol>: WebViewController, WKScript
     let contentController = WKUserContentController()
     
     let JSEventHandler = "gsapi"
+    let baseURL = "http://www.gigya.com"
     
-    init(config: GigyaConfig, sessionService: IOCSessionServiceProtocol, businessApiService: IOCBusinessApiServiceProtocol, delegate: PluginEventDelegate?) {
+    var completion: (PluginEvent<T>) -> Void?
+    
+    init(config: GigyaConfig, sessionService: IOCSessionServiceProtocol, businessApiService: IOCBusinessApiServiceProtocol,
+         completion: @escaping (PluginEvent<T>) -> Void?) {
         self.config = config
         self.sessionService = sessionService
         self.businessApiService = businessApiService
-        self.delegate = delegate
+        self.completion = completion
         
         let webViewConfiguration = WKWebViewConfiguration()
         webViewConfiguration.userContentController = contentController
@@ -49,7 +51,7 @@ class PluginViewController<T: GigyaAccountProtocol>: WebViewController, WKScript
     }
     
     func load(html: String) {
-        webView.loadHTMLString(html, baseURL: URL(string: "http://www.gigya.com"))
+        webView.loadHTMLString(html, baseURL: URL(string: baseURL))
     }
     
     // MARK: - JS Interface
@@ -60,7 +62,8 @@ class PluginViewController<T: GigyaAccountProtocol>: WebViewController, WKScript
      */
     private func getJSInterface() -> String {
         // List of available JS communication features - not all are used.
-        let JSFeatures =  ["is_session_valid","send_request","send_oauth_request","get_ids","on_plugin_event","on_custom_event","register_for_namespace_events","on_js_exception","on_js_log","clear_session"];
+        let JSFeatures =  ["is_session_valid","send_request","send_oauth_request","get_ids","on_plugin_event","on_custom_event",
+                           "register_for_namespace_events","on_js_exception","on_js_log","clear_session"];
         
         // Declare the JS interface.
         let JSInterface =  """
@@ -82,12 +85,6 @@ class PluginViewController<T: GigyaAccountProtocol>: WebViewController, WKScript
     }
     
     // MARK: - WKScriptMessageHandler protocol
-    
-    private func invokeCallback(callbackId: String, and result: String) {
-        let JS = "gigya._.apiAdapters.mobile.mobileCallbacks['\(callbackId)'](\(result));"
-        GigyaLogger.log(with: self, message: "invokeCallback:\n\(JS)")
-        webView.evaluateJavaScript(JS)
-    }
     
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         // Parse message.
@@ -129,12 +126,35 @@ class PluginViewController<T: GigyaAccountProtocol>: WebViewController, WKScript
             }
             sendOauthRequest(callbackId: callbackId, apiMethod: apiMethod, params: params.asDictionary())
         case "on_plugin_event":
-            guard let params = data["params"] else { return }
+            guard let params = data["params"]?.asDictionary() else { return }
             if let sourceContainerId = params["sourceContainerID"] {
                 if (sourceContainerId == "pluginContainer") {
-                    onPluginEvent(params: params.asDictionary())
+                    onPluginEvent(type: T.self, params: params)
                 }
             }
+        default:
+            break
+        }
+    }
+    
+    /**
+     JS invocation of given result.
+     */
+    private func invokeCallback(callbackId: String, and result: String) {
+        let JS = "gigya._.apiAdapters.mobile.mobileCallbacks['\(callbackId)'](\(result));"
+        GigyaLogger.log(with: self, message: "invokeCallback:\n\(JS)")
+        webView.evaluateJavaScript(JS)
+    }
+    
+    /**
+     Delegate received error to client.
+     JS invocation of given error result.
+     */
+    private func invokeError(callbackId: String, error: NetworkError) {
+        switch error {
+        case .gigyaError(let data):
+            self.completion(.error(event: data.toDictionary()))
+            self.invokeCallback(callbackId: callbackId, and: data.asJson())
         default:
             break
         }
@@ -163,25 +183,24 @@ class PluginViewController<T: GigyaAccountProtocol>: WebViewController, WKScript
     /**
      Delegate received plugin events to client.
      */
-    private func onPluginEvent(params: [String: String]) {
+    private func onPluginEvent<T>(type: T.Type, params: [String: String]) {
         if let eventName = params["eventName"] {
             switch eventName {
             case "beforeScreenLoad":
-                delegate?.onEvent(event: .onBeforeScreenLoad(event: params))
+                completion(.onBeforeScreenLoad(event: params))
             case "afterScreenLoad":
-                delegate?.onEvent(event: .onAfterScreenLoad(event: params))
+                completion(.onAfterScreenLoad(event: params))
             case "beforeSubmit":
-                delegate?.onEvent(event: .onBeforeSubmit(event: params))
+                completion(.onBeforeSubmit(event: params))
             case "submit":
-                delegate?.onEvent(event: .onSubmit(event: params))
+                completion(.onSubmit(event: params))
             case "afterSubmit":
-                delegate?.onEvent(event: .onAfterSubmit(event: params))
+                completion(.onAfterSubmit(event: params))
             case "hide":
-                delegate?.onEvent(event: .onHide(event: params))
+                completion(.onHide(event: params))
                 dismissPluginController()
             case "error":
-                delegate?.onEvent(event: .error(event: params))
-                break
+                completion(.error(event: params))
             default:
                 break
             }
@@ -203,29 +222,23 @@ class PluginViewController<T: GigyaAccountProtocol>: WebViewController, WKScript
                 self.invokeCallback(callbackId: callbackId, and: mapped.asJson)
             case .failure(let error):
                 GigyaLogger.log(with: self, message: "sendRequest: error:\n\(error.localizedDescription)")
-                switch error {
-                case .gigyaError(let data):
-                    self.delegate?.onError(error: data)
-                    self.invokeCallback(callbackId: callbackId, and: data.asJson())
-                default:
-                    break
-                }
+                self.invokeError(callbackId: callbackId, error: error)
             }
         }
     }
+    
     
     /**
      Send a login/register request. Response data is typed to the current provided account.
      */
     private func sendLoginRequest(callbackId: String, apiMethod: String, params: [String: String]) {
         GigyaLogger.log(with: self, message: "sendLoginRequest: with params:\n\(params)")
-        let newparam = params.mapValues { value in return "\(value)"}
-        businessApiService.send(dataType: T.self, api: apiMethod, params: newparam) { [weak self] result in
+        businessApiService.send(dataType: T.self, api: apiMethod, params: params) { [weak self] result in
             guard let self = self else { return }
             switch result {
             case .success(let data):
                 GigyaLogger.log(with: self, message: "sendOauthRequest success")
-                self.delegate?.onEvent(event: .onLogin(account: data))
+                self.completion(.onLogin(account: data))
                 self.dismissPluginController()
             case .failure(let error):
                 GigyaLogger.log(with: self, message: "sendLoginRequest: error:\n\(error.localizedDescription)")
@@ -246,7 +259,7 @@ class PluginViewController<T: GigyaAccountProtocol>: WebViewController, WKScript
                 switch result {
                 case .success( _):
                     GigyaLogger.log(with: self, message: "sendOauthRequest success")
-                    self.delegate?.onEvent(event: .onConnectionAdded)
+                    self.completion(.onConnectionAdded)
                     self.dismissPluginController()
                 case .failure(let error):
                     GigyaLogger.log(with: self, message: "sendOauthRequest: error:\n\(error.localizedDescription)")
@@ -269,7 +282,7 @@ class PluginViewController<T: GigyaAccountProtocol>: WebViewController, WKScript
                     GigyaLogger.log(with: self, message: "sendRemoveConnectionRequest success")
                     let mapped: [String: Any] = data.mapValues { value in return value.value }
                     self.invokeCallback(callbackId: callbackId, and: mapped.asJson)
-                    self.delegate?.onEvent(event: .onConnectionRemoved)
+                    self.completion(.onConnectionRemoved)
                     self.dismissPluginController()
                 case .failure(let error):
                     GigyaLogger.log(with: self, message: "sendRemoveConnectionRequest: error:\n\(error.localizedDescription)")
@@ -291,7 +304,7 @@ class PluginViewController<T: GigyaAccountProtocol>: WebViewController, WKScript
                 switch result {
                 case .success(let data):
                     GigyaLogger.log(with: self, message: "sendOauthRequest success")
-                    self.delegate?.onEvent(event: .onLogin(account: data))
+                    self.completion(.onLogin(account: data))
                     self.dismissPluginController()
                 case .failure(let error):
                     GigyaLogger.log(with: self, message: "sendOauthRequest: error:\n\(error.localizedDescription)")
@@ -301,18 +314,7 @@ class PluginViewController<T: GigyaAccountProtocol>: WebViewController, WKScript
         }
     }
     
-    /**
-     Delegate received error to client.
-     */
-    private func invokeError(callbackId: String, error: NetworkError) {
-        switch error {
-        case .gigyaError(let data):
-            self.delegate?.onError(error: data)
-            self.invokeCallback(callbackId: callbackId, and: data.asJson())
-        default:
-            break
-        }
-    }
+  
     
     /**
      Dismiss the encapsulating view controller after a task has been completed.

@@ -12,6 +12,7 @@ import GigyaSDK
 import GoogleSignIn
 
 struct UserHost: GigyaAccountProtocol {
+    
     var UID: String?
 
     var UIDSignature: String?
@@ -59,6 +60,18 @@ struct UserHost: GigyaAccountProtocol {
     var profile: GigyaProfile?
 
     let data: [String: AnyCodable]?
+    
+    func toJson() -> String {
+        do {
+            let jsonEncoder = JSONEncoder()
+            let jsonData = try jsonEncoder.encode(self)
+            let jsonString = String(data: jsonData, encoding: .utf8)
+            return jsonString ?? ""
+        } catch {
+            print(error)
+        }
+        return ""
+    }
 }
 
 struct ValidateLoginData: Codable {
@@ -69,24 +82,104 @@ struct ValidateLoginData: Codable {
 class ViewController: UIViewController {
 
     let gigya = GigyaSwift.sharedInstance(UserHost.self)
+    
+    var isLoggedIn = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
 
-        let loginin = gigya.isLoggedIn()
-
-        
+        checkLoginState()
     }
-
-    @IBAction func checkValidateLogin(_ sender: Any) {
-        gigya.login(with: .facebook, viewController: self) { (res) in
-            switch res {
-            case .success(let data):
-                print(data)
-            case .failure(_):
+    
+    @IBOutlet weak var resultTextView: UITextView?
+    
+    @IBAction func showScreenSet(_ sender: Any) {
+        gigya.showScreenSet(name: "Default-RegistrationLogin", viewController: self) { [weak self] (result) in
+            switch result {
+            case .onLogin(let account):
+                self?.resultTextView!.text = account.toJson()
+            default:
                 break
             }
         }
+    }
+
+    @IBAction func login(_ sender: Any) {
+        
+    }
+    
+    @IBAction func register(_ sender: Any) {
+        
+    }
+    
+    @IBAction func addConnection(_ sender: Any) {
+        
+    }
+    
+    
+    @IBAction func removeConnection(_ sender: Any) {
+        
+    }
+    
+    func checkLoginState() {
+        isLoggedIn = gigya.isLoggedIn()
+        if (isLoggedIn) {
+            gigya.getAccount() { [weak self] result in
+                switch result {
+                case .success(let data):
+                    self?.resultTextView?.text = data.toJson()
+                case .failure(_):
+                    break
+                }
+            }
+        } else {
+            self.resultTextView?.text = "Logged out"
+        }
+    }
+    
+    
+    @IBAction func getAccount(_sender: Any) {
+        gigya.register(params: ["email": "dasdsad@testss.com", "password": "121233"]) { (result) in
+            switch result {
+            case .success(let data):
+                print(data)
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    @IBAction func logout(_ sender: Any) {
+        gigya.logout() { result in
+            switch result {
+            case .success(let data):
+                print(data)
+                self.resultTextView?.text = "Logged out"
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+}
+
+
+//extension ViewController: PluginEventDelegate {
+//
+//    func onError(error: GigyaResponseModel) {
+//
+//    }
+//
+//    func onEvent(event: PluginEvent) {
+//        switch event {
+//        case .onLogin(let account):
+//            print(account)
+//            resultTextView?.text = (account as! UserHost).toJson()
+//        default:
+//            break
+//        }
+//    }
+//}
+
         
 //        GigyaSwift.sharedInstance().login(loginId: "sagi.shmuel@sap.com", password: "151515") { res in
 //            switch res {
@@ -95,7 +188,7 @@ class ViewController: UIViewController {
 //            case .failure:
 //                break
 //            }
-        }
+   
 //
 //        GigyaSwift.sharedInstance().send(api: "accounts.isAvailableLoginID", params: ["loginID": "sagi.shmuel@sap.com"]) { (res) in
 //            switch res {
@@ -105,16 +198,6 @@ class ViewController: UIViewController {
 //                break
 //            }
 //        }
-
-    @IBAction func getAccount(_ sender: Any) {
-        gigya.register(params: ["email": "dasdsad@testss.com", "password": "121233"]) { (result) in
-            switch result {
-            case .success(let data):
-                print(data)
-            case .failure(let error):
-                print(error)
-            }
-        }
         
 
 //        gigya.getAccount { [weak self] res in
@@ -133,7 +216,7 @@ class ViewController: UIViewController {
 //                break
 //            }
 //        }
-    }
+
     //
 //
 //    @IBAction func loading(_ sender: Any) {
@@ -167,30 +250,6 @@ class ViewController: UIViewController {
 
 //    }
     
-    
-    @IBAction func showPlugin(_ sender: Any) {
-//        Gigya.showPluginDialogOver(self, plugin: "accounts.screenSet", parameters: ["screenSet": "Default-RegistrationLogin"])
-        gigya.showScreenSet(name: "Default-RegistrationLogin", viewController: self, delegate: self)
-    }
-    
-    @IBAction func logout(_ sender: Any) {
-        gigya.logout()
-    }
-    
-}
 
-extension ViewController: PluginEventDelegate {
-   
-    func onError(error: GigyaResponseModel) {
-        
-    }
-    
-    func onEvent(event: PluginEvent) {
-        switch event {
-        case .onLogin(let account):
-            print(account)
-        default:
-             break
-        }
-    }
-}
+
+

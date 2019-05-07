@@ -36,4 +36,6 @@ protocol IOCBusinessApiServiceProtocol {
     
     func removeConnection(providerName: String, completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void)
     
+    func logout(completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void)
+    
 }

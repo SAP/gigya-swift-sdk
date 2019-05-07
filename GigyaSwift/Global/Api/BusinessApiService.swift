@@ -138,6 +138,11 @@ class BusinessApiService: NSObject, IOCBusinessApiServiceProtocol {
         let model = ApiRequestModel(method: GigyaDefinitions.API.removeConnection, params: params)
         apiService.send(model: model, responseType: GigyaDictionary.self, completion: completion)
     }
+    
+    func logout(completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void) {
+        let model = ApiRequestModel(method: GigyaDefinitions.API.logout, params: nil)
+        apiService.send(model: model, responseType: GigyaDictionary.self, completion: completion)
+    }
 
     deinit {
         print("[BusinessService]")
