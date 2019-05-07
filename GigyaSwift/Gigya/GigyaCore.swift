@@ -187,6 +187,30 @@ public class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
     public func socialLoginWith(providers: [GigyaSocielProviders], params: [String: Any], completion: (GigyaApiResult<Any>) -> Void) {
 
     }
+    
+    /**
+     Add a social connection to current account.
+     
+     - Parameter providers: selected social provider (GigyaSocielProviders).
+     - Parameter viewController: Shown view controller.
+     - Parameter params:    Request parameters.
+     - Parameter completion:  Login response.
+     */
+    
+    public func addConnection(provider: GigyaSocielProviders, viewController: UIViewController, params: [String: Any], completion: @escaping (GigyaApiResult<T>) -> Void) {
+        businessApiService.addConnection(provider: provider, viewController: viewController, params: params, dataType: T.self, completion: completion)
+    }
+    
+    /**
+     Remove a social connection from current account.
+     
+     - Parameter providers: selected social provider name.
+     - Parameter completion:  Login response.
+     */
+    
+    public func removeConnection(provider: String, completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void) {
+        businessApiService.removeConnection(providerName: provider, completion: completion)
+    }
 
     // MARK: - Plugins
 
@@ -194,6 +218,7 @@ public class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
     Show ScreenSet
 
     - Parameter name:        ScreenSet name.
+    - Parameter viewController: Shown view controller.
     - Parameter params:      General ScreenSet parameters.
     - Parameter completion:  Plugin completion.
     */

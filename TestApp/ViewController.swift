@@ -113,12 +113,75 @@ class ViewController: UIViewController {
     }
     
     @IBAction func addConnection(_ sender: Any) {
+        if !checkLogin() {
+            print("Need to be logged in to perform action")
+            return
+        }
+        let alert = UIAlertController(title: "Add social connection", message: "Enter provider Name", preferredStyle: .alert)
+        alert.addTextField { (textField) in
+            textField.text = ""
+            textField.accessibilityIdentifier = "TextField"
+        }
         
+        alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: { [weak alert] (_) in
+            alert?.dismiss(animated: true, completion: nil)
+            }))
+        alert.addAction(UIAlertAction(title: "Add", style: .default, handler: { [weak alert, weak self] (_) in
+            let textField = alert?.textFields![0] // Force unwrapping because we know it exists.
+            guard let providerName = textField?.text else { return }
+            guard let self = self else { return }
+            if let provider = GigyaSocielProviders.byName(name: providerName) {
+                self.gigya.addConnection(provider: provider, viewController: self, params: [:]) { result in
+                    switch result {
+                    case .success(let data):
+                        self.resultTextView?.text = data.toJson()
+                        break
+                    case .failure(_):
+                        self.resultTextView?.text = "Failed operation"
+                        break
+                    }
+                }
+            }
+        }))
+        
+        self.present(alert, animated: true, completion: nil)
     }
     
     
     @IBAction func removeConnection(_ sender: Any) {
+        if !checkLogin() {
+            print("Need to be logged in to perform action")
+            return
+        }
+        let alert = UIAlertController(title: "Remove social connection", message: "Enter provider Name", preferredStyle: .alert)
+        alert.addTextField { (textField) in
+            textField.text = ""
+            textField.accessibilityIdentifier = "TextField"
+        }
         
+        alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: { [weak alert] (_) in
+            alert?.dismiss(animated: true, completion: nil)
+        }))
+        alert.addAction(UIAlertAction(title: "Remove", style: .default, handler: { [weak alert, weak self] (_) in
+            let textField = alert?.textFields![0] // Force unwrapping because we know it exists.
+            guard let providerName = textField?.text else { return }
+            guard let self = self else { return }
+            self.gigya.removeConnection(provider: providerName) { result in
+                switch result {
+                case .success(let data):
+                    self.resultTextView?.text = "Connection removed"
+                    break
+                case .failure(_):
+                    break
+                }
+            }
+        }))
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func checkLogin() -> Bool {
+        return gigya.isLoggedIn()
     }
     
     func checkLoginState() {
