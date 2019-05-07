@@ -10,17 +10,22 @@ import Foundation
 import WebKit
 
 class WebLoginWrapper: NSObject, ProviderWrapperProtocol {
+
     var clientID: String?
 
-    var webViewController: WebViewController
+    var webViewController: WebViewController?
 
-    private var config: GigyaConfig
+    private var config: GigyaConfig?
 
-    private let providerType: GigyaSocielProviders
+    private var providerType: GigyaSocielProviders?
 
     private var navigationController: UINavigationController?
 
-    private var completionHandler: (_ token: String?, _ secret: String?, _ error: String?) -> Void = { _, _, _  in }
+    private var completionHandler: (_ jsonData: [String: Any]?, _ error: String?) -> Void = { _, _  in }
+
+    required override init() {
+
+    }
 
     init(config: GigyaConfig, providerType: GigyaSocielProviders) {
         self.providerType = providerType
@@ -39,21 +44,21 @@ class WebLoginWrapper: NSObject, ProviderWrapperProtocol {
             return
         }
 
-        webViewController.setDelegate(delegate: self)
+        webViewController?.setDelegate(delegate: self)
 
-        webViewController.loadUrl(url: url)
+        webViewController?.loadUrl(url: url)
 
-        webViewController.userDidCancel = { [weak self] in
-            self?.completionHandler(nil, nil, "sign in cancelled")
+        webViewController?.userDidCancel = { [weak self] in
+            self?.completionHandler(nil, "sign in cancelled")
         }
 
     }
 
     func login(params: [String: Any]?, viewController: UIViewController?,
-               completion: @escaping (_ token: String?, _ secret: String?, _ error: String?) -> Void) {
+               completion: @escaping (_ jsonData: [String: Any]?, _ error: String?) -> Void) {
         completionHandler = completion
         
-        navigationController = UINavigationController(rootViewController: webViewController)
+        navigationController = UINavigationController(rootViewController: webViewController!)
 
         if let navigationController = navigationController {
             viewController?.show(navigationController, sender: nil)
@@ -65,16 +70,16 @@ class WebLoginWrapper: NSObject, ProviderWrapperProtocol {
     }
 
     func getUrl() -> String {
-        var url = "https://socialize.\(config.apiDomain ?? "")/socialize.login?"
+        var url = "https://socialize.\(config?.apiDomain ?? "")/socialize.login?"
         url.append("redirect_uri=gsapi://login_result&")
         url.append("response_type=token&")
-        url.append("client_id=\(config.apiKey ?? "")&")
-        url.append("gmid=\(config.gmid ?? "")&")
-        url.append("ucid=\(config.ucid ?? "")&")
+        url.append("client_id=\(config?.apiKey ?? "")&")
+        url.append("gmid=\(config?.gmid ?? "")&")
+        url.append("ucid=\(config?.ucid ?? "")&")
         url.append("x_secret_type=oauth1&")
         url.append("x_endPoint=socialize.login&")
         url.append("x_sdk=\(InternalConfig.General.version)&")
-        url.append("x_provider=\(providerType.rawValue)")
+        url.append("x_provider=\(providerType?.rawValue)")
 
         return url
     }
@@ -88,18 +93,19 @@ extension WebLoginWrapper: WKNavigationDelegate {
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         if navigationAction.navigationType == .other {
             if let url = navigationAction.request.url {
-                GigyaLogger.log(with: providerType.rawValue, message: "Log redirect url: \(url)")
+                GigyaLogger.log(with: providerType?.rawValue, message: "Log redirect url: \(url)")
                 if
                     let status = url["status"],
                     status == "ok",
                     let accessToken = url["access_token"],
                     let tokenSecret = url["x_access_token_secret"] {
-                        completionHandler(accessToken, tokenSecret, nil)
+                    let json = ["status": status, "accessToken": accessToken, "tokenSecret": tokenSecret]
+                        completionHandler(json, nil)
 
                         // dismiss viewController
                         navigationController?.dismiss(animated: true, completion: nil)
                 } else if let status = url["status"], status != "ok" {
-                    completionHandler(nil, nil, "Failed to login")
+                    completionHandler(nil, "Failed to login")
                 }
             }
         }

@@ -9,7 +9,6 @@
 import Foundation
 
 protocol Provider: class {
-    static func isAvailable() -> Bool
     
     var delegate: BusinessApiDelegate? { get set }
 
@@ -18,7 +17,7 @@ protocol Provider: class {
 
     func logout()
 
-    func getProviderSessions(token: String) -> String
+    func getProviderSessions(token: String, expiration: String?) -> String
 
     var didFinish: () -> Void { get set }
 

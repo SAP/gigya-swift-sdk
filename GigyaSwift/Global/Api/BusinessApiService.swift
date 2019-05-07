@@ -16,12 +16,12 @@ class BusinessApiService: NSObject, IOCBusinessApiServiceProtocol {
 
     var accountService: IOCAccountServiceProtocol
 
-    var socialProviderFactory: IOCSocialProviderFactoryProtocol
+    var socialProviderFactory: IOCSocialProvidersManagerProtocol
 
     var providerAdapter: Provider?
 
     required init(apiService: IOCApiServiceProtocol, sessionService: IOCSessionServiceProtocol,
-                  accountService: IOCAccountServiceProtocol, providerFactory: IOCSocialProviderFactoryProtocol) {
+                  accountService: IOCAccountServiceProtocol, providerFactory: IOCSocialProvidersManagerProtocol) {
         self.apiService = apiService
         self.sessionService = sessionService
         self.accountService = accountService

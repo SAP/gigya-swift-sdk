@@ -74,21 +74,24 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
 
         let loginin = gigya.isLoggedIn()
-
+        gigya.logout()
         
     }
 
     @IBAction func checkValidateLogin(_ sender: Any) {
-        gigya.login(with: .twitter, viewController: self) { (res) in
-            switch res {
-            case .success(let data):
-                print(data)
-            case .failure(let error):
-                print(error)
-                break
-            }
+        Gigya.login(toProvider: "wechat", parameters: [:], over: self) { (account, error) in
+
         }
-        
+//        gigya.login(with: .wechat, viewController: self) { (res) in
+//            switch res {
+//            case .success(let data):
+//                print(data)
+//            case .failure(let error):
+//                print(error)
+//                break
+//            }
+//        }
+
 //        GigyaSwift.sharedInstance().login(loginId: "sagi.shmuel@sap.com", password: "151515") { res in
 //            switch res {
 //            case .success(let data):
@@ -167,4 +170,3 @@ class ViewController: UIViewController {
 
 //    }
 }
-

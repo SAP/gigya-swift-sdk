@@ -9,7 +9,7 @@
 import Foundation
 @testable import GigyaSwift
 
-class ProviderFactoryMock: IOCSocialProviderFactoryProtocol {
+class ProviderFactoryMock: IOCSocialProvidersManagerProtocol {
     let config: GigyaConfig
     let sessionService: IOCSessionServiceProtocol
 

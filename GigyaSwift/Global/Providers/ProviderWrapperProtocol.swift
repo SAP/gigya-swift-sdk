@@ -8,12 +8,14 @@
 
 import Foundation
 
-protocol ProviderWrapperProtocol {
+@objc public protocol ProviderWrapperProtocol {
+    init()
+    
     var clientID: String? { get set }
     
     func login(params: [String: Any]?, viewController: UIViewController?,
-               completion: @escaping (_ token: String?, _ secret: String?, _ error: String?) -> Void)
+               completion: @escaping (_ jsonData: [String: Any]?, _ error: String?) -> Void)
 
-    func logout()
+    @objc optional func logout()
 
 }
