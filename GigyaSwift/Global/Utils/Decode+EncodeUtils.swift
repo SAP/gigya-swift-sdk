@@ -19,6 +19,16 @@ class DecodeEncodeUtils {
         }
     }
 
+    static func encodeToDictionary<T: Codable>(obj: T) throws -> [String: AnyObject] {
+        do {
+            let decodedObject = try JSONSerialization.jsonObject(with: JSONEncoder().encode(obj)) as? [String: AnyObject] ?? [:]
+
+            return decodedObject
+        } catch let error {
+            throw error
+        }
+    }
+
     static func parsePlistConfig() -> PlistConfig {
         guard let url = Bundle.main.url(forResource: "Info", withExtension: "plist") else { return PlistConfig(apiKey: "", apiDomain: "") }
         do {

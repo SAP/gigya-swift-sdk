@@ -45,7 +45,7 @@ class SocialProvidersManager: IOCSocialProvidersManagerProtocol {
         }
 
         if socialProvider == .facebook || socialProvider == .wechat {
-            GigyaLogger.error(message: "[\(socialProvider.rawValue)] can't login with WebView, install realted sdk.")
+            GigyaLogger.error(message: "[\(socialProvider.rawValue)] can't login with WebView, install related sdk.")
         }
 
         return WebLoginProvider(sessionService: sessionService, provider: WebLoginWrapper(config: config, providerType: socialProvider), delegate: delegate)

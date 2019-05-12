@@ -34,6 +34,41 @@ class AccountService: IOCAccountServiceProtocol {
         return false
     }
 
+    func setAccount<T: Codable>(newAccount: T) -> [String: AnyObject] {
+        guard let oldAccount = account as? T else {
+            GigyaLogger.error(with: AccountService.self, message: "something happend with setAccount")
+        }
+
+        do {
+            let oldAccountDictionary = try DecodeEncodeUtils.encodeToDictionary(obj: oldAccount)
+            let newAccountDictionary = try DecodeEncodeUtils.encodeToDictionary(obj: newAccount)
+
+
+            return getDiff(old: oldAccountDictionary, new: newAccountDictionary)
+
+        } catch {
+            GigyaLogger.log(with: self, message: error.localizedDescription)
+        }
+
+        return [:]
+    }
+
+    func getDiff(old: [String: AnyObject], new: [String: AnyObject]) -> [String: AnyObject] {
+        var newObject: [String: AnyObject] = [:]
+
+        for item in new {
+            if let itemAsDictionary = item.value as? [String: AnyObject], let olditemAsDictionary = old[item.key] as? [String: AnyObject] {
+                newObject[item.key] = getDiff(old: olditemAsDictionary, new: itemAsDictionary) as AnyObject
+            } else {
+                if !item.value.isEqual(old[item.key]) {
+                    newObject[item.key] = item.value
+                }
+            }
+        }
+
+        return newObject
+    }
+
     func clear() {
         account = nil
         accountInvalidationTimestamp = 0

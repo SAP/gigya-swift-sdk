@@ -13,6 +13,8 @@ protocol IOCAccountServiceProtocol: class {
 
     func getAccount<T: Codable>() -> T
 
+    func setAccount<T: Codable>(newAccount: T) -> [String: AnyObject]
+
     func isCachedAccount() -> Bool
 
     func clear()

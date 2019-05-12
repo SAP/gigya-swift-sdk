@@ -167,10 +167,12 @@ public class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
 
     /**
      * Set account info.
-     * // TODO: Need to check
-    */
-    public func setAccount() {
 
+     - Parameter account:      Host data obj.
+     - Parameter completion:   Response GigyaApiResult<T>.
+    */
+    public func setAccount(account: T, completion: @escaping (GigyaApiResult<T>) -> Void) {
+        businessApiService.setAccount(obj: account, completion: completion)
     }
 
     // MARK: - Native login

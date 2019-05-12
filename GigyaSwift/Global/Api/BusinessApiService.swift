@@ -40,7 +40,6 @@ class BusinessApiService: NSObject, IOCBusinessApiServiceProtocol {
         let model = ApiRequestModel(method: api, params: params)
 
         apiService.send(model: model, responseType: T.self, completion: completion)
-
     }
 
     func login<T: Codable>(dataType: T.Type, loginId: String, password: String, completion: @escaping (GigyaApiResult<T>) -> Void) {
@@ -74,6 +73,22 @@ class BusinessApiService: NSObject, IOCBusinessApiServiceProtocol {
                 }
             }
         }
+    }
+
+    func setAccount<T: Codable>(obj: T, completion: @escaping (GigyaApiResult<T>) -> Void) {
+        let diffParams = accountService.setAccount(newAccount: obj)
+        let model = ApiRequestModel(method: GigyaDefinitions.API.setAccountInfo, params: diffParams)
+
+        apiService.send(model: model, responseType: GigyaDictionary.self) { [weak self] result in
+            switch result {
+            case .success:
+                self?.accountService.clear()
+                self?.getAccount(dataType: T.self, completion: completion)
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+
     }
 
     func register<T: Codable>(params: [String: Any], dataType: T.Type, completion: @escaping (GigyaApiResult<T>) -> Void) {
@@ -112,12 +127,12 @@ class BusinessApiService: NSObject, IOCBusinessApiServiceProtocol {
     func nativeSocialLogin<T: Codable>(params: [String: Any], completion: @escaping (GigyaApiResult<T>) -> Void) {
         let model = ApiRequestModel(method: GigyaDefinitions.API.notifySocialLogin, params: params)
 
-        apiService.send(model: model, responseType: T.self) { [weak self] result in
+        apiService.send(model: model, responseType: GigyaDictionary.self) { [weak self] result in
             switch result {
             case .success:
                 self?.getAccount(dataType: T.self, completion: completion)
-            case .failure:
-                completion(result)
+            case .failure(let error):
+                completion(.failure(error))
             }
         }
     }

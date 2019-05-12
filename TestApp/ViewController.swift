@@ -74,23 +74,21 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
 
         let loginin = gigya.isLoggedIn()
-        gigya.logout()
-        
+//        gigya.logout()
+
     }
 
     @IBAction func checkValidateLogin(_ sender: Any) {
-        Gigya.login(toProvider: "wechat", parameters: [:], over: self) { (account, error) in
 
+        gigya.login(with: .wechat, viewController: self) { (res) in
+            switch res {
+            case .success(let data):
+                print(data)
+            case .failure(let error):
+                print(error)
+                break
+            }
         }
-//        gigya.login(with: .wechat, viewController: self) { (res) in
-//            switch res {
-//            case .success(let data):
-//                print(data)
-//            case .failure(let error):
-//                print(error)
-//                break
-//            }
-//        }
 
 //        GigyaSwift.sharedInstance().login(loginId: "sagi.shmuel@sap.com", password: "151515") { res in
 //            switch res {
@@ -111,23 +109,27 @@ class ViewController: UIViewController {
 //        }
 
     @IBAction func getAccount(_ sender: Any) {
-        gigya.register(params: ["email": "dasdsad@testss.com", "password": "121233"]) { (result) in
-            switch result {
-            case .success(let data):
-                print(data)
-            case .failure(let error):
-                print(error)
-            }
-        }
-
-//        gigya.getAccount { [weak self] res in
-//            switch res {
-//            case .success(let account):
-//                print(account)
-//            case .failure:
-//                break
+//        gigya.register(params: ["email": "dasdsad@testss.com", "password": "121233"]) { (result) in
+//            switch result {
+//            case .success(let data):
+//                print(data)
+//            case .failure(let error):
+//                print(error)
 //            }
 //        }
+
+        gigya.getAccount { [weak self] res in
+            switch res {
+            case .success(let account):
+                var account = account
+                account.profile?.firstName = "test"
+                self?.gigya.setAccount(account: account, completion: { (rrr) in
+
+                })
+            case .failure:
+                break
+            }
+        }
 //        GigyaSwift.sharedInstance().send(dataType: ValidateLoginData.self, api: "accounts.isAvailableLoginID", params: ["loginID": "sagi.shmuel@sap.com"]) { (res) in
 //            switch res {
 //            case .success(let data):
