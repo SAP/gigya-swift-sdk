@@ -10,7 +10,6 @@ import Foundation
 @testable import GigyaSwift
 
 class DecodeTestUtils {
-
     static func toObject<D, T: Codable>(data: D, toType: T.Type) throws -> T {
         let objData = try JSONSerialization.data(withJSONObject: data, options: .prettyPrinted)
         let decode = try DecodeEncodeUtils.decode(fromType: T.self, data: objData)

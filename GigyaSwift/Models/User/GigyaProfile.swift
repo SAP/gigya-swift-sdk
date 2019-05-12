@@ -9,157 +9,157 @@
 import Foundation
 
 public struct GigyaProfile: Codable {
-     var firstName: String?
-     var lastName: String?
-     var nickName: String?
-     var address: String?
-     var age: Int?
-     var bio: String?
-     var birthDay: Int?
-     var birthMonth: Int?
-     var birthYear: Int?
-     var capabilities: String? //Capabilities?
-     var certifications: [Certification]?
-     var city: String?
-     var country: String?
-     var education: [UserEducation]?
-     var educationLevel: String?
-     var email: String?
-     var favorites: UserFavorites?
-     var followersCount: Int?
-     var followingCount: Int?
-     var gender: String?
-     var hometown: String?
-     var honors: String?
-     var identities: [ProviderIdentity]?
-     var industry: String?
-     var interestedIn: String?
-     var interests: String?
-     var isConnected: Bool?
-     var iRank: Int?
-     var isSiteUID: Bool?
-     var isSiteUser: Bool?
-     var languages: String?
-     var likes: [UserLike]?
-     var locale: String?
-     var name: String?
-     var oldestDataAge: Int?
-     var oldestDataUpdatedTimestamp: Int?
-     var patents: [UserPatent]?
-     var phones: [UserPhone]?
-     var photoURL: String?
-     var providers: String?
-     var publications: [UserPublication]?
-     var relationshipStatus: String?
-     var religion: String?
-     var samlData: UserSamlData?
-     var skills: [UserSkill]?
-     var specialities: String?
-     var state: String?
-     var timezone: String?
-     var thumbnailURL: String?
-     var username: String?
-     var isVerified: Bool?
-     var verified: String?
-     var verifiedTimestamp: Int?
-     var work: [UserWork]?
-     var zip: String?
+     public var firstName: String?
+     public var lastName: String?
+     public var nickName: String?
+     public var address: String?
+     public var age: Int?
+     public var bio: String?
+     public var birthDay: Int?
+     public var birthMonth: Int?
+     public var birthYear: Int?
+     public var capabilities: String? //Capabilities?
+     public var certifications: [Certification]?
+     public var city: String?
+     public var country: String?
+     public var education: [UserEducation]?
+     public var educationLevel: String?
+     public var email: String?
+     public var favorites: UserFavorites?
+     public var followersCount: Int?
+     public var followingCount: Int?
+     public var gender: String?
+     public var hometown: String?
+     public var honors: String?
+     public var identities: [ProviderIdentity]?
+     public var industry: String?
+     public var interestedIn: String?
+     public var interests: String?
+     public var isConnected: Bool?
+     public var iRank: Int?
+     public var isSiteUID: Bool?
+     public var isSiteUser: Bool?
+     public var languages: String?
+     public var likes: [UserLike]?
+     public var locale: String?
+     public var name: String?
+     public var oldestDataAge: Int?
+     public var oldestDataUpdatedTimestamp: Int?
+     public var patents: [UserPatent]?
+     public var phones: [UserPhone]?
+     public var photoURL: String?
+     public var providers: String?
+     public var publications: [UserPublication]?
+     public var relationshipStatus: String?
+     public var religion: String?
+     public var samlData: UserSamlData?
+     public var skills: [UserSkill]?
+     public var specialities: String?
+     public var state: String?
+     public var timezone: String?
+     public var thumbnailURL: String?
+     public var username: String?
+     public var isVerified: Bool?
+     public var verified: String?
+     public var verifiedTimestamp: Int?
+     public var work: [UserWork]?
+     public var zip: String?
 
-    struct Certification: Codable {
-        var name: String?
-        var authority: String?
-        var number: String?
-        var startDate: String?
-        var endDate: String?
+    public struct Certification: Codable {
+        public var name: String?
+        public var authority: String?
+        public var number: String?
+        public var startDate: String?
+        public var endDate: String?
     }
 
-    struct UserEducation: Codable {
-        var school: String?
-        var schoolType: String?
-        var fieldOfStudy: String?
-        var degree: String?
-        var startYear: String?
-        var endYear: String?
+    public struct UserEducation: Codable {
+        public var school: String?
+        public var schoolType: String?
+        public var fieldOfStudy: String?
+        public var degree: String?
+        public var startYear: String?
+        public var endYear: String?
     }
 
     // TODO: Describe favorites protocol
-    struct UserFavorite: Codable {
-        var id: String?
-        var name: String?
-        var category: String?
+    public struct UserFavorite: Codable {
+        public var id: String?
+        public var name: String?
+        public var category: String?
     }
 
-    struct UserFavorites: Codable {
-        var interests: [UserFavorite]?
-        var activities: [UserFavorite]?
-        var books: [UserFavorite]?
-        var music: [UserFavorite]?
-        var movies: [UserFavorite]?
-        var television: [UserFavorite]?
+    public struct UserFavorites: Codable {
+        public var interests: [UserFavorite]?
+        public var activities: [UserFavorite]?
+        public var books: [UserFavorite]?
+        public var music: [UserFavorite]?
+        public var movies: [UserFavorite]?
+        public var television: [UserFavorite]?
     }
 
     // TODO: Describe provider identity protocol
-    struct ProviderIdentity: Codable {}
+    public struct ProviderIdentity: Codable {}
 
-    struct UserLike: Codable {
-        var name: String?
-        var category: String?
-        var id: String?
-        var time: String?
-        var timestamp: Int?
+    public struct UserLike: Codable {
+        public var name: String?
+        public var category: String?
+        public var id: String?
+        public var time: String?
+        public var timestamp: Int?
     }
 
-    struct UserPatent: Codable {
-        var title: String?
-        var summary: String?
-        var number: String?
-        var office: String?
-        var status: String?
-        var date: String?
-        var url: String?
+    public struct UserPatent: Codable {
+        public var title: String?
+        public var summary: String?
+        public var number: String?
+        public var office: String?
+        public var status: String?
+        public var date: String?
+        public var url: String?
     }
 
-    struct UserPhone: Codable {
-        var type: String?
-        var number: String?
+    public struct UserPhone: Codable {
+        public var type: String?
+        public var number: String?
     }
 
-    struct UserPublication: Codable {
-        var title: String?
-        var summary: String?
-        var publisher: String?
-        var date: String?
-        var url: String?
+    public struct UserPublication: Codable {
+        public var title: String?
+        public var summary: String?
+        public var publisher: String?
+        public var date: String?
+        public var url: String?
     }
 
     // TODO: describe Saml Data protocol
-    struct UserSamlData: Codable {}
+    public struct UserSamlData: Codable {}
 
-    struct UserSkill: Codable {
-        var skill: String?
-        var level: String?
-        var years: String?
+    public struct UserSkill: Codable {
+        public var skill: String?
+        public var level: String?
+        public var years: String?
     }
 
-    struct UserWork: Codable {
-        var company: String?
-        var companyID: String?
-        var title: String?
-        var companySize: String?
-        var startDate: String?
-        var endDate: String?
-        var industry: String?
-        var isCurrent: Bool?
+    public struct UserWork: Codable {
+        public var company: String?
+        public var companyID: String?
+        public var title: String?
+        public var companySize: String?
+        public var startDate: String?
+        public var endDate: String?
+        public var industry: String?
+        public var isCurrent: Bool?
     }
 
 }
 
-//public struct Capabilities: Codable {
-//    var login: Bool?
-//    var notifications: Bool?
-//    var actions: Bool?
-//    var friends: Bool?
-//    var status: Bool?
-//    var contacts: Bool?
-//    var photos: Bool?
+//public public struct Capabilities: Codable {
+//    public var login: Bool?
+//    public var notifications: Bool?
+//    public var actions: Bool?
+//    public var friends: Bool?
+//    public var status: Bool?
+//    public var contacts: Bool?
+//    public var photos: Bool?
 //}

@@ -15,10 +15,10 @@ protocol IOCBusinessApiServiceProtocol {
 
     var accountService: IOCAccountServiceProtocol { get }
 
-    var socialProviderFactory: IOCSocialProviderFactoryProtocol { get }
+    var socialProviderFactory: IOCSocialProvidersManagerProtocol { get }
 
     init(apiService: IOCApiServiceProtocol, sessionService: IOCSessionServiceProtocol,
-         accountService: IOCAccountServiceProtocol, providerFactory: IOCSocialProviderFactoryProtocol)
+         accountService: IOCAccountServiceProtocol, providerFactory: IOCSocialProvidersManagerProtocol)
 
     func send(api: String, params: [String: String], completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void)
 
@@ -28,6 +28,8 @@ protocol IOCBusinessApiServiceProtocol {
 
     func getAccount<T: Codable>(dataType: T.Type, completion: @escaping (GigyaApiResult<T>) -> Void)
 
+    func setAccount<T: Codable>(obj: T, completion: @escaping (GigyaApiResult<T>) -> Void)
+    
     func register<T: Codable>(params: [String: Any], dataType: T.Type, completion: @escaping (GigyaApiResult<T>) -> Void)
 
     func login<T: Codable>(provider: GigyaSocielProviders, viewController: UIViewController, params: [String: Any], dataType: T.Type, completion: @escaping (GigyaApiResult<T>) -> Void)

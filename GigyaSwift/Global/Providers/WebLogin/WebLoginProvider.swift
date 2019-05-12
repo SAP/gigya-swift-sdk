@@ -32,7 +32,7 @@ class WebLoginProvider: Provider {
 
     func login<T: Codable>(params: [String: Any], viewController: UIViewController? = nil, loginMode: String, completion: @escaping (GigyaApiResult<T>) -> Void) {
 
-        provider.login(params: params, viewController: viewController) { [weak self] token, secret, error in
+        provider.login(params: params, viewController: viewController) { [weak self] jsonData, error in
             guard error == nil else {
                 let errorDesc = error!
                 self?.loginFailed(error: errorDesc, completion: completion)
@@ -42,8 +42,8 @@ class WebLoginProvider: Provider {
             }
 
             guard
-                let token = token,
-                let secret = secret,
+                let token = jsonData?["accessToken"] as? String,
+                let secret = jsonData?["tokenSecret"] as? String,
                 let sessionObject = GigyaSession(sessionToken: token, secret: secret) else {
                     let errorDesc = "token no available"
                     self?.loginFailed(error: errorDesc, completion: completion)
@@ -66,8 +66,8 @@ class WebLoginProvider: Provider {
         didFinish()
     }
 
-    func getProviderSessions(token: String) -> String {
-        return "{\"web\": {code: \"\(token)\"}}"
+    func getProviderSessions(token: String, expiration: String?) -> String {
+        return ""
     }
 
     deinit {
