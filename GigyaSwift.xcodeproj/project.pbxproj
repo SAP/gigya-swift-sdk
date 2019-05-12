@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D52F88EA22795F39007DE20F /* PluginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52F88E922795F39007DE20F /* PluginViewController.swift */; };
+		D58EF441227993C6003DB878 /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58EF440227993C6003DB878 /* Dictionary.swift */; };
+		D58EF4432279948B003DB878 /* PluginViewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58EF4422279948B003DB878 /* PluginViewWrapper.swift */; };
+		D58EF4452279CB38003DB878 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58EF4442279CB38003DB878 /* String.swift */; };
+		D5C9DD3D227B0C9200E47095 /* PluginEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C9DD3C227B0C9200E47095 /* PluginEvent.swift */; };
 		E713E0CC2247773100181328 /* GigyaSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7BE36732224219200A108D9 /* GigyaSwift.framework */; };
 		E713E0CD2247773100181328 /* GigyaSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E7BE36732224219200A108D9 /* GigyaSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E713E0FC2247C6E700181328 /* SignatureUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E713E0FB2247C6E700181328 /* SignatureUtils.swift */; };
@@ -192,6 +197,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		D52F88E922795F39007DE20F /* PluginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluginViewController.swift; sourceTree = "<group>"; };
+		D58EF440227993C6003DB878 /* Dictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dictionary.swift; sourceTree = "<group>"; };
+		D58EF4422279948B003DB878 /* PluginViewWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluginViewWrapper.swift; sourceTree = "<group>"; };
+		D58EF4442279CB38003DB878 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		D5C9DD3C227B0C9200E47095 /* PluginEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluginEvent.swift; sourceTree = "<group>"; };
 		E713E0FB2247C6E700181328 /* SignatureUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignatureUtils.swift; sourceTree = "<group>"; };
 		E713E0FD2248C83D00181328 /* GigyaConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigyaConfig.swift; sourceTree = "<group>"; };
 		E713E1012248E41400181328 /* GigyaRequestSignature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigyaRequestSignature.swift; sourceTree = "<group>"; };
@@ -341,6 +351,9 @@
 				E7F94FAC22248C7200A85640 /* SafariServices.framework in Frameworks */,
 				E7F94FAA22248C6800A85640 /* LocalAuthentication.framework in Frameworks */,
 				E7F94F5222247A7D00A85640 /* libc++.tbd in Frameworks */,
+				E733741522634C5B00ADEDBB /* GoogleSignIn.framework in Frameworks */,
+				E73373E4226334A600ADEDBB /* GoogleSignInDependencies.framework in Frameworks */,
+				E7ACF9C8226F1BC200900C65 /* FBSDKCoreKit.framework in Frameworks */,
 				E7F94F5022247A7400A85640 /* libz.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -363,6 +376,8 @@
 				E73373F322633BCC00ADEDBB /* LocalAuthentication.framework in Frameworks */,
 				E7DC2C4E22804C2F00A13426 /* FBSDKCoreKit.framework in Frameworks */,
 				E7DC2C4B22804C2F00A13426 /* FBSDKShareKit.framework in Frameworks */,
+				E7ACFB84226F558B00900C65 /* FBSDKPlacesKit.framework in Frameworks */,
+				E7ACFB88226F558B00900C65 /* FBSDKShareKit.framework in Frameworks */,
 				E713E0CC2247773100181328 /* GigyaSwift.framework in Frameworks */,
 				E71D4A2422817F83000892C2 /* libWeChatSDK.a in Frameworks */,
 				E7DC2C4F22804C2F00A13426 /* Bolts.framework in Frameworks */,
@@ -376,6 +391,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D52F88E422795793007DE20F /* Plugins */ = {
+			isa = PBXGroup;
+			children = (
+				D52F88E922795F39007DE20F /* PluginViewController.swift */,
+				D58EF4422279948B003DB878 /* PluginViewWrapper.swift */,
+				D5C9DD3C227B0C9200E47095 /* PluginEvent.swift */,
+			);
+			path = Plugins;
+			sourceTree = "<group>";
+		};
 		E713E0FF2248C84000181328 /* Config */ = {
 			isa = PBXGroup;
 			children = (
@@ -429,6 +454,8 @@
 				E73373AF2254FD4800ADEDBB /* Int.swift */,
 				E756A2AC22771B6F007FA801 /* Url.swift */,
 				E7D59B1F227F3872002FA864 /* Bundle.swift */,
+				D58EF440227993C6003DB878 /* Dictionary.swift */,
+				D58EF4442279CB38003DB878 /* String.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -676,6 +703,7 @@
 			isa = PBXGroup;
 			children = (
 				E73373DE2263312F00ADEDBB /* Providers */,
+				D52F88E422795793007DE20F /* Plugins */,
 				E733744022674B7300ADEDBB /* Account */,
 				E733744322674B9500ADEDBB /* Session */,
 				E713E18A2249066A00181328 /* Api */,
@@ -1022,7 +1050,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "if which swiftlint1 >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1066,6 +1094,7 @@
 				E7CBAFBE222D18A6000B6C11 /* NetworkMethod.swift in Sources */,
 				E760668D2278998E005E4CFD /* WebViewController.swift in Sources */,
 				E7E80DA22252041D00D3B663 /* ResolverProtocol.swift in Sources */,
+				D58EF441227993C6003DB878 /* Dictionary.swift in Sources */,
 				E774A54B224283DF00BC67D1 /* ApiRequestModel.swift in Sources */,
 				E7E80D9D22510EC600D3B663 /* IOCContainer.swift in Sources */,
 				E7A6E0AA2240F8080063638F /* GigyaApiResult.swift in Sources */,
@@ -1082,11 +1111,13 @@
 				E7CBAFB8222D17C9000B6C11 /* NetworkProvider.swift in Sources */,
 				E7A6E0AE2242488D0063638F /* ApiStatusCode.swift in Sources */,
 				E7CBB06B223E59EA000B6C11 /* Decode+EncodeUtils.swift in Sources */,
+				D58EF4432279948B003DB878 /* PluginViewWrapper.swift in Sources */,
 				E7A6E0AC224245D00063638F /* ApiResultModel.swift in Sources */,
 				E7D59B20227F3872002FA864 /* Bundle.swift in Sources */,
 				E7CBAFC0222D1F5B000B6C11 /* ApiService.swift in Sources */,
 				E7DC2C3B228019AC00A13426 /* SocialLoginProvider.swift in Sources */,
 				E7CBAFD42230232D000B6C11 /* AccountService.swift in Sources */,
+				D5C9DD3D227B0C9200E47095 /* PluginEvent.swift in Sources */,
 				E7CBAFD0222EB89D000B6C11 /* BusinessApiService.swift in Sources */,
 				E760668B2278998E005E4CFD /* WebLoginProvider.swift in Sources */,
 				E774A54D2242A12800BC67D1 /* AnyCodableUtils.swift in Sources */,
@@ -1105,6 +1136,8 @@
 				E7CBAFA4222BC881000B6C11 /* InternalConfig.swift in Sources */,
 				E7ACF9A8226C83F200900C65 /* IOCBusinessApiServiceProtocol.swift in Sources */,
 				E713E1022248E41400181328 /* GigyaRequestSignature.swift in Sources */,
+				E7ACF9BE226F194A00900C65 /* FacebookProvider.swift in Sources */,
+				D58EF4452279CB38003DB878 /* String.swift in Sources */,
 				E7CBAFBA222D1840000B6C11 /* NetworkError.swift in Sources */,
 				E7CBB05A2237DD2C000B6C11 /* GigyaSocielProviders.swift in Sources */,
 				E7CBAF9D22282BE3000B6C11 /* KeychainStorage.swift in Sources */,
@@ -1112,6 +1145,7 @@
 				E7A6E0CE22425A910063638F /* NetworkAdapter.swift in Sources */,
 				E7ACF9AE226C843100900C65 /* IOCSessionServiceProtocol.swift in Sources */,
 				E7ACF9CC226F2A4100900C65 /* ProviderWrapperProtocol.swift in Sources */,
+				D52F88EA22795F39007DE20F /* PluginViewController.swift in Sources */,
 				E7CBB03B22356068000B6C11 /* GigyaCore.swift in Sources */,
 				E7CBAFA022282C56000B6C11 /* KeychainPasscode.swift in Sources */,
 				E73373B02254FD4800ADEDBB /* Int.swift in Sources */,
@@ -1435,6 +1469,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = T48CNFXFQH;
 				ENABLE_BITCODE = YES;
@@ -1463,6 +1498,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "TestApp/TestApp-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1474,6 +1510,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = T48CNFXFQH;
 				ENABLE_BITCODE = YES;
@@ -1500,6 +1537,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Gigya.TestAppnew;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "TestApp/TestApp-Bridging-Header.h";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

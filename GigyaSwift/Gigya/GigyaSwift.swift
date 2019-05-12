@@ -81,7 +81,6 @@ public class GigyaSwift {
         }
 
         container.register(service: IOCAccountServiceProtocol.self, isSingleton: true) { _ in AccountService() }
-
     }
 
     #if DEBUG

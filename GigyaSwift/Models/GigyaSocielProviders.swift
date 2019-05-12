@@ -16,6 +16,10 @@ public enum GigyaSocielProviders: String {
     case line
     case wechat
 
+    
+    public static func byName(name: String) -> GigyaSocielProviders? {
+        return self.init(rawValue: name)
+    }
 }
 
 public enum GigyaNativeSocielProviders: String, CaseIterable {

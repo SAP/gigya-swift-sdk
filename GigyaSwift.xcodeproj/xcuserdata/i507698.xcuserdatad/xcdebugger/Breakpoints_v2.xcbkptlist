@@ -38,6 +38,22 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TestApp/ViewController.swift"
+            timestampString = "578415203.7789381"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "111"
+            endingLineNumber = "111"
+            landmarkName = "getAccount(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -89,6 +105,8 @@
             continueAfterRunningActions = "No"
             filePath = "GigyaSwift/Global/Api/BusinessApiService.swift"
             timestampString = "579365825.649591"
+            filePath = "TestApp/ViewController.swift"
+            timestampString = "578415203.779052"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "86"
@@ -126,6 +144,22 @@
             startingLineNumber = "104"
             endingLineNumber = "104"
             landmarkName = "testLoginWithoutClientID()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../gigya-ios-sdk/GigyaSDK/Plugins/WebBridge/GSWebBridge.m"
+            timestampString = "578415203.7791049"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "102"
+            endingLineNumber = "102"
+            landmarkName = "-handleURL:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

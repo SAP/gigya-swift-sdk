@@ -17,29 +17,102 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DK6-Cv-sDy">
-                                <rect key="frame" x="147" y="167" width="81" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Check login"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="owO-vP-SNV">
+                                <rect key="frame" x="16" y="36" width="343" height="240"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <accessibility key="accessibilityConfiguration" identifier="Result Text View"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="240" id="cAt-UN-FvK"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jkr-xe-GiC">
+                                <rect key="frame" x="16" y="621" width="48" height="30"/>
+                                <accessibility key="accessibilityConfiguration" identifier="Logout"/>
+                                <state key="normal" title="Logout"/>
                                 <connections>
-                                    <action selector="checkValidateLogin:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VpU-DK-9ha"/>
+                                    <action selector="logout:" destination="BYZ-38-t0r" eventType="touchUpInside" id="kR3-L0-aIN"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yyy-Y2-ZHe">
-                                <rect key="frame" x="86" y="230" width="203" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Check login with generic type"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9wC-xP-8OI">
+                                <rect key="frame" x="16" y="316" width="111" height="30"/>
+                                <accessibility key="accessibilityConfiguration" identifier="Show Screenset"/>
+                                <state key="normal" title="Show Screenset"/>
                                 <connections>
-                                    <action selector="getAccount:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ucB-U6-yhy"/>
+                                    <action selector="showScreenSet:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6jO-Dx-AyC"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fNt-XW-RSV">
+                                <rect key="frame" x="16" y="362" width="38" height="30"/>
+                                <accessibility key="accessibilityConfiguration" identifier="Login"/>
+                                <state key="normal" title="Login"/>
+                                <connections>
+                                    <action selector="login:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4qB-ug-GRz"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cq6-7s-6Kn">
+                                <rect key="frame" x="16" y="408" width="57" height="30"/>
+                                <accessibility key="accessibilityConfiguration" identifier="Register"/>
+                                <state key="normal" title="Register"/>
+                                <connections>
+                                    <action selector="register:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gEu-sh-Cff"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fyN-es-d2v">
+                                <rect key="frame" x="16" y="454" width="111" height="30"/>
+                                <accessibility key="accessibilityConfiguration" identifier="Add Connection"/>
+                                <state key="normal" title="Add Connection"/>
+                                <connections>
+                                    <action selector="addConnection:" destination="BYZ-38-t0r" eventType="touchUpInside" id="EYy-0e-c83"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cu6-gD-2R1">
+                                <rect key="frame" x="16" y="500" width="138" height="30"/>
+                                <accessibility key="accessibilityConfiguration" identifier="Remove Connection"/>
+                                <state key="normal" title="Remove Connection"/>
+                                <connections>
+                                    <action selector="removeConnection:" destination="BYZ-38-t0r" eventType="touchUpInside" id="WIr-sA-s0a"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0fX-WN-aKg">
+                                <rect key="frame" x="16" y="546" width="86" height="30"/>
+                                <accessibility key="accessibilityConfiguration" identifier="Get Account"/>
+                                <state key="normal" title="Get Account"/>
+                                <connections>
+                                    <action selector="getAccountWith_sender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="wDr-Ak-IRv"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="owO-vP-SNV" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="16" id="2AI-Bd-Fzi"/>
+                            <constraint firstItem="0fX-WN-aKg" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="2p7-lC-fVD"/>
+                            <constraint firstItem="fyN-es-d2v" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="6iT-v0-QyB"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Jkr-xe-GiC" secondAttribute="bottom" constant="16" id="Bzm-Q9-L5D"/>
+                            <constraint firstItem="Cu6-gD-2R1" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="DKn-Fw-vGx"/>
+                            <constraint firstItem="cq6-7s-6Kn" firstAttribute="top" secondItem="fNt-XW-RSV" secondAttribute="bottom" constant="16" id="JdH-eC-2tw"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="owO-vP-SNV" secondAttribute="trailing" constant="16" id="KJ2-A9-xhx"/>
+                            <constraint firstItem="9wC-xP-8OI" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="Nde-ba-g2z"/>
+                            <constraint firstItem="owO-vP-SNV" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="RMc-LD-XvY"/>
+                            <constraint firstItem="Cu6-gD-2R1" firstAttribute="top" secondItem="fyN-es-d2v" secondAttribute="bottom" constant="16" id="U4r-Fs-aWR"/>
+                            <constraint firstItem="Jkr-xe-GiC" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="f57-He-Wc0"/>
+                            <constraint firstItem="fNt-XW-RSV" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="faR-xz-gJk"/>
+                            <constraint firstItem="fNt-XW-RSV" firstAttribute="top" secondItem="9wC-xP-8OI" secondAttribute="bottom" constant="16" id="grl-cd-jq3"/>
+                            <constraint firstItem="fyN-es-d2v" firstAttribute="top" secondItem="cq6-7s-6Kn" secondAttribute="bottom" constant="16" id="n3S-lC-AcB"/>
+                            <constraint firstItem="cq6-7s-6Kn" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="sbW-3R-EwQ"/>
+                            <constraint firstItem="9wC-xP-8OI" firstAttribute="top" secondItem="owO-vP-SNV" secondAttribute="bottom" constant="40" id="uHF-J9-Mfc"/>
+                            <constraint firstItem="0fX-WN-aKg" firstAttribute="top" secondItem="Cu6-gD-2R1" secondAttribute="bottom" constant="16" id="uiG-dv-EM9"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="resultTextView" destination="owO-vP-SNV" id="0w1-nl-yVn"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="136.80000000000001" y="133.5832083958021"/>
         </scene>
     </scenes>
 </document>
