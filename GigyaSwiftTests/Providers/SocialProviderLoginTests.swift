@@ -1,15 +1,16 @@
 //
-//  FacebookTests.swift
+//  GoogleTest.swift
 //  GigyaSwiftTests
 //
 //  Created by Shmuel, Sagi on 28/04/2019.
 //  Copyright © 2019 Gigya. All rights reserved.
 //
 
+import Foundation
 import XCTest
 @testable import GigyaSwift
 
-class FacebookTests: XCTestCase {
+class SocialProviderLoginTests: XCTestCase {
     let ioc = GigyaContainerUtils()
     var gigya = GigyaSwift.sharedInstance()
 
@@ -31,17 +32,18 @@ class FacebookTests: XCTestCase {
         let viewController = UIViewController()
 
         let dic: [String: Any] = ["callId": "34324", "errorCode": 0, "statusCode": 200]
-
+        
         // swiftlint:disable force_try
         let jsonData = try! JSONSerialization.data(withJSONObject: dic, options: .prettyPrinted)
         // swiftlint:enable force_try
         ResponseDataTest.resData = jsonData
+        ResponseDataTest.clientID = "123"
         ResponseDataTest.providerToken = "123"
-
-        GigyaSwift.sharedInstance().login(with: .facebook, viewController: viewController, params: ["testParam": "test"]) { (result) in
+        
+        GigyaSwift.sharedInstance().login(with: .google, viewController: viewController, params: ["testParam": "test"]) { (result) in
             switch result {
             case .success(let data):
-                XCTAssertNotNil(data)
+                XCTAssertNotNil(data )
             case .failure(let error):
                 XCTFail("Fail: \(error)")
             }
@@ -55,11 +57,11 @@ class FacebookTests: XCTestCase {
         // swiftlint:disable force_try
         let jsonData = try! JSONSerialization.data(withJSONObject: dic, options: .prettyPrinted)
         // swiftlint:enable force_try
-
         ResponseDataTest.clientID = "123"
         ResponseDataTest.resData = jsonData
+        ResponseDataTest.providerToken = nil
 
-        GigyaSwift.sharedInstance().login(with: .facebook, viewController: viewController) { (result) in
+        GigyaSwift.sharedInstance().login(with: .google, viewController: viewController) { (result) in
             switch result {
             case .success:
                 XCTFail("Fail")
@@ -72,6 +74,7 @@ class FacebookTests: XCTestCase {
     }
 
     func testLoginWithError() {
+
         let viewController = UIViewController()
 
         let error = NSError(domain: "gigya", code: 400093, userInfo: ["callId": "dasdasdsad"])
@@ -79,7 +82,7 @@ class FacebookTests: XCTestCase {
         ResponseDataTest.clientID = "123"
         ResponseDataTest.error = error
 
-        GigyaSwift.sharedInstance().login(with: .facebook, viewController: viewController) { (result) in
+        GigyaSwift.sharedInstance().login(with: .google, viewController: viewController) { (result) in
             switch result {
             case .success:
                 XCTFail("Fail")
@@ -87,6 +90,18 @@ class FacebookTests: XCTestCase {
                 if case .providerError(let data) = error {
                     XCTAssertEqual(data, "The operation couldn’t be completed. (gigya error 400093.)")
                 }
+            }
+        }
+    }
+
+    func testLoginWithoutClientID() {
+        let viewController = UIViewController()
+
+        ResponseDataTest.clientID = nil
+
+        expectFatalError(expectedMessage: "[GoogleProvider]: Missing server client id. Check plist implementation ") {
+            GigyaSwift.sharedInstance().login(with: .google, viewController: viewController) { (result) in
+
             }
         }
     }
