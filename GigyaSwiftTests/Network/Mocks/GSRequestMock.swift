@@ -9,13 +9,13 @@
 import Foundation
 @testable import GigyaSDK
 
-class GSRequestMock: GSRequest {
-    init(forMethod method: String) {
-        super.init()
-        self.method = method
-    }
-
-    override func send(responseHandler handler: GSResponseHandler? = nil) {
-        handler?(nil, nil)
-    }
-}
+//class GSRequestMock: GSRequest {
+//    init(forMethod method: String) {
+//        super.init()
+//        self.method = method
+//    }
+//
+//    override func send(responseHandler handler: GSResponseHandler? = nil) {
+//        handler?(nil, nil)
+//    }
+//}

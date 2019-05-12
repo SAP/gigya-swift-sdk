@@ -88,7 +88,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GigyaSwift/Global/Api/BusinessApiService.swift"
-            timestampString = "578933921.909265"
+            timestampString = "579365825.649591"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "86"
@@ -103,13 +103,29 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GigyaSwift/Global/Api/BusinessApiService.swift"
-            timestampString = "578933921.909331"
+            filePath = "GigyaSwiftTests/Providers/FacebookTests.swift"
+            timestampString = "579365756.574955"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "133"
-            endingLineNumber = "133"
-            landmarkName = "nativeSocialLogin(params:completion:)"
+            startingLineNumber = "65"
+            endingLineNumber = "65"
+            landmarkName = "testLoginNoneToken()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GigyaSwiftTests/Providers/SocialProviderLoginTests.swift"
+            timestampString = "579365825.649675"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "104"
+            endingLineNumber = "104"
+            landmarkName = "testLoginWithoutClientID()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

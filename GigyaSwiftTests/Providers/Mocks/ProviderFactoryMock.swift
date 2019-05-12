@@ -20,14 +20,9 @@ class ProviderFactoryMock: IOCSocialProvidersManagerProtocol {
 
     func getProvider(with socialProvider: GigyaSocielProviders, delegate: BusinessApiDelegate) -> Provider {
         switch socialProvider {
-        case .facebook:
-            if FacebookProvider.isAvailable() {
-                return FacebookProviderMock(provider: FacebookWrapperMock(), delegate: delegate)
-            }
-        case .google:
-            if GoogleProvider.isAvailable() {
-                return GoogleProviderMock(provider: GoogleWrapperMock(), delegate: delegate)
-            }
+        case .facebook, .google:
+            return SocialProviderMock(providerType: .google, provider: SocialProviderWrapperMock(), delegate: delegate)
+
         default:
             break
         }

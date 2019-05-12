@@ -28,7 +28,7 @@ class SocialLoginProvider: Provider {
         provider.login(params: params, viewController: viewController) { [weak self] jsonData, error in
             guard let self = self else { return }
 
-            guard let token = jsonData?["accessToken"] as? String, error == nil else {
+            guard let token = jsonData?["accessToken"] as? String, !token.isEmpty, error == nil else {
                 self.loginFailed(error: error ?? "Id token no available", completion: completion)
                 return
             }
