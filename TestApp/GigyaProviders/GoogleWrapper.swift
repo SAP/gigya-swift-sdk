@@ -26,11 +26,7 @@ class GoogleWrapper: NSObject, ProviderWrapperProtocol {
         return GIDSignIn.sharedInstance()
     }()
 
-<<<<<<< HEAD:GigyaSwift/Global/Providers/Google/GoogleWrapper.swift
-    private var completionHandler: (_ token: String?, _ secret: String?, _ error: String?) -> Void = { _, _, _  in }
-=======
     private var completionHandler: (_ jsonData: [String: Any]?, _ error: String?) -> Void = { _, _  in }
->>>>>>> 85068-setAccount:TestApp/GigyaProviders/GoogleWrapper.swift
 
     required override init() {
         super.init()
@@ -43,11 +39,7 @@ class GoogleWrapper: NSObject, ProviderWrapperProtocol {
     }
 
     func login(params: [String: Any]? = nil, viewController: UIViewController? = nil,
-<<<<<<< HEAD:GigyaSwift/Global/Providers/Google/GoogleWrapper.swift
-               completion: @escaping (_ token: String?, _ secret: String?, _ error: String?) -> Void) {
-=======
                completion: @escaping (_ jsonData: [String: Any]?, _ error: String?) -> Void) {
->>>>>>> 85068-setAccount:TestApp/GigyaProviders/GoogleWrapper.swift
         completionHandler = completion
 
         googleLogin.signIn()
@@ -61,11 +53,7 @@ class GoogleWrapper: NSObject, ProviderWrapperProtocol {
 extension GoogleWrapper: GIDSignInDelegate, GIDSignInUIDelegate {
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         guard error == nil else {
-<<<<<<< HEAD:GigyaSwift/Global/Providers/Google/GoogleWrapper.swift
-            completionHandler(nil, nil, error.localizedDescription)
-=======
             completionHandler(nil, error.localizedDescription)
->>>>>>> 85068-setAccount:TestApp/GigyaProviders/GoogleWrapper.swift
             return
         }
         let jsonData = ["accessToken": user.serverAuthCode ?? ""]
