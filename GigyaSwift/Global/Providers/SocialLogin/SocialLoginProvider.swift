@@ -24,7 +24,7 @@ class SocialLoginProvider: Provider {
         self.providerType = providerType
     }
 
-    func login<T: Codable>(params: [String: Any], viewController: UIViewController? = nil, loginMode: String, completion: @escaping (GigyaApiResult<T>) -> Void) {
+    func login<T: Codable>(type: T.Type, params: [String: Any], viewController: UIViewController? = nil, loginMode: String, completion: @escaping (GigyaApiResult<T>) -> Void) {
         provider.login(params: params, viewController: viewController) { [weak self] jsonData, error in
             guard let self = self else { return }
 

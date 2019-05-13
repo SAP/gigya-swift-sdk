@@ -42,21 +42,6 @@ class BusinessApiService: NSObject, IOCBusinessApiServiceProtocol {
         apiService.send(model: model, responseType: T.self, completion: completion)
     }
 
-    func login<T: Codable>(dataType: T.Type, loginId: String, password: String, completion: @escaping (GigyaApiResult<T>) -> Void) {
-        let params = ["loginId": loginId, "password": password]
-        let model = ApiRequestModel(method: GigyaDefinitions.API.login, params: params)
-
-        apiService.send(model: model, responseType: T.self) { [weak accountService] result in
-            switch result {
-            case .success(let data):
-                accountService?.account = data
-                completion(result)
-            case .failure:
-                completion(result)
-            }
-        }
-    }
-
     func getAccount<T: Codable>(dataType: T.Type, completion: @escaping (GigyaApiResult<T>) -> Void) {
         if accountService.isCachedAccount() {
             completion(.success(data: accountService.getAccount()))
@@ -88,7 +73,6 @@ class BusinessApiService: NSObject, IOCBusinessApiServiceProtocol {
                 completion(.failure(error))
             }
         }
-
     }
 
     func register<T: Codable>(params: [String: Any], dataType: T.Type, completion: @escaping (GigyaApiResult<T>) -> Void) {
@@ -111,12 +95,33 @@ class BusinessApiService: NSObject, IOCBusinessApiServiceProtocol {
         }
     }
 
+    func login<T: Codable>(dataType: T.Type, loginId: String, password: String, completion: @escaping (GigyaLoginResult<T>) -> Void) {
+        let params = ["loginId": loginId, "password": password]
+        let model = ApiRequestModel(method: GigyaDefinitions.API.login, params: params)
+
+        apiService.send(model: model, responseType: T.self) { [weak self] result in
+            switch result {
+            case .success(let data):
+                self?.accountService.account = data
+                completion(.success(data: data))
+            case .failure(let error):
+                self?.interruptionResolver(error: error, completion: completion)
+            }
+        }
+    }
+
     func login<T: Codable>(provider: GigyaSocielProviders, viewController: UIViewController,
-                           params: [String: Any], dataType: T.Type, completion: @escaping (GigyaApiResult<T>) -> Void) {
+                           params: [String: Any], dataType: T.Type, completion: @escaping (GigyaLoginResult<T>) -> Void) {
         providerAdapter = socialProviderFactory.getProvider(with: provider, delegate: self)
 
-        providerAdapter?.login(params: params, viewController: viewController, loginMode: "login") { (res) in
-            completion(res)
+        providerAdapter?.login(type: T.self, params: params, viewController: viewController, loginMode: "login") { (result) in
+            switch result {
+            case .success(let data):
+                completion(.success(data: data))
+            case .failure(let error):
+                self.interruptionResolver(error: error, completion: completion)
+            }
+
         }
 
         providerAdapter?.didFinish = { [weak self] in
@@ -138,8 +143,8 @@ class BusinessApiService: NSObject, IOCBusinessApiServiceProtocol {
     }
     
     func addConnection<T: Codable>(provider: GigyaSocielProviders, viewController: UIViewController, params: [String: Any], dataType: T.Type, completion: @escaping (GigyaApiResult<T>) -> Void) {
-        providerAdapter = providerFactory.getProvider(with: provider, delegate: self)
-        providerAdapter?.login(params: params, viewController: viewController, loginMode: "connect") { (res) in
+        providerAdapter = socialProviderFactory.getProvider(with: provider, delegate: self)
+        providerAdapter?.login(type: T.self, params: params, viewController: viewController, loginMode: "connect") { (res) in
             completion(res)
         }
         
@@ -157,6 +162,29 @@ class BusinessApiService: NSObject, IOCBusinessApiServiceProtocol {
     func logout(completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void) {
         let model = ApiRequestModel(method: GigyaDefinitions.API.logout, params: nil)
         apiService.send(model: model, responseType: GigyaDictionary.self, completion: completion)
+    }
+
+    private func interruptionResolver<T: Codable>(error: NetworkError, completion: @escaping (GigyaLoginResult<T>) -> Void) {
+        switch error {
+        case .gigyaError(let data):
+            if data.isInterruptionSupported() {
+                guard let errorCode: Interruption = Interruption(rawValue: data.errorCode) else { return }
+                switch errorCode {
+                case .pendingVerification: // pending veryfication
+                    let loginError = LoginApiError<T>(error: error, interruption: .pendingVerification(regToken: data.regToken ?? ""))
+                    completion(.failure(loginError))
+                case .conflitingAccounts: // conflicting accounts
+                    let linkResolver = LinkAccountsResolver(businessDelegate: self, completion: completion)
+                    let loginError = LoginApiError<T>(error: error, interruption: .conflitingAccounts(resolver: linkResolver))
+                    completion(.failure(loginError))
+                default:
+                    break
+                }
+            }
+        default:
+            let loginError = LoginApiError<T>(error: error, interruption: nil)
+            completion(.failure(loginError))
+        }
     }
 
     deinit {

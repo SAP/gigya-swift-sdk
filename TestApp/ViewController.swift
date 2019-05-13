@@ -223,7 +223,7 @@ class ViewController: UIViewController {
             }
         }
     }
-}
+
 
 
 //extension ViewController: PluginEventDelegate {
@@ -293,6 +293,8 @@ class ViewController: UIViewController {
                 break
             }
         }
+    }
+}
 //        GigyaSwift.sharedInstance().send(dataType: ValidateLoginData.self, api: "accounts.isAvailableLoginID", params: ["loginID": "sagi.shmuel@sap.com"]) { (res) in
 //            switch res {
 //            case .success(let data):

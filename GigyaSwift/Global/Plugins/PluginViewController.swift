@@ -306,9 +306,9 @@ class PluginViewController<T: GigyaAccountProtocol>: WebViewController, WKScript
                     GigyaLogger.log(with: self, message: "sendOauthRequest success")
                     self.completion(.onLogin(account: data))
                     self.dismissPluginController()
-                case .failure(let error):
-                    GigyaLogger.log(with: self, message: "sendOauthRequest: error:\n\(error.localizedDescription)")
-                    self.invokeError(callbackId: callbackId, error: error)
+                case .failure(let data):
+                    GigyaLogger.log(with: self, message: "sendOauthRequest: error:\n\(data.error.localizedDescription)")
+                    self.invokeError(callbackId: callbackId, error: data.error)
                 }
             }
         }

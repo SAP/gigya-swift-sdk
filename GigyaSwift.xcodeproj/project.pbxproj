@@ -71,6 +71,8 @@
 		E7C859C8228866D7005C1FBE /* GigyaSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7C859C7228866AA005C1FBE /* GigyaSDK.framework */; };
 		E7C859C9228866E4005C1FBE /* GigyaSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7C859C7228866AA005C1FBE /* GigyaSDK.framework */; };
 		E7C859CA228866E4005C1FBE /* GigyaSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E7C859C7228866AA005C1FBE /* GigyaSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E7C859DB2289604F005C1FBE /* LinkAccountsResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C859DA2289604F005C1FBE /* LinkAccountsResolver.swift */; };
+		E7C859E02289B299005C1FBE /* InterruptionEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C859DF2289B299005C1FBE /* InterruptionEnum.swift */; };
 		E7CBAF9D22282BE3000B6C11 /* KeychainStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CBAF9C22282BE3000B6C11 /* KeychainStorage.swift */; };
 		E7CBAFA022282C56000B6C11 /* KeychainPasscode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CBAF9F22282C56000B6C11 /* KeychainPasscode.swift */; };
 		E7CBAFA4222BC881000B6C11 /* InternalConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CBAFA3222BC881000B6C11 /* InternalConfig.swift */; };
@@ -262,6 +264,8 @@
 		E7BE36A62224260500A108D9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E7BE36A82224260500A108D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E7C859C1228866AA005C1FBE /* GigyaSDK.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GigyaSDK.xcodeproj; path = "../../../Documents/gigya-ios-sdk/GigyaSDK.xcodeproj"; sourceTree = "<group>"; };
+		E7C859DA2289604F005C1FBE /* LinkAccountsResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkAccountsResolver.swift; sourceTree = "<group>"; };
+		E7C859DF2289B299005C1FBE /* InterruptionEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterruptionEnum.swift; sourceTree = "<group>"; };
 		E7CBAF9C22282BE3000B6C11 /* KeychainStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainStorage.swift; sourceTree = "<group>"; };
 		E7CBAF9F22282C56000B6C11 /* KeychainPasscode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainPasscode.swift; sourceTree = "<group>"; };
 		E7CBAFA3222BC881000B6C11 /* InternalConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternalConfig.swift; sourceTree = "<group>"; };
@@ -351,9 +355,6 @@
 				E7F94FAC22248C7200A85640 /* SafariServices.framework in Frameworks */,
 				E7F94FAA22248C6800A85640 /* LocalAuthentication.framework in Frameworks */,
 				E7F94F5222247A7D00A85640 /* libc++.tbd in Frameworks */,
-				E733741522634C5B00ADEDBB /* GoogleSignIn.framework in Frameworks */,
-				E73373E4226334A600ADEDBB /* GoogleSignInDependencies.framework in Frameworks */,
-				E7ACF9C8226F1BC200900C65 /* FBSDKCoreKit.framework in Frameworks */,
 				E7F94F5022247A7400A85640 /* libz.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -376,8 +377,6 @@
 				E73373F322633BCC00ADEDBB /* LocalAuthentication.framework in Frameworks */,
 				E7DC2C4E22804C2F00A13426 /* FBSDKCoreKit.framework in Frameworks */,
 				E7DC2C4B22804C2F00A13426 /* FBSDKShareKit.framework in Frameworks */,
-				E7ACFB84226F558B00900C65 /* FBSDKPlacesKit.framework in Frameworks */,
-				E7ACFB88226F558B00900C65 /* FBSDKShareKit.framework in Frameworks */,
 				E713E0CC2247773100181328 /* GigyaSwift.framework in Frameworks */,
 				E71D4A2422817F83000892C2 /* libWeChatSDK.a in Frameworks */,
 				E7DC2C4F22804C2F00A13426 /* Bolts.framework in Frameworks */,
@@ -664,6 +663,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		E7C859D822896038005C1FBE /* Resolvers */ = {
+			isa = PBXGroup;
+			children = (
+				E7C859DA2289604F005C1FBE /* LinkAccountsResolver.swift */,
+			);
+			path = Resolvers;
+			sourceTree = "<group>";
+		};
 		E7CBAF9922282B6C000B6C11 /* Network */ = {
 			isa = PBXGroup;
 			children = (
@@ -706,6 +713,7 @@
 				D52F88E422795793007DE20F /* Plugins */,
 				E733744022674B7300ADEDBB /* Account */,
 				E733744322674B9500ADEDBB /* Session */,
+				E7C859D822896038005C1FBE /* Resolvers */,
 				E713E18A2249066A00181328 /* Api */,
 				E7CBB069223E59C8000B6C11 /* Utils */,
 				E7CBAFCC222EA20B000B6C11 /* GigyaObjc */,
@@ -730,6 +738,7 @@
 			children = (
 				E7CBB03C22356086000B6C11 /* GigyaInstanceProtocol.swift */,
 				E7CBB0592237DD2C000B6C11 /* GigyaSocielProviders.swift */,
+				E7C859DF2289B299005C1FBE /* InterruptionEnum.swift */,
 				E713E0FF2248C84000181328 /* Config */,
 				E7CBB03F223561DD000B6C11 /* User */,
 			);
@@ -1104,12 +1113,14 @@
 				E713E0FC2247C6E700181328 /* SignatureUtils.swift in Sources */,
 				E7CBB03D22356086000B6C11 /* GigyaInstanceProtocol.swift in Sources */,
 				E7818A7222244722008117AB /* module.modulemap in Sources */,
+				E7C859DB2289604F005C1FBE /* LinkAccountsResolver.swift in Sources */,
 				E7CBB068223E595D000B6C11 /* GigyaPlistConfig.swift in Sources */,
 				E756A2AD22771B6F007FA801 /* Url.swift in Sources */,
 				E7CBAFC5222E7314000B6C11 /* GigyaResult.swift in Sources */,
 				E7CBAFCE222EA268000B6C11 /* GigyaWrapper.swift in Sources */,
 				E7CBAFB8222D17C9000B6C11 /* NetworkProvider.swift in Sources */,
 				E7A6E0AE2242488D0063638F /* ApiStatusCode.swift in Sources */,
+				E7C859E02289B299005C1FBE /* InterruptionEnum.swift in Sources */,
 				E7CBB06B223E59EA000B6C11 /* Decode+EncodeUtils.swift in Sources */,
 				D58EF4432279948B003DB878 /* PluginViewWrapper.swift in Sources */,
 				E7A6E0AC224245D00063638F /* ApiResultModel.swift in Sources */,
@@ -1136,7 +1147,6 @@
 				E7CBAFA4222BC881000B6C11 /* InternalConfig.swift in Sources */,
 				E7ACF9A8226C83F200900C65 /* IOCBusinessApiServiceProtocol.swift in Sources */,
 				E713E1022248E41400181328 /* GigyaRequestSignature.swift in Sources */,
-				E7ACF9BE226F194A00900C65 /* FacebookProvider.swift in Sources */,
 				D58EF4452279CB38003DB878 /* String.swift in Sources */,
 				E7CBAFBA222D1840000B6C11 /* NetworkError.swift in Sources */,
 				E7CBB05A2237DD2C000B6C11 /* GigyaSocielProviders.swift in Sources */,
@@ -1496,9 +1506,9 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = Gigya.TestAppnew;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "TestApp/TestApp-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1536,8 +1546,8 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = Gigya.TestAppnew;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "TestApp/TestApp-Bridging-Header.h";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "TestApp/TestApp-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

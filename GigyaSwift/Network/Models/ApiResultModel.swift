@@ -13,6 +13,7 @@ public struct GigyaResponseModel: Codable {
     var errorCode: Int
     var callId: String
     let errorMessage: String?
+    internal let regToken: String? = ""
     
     func toDictionary() -> [String: Any] {
         return ["statusCode": statusCode.rawValue, "errorCode": errorCode, "callId": callId, "errorMessage": errorMessage ?? ""]
@@ -20,6 +21,15 @@ public struct GigyaResponseModel: Codable {
     
     func asJson() -> String {
         return toDictionary().asJson
+    }
+
+    func isInterruptionSupported() -> Bool {
+        let errosCodes = Interruption.allCases
+
+        if let interruption = Interruption(rawValue: self.errorCode), errosCodes.contains(interruption) {
+            return true
+        }
+        return false
     }
 
 }

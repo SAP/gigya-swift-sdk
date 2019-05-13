@@ -14,10 +14,12 @@ class WebViewController: UIViewController {
 
     var userDidCancel: () -> Void = { }
 
-    init() {
-        webView = WKWebView(frame: .zero)
+    init(configuration: WKWebViewConfiguration = WKWebViewConfiguration()) {
+        webView = WKWebView(frame: .zero, configuration: configuration)
 
         super.init(nibName: nil, bundle: nil)
+
+        self.view.backgroundColor = .white
     }
 
     override func viewDidLoad() {

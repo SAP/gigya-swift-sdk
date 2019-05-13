@@ -12,3 +12,18 @@ public enum GigyaApiResult<Response> {
     case success(data: Response)
     case failure(NetworkError)
 }
+
+public enum GigyaLoginResult<Response> {
+    case success(data: Response)
+    case failure(LoginApiError<Response>)
+}
+
+public struct LoginApiError<T> {
+    let error: NetworkError
+    let interruption: GigyaInterruptions<T>?
+}
+
+public enum GigyaInterruptions<T> {
+    case pendingVerification(regToken: String)
+    case conflitingAccounts(resolver: LinkAccountsResolver<T>)
+}

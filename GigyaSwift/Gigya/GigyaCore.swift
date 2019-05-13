@@ -126,7 +126,7 @@ public class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
      - Parameter pass:          user password.
      - Parameter completion:    Response GigyaApiResult.
      */
-    public func login(loginId: String, password: String, completion: @escaping (GigyaApiResult<T>) -> Void) {
+    public func login(loginId: String, password: String, completion: @escaping (GigyaLoginResult<T>) -> Void) {
         businessApiService.login(dataType: T.self, loginId: loginId, password: password, completion: completion)
     }
 
@@ -139,7 +139,7 @@ public class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
      - Parameter completion:        Response GigyaApiResult.
      */
     public func login(with provider: GigyaSocielProviders, viewController: UIViewController,
-                      params: [String: Any] = [:], completion: @escaping (GigyaApiResult<T>) -> Void) {
+                      params: [String: Any] = [:], completion: @escaping (GigyaLoginResult<T>) -> Void) {
         businessApiService.login(provider: provider, viewController: viewController, params: params, dataType: T.self) { (res) in
             completion(res)
         }

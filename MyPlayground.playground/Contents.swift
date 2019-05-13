@@ -1,8 +1,10 @@
+import GigyaSwift
 
-let oldAccount = ["test": "yes", "none": "true"]
-let newAccount = ["test": "no", "none": "true"]
+let errosCodes = Interruption.allCases
 
-let diff = newAccount.filter { $0.value as? String != oldAccount[$0.key] as? String }
+if let interruption = Interruption(rawValue: 206002), errosCodes.contains(interruption) {
+    print(true)
+} else {
+    print(false)
 
-print(diff)
-
+}

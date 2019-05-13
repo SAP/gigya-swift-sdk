@@ -12,7 +12,7 @@ protocol Provider: class {
     
     var delegate: BusinessApiDelegate? { get set }
 
-    func login<T: Codable>(params: [String: Any], viewController: UIViewController?,
+    func login<T: Codable>(type: T.Type, params: [String: Any], viewController: UIViewController?,
                            loginMode: String, completion: @escaping (GigyaApiResult<T>) -> Void)
 
     func logout()

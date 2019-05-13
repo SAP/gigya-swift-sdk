@@ -93,7 +93,7 @@ extension WebLoginWrapper: WKNavigationDelegate {
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         if navigationAction.navigationType == .other {
             if let url = navigationAction.request.url {
-                GigyaLogger.log(with: providerType?.rawValue, message: "Log redirect url: \(url)")
+                GigyaLogger.log(with: providerType?.rawValue ?? "WebView", message: "Log redirect url: \(url)")
                 if
                     let status = url["status"],
                     status == "ok",
