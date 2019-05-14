@@ -95,8 +95,10 @@ class BusinessApiService: NSObject, IOCBusinessApiServiceProtocol {
         }
     }
 
-    func login<T: Codable>(dataType: T.Type, loginId: String, password: String, completion: @escaping (GigyaLoginResult<T>) -> Void) {
-        let params = ["loginId": loginId, "password": password]
+    func login<T: Codable>(dataType: T.Type, loginId: String, password: String, params: [String: Any], completion: @escaping (GigyaLoginResult<T>) -> Void) {
+        var mutatedParams = params
+        mutatedParams["loginID"] = loginId
+        mutatedParams["password"] = password
         let model = ApiRequestModel(method: GigyaDefinitions.API.login, params: params)
 
         apiService.send(model: model, responseType: T.self) { [weak self] result in
@@ -174,9 +176,12 @@ class BusinessApiService: NSObject, IOCBusinessApiServiceProtocol {
                     let loginError = LoginApiError<T>(error: error, interruption: .pendingVerification(regToken: data.regToken ?? ""))
                     completion(.failure(loginError))
                 case .conflitingAccounts: // conflicting accounts
-                    let linkResolver = LinkAccountsResolver(businessDelegate: self, completion: completion)
-                    let loginError = LoginApiError<T>(error: error, interruption: .conflitingAccounts(resolver: linkResolver))
-                    completion(.failure(loginError))
+                    guard let regToken = data.regToken else {
+                        let loginError = LoginApiError<T>(error: error, interruption: nil)
+                        completion(.failure(loginError))
+                        return
+                    }
+                    _ = LinkAccountsResolver(originalError: error, regToken: regToken, businessDelegate: self, completion: completion)
                 default:
                     break
                 }

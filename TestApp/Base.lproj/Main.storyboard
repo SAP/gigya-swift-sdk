@@ -83,10 +83,19 @@
                                     <action selector="getAccountWith_sender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="wDr-Ak-IRv"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TiM-DB-mr3">
+                                <rect key="frame" x="16" y="592" width="131" height="30"/>
+                                <accessibility key="accessibilityConfiguration" identifier="Login with provider"/>
+                                <state key="normal" title="Login with provider"/>
+                                <connections>
+                                    <action selector="loginWithProvider:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ek2-rR-upU"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="owO-vP-SNV" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="16" id="2AI-Bd-Fzi"/>
+                            <constraint firstItem="TiM-DB-mr3" firstAttribute="top" secondItem="0fX-WN-aKg" secondAttribute="bottom" constant="16" id="2YG-O4-hBB"/>
                             <constraint firstItem="0fX-WN-aKg" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="2p7-lC-fVD"/>
                             <constraint firstItem="fyN-es-d2v" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="6iT-v0-QyB"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Jkr-xe-GiC" secondAttribute="bottom" constant="16" id="Bzm-Q9-L5D"/>
@@ -96,6 +105,7 @@
                             <constraint firstItem="9wC-xP-8OI" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="Nde-ba-g2z"/>
                             <constraint firstItem="owO-vP-SNV" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="RMc-LD-XvY"/>
                             <constraint firstItem="Cu6-gD-2R1" firstAttribute="top" secondItem="fyN-es-d2v" secondAttribute="bottom" constant="16" id="U4r-Fs-aWR"/>
+                            <constraint firstItem="TiM-DB-mr3" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="YjH-RD-fcU"/>
                             <constraint firstItem="Jkr-xe-GiC" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="f57-He-Wc0"/>
                             <constraint firstItem="fNt-XW-RSV" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="faR-xz-gJk"/>
                             <constraint firstItem="fNt-XW-RSV" firstAttribute="top" secondItem="9wC-xP-8OI" secondAttribute="bottom" constant="16" id="grl-cd-jq3"/>
