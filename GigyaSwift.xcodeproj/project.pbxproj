@@ -10,6 +10,8 @@
 		D5215E56228AA7C1005A425F /* GigyaSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7A6E075223EB4020063638F /* GigyaSDK.framework */; };
 		D5215E57228AA7C1005A425F /* GigyaSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E7A6E075223EB4020063638F /* GigyaSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D52F88EA22795F39007DE20F /* PluginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52F88E922795F39007DE20F /* PluginViewController.swift */; };
+		D5340BFD228C1F63002D215B /* TFAResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5340BFC228C1F63002D215B /* TFAResolver.swift */; };
+		D5340C01228C2C16002D215B /* TFARegistrationResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5340C00228C2C16002D215B /* TFARegistrationResolver.swift */; };
 		D58EF441227993C6003DB878 /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58EF440227993C6003DB878 /* Dictionary.swift */; };
 		D58EF4432279948B003DB878 /* PluginViewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58EF4422279948B003DB878 /* PluginViewWrapper.swift */; };
 		D58EF4452279CB38003DB878 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58EF4442279CB38003DB878 /* String.swift */; };
@@ -193,6 +195,8 @@
 
 /* Begin PBXFileReference section */
 		D52F88E922795F39007DE20F /* PluginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluginViewController.swift; sourceTree = "<group>"; };
+		D5340BFC228C1F63002D215B /* TFAResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TFAResolver.swift; sourceTree = "<group>"; };
+		D5340C00228C2C16002D215B /* TFARegistrationResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TFARegistrationResolver.swift; sourceTree = "<group>"; };
 		D58EF440227993C6003DB878 /* Dictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dictionary.swift; sourceTree = "<group>"; };
 		D58EF4422279948B003DB878 /* PluginViewWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluginViewWrapper.swift; sourceTree = "<group>"; };
 		D58EF4442279CB38003DB878 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
@@ -660,6 +664,8 @@
 			isa = PBXGroup;
 			children = (
 				E7C859DA2289604F005C1FBE /* LinkAccountsResolver.swift */,
+				D5340BFC228C1F63002D215B /* TFAResolver.swift */,
+				D5340C00228C2C16002D215B /* TFARegistrationResolver.swift */,
 			);
 			path = Resolvers;
 			sourceTree = "<group>";
@@ -1093,6 +1099,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E7CBAFBE222D18A6000B6C11 /* NetworkMethod.swift in Sources */,
+				D5340BFD228C1F63002D215B /* TFAResolver.swift in Sources */,
 				E760668D2278998E005E4CFD /* WebViewController.swift in Sources */,
 				E7E80DA22252041D00D3B663 /* ResolverProtocol.swift in Sources */,
 				D58EF441227993C6003DB878 /* Dictionary.swift in Sources */,
@@ -1148,6 +1155,7 @@
 				E7ACF9AE226C843100900C65 /* IOCSessionServiceProtocol.swift in Sources */,
 				E7ACF9CC226F2A4100900C65 /* ProviderWrapperProtocol.swift in Sources */,
 				D52F88EA22795F39007DE20F /* PluginViewController.swift in Sources */,
+				D5340C01228C2C16002D215B /* TFARegistrationResolver.swift in Sources */,
 				E7CBB03B22356068000B6C11 /* GigyaCore.swift in Sources */,
 				E7CBAFA022282C56000B6C11 /* KeychainPasscode.swift in Sources */,
 				E73373B02254FD4800ADEDBB /* Int.swift in Sources */,
