@@ -61,22 +61,7 @@ public class LinkAccountsResolver<T: Codable>: BaseResolver {
     }
     
     public func linkToSocial(provider: GigyaSocielProviders, viewController: UIViewController) {
-        let params = ["loginMode": "link"]
+        let params = ["loginMode": "link", "regToken": regToken]
         businessDelegate?.callSociallogin(provider: provider, viewController: viewController, params: params, dataType: T.self, completion: self.completion)
-    }
-}
-
-struct ConflictingAccountHead: Codable {
-    let conflictingAccount: ConflictingAccount
-}
-
-public struct ConflictingAccount: Codable {
-    
-    public let loginProviders: [String]?
-    public let loginID: String?
-
-    private enum CodingKeys: String, CodingKey {
-        case loginProviders = "loginProviders"
-        case loginID = "loginID"
     }
 }
