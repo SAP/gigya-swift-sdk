@@ -10,7 +10,9 @@ import Foundation
 
 protocol BusinessApiDelegate: class {
     func sendApi(api: String, params: [String: String], completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void )
-    
+
+    func sendApi<T: Codable>(dataType: T.Type, api: String, params: [String: String], completion: @escaping (GigyaApiResult<T>) -> Void)
+
     func callNativeSocialLogin<T: Codable>(params: [String: Any], completion: @escaping (GigyaApiResult<T>?) -> Void)
 
     func callGetAccount<T: Codable>(completion: @escaping (GigyaApiResult<T>) -> Void)
@@ -22,7 +24,9 @@ protocol BusinessApiDelegate: class {
 }
 
 extension BusinessApiService: BusinessApiDelegate {
-    
+    func sendApi<T: Codable>(dataType: T.Type, api: String, params: [String: String], completion: @escaping (GigyaApiResult<T>) -> Void) {
+        self.send(dataType: dataType, api: api, params: params, completion: completion)
+    }
     func sendApi(api: String, params: [String: String] = [:], completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void ) {
         self.send(api: api, params: params, completion: completion)
     }

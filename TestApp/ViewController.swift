@@ -220,6 +220,15 @@ class ViewController: UIViewController {
                 self.resultTextView?.text = data.toJson()
             case .failure(let error):
                 print(error)
+                guard let interruption = error.interruption else { return }
+                
+                switch interruption {
+                case .pendingVerification(let regToken):
+                    break
+                case .conflitingAccounts(let resolver):
+                    resolver.linkToSite(loginId: resolver.conflictingAccount?.loginID ?? "", password: "123123")
+                    break
+                }
             }
         }
     }

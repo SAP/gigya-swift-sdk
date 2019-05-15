@@ -37,7 +37,8 @@ class ApiService: IOCApiServiceProtocol {
 
             let errorModel = GigyaResponseModel(statusCode: .unknown, errorCode: code,
                                                       callId: callId,
-                                                      errorMessage: error?.localizedDescription)
+                                                      errorMessage: error?.localizedDescription,
+                                                      requestData: data as Data?)
 
             completion(.failure(NetworkError.gigyaError(data: errorModel)))
         }

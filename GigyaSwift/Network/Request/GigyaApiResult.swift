@@ -19,8 +19,8 @@ public enum GigyaLoginResult<Response: Codable> {
 }
 
 public struct LoginApiError<T: Codable> {
-    let error: NetworkError
-    let interruption: GigyaInterruptions<T>?
+    public let error: NetworkError
+    public let interruption: GigyaInterruptions<T>?
 }
 
 public enum GigyaInterruptions<T: Codable> {

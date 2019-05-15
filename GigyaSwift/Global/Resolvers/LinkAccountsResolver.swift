@@ -7,8 +7,9 @@
 //
 
 import Foundation
+protocol BaseResolver { }
 
-public class LinkAccountsResolver<T: Codable> {
+public class LinkAccountsResolver<T: Codable>: BaseResolver {
 
     let originalError: NetworkError
 
@@ -18,8 +19,9 @@ public class LinkAccountsResolver<T: Codable> {
 
     let completion: (GigyaLoginResult<T>) -> Void
     
-    var conflictingAccounts: ConflictingAccounts?
+    public var conflictingAccount: ConflictingAccount?
 
+    
     init(originalError: NetworkError, regToken: String, businessDelegate: BusinessApiDelegate, completion: @escaping (GigyaLoginResult<T>) -> Void) {
         self.originalError = originalError
         self.regToken = regToken
@@ -36,37 +38,45 @@ public class LinkAccountsResolver<T: Codable> {
     
     private func getConflictingAccount() {
         let params = ["regToken": self.regToken]
-        self.businessDelegate?.sendApi(api: GigyaDefinitions.API.getConflictingAccount, params: params) { [weak self] result in
+        self.businessDelegate?.sendApi(dataType: ConflictingAccountHead.self, api: GigyaDefinitions.API.getConflictingAccount, params: params) { [weak self] result in
             guard let self = self else { return }
             switch result {
-            case .success(_):
-                // TODO: Parse the conflicting accounts memeber object
+            case .success(let data):
                 // Once we have the conflicting accounts we can pass on the first interruption through the completion block.
+                self.conflictingAccount = data.conflictingAccount
                 let loginError = LoginApiError<T>(error: self.originalError, interruption: .conflitingAccounts(resolver: self))
+
                 self.completion(.failure(loginError))
-                break
             case .failure(let error):
                 let loginError = LoginApiError<T>(error: error, interruption: nil)
+
                 self.completion(.failure(loginError))
-                break
             }
         }
     }
     
-    func linkToSite(loginId: String, password: String) {
+    public func linkToSite(loginId: String, password: String) {
         let params = ["loginMode": "link", "regToken": regToken]
         businessDelegate?.callLogin(dataType: T.self, loginId: loginId, password: password, params: params, completion: self.completion)
     }
     
-    func linkToSocial(provider: GigyaSocielProviders, viewController: UIViewController) {
+    public func linkToSocial(provider: GigyaSocielProviders, viewController: UIViewController) {
         let params = ["loginMode": "link"]
         businessDelegate?.callSociallogin(provider: provider, viewController: viewController, params: params, dataType: T.self, completion: self.completion)
     }
 }
 
-public struct ConflictingAccounts {
+struct ConflictingAccountHead: Codable {
+    let conflictingAccount: ConflictingAccount
+}
+
+public struct ConflictingAccount: Codable {
     
-    var loginProviders: [String]?
-    var loginID: String?
-    
+    public let loginProviders: [String]?
+    public let loginID: String?
+
+    private enum CodingKeys: String, CodingKey {
+        case loginProviders = "loginProviders"
+        case loginID = "loginID"
+    }
 }
