@@ -127,7 +127,7 @@ public class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
      - Parameter completion:    Response GigyaApiResult.
      */
     public func login(loginId: String, password: String, completion: @escaping (GigyaLoginResult<T>) -> Void) {
-        businessApiService.login(dataType: T.self, loginId: loginId, password: password, completion: completion)
+        businessApiService.login(dataType: T.self, loginId: loginId, password: password, params: [:], completion: completion)
     }
 
     /**

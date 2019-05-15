@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum Interruption: Int, CaseIterable {
+public enum Interruption: Int, CaseIterable {
     case pendingRegistration = 206001
     case pendingVerification = 206002
     case conflitingAccounts = 403043

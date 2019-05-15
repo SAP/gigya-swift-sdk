@@ -20,6 +20,8 @@ class BusinessApiService: NSObject, IOCBusinessApiServiceProtocol {
 
     var providerAdapter: Provider?
 
+    var resolver: BaseResolver?
+
     required init(apiService: IOCApiServiceProtocol, sessionService: IOCSessionServiceProtocol,
                   accountService: IOCAccountServiceProtocol, providerFactory: IOCSocialProvidersManagerProtocol) {
         self.apiService = apiService
@@ -95,9 +97,12 @@ class BusinessApiService: NSObject, IOCBusinessApiServiceProtocol {
         }
     }
 
-    func login<T: Codable>(dataType: T.Type, loginId: String, password: String, completion: @escaping (GigyaLoginResult<T>) -> Void) {
-        let params = ["loginId": loginId, "password": password]
-        let model = ApiRequestModel(method: GigyaDefinitions.API.login, params: params)
+    func login<T: Codable>(dataType: T.Type, loginId: String, password: String, params: [String: Any], completion: @escaping (GigyaLoginResult<T>) -> Void) {
+        var mutatedParams = params
+        mutatedParams["loginID"] = loginId
+        mutatedParams["password"] = password
+        
+        let model = ApiRequestModel(method: GigyaDefinitions.API.login, params: mutatedParams)
 
         apiService.send(model: model, responseType: T.self) { [weak self] result in
             switch result {
@@ -169,14 +174,19 @@ class BusinessApiService: NSObject, IOCBusinessApiServiceProtocol {
         case .gigyaError(let data):
             if data.isInterruptionSupported() {
                 guard let errorCode: Interruption = Interruption(rawValue: data.errorCode) else { return }
+                let dataResponse = data.toDictionary()
                 switch errorCode {
                 case .pendingVerification: // pending veryfication
-                    let loginError = LoginApiError<T>(error: error, interruption: .pendingVerification(regToken: data.regToken ?? ""))
+                    let loginError = LoginApiError<T>(error: error, interruption: .pendingVerification(regToken: dataResponse["regToken"] as? String ?? ""))
                     completion(.failure(loginError))
                 case .conflitingAccounts: // conflicting accounts
-                    let linkResolver = LinkAccountsResolver(businessDelegate: self, completion: completion)
-                    let loginError = LoginApiError<T>(error: error, interruption: .conflitingAccounts(resolver: linkResolver))
-                    completion(.failure(loginError))
+                    guard let regToken = dataResponse["regToken"] as? String else {
+                        let loginError = LoginApiError<T>(error: error, interruption: nil)
+                        completion(.failure(loginError))
+                        return
+                    }
+
+                    resolver = LinkAccountsResolver(originalError: error, regToken: regToken, businessDelegate: self, completion: completion)
                 default:
                     break
                 }

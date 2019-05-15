@@ -201,13 +201,34 @@ class ViewController: UIViewController {
     }
     
     
-    @IBAction func getAccount(_sender: Any) {
+    @IBAction func getAccount(_ sender: Any) {
         gigya.register(params: ["email": "dasdsad@testss.com", "password": "121233"]) { (result) in
             switch result {
             case .success(let data):
                 print(data)
             case .failure(let error):
                 print(error)
+            }
+        }
+    }
+    
+    @IBAction func loginWithProvider(_ sender: Any) {
+        gigya.login(with: GigyaSocielProviders.google, viewController: self ) { result in
+            switch result {
+            case .success(let data):
+                print(data)
+                self.resultTextView?.text = data.toJson()
+            case .failure(let error):
+                print(error)
+                guard let interruption = error.interruption else { return }
+                
+                switch interruption {
+                case .pendingVerification(let regToken):
+                    break
+                case .conflitingAccounts(let resolver):
+                    resolver.linkToSite(loginId: resolver.conflictingAccount?.loginID ?? "", password: "123123")
+                    break
+                }
             }
         }
     }
@@ -271,7 +292,7 @@ class ViewController: UIViewController {
 //                break
 //            }
 //        }
-    @IBAction func getAccount(_ sender: Any) {
+    @IBAction func getAccount(_sender: Any) {
 //        gigya.register(params: ["email": "dasdsad@testss.com", "password": "121233"]) { (result) in
 //            switch result {
 //            case .success(let data):

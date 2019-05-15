@@ -13,10 +13,10 @@ public struct GigyaResponseModel: Codable {
     var errorCode: Int
     var callId: String
     let errorMessage: String?
-    internal let regToken: String? = ""
+    internal var requestData: Data? = nil
     
     func toDictionary() -> [String: Any] {
-        return ["statusCode": statusCode.rawValue, "errorCode": errorCode, "callId": callId, "errorMessage": errorMessage ?? ""]
+        return DecodeEncodeUtils.dataToDictionary(data: self.requestData)
     }
     
     func asJson() -> String {

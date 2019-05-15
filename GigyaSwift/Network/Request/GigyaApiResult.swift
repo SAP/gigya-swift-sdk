@@ -13,17 +13,17 @@ public enum GigyaApiResult<Response> {
     case failure(NetworkError)
 }
 
-public enum GigyaLoginResult<Response> {
+public enum GigyaLoginResult<Response: Codable> {
     case success(data: Response)
     case failure(LoginApiError<Response>)
 }
 
-public struct LoginApiError<T> {
-    let error: NetworkError
-    let interruption: GigyaInterruptions<T>?
+public struct LoginApiError<T: Codable> {
+    public let error: NetworkError
+    public let interruption: GigyaInterruptions<T>?
 }
 
-public enum GigyaInterruptions<T> {
+public enum GigyaInterruptions<T: Codable> {
     case pendingVerification(regToken: String)
     case conflitingAccounts(resolver: LinkAccountsResolver<T>)
 }

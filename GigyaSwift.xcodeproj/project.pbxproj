@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D5215E56228AA7C1005A425F /* GigyaSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7A6E075223EB4020063638F /* GigyaSDK.framework */; };
+		D5215E57228AA7C1005A425F /* GigyaSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E7A6E075223EB4020063638F /* GigyaSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D52F88EA22795F39007DE20F /* PluginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52F88E922795F39007DE20F /* PluginViewController.swift */; };
 		D58EF441227993C6003DB878 /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58EF440227993C6003DB878 /* Dictionary.swift */; };
 		D58EF4432279948B003DB878 /* PluginViewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58EF4422279948B003DB878 /* PluginViewWrapper.swift */; };
@@ -69,8 +71,6 @@
 		E7BE36A72224260500A108D9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E7BE36A52224260500A108D9 /* LaunchScreen.storyboard */; };
 		E7BE36C82224306E00A108D9 /* GigyaSwift.swift in Headers */ = {isa = PBXBuildFile; fileRef = E7BE368A2224225100A108D9 /* GigyaSwift.swift */; };
 		E7C859C8228866D7005C1FBE /* GigyaSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7C859C7228866AA005C1FBE /* GigyaSDK.framework */; };
-		E7C859C9228866E4005C1FBE /* GigyaSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7C859C7228866AA005C1FBE /* GigyaSDK.framework */; };
-		E7C859CA228866E4005C1FBE /* GigyaSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E7C859C7228866AA005C1FBE /* GigyaSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E7C859DB2289604F005C1FBE /* LinkAccountsResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C859DA2289604F005C1FBE /* LinkAccountsResolver.swift */; };
 		E7C859E02289B299005C1FBE /* InterruptionEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C859DF2289B299005C1FBE /* InterruptionEnum.swift */; };
 		E7CBAF9D22282BE3000B6C11 /* KeychainStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CBAF9C22282BE3000B6C11 /* KeychainStorage.swift */; };
@@ -172,13 +172,6 @@
 			remoteGlobalIDString = A9B9CCF51E560070002872F9;
 			remoteInfo = GigyaSDK;
 		};
-		E7C859CB228866E4005C1FBE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E7C859C1228866AA005C1FBE /* GigyaSDK.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = A9B9CCF41E560070002872F9;
-			remoteInfo = GigyaSDK;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -189,7 +182,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				E713E0CD2247773100181328 /* GigyaSwift.framework in Embed Frameworks */,
-				E7C859CA228866E4005C1FBE /* GigyaSDK.framework in Embed Frameworks */,
+				D5215E57228AA7C1005A425F /* GigyaSDK.framework in Embed Frameworks */,
 				E7DC2C5522804C4200A13426 /* FBSDKCoreKit.framework in Embed Frameworks */,
 				E7DC2C5922804C6B00A13426 /* FBSDKLoginKit.framework in Embed Frameworks */,
 			);
@@ -363,7 +356,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E7C859C9228866E4005C1FBE /* GigyaSDK.framework in Frameworks */,
+				D5215E56228AA7C1005A425F /* GigyaSDK.framework in Frameworks */,
 				E7DC2C6D2280778000A13426 /* libc++.tbd in Frameworks */,
 				E7DC2C6C2280771700A13426 /* libz.tbd in Frameworks */,
 				E7DC2C6B228076E600A13426 /* libsqlite3.tbd in Frameworks */,
@@ -943,7 +936,6 @@
 			);
 			dependencies = (
 				E713E0CF2247773100181328 /* PBXTargetDependency */,
-				E7C859CC228866E4005C1FBE /* PBXTargetDependency */,
 			);
 			name = TestApp;
 			productName = TestApp;
@@ -1192,11 +1184,6 @@
 			isa = PBXTargetDependency;
 			target = E7BE36992224260400A108D9 /* TestApp */;
 			targetProxy = E7A6E0C7224258060063638F /* PBXContainerItemProxy */;
-		};
-		E7C859CC228866E4005C1FBE /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = GigyaSDK;
-			targetProxy = E7C859CB228866E4005C1FBE /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
