@@ -169,32 +169,63 @@ class BusinessApiService: NSObject, IOCBusinessApiServiceProtocol {
         apiService.send(model: model, responseType: GigyaDictionary.self, completion: completion)
     }
 
+    private func finalizeRegistration<T: Codable>(regToken: String, completion: @escaping (GigyaLoginResult<T>) -> Void) {
+        let params = ["regToken": regToken, "include": "profile,data,emails,subscriptions,preferences", "includeUserInfo": "true"]
+        send(dataType: T.self, api: GigyaDefinitions.API.finalizeRegistration, params: params) { [weak self] result in
+            switch result {
+            case .success(let data):
+                completion(.success(data: data))
+
+                self?.resolver = nil
+            case .failure(let error):
+                let loginError = LoginApiError<T>(error: error, interruption: nil)
+
+                completion(.failure(loginError))
+            }
+        }
+    }
+
     private func interruptionResolver<T: Codable>(error: NetworkError, completion: @escaping (GigyaLoginResult<T>) -> Void) {
         switch error {
         case .gigyaError(let data):
+            // check if interruption supported
             if data.isInterruptionSupported() {
+                // get interruption by error code
                 guard let errorCode: Interruption = Interruption(rawValue: data.errorCode) else { return }
+
+                // get all data from request
                 let dataResponse = data.toDictionary()
+
+                guard let regToken = dataResponse["regToken"] as? String else {
+                    forwordFailed(error: error, completion: completion)
+                    return
+                }
+
                 switch errorCode {
+                case .pendingRegistration:
+                    let loginError = LoginApiError<T>(error: error, interruption: .pendingRegistration(regToken: regToken))
+                    completion(.failure(loginError))
                 case .pendingVerification: // pending veryfication
-                    let loginError = LoginApiError<T>(error: error, interruption: .pendingVerification(regToken: dataResponse["regToken"] as? String ?? ""))
+                    let loginError = LoginApiError<T>(error: error, interruption: .pendingVerification(regToken: regToken))
                     completion(.failure(loginError))
                 case .conflitingAccounts: // conflicting accounts
-                    guard let regToken = dataResponse["regToken"] as? String else {
-                        let loginError = LoginApiError<T>(error: error, interruption: nil)
-                        completion(.failure(loginError))
-                        return
-                    }
-
                     resolver = LinkAccountsResolver(originalError: error, regToken: regToken, businessDelegate: self, completion: completion)
+                case .accountLinked:
+                    self.finalizeRegistration(regToken: regToken, completion: completion)
                 default:
                     break
                 }
+            } else {
+                forwordFailed(error: error, completion: completion)
             }
         default:
-            let loginError = LoginApiError<T>(error: error, interruption: nil)
-            completion(.failure(loginError))
+            forwordFailed(error: error, completion: completion)
         }
+    }
+
+    private func forwordFailed<T: Codable>(error: NetworkError, completion: @escaping (GigyaLoginResult<T>) -> Void) {
+        let loginError = LoginApiError<T>(error: error, interruption: nil)
+        completion(.failure(loginError))
     }
 
     deinit {
