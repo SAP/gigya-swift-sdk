@@ -20,7 +20,7 @@ struct GigyaDefinitions {
         public static let refreshProviderSession = "socialize.refreshProviderSession"
         public static let initRegistration = "accounts.initRegistration"
         public static let register = "accounts.register"
-        public static let letizeRegistration = "accounts.letizeRegistration"
+        public static let finalizeRegistration = "accounts.finalizeRegistration"
         public static let getConflictingAccount = "accounts.getConflictingAccount"
         public static let notifyLogin = "accounts.notifyLogin"
         public static let verifyLogin = "accounts.verifyLogin"

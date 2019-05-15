@@ -213,7 +213,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func loginWithProvider(_ sender: Any) {
-        gigya.login(with: GigyaSocielProviders.google, viewController: self ) { result in
+        gigya.login(with: .google, viewController: self ) { result in
             switch result {
             case .success(let data):
                 print(data)
@@ -226,7 +226,10 @@ class ViewController: UIViewController {
                 case .pendingVerification(let regToken):
                     break
                 case .conflitingAccounts(let resolver):
+//                    resolver.linkToSocial(provider: .facebook, viewController: self)
                     resolver.linkToSite(loginId: resolver.conflictingAccount?.loginID ?? "", password: "123123")
+                    break
+                case .pendingRegistration(let regToken):
                     break
                 }
             }

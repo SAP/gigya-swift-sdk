@@ -73,6 +73,7 @@
 		E7C859C8228866D7005C1FBE /* GigyaSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7C859C7228866AA005C1FBE /* GigyaSDK.framework */; };
 		E7C859DB2289604F005C1FBE /* LinkAccountsResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C859DA2289604F005C1FBE /* LinkAccountsResolver.swift */; };
 		E7C859E02289B299005C1FBE /* InterruptionEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C859DF2289B299005C1FBE /* InterruptionEnum.swift */; };
+		E7C859E7228C52A0005C1FBE /* ConflictingAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C859E6228C52A0005C1FBE /* ConflictingAccount.swift */; };
 		E7CBAF9D22282BE3000B6C11 /* KeychainStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CBAF9C22282BE3000B6C11 /* KeychainStorage.swift */; };
 		E7CBAFA022282C56000B6C11 /* KeychainPasscode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CBAF9F22282C56000B6C11 /* KeychainPasscode.swift */; };
 		E7CBAFA4222BC881000B6C11 /* InternalConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CBAFA3222BC881000B6C11 /* InternalConfig.swift */; };
@@ -259,6 +260,7 @@
 		E7C859C1228866AA005C1FBE /* GigyaSDK.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GigyaSDK.xcodeproj; path = "../../../Documents/gigya-ios-sdk/GigyaSDK.xcodeproj"; sourceTree = "<group>"; };
 		E7C859DA2289604F005C1FBE /* LinkAccountsResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkAccountsResolver.swift; sourceTree = "<group>"; };
 		E7C859DF2289B299005C1FBE /* InterruptionEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterruptionEnum.swift; sourceTree = "<group>"; };
+		E7C859E6228C52A0005C1FBE /* ConflictingAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConflictingAccount.swift; sourceTree = "<group>"; };
 		E7CBAF9C22282BE3000B6C11 /* KeychainStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainStorage.swift; sourceTree = "<group>"; };
 		E7CBAF9F22282C56000B6C11 /* KeychainPasscode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainPasscode.swift; sourceTree = "<group>"; };
 		E7CBAFA3222BC881000B6C11 /* InternalConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternalConfig.swift; sourceTree = "<group>"; };
@@ -731,6 +733,7 @@
 			children = (
 				E7CBB03C22356086000B6C11 /* GigyaInstanceProtocol.swift */,
 				E7CBB0592237DD2C000B6C11 /* GigyaSocielProviders.swift */,
+				E7C859E6228C52A0005C1FBE /* ConflictingAccount.swift */,
 				E7C859DF2289B299005C1FBE /* InterruptionEnum.swift */,
 				E713E0FF2248C84000181328 /* Config */,
 				E7CBB03F223561DD000B6C11 /* User */,
@@ -1136,6 +1139,7 @@
 				E7E80D7A224B6A3900D3B663 /* GigyaLogger.swift in Sources */,
 				E7CBAFBC222D1863000B6C11 /* NetworkResult.swift in Sources */,
 				E73373AC2254D79200ADEDBB /* GigyaDefinitions.swift in Sources */,
+				E7C859E7228C52A0005C1FBE /* ConflictingAccount.swift in Sources */,
 				E7CBAFA4222BC881000B6C11 /* InternalConfig.swift in Sources */,
 				E7ACF9A8226C83F200900C65 /* IOCBusinessApiServiceProtocol.swift in Sources */,
 				E713E1022248E41400181328 /* GigyaRequestSignature.swift in Sources */,
