@@ -13,6 +13,8 @@
 		D5340BFD228C1F63002D215B /* TFAResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5340BFC228C1F63002D215B /* TFAResolver.swift */; };
 		D5340C01228C2C16002D215B /* TFARegistrationResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5340C00228C2C16002D215B /* TFARegistrationResolver.swift */; };
 		D584D342228D6089004CA28F /* UIFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D584D341228D6089004CA28F /* UIFactory.swift */; };
+		D584D344228D6BD0004CA28F /* TFAUIAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D584D343228D6BD0004CA28F /* TFAUIAlertViewController.swift */; };
+		D584D346228D7993004CA28F /* CountryCodes.json in Resources */ = {isa = PBXBuildFile; fileRef = D584D345228D7993004CA28F /* CountryCodes.json */; };
 		D58EF441227993C6003DB878 /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58EF440227993C6003DB878 /* Dictionary.swift */; };
 		D58EF4432279948B003DB878 /* PluginViewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58EF4422279948B003DB878 /* PluginViewWrapper.swift */; };
 		D58EF4452279CB38003DB878 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58EF4442279CB38003DB878 /* String.swift */; };
@@ -202,6 +204,8 @@
 		D5340BFC228C1F63002D215B /* TFAResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TFAResolver.swift; sourceTree = "<group>"; };
 		D5340C00228C2C16002D215B /* TFARegistrationResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TFARegistrationResolver.swift; sourceTree = "<group>"; };
 		D584D341228D6089004CA28F /* UIFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFactory.swift; sourceTree = "<group>"; };
+		D584D343228D6BD0004CA28F /* TFAUIAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TFAUIAlertViewController.swift; sourceTree = "<group>"; };
+		D584D345228D7993004CA28F /* CountryCodes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CountryCodes.json; sourceTree = "<group>"; };
 		D58EF440227993C6003DB878 /* Dictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dictionary.swift; sourceTree = "<group>"; };
 		D58EF4422279948B003DB878 /* PluginViewWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluginViewWrapper.swift; sourceTree = "<group>"; };
 		D58EF4442279CB38003DB878 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
@@ -643,10 +647,12 @@
 				E7BE369C2224260400A108D9 /* AppDelegate.swift */,
 				D584D341228D6089004CA28F /* UIFactory.swift */,
 				E7BE369E2224260400A108D9 /* ViewController.swift */,
+				D584D343228D6BD0004CA28F /* TFAUIAlertViewController.swift */,
 				E7DC2C5E228055B200A13426 /* GigyaProviders */,
 				E7BE36A02224260400A108D9 /* Main.storyboard */,
 				E7BE36A32224260500A108D9 /* Assets.xcassets */,
 				E7BE36A52224260500A108D9 /* LaunchScreen.storyboard */,
+				D584D345228D7993004CA28F /* CountryCodes.json */,
 				E7BE36A82224260500A108D9 /* Info.plist */,
 				E7DC2C702280786D00A13426 /* TestApp-Bridging-Header.h */,
 			);
@@ -1044,6 +1050,7 @@
 				E7BE36A72224260500A108D9 /* LaunchScreen.storyboard in Resources */,
 				E7DC2C4C22804C2F00A13426 /* AccountKitStrings.bundle in Resources */,
 				E7DC2C4D22804C2F00A13426 /* FacebookSDKStrings.bundle in Resources */,
+				D584D346228D7993004CA28F /* CountryCodes.json in Resources */,
 				E7DC2C5222804C2F00A13426 /* LICENSE.txt in Resources */,
 				E7BE36A42224260500A108D9 /* Assets.xcassets in Resources */,
 				E7DC2C5122804C2F00A13426 /* README.txt in Resources */,
@@ -1182,6 +1189,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D584D342228D6089004CA28F /* UIFactory.swift in Sources */,
+				D584D344228D6BD0004CA28F /* TFAUIAlertViewController.swift in Sources */,
 				E7BE369F2224260400A108D9 /* ViewController.swift in Sources */,
 				E7DC2C60228055CA00A13426 /* LineWrapper.swift in Sources */,
 				E7BE369D2224260400A108D9 /* AppDelegate.swift in Sources */,

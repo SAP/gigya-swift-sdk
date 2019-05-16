@@ -24,7 +24,7 @@ public class TFAResolver<T: Codable> : BaseResolver {
     
     let completion: (GigyaLoginResult<T>) -> Void
     
-    public var providers = [String]()
+    public var providers = [TFAProviderModel]()
     
     internal var gigyaAssertion: String?
     

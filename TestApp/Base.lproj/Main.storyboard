@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="92V-yH-a3l">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="owO-vP-SNV">
-                                <rect key="frame" x="16" y="36" width="343" height="240"/>
+                                <rect key="frame" x="16" y="80" width="343" height="240"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <accessibility key="accessibilityConfiguration" identifier="Result Text View"/>
                                 <constraints>
@@ -36,7 +36,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9wC-xP-8OI">
-                                <rect key="frame" x="16" y="316" width="111" height="30"/>
+                                <rect key="frame" x="16" y="360" width="111" height="30"/>
                                 <accessibility key="accessibilityConfiguration" identifier="Show Screenset"/>
                                 <state key="normal" title="Show Screenset"/>
                                 <connections>
@@ -44,7 +44,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fNt-XW-RSV">
-                                <rect key="frame" x="16" y="362" width="38" height="30"/>
+                                <rect key="frame" x="16" y="406" width="38" height="30"/>
                                 <accessibility key="accessibilityConfiguration" identifier="Login"/>
                                 <state key="normal" title="Login"/>
                                 <connections>
@@ -52,7 +52,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cq6-7s-6Kn">
-                                <rect key="frame" x="16" y="408" width="57" height="30"/>
+                                <rect key="frame" x="16" y="452" width="57" height="30"/>
                                 <accessibility key="accessibilityConfiguration" identifier="Register"/>
                                 <state key="normal" title="Register"/>
                                 <connections>
@@ -60,7 +60,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fyN-es-d2v">
-                                <rect key="frame" x="16" y="454" width="111" height="30"/>
+                                <rect key="frame" x="16" y="498" width="111" height="30"/>
                                 <accessibility key="accessibilityConfiguration" identifier="Add Connection"/>
                                 <state key="normal" title="Add Connection"/>
                                 <connections>
@@ -68,7 +68,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cu6-gD-2R1">
-                                <rect key="frame" x="16" y="500" width="138" height="30"/>
+                                <rect key="frame" x="16" y="544" width="138" height="30"/>
                                 <accessibility key="accessibilityConfiguration" identifier="Remove Connection"/>
                                 <state key="normal" title="Remove Connection"/>
                                 <connections>
@@ -76,7 +76,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0fX-WN-aKg">
-                                <rect key="frame" x="16" y="546" width="86" height="30"/>
+                                <rect key="frame" x="16" y="590" width="86" height="30"/>
                                 <accessibility key="accessibilityConfiguration" identifier="Get Account"/>
                                 <state key="normal" title="Get Account"/>
                                 <connections>
@@ -84,7 +84,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TiM-DB-mr3">
-                                <rect key="frame" x="16" y="592" width="131" height="30"/>
+                                <rect key="frame" x="16" y="636" width="131" height="30"/>
                                 <accessibility key="accessibilityConfiguration" identifier="Login with provider"/>
                                 <state key="normal" title="Login with provider"/>
                                 <connections>
@@ -116,11 +116,131 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <navigationItem key="navigationItem" id="hwu-pJ-lM1"/>
                     <connections>
                         <outlet property="resultTextView" destination="owO-vP-SNV" id="0w1-nl-yVn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1010" y="134"/>
+        </scene>
+        <!--Alert View Controller-->
+        <scene sceneID="jNJ-zr-cag">
+            <objects>
+                <viewController storyboardIdentifier="TFAUIAlertViewController" id="2Me-hE-oWJ" customClass="TFAUIAlertViewController" customModule="TestApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="hn0-N4-gC2">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Two Factor Authentication Helper" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dgh-Hh-ZaK">
+                                <rect key="frame" x="20" y="30" width="274.5" height="21"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Available providers:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9SU-OY-x3G">
+                                <rect key="frame" x="20" y="71" width="137" height="18"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8uO-jw-eZs" userLabel="Providers Picker View">
+                                <rect key="frame" x="0.0" y="97" width="375" height="100"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.14999999999999999" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="dpd-ru-751"/>
+                                </constraints>
+                            </pickerView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Data picker title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UFf-y8-vm6" userLabel="Data Picker Title">
+                                <rect key="frame" x="20" y="205" width="111" height="18"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kbh-tQ-2nF" userLabel="Data Picker View">
+                                <rect key="frame" x="0.0" y="231" width="375" height="100"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.14999999999999999" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="CKQ-2W-6V5"/>
+                                </constraints>
+                            </pickerView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gpc-yP-LRU" userLabel="Country Code View">
+                                <rect key="frame" x="0.0" y="339" width="375" height="120"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Country code:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hbU-HV-kAL" userLabel="Country Code Title">
+                                        <rect key="frame" x="20" y="10" width="335" height="18"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zMW-PM-nlV" userLabel="Country Code Picker View">
+                                        <rect key="frame" x="0.0" y="36" width="375" height="84"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.14999999999999999" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="84" id="RHI-zM-xCb"/>
+                                        </constraints>
+                                    </pickerView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="zMW-PM-nlV" firstAttribute="leading" secondItem="gpc-yP-LRU" secondAttribute="leading" id="bIh-Ax-gJj"/>
+                                    <constraint firstAttribute="height" constant="120" id="efi-AH-sXx"/>
+                                    <constraint firstItem="hbU-HV-kAL" firstAttribute="leading" secondItem="gpc-yP-LRU" secondAttribute="leading" constant="20" id="jTM-2f-VGe"/>
+                                    <constraint firstAttribute="bottom" secondItem="zMW-PM-nlV" secondAttribute="bottom" id="jan-CV-doO"/>
+                                    <constraint firstItem="hbU-HV-kAL" firstAttribute="top" secondItem="gpc-yP-LRU" secondAttribute="top" constant="10" id="ph7-1n-qEI"/>
+                                    <constraint firstItem="zMW-PM-nlV" firstAttribute="top" secondItem="hbU-HV-kAL" secondAttribute="bottom" constant="8" id="rXU-9n-511"/>
+                                    <constraint firstAttribute="trailing" secondItem="hbU-HV-kAL" secondAttribute="trailing" constant="20" id="spY-Au-CP4"/>
+                                    <constraint firstAttribute="trailing" secondItem="zMW-PM-nlV" secondAttribute="trailing" id="uQE-7K-lDq"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="kbh-tQ-2nF" firstAttribute="trailing" secondItem="Swm-9U-9Gh" secondAttribute="trailing" id="2dI-o8-PHl"/>
+                            <constraint firstItem="9SU-OY-x3G" firstAttribute="leading" secondItem="Swm-9U-9Gh" secondAttribute="leading" constant="20" id="3km-3b-ery"/>
+                            <constraint firstItem="gpc-yP-LRU" firstAttribute="top" secondItem="kbh-tQ-2nF" secondAttribute="bottom" constant="8" id="Mif-RW-Ufo"/>
+                            <constraint firstItem="Dgh-Hh-ZaK" firstAttribute="top" secondItem="Swm-9U-9Gh" secondAttribute="top" constant="10" id="PJk-NA-vjB"/>
+                            <constraint firstItem="8uO-jw-eZs" firstAttribute="leading" secondItem="Swm-9U-9Gh" secondAttribute="leading" id="PaQ-nQ-0fz"/>
+                            <constraint firstItem="Dgh-Hh-ZaK" firstAttribute="leading" secondItem="Swm-9U-9Gh" secondAttribute="leading" constant="20" id="X02-7S-vMc"/>
+                            <constraint firstItem="9SU-OY-x3G" firstAttribute="top" secondItem="Dgh-Hh-ZaK" secondAttribute="bottom" constant="20" id="XCg-xf-eKu"/>
+                            <constraint firstItem="8uO-jw-eZs" firstAttribute="trailing" secondItem="Swm-9U-9Gh" secondAttribute="trailing" id="bI8-JL-3eC"/>
+                            <constraint firstItem="gpc-yP-LRU" firstAttribute="leading" secondItem="Swm-9U-9Gh" secondAttribute="leading" id="hEL-N7-DV8"/>
+                            <constraint firstItem="kbh-tQ-2nF" firstAttribute="leading" secondItem="Swm-9U-9Gh" secondAttribute="leading" id="izY-ND-yA3"/>
+                            <constraint firstItem="8uO-jw-eZs" firstAttribute="top" secondItem="9SU-OY-x3G" secondAttribute="bottom" constant="8" id="lBP-n5-b28"/>
+                            <constraint firstItem="kbh-tQ-2nF" firstAttribute="top" secondItem="UFf-y8-vm6" secondAttribute="bottom" constant="8" id="rZf-BB-TLU"/>
+                            <constraint firstItem="UFf-y8-vm6" firstAttribute="top" secondItem="8uO-jw-eZs" secondAttribute="bottom" constant="8" id="tFq-Zs-cm7"/>
+                            <constraint firstItem="UFf-y8-vm6" firstAttribute="leading" secondItem="Swm-9U-9Gh" secondAttribute="leading" constant="20" id="tPs-mm-heE"/>
+                            <constraint firstItem="gpc-yP-LRU" firstAttribute="trailing" secondItem="Swm-9U-9Gh" secondAttribute="trailing" id="xwD-oQ-OVQ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Swm-9U-9Gh"/>
+                    </view>
+                    <connections>
+                        <outlet property="countryCodePickerView" destination="zMW-PM-nlV" id="4ct-eQ-2tE"/>
+                        <outlet property="dataPickerTitleLabel" destination="UFf-y8-vm6" id="pZF-6z-VwX"/>
+                        <outlet property="dataPickerView" destination="kbh-tQ-2nF" id="twn-3q-NSY"/>
+                        <outlet property="providerPickerView" destination="8uO-jw-eZs" id="IHZ-GG-Cmr"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="A7T-dT-k97" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1864.8" y="133.5832083958021"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Lgc-Vm-SmU">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="92V-yH-a3l" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="RFF-c6-zqD">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="Qbk-LN-2iS"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uwR-I6-vyh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="136.80000000000001" y="133.5832083958021"/>
         </scene>

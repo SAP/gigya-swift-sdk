@@ -8,11 +8,22 @@
 
 import Foundation
 
+public struct TFAProviderModel: Codable {
+    
+    public let name: String?
+    public let authLevel: Int?
+    
+    private enum CodingKeys: String, CodingKey {
+        case name = "name"
+        case authLevel = "authLevel"
+    }
+    
+}
 
 public struct TFAProvidersModel: Codable {
     
-    public let activeProviders: [String]?
-    public let inactiveProviders: [String]?
+    public let activeProviders: [TFAProviderModel]?
+    public let inactiveProviders: [TFAProviderModel]?
     
     private enum CodingKeys: String, CodingKey {
         case activeProviders = "activeProviders"

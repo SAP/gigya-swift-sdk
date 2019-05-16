@@ -10,6 +10,8 @@ import Foundation
 
 public protocol TFARegistrationResolverProtocol {
     
+    var tfaProviders: [TFAProviderModel] { get set }
+    
     func startRegistrationWithPhone(phoneNumber: String, method: String?)
     
     func startRegistrationWithTotp()
@@ -19,6 +21,10 @@ public protocol TFARegistrationResolverProtocol {
 
 class TFARegistrationResolver<T: Codable> : TFAResolver<T>, TFARegistrationResolverProtocol {
     
+    lazy var tfaProviders: [TFAProviderModel] = {
+        return self.providers
+    }()
+
     override init(originalError: NetworkError, regToken: String, businessDelegate: BusinessApiDelegate, completion: @escaping (GigyaLoginResult<T>) -> Void) {
         super.init(originalError: originalError, regToken: regToken, businessDelegate: businessDelegate, completion: completion)
     }

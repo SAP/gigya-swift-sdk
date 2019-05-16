@@ -10,6 +10,8 @@ import Foundation
 
 public protocol TFAVerificationResolverProtocol {
     
+    var tfaProviders: [TFAProviderModel] { get set }
+    
     func startVerificationWithPhone()
     
     func sendPhoneVerificationCode(registeredPhone: TFARegisteredPhone)
@@ -22,6 +24,10 @@ public protocol TFAVerificationResolverProtocol {
 }
 
 class TFAVerificationResolver<T: Codable> : TFAResolver<T>, TFAVerificationResolverProtocol {
+    
+    lazy var tfaProviders: [TFAProviderModel] = {
+        return self.providers
+    }()
     
     override init(originalError: NetworkError, regToken: String, businessDelegate: BusinessApiDelegate, completion: @escaping (GigyaLoginResult<T>) -> Void) {
         super.init(originalError: originalError, regToken: regToken, businessDelegate: businessDelegate, completion: completion)

@@ -115,16 +115,20 @@ class ViewController: UIViewController {
                     guard let interruption = error.interruption else { return }
                     switch interruption {
                     case .pendingTwoFactorVerification(let resolver):
-                        // Start resolving the interrupted flow.
+                        let providers = resolver.tfaProviders
                         
-                        break
+                        self?.presentTFAController(tfaProviders: providers)
+                    case .pendingTwoFactorRegistration(let resolver):
+                        let providers = resolver.tfaProviders
+                        
+                        self?.presentTFAController(tfaProviders: providers)
                     default:
                         break
                     }
                 }
             }
         }
-        
+
          self.present(alert, animated: true, completion: nil)
     }
     
@@ -141,7 +145,8 @@ class ViewController: UIViewController {
                     switch interruption {
                     case .pendingTwoFactorRegistration(let resolver):
                         // Start resolving the interrupted flow.
-                        
+                        let providers = resolver.tfaProviders
+                        self?.presentTFAController(tfaProviders: providers)
                         break
                     default:
                         break
@@ -151,6 +156,13 @@ class ViewController: UIViewController {
         }
     
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    func presentTFAController(tfaProviders: [TFAProviderModel]) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "TFAUIAlertViewController") as! TFAUIAlertViewController
+        vc.tfaProviders = tfaProviders
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func addConnection(_ sender: Any) {

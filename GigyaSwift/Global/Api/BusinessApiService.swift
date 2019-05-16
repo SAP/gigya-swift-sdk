@@ -221,6 +221,8 @@ class BusinessApiService: NSObject, IOCBusinessApiServiceProtocol {
                     self.finalizeRegistration(regToken: regToken, completion: completion)
                 case .pendingTwoFactorRegistration:
                     resolver = TFARegistrationResolver(originalError: error, regToken: regToken, businessDelegate: self, completion: completion)
+                case .pendingTwoFactorVerification:
+                    resolver = TFAVerificationResolver(originalError: error, regToken: regToken, businessDelegate: self , completion: completion)
                 default:
                     break
                 }
