@@ -111,7 +111,16 @@ class ViewController: UIViewController {
                 case .success(let data):
                     self?.resultTextView?.text = data.toJson()
                 case .failure(let error):
-                    break
+                    print(error)
+                    guard let interruption = error.interruption else { return }
+                    switch interruption {
+                    case .pendingTwoFactorVerification(let resolver):
+                        // Start resolving the interrupted flow.
+                        
+                        break
+                    default:
+                        break
+                    }
                 }
             }
         }
@@ -127,7 +136,16 @@ class ViewController: UIViewController {
                 case .success(let data):
                     self?.resultTextView?.text = data.toJson()
                 case .failure(let error):
-                    break
+                    print(error)
+                    guard let interruption = error.interruption else { return }
+                    switch interruption {
+                    case .pendingTwoFactorRegistration(let resolver):
+                        // Start resolving the interrupted flow.
+                        
+                        break
+                    default:
+                        break
+                    }
                 }
             }
         }
