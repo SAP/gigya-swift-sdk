@@ -12,6 +12,7 @@
 		D52F88EA22795F39007DE20F /* PluginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52F88E922795F39007DE20F /* PluginViewController.swift */; };
 		D5340BFD228C1F63002D215B /* TFAResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5340BFC228C1F63002D215B /* TFAResolver.swift */; };
 		D5340C01228C2C16002D215B /* TFARegistrationResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5340C00228C2C16002D215B /* TFARegistrationResolver.swift */; };
+		D584D342228D6089004CA28F /* UIFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D584D341228D6089004CA28F /* UIFactory.swift */; };
 		D58EF441227993C6003DB878 /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58EF440227993C6003DB878 /* Dictionary.swift */; };
 		D58EF4432279948B003DB878 /* PluginViewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58EF4422279948B003DB878 /* PluginViewWrapper.swift */; };
 		D58EF4452279CB38003DB878 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58EF4442279CB38003DB878 /* String.swift */; };
@@ -200,6 +201,7 @@
 		D52F88E922795F39007DE20F /* PluginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluginViewController.swift; sourceTree = "<group>"; };
 		D5340BFC228C1F63002D215B /* TFAResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TFAResolver.swift; sourceTree = "<group>"; };
 		D5340C00228C2C16002D215B /* TFARegistrationResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TFARegistrationResolver.swift; sourceTree = "<group>"; };
+		D584D341228D6089004CA28F /* UIFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFactory.swift; sourceTree = "<group>"; };
 		D58EF440227993C6003DB878 /* Dictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dictionary.swift; sourceTree = "<group>"; };
 		D58EF4422279948B003DB878 /* PluginViewWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluginViewWrapper.swift; sourceTree = "<group>"; };
 		D58EF4442279CB38003DB878 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
@@ -639,6 +641,7 @@
 			children = (
 				E7DC2C5D2280554700A13426 /* Frameworks */,
 				E7BE369C2224260400A108D9 /* AppDelegate.swift */,
+				D584D341228D6089004CA28F /* UIFactory.swift */,
 				E7BE369E2224260400A108D9 /* ViewController.swift */,
 				E7DC2C5E228055B200A13426 /* GigyaProviders */,
 				E7BE36A02224260400A108D9 /* Main.storyboard */,
@@ -1178,6 +1181,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D584D342228D6089004CA28F /* UIFactory.swift in Sources */,
 				E7BE369F2224260400A108D9 /* ViewController.swift in Sources */,
 				E7DC2C60228055CA00A13426 /* LineWrapper.swift in Sources */,
 				E7BE369D2224260400A108D9 /* AppDelegate.swift in Sources */,

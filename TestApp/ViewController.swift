@@ -105,19 +105,34 @@ class ViewController: UIViewController {
     }
 
     @IBAction func login(_ sender: Any) {
+        let alert = UIFactory.getLoginAlert { email, password in
+            self.gigya.login(loginId: email!, password: password!) { [weak self] result in
+                switch result {
+                case .success(let data):
+                    self?.resultTextView?.text = data.toJson()
+                case .failure(let error):
+                    break
+                }
+            }
+        }
         
+         self.present(alert, animated: true, completion: nil)
     }
     
     @IBAction func register(_ sender: Any) {
-        let params = ["email":"toolmarmel.alt1+123456@gmail.com", "password":"123123"]
-        gigya.register(params: params) { result in
-            switch result {
-            case .success(let data):
-                break
-            case .failure(let error):
-                break
+        let alert = UIFactory.getRegistrationAlert { email, password, expiration in
+            let params = ["email": email!, "password": password!, "sessionExpiration": expiration!] as [String : Any]
+            self.gigya.register(params: params) { [weak self] result in
+                switch result {
+                case .success(let data):
+                    self?.resultTextView?.text = data.toJson()
+                case .failure(let error):
+                    break
+                }
             }
         }
+    
+        self.present(alert, animated: true, completion: nil)
     }
     
     @IBAction func addConnection(_ sender: Any) {
@@ -125,32 +140,19 @@ class ViewController: UIViewController {
             print("Need to be logged in to perform action")
             return
         }
-        let alert = UIAlertController(title: "Add social connection", message: "Enter provider Name", preferredStyle: .alert)
-        alert.addTextField { (textField) in
-            textField.text = ""
-            textField.accessibilityIdentifier = "TextField"
-        }
-        
-        alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: { [weak alert] (_) in
-            alert?.dismiss(animated: true, completion: nil)
-            }))
-        alert.addAction(UIAlertAction(title: "Add", style: .default, handler: { [weak alert, weak self] (_) in
-            let textField = alert?.textFields![0] // Force unwrapping because we know it exists.
-            guard let providerName = textField?.text else { return }
+        let alert = UIFactory.getConnectionAlert(title: "Add social connection") { [weak self] providerName in
+           if let provider = GigyaSocielProviders.byName(name: providerName) {
             guard let self = self else { return }
-            if let provider = GigyaSocielProviders.byName(name: providerName) {
                 self.gigya.addConnection(provider: provider, viewController: self, params: [:]) { result in
                     switch result {
                     case .success(let data):
                         self.resultTextView?.text = data.toJson()
-                        break
                     case .failure(_):
                         self.resultTextView?.text = "Failed operation"
-                        break
                     }
                 }
             }
-        }))
+        }
         
         self.present(alert, animated: true, completion: nil)
     }
@@ -161,29 +163,16 @@ class ViewController: UIViewController {
             print("Need to be logged in to perform action")
             return
         }
-        let alert = UIAlertController(title: "Remove social connection", message: "Enter provider Name", preferredStyle: .alert)
-        alert.addTextField { (textField) in
-            textField.text = ""
-            textField.accessibilityIdentifier = "TextField"
-        }
-        
-        alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: { [weak alert] (_) in
-            alert?.dismiss(animated: true, completion: nil)
-        }))
-        alert.addAction(UIAlertAction(title: "Remove", style: .default, handler: { [weak alert, weak self] (_) in
-            let textField = alert?.textFields![0] // Force unwrapping because we know it exists.
-            guard let providerName = textField?.text else { return }
-            guard let self = self else { return }
-            self.gigya.removeConnection(provider: providerName) { result in
+        let alert = UIFactory.getConnectionAlert(title: "Remove social connection") { [weak self] providerName in
+            self?.gigya.removeConnection(provider: providerName) { result in
                 switch result {
-                case .success(let data):
-                    self.resultTextView?.text = "Connection removed"
-                    break
+                case .success(_):
+                    self?.resultTextView?.text = "Connection removed"
                 case .failure(_):
-                    break
+                    self?.resultTextView?.text = "Failed operation"
                 }
             }
-        }))
+        }
         
         self.present(alert, animated: true, completion: nil)
     }

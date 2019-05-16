@@ -266,7 +266,6 @@ public class TFAResolver<T: Codable> : BaseResolver {
     
     // MARK: - Gigya Totp provider specific flow.
     
-    
     internal func onTfaInitializedWithTotpProvider(mode: String, arguments: [String: Any]) {
         switch mode {
         case "register":
@@ -316,7 +315,7 @@ public class TFAResolver<T: Codable> : BaseResolver {
         }
         
         let params = ["code": authorizationCode, "gigyaAssertion": gigyaAssertion, "sctToken": sctToken]
-       verifyAuthorizationCode(api: GigyaDefinitions.API.totpVerifyTFA, params: params)
+        verifyAuthorizationCode(api: GigyaDefinitions.API.totpVerifyTFA, params: params)
     }
     
 }
