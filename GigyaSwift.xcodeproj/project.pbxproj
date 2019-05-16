@@ -16,6 +16,8 @@
 		D58EF4432279948B003DB878 /* PluginViewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58EF4422279948B003DB878 /* PluginViewWrapper.swift */; };
 		D58EF4452279CB38003DB878 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58EF4442279CB38003DB878 /* String.swift */; };
 		D5C9DD3D227B0C9200E47095 /* PluginEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C9DD3C227B0C9200E47095 /* PluginEvent.swift */; };
+		D5EABFC9228C99BD006895BB /* TFAVerificationResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5EABFC8228C99BD006895BB /* TFAVerificationResolver.swift */; };
+		D5EABFCB228CA73D006895BB /* TFAModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5EABFCA228CA73D006895BB /* TFAModels.swift */; };
 		E713E0CC2247773100181328 /* GigyaSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7BE36732224219200A108D9 /* GigyaSwift.framework */; };
 		E713E0CD2247773100181328 /* GigyaSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E7BE36732224219200A108D9 /* GigyaSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E713E0FC2247C6E700181328 /* SignatureUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E713E0FB2247C6E700181328 /* SignatureUtils.swift */; };
@@ -202,6 +204,8 @@
 		D58EF4422279948B003DB878 /* PluginViewWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluginViewWrapper.swift; sourceTree = "<group>"; };
 		D58EF4442279CB38003DB878 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		D5C9DD3C227B0C9200E47095 /* PluginEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluginEvent.swift; sourceTree = "<group>"; };
+		D5EABFC8228C99BD006895BB /* TFAVerificationResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TFAVerificationResolver.swift; sourceTree = "<group>"; };
+		D5EABFCA228CA73D006895BB /* TFAModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TFAModels.swift; sourceTree = "<group>"; };
 		E713E0FB2247C6E700181328 /* SignatureUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignatureUtils.swift; sourceTree = "<group>"; };
 		E713E0FD2248C83D00181328 /* GigyaConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigyaConfig.swift; sourceTree = "<group>"; };
 		E713E1012248E41400181328 /* GigyaRequestSignature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigyaRequestSignature.swift; sourceTree = "<group>"; };
@@ -668,6 +672,7 @@
 				E7C859DA2289604F005C1FBE /* LinkAccountsResolver.swift */,
 				D5340BFC228C1F63002D215B /* TFAResolver.swift */,
 				D5340C00228C2C16002D215B /* TFARegistrationResolver.swift */,
+				D5EABFC8228C99BD006895BB /* TFAVerificationResolver.swift */,
 			);
 			path = Resolvers;
 			sourceTree = "<group>";
@@ -741,6 +746,7 @@
 				E7CBB0592237DD2C000B6C11 /* GigyaSocielProviders.swift */,
 				E7C859E6228C52A0005C1FBE /* ConflictingAccount.swift */,
 				E7C859DF2289B299005C1FBE /* InterruptionEnum.swift */,
+				D5EABFCA228CA73D006895BB /* TFAModels.swift */,
 				E713E0FF2248C84000181328 /* Config */,
 				E7CBB03F223561DD000B6C11 /* User */,
 			);
@@ -1154,7 +1160,9 @@
 				E7CBAFBA222D1840000B6C11 /* NetworkError.swift in Sources */,
 				E7CBB05A2237DD2C000B6C11 /* GigyaSocielProviders.swift in Sources */,
 				E7CBAF9D22282BE3000B6C11 /* KeychainStorage.swift in Sources */,
+				D5EABFCB228CA73D006895BB /* TFAModels.swift in Sources */,
 				E7CBAFD2222EBD95000B6C11 /* SessionService.swift in Sources */,
+				D5EABFC9228C99BD006895BB /* TFAVerificationResolver.swift in Sources */,
 				E7A6E0CE22425A910063638F /* NetworkAdapter.swift in Sources */,
 				E7ACF9AE226C843100900C65 /* IOCSessionServiceProtocol.swift in Sources */,
 				E7ACF9CC226F2A4100900C65 /* ProviderWrapperProtocol.swift in Sources */,

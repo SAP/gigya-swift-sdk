@@ -12,20 +12,46 @@ public protocol TFARegistrationResolverProtocol {
     
     func startRegistrationWithPhone(phoneNumber: String, method: String?)
     
+    func startRegistrationWithTotp()
+    
     func verifyCode(provider: TFAProvider, authenticationCode: String)
 }
 
-public class TFARegistrationResolver<T: Codable> : TFAResolver<T>, TFARegistrationResolverProtocol {
+class TFARegistrationResolver<T: Codable> : TFAResolver<T>, TFARegistrationResolverProtocol {
     
     override init(originalError: NetworkError, regToken: String, businessDelegate: BusinessApiDelegate, completion: @escaping (GigyaLoginResult<T>) -> Void) {
         super.init(originalError: originalError, regToken: regToken, businessDelegate: businessDelegate, completion: completion)
     }
     
-    public func startRegistrationWithPhone(phoneNumber: String, method: String?) {
-        
+    override func forwardInitialInterruption() {
+        let loginError = LoginApiError<T>(error: self.originalError, interruption: .pendingTwoFactorRegistration(resolver: self))
+        self.completion(.failure(loginError))
+    }
+    
+    public func startRegistrationWithPhone(phoneNumber: String, method: String? = "sms") {
+        initTFA(tfaProvider: .gigyaPhone, mode: "register", arguments: ["phoneNumber" : phoneNumber, method: method] as! [String: Any])
+    }
+    
+    func startRegistrationWithTotp() {
+        initTFA(tfaProvider: .totp, mode: "register", arguments: [:])
     }
     
     public func verifyCode(provider: TFAProvider, authenticationCode: String) {
+        var params = [String: String]()
+        var api = ""
+        switch provider {
+        case .gigyaPhone:
+            if let gigyaAssertion = self.gigyaAssertion, let phvToken = self.phvToken {
+                params = ["gigyaAssertion": gigyaAssertion, "code": authenticationCode, "phvToken": phvToken]
+                api = GigyaDefinitions.API.phoneCompleteVerificationTFA
+                verifyAuthorizationCode(api: api, params: params)
+            }
+            break
+        case .totp:
+            verifyTotpAuthorizationCode(authorizationCode: authenticationCode)
+        default:
+            break
+        }
         
     }
     

@@ -77,7 +77,7 @@ class BusinessApiService: NSObject, IOCBusinessApiServiceProtocol {
         }
     }
 
-    func register<T: Codable>(params: [String: Any], dataType: T.Type, completion: @escaping (GigyaApiResult<T>) -> Void) {
+    func register<T: Codable>(params: [String: Any], dataType: T.Type, completion: @escaping (GigyaLoginResult<T>) -> Void) {
         let model = ApiRequestModel(method: GigyaDefinitions.API.initRegistration)
 
         apiService.send(model: model, responseType: [String: AnyCodable].self) { [weak self] (result) in
@@ -89,10 +89,17 @@ class BusinessApiService: NSObject, IOCBusinessApiServiceProtocol {
 
                 let model = ApiRequestModel(method: GigyaDefinitions.API.register, params: makeParams)
 
-                self?.apiService.send(model: model, responseType: T.self, completion: completion)
+                self?.apiService.send(model: model, responseType: T.self) { result in
+                    switch result {
+                    case .success(let data):
+                        completion(.success(data: data))
+                    case .failure(let error):
+                        self?.interruptionResolver(error: error, completion: completion)
+                    }
+                }
 
             case .failure(let error):
-                completion(.failure(error))
+                self?.forwordFailed(error: error, completion: completion)
             }
         }
     }
@@ -169,7 +176,7 @@ class BusinessApiService: NSObject, IOCBusinessApiServiceProtocol {
         apiService.send(model: model, responseType: GigyaDictionary.self, completion: completion)
     }
 
-    private func finalizeRegistration<T: Codable>(regToken: String, completion: @escaping (GigyaLoginResult<T>) -> Void) {
+    func finalizeRegistration<T: Codable>(regToken: String, completion: @escaping (GigyaLoginResult<T>) -> Void) {
         let params = ["regToken": regToken, "include": "profile,data,emails,subscriptions,preferences", "includeUserInfo": "true"]
         send(dataType: T.self, api: GigyaDefinitions.API.finalizeRegistration, params: params) { [weak self] result in
             switch result {
@@ -212,6 +219,8 @@ class BusinessApiService: NSObject, IOCBusinessApiServiceProtocol {
                     resolver = LinkAccountsResolver(originalError: error, regToken: regToken, businessDelegate: self, completion: completion)
                 case .accountLinked:
                     self.finalizeRegistration(regToken: regToken, completion: completion)
+                case .pendingTwoFactorRegistration:
+                    resolver = TFARegistrationResolver(originalError: error, regToken: regToken, businessDelegate: self, completion: completion)
                 default:
                     break
                 }

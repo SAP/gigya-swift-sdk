@@ -109,7 +109,15 @@ class ViewController: UIViewController {
     }
     
     @IBAction func register(_ sender: Any) {
-        
+        let params = ["email":"toolmarmel.alt1+123456@gmail.com", "password":"123123"]
+        gigya.register(params: params) { result in
+            switch result {
+            case .success(let data):
+                break
+            case .failure(let error):
+                break
+            }
+        }
     }
     
     @IBAction func addConnection(_ sender: Any) {
@@ -231,7 +239,16 @@ class ViewController: UIViewController {
                     break
                 case .pendingRegistration(let regToken):
                     break
+                case .pendingTwoFactorRegistration(let resolver):
+                    break
+                case .pendingTwoFactorVerification(let resolver):
+                    break
+                case .onPhoneVerificationCodeSent:
+                    break
+                default:
+                    break
                 }
+                
             }
         }
     }

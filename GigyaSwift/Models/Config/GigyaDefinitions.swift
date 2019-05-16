@@ -29,7 +29,7 @@ struct GigyaDefinitions {
         // TFA
         public static let initTFA = "accounts.tfa.initTFA"
         public static let tfaGetProviders = "accounts.tfa.getProviders"
-        public static let letizeTFA = "accounts.tfa.letizeTFA"
+        public static let finalizeTFA = "accounts.tfa.finalizeTFA"
         public static let getEmailsTFA = "accounts.tfa.email.getEmails"
         public static let emailSendVerificationCodeTFA = "accounts.tfa.email.sendVerificationCode"
         public static let emailCompleteVerificationTFA = "accounts.tfa.email.completeVerification"

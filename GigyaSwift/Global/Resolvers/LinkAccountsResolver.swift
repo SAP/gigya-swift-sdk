@@ -44,8 +44,8 @@ public class LinkAccountsResolver<T: Codable>: BaseResolver {
             case .success(let data):
                 // Once we have the conflicting accounts we can pass on the first interruption through the completion block.
                 self.conflictingAccount = data.conflictingAccount
+                
                 let loginError = LoginApiError<T>(error: self.originalError, interruption: .conflitingAccounts(resolver: self))
-
                 self.completion(.failure(loginError))
             case .failure(let error):
                 let loginError = LoginApiError<T>(error: error, interruption: nil)
