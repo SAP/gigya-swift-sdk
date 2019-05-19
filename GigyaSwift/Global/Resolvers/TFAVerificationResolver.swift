@@ -21,9 +21,23 @@ public protocol TFAVerificationResolverProtocol {
     func sendEmailVerificationCode(registeredEmail: TFAEmail)
     
     func startVerificationWithTotp(authorizationCode: String)
+    
+    func verifyCode(provider: TFAProvider, authenticationCode: String)
 }
 
 class TFAVerificationResolver<T: Codable> : TFAResolver<T>, TFAVerificationResolverProtocol {
+    
+    func verifyCode(provider: TFAProvider, authenticationCode: String) {
+        switch provider {
+        case .gigyaPhone, .liveLink:
+            verifyPhoneAuthorizationCode(authorizationCode: authenticationCode)
+        case .email:
+            break
+        case .totp:
+            verifyTotpAuthorizationCode(authorizationCode: authenticationCode)
+        }
+    }
+    
     
     lazy var tfaProviders: [TFAProviderModel] = {
         return self.providers

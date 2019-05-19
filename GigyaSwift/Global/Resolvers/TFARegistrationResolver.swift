@@ -35,7 +35,7 @@ class TFARegistrationResolver<T: Codable> : TFAResolver<T>, TFARegistrationResol
     }
     
     public func startRegistrationWithPhone(phoneNumber: String, method: String? = "sms") {
-        initTFA(tfaProvider: .gigyaPhone, mode: "register", arguments: ["phoneNumber" : phoneNumber, method: method] as! [String: Any])
+        initTFA(tfaProvider: .gigyaPhone, mode: "register", arguments: ["phoneNumber" : phoneNumber, "method": method!] as [String: Any])
     }
     
     func startRegistrationWithTotp() {
@@ -43,19 +43,12 @@ class TFARegistrationResolver<T: Codable> : TFAResolver<T>, TFARegistrationResol
     }
     
     public func verifyCode(provider: TFAProvider, authenticationCode: String) {
-        var params = [String: String]()
-        var api = ""
         switch provider {
-        case .gigyaPhone:
-            if let gigyaAssertion = self.gigyaAssertion, let phvToken = self.phvToken {
-                params = ["gigyaAssertion": gigyaAssertion, "code": authenticationCode, "phvToken": phvToken]
-                api = GigyaDefinitions.API.phoneCompleteVerificationTFA
-                verifyAuthorizationCode(api: api, params: params)
-            }
-            break
+        case .gigyaPhone, .liveLink:
+            verifyPhoneAuthorizationCode(authorizationCode: authenticationCode)
         case .totp:
             verifyTotpAuthorizationCode(authorizationCode: authenticationCode)
-        default:
+        case .email:
             break
         }
         

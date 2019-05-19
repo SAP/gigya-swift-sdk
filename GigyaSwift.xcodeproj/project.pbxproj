@@ -13,7 +13,7 @@
 		D5340BFD228C1F63002D215B /* TFAResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5340BFC228C1F63002D215B /* TFAResolver.swift */; };
 		D5340C01228C2C16002D215B /* TFARegistrationResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5340C00228C2C16002D215B /* TFARegistrationResolver.swift */; };
 		D584D342228D6089004CA28F /* UIFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D584D341228D6089004CA28F /* UIFactory.swift */; };
-		D584D344228D6BD0004CA28F /* TFAUIAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D584D343228D6BD0004CA28F /* TFAUIAlertViewController.swift */; };
+		D584D344228D6BD0004CA28F /* TfaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D584D343228D6BD0004CA28F /* TfaViewController.swift */; };
 		D584D346228D7993004CA28F /* CountryCodes.json in Resources */ = {isa = PBXBuildFile; fileRef = D584D345228D7993004CA28F /* CountryCodes.json */; };
 		D58EF441227993C6003DB878 /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58EF440227993C6003DB878 /* Dictionary.swift */; };
 		D58EF4432279948B003DB878 /* PluginViewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58EF4422279948B003DB878 /* PluginViewWrapper.swift */; };
@@ -21,6 +21,9 @@
 		D5C9DD3D227B0C9200E47095 /* PluginEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C9DD3C227B0C9200E47095 /* PluginEvent.swift */; };
 		D5EABFC9228C99BD006895BB /* TFAVerificationResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5EABFC8228C99BD006895BB /* TFAVerificationResolver.swift */; };
 		D5EABFCB228CA73D006895BB /* TFAModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5EABFCA228CA73D006895BB /* TFAModels.swift */; };
+		D5FF935422916ECD00CF33D6 /* TfaPhoneInputCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FF935322916ECD00CF33D6 /* TfaPhoneInputCell.swift */; };
+		D5FF935622917B8600CF33D6 /* TfaAuthCodeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FF935522917B8600CF33D6 /* TfaAuthCodeCell.swift */; };
+		D5FF93582291883700CF33D6 /* TfaQrCodeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FF93572291883700CF33D6 /* TfaQrCodeCell.swift */; };
 		E713E0CC2247773100181328 /* GigyaSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7BE36732224219200A108D9 /* GigyaSwift.framework */; };
 		E713E0CD2247773100181328 /* GigyaSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E7BE36732224219200A108D9 /* GigyaSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E713E0FC2247C6E700181328 /* SignatureUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E713E0FB2247C6E700181328 /* SignatureUtils.swift */; };
@@ -204,7 +207,7 @@
 		D5340BFC228C1F63002D215B /* TFAResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TFAResolver.swift; sourceTree = "<group>"; };
 		D5340C00228C2C16002D215B /* TFARegistrationResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TFARegistrationResolver.swift; sourceTree = "<group>"; };
 		D584D341228D6089004CA28F /* UIFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFactory.swift; sourceTree = "<group>"; };
-		D584D343228D6BD0004CA28F /* TFAUIAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TFAUIAlertViewController.swift; sourceTree = "<group>"; };
+		D584D343228D6BD0004CA28F /* TfaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TfaViewController.swift; sourceTree = "<group>"; };
 		D584D345228D7993004CA28F /* CountryCodes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CountryCodes.json; sourceTree = "<group>"; };
 		D58EF440227993C6003DB878 /* Dictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dictionary.swift; sourceTree = "<group>"; };
 		D58EF4422279948B003DB878 /* PluginViewWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluginViewWrapper.swift; sourceTree = "<group>"; };
@@ -212,6 +215,9 @@
 		D5C9DD3C227B0C9200E47095 /* PluginEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluginEvent.swift; sourceTree = "<group>"; };
 		D5EABFC8228C99BD006895BB /* TFAVerificationResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TFAVerificationResolver.swift; sourceTree = "<group>"; };
 		D5EABFCA228CA73D006895BB /* TFAModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TFAModels.swift; sourceTree = "<group>"; };
+		D5FF935322916ECD00CF33D6 /* TfaPhoneInputCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TfaPhoneInputCell.swift; sourceTree = "<group>"; };
+		D5FF935522917B8600CF33D6 /* TfaAuthCodeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TfaAuthCodeCell.swift; sourceTree = "<group>"; };
+		D5FF93572291883700CF33D6 /* TfaQrCodeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TfaQrCodeCell.swift; sourceTree = "<group>"; };
 		E713E0FB2247C6E700181328 /* SignatureUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignatureUtils.swift; sourceTree = "<group>"; };
 		E713E0FD2248C83D00181328 /* GigyaConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigyaConfig.swift; sourceTree = "<group>"; };
 		E713E1012248E41400181328 /* GigyaRequestSignature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigyaRequestSignature.swift; sourceTree = "<group>"; };
@@ -407,6 +413,35 @@
 				D5C9DD3C227B0C9200E47095 /* PluginEvent.swift */,
 			);
 			path = Plugins;
+			sourceTree = "<group>";
+		};
+		D5FF935022916E4700CF33D6 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				D5FF935122916E6F00CF33D6 /* TFA */,
+				E7BE369E2224260400A108D9 /* ViewController.swift */,
+				D584D341228D6089004CA28F /* UIFactory.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		D5FF935122916E6F00CF33D6 /* TFA */ = {
+			isa = PBXGroup;
+			children = (
+				D584D343228D6BD0004CA28F /* TfaViewController.swift */,
+				D5FF935222916EB400CF33D6 /* Cells */,
+			);
+			path = TFA;
+			sourceTree = "<group>";
+		};
+		D5FF935222916EB400CF33D6 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				D5FF935322916ECD00CF33D6 /* TfaPhoneInputCell.swift */,
+				D5FF935522917B8600CF33D6 /* TfaAuthCodeCell.swift */,
+				D5FF93572291883700CF33D6 /* TfaQrCodeCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		E713E0FF2248C84000181328 /* Config */ = {
@@ -643,11 +678,9 @@
 		E7BE369B2224260400A108D9 /* TestApp */ = {
 			isa = PBXGroup;
 			children = (
+				D5FF935022916E4700CF33D6 /* UI */,
 				E7DC2C5D2280554700A13426 /* Frameworks */,
 				E7BE369C2224260400A108D9 /* AppDelegate.swift */,
-				D584D341228D6089004CA28F /* UIFactory.swift */,
-				E7BE369E2224260400A108D9 /* ViewController.swift */,
-				D584D343228D6BD0004CA28F /* TFAUIAlertViewController.swift */,
 				E7DC2C5E228055B200A13426 /* GigyaProviders */,
 				E7BE36A02224260400A108D9 /* Main.storyboard */,
 				E7BE36A32224260500A108D9 /* Assets.xcassets */,
@@ -1188,11 +1221,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D5FF93582291883700CF33D6 /* TfaQrCodeCell.swift in Sources */,
 				D584D342228D6089004CA28F /* UIFactory.swift in Sources */,
-				D584D344228D6BD0004CA28F /* TFAUIAlertViewController.swift in Sources */,
+				D584D344228D6BD0004CA28F /* TfaViewController.swift in Sources */,
 				E7BE369F2224260400A108D9 /* ViewController.swift in Sources */,
 				E7DC2C60228055CA00A13426 /* LineWrapper.swift in Sources */,
 				E7BE369D2224260400A108D9 /* AppDelegate.swift in Sources */,
+				D5FF935422916ECD00CF33D6 /* TfaPhoneInputCell.swift in Sources */,
+				D5FF935622917B8600CF33D6 /* TfaAuthCodeCell.swift in Sources */,
 				E7DC2C6F2280779A00A13426 /* WeChatWrapper.swift in Sources */,
 				E7D59B1E227F34D3002FA864 /* GoogleWrapper.swift in Sources */,
 				E7DC2C3E22804A5400A13426 /* FacebookWrapper.swift in Sources */,

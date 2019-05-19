@@ -117,11 +117,14 @@ class ViewController: UIViewController {
                     case .pendingTwoFactorVerification(let resolver):
                         let providers = resolver.tfaProviders
                         
-                        self?.presentTFAController(tfaProviders: providers)
+                        self?.presentTFAController(tfaProviders: providers, mode: .verification, verificationResolver: resolver)
                     case .pendingTwoFactorRegistration(let resolver):
                         let providers = resolver.tfaProviders
-                        
-                        self?.presentTFAController(tfaProviders: providers)
+                    
+                        self?.presentTFAController(tfaProviders: providers, mode: .registration, registrationResolver: resolver)
+                    case .onTotpQRCode(let code):
+                        self?.getTFAController()?.onQRCodeAvailable(code: code)
+                        break
                     default:
                         break
                     }
@@ -146,8 +149,10 @@ class ViewController: UIViewController {
                     case .pendingTwoFactorRegistration(let resolver):
                         // Start resolving the interrupted flow.
                         let providers = resolver.tfaProviders
-                        self?.presentTFAController(tfaProviders: providers)
-                        break
+                        
+                        self?.presentTFAController(tfaProviders: providers, mode: .registration, registrationResolver: resolver)
+                    case .onPhoneVerificationCodeSent:
+                        print("Phone verification code sent")
                     default:
                         break
                     }
@@ -158,11 +163,28 @@ class ViewController: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
-    func presentTFAController(tfaProviders: [TFAProviderModel]) {
+    func presentTFAController(tfaProviders: [TFAProviderModel], mode: TFAMode, verificationResolver: TFAVerificationResolverProtocol? = nil, registrationResolver: TFARegistrationResolverProtocol? = nil) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "TFAUIAlertViewController") as! TFAUIAlertViewController
+        let vc = storyboard.instantiateViewController(withIdentifier: "TFAUIAlertViewController") as! TfaViewController
         vc.tfaProviders = tfaProviders
+        vc.tfaMode = mode
+        vc.registrationResolverDelegate = registrationResolver
+        vc.verificationResolverDelegate = verificationResolver
         self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func getTFAController() -> TfaViewController? {
+        if var topController = UIApplication.shared.keyWindow?.rootViewController {
+            while let presentedViewController = topController.presentedViewController {
+                topController = presentedViewController
+            }
+            if let navigationViewController = topController as? UINavigationController {
+                if let tfaController = navigationViewController.topViewController as? TfaViewController {
+                    return tfaController
+                }
+            }
+        }
+        return nil
     }
     
     @IBAction func addConnection(_ sender: Any) {

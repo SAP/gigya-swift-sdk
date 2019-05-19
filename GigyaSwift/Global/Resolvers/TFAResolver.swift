@@ -9,9 +9,15 @@
 import Foundation
 
 public enum TFAProvider: String {
+    
     case gigyaPhone = "gigyaPhone"
+    case liveLink = "liveLink"
     case email = "gigyaEmail"
     case totp = "gigyaTotp"
+    
+    public static func byName(name: String) -> TFAProvider? {
+        return self.init(rawValue: name)
+    }
 }
 
 public class TFAResolver<T: Codable> : BaseResolver {
@@ -100,13 +106,12 @@ public class TFAResolver<T: Codable> : BaseResolver {
                 }
                 self?.gigyaAssertion = gigyaAssertion
                 switch tfaProvider {
-                case .gigyaPhone:
+                case .gigyaPhone, .liveLink:
                     self?.onTfaInitializedWithPhoneProvider(mode: mode, arguments: arguments)
                 case .email:
                     self?.onTfaInitializedWithEmailProvider()
-                    break
                 case .totp:
-                    break
+                    self?.onTfaInitializedWithTotpProvider(mode: mode, arguments: arguments)
                 }
                 break
             case .failure(let error):
@@ -165,6 +170,15 @@ public class TFAResolver<T: Codable> : BaseResolver {
         default:
             break
         }
+    }
+    
+    internal func verifyPhoneAuthorizationCode(authorizationCode: String) {
+        guard let gigyaAssertion = self.gigyaAssertion, let phvToken = self.phvToken else {
+            self.forwardInitialInterruption()
+            return
+        }
+       let params = ["gigyaAssertion": gigyaAssertion, "code": authorizationCode, "phvToken": phvToken]
+        verifyAuthorizationCode(api: GigyaDefinitions.API.phoneCompleteVerificationTFA, params: params)
     }
     
     
