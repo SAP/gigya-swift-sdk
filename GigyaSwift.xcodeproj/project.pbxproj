@@ -18,6 +18,7 @@
 		D58EF441227993C6003DB878 /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58EF440227993C6003DB878 /* Dictionary.swift */; };
 		D58EF4432279948B003DB878 /* PluginViewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58EF4422279948B003DB878 /* PluginViewWrapper.swift */; };
 		D58EF4452279CB38003DB878 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58EF4442279CB38003DB878 /* String.swift */; };
+		D5B916A32292C87E004FAEF3 /* TfaRegisteredEntryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B916A22292C87E004FAEF3 /* TfaRegisteredEntryCell.swift */; };
 		D5C9DD3D227B0C9200E47095 /* PluginEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C9DD3C227B0C9200E47095 /* PluginEvent.swift */; };
 		D5EABFC9228C99BD006895BB /* TFAVerificationResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5EABFC8228C99BD006895BB /* TFAVerificationResolver.swift */; };
 		D5EABFCB228CA73D006895BB /* TFAModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5EABFCA228CA73D006895BB /* TFAModels.swift */; };
@@ -212,6 +213,7 @@
 		D58EF440227993C6003DB878 /* Dictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dictionary.swift; sourceTree = "<group>"; };
 		D58EF4422279948B003DB878 /* PluginViewWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluginViewWrapper.swift; sourceTree = "<group>"; };
 		D58EF4442279CB38003DB878 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		D5B916A22292C87E004FAEF3 /* TfaRegisteredEntryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TfaRegisteredEntryCell.swift; sourceTree = "<group>"; };
 		D5C9DD3C227B0C9200E47095 /* PluginEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluginEvent.swift; sourceTree = "<group>"; };
 		D5EABFC8228C99BD006895BB /* TFAVerificationResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TFAVerificationResolver.swift; sourceTree = "<group>"; };
 		D5EABFCA228CA73D006895BB /* TFAModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TFAModels.swift; sourceTree = "<group>"; };
@@ -440,6 +442,7 @@
 				D5FF935322916ECD00CF33D6 /* TfaPhoneInputCell.swift */,
 				D5FF935522917B8600CF33D6 /* TfaAuthCodeCell.swift */,
 				D5FF93572291883700CF33D6 /* TfaQrCodeCell.swift */,
+				D5B916A22292C87E004FAEF3 /* TfaRegisteredEntryCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -1227,6 +1230,7 @@
 				E7BE369F2224260400A108D9 /* ViewController.swift in Sources */,
 				E7DC2C60228055CA00A13426 /* LineWrapper.swift in Sources */,
 				E7BE369D2224260400A108D9 /* AppDelegate.swift in Sources */,
+				D5B916A32292C87E004FAEF3 /* TfaRegisteredEntryCell.swift in Sources */,
 				D5FF935422916ECD00CF33D6 /* TfaPhoneInputCell.swift in Sources */,
 				D5FF935622917B8600CF33D6 /* TfaAuthCodeCell.swift in Sources */,
 				E7DC2C6F2280779A00A13426 /* WeChatWrapper.swift in Sources */,

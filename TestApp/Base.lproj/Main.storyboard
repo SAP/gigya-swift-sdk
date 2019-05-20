@@ -130,7 +130,7 @@
             <objects>
                 <viewController storyboardIdentifier="TFAUIAlertViewController" id="2Me-hE-oWJ" customClass="TfaViewController" customModule="TestApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hn0-N4-gC2">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="900"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Two Factor Authentication Helper" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dgh-Hh-ZaK">
@@ -153,7 +153,7 @@
                                 </constraints>
                             </pickerView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Uh2-zK-NN0" userLabel="Content Table View">
-                                <rect key="frame" x="0.0" y="196.5" width="375" height="470.5"/>
+                                <rect key="frame" x="0.0" y="196.5" width="375" height="703.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="TwoFactorAuthenticationPhoneInputCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TfaPhoneInputCell" rowHeight="190" id="e0Z-us-byW" userLabel="Phone Input Cell" customClass="TfaPhoneInputCell" customModule="TestApp" customModuleProvider="target">
@@ -326,6 +326,84 @@
                                             <outlet property="qrImage" destination="i4H-T4-xf2" id="1gY-RO-zPO"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TfaRegisteredEntryCell" rowHeight="245" id="kDI-r9-yb1" userLabel="Registered Entry Cell" customClass="TfaRegisteredEntryCell" customModule="TestApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="450" width="375" height="245"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kDI-r9-yb1" id="hzb-In-heD">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="245"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Registered entries:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="45w-XR-kDC" userLabel="Entries Title Label">
+                                                    <rect key="frame" x="16" y="8" width="343" height="18"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RhE-fz-9Xf" userLabel="Entries Picker View">
+                                                    <rect key="frame" x="0.0" y="34" width="375" height="80"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="80" id="ZXe-qC-xIV"/>
+                                                    </constraints>
+                                                </pickerView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kZc-h5-BJF" userLabel="Etries Submit Button">
+                                                    <rect key="frame" x="20" y="198" width="335" height="30"/>
+                                                    <color key="backgroundColor" red="0.2537544451" green="0.69697269470000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="P6y-J6-zOw"/>
+                                                    </constraints>
+                                                    <state key="normal" title="Submit">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="onSubmit:" destination="kDI-r9-yb1" eventType="touchUpInside" id="wMw-ur-oO8"/>
+                                                    </connections>
+                                                </button>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Code..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ft3-jc-7UQ" userLabel="Code Text Field">
+                                                    <rect key="frame" x="20" y="160" width="335" height="30"/>
+                                                    <nil key="textColor"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QX3-dM-m8b" userLabel="Send Code Button">
+                                                    <rect key="frame" x="20" y="122" width="335" height="30"/>
+                                                    <color key="backgroundColor" red="0.2537544451" green="0.69697269470000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="CRM-op-uq5"/>
+                                                    </constraints>
+                                                    <state key="normal" title="Send Code">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="onSendCode:" destination="kDI-r9-yb1" eventType="touchUpInside" id="XUc-oG-aHz"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.67000000000000004" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstItem="kZc-h5-BJF" firstAttribute="leading" secondItem="hzb-In-heD" secondAttribute="leading" constant="20" id="4t7-vj-b3r"/>
+                                                <constraint firstItem="RhE-fz-9Xf" firstAttribute="top" secondItem="45w-XR-kDC" secondAttribute="bottom" constant="8" id="6A1-1R-sNV"/>
+                                                <constraint firstItem="ft3-jc-7UQ" firstAttribute="top" secondItem="QX3-dM-m8b" secondAttribute="bottom" constant="8" id="6Xk-aN-yvJ"/>
+                                                <constraint firstItem="45w-XR-kDC" firstAttribute="top" secondItem="hzb-In-heD" secondAttribute="top" constant="8" id="CUw-gA-dew"/>
+                                                <constraint firstAttribute="trailing" secondItem="QX3-dM-m8b" secondAttribute="trailing" constant="20" id="Hhl-gI-mJm"/>
+                                                <constraint firstItem="QX3-dM-m8b" firstAttribute="top" secondItem="RhE-fz-9Xf" secondAttribute="bottom" constant="8" id="K9Q-0s-XpG"/>
+                                                <constraint firstItem="QX3-dM-m8b" firstAttribute="leading" secondItem="hzb-In-heD" secondAttribute="leading" constant="20" id="UDT-aB-Yyc"/>
+                                                <constraint firstAttribute="trailing" secondItem="RhE-fz-9Xf" secondAttribute="trailing" id="UN7-A0-6Ft"/>
+                                                <constraint firstItem="ft3-jc-7UQ" firstAttribute="leading" secondItem="hzb-In-heD" secondAttribute="leading" constant="20" id="UP3-iS-Fe3"/>
+                                                <constraint firstAttribute="trailing" secondItem="45w-XR-kDC" secondAttribute="trailing" constant="16" id="a1D-B8-S0G"/>
+                                                <constraint firstItem="kZc-h5-BJF" firstAttribute="top" secondItem="ft3-jc-7UQ" secondAttribute="bottom" constant="8" id="bDm-DE-VQl"/>
+                                                <constraint firstAttribute="trailing" secondItem="kZc-h5-BJF" secondAttribute="trailing" constant="20" id="eg6-Vb-d9g"/>
+                                                <constraint firstItem="45w-XR-kDC" firstAttribute="leading" secondItem="hzb-In-heD" secondAttribute="leading" constant="16" id="rQk-hZ-V1g"/>
+                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="kZc-h5-BJF" secondAttribute="bottom" constant="6" id="vSg-Or-2Xy"/>
+                                                <constraint firstItem="RhE-fz-9Xf" firstAttribute="leading" secondItem="hzb-In-heD" secondAttribute="leading" id="wrm-I3-Mnn"/>
+                                                <constraint firstAttribute="trailing" secondItem="ft3-jc-7UQ" secondAttribute="trailing" constant="20" id="x9g-U2-VFj"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="authCodeTextField" destination="ft3-jc-7UQ" id="v8E-Fh-L9P"/>
+                                            <outlet property="entriesPickerView" destination="RhE-fz-9Xf" id="asG-6Y-Niq"/>
+                                            <outlet property="titleLabel" destination="45w-XR-kDC" id="CDB-hH-aNi"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </prototypes>
                             </tableView>
                         </subviews>
@@ -348,6 +426,7 @@
                         <viewLayoutGuide key="safeArea" id="Swm-9U-9Gh"/>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="375" height="900"/>
                     <connections>
                         <outlet property="contentTable" destination="Uh2-zK-NN0" id="DRm-v4-BxS"/>
                         <outlet property="providerPickerView" destination="8uO-jw-eZs" id="IHZ-GG-Cmr"/>
@@ -355,7 +434,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A7T-dT-k97" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1864.8" y="133.5832083958021"/>
+            <point key="canvasLocation" x="1864.8" y="133.13343328335833"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Lgc-Vm-SmU">

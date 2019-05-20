@@ -127,6 +127,10 @@ class ViewController: UIViewController {
                         self?.presentTFAController(tfaProviders: providers, mode: .registration, registrationResolver: resolver)
                     case .onTotpQRCode(let code):
                         self?.tfaViewController?.onQRCodeAvailable(code: code)
+                    case .onRegisteredPhoneNumbers(let registeredNumbers):
+                        self?.tfaViewController?.onRegisteredPhoneNumbers(numbers: registeredNumbers)
+                    case .onPhoneVerificationCodeSent:
+                        print("Phone verification code sent")
                     default:
                         break
                     }
