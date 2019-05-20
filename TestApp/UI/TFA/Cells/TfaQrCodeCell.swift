@@ -13,7 +13,7 @@ class TfaQrCodeCell: UITableViewCell {
     
     var qrData: String?
     
-    var delegate: TFARegistrationResolverProtocol?
+    var delegate: SubmitionProtocl?
     
     @IBOutlet weak var qrImage: UIImageView!
     
@@ -21,7 +21,7 @@ class TfaQrCodeCell: UITableViewCell {
     
     @IBAction func authCodeSubmit(_ sender: Any) {
         guard let authCode = authCodeTextField.text else { return }
-        delegate?.verifyCode(provider: .totp, authenticationCode: authCode)
+        delegate?.onSubmittedAuthCode(mode: .registration, provider: .totp, code: authCode)
     }
     
     override func layoutSubviews() {

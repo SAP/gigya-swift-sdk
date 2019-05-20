@@ -11,8 +11,7 @@ import GigyaSwift
 
 class TfaAuthCodeCell: UITableViewCell {
     
-    var registrationDelegate: TFARegistrationResolverProtocol?
-    var verificationDelegate: TFAVerificationResolverProtocol?
+    var delegate: SubmitionProtocl?
     
     var mode: TFAMode = .registration
     var provider: TFAProvider = .gigyaPhone
@@ -23,11 +22,9 @@ class TfaAuthCodeCell: UITableViewCell {
         guard let authCode = authCodeTextField.text else { return }
         switch mode {
         case .registration:
-            registrationDelegate?.verifyCode(provider: provider, authenticationCode: authCode)
-            break
+            delegate?.onSubmittedAuthCode(mode: .registration, provider: self.provider, code: authCode)
         case .verification:
-            verificationDelegate?.verifyCode(provider: provider, authenticationCode: authCode)
-            break
+            delegate?.onSubmittedAuthCode(mode: .verification, provider: self.provider, code: authCode)
         }
     }
 }

@@ -16,12 +16,18 @@ public enum TFAMode {
     case verification
 }
 
+protocol SubmitionProtocl {
+    func onSubmittedPhoneNumber(phoneNumber: String, method: String)
+    func onSubmittedAuthCode(mode: TFAMode, provider: TFAProvider, code: String)
+}
+
+
 class TfaViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITableViewDelegate, UITableViewDataSource, SubmitionProtocl {
     
     @IBOutlet weak var providerPickerView: UIPickerView!
     @IBOutlet weak var contentTable: UITableView!
     
-    var content = ["phoenInput"]
+    var content = [String]()
     
     var qrData = ""
     
@@ -43,6 +49,9 @@ class TfaViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         
         self.providerPickerView.delegate = self
         self.providerPickerView.dataSource = self
+        
+        // Force provider picker view slection on first element.
+        providerPickerView.selectRow(0, inComponent: 0, animated: false)
     }
     
     // MARK: - Providers UIPickerView delegations.
@@ -91,19 +100,19 @@ class TfaViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if (content[indexPath.row] == "phoneInput") {
             let cell = tableView.dequeueReusableCell(withIdentifier: "TfaPhoneInputCell", for: indexPath) as! TfaPhoneInputCell
-            cell.delegate = registrationResolverDelegate
-            cell.submitionDelegate = self
+            cell.delegate = self
             return cell
         } else if (content[indexPath.row] == "authCode") {
             let cell = tableView.dequeueReusableCell(withIdentifier: "TfaAuthCodeCell", for: indexPath) as! TfaAuthCodeCell
-            cell.registrationDelegate = registrationResolverDelegate
-            cell.verificationDelegate = verificationResolverDelegate
+            cell.delegate = self
+            cell.mode = self.tfaMode
             let provider = TFAProvider.byName(name: tfaProviders[providerPickerView.selectedRow(inComponent: 0)].name ?? "gigyaPhone")
             cell.provider = provider!
             return cell
         } else if(content[indexPath.row] == "qrCode") {
             let cell = tableView.dequeueReusableCell(withIdentifier: "TfaQrCodeCell", for: indexPath) as! TfaQrCodeCell
             cell.qrData = self.qrData
+            cell.delegate = self
             return cell
         }
         return UITableViewCell()
@@ -128,12 +137,13 @@ class TfaViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     }
     
     func onTfaTotpProviderSelection() {
-        reloadTableWith(content:  [""])
         switch tfaMode {
         case .registration:
+            reloadTableWith(content:  [""])
             registrationResolverDelegate?.startRegistrationWithTotp()
             break
         case .verification:
+            reloadTableWith(content: ["authCode"])
             break
         }
     }
@@ -147,7 +157,8 @@ class TfaViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         }
     }
     
-    func onSubmittedPhoneNumber() {
+    func onSubmittedPhoneNumber(phoneNumber: String, method: String) {
+        registrationResolverDelegate?.startRegistrationWithPhone(phoneNumber: phoneNumber, method: method)
         reloadTableWith(content:  ["phoneInput", "authCode"])
     }
     
@@ -156,6 +167,18 @@ class TfaViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         reloadTableWith(content:  ["qrCode"])
     }
     
+    func onSubmittedAuthCode(mode: TFAMode, provider: TFAProvider, code: String) {
+         switch mode {
+         case .registration:
+            registrationResolverDelegate?.verifyCode(provider: provider, authenticationCode: code)
+         case .verification:
+            if (provider == .totp) {
+                verificationResolverDelegate?.startVerificationWithTotp(authorizationCode: code)
+                return
+            }
+            verificationResolverDelegate?.verifyCode(provider: provider, authenticationCode: code)
+        }
+    }
 }
 
 

@@ -250,6 +250,7 @@
                                                     </connections>
                                                 </button>
                                             </subviews>
+                                            <color key="backgroundColor" white="0.66666666666666663" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstItem="BBz-8Y-6mI" firstAttribute="top" secondItem="05G-s5-Emk" secondAttribute="bottom" constant="8" id="0qY-mc-IFr"/>
                                                 <constraint firstItem="BBz-8Y-6mI" firstAttribute="leading" secondItem="54q-bx-mvh" secondAttribute="leading" constant="20" id="2fw-uf-Snr"/>
@@ -288,7 +289,7 @@
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C4z-JA-RUR">
-                                                    <rect key="frame" x="133" y="83" width="222" height="30"/>
+                                                    <rect key="frame" x="133" y="79" width="222" height="30"/>
                                                     <color key="backgroundColor" red="0.2537544451" green="0.69697269470000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <state key="normal" title="Submit">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -304,6 +305,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <color key="backgroundColor" white="0.66666666666666663" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstItem="yJx-xW-Tab" firstAttribute="leading" secondItem="i4H-T4-xf2" secondAttribute="trailing" constant="8" id="1KU-Yb-y1e"/>
                                                 <constraint firstAttribute="trailing" secondItem="yJx-xW-Tab" secondAttribute="trailing" constant="20" id="7B7-Tw-7Lk"/>
@@ -312,7 +314,7 @@
                                                 <constraint firstAttribute="trailing" secondItem="C4z-JA-RUR" secondAttribute="trailing" constant="20" id="IZx-eh-D6H"/>
                                                 <constraint firstItem="9z7-qe-IpJ" firstAttribute="top" secondItem="As4-nb-e3K" secondAttribute="top" constant="8" id="Qfw-Tu-4VK"/>
                                                 <constraint firstItem="9z7-qe-IpJ" firstAttribute="leading" secondItem="i4H-T4-xf2" secondAttribute="trailing" constant="8" id="Y2W-f6-lzu"/>
-                                                <constraint firstItem="C4z-JA-RUR" firstAttribute="bottom" secondItem="i4H-T4-xf2" secondAttribute="bottom" id="Zct-iZ-Vho"/>
+                                                <constraint firstItem="C4z-JA-RUR" firstAttribute="bottom" secondItem="i4H-T4-xf2" secondAttribute="bottom" constant="-4" id="Zct-iZ-Vho"/>
                                                 <constraint firstItem="i4H-T4-xf2" firstAttribute="leading" secondItem="As4-nb-e3K" secondAttribute="leading" constant="20" id="cZJ-Lo-j10"/>
                                                 <constraint firstItem="i4H-T4-xf2" firstAttribute="top" secondItem="As4-nb-e3K" secondAttribute="top" constant="8" id="ddf-3w-VGk"/>
                                                 <constraint firstAttribute="bottom" secondItem="i4H-T4-xf2" secondAttribute="bottom" constant="5" id="oCg-xx-nFB"/>

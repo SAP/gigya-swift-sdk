@@ -30,7 +30,9 @@ public class TFAResolver<T: Codable> : BaseResolver {
     
     let completion: (GigyaLoginResult<T>) -> Void
     
-    public var providers = [TFAProviderModel]()
+    public var inactiveProviders = [TFAProviderModel]()
+    
+    public var activeProviders = [TFAProviderModel]()
     
     internal var gigyaAssertion: String?
     
@@ -55,12 +57,12 @@ public class TFAResolver<T: Codable> : BaseResolver {
                 // Evaluate available providers.
                 if let activeProviders = data.activeProviders {
                     if !activeProviders.isEmpty {
-                        self?.providers = activeProviders
+                        self?.activeProviders = activeProviders
                     }
                 }
                 if let inactiveProviders = data.inactiveProviders {
                     if !inactiveProviders.isEmpty {
-                        self?.providers = inactiveProviders
+                        self?.inactiveProviders = inactiveProviders
                     }
                 }
                 
@@ -323,12 +325,15 @@ public class TFAResolver<T: Codable> : BaseResolver {
     }
     
     internal func verifyTotpAuthorizationCode(authorizationCode: String) {
-        guard let gigyaAssertion = self.gigyaAssertion, let sctToken = self.sctToken else {
+        guard let gigyaAssertion = self.gigyaAssertion else {
             self.forwardInitialInterruption()
             return
         }
         
-        let params = ["code": authorizationCode, "gigyaAssertion": gigyaAssertion, "sctToken": sctToken]
+        var params = ["code": authorizationCode, "gigyaAssertion": gigyaAssertion]
+        if let sctToken = self.sctToken {
+            params["sctToken"] = sctToken
+        }
         verifyAuthorizationCode(api: GigyaDefinitions.API.totpVerifyTFA, params: params)
     }
     

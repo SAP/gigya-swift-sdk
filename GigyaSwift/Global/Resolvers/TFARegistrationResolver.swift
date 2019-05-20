@@ -22,7 +22,7 @@ public protocol TFARegistrationResolverProtocol {
 class TFARegistrationResolver<T: Codable> : TFAResolver<T>, TFARegistrationResolverProtocol {
     
     lazy var tfaProviders: [TFAProviderModel] = {
-        return self.providers
+        return self.inactiveProviders
     }()
 
     override init(originalError: NetworkError, regToken: String, businessDelegate: BusinessApiDelegate, completion: @escaping (GigyaLoginResult<T>) -> Void) {

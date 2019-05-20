@@ -52,6 +52,6 @@ extension BusinessApiService: BusinessApiDelegate {
     }
     
     func callfinalizeRegistration<T>(regToken: String, completion: @escaping (GigyaLoginResult<T>) -> Void) where T : Decodable, T : Encodable {
-        self.callfinalizeRegistration(regToken: regToken, completion: completion)
+        self.finalizeRegistration(regToken: regToken, completion: completion)
     }
 }

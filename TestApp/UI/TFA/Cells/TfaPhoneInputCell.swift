@@ -9,16 +9,11 @@
 import Foundation
 import GigyaSwift
 
-protocol SubmitionProtocl {
-    func onSubmittedPhoneNumber()
-}
-
 class TfaPhoneInputCell: UITableViewCell, UIPickerViewDelegate, UIPickerViewDataSource {
     
     var countryCodeData = [[String: Any]]()
     
-    var delegate: TFARegistrationResolverProtocol?
-    var submitionDelegate: SubmitionProtocl?
+    var delegate: SubmitionProtocl?
     
     @IBOutlet weak var ccPicker: UIPickerView!
     
@@ -51,8 +46,7 @@ class TfaPhoneInputCell: UITableViewCell, UIPickerViewDelegate, UIPickerViewData
         let submition = ccCode + input
         print("Phone registration submition number: \(submition)")
         
-        delegate?.startRegistrationWithPhone(phoneNumber: submition, method: "sms")
-        submitionDelegate?.onSubmittedPhoneNumber()
+        delegate?.onSubmittedPhoneNumber(phoneNumber: submition, method: "sms")
     }
     
     

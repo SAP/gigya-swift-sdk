@@ -85,6 +85,8 @@ class ViewController: UIViewController {
     
     var isLoggedIn = false
     
+    var tfaViewController: TfaViewController?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -110,6 +112,7 @@ class ViewController: UIViewController {
                 switch result {
                 case .success(let data):
                     self?.resultTextView?.text = data.toJson()
+                    self?.dismissTfaController()
                 case .failure(let error):
                     print(error)
                     guard let interruption = error.interruption else { return }
@@ -123,8 +126,7 @@ class ViewController: UIViewController {
                     
                         self?.presentTFAController(tfaProviders: providers, mode: .registration, registrationResolver: resolver)
                     case .onTotpQRCode(let code):
-                        self?.getTFAController()?.onQRCodeAvailable(code: code)
-                        break
+                        self?.tfaViewController?.onQRCodeAvailable(code: code)
                     default:
                         break
                     }
@@ -142,6 +144,7 @@ class ViewController: UIViewController {
                 switch result {
                 case .success(let data):
                     self?.resultTextView?.text = data.toJson()
+                    self?.dismissTfaController()
                 case .failure(let error):
                     print(error)
                     guard let interruption = error.interruption else { return }
@@ -153,6 +156,8 @@ class ViewController: UIViewController {
                         self?.presentTFAController(tfaProviders: providers, mode: .registration, registrationResolver: resolver)
                     case .onPhoneVerificationCodeSent:
                         print("Phone verification code sent")
+                    case .onTotpQRCode(let code):
+                        self?.tfaViewController?.onQRCodeAvailable(code: code)
                     default:
                         break
                     }
@@ -165,26 +170,18 @@ class ViewController: UIViewController {
     
     func presentTFAController(tfaProviders: [TFAProviderModel], mode: TFAMode, verificationResolver: TFAVerificationResolverProtocol? = nil, registrationResolver: TFARegistrationResolverProtocol? = nil) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "TFAUIAlertViewController") as! TfaViewController
-        vc.tfaProviders = tfaProviders
-        vc.tfaMode = mode
-        vc.registrationResolverDelegate = registrationResolver
-        vc.verificationResolverDelegate = verificationResolver
-        self.navigationController?.pushViewController(vc, animated: true)
+        tfaViewController = storyboard.instantiateViewController(withIdentifier: "TFAUIAlertViewController") as? TfaViewController
+        tfaViewController?.tfaProviders = tfaProviders
+        tfaViewController?.tfaMode = mode
+        tfaViewController?.registrationResolverDelegate = registrationResolver
+        tfaViewController?.verificationResolverDelegate = verificationResolver
+        self.navigationController?.pushViewController(tfaViewController!, animated: true)
     }
     
-    func getTFAController() -> TfaViewController? {
-        if var topController = UIApplication.shared.keyWindow?.rootViewController {
-            while let presentedViewController = topController.presentedViewController {
-                topController = presentedViewController
-            }
-            if let navigationViewController = topController as? UINavigationController {
-                if let tfaController = navigationViewController.topViewController as? TfaViewController {
-                    return tfaController
-                }
-            }
+    func dismissTfaController() {
+        if self.tfaViewController != nil {
+            self.navigationController?.popViewController(animated: true)
         }
-        return nil
     }
     
     @IBAction func addConnection(_ sender: Any) {

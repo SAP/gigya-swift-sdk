@@ -38,9 +38,8 @@ class TFAVerificationResolver<T: Codable> : TFAResolver<T>, TFAVerificationResol
         }
     }
     
-    
     lazy var tfaProviders: [TFAProviderModel] = {
-        return self.providers
+        return self.activeProviders
     }()
     
     override init(originalError: NetworkError, regToken: String, businessDelegate: BusinessApiDelegate, completion: @escaping (GigyaLoginResult<T>) -> Void) {
