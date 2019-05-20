@@ -16,7 +16,6 @@ class TfaPhoneInputCell: UITableViewCell, UIPickerViewDelegate, UIPickerViewData
     var delegate: SubmitionProtocl?
     
     @IBOutlet weak var ccPicker: UIPickerView!
-    
     @IBOutlet weak var phoneNumberTextField: UITextField!
     
     override func layoutSubviews() {
@@ -25,6 +24,7 @@ class TfaPhoneInputCell: UITableViewCell, UIPickerViewDelegate, UIPickerViewData
         ccPicker.dataSource = self
         ccPicker.delegate = self
         
+        // Load country code entries.
         if let path = Bundle.main.path(forResource: "CountryCodes", ofType: "json") {
             do {
                 let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
@@ -46,11 +46,8 @@ class TfaPhoneInputCell: UITableViewCell, UIPickerViewDelegate, UIPickerViewData
         let submition = ccCode + input
         print("Phone registration submition number: \(submition)")
         
-        delegate?.onSubmittedPhoneNumber(phoneNumber: submition, method: "sms")
+        delegate?.onSubmitPhone(number: submition, andMethod: "sms")
     }
-    
-    
-    // MARK: - Country code picker view delegations
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1

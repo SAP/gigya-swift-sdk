@@ -21,12 +21,15 @@ class TfaQrCodeCell: UITableViewCell {
     
     @IBAction func authCodeSubmit(_ sender: Any) {
         guard let authCode = authCodeTextField.text else { return }
-        delegate?.onSubmittedAuthCode(mode: .registration, provider: .totp, code: authCode)
+        print("Submit totp registration auth code: \(authCode)")
+        
+        delegate?.onSubmitAuthCode(mode: .registration, provider: .totp, code: authCode)
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
         
+        print("Loading QR data")
         if let data = qrData {
             let split = data.components(separatedBy: ",")
             let dataDecoded = Data(base64Encoded: split[1], options: Data.Base64DecodingOptions.ignoreUnknownCharacters)!

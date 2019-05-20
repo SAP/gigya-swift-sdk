@@ -10,19 +10,19 @@ import Foundation
 import UIKit
 import GigyaSwift
 
-public enum TFAMode {
+public enum TFAMode: String {
     
-    case registration
-    case verification
+    case registration = "registration"
+    case verification = "verification"
 }
 
+// Cell submission delegate protocol.
 protocol SubmitionProtocl {
-    func onSubmittedPhoneNumber(phoneNumber: String, method: String)
-    func onSubmittedAuthCode(mode: TFAMode, provider: TFAProvider, code: String)
-    func onSubmittedRegistered(phone: TFARegisteredPhone)
-    func onSubmittedRegistered(email: TFAEmail)
+    func onSubmitPhone(number: String, andMethod: String)
+    func onSubmitAuthCode(mode: TFAMode, provider: TFAProvider, code: String)
+    func onSubmitRegistered(phone: TFARegisteredPhone)
+    func onSubmitRegistered(email: TFAEmail)
 }
-
 
 class TfaViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITableViewDelegate, UITableViewDataSource, SubmitionProtocl {
     
@@ -30,11 +30,7 @@ class TfaViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     @IBOutlet weak var contentTable: UITableView!
     
     var content = [String]()
-    
-    var qrData = ""
-    
     var tfaProviders = [TFAProviderModel]()
-    
     var tfaMode: TFAMode = .registration
     
     var registrationResolverDelegate: TFARegistrationResolverProtocol?
@@ -62,7 +58,7 @@ class TfaViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     }
 
     
-    // MARK: - Providers UIPickerView delegations.
+    // MARK: - Providers UIPickerView Delegations
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
        return 1
@@ -91,7 +87,7 @@ class TfaViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         }
     }
     
-    // MARK: - Content UITableView delegations.
+    // MARK: - Content UITableView Delegations
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return content.count
@@ -119,7 +115,6 @@ class TfaViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
             return cell
         } else if(content[indexPath.row] == "qrCode") {
             let cell = tableView.dequeueReusableCell(withIdentifier: "TfaQrCodeCell", for: indexPath) as! TfaQrCodeCell
-            cell.qrData = self.qrData
             cell.delegate = self
             return cell
         } else if (content[indexPath.row] == "entries") {
@@ -135,8 +130,11 @@ class TfaViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         contentTable.reloadData()
     }
     
-    // MARK: - Logic.
+    // MARK: - Provider Specific Initialization
     
+    /*
+     Phone TFA provider selected.
+    */
     func onTfaPhoneProviderSelection() {
         switch tfaMode {
         case .registration:
@@ -148,6 +146,9 @@ class TfaViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         }
     }
     
+    /*
+     Totp TFA provider selected.
+     */
     func onTfaTotpProviderSelection() {
         switch tfaMode {
         case .registration:
@@ -160,6 +161,9 @@ class TfaViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         }
     }
     
+    /*
+     Email TFA provider selected.
+     */
     func onTfaEmailProviderSelection() {
         switch tfaMode {
         case .verification:
@@ -169,40 +173,69 @@ class TfaViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         }
     }
     
-    func onSubmittedRegistered(email: TFAEmail) {
+    // MARK: - Submittion Protocol Implementation
+    
+    func onSubmitRegistered(email: TFAEmail) {
         verificationResolverDelegate?.sendEmailVerificationCode(registeredEmail: email)
     }
     
-    func onSubmittedRegistered(phone: TFARegisteredPhone) {
+    func onSubmitRegistered(phone: TFARegisteredPhone) {
         verificationResolverDelegate?.sendPhoneVerificationCode(registeredPhone: phone)
     }
     
-    func onSubmittedPhoneNumber(phoneNumber: String, method: String) {
-        registrationResolverDelegate?.startRegistrationWithPhone(phoneNumber: phoneNumber, method: method)
+    func onSubmitPhone(number: String, andMethod: String) {
+        registrationResolverDelegate?.startRegistrationWithPhone(phoneNumber: number, method: andMethod)
         reloadTableWith(content:  ["phoneInput", "authCode"])
     }
     
-    func onRegisteredPhoneNumbers(numbers: [TFARegisteredPhone]) {
+    /*
+     Injecting registered phone numbers.
+    */
+    func onRegisteredPhone(numbers: [TFARegisteredPhone]) {
         reloadTableWith(content: ["entries"])
         let indexPath = IndexPath(row: 0, section: 0)
         if let cell = contentTable.cellForRow(at: indexPath) as? TfaRegisteredEntryCell {
             cell.provider = .gigyaPhone
             cell.phones = numbers
-            cell.reload()
+            cell.layoutSubviews()
         }
     }
     
-    func onQRCodeAvailable(code: String) {
-        qrData = code
-        reloadTableWith(content:  ["qrCode"])
+    /*
+     Injecting registered email addresses.
+     */
+    func onRegisteredEmail(addresses: [TFAEmail]) {
+        reloadTableWith(content: ["entries"])
+        let indexPath = IndexPath(row: 0, section: 0)
+        if let cell = contentTable.cellForRow(at: indexPath) as? TfaRegisteredEntryCell {
+            cell.provider = .email
+            cell.emails = addresses
+            cell.layoutSubviews()
+        }
     }
     
-    func onSubmittedAuthCode(mode: TFAMode, provider: TFAProvider, code: String) {
+    /*
+     Injecting the QR code data.
+    */
+    func onQRCodeAvailable(code: String) {
+        reloadTableWith(content:  ["qrCode"])
+        let indexPath = IndexPath(row: 0, section: 0)
+        if let cell = contentTable.cellForRow(at: indexPath) as? TfaQrCodeCell {
+            cell.qrData = code
+            cell.layoutSubviews()
+        }
+    }
+    
+    /*
+     Submit auth code.
+     */
+    func onSubmitAuthCode(mode: TFAMode, provider: TFAProvider, code: String) {
          switch mode {
          case .registration:
             registrationResolverDelegate?.verifyCode(provider: provider, authenticationCode: code)
          case .verification:
             if (provider == .totp) {
+                // TOTP verification flow starts. Will need to initialize TFA first with "verify" parameter for flow to continue.
                 verificationResolverDelegate?.startVerificationWithTotp(authorizationCode: code)
                 return
             }

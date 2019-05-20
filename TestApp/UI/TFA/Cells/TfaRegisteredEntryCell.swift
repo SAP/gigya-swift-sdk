@@ -29,12 +29,14 @@ class TfaRegisteredEntryCell: UITableViewCell, UIPickerViewDelegate, UIPickerVie
         if provider == .gigyaPhone {
             if let phones = self.phones {
                 let phone = phones[index]
-                delegate?.onSubmittedRegistered(phone: phone)
+                print("Sending SMS code to: \(phone.obfuscated ?? "")")
+                delegate?.onSubmitRegistered(phone: phone)
             }
         } else if provider == .email {
             if let emails = self.emails {
                 let email = emails[index]
-                delegate?.onSubmittedRegistered(email: email)
+                print("Sending EMAIL code to: \(email.obfuscated ?? "")")
+                delegate?.onSubmitRegistered(email: email)
             }
         }
     }
@@ -42,10 +44,12 @@ class TfaRegisteredEntryCell: UITableViewCell, UIPickerViewDelegate, UIPickerVie
     @IBAction func onSubmit(_ sender: Any) {
         guard let authCode = authCodeTextField.text else { return }
         guard let provider = provider else { return }
+        print("Submit auth verification code: \(authCode) for provider: \(provider.rawValue)")
+        
         if provider == .gigyaPhone {
-            delegate?.onSubmittedAuthCode(mode: .verification, provider: .gigyaPhone, code: authCode)
+            delegate?.onSubmitAuthCode(mode: .verification, provider: .gigyaPhone, code: authCode)
         } else if provider == .email {
-            delegate?.onSubmittedAuthCode(mode: .verification, provider: .email, code: authCode)
+            delegate?.onSubmitAuthCode(mode: .verification, provider: .email, code: authCode)
         }
     }
     
@@ -54,12 +58,9 @@ class TfaRegisteredEntryCell: UITableViewCell, UIPickerViewDelegate, UIPickerVie
         
         self.entriesPickerView.delegate = self
         self.entriesPickerView.dataSource = self
-    }
-    
-    func reload() {
+        
         entriesPickerView.reloadAllComponents()
     }
-
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1

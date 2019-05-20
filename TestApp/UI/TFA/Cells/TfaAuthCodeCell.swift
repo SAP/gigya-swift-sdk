@@ -20,11 +20,13 @@ class TfaAuthCodeCell: UITableViewCell {
     
     @IBAction func authCodeSubmit(_ sender: Any) {
         guard let authCode = authCodeTextField.text else { return }
+        print("Submit auth code: \(authCode) for provider: \(provider.rawValue) and mode: \(mode.rawValue)")
+        
         switch mode {
         case .registration:
-            delegate?.onSubmittedAuthCode(mode: .registration, provider: self.provider, code: authCode)
+            delegate?.onSubmitAuthCode(mode: .registration, provider: self.provider, code: authCode)
         case .verification:
-            delegate?.onSubmittedAuthCode(mode: .verification, provider: self.provider, code: authCode)
+            delegate?.onSubmitAuthCode(mode: .verification, provider: self.provider, code: authCode)
         }
     }
 }

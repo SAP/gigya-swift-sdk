@@ -116,19 +116,24 @@ class ViewController: UIViewController {
                 case .failure(let error):
                     print(error)
                     guard let interruption = error.interruption else { return }
+                    // Evaluage interruption.
                     switch interruption {
                     case .pendingTwoFactorVerification(let resolver):
+                        // Reference active providers (verification).
                         let providers = resolver.tfaProviders
-                        
+                        // Present TFA controller for verification flow.
                         self?.presentTFAController(tfaProviders: providers, mode: .verification, verificationResolver: resolver)
                     case .pendingTwoFactorRegistration(let resolver):
+                        // Reference inactive providers (registration).
                         let providers = resolver.tfaProviders
-                    
+                        // Present TFA controller for registration flow.
                         self?.presentTFAController(tfaProviders: providers, mode: .registration, registrationResolver: resolver)
                     case .onTotpQRCode(let code):
                         self?.tfaViewController?.onQRCodeAvailable(code: code)
                     case .onRegisteredPhoneNumbers(let registeredNumbers):
-                        self?.tfaViewController?.onRegisteredPhoneNumbers(numbers: registeredNumbers)
+                        self?.tfaViewController?.onRegisteredPhone(numbers: registeredNumbers)
+                    case .onRegisteredEmails(let emails):
+                        self?.tfaViewController?.onRegisteredEmail(addresses: emails)
                     case .onPhoneVerificationCodeSent:
                         print("Phone verification code sent")
                     case .onEmailVerificationCodeSent:
@@ -154,11 +159,12 @@ class ViewController: UIViewController {
                 case .failure(let error):
                     print(error)
                     guard let interruption = error.interruption else { return }
+                    // Evaluage interruption.
                     switch interruption {
                     case .pendingTwoFactorRegistration(let resolver):
-                        // Start resolving the interrupted flow.
+                        // Reference inactive providers (registration).
                         let providers = resolver.tfaProviders
-                        
+                        // Present TFA controller for registration flow.
                         self?.presentTFAController(tfaProviders: providers, mode: .registration, registrationResolver: resolver)
                     case .onPhoneVerificationCodeSent:
                         print("Phone verification code sent")
@@ -267,30 +273,43 @@ class ViewController: UIViewController {
     }
     
     @IBAction func loginWithProvider(_ sender: Any) {
-        gigya.login(with: .google, viewController: self ) { result in
+        gigya.login(with: .google, viewController: self ) { [weak self] result in
             switch result {
             case .success(let data):
                 print(data)
-                self.resultTextView?.text = data.toJson()
+                self?.resultTextView?.text = data.toJson()
             case .failure(let error):
                 print(error)
                 guard let interruption = error.interruption else { return }
-                
+                // Evaluage interruption.
                 switch interruption {
                 case .pendingVerification(let regToken):
-                    break
+                    print("regToken: \(regToken)")
                 case .conflitingAccounts(let resolver):
-//                    resolver.linkToSocial(provider: .facebook, viewController: self)
+                    //resolver.linkToSocial(provider: .facebook, viewController: self)
                     resolver.linkToSite(loginId: resolver.conflictingAccount?.loginID ?? "", password: "123123")
-                    break
                 case .pendingRegistration(let regToken):
-                    break
-                case .pendingTwoFactorRegistration(let resolver):
-                    break
+                    print("regToken: \(regToken)")
                 case .pendingTwoFactorVerification(let resolver):
-                    break
+                    // Reference active providers (verification).
+                    let providers = resolver.tfaProviders
+                    // Present TFA controller for verification flow.
+                    self?.presentTFAController(tfaProviders: providers, mode: .verification, verificationResolver: resolver)
+                case .pendingTwoFactorRegistration(let resolver):
+                    // Reference inactive providers (registration).
+                    let providers = resolver.tfaProviders
+                    // Present TFA controller for registration flow.
+                    self?.presentTFAController(tfaProviders: providers, mode: .registration, registrationResolver: resolver)
+                case .onTotpQRCode(let code):
+                    self?.tfaViewController?.onQRCodeAvailable(code: code)
+                case .onRegisteredPhoneNumbers(let registeredNumbers):
+                    self?.tfaViewController?.onRegisteredPhone(numbers: registeredNumbers)
+                case .onRegisteredEmails(let emails):
+                    self?.tfaViewController?.onRegisteredEmail(addresses: emails)
                 case .onPhoneVerificationCodeSent:
-                    break
+                    print("Phone verification code sent")
+                case .onEmailVerificationCodeSent:
+                    print("Email verification code send")
                 default:
                     break
                 }

@@ -209,7 +209,7 @@ class BusinessApiService: NSObject, IOCBusinessApiServiceProtocol {
                 }
 
                 switch errorCode {
-                case .pendingRegistration:
+                case .pendingRegistration: // pending registration
                     let loginError = LoginApiError<T>(error: error, interruption: .pendingRegistration(regToken: regToken))
                     completion(.failure(loginError))
                 case .pendingVerification: // pending veryfication
@@ -217,14 +217,12 @@ class BusinessApiService: NSObject, IOCBusinessApiServiceProtocol {
                     completion(.failure(loginError))
                 case .conflitingAccounts: // conflicting accounts
                     resolver = LinkAccountsResolver(originalError: error, regToken: regToken, businessDelegate: self, completion: completion)
-                case .accountLinked:
+                case .accountLinked: // account successfuly linked
                     self.finalizeRegistration(regToken: regToken, completion: completion)
-                case .pendingTwoFactorRegistration:
+                case .pendingTwoFactorRegistration: // pending TFA registration
                     resolver = TFARegistrationResolver(originalError: error, regToken: regToken, businessDelegate: self, completion: completion)
-                case .pendingTwoFactorVerification:
+                case .pendingTwoFactorVerification: // pending TFA verification
                     resolver = TFAVerificationResolver(originalError: error, regToken: regToken, businessDelegate: self , completion: completion)
-                default:
-                    break
                 }
             } else {
                 forwordFailed(error: error, completion: completion)
