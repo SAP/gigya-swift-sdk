@@ -25,15 +25,16 @@ class TfaRegisteredEntryCell: UITableViewCell, UIPickerViewDelegate, UIPickerVie
     
     @IBAction func onSendCode(_ sender: Any) {
         guard let provider = provider else { return }
+        let index = entriesPickerView.selectedRow(inComponent: 0)
         if provider == .gigyaPhone {
             if let phones = self.phones {
-                let index = entriesPickerView.selectedRow(inComponent: 0)
                 let phone = phones[index]
                 delegate?.onSubmittedRegistered(phone: phone)
             }
         } else if provider == .email {
             if let emails = self.emails {
-                
+                let email = emails[index]
+                delegate?.onSubmittedRegistered(email: email)
             }
         }
     }

@@ -20,6 +20,7 @@ protocol SubmitionProtocl {
     func onSubmittedPhoneNumber(phoneNumber: String, method: String)
     func onSubmittedAuthCode(mode: TFAMode, provider: TFAProvider, code: String)
     func onSubmittedRegistered(phone: TFARegisteredPhone)
+    func onSubmittedRegistered(email: TFAEmail)
 }
 
 
@@ -166,6 +167,10 @@ class TfaViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         default:
             break
         }
+    }
+    
+    func onSubmittedRegistered(email: TFAEmail) {
+        verificationResolverDelegate?.sendEmailVerificationCode(registeredEmail: email)
     }
     
     func onSubmittedRegistered(phone: TFARegisteredPhone) {
