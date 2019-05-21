@@ -211,11 +211,11 @@ class TfaViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     /*
      Injecting the QR code data.
     */
-    func onQRCodeAvailable(code: String) {
+    func onQRCodeAvailable(qrImage: UIImage?) {
         reloadTableWith(content:  ["qrCode"])
         let indexPath = IndexPath(row: 0, section: 0)
         if let cell = contentTable.cellForRow(at: indexPath) as? TfaQrCodeCell {
-            cell.qrData = code
+            cell.qrImage.image = qrImage
             cell.layoutSubviews()
         }
     }

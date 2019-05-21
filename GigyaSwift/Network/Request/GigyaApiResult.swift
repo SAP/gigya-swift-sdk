@@ -33,5 +33,5 @@ public enum GigyaInterruptions<T: Codable> {
     case onRegisteredPhoneNumbers(numbers: [TFARegisteredPhone])
     case onRegisteredEmails(emails: [TFAEmail])
     case onEmailVerificationCodeSent
-    case onTotpQRCode(qrCode: String)
+    case onTotpQRCode(qrCode: UIImage?)
 }

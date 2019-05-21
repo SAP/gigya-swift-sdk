@@ -128,8 +128,8 @@ class ViewController: UIViewController {
                         let providers = resolver.tfaProviders
                         // Present TFA controller for registration flow.
                         self?.presentTFAController(tfaProviders: providers, mode: .registration, registrationResolver: resolver)
-                    case .onTotpQRCode(let code):
-                        self?.tfaViewController?.onQRCodeAvailable(code: code)
+                    case .onTotpQRCode(let qrImage):
+                        self?.tfaViewController?.onQRCodeAvailable(qrImage: qrImage)
                     case .onRegisteredPhoneNumbers(let registeredNumbers):
                         self?.tfaViewController?.onRegisteredPhone(numbers: registeredNumbers)
                     case .onRegisteredEmails(let emails):
@@ -172,7 +172,7 @@ class ViewController: UIViewController {
                     case .onEmailVerificationCodeSent:
                         print("Email verification code send")
                     case .onTotpQRCode(let code):
-                        self?.tfaViewController?.onQRCodeAvailable(code: code)
+                        self?.tfaViewController?.onQRCodeAvailable(qrImage: code)
                     default:
                         break
                     }
@@ -302,7 +302,7 @@ class ViewController: UIViewController {
                     // Present TFA controller for registration flow.
                     self?.presentTFAController(tfaProviders: providers, mode: .registration, registrationResolver: resolver)
                 case .onTotpQRCode(let code):
-                    self?.tfaViewController?.onQRCodeAvailable(code: code)
+                    self?.tfaViewController?.onQRCodeAvailable(qrImage: code)
                 case .onRegisteredPhoneNumbers(let registeredNumbers):
                     self?.tfaViewController?.onRegisteredPhone(numbers: registeredNumbers)
                 case .onRegisteredEmails(let emails):

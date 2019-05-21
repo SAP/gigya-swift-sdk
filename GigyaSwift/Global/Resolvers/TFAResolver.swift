@@ -302,7 +302,9 @@ public class TFAResolver<T: Codable> : BaseResolver {
                 
                 self?.sctToken = sctToken
 
-                let loginError = LoginApiError<T>(error: originalError, interruption: .onTotpQRCode(qrCode: qrCode)) // TODO: return uiimage
+                let qrImage = self?.makeImageFromQrData(data: qrCode)
+
+                let loginError = LoginApiError<T>(error: originalError, interruption: .onTotpQRCode(qrCode: qrImage))
                 self?.completion(.failure(loginError))
             case .failure(let error):
                 self?.forwardError(error: error)
@@ -322,5 +324,16 @@ public class TFAResolver<T: Codable> : BaseResolver {
         }
 
         verifyAuthorizationCode(api: GigyaDefinitions.API.totpVerifyTFA, params: params)
+    }
+
+    private func makeImageFromQrData(data: String) -> UIImage? {
+        // make qr image from string
+        let split = data.components(separatedBy: ",")
+        if let dataDecoded = Data(base64Encoded: split[1], options: Data.Base64DecodingOptions.ignoreUnknownCharacters),
+            let qrImage = UIImage(data: dataDecoded) {
+            return qrImage
+        }
+        
+        return nil
     }
 }

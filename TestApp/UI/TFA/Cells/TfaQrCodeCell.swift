@@ -10,9 +10,7 @@ import Foundation
 import GigyaSwift
 
 class TfaQrCodeCell: UITableViewCell {
-    
-    var qrData: String?
-    
+
     var delegate: SubmitionProtocl?
     
     @IBOutlet weak var qrImage: UIImageView!
@@ -30,10 +28,6 @@ class TfaQrCodeCell: UITableViewCell {
         super.layoutSubviews()
         
         print("Loading QR data")
-        if let data = qrData {
-            let split = data.components(separatedBy: ",")
-            let dataDecoded = Data(base64Encoded: split[1], options: Data.Base64DecodingOptions.ignoreUnknownCharacters)!
-            qrImage.image = UIImage(data: dataDecoded)
-        }
+
     }
 }
