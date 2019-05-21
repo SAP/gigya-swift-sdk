@@ -17,6 +17,6 @@ class NetworkAdapterMock: NetworkAdapter {
     override func send(model: ApiRequestModel, completion: @escaping GigyaResponseHandler) {
         //swiftlint:disable:next force_cast
         let data = ResponseDataTest.resData as? NSData ?? nil
-        completion(data, ResponseDataTest.error)
+        completion(data, ResponseDataTest.getError())
     }
 }

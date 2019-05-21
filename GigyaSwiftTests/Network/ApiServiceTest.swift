@@ -31,6 +31,7 @@ class GigyaApiService: XCTestCase {
 
         ResponseDataTest.resData = nil
         ResponseDataTest.error = nil
+        ResponseDataTest.errorCalled = 0
     }
 
     override func tearDown() {
@@ -72,6 +73,8 @@ class GigyaApiService: XCTestCase {
             case .failure(let error):
                 switch error {
                 case .gigyaError(let data):
+                    let json = data.asJson()
+                    XCTAssertNotNil(json)
                     XCTAssertNotNil(data.callId)
                     XCTAssertNotNil(data.errorCode)
                     XCTAssertNotNil(data.statusCode)

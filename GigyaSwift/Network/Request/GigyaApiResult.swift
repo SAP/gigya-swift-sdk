@@ -10,7 +10,7 @@ import Foundation
 
 public enum GigyaApiResult<Response> {
     case success(data: Response)
-    case failure(NetworkError)
+    case failure(_ error: NetworkError)
 }
 
 public enum GigyaLoginResult<Response: Codable> {

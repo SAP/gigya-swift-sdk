@@ -36,7 +36,7 @@ protocol IOCBusinessApiServiceProtocol {
     
     func addConnection<T: Codable>(provider: GigyaSocielProviders, viewController: UIViewController, params: [String: Any], dataType: T.Type, completion: @escaping (GigyaApiResult<T>) -> Void)
     
-    func removeConnection(providerName: String, completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void)
+    func removeConnection(providerName: GigyaSocielProviders, completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void)
     
     func logout(completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void)
     

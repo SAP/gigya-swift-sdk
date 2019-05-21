@@ -162,13 +162,15 @@ class ViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: { [weak alert] (_) in
             alert?.dismiss(animated: true, completion: nil)
         }))
+
         alert.addAction(UIAlertAction(title: "Remove", style: .default, handler: { [weak alert, weak self] (_) in
             let textField = alert?.textFields![0] // Force unwrapping because we know it exists.
             guard let providerName = textField?.text else { return }
             guard let self = self else { return }
-            self.gigya.removeConnection(provider: providerName) { result in
+
+            self.gigya.removeConnection(provider: GigyaSocielProviders(rawValue: providerName) ?? .google) { result in
                 switch result {
-                case .success(let data):
+                case .success:
                     self.resultTextView?.text = "Connection removed"
                     break
                 case .failure(_):
@@ -213,7 +215,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func loginWithProvider(_ sender: Any) {
-        gigya.login(with: .google, viewController: self ) { result in
+        gigya.login(with: .wechat, viewController: self ) { result in
             switch result {
             case .success(let data):
                 print(data)

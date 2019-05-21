@@ -74,6 +74,10 @@
 		E7C859DB2289604F005C1FBE /* LinkAccountsResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C859DA2289604F005C1FBE /* LinkAccountsResolver.swift */; };
 		E7C859E02289B299005C1FBE /* InterruptionEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C859DF2289B299005C1FBE /* InterruptionEnum.swift */; };
 		E7C859E7228C52A0005C1FBE /* ConflictingAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C859E6228C52A0005C1FBE /* ConflictingAccount.swift */; };
+		E7C859FD2292B13D005C1FBE /* TfaLinkAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C859FC2292B13C005C1FBE /* TfaLinkAccount.swift */; };
+		E7C859FF2292B1D5005C1FBE /* TfaGlobal.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C859FE2292B1D5005C1FBE /* TfaGlobal.swift */; };
+		E7C85A012292CA45005C1FBE /* SocialManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C85A002292CA45005C1FBE /* SocialManagerTests.swift */; };
+		E7C85A052292DA77005C1FBE /* GoogleWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C85A042292DA77005C1FBE /* GoogleWrapper.swift */; };
 		E7CBAF9D22282BE3000B6C11 /* KeychainStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CBAF9C22282BE3000B6C11 /* KeychainStorage.swift */; };
 		E7CBAFA022282C56000B6C11 /* KeychainPasscode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CBAF9F22282C56000B6C11 /* KeychainPasscode.swift */; };
 		E7CBAFA4222BC881000B6C11 /* InternalConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CBAFA3222BC881000B6C11 /* InternalConfig.swift */; };
@@ -261,6 +265,10 @@
 		E7C859DA2289604F005C1FBE /* LinkAccountsResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkAccountsResolver.swift; sourceTree = "<group>"; };
 		E7C859DF2289B299005C1FBE /* InterruptionEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterruptionEnum.swift; sourceTree = "<group>"; };
 		E7C859E6228C52A0005C1FBE /* ConflictingAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConflictingAccount.swift; sourceTree = "<group>"; };
+		E7C859FC2292B13C005C1FBE /* TfaLinkAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TfaLinkAccount.swift; sourceTree = "<group>"; };
+		E7C859FE2292B1D5005C1FBE /* TfaGlobal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TfaGlobal.swift; sourceTree = "<group>"; };
+		E7C85A002292CA45005C1FBE /* SocialManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialManagerTests.swift; sourceTree = "<group>"; };
+		E7C85A042292DA77005C1FBE /* GoogleWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleWrapper.swift; sourceTree = "<group>"; };
 		E7CBAF9C22282BE3000B6C11 /* KeychainStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainStorage.swift; sourceTree = "<group>"; };
 		E7CBAF9F22282C56000B6C11 /* KeychainPasscode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainPasscode.swift; sourceTree = "<group>"; };
 		E7CBAFA3222BC881000B6C11 /* InternalConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternalConfig.swift; sourceTree = "<group>"; };
@@ -497,6 +505,7 @@
 			children = (
 				E756A29A2275CC04007FA801 /* Mocks */,
 				E756A2982275CB5C007FA801 /* SocialProviderLoginTests.swift */,
+				E7C85A002292CA45005C1FBE /* SocialManagerTests.swift */,
 			);
 			path = Providers;
 			sourceTree = "<group>";
@@ -534,7 +543,10 @@
 			isa = PBXGroup;
 			children = (
 				E7A6E0B6224256390063638F /* GigyaSwiftTests.swift */,
+				E7C85A042292DA77005C1FBE /* GoogleWrapper.swift */,
+				E7C85A082292E2B3005C1FBE /* New Group */,
 				E73373D4225E326100ADEDBB /* GigyaLoggerTest.swift */,
+				E7C859FB2292B129005C1FBE /* TfaTests */,
 				E756A2972275CB44007FA801 /* Providers */,
 				E73373D6225F222000ADEDBB /* Utils */,
 				E7E80D94224D073200D3B663 /* Services */,
@@ -664,6 +676,22 @@
 				E7C859DA2289604F005C1FBE /* LinkAccountsResolver.swift */,
 			);
 			path = Resolvers;
+			sourceTree = "<group>";
+		};
+		E7C859FB2292B129005C1FBE /* TfaTests */ = {
+			isa = PBXGroup;
+			children = (
+				E7C859FC2292B13C005C1FBE /* TfaLinkAccount.swift */,
+				E7C859FE2292B1D5005C1FBE /* TfaGlobal.swift */,
+			);
+			path = TfaTests;
+			sourceTree = "<group>";
+		};
+		E7C85A082292E2B3005C1FBE /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "New Group";
 			sourceTree = "<group>";
 		};
 		E7CBAF9922282B6C000B6C11 /* Network */ = {
@@ -1066,6 +1094,7 @@
 				E7E80D85224BB59100D3B663 /* UserDataModel.swift in Sources */,
 				E73373D5225E326100ADEDBB /* GigyaLoggerTest.swift in Sources */,
 				E713E18C224A2E5800181328 /* NetworkAdapterMock.swift in Sources */,
+				E7C859FF2292B1D5005C1FBE /* TfaGlobal.swift in Sources */,
 				E7E80D8F224D045000D3B663 /* BusinessApiServiceMock.swift in Sources */,
 				E7E80D88224BBF2400D3B663 /* XCTestCase+FatalError.swift in Sources */,
 				E756A2A02275D46D007FA801 /* SocialProviderMock.swift in Sources */,
@@ -1074,7 +1103,10 @@
 				E7E80DA522535A5700D3B663 /* ResponseDataGlobal.swift in Sources */,
 				E7E80D7E224BADFC00D3B663 /* GigyaInitTest.swift in Sources */,
 				E7A6E0B7224256390063638F /* GigyaSwiftTests.swift in Sources */,
+				E7C85A012292CA45005C1FBE /* SocialManagerTests.swift in Sources */,
+				E7C859FD2292B13D005C1FBE /* TfaLinkAccount.swift in Sources */,
 				E7E80D96224D101C00D3B663 /* ApiServiceTest.swift in Sources */,
+				E7C85A052292DA77005C1FBE /* GoogleWrapper.swift in Sources */,
 				E774A5622243D7D300BC67D1 /* RequestTestModel.swift in Sources */,
 				E756A29C2275CC13007FA801 /* ProviderFactoryMock.swift in Sources */,
 				E73373DA225F7ED100ADEDBB /* GSRequestMock.swift in Sources */,
@@ -1391,9 +1423,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/GigyaSwift",
-					"$(PROJECT_DIR)/GoogleSignIn",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/facebook",
 				);
 				INFOPLIST_FILE = GigyaSwift/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -1436,9 +1466,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/GigyaSwift",
-					"$(PROJECT_DIR)/GoogleSignIn",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/facebook",
 				);
 				INFOPLIST_FILE = GigyaSwift/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -1473,7 +1501,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = T48CNFXFQH;
-				ENABLE_BITCODE = YES;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/GigyaSwift",
@@ -1495,7 +1523,7 @@
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = Gigya.TestAppnew;
+				PRODUCT_BUNDLE_IDENTIFIER = Gigya.Testapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "TestApp/TestApp-Bridging-Header.h";
@@ -1514,7 +1542,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = T48CNFXFQH;
-				ENABLE_BITCODE = YES;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/GigyaSwift",
@@ -1535,7 +1563,7 @@
 					"$(PROJECT_DIR)/TestApp/Frameworks/WechatSDK",
 				);
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = Gigya.TestAppnew;
+				PRODUCT_BUNDLE_IDENTIFIER = Gigya.Testapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "TestApp/TestApp-Bridging-Header.h";

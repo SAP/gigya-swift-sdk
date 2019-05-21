@@ -53,7 +53,7 @@
 			<string>weixin</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>wx97da98753b236633</string>
+				<string>wx222c4ccaa989aa00</string>
 			</array>
 		</dict>
 	</array>
@@ -122,6 +122,6 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>WeChatAppID</key>
-	<string>wx97da98753b236633</string>
+	<string>wx222c4ccaa989aa00</string>
 </dict>
 </plist>

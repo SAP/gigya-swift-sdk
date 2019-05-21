@@ -175,7 +175,9 @@ class GigyaCoreTest: XCTestCase {
     }
 
     func testLogout() {
-        GigyaSwift.sharedInstance().logout()
+        GigyaSwift.sharedInstance().logout() { result in
+
+        }
 
         XCTAssert(!GigyaSwift.sharedInstance().isLoggedIn())
     }

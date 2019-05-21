@@ -89,6 +89,13 @@
             ReferencedContainer = "container:GigyaSwift.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
+      <EnvironmentVariables>
+         <EnvironmentVariable
+            key = "XCInjectBundle"
+            value = "GigyaSwiftTests"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+      </EnvironmentVariables>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>

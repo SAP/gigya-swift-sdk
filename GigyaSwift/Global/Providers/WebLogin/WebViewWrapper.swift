@@ -79,7 +79,7 @@ class WebLoginWrapper: NSObject, ProviderWrapperProtocol {
         url.append("x_secret_type=oauth1&")
         url.append("x_endPoint=socialize.login&")
         url.append("x_sdk=\(InternalConfig.General.version)&")
-        url.append("x_provider=\(providerType?.rawValue)")
+        url.append("x_provider=\(providerType?.rawValue ?? "")")
 
         return url
     }

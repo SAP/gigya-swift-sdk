@@ -22,10 +22,14 @@ class SessionService: IOCSessionServiceProtocol {
     }
 
     func isValidSession() -> Bool {
+        GigyaLogger.log(with: self, message: "[isValidSession]: \(gigyaApi.isValidSession())")
+
         return gigyaApi.isValidSession()
     }
 
     func setSession(_ session: GigyaSession) {
+        GigyaLogger.log(with: self, message: "[setSession] - session: \(GigyaSession.debugDescription())")
+
         gigyaApi.setSession(session)
     }
 
@@ -37,6 +41,8 @@ class SessionService: IOCSessionServiceProtocol {
     }
 
     func clear() {
+        GigyaLogger.log(with: self, message: "[logout]")
+        
         gigyaApi.logout()
         accountService.clear()
     }

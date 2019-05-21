@@ -57,7 +57,7 @@ class SocialLoginProvider: Provider {
         case .google:
             return "{\"\(providerType.rawValue)\": {code: \"\(token)\"}}"
         case .wechat:
-            return "{\"\(providerType.rawValue)\": {code: \"\(token)\", providerUID: \"\(provider.clientID ?? "")\"}}"
+            return "{\"\(providerType.rawValue)\": {authToken: \"\(token)\", providerUID: \"\(provider.clientID ?? "")\"}}"
         default:
             break
         }

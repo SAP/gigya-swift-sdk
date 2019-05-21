@@ -30,7 +30,7 @@ extension Provider {
         GigyaLogger.log(with: self, message: "start LoginSuccess - providerSessions: \(providerSessions)")
 
         let newParams = ["providerSessions": providerSessions, "loginMode": loginMode]
-                        .merging(params) { (_, new) in new } // TODO: need to add 'link' mode
+                        .merging(params) { (_, new) in new }
 
         delegate?.callNativeSocialLogin(params: newParams) { result in
             completion(result!)
@@ -38,6 +38,8 @@ extension Provider {
     }
 
     func loginFailed<T: Codable>(error: String, completion: @escaping (GigyaApiResult<T>) -> Void) {
+        GigyaLogger.log(with: self, message: "[loginFailed] - error: \(error)")
+        
         completion(.failure(.providerError(data: error)))
     }
 

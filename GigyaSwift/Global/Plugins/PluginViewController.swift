@@ -274,8 +274,8 @@ class PluginViewController<T: GigyaAccountProtocol>: WebViewController, WKScript
      */
     private func sendRemoveConnectionRequest(callbackId: String, params: [String: String]) {
         GigyaLogger.log(with: self, message: "sendRemoveConnectionRequest: with params:\n\(params)")
-        if let provider = params["provider"] {
-            businessApiService.removeConnection(providerName: provider) { [weak self] result in
+        if let provider = params["provider"], let providerType = GigyaSocielProviders(rawValue: provider) {
+            businessApiService.removeConnection(providerName: providerType) { [weak self] result in
                 guard let self = self else { return }
                 switch result {
                 case .success(let data):
@@ -320,6 +320,8 @@ class PluginViewController<T: GigyaAccountProtocol>: WebViewController, WKScript
      Dismiss the encapsulating view controller after a task has been completed.
      */
     private func dismissPluginController() {
+        GigyaLogger.log(with: self, message: "Dismiss plugin controller")
+        
         self.dismiss(animated: true, completion: nil)
     }
     

@@ -11,7 +11,7 @@ import GigyaSwift
 import LineSDK
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, WXApiDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WXApiDelegate {
 //        GigyaSwift.getInstance().initWithApi(apiKey: "555")
 //        GigyaSwift.sharedInstance()
 
-        WXApi.registerApp("wx97da98753b236633")
+        WXApi.registerApp("wx222c4ccaa989aa00")
 
         return true
     }
@@ -32,9 +32,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WXApiDelegate {
         return WXApi.handleOpen(url, delegate: self)
     }
 
-    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
-        return WXApi.handleOpen(url, delegate: self)
-    }
+//    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+//        return WXApi.handleOpen(url, delegate: nil)
+//    }
 
     func applicationWillResignActive(_ application: UIApplication) {
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
@@ -56,8 +56,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WXApiDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
-    func onResp(_ resp: BaseResp!) {
-        print(resp.errStr)
-        print(resp.errCode)
-    }
+//    func onResp(_ resp: BaseResp!) {
+//        print(resp.errStr)
+//        print(resp.errCode)
+//        
+//    }
 }

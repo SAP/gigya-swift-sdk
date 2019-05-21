@@ -34,19 +34,26 @@ class SocialProvidersManager: IOCSocialProvidersManagerProtocol {
                 }
 
                 providersContainer[provider] = providerWrapper.init()
+
+                GigyaLogger.log(with: self, message: "[\(provider.rawValue)] save factory")
             }
         }
     }
 
     func getProvider(with socialProvider: GigyaSocielProviders, delegate: BusinessApiDelegate) -> Provider {
         if let providerType: GigyaNativeSocielProviders = GigyaNativeSocielProviders(rawValue: socialProvider.rawValue) {
-            guard let wrapper = providersContainer[providerType] else { GigyaLogger.error(message: "\(providerType.description) provider not found") }
-            return SocialLoginProvider(providerType: socialProvider, provider: wrapper, delegate: delegate)
+            if let wrapper = providersContainer[providerType] {
+                GigyaLogger.log(with: self, message: "[\(socialProvider.rawValue)] - use sdk")
+
+                return SocialLoginProvider(providerType: socialProvider, provider: wrapper, delegate: delegate)
+            } else {
+                if socialProvider == .facebook || socialProvider == .wechat {
+                    GigyaLogger.error(message: "[\(socialProvider.rawValue)] can't login with WebView, install related sdk.")
+                }
+            }
         }
 
-        if socialProvider == .facebook || socialProvider == .wechat {
-            GigyaLogger.error(message: "[\(socialProvider.rawValue)] can't login with WebView, install related sdk.")
-        }
+        GigyaLogger.log(with: self, message: "[\(socialProvider.rawValue)] - use webview")
 
         return WebLoginProvider(sessionService: sessionService, provider: WebLoginWrapper(config: config, providerType: socialProvider), delegate: delegate)
     }

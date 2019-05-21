@@ -66,7 +66,7 @@ class SocialProviderLoginTests: XCTestCase {
             case .success:
                 XCTFail("Fail")
             case .failure(let error):
-                if case .providerError(let data) = error {
+                if case .providerError(let data) = error.error {
                     XCTAssertEqual(data, "Id token no available")
                 }
             }
@@ -87,22 +87,45 @@ class SocialProviderLoginTests: XCTestCase {
             case .success:
                 XCTFail("Fail")
             case .failure(let error):
-                if case .providerError(let data) = error {
+                if case .providerError(let data) = error.error {
                     XCTAssertEqual(data, "The operation couldn’t be completed. (gigya error 400093.)")
                 }
             }
         }
     }
 
-    func testLoginWithoutClientID() {
+//    func testLoginWithoutClientID() {
+//        let viewController = UIViewController()
+//
+//        ResponseDataTest.clientID = nil
+//
+//        expectFatalError(expectedMessage: "[GoogleProvider]: Missing server client id. Check plist implementation ") {
+//            GigyaSwift.sharedInstance().login(with: .google, viewController: viewController) { (result) in
+//
+//            }
+//        }
+//    }
+
+    func testAddConnection() {
         let viewController = UIViewController()
 
-        ResponseDataTest.clientID = nil
+        let dic: [String: Any] = ["callId": "34324", "errorCode": 0, "statusCode": 200]
 
-        expectFatalError(expectedMessage: "[GoogleProvider]: Missing server client id. Check plist implementation ") {
-            GigyaSwift.sharedInstance().login(with: .google, viewController: viewController) { (result) in
+        // swiftlint:disable force_try
+        let jsonData = try! JSONSerialization.data(withJSONObject: dic, options: .prettyPrinted)
+        // swiftlint:enable force_try
+        ResponseDataTest.resData = jsonData
+        ResponseDataTest.clientID = "123"
+        ResponseDataTest.providerToken = "123"
 
+        GigyaSwift.sharedInstance().addConnection(provider: .google, viewController: viewController, params: ["testParam": "test"]) { (result) in
+            switch result {
+            case .success(let data):
+                XCTAssertNotNil(data )
+            case .failure(let error):
+                XCTFail("Fail: \(error)")
             }
         }
     }
+
 }

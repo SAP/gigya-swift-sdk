@@ -53,7 +53,8 @@ class ApiService: IOCApiServiceProtocol {
         }
 
         do {
-            let gigyaResponse = try DecodeEncodeUtils.decode(fromType: GigyaResponseModel.self, data: data as Data)
+            var gigyaResponse = try DecodeEncodeUtils.decode(fromType: GigyaResponseModel.self, data: data as Data)
+            gigyaResponse.requestData = data as Data
 
             if gigyaResponse.errorCode == 0 {
                 let typedResponse = try DecodeEncodeUtils.decode(fromType: responseType.self, data: data as Data)

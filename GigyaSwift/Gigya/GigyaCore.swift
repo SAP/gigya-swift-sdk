@@ -210,7 +210,7 @@ public class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
      - Parameter completion:  Login response.
      */
     
-    public func removeConnection(provider: String, completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void) {
+    public func removeConnection(provider: GigyaSocielProviders, completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void) {
         businessApiService.removeConnection(providerName: provider, completion: completion)
     }
 

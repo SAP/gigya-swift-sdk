@@ -148,9 +148,13 @@ class BusinessApiService: NSObject, IOCBusinessApiServiceProtocol {
     }
     
     func addConnection<T: Codable>(provider: GigyaSocielProviders, viewController: UIViewController, params: [String: Any], dataType: T.Type, completion: @escaping (GigyaApiResult<T>) -> Void) {
+        GigyaLogger.log(with: self, message: "[addConnection] - start")
+
         providerAdapter = socialProviderFactory.getProvider(with: provider, delegate: self)
         providerAdapter?.login(type: T.self, params: params, viewController: viewController, loginMode: "connect") { (res) in
             completion(res)
+
+            GigyaLogger.log(with: self, message: "[addConnection] - finish: \(res)")
         }
         
         providerAdapter?.didFinish = { [weak self] in
@@ -158,27 +162,39 @@ class BusinessApiService: NSObject, IOCBusinessApiServiceProtocol {
         }
     }
     
-    func removeConnection(providerName: String, completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void) {
-        let params = ["provider": providerName]
+    func removeConnection(providerName: GigyaSocielProviders, completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void) {
+        let params = ["provider": providerName.rawValue]
+
+        GigyaLogger.log(with: self, message: "[removeConnection]: params: \(params)")
+
         let model = ApiRequestModel(method: GigyaDefinitions.API.removeConnection, params: params)
         apiService.send(model: model, responseType: GigyaDictionary.self, completion: completion)
     }
     
     func logout(completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void) {
+        GigyaLogger.log(with: self, message: "[logout]")
+
         let model = ApiRequestModel(method: GigyaDefinitions.API.logout, params: nil)
         apiService.send(model: model, responseType: GigyaDictionary.self, completion: completion)
     }
 
     private func finalizeRegistration<T: Codable>(regToken: String, completion: @escaping (GigyaLoginResult<T>) -> Void) {
         let params = ["regToken": regToken, "include": "profile,data,emails,subscriptions,preferences", "includeUserInfo": "true"]
+
+        GigyaLogger.log(with: self, message: "[finalizeRegistration] - params: \(params)")
+
         send(dataType: T.self, api: GigyaDefinitions.API.finalizeRegistration, params: params) { [weak self] result in
             switch result {
             case .success(let data):
                 completion(.success(data: data))
 
+                GigyaLogger.log(with: BusinessApiService.self, message: "[finalizeRegistration] - success")
+
                 self?.resolver = nil
             case .failure(let error):
                 let loginError = LoginApiError<T>(error: error, interruption: nil)
+
+                GigyaLogger.log(with: BusinessApiService.self, message: "[finalizeRegistration] - failure: \(error)")
 
                 completion(.failure(loginError))
             }
@@ -190,6 +206,8 @@ class BusinessApiService: NSObject, IOCBusinessApiServiceProtocol {
         case .gigyaError(let data):
             // check if interruption supported
             if data.isInterruptionSupported() {
+                GigyaLogger.log(with: self, message: "[interruptionResolver] - interruption supported: \(data)")
+
                 // get interruption by error code
                 guard let errorCode: Interruption = Interruption(rawValue: data.errorCode) else { return }
 
@@ -197,6 +215,8 @@ class BusinessApiService: NSObject, IOCBusinessApiServiceProtocol {
                 let dataResponse = data.toDictionary()
 
                 guard let regToken = dataResponse["regToken"] as? String else {
+                    GigyaLogger.log(with: self, message: "[interruptionResolver] - regToken not exists")
+
                     forwordFailed(error: error, completion: completion)
                     return
                 }
@@ -216,9 +236,13 @@ class BusinessApiService: NSObject, IOCBusinessApiServiceProtocol {
                     break
                 }
             } else {
+                GigyaLogger.log(with: self, message: "[interruptionResolver] - interruption not supported")
+
                 forwordFailed(error: error, completion: completion)
             }
         default:
+            GigyaLogger.log(with: self, message: "[interruptionResolver] - error: \(error)")
+
             forwordFailed(error: error, completion: completion)
         }
     }
@@ -226,9 +250,5 @@ class BusinessApiService: NSObject, IOCBusinessApiServiceProtocol {
     private func forwordFailed<T: Codable>(error: NetworkError, completion: @escaping (GigyaLoginResult<T>) -> Void) {
         let loginError = LoginApiError<T>(error: error, interruption: nil)
         completion(.failure(loginError))
-    }
-
-    deinit {
-        print("[BusinessService]")
     }
 }
