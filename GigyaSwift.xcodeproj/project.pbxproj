@@ -68,6 +68,7 @@
 		E7A6E0B9224256390063638F /* GigyaSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7BE36732224219200A108D9 /* GigyaSwift.framework */; };
 		E7A6E0CA224258C80063638F /* GigyaRequstTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A6E0C9224258C80063638F /* GigyaRequstTest.swift */; };
 		E7A6E0CE22425A910063638F /* NetworkAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A6E0CD22425A910063638F /* NetworkAdapter.swift */; };
+		E7AB6B6C2293EEC2008C3993 /* TFAProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7AB6B6B2293EEC2008C3993 /* TFAProvider.swift */; };
 		E7ACF9A8226C83F200900C65 /* IOCBusinessApiServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7ACF9A7226C83F200900C65 /* IOCBusinessApiServiceProtocol.swift */; };
 		E7ACF9AC226C841300900C65 /* IOCApiServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7ACF9AB226C841300900C65 /* IOCApiServiceProtocol.swift */; };
 		E7ACF9AE226C843100900C65 /* IOCSessionServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7ACF9AD226C843100900C65 /* IOCSessionServiceProtocol.swift */; };
@@ -263,6 +264,7 @@
 		E7A6E0B8224256390063638F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E7A6E0C9224258C80063638F /* GigyaRequstTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigyaRequstTest.swift; sourceTree = "<group>"; };
 		E7A6E0CD22425A910063638F /* NetworkAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkAdapter.swift; sourceTree = "<group>"; };
+		E7AB6B6B2293EEC2008C3993 /* TFAProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TFAProvider.swift; sourceTree = "<group>"; };
 		E7ACF9A7226C83F200900C65 /* IOCBusinessApiServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOCBusinessApiServiceProtocol.swift; sourceTree = "<group>"; };
 		E7ACF9AB226C841300900C65 /* IOCApiServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOCApiServiceProtocol.swift; sourceTree = "<group>"; };
 		E7ACF9AD226C843100900C65 /* IOCSessionServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOCSessionServiceProtocol.swift; sourceTree = "<group>"; };
@@ -714,6 +716,7 @@
 		E7C859D822896038005C1FBE /* Resolvers */ = {
 			isa = PBXGroup;
 			children = (
+				E7AB6B6B2293EEC2008C3993 /* TFAProvider.swift */,
 				E7C859DA2289604F005C1FBE /* LinkAccountsResolver.swift */,
 				D5340BFC228C1F63002D215B /* TFAResolver.swift */,
 				D5340C00228C2C16002D215B /* TFARegistrationResolver.swift */,
@@ -1190,6 +1193,7 @@
 				E7ACF9B0226C844A00900C65 /* IOCAccountServiceProtocol.swift in Sources */,
 				E7ACF9AC226C841300900C65 /* IOCApiServiceProtocol.swift in Sources */,
 				E73374622268B25B00ADEDBB /* SocialProvidersManager.swift in Sources */,
+				E7AB6B6C2293EEC2008C3993 /* TFAProvider.swift in Sources */,
 				E713E0FE2248C83D00181328 /* GigyaConfig.swift in Sources */,
 				E760668C2278998E005E4CFD /* WebViewWrapper.swift in Sources */,
 				E7CBB04322356206000B6C11 /* GigyaProfile.swift in Sources */,

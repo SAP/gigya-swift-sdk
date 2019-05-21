@@ -10,7 +10,7 @@ import Foundation
 
 public struct TFAProviderModel: Codable {
     
-    public let name: String?
+    public let name: TFAProvider
     public let authLevel: Int?
     
     private enum CodingKeys: String, CodingKey {
@@ -118,3 +118,7 @@ public struct TFATotpRegisterModel: Codable {
     }
 }
 
+public enum TFAMode: String {
+    case register
+    case verify
+}

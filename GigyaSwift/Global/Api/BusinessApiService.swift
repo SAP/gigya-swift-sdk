@@ -82,7 +82,6 @@ class BusinessApiService: NSObject, IOCBusinessApiServiceProtocol {
 
         apiService.send(model: model, responseType: [String: AnyCodable].self) { [weak self] (result) in
             switch result {
-
             case .success(let data):
                 let regToken = data["regToken"]?.value ?? ""
                 let makeParams: [String: Any] = ["regToken": regToken, "finalizeRegistration": "true"].merging(params) { $1 }
@@ -93,6 +92,8 @@ class BusinessApiService: NSObject, IOCBusinessApiServiceProtocol {
                     switch result {
                     case .success(let data):
                         completion(.success(data: data))
+
+                        self?.clearOptionalObjects()
                     case .failure(let error):
                         self?.interruptionResolver(error: error, completion: completion)
                     }
@@ -115,7 +116,10 @@ class BusinessApiService: NSObject, IOCBusinessApiServiceProtocol {
             switch result {
             case .success(let data):
                 self?.accountService.account = data
+
                 completion(.success(data: data))
+
+                self?.clearOptionalObjects()
             case .failure(let error):
                 self?.interruptionResolver(error: error, completion: completion)
             }
@@ -133,11 +137,10 @@ class BusinessApiService: NSObject, IOCBusinessApiServiceProtocol {
             case .failure(let error):
                 self.interruptionResolver(error: error, completion: completion)
             }
-
         }
 
         providerAdapter?.didFinish = { [weak self] in
-            self?.providerAdapter = nil
+            self?.clearOptionalObjects()
         }
     }
 
@@ -161,7 +164,7 @@ class BusinessApiService: NSObject, IOCBusinessApiServiceProtocol {
         }
         
         providerAdapter?.didFinish = { [weak self] in
-            self?.providerAdapter = nil
+            self?.clearOptionalObjects()
         }
     }
     
@@ -186,7 +189,6 @@ class BusinessApiService: NSObject, IOCBusinessApiServiceProtocol {
                 self?.resolver = nil
             case .failure(let error):
                 let loginError = LoginApiError<T>(error: error, interruption: nil)
-
                 completion(.failure(loginError))
             }
         }
@@ -235,6 +237,11 @@ class BusinessApiService: NSObject, IOCBusinessApiServiceProtocol {
     private func forwordFailed<T: Codable>(error: NetworkError, completion: @escaping (GigyaLoginResult<T>) -> Void) {
         let loginError = LoginApiError<T>(error: error, interruption: nil)
         completion(.failure(loginError))
+    }
+
+    private func clearOptionalObjects() {
+        self.providerAdapter = nil
+        self.resolver = nil
     }
 
     deinit {

@@ -157,7 +157,8 @@ class ViewController: UIViewController {
                     self?.resultTextView?.text = data.toJson()
                     self?.dismissTfaController()
                 case .failure(let error):
-                    print(error)
+                    print(error) // general error
+
                     guard let interruption = error.interruption else { return }
                     // Evaluage interruption.
                     switch interruption {

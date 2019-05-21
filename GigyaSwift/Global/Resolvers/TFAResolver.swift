@@ -8,38 +8,26 @@
 
 import Foundation
 
-public enum TFAProvider: String {
-    
-    case gigyaPhone = "gigyaPhone"
-    case liveLink = "liveLink"
-    case email = "gigyaEmail"
-    case totp = "gigyaTotp"
-    
-    public static func byName(name: String) -> TFAProvider? {
-        return self.init(rawValue: name)
-    }
-}
-
 public class TFAResolver<T: Codable> : BaseResolver {
-    
+
+    let completion: (GigyaLoginResult<T>) -> Void
+
     let originalError: NetworkError
     
     let regToken: String
+
+    var gigyaAssertion: String?
+
+    var phvToken: String?
+
+    var sctToken: String?
     
     weak var businessDelegate: BusinessApiDelegate?
-    
-    let completion: (GigyaLoginResult<T>) -> Void
-    
+
     public var inactiveProviders = [TFAProviderModel]()
     
     public var activeProviders = [TFAProviderModel]()
-    
-    internal var gigyaAssertion: String?
-    
-    internal var phvToken: String?
-    
-    internal var sctToken: String?
-    
+
     init(originalError: NetworkError, regToken: String, businessDelegate: BusinessApiDelegate, completion: @escaping (GigyaLoginResult<T>) -> Void) {
         self.originalError = originalError
         self.regToken = regToken
@@ -68,13 +56,12 @@ public class TFAResolver<T: Codable> : BaseResolver {
                 
                 self?.forwardInitialInterruption();
             case .failure(let error):
-                
                 self?.forwardError(error: error)
             }
         }
     }
     
-    internal func forwardInitialInterruption() {
+     func forwardInitialInterruption() {
         // Stub. Will be overriden by child resolver.
     }
     
@@ -97,8 +84,8 @@ public class TFAResolver<T: Codable> : BaseResolver {
     
     //MARK: - TFA common flow.
     
-    internal func initTFA(tfaProvider: TFAProvider, mode: String, arguments: [String: Any]) {
-        let params = ["regToken": self.regToken, "provider" : tfaProvider.rawValue, "mode": mode]
+     func initTFA(tfaProvider: TFAProvider, mode: TFAMode, arguments: [String: Any]) {
+        let params = ["regToken": self.regToken, "provider" : tfaProvider.rawValue, "mode": mode.rawValue]
         self.businessDelegate?.sendApi(dataType: InitTFAModel.self, api: GigyaDefinitions.API.initTFA, params: params) { [weak self] result in
             switch result {
             case .success(let data):
@@ -106,7 +93,9 @@ public class TFAResolver<T: Codable> : BaseResolver {
                     self?.forwardGeneralError()
                     return
                 }
+
                 self?.gigyaAssertion = gigyaAssertion
+
                 switch tfaProvider {
                 case .gigyaPhone, .liveLink:
                     self?.onTfaInitializedWithPhoneProvider(mode: mode, arguments: arguments)
@@ -115,16 +104,13 @@ public class TFAResolver<T: Codable> : BaseResolver {
                 case .totp:
                     self?.onTfaInitializedWithTotpProvider(mode: mode, arguments: arguments)
                 }
-                break
             case .failure(let error):
-                
                 self?.forwardError(error: error)
-                break
             }
         }
     }
     
-    internal func verifyAuthorizationCode(api: String, params: [String: String]) {
+     func verifyAuthorizationCode(api: String, params: [String: String]) {
         self.businessDelegate?.sendApi(dataType: TFACompleteVerificationModel.self, api: api, params: params, completion: { [weak self] result in
             switch result {
             case .success(let data):
@@ -132,6 +118,7 @@ public class TFAResolver<T: Codable> : BaseResolver {
                     self?.forwardGeneralError()
                     return
                 }
+
                 self?.finalizeTfa(providerAssertion: providerAssertion)
             case .failure(let error):
                 self?.forwardError(error: error)
@@ -139,18 +126,16 @@ public class TFAResolver<T: Codable> : BaseResolver {
         })
     }
     
-    internal func finalizeTfa(providerAssertion: String) {
+     func finalizeTfa(providerAssertion: String) {
         let params = ["regToken": self.regToken, "gigyaAssertion": self.gigyaAssertion, "providerAssertion": providerAssertion] as! [String: String]
         self.businessDelegate?.sendApi(api: GigyaDefinitions.API.finalizeTFA, params: params) { [weak self] result in
             switch result {
             case .success(_):
-                
                 if let self = self  {
                     // Finalize the registration process & complete the flow.
                     self.businessDelegate?.callfinalizeRegistration(regToken: self.regToken, completion: self.completion)
                 }
             case .failure(let error):
-                
                 self?.forwardError(error: error)
             }
         }
@@ -158,33 +143,29 @@ public class TFAResolver<T: Codable> : BaseResolver {
     
     // MARK: - Gigya phone provider specific flow.
     
-    internal func onTfaInitializedWithPhoneProvider(mode: String, arguments: [String: Any]) {
+     func onTfaInitializedWithPhoneProvider(mode: TFAMode, arguments: [String: Any]) {
         switch mode {
-        case "register":
+        case .register:
             let number = arguments["phoneNumber"] as! String
             let method = arguments["method"] as! String
             
             self.sendPhoneVerificationCode(number: number, method: method)
-        case "verify":
-            
+        case .verify:
             self.getRegisteredPhoneNumbers()
-            break
-        default:
-            break
         }
     }
     
-    internal func verifyPhoneAuthorizationCode(authorizationCode: String) {
+     func verifyPhoneAuthorizationCode(authorizationCode: String) {
         guard let gigyaAssertion = self.gigyaAssertion, let phvToken = self.phvToken else {
             self.forwardInitialInterruption()
             return
         }
-       let params = ["gigyaAssertion": gigyaAssertion, "code": authorizationCode, "phvToken": phvToken]
+
+        let params = ["gigyaAssertion": gigyaAssertion, "code": authorizationCode, "phvToken": phvToken]
         verifyAuthorizationCode(api: GigyaDefinitions.API.phoneCompleteVerificationTFA, params: params)
     }
     
-    
-    internal func sendPhoneVerificationCode(number: String = "", phoneId: String = "",  method: String) {
+     func sendPhoneVerificationCode(number: String = "", phoneId: String = "",  method: String) {
         var params = ["gigyaAssertion": self.gigyaAssertion, "method": method, "lang": "eng"] as! [String: String]
         if !number.isEmpty  {
             params["phone"] = number
@@ -192,6 +173,7 @@ public class TFAResolver<T: Codable> : BaseResolver {
         if !phoneId.isEmpty {
             params["phoneID"] = phoneId
         }
+
         self.businessDelegate?.sendApi(dataType: TFAVerificationCodeModel.self, api: GigyaDefinitions.API.sendVerificationCodeTFA, params: params)
         { [weak self] result in
             switch result {
@@ -201,21 +183,21 @@ public class TFAResolver<T: Codable> : BaseResolver {
                     self?.forwardGeneralError()
                     return
                 }
+
                 let loginError = LoginApiError<T>(error: originalError, interruption: .onPhoneVerificationCodeSent)
-                
                 self?.completion(.failure(loginError))
             case .failure(let error):
-               
                 self?.forwardError(error: error)
             }
         }
     }
     
-    internal func getRegisteredPhoneNumbers() {
+     func getRegisteredPhoneNumbers() {
         guard let gigyaAssertion = self.gigyaAssertion else {
             forwardGeneralError()
             return
         }
+
         self.businessDelegate?.sendApi(dataType: TFAGetRegisteredPhoneNumbersModel.self, api: GigyaDefinitions.API.getRegisteredPhoneNumbersTFA, params: ["gigyaAssertion": gigyaAssertion]) {
             [weak self] result in
             switch result {
@@ -224,11 +206,10 @@ public class TFAResolver<T: Codable> : BaseResolver {
                     self?.forwardGeneralError()
                     return
                 }
+
                 let loginError = LoginApiError<T>(error: originalError, interruption: .onRegisteredPhoneNumbers(numbers: numbers))
-                
                 self?.completion(.failure(loginError))
             case .failure(let error):
-                
                 self?.forwardError(error: error)
             }
         }
@@ -236,11 +217,12 @@ public class TFAResolver<T: Codable> : BaseResolver {
     
     // MARK: - Gigya Email provider specific flow.
     
-    internal func onTfaInitializedWithEmailProvider() {
+     func onTfaInitializedWithEmailProvider() {
         guard let gigyaAssertion = self.gigyaAssertion else {
             self.forwardInitialInterruption()
             return
         }
+
         self.businessDelegate?.sendApi(dataType: TFAEmailsModel.self, api: GigyaDefinitions.API.getEmailsTFA, params: ["gigyaAssertion": gigyaAssertion]) { [weak self] result in
             switch result {
             case .success(let data):
@@ -250,17 +232,16 @@ public class TFAResolver<T: Codable> : BaseResolver {
                 }
             
                 let loginError = LoginApiError<T>(error: originalError, interruption: .onRegisteredEmails(emails: emails))
-                
                 self?.completion(.failure(loginError))
             case .failure(let error):
-                
                 self?.forwardError(error: error)
             }
         }
     }
     
-    internal func verifyRegisterdEmail(registeredEmail: TFAEmail) {
+     func verifyRegisterdEmail(registeredEmail: TFAEmail) {
         let params = ["emailID": registeredEmail.id, "gigyaAssertion": self.gigyaAssertion, "lang": "eng"] as! [String: String]
+
         self.businessDelegate?.sendApi(dataType: TFAVerificationCodeModel.self, api: GigyaDefinitions.API.emailSendVerificationCodeTFA, params: params) { [weak self] result in
             switch result {
             case .success(let data):
@@ -271,39 +252,45 @@ public class TFAResolver<T: Codable> : BaseResolver {
                 self?.phvToken = phvToken
                 
                 let loginError = LoginApiError<T>(error: originalError, interruption: .onEmailVerificationCodeSent)
-                
                 self?.completion(.failure(loginError))
             case .failure(let error):
-                
                 self?.forwardError(error: error)
             }
         }
     }
+
+     func verifyEmailAuthorizationCode(authorizationCode: String) {
+        guard let gigyaAssertion = self.gigyaAssertion, let phvToken = self.phvToken else {
+            self.forwardInitialInterruption()
+            return
+        }
+
+        let params = ["gigyaAssertion": gigyaAssertion, "code": authorizationCode, "phvToken": phvToken]
+        verifyAuthorizationCode(api: GigyaDefinitions.API.emailCompleteVerificationTFA, params: params)
+    }
     
     // MARK: - Gigya Totp provider specific flow.
     
-    internal func onTfaInitializedWithTotpProvider(mode: String, arguments: [String: Any]) {
+     func onTfaInitializedWithTotpProvider(mode: TFAMode, arguments: [String: Any]) {
         switch mode {
-        case "register":
-            
+        case .register:
             self.getTotpQRCode()
-        case "verify":
+        case .verify:
             guard let authorizationCode = arguments["authorizationCode"] as? String else {
                 self.forwardGeneralError()
                 return
             }
             
             self.verifyTotpAuthorizationCode(authorizationCode: authorizationCode)
-        default:
-            break
         }
     }
     
-    internal func getTotpQRCode() {
+     func getTotpQRCode() {
         guard let gigyaAssertion = self.gigyaAssertion else {
             self.forwardGeneralError()
             return
         }
+
         self.businessDelegate?.sendApi(dataType: TFATotpRegisterModel.self, api: GigyaDefinitions.API.totpRegisterTFA, params: ["gigyaAssertion": gigyaAssertion]) { [weak self] result in
             switch result {
                 
@@ -314,17 +301,16 @@ public class TFAResolver<T: Codable> : BaseResolver {
                 }
                 
                 self?.sctToken = sctToken
-                let loginError = LoginApiError<T>(error: originalError, interruption: .onTotpQRCode(qrCode: qrCode))
-                
+
+                let loginError = LoginApiError<T>(error: originalError, interruption: .onTotpQRCode(qrCode: qrCode)) // TODO: return uiimage
                 self?.completion(.failure(loginError))
             case .failure(let error):
-                
                 self?.forwardError(error: error)
             }
         }
     }
     
-    internal func verifyTotpAuthorizationCode(authorizationCode: String) {
+     func verifyTotpAuthorizationCode(authorizationCode: String) {
         guard let gigyaAssertion = self.gigyaAssertion else {
             self.forwardInitialInterruption()
             return
@@ -334,7 +320,7 @@ public class TFAResolver<T: Codable> : BaseResolver {
         if let sctToken = self.sctToken {
             params["sctToken"] = sctToken
         }
+
         verifyAuthorizationCode(api: GigyaDefinitions.API.totpVerifyTFA, params: params)
     }
-    
 }

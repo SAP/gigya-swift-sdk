@@ -11,7 +11,6 @@ import UIKit
 import GigyaSwift
 
 public enum TFAMode: String {
-    
     case registration = "registration"
     case verification = "verification"
 }
@@ -69,21 +68,18 @@ class TfaViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return tfaProviders[row].name
+        return tfaProviders[row].name.rawValue
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         let selectedProvider = tfaProviders[row]
         switch selectedProvider.name  {
-        case "gigyaPhone", "liveLink":
+        case .gigyaPhone, .liveLink:
             onTfaPhoneProviderSelection()
-        case "gigyaTotp":
+        case .totp:
             onTfaTotpProviderSelection()
-        case "gigyaEmail":
+        case .email:
             onTfaEmailProviderSelection()
-            break
-        default:
-            break
         }
     }
     
@@ -110,8 +106,8 @@ class TfaViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
             let cell = tableView.dequeueReusableCell(withIdentifier: "TfaAuthCodeCell", for: indexPath) as! TfaAuthCodeCell
             cell.delegate = self
             cell.mode = self.tfaMode
-            let provider = TFAProvider.byName(name: tfaProviders[providerPickerView.selectedRow(inComponent: 0)].name ?? "gigyaPhone")
-            cell.provider = provider!
+            let provider = tfaProviders[providerPickerView.selectedRow(inComponent: 0)].name
+            cell.provider = provider
             return cell
         } else if(content[indexPath.row] == "qrCode") {
             let cell = tableView.dequeueReusableCell(withIdentifier: "TfaQrCodeCell", for: indexPath) as! TfaQrCodeCell
@@ -154,10 +150,8 @@ class TfaViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         case .registration:
             reloadTableWith(content:  [""])
             registrationResolverDelegate?.startRegistrationWithTotp()
-            break
         case .verification:
             reloadTableWith(content: ["authCode"])
-            break
         }
     }
     

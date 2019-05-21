@@ -9,7 +9,6 @@
 import Foundation
 
 public protocol TFARegistrationResolverProtocol {
-    
     var tfaProviders: [TFAProviderModel] { get set }
     
     func startRegistrationWithPhone(phoneNumber: String, method: String?)
@@ -35,11 +34,11 @@ class TFARegistrationResolver<T: Codable> : TFAResolver<T>, TFARegistrationResol
     }
     
     public func startRegistrationWithPhone(phoneNumber: String, method: String? = "sms") {
-        initTFA(tfaProvider: .gigyaPhone, mode: "register", arguments: ["phoneNumber" : phoneNumber, "method": method!] as [String: Any])
+        initTFA(tfaProvider: .gigyaPhone, mode: .register, arguments: ["phoneNumber" : phoneNumber, "method": method!] as [String: Any])
     }
     
-    func startRegistrationWithTotp() {
-        initTFA(tfaProvider: .totp, mode: "register", arguments: [:])
+    public func startRegistrationWithTotp() {
+        initTFA(tfaProvider: .totp, mode: .register, arguments: [:])
     }
     
     public func verifyCode(provider: TFAProvider, authenticationCode: String) {
@@ -48,10 +47,8 @@ class TFARegistrationResolver<T: Codable> : TFAResolver<T>, TFARegistrationResol
             verifyPhoneAuthorizationCode(authorizationCode: authenticationCode)
         case .totp:
             verifyTotpAuthorizationCode(authorizationCode: authenticationCode)
-        case .email:
+        default:
             break
         }
-        
     }
-    
 }
