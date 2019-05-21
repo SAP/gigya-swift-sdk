@@ -28,7 +28,7 @@ protocol IOCBusinessApiServiceProtocol {
 
     func setAccount<T: Codable>(obj: T, completion: @escaping (GigyaApiResult<T>) -> Void)
     
-    func register<T: Codable>(params: [String: Any], dataType: T.Type, completion: @escaping (GigyaApiResult<T>) -> Void)
+    func register<T: Codable>(params: [String: Any], dataType: T.Type, completion: @escaping (GigyaLoginResult<T>) -> Void)
 
     func login<T: Codable>(dataType: T.Type, loginId: String, password: String, params: [String:Any], completion: @escaping (GigyaLoginResult<T>) -> Void)
 

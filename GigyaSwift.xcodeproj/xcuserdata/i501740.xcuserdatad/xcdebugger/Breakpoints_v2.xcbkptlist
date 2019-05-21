@@ -26,12 +26,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GigyaSwift/Network/Request/ApiService.swift"
-            timestampString = "579514609.0438811"
+            timestampString = "579704028.412549"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "42"
-            endingLineNumber = "42"
-            landmarkName = "send(model:responseType:completion:)"
+            startingLineNumber = "67"
+            endingLineNumber = "67"
+            landmarkName = "validateResult(responseType:data:completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -85,6 +85,8 @@ class ViewController: UIViewController {
     
     var isLoggedIn = false
     
+    var tfaViewController: TfaViewController?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -105,11 +107,96 @@ class ViewController: UIViewController {
     }
 
     @IBAction func login(_ sender: Any) {
-        
+        let alert = UIFactory.getLoginAlert { email, password in
+            self.gigya.login(loginId: email!, password: password!) { [weak self] result in
+                switch result {
+                case .success(let data):
+                    self?.resultTextView?.text = data.toJson()
+                    self?.dismissTfaController()
+                case .failure(let error):
+                    print(error)
+                    guard let interruption = error.interruption else { return }
+                    // Evaluage interruption.
+                    switch interruption {
+                    case .pendingTwoFactorVerification(let resolver):
+                        // Reference active providers (verification).
+                        let providers = resolver.tfaProviders
+                        // Present TFA controller for verification flow.
+                        self?.presentTFAController(tfaProviders: providers, mode: .verification, verificationResolver: resolver)
+                    case .pendingTwoFactorRegistration(let resolver):
+                        // Reference inactive providers (registration).
+                        let providers = resolver.tfaProviders
+                        // Present TFA controller for registration flow.
+                        self?.presentTFAController(tfaProviders: providers, mode: .registration, registrationResolver: resolver)
+                    case .onTotpQRCode(let qrImage):
+                        self?.tfaViewController?.onQRCodeAvailable(qrImage: qrImage)
+                    case .onRegisteredPhoneNumbers(let registeredNumbers):
+                        self?.tfaViewController?.onRegisteredPhone(numbers: registeredNumbers)
+                    case .onRegisteredEmails(let emails):
+                        self?.tfaViewController?.onRegisteredEmail(addresses: emails)
+                    case .onPhoneVerificationCodeSent:
+                        print("Phone verification code sent")
+                    case .onEmailVerificationCodeSent:
+                        print("Email verification code send")
+                    default:
+                        break
+                    }
+                }
+            }
+        }
+
+         self.present(alert, animated: true, completion: nil)
     }
     
     @IBAction func register(_ sender: Any) {
-        
+        let alert = UIFactory.getRegistrationAlert { email, password, expiration in
+            let params = ["email": email!, "password": password!, "sessionExpiration": expiration!] as [String : Any]
+            self.gigya.register(params: params) { [weak self] result in
+                switch result {
+                case .success(let data):
+                    self?.resultTextView?.text = data.toJson()
+                    self?.dismissTfaController()
+                case .failure(let error):
+                    print(error) // general error
+
+                    guard let interruption = error.interruption else { return }
+                    // Evaluage interruption.
+                    switch interruption {
+                    case .pendingTwoFactorRegistration(let resolver):
+                        // Reference inactive providers (registration).
+                        let providers = resolver.tfaProviders
+                        // Present TFA controller for registration flow.
+                        self?.presentTFAController(tfaProviders: providers, mode: .registration, registrationResolver: resolver)
+                    case .onPhoneVerificationCodeSent:
+                        print("Phone verification code sent")
+                    case .onEmailVerificationCodeSent:
+                        print("Email verification code send")
+                    case .onTotpQRCode(let code):
+                        self?.tfaViewController?.onQRCodeAvailable(qrImage: code)
+                    default:
+                        break
+                    }
+                }
+            }
+        }
+    
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func presentTFAController(tfaProviders: [TFAProviderModel], mode: TFAMode, verificationResolver: TFAVerificationResolverProtocol? = nil, registrationResolver: TFARegistrationResolverProtocol? = nil) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        tfaViewController = storyboard.instantiateViewController(withIdentifier: "TFAUIAlertViewController") as? TfaViewController
+        tfaViewController?.tfaProviders = tfaProviders
+        tfaViewController?.tfaMode = mode
+        tfaViewController?.registrationResolverDelegate = registrationResolver
+        tfaViewController?.verificationResolverDelegate = verificationResolver
+        self.navigationController?.pushViewController(tfaViewController!, animated: true)
+    }
+    
+    func dismissTfaController() {
+        if self.tfaViewController != nil {
+            self.navigationController?.popViewController(animated: true)
+        }
     }
     
     @IBAction func addConnection(_ sender: Any) {
@@ -117,32 +204,19 @@ class ViewController: UIViewController {
             print("Need to be logged in to perform action")
             return
         }
-        let alert = UIAlertController(title: "Add social connection", message: "Enter provider Name", preferredStyle: .alert)
-        alert.addTextField { (textField) in
-            textField.text = ""
-            textField.accessibilityIdentifier = "TextField"
-        }
-        
-        alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: { [weak alert] (_) in
-            alert?.dismiss(animated: true, completion: nil)
-            }))
-        alert.addAction(UIAlertAction(title: "Add", style: .default, handler: { [weak alert, weak self] (_) in
-            let textField = alert?.textFields![0] // Force unwrapping because we know it exists.
-            guard let providerName = textField?.text else { return }
+        let alert = UIFactory.getConnectionAlert(title: "Add social connection") { [weak self] providerName in
+           if let provider = GigyaSocielProviders.byName(name: providerName) {
             guard let self = self else { return }
-            if let provider = GigyaSocielProviders.byName(name: providerName) {
                 self.gigya.addConnection(provider: provider, viewController: self, params: [:]) { result in
                     switch result {
                     case .success(let data):
                         self.resultTextView?.text = data.toJson()
-                        break
                     case .failure(_):
                         self.resultTextView?.text = "Failed operation"
-                        break
                     }
                 }
             }
-        }))
+        }
         
         self.present(alert, animated: true, completion: nil)
     }
@@ -153,31 +227,16 @@ class ViewController: UIViewController {
             print("Need to be logged in to perform action")
             return
         }
-        let alert = UIAlertController(title: "Remove social connection", message: "Enter provider Name", preferredStyle: .alert)
-        alert.addTextField { (textField) in
-            textField.text = ""
-            textField.accessibilityIdentifier = "TextField"
-        }
-        
-        alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: { [weak alert] (_) in
-            alert?.dismiss(animated: true, completion: nil)
-        }))
-
-        alert.addAction(UIAlertAction(title: "Remove", style: .default, handler: { [weak alert, weak self] (_) in
-            let textField = alert?.textFields![0] // Force unwrapping because we know it exists.
-            guard let providerName = textField?.text else { return }
-            guard let self = self else { return }
-
-            self.gigya.removeConnection(provider: GigyaSocielProviders(rawValue: providerName) ?? .google) { result in
+        let alert = UIFactory.getConnectionAlert(title: "Remove social connection") { [weak self] providerName in
+            self?.gigya.removeConnection(provider: providerName) { result in
                 switch result {
-                case .success:
-                    self.resultTextView?.text = "Connection removed"
-                    break
+                case .success(_):
+                    self?.resultTextView?.text = "Connection removed"
                 case .failure(_):
-                    break
+                    self?.resultTextView?.text = "Failed operation"
                 }
             }
-        }))
+        }
         
         self.present(alert, animated: true, completion: nil)
     }
@@ -215,25 +274,47 @@ class ViewController: UIViewController {
     }
     
     @IBAction func loginWithProvider(_ sender: Any) {
-        gigya.login(with: .wechat, viewController: self ) { result in
+        gigya.login(with: .google, viewController: self ) { [weak self] result in
             switch result {
             case .success(let data):
                 print(data)
-                self.resultTextView?.text = data.toJson()
+                self?.resultTextView?.text = data.toJson()
             case .failure(let error):
                 print(error)
                 guard let interruption = error.interruption else { return }
-                
+                // Evaluage interruption.
                 switch interruption {
                 case .pendingVerification(let regToken):
-                    break
+                    print("regToken: \(regToken)")
                 case .conflitingAccounts(let resolver):
-//                    resolver.linkToSocial(provider: .facebook, viewController: self)
+                    //resolver.linkToSocial(provider: .facebook, viewController: self)
                     resolver.linkToSite(loginId: resolver.conflictingAccount?.loginID ?? "", password: "123123")
-                    break
                 case .pendingRegistration(let regToken):
+                    print("regToken: \(regToken)")
+                case .pendingTwoFactorVerification(let resolver):
+                    // Reference active providers (verification).
+                    let providers = resolver.tfaProviders
+                    // Present TFA controller for verification flow.
+                    self?.presentTFAController(tfaProviders: providers, mode: .verification, verificationResolver: resolver)
+                case .pendingTwoFactorRegistration(let resolver):
+                    // Reference inactive providers (registration).
+                    let providers = resolver.tfaProviders
+                    // Present TFA controller for registration flow.
+                    self?.presentTFAController(tfaProviders: providers, mode: .registration, registrationResolver: resolver)
+                case .onTotpQRCode(let code):
+                    self?.tfaViewController?.onQRCodeAvailable(qrImage: code)
+                case .onRegisteredPhoneNumbers(let registeredNumbers):
+                    self?.tfaViewController?.onRegisteredPhone(numbers: registeredNumbers)
+                case .onRegisteredEmails(let emails):
+                    self?.tfaViewController?.onRegisteredEmail(addresses: emails)
+                case .onPhoneVerificationCodeSent:
+                    print("Phone verification code sent")
+                case .onEmailVerificationCodeSent:
+                    print("Email verification code send")
+                default:
                     break
                 }
+                
             }
         }
     }

@@ -152,7 +152,7 @@ public class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
      - Parameter pass:          user password.
      - Parameter completion:    Response GigyaApiResult.
      */
-    public func register(params: [String: Any], completion: @escaping (GigyaApiResult<T>) -> Void) {
+    public func register(params: [String: Any], completion: @escaping (GigyaLoginResult<T>) -> Void) {
         businessApiService.register(params: params, dataType: T.self, completion: completion)
     }
 

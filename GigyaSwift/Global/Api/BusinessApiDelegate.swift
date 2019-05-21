@@ -9,6 +9,7 @@
 import Foundation
 
 protocol BusinessApiDelegate: class {
+    
     func sendApi(api: String, params: [String: String], completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void )
 
     func sendApi<T: Codable>(dataType: T.Type, api: String, params: [String: String], completion: @escaping (GigyaApiResult<T>) -> Void)
@@ -21,9 +22,12 @@ protocol BusinessApiDelegate: class {
                            params: [String: Any], dataType: T.Type, completion: @escaping (GigyaLoginResult<T>) -> Void)
     
     func callLogin<T: Codable>(dataType: T.Type, loginId: String, password: String, params: [String:Any], completion: @escaping (GigyaLoginResult<T>) -> Void)
+    
+    func callfinalizeRegistration<T: Codable>(regToken: String, completion: @escaping (GigyaLoginResult<T>) -> Void)
 }
 
 extension BusinessApiService: BusinessApiDelegate {
+    
     func sendApi<T: Codable>(dataType: T.Type, api: String, params: [String: String], completion: @escaping (GigyaApiResult<T>) -> Void) {
         self.send(dataType: dataType, api: api, params: params, completion: completion)
     }
@@ -45,5 +49,9 @@ extension BusinessApiService: BusinessApiDelegate {
     
     func callLogin<T: Codable>(dataType: T.Type, loginId: String, password: String, params: [String : Any], completion: @escaping (GigyaLoginResult<T>) -> Void)  {
         self.login(dataType: dataType, loginId: loginId, password: password, params: params, completion: completion)
+    }
+    
+    func callfinalizeRegistration<T>(regToken: String, completion: @escaping (GigyaLoginResult<T>) -> Void) where T : Decodable, T : Encodable {
+        self.finalizeRegistration(regToken: regToken, completion: completion)
     }
 }

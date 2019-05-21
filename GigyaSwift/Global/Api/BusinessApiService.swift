@@ -77,22 +77,30 @@ class BusinessApiService: NSObject, IOCBusinessApiServiceProtocol {
         }
     }
 
-    func register<T: Codable>(params: [String: Any], dataType: T.Type, completion: @escaping (GigyaApiResult<T>) -> Void) {
+    func register<T: Codable>(params: [String: Any], dataType: T.Type, completion: @escaping (GigyaLoginResult<T>) -> Void) {
         let model = ApiRequestModel(method: GigyaDefinitions.API.initRegistration)
 
         apiService.send(model: model, responseType: [String: AnyCodable].self) { [weak self] (result) in
             switch result {
-
             case .success(let data):
                 let regToken = data["regToken"]?.value ?? ""
                 let makeParams: [String: Any] = ["regToken": regToken, "finalizeRegistration": "true"].merging(params) { $1 }
 
                 let model = ApiRequestModel(method: GigyaDefinitions.API.register, params: makeParams)
 
-                self?.apiService.send(model: model, responseType: T.self, completion: completion)
+                self?.apiService.send(model: model, responseType: T.self) { result in
+                    switch result {
+                    case .success(let data):
+                        completion(.success(data: data))
+
+                        self?.clearOptionalObjects()
+                    case .failure(let error):
+                        self?.interruptionResolver(error: error, completion: completion)
+                    }
+                }
 
             case .failure(let error):
-                completion(.failure(error))
+                self?.forwordFailed(error: error, completion: completion)
             }
         }
     }
@@ -108,7 +116,10 @@ class BusinessApiService: NSObject, IOCBusinessApiServiceProtocol {
             switch result {
             case .success(let data):
                 self?.accountService.account = data
+
                 completion(.success(data: data))
+
+                self?.clearOptionalObjects()
             case .failure(let error):
                 self?.interruptionResolver(error: error, completion: completion)
             }
@@ -126,11 +137,10 @@ class BusinessApiService: NSObject, IOCBusinessApiServiceProtocol {
             case .failure(let error):
                 self.interruptionResolver(error: error, completion: completion)
             }
-
         }
 
         providerAdapter?.didFinish = { [weak self] in
-            self?.providerAdapter = nil
+            self?.clearOptionalObjects()
         }
     }
 
@@ -158,7 +168,7 @@ class BusinessApiService: NSObject, IOCBusinessApiServiceProtocol {
         }
         
         providerAdapter?.didFinish = { [weak self] in
-            self?.providerAdapter = nil
+            self?.clearOptionalObjects()
         }
     }
     
@@ -178,7 +188,7 @@ class BusinessApiService: NSObject, IOCBusinessApiServiceProtocol {
         apiService.send(model: model, responseType: GigyaDictionary.self, completion: completion)
     }
 
-    private func finalizeRegistration<T: Codable>(regToken: String, completion: @escaping (GigyaLoginResult<T>) -> Void) {
+    func finalizeRegistration<T: Codable>(regToken: String, completion: @escaping (GigyaLoginResult<T>) -> Void) {
         let params = ["regToken": regToken, "include": "profile,data,emails,subscriptions,preferences", "includeUserInfo": "true"]
 
         GigyaLogger.log(with: self, message: "[finalizeRegistration] - params: \(params)")
@@ -222,7 +232,7 @@ class BusinessApiService: NSObject, IOCBusinessApiServiceProtocol {
                 }
 
                 switch errorCode {
-                case .pendingRegistration:
+                case .pendingRegistration: // pending registration
                     let loginError = LoginApiError<T>(error: error, interruption: .pendingRegistration(regToken: regToken))
                     completion(.failure(loginError))
                 case .pendingVerification: // pending veryfication
@@ -230,10 +240,12 @@ class BusinessApiService: NSObject, IOCBusinessApiServiceProtocol {
                     completion(.failure(loginError))
                 case .conflitingAccounts: // conflicting accounts
                     resolver = LinkAccountsResolver(originalError: error, regToken: regToken, businessDelegate: self, completion: completion)
-                case .accountLinked:
+                case .accountLinked: // account successfuly linked
                     self.finalizeRegistration(regToken: regToken, completion: completion)
-                default:
-                    break
+                case .pendingTwoFactorRegistration: // pending TFA registration
+                    resolver = TFARegistrationResolver(originalError: error, regToken: regToken, businessDelegate: self, completion: completion)
+                case .pendingTwoFactorVerification: // pending TFA verification
+                    resolver = TFAVerificationResolver(originalError: error, regToken: regToken, businessDelegate: self , completion: completion)
                 }
             } else {
                 GigyaLogger.log(with: self, message: "[interruptionResolver] - interruption not supported")
@@ -251,4 +263,10 @@ class BusinessApiService: NSObject, IOCBusinessApiServiceProtocol {
         let loginError = LoginApiError<T>(error: error, interruption: nil)
         completion(.failure(loginError))
     }
+
+    private func clearOptionalObjects() {
+        self.providerAdapter = nil
+        self.resolver = nil
+    }
+
 }

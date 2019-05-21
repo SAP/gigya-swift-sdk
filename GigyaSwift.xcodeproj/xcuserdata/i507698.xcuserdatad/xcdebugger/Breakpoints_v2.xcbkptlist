@@ -6,16 +6,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GigyaSwiftTests/Network/BusinessApiTest.swift"
-            timestampString = "580055628.3715481"
+            filePath = "GigyaSwift/Global/Api/BusinessApiService.swift"
+            timestampString = "580127234.651168"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "199"
-            endingLineNumber = "199"
-            landmarkName = "testSetAccountFailed()"
+            startingLineNumber = "180"
+            endingLineNumber = "180"
+            landmarkName = "logout(completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
