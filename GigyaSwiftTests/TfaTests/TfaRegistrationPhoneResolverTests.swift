@@ -26,7 +26,7 @@ class TfaRegistrationPhoneResolverTests: XCTestCase {
 
     }
 
-    func runTfaRegistrationResolver(with dic: [String: Any], callback: @escaping () -> () = {}, callback2: @escaping () -> () = {}) {
+    func runTfaRegistrationResolver(with dic: [String: Any], callback: @escaping () -> () = {}, callback2: @escaping () -> () = {}, errorCallback: @escaping (String) -> () = { error in XCTFail(error) }) {
         // swiftlint:disable force_try
         let jsonData = try! JSONSerialization.data(withJSONObject: dic, options: .prettyPrinted)
         // swiftlint:enable force_try
@@ -45,6 +45,10 @@ class TfaRegistrationPhoneResolverTests: XCTestCase {
                 print(error) // general error
                 if case .dataNotFound = error.error {
                     XCTAssert(true)
+                }
+
+                if case .jsonParsingError(let error) = error.error{
+                    errorCallback(error.localizedDescription)
                 }
 
                 guard let interruption = error.interruption else {
@@ -92,7 +96,9 @@ class TfaRegistrationPhoneResolverTests: XCTestCase {
 
         let dic: [String: Any] = ["errorCode": 0, "callId": "34324", "statusCode": 200, "gigyaAssertion": "123","phvToken": "123","providerAssertion": "123","regToken": "123","activeProviders": activeProviders, "inactiveProviders": inactiveProviders]
 
-        runTfaRegistrationResolver(with: dic)
+        runTfaRegistrationResolver(with: dic, errorCallback: { error in
+            XCTAssertNotNil(error)
+        })
     }
 
     func testTfaInitError() {
