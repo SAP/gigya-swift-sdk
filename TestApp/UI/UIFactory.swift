@@ -9,7 +9,6 @@
 import Foundation
 import UIKit
 
-
 class UIFactory {
     
     static func getLoginAlert(onSubmit: @escaping (_ email: String?, _ password: String?) -> Void) -> UIAlertController {

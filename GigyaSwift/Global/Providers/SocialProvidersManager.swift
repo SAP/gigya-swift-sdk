@@ -30,7 +30,7 @@ class SocialProvidersManager: IOCSocialProvidersManagerProtocol {
         for provider in GigyaNativeSocielProviders.allCases {
             if let providerWrapperClass = NSClassFromString("\(Bundle.appName()).\(provider.getClassName())") {
                 guard let providerWrapper = providerWrapperClass as AnyClass as? ProviderWrapperProtocol.Type else {
-                    GigyaLogger.error(message: "\(providerWrapperClass.description()) not extend to ProviderWrapperProtocol")
+                    GigyaLogger.error(message: "\(provider.getClassName()) not extend to ProviderWrapperProtocol")
                 }
 
                 providersContainer[provider] = providerWrapper.init()

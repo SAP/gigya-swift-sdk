@@ -130,7 +130,7 @@ class BusinessApiService: NSObject, IOCBusinessApiServiceProtocol {
                            params: [String: Any], dataType: T.Type, completion: @escaping (GigyaLoginResult<T>) -> Void) {
         providerAdapter = socialProviderFactory.getProvider(with: provider, delegate: self)
 
-        providerAdapter?.login(type: T.self, params: params, viewController: viewController, loginMode: "login") { (result) in
+        providerAdapter?.login(type: T.self, params: params, viewController: viewController, loginMode: "standart") { (result) in
             switch result {
             case .success(let data):
                 completion(.success(data: data))

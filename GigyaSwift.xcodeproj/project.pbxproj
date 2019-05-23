@@ -69,6 +69,7 @@
 		E7A6E0CA224258C80063638F /* GigyaRequstTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A6E0C9224258C80063638F /* GigyaRequstTest.swift */; };
 		E7A6E0CE22425A910063638F /* NetworkAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A6E0CD22425A910063638F /* NetworkAdapter.swift */; };
 		E7AB6B6C2293EEC2008C3993 /* TFAProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7AB6B6B2293EEC2008C3993 /* TFAProvider.swift */; };
+		E7AB6B7522940D3C008C3993 /* TfaRegistrationPhoneResolverTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7AB6B7422940D3C008C3993 /* TfaRegistrationPhoneResolverTests.swift */; };
 		E7ACF9A8226C83F200900C65 /* IOCBusinessApiServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7ACF9A7226C83F200900C65 /* IOCBusinessApiServiceProtocol.swift */; };
 		E7ACF9AC226C841300900C65 /* IOCApiServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7ACF9AB226C841300900C65 /* IOCApiServiceProtocol.swift */; };
 		E7ACF9AE226C843100900C65 /* IOCSessionServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7ACF9AD226C843100900C65 /* IOCSessionServiceProtocol.swift */; };
@@ -82,14 +83,20 @@
 		E7BE36A42224260500A108D9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E7BE36A32224260500A108D9 /* Assets.xcassets */; };
 		E7BE36A72224260500A108D9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E7BE36A52224260500A108D9 /* LaunchScreen.storyboard */; };
 		E7BE36C82224306E00A108D9 /* GigyaSwift.swift in Headers */ = {isa = PBXBuildFile; fileRef = E7BE368A2224225100A108D9 /* GigyaSwift.swift */; };
+		E7BE57862296C04E00C17D93 /* StringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BE57852296C04E00C17D93 /* StringTests.swift */; };
 		E7C859C8228866D7005C1FBE /* GigyaSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7C859C7228866AA005C1FBE /* GigyaSDK.framework */; };
 		E7C859DB2289604F005C1FBE /* LinkAccountsResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C859DA2289604F005C1FBE /* LinkAccountsResolver.swift */; };
 		E7C859E02289B299005C1FBE /* InterruptionEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C859DF2289B299005C1FBE /* InterruptionEnum.swift */; };
 		E7C859E7228C52A0005C1FBE /* ConflictingAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C859E6228C52A0005C1FBE /* ConflictingAccount.swift */; };
-		E7C859FD2292B13D005C1FBE /* TfaLinkAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C859FC2292B13C005C1FBE /* TfaLinkAccount.swift */; };
-		E7C859FF2292B1D5005C1FBE /* TfaGlobal.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C859FE2292B1D5005C1FBE /* TfaGlobal.swift */; };
+		E7C859FD2292B13D005C1FBE /* TfaLinkAccountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C859FC2292B13C005C1FBE /* TfaLinkAccountTests.swift */; };
+		E7C859FF2292B1D5005C1FBE /* TfaGlobalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C859FE2292B1D5005C1FBE /* TfaGlobalTests.swift */; };
 		E7C85A012292CA45005C1FBE /* SocialManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C85A002292CA45005C1FBE /* SocialManagerTests.swift */; };
 		E7C85A052292DA77005C1FBE /* GoogleWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C85A042292DA77005C1FBE /* GoogleWrapper.swift */; };
+		E7C8FA492295775000E69634 /* WebProviderLoginTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C8FA482295775000E69634 /* WebProviderLoginTests.swift */; };
+		E7C8FA4D229578A200E69634 /* WebProviderWrapperMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C8FA4C229578A200E69634 /* WebProviderWrapperMock.swift */; };
+		E7C8FA4F22957E8C00E69634 /* TFAVerificationpPhoneResolverTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C8FA4E22957E8C00E69634 /* TFAVerificationpPhoneResolverTests.swift */; };
+		E7C8FA512296917C00E69634 /* TFAVerificationEmailResolverTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C8FA502296917C00E69634 /* TFAVerificationEmailResolverTests.swift */; };
+		E7C8FA542296BBF600E69634 /* UserDefaultsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C8FA532296BBF600E69634 /* UserDefaultsTests.swift */; };
 		E7CBAF9D22282BE3000B6C11 /* KeychainStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CBAF9C22282BE3000B6C11 /* KeychainStorage.swift */; };
 		E7CBAFA022282C56000B6C11 /* KeychainPasscode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CBAF9F22282C56000B6C11 /* KeychainPasscode.swift */; };
 		E7CBAFA4222BC881000B6C11 /* InternalConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CBAFA3222BC881000B6C11 /* InternalConfig.swift */; };
@@ -269,6 +276,7 @@
 		E7A6E0C9224258C80063638F /* GigyaRequstTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigyaRequstTest.swift; sourceTree = "<group>"; };
 		E7A6E0CD22425A910063638F /* NetworkAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkAdapter.swift; sourceTree = "<group>"; };
 		E7AB6B6B2293EEC2008C3993 /* TFAProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TFAProvider.swift; sourceTree = "<group>"; };
+		E7AB6B7422940D3C008C3993 /* TfaRegistrationPhoneResolverTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TfaRegistrationPhoneResolverTests.swift; sourceTree = "<group>"; };
 		E7ACF9A7226C83F200900C65 /* IOCBusinessApiServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOCBusinessApiServiceProtocol.swift; sourceTree = "<group>"; };
 		E7ACF9AB226C841300900C65 /* IOCApiServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOCApiServiceProtocol.swift; sourceTree = "<group>"; };
 		E7ACF9AD226C843100900C65 /* IOCSessionServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOCSessionServiceProtocol.swift; sourceTree = "<group>"; };
@@ -285,14 +293,20 @@
 		E7BE36A32224260500A108D9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E7BE36A62224260500A108D9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E7BE36A82224260500A108D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E7BE57852296C04E00C17D93 /* StringTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringTests.swift; sourceTree = "<group>"; };
 		E7C859C1228866AA005C1FBE /* GigyaSDK.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GigyaSDK.xcodeproj; path = "../../../Documents/gigya-ios-sdk/GigyaSDK.xcodeproj"; sourceTree = "<group>"; };
 		E7C859DA2289604F005C1FBE /* LinkAccountsResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkAccountsResolver.swift; sourceTree = "<group>"; };
 		E7C859DF2289B299005C1FBE /* InterruptionEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterruptionEnum.swift; sourceTree = "<group>"; };
 		E7C859E6228C52A0005C1FBE /* ConflictingAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConflictingAccount.swift; sourceTree = "<group>"; };
-		E7C859FC2292B13C005C1FBE /* TfaLinkAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TfaLinkAccount.swift; sourceTree = "<group>"; };
-		E7C859FE2292B1D5005C1FBE /* TfaGlobal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TfaGlobal.swift; sourceTree = "<group>"; };
+		E7C859FC2292B13C005C1FBE /* TfaLinkAccountTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TfaLinkAccountTests.swift; sourceTree = "<group>"; };
+		E7C859FE2292B1D5005C1FBE /* TfaGlobalTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TfaGlobalTests.swift; sourceTree = "<group>"; };
 		E7C85A002292CA45005C1FBE /* SocialManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialManagerTests.swift; sourceTree = "<group>"; };
 		E7C85A042292DA77005C1FBE /* GoogleWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleWrapper.swift; sourceTree = "<group>"; };
+		E7C8FA482295775000E69634 /* WebProviderLoginTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebProviderLoginTests.swift; sourceTree = "<group>"; };
+		E7C8FA4C229578A200E69634 /* WebProviderWrapperMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebProviderWrapperMock.swift; sourceTree = "<group>"; };
+		E7C8FA4E22957E8C00E69634 /* TFAVerificationpPhoneResolverTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TFAVerificationpPhoneResolverTests.swift; sourceTree = "<group>"; };
+		E7C8FA502296917C00E69634 /* TFAVerificationEmailResolverTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TFAVerificationEmailResolverTests.swift; sourceTree = "<group>"; };
+		E7C8FA532296BBF600E69634 /* UserDefaultsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsTests.swift; sourceTree = "<group>"; };
 		E7CBAF9C22282BE3000B6C11 /* KeychainStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainStorage.swift; sourceTree = "<group>"; };
 		E7CBAF9F22282C56000B6C11 /* KeychainPasscode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainPasscode.swift; sourceTree = "<group>"; };
 		E7CBAFA3222BC881000B6C11 /* InternalConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternalConfig.swift; sourceTree = "<group>"; };
@@ -559,6 +573,7 @@
 			children = (
 				E756A29A2275CC04007FA801 /* Mocks */,
 				E756A2982275CB5C007FA801 /* SocialProviderLoginTests.swift */,
+				E7C8FA482295775000E69634 /* WebProviderLoginTests.swift */,
 				E7C85A002292CA45005C1FBE /* SocialManagerTests.swift */,
 			);
 			path = Providers;
@@ -570,6 +585,7 @@
 				E756A29B2275CC13007FA801 /* ProviderFactoryMock.swift */,
 				E756A29F2275D46D007FA801 /* SocialProviderMock.swift */,
 				E756A29D2275CC59007FA801 /* SocialProviderWrapperMock.swift */,
+				E7C8FA4C229578A200E69634 /* WebProviderWrapperMock.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -607,6 +623,8 @@
 				E7E80D86224BBF1A00D3B663 /* TestsUtils */,
 				E7E80D7F224BAEE500D3B663 /* Init */,
 				E7A6E0BF224257810063638F /* Network */,
+				E7C8FA522296BBD200E69634 /* Storge */,
+				E7BE57822296C03400C17D93 /* Extensions */,
 				E7A6E0B8224256390063638F /* Info.plist */,
 			);
 			path = GigyaSwiftTests;
@@ -709,6 +727,14 @@
 			path = TestApp;
 			sourceTree = "<group>";
 		};
+		E7BE57822296C03400C17D93 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				E7BE57852296C04E00C17D93 /* StringTests.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		E7C859BF22819890005C1FBE /* SocialLogin */ = {
 			isa = PBXGroup;
 			children = (
@@ -740,8 +766,11 @@
 		E7C859FB2292B129005C1FBE /* TfaTests */ = {
 			isa = PBXGroup;
 			children = (
-				E7C859FC2292B13C005C1FBE /* TfaLinkAccount.swift */,
-				E7C859FE2292B1D5005C1FBE /* TfaGlobal.swift */,
+				E7C859FC2292B13C005C1FBE /* TfaLinkAccountTests.swift */,
+				E7AB6B7422940D3C008C3993 /* TfaRegistrationPhoneResolverTests.swift */,
+				E7C8FA4E22957E8C00E69634 /* TFAVerificationpPhoneResolverTests.swift */,
+				E7C8FA502296917C00E69634 /* TFAVerificationEmailResolverTests.swift */,
+				E7C859FE2292B1D5005C1FBE /* TfaGlobalTests.swift */,
 			);
 			path = TfaTests;
 			sourceTree = "<group>";
@@ -751,6 +780,14 @@
 			children = (
 			);
 			path = "New Group";
+			sourceTree = "<group>";
+		};
+		E7C8FA522296BBD200E69634 /* Storge */ = {
+			isa = PBXGroup;
+			children = (
+				E7C8FA532296BBF600E69634 /* UserDefaultsTests.swift */,
+			);
+			path = Storge;
 			sourceTree = "<group>";
 		};
 		E7CBAF9922282B6C000B6C11 /* Network */ = {
@@ -1155,9 +1192,11 @@
 				E7E80D85224BB59100D3B663 /* UserDataModel.swift in Sources */,
 				E73373D5225E326100ADEDBB /* GigyaLoggerTest.swift in Sources */,
 				E713E18C224A2E5800181328 /* NetworkAdapterMock.swift in Sources */,
-				E7C859FF2292B1D5005C1FBE /* TfaGlobal.swift in Sources */,
+				E7C8FA4D229578A200E69634 /* WebProviderWrapperMock.swift in Sources */,
+				E7C859FF2292B1D5005C1FBE /* TfaGlobalTests.swift in Sources */,
 				E7E80D8F224D045000D3B663 /* BusinessApiServiceMock.swift in Sources */,
 				E7E80D88224BBF2400D3B663 /* XCTestCase+FatalError.swift in Sources */,
+				E7AB6B7522940D3C008C3993 /* TfaRegistrationPhoneResolverTests.swift in Sources */,
 				E756A2A02275D46D007FA801 /* SocialProviderMock.swift in Sources */,
 				E7337445226754C400ADEDBB /* BusinessApiTest.swift in Sources */,
 				E73373D8225F222F00ADEDBB /* AnyCodableTest.swift in Sources */,
@@ -1165,9 +1204,12 @@
 				E7E80D7E224BADFC00D3B663 /* GigyaInitTest.swift in Sources */,
 				E7A6E0B7224256390063638F /* GigyaSwiftTests.swift in Sources */,
 				E7C85A012292CA45005C1FBE /* SocialManagerTests.swift in Sources */,
-				E7C859FD2292B13D005C1FBE /* TfaLinkAccount.swift in Sources */,
+				E7C8FA542296BBF600E69634 /* UserDefaultsTests.swift in Sources */,
+				E7C8FA492295775000E69634 /* WebProviderLoginTests.swift in Sources */,
+				E7C859FD2292B13D005C1FBE /* TfaLinkAccountTests.swift in Sources */,
 				E7E80D96224D101C00D3B663 /* ApiServiceTest.swift in Sources */,
 				E7C85A052292DA77005C1FBE /* GoogleWrapper.swift in Sources */,
+				E7C8FA4F22957E8C00E69634 /* TFAVerificationpPhoneResolverTests.swift in Sources */,
 				E774A5622243D7D300BC67D1 /* RequestTestModel.swift in Sources */,
 				E756A29C2275CC13007FA801 /* ProviderFactoryMock.swift in Sources */,
 				E73373DA225F7ED100ADEDBB /* GSRequestMock.swift in Sources */,
@@ -1175,11 +1217,13 @@
 				E774A5642243D88900BC67D1 /* RequestTestParseFailModel.swift in Sources */,
 				E7337467226C538300ADEDBB /* DecodeTestUtils.swift in Sources */,
 				E7E80D93224D063C00D3B663 /* GigyaContainerUtils.swift in Sources */,
+				E7C8FA512296917C00E69634 /* TFAVerificationEmailResolverTests.swift in Sources */,
 				E733744722675CA000ADEDBB /* ApiServiceMock.swift in Sources */,
 				E7E80D98224D15B600D3B663 /* GigyaWrapperMock.swift in Sources */,
 				E7E80D8D224CF55300D3B663 /* GigyaCoreTest.swift in Sources */,
 				E756A29E2275CC59007FA801 /* SocialProviderWrapperMock.swift in Sources */,
 				E756A2992275CB5C007FA801 /* SocialProviderLoginTests.swift in Sources */,
+				E7BE57862296C04E00C17D93 /* StringTests.swift in Sources */,
 				E7E80D91224D052000D3B663 /* GigyaSessionServiceMock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

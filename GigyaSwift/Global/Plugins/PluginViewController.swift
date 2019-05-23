@@ -253,7 +253,7 @@ class PluginViewController<T: GigyaAccountProtocol>: WebViewController, WKScript
     private func sendAddConnectionRequest(callbackId: String, params: [String: String]) {
         GigyaLogger.log(with: self, message: "sendAddConnectionRequest: with params:\n\(params)")
         guard let providerToAdd = params["provider"] else { return }
-        if let provider = GigyaSocielProviders.byName(name: providerToAdd) {
+        if let provider = GigyaSocielProviders(rawValue: providerToAdd) {
             businessApiService.addConnection(provider: provider, viewController: self, params: params, dataType: T.self) { [weak self] result in
                 guard let self = self else { return }
                 switch result {
@@ -298,7 +298,7 @@ class PluginViewController<T: GigyaAccountProtocol>: WebViewController, WKScript
     private func sendOauthRequest(callbackId: String, apiMethod: String, params: [String: String]) {
         GigyaLogger.log(with: self, message: "sendOauthRequest: with apiMethod = \(apiMethod)")
         guard let providerName = params["provider"] else { return }
-        if let provider = GigyaSocielProviders.byName(name: providerName) {
+        if let provider = GigyaSocielProviders(rawValue: providerName) {
             businessApiService.login(provider: provider, viewController: self, params: params, dataType: T.self) { [weak self] result in
                 guard let self = self else { return }
                 switch result {

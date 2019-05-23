@@ -177,4 +177,113 @@ class AnyCodableTest: XCTestCase {
         }
     }
 
+    func testEncodeInt() {
+        let data = [AnyCodable(integerLiteral: 1), AnyCodable(integerLiteral: 2)]
+
+        let jsonEncoder = JSONEncoder()
+        let jsonData = try! jsonEncoder.encode(data)
+        let jsonString = String(data: jsonData, encoding: .utf8)
+
+        XCTAssertEqual(jsonString, "[1,2]")
+    }
+
+    func testEncodeBool() {
+        let data = [AnyCodable(booleanLiteral: true), AnyCodable(booleanLiteral: false)]
+
+        let jsonEncoder = JSONEncoder()
+        let jsonData = try! jsonEncoder.encode(data)
+        let jsonString = String(data: jsonData, encoding: .utf8)
+
+        XCTAssertEqual(jsonString, "[true,false]")
+    }
+
+    func testEncodeDouble() {
+        let data = [AnyCodable(floatLiteral: 1.5), AnyCodable(floatLiteral: 3.5)]
+
+        let jsonEncoder = JSONEncoder()
+        let jsonData = try! jsonEncoder.encode(data)
+        let jsonString = String(data: jsonData, encoding: .utf8)
+
+        XCTAssertEqual(jsonString, "[1.5,3.5]")
+    }
+
+    func testEncodeString() {
+        let data = [AnyCodable(extendedGraphemeClusterLiteral: "test1"), AnyCodable(extendedGraphemeClusterLiteral: "test2")]
+
+        let jsonEncoder = JSONEncoder()
+        let jsonData = try! jsonEncoder.encode(data)
+        let jsonString = String(data: jsonData, encoding: .utf8)
+
+        XCTAssertEqual(jsonString, "[\"test1\",\"test2\"]")
+    }
+
+    func testEncodeDate() {
+        let date: Date = Date()
+        let data = [AnyCodable(date)]
+
+        let jsonEncoder = JSONEncoder()
+        let jsonData = try! jsonEncoder.encode(data)
+        let jsonString = String(data: jsonData, encoding: .utf8)
+
+        XCTAssertNotNil(jsonString)
+    }
+
+    func testEncodeURL() {
+        let url: URL = URL(fileURLWithPath: "google.com")
+        let data = [AnyCodable(url)]
+
+        let jsonEncoder = JSONEncoder()
+        let jsonData = try! jsonEncoder.encode(data)
+        let jsonString = String(data: jsonData, encoding: .utf8)
+
+        XCTAssert(jsonString!.contains("google.com"))
+    }
+
+    func testEncodeArray() {
+        let array = [1,2,3,4,5]
+        let data = [AnyCodable(array)]
+
+        let jsonEncoder = JSONEncoder()
+        let jsonData = try! jsonEncoder.encode(data)
+        let jsonString = String(data: jsonData, encoding: .utf8)
+
+        XCTAssertEqual(jsonString, "[[1,2,3,4,5]]")
+    }
+
+    func testEncodeDictionary() {
+        let dic = ["a": 1, "b": 2, "c": 3]
+        let data = [AnyCodable(dic)]
+
+        let jsonEncoder = JSONEncoder()
+        let jsonData = try! jsonEncoder.encode(data)
+        let jsonString = String(data: jsonData, encoding: .utf8)
+
+        XCTAssertNotNil(jsonString)
+    }
+
+    func testEncodeNil() {
+        let data = [AnyCodable(nil)]
+
+        let jsonEncoder = JSONEncoder()
+        let jsonData = try! jsonEncoder.encode(data)
+        let jsonString = String(data: jsonData, encoding: .utf8)
+
+        XCTAssertEqual(jsonString, "[null]")
+    }
+
+    func testEncodeError() {
+        let data = [AnyCodable(GigyaResponseModel(statusCode: .unknown, errorCode: 0, callId: "", errorMessage: "", requestData: nil))]
+
+        do {
+            let jsonEncoder = JSONEncoder()
+            let jsonData = try jsonEncoder.encode(data)
+            let jsonString = String(data: jsonData, encoding: .utf8)
+
+            XCTFail()
+        } catch let error {
+            XCTAssertEqual(error.localizedDescription, "The data couldn’t be written because it isn’t in the correct format.")
+        }
+
+
+    }
 }

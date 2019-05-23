@@ -9,10 +9,14 @@
 import Foundation
 
 extension Dictionary {
-    
+
     var asJson: String {
-        let jsonData: Data? = try? JSONSerialization.data(withJSONObject: self, options: [])
-        let result = String(data: jsonData ?? Data(), encoding: .utf8)
-        return result ?? ""
+
+        if let jsonData: Data = try? JSONSerialization.data(withJSONObject: self, options:[]),
+            let result = String(data: jsonData, encoding: .utf8) {
+            return result
+        }
+        
+        return ""
     }
 }

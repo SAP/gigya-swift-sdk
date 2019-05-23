@@ -40,5 +40,11 @@ class ResponseDataTest {
         }
     }
 
-    static var errorCalled: Int = 0
+    static var errorCalled: Int = 0 {
+        didSet {
+            ResponseDataTest.errorCalledCallBack()
+        }
+    }
+
+    static var errorCalledCallBack: () -> () = {}
 }

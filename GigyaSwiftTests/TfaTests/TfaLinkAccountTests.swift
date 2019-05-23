@@ -9,7 +9,7 @@
 import XCTest
 @testable import GigyaSwift
 
-class TfaLinkAccount: XCTestCase {
+class TfaLinkAccountTests: XCTestCase {
     var ioc: GigyaContainerUtils?
 
     var businessApi: IOCBusinessApiServiceProtocol?

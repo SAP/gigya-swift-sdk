@@ -57,7 +57,7 @@ class TFAVerificationResolver<T: Codable> : TFAResolver<T>, TFAVerificationResol
     
     func sendPhoneVerificationCode(registeredPhone: TFARegisteredPhone) {
         guard let phoneId = registeredPhone.id, let lastMethod = registeredPhone.lastMethod else {
-            forwardInitialInterruption()
+            forwardGeneralError()
             return
         }
 

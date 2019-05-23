@@ -205,7 +205,7 @@ class ViewController: UIViewController {
             return
         }
         let alert = UIFactory.getConnectionAlert(title: "Add social connection") { [weak self] providerName in
-           if let provider = GigyaSocielProviders.byName(name: providerName) {
+           if let provider = GigyaSocielProviders(rawValue: providerName) {
             guard let self = self else { return }
                 self.gigya.addConnection(provider: provider, viewController: self, params: [:]) { result in
                     switch result {
@@ -228,7 +228,7 @@ class ViewController: UIViewController {
             return
         }
         let alert = UIFactory.getConnectionAlert(title: "Remove social connection") { [weak self] providerName in
-            self?.gigya.removeConnection(provider: providerName) { result in
+            self?.gigya.removeConnection(provider: GigyaSocielProviders(rawValue: providerName) ?? .google) { result in
                 switch result {
                 case .success(_):
                     self?.resultTextView?.text = "Connection removed"

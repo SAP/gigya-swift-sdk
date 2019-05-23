@@ -13,8 +13,4 @@ public enum TFAProvider: String, Codable {
     case liveLink = "liveLink"
     case email = "gigyaEmail"
     case totp = "gigyaTotp"
-
-    public static func byName(name: String) -> TFAProvider? {
-        return self.init(rawValue: name)
-    }
 }

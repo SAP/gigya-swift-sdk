@@ -57,6 +57,10 @@ class SocialManagerTests: XCTestCase {
 }
 
 extension SocialManagerTests: BusinessApiDelegate {
+    func callfinalizeRegistration<T>(regToken: String, completion: @escaping (GigyaLoginResult<T>) -> Void) where T : Decodable, T : Encodable {
+        
+    }
+
     func sendApi(api: String, params: [String : String], completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void) {
 
     }

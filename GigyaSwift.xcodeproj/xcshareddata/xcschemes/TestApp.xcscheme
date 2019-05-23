@@ -37,13 +37,6 @@
             BlueprintName = "GigyaSwift"
             ReferencedContainer = "container:GigyaSwift.xcodeproj">
          </BuildableReference>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "A9B9CCF41E560070002872F9"
-            BuildableName = "GigyaSDK.framework"
-            BlueprintName = "GigyaSDK"
-            ReferencedContainer = "container:../../Documents/gigya-ios-sdk/GigyaSDK.xcodeproj">
-         </BuildableReference>
       </CodeCoverageTargets>
       <Testables>
          <TestableReference

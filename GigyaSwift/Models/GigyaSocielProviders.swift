@@ -15,11 +15,6 @@ public enum GigyaSocielProviders: String {
     case twitter
     case line
     case wechat
-
-    
-    public static func byName(name: String) -> GigyaSocielProviders? {
-        return self.init(rawValue: name)
-    }
 }
 
 public enum GigyaNativeSocielProviders: String, CaseIterable {
@@ -38,19 +33,6 @@ public enum GigyaNativeSocielProviders: String, CaseIterable {
             return "LineWrapper"
         case .wechat:
             return "WeChatWrapper"
-        }
-    }
-
-    var description: String {
-        switch self {
-        case .facebook:
-            return "Facebook"
-        case .google:
-            return"Google"
-        case .line:
-            return "Line"
-        case .wechat:
-            return "WeChat"
         }
     }
 }

@@ -27,6 +27,6 @@ class ProviderFactoryMock: IOCSocialProvidersManagerProtocol {
             break
         }
 
-        return WebLoginProvider(sessionService: sessionService, provider: WebLoginWrapper(config: config, providerType: socialProvider), delegate: delegate)
+        return WebLoginProvider(sessionService: sessionService, provider: WebProviderWrapperMock(), delegate: delegate)
     }
 }

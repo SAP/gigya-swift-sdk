@@ -10,7 +10,7 @@ import Foundation
 import XCTest
 @testable import GigyaSwift
 
-class SocialProviderLoginTests: XCTestCase {
+class WebProviderLoginTests: XCTestCase {
     let ioc = GigyaContainerUtils()
     var gigya = GigyaSwift.sharedInstance()
 
@@ -22,6 +22,11 @@ class SocialProviderLoginTests: XCTestCase {
 
         GigyaSwift.sharedInstance().initWithApi(apiKey: "123")
 
+        ResponseDataTest.clientID = nil
+        ResponseDataTest.resData = nil
+        ResponseDataTest.providerToken = nil
+        ResponseDataTest.providerSecret = nil
+
     }
 
     override func tearDown() {
@@ -32,15 +37,16 @@ class SocialProviderLoginTests: XCTestCase {
         let viewController = UIViewController()
 
         let dic: [String: Any] = ["callId": "34324", "errorCode": 0, "statusCode": 200]
-        
+
         // swiftlint:disable force_try
         let jsonData = try! JSONSerialization.data(withJSONObject: dic, options: .prettyPrinted)
         // swiftlint:enable force_try
         ResponseDataTest.resData = jsonData
         ResponseDataTest.clientID = "123"
         ResponseDataTest.providerToken = "123"
-        
-        GigyaSwift.sharedInstance().login(with: .google, viewController: viewController, params: ["testParam": "test"]) { (result) in
+        ResponseDataTest.providerSecret = "123"
+
+        GigyaSwift.sharedInstance().login(with: .yahoo, viewController: viewController, params: ["testParam": "test"]) { (result) in
             switch result {
             case .success(let data):
                 XCTAssertNotNil(data )
@@ -59,15 +65,14 @@ class SocialProviderLoginTests: XCTestCase {
         // swiftlint:enable force_try
         ResponseDataTest.clientID = "123"
         ResponseDataTest.resData = jsonData
-        ResponseDataTest.providerToken = nil
 
-        GigyaSwift.sharedInstance().login(with: .google, viewController: viewController) { (result) in
+        GigyaSwift.sharedInstance().login(with: .yahoo, viewController: viewController) { (result) in
             switch result {
             case .success:
                 XCTFail("Fail")
             case .failure(let error):
                 if case .providerError(let data) = error.error {
-                    XCTAssertEqual(data, "Id token no available")
+                    XCTAssertEqual(data, "token no available")
                 }
             }
         }
@@ -81,8 +86,10 @@ class SocialProviderLoginTests: XCTestCase {
 
         ResponseDataTest.clientID = "123"
         ResponseDataTest.error = error
+        ResponseDataTest.providerToken = "123"
+        ResponseDataTest.providerSecret = "123"
 
-        GigyaSwift.sharedInstance().login(with: .google, viewController: viewController) { (result) in
+        GigyaSwift.sharedInstance().login(with: .yahoo, viewController: viewController) { (result) in
             switch result {
             case .success:
                 XCTFail("Fail")
@@ -105,8 +112,9 @@ class SocialProviderLoginTests: XCTestCase {
         ResponseDataTest.resData = jsonData
         ResponseDataTest.clientID = "123"
         ResponseDataTest.providerToken = "123"
+        ResponseDataTest.providerSecret = "123"
 
-        GigyaSwift.sharedInstance().addConnection(provider: .google, viewController: viewController, params: ["testParam": "test"]) { (result) in
+        GigyaSwift.sharedInstance().addConnection(provider: .yahoo, viewController: viewController, params: ["testParam": "test"]) { (result) in
             switch result {
             case .success(let data):
                 XCTAssertNotNil(data )
