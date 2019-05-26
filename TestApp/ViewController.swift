@@ -105,7 +105,7 @@ class ViewController: UIViewController {
     }
 
     @IBAction func login(_ sender: Any) {
-        
+        gigya.sendTest1(api: "accounts.getAccountInfo")
     }
     
     @IBAction func register(_ sender: Any) {
@@ -215,7 +215,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func loginWithProvider(_ sender: Any) {
-        gigya.login(with: .wechat, viewController: self ) { result in
+        gigya.login(with: .google, viewController: self ) { result in
             switch result {
             case .success(let data):
                 print(data)

@@ -9,16 +9,16 @@
 import Foundation
 
 struct GigyaRequestSignature: Codable {
-    var oauthToken: String
     var apikey: String
+    var format: String = "json"
+    var gmid: String
+    var httpStatusCodes: String = "false"
     var nonce: String
+    var oauthToken: String
+    var sdk: String = "iOS_3.6.11"
+    var targetEnv: String = "mobile"
     var timestamp: String
     var ucid: String
-    var gmid: String
-    var targetEnv: String = "mobile"
-    var sdk: String = "iOS_4.0.0"
-    var httpStatusCodes: String = "false"
-    var format: String = "json"
 
     init(oauthToken: String, apikey: String, nonce: String, timestamp: String, ucid: String, gmid: String) {
         self.oauthToken = oauthToken

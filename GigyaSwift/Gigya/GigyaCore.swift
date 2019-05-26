@@ -90,15 +90,15 @@ public class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
     }
 
     // TODO: test api with self request
-//    internal func sendTest1(api: String, params: [String: String] = [:]) {
-//        Gigya.getSessionWithCompletionHandler { (session) in
-//            let networkService = NetworkProvider(url: self.defaultApiDomain)
-//
-//            networkService.dataRequest(gsession: session!,path: api, body: params, responseType: GigyaDictionary.self, completion: { (res) in
-//
-//            })
-//        }
-//    }
+    public func sendTest1(api: String, params: [String: String] = [:]) {
+        Gigya.getSessionWithCompletionHandler { (session) in
+            let networkService = NetworkProvider(url: self.defaultApiDomain, config: self.config)
+
+            networkService.dataRequest(gsession: session,path: api, params: params, completion: { (data, error) in
+
+            })
+        }
+    }
 
     // MARK: - Session
 

@@ -42,8 +42,9 @@ public class GigyaSwift {
     private static func registerDependencies(with container: IOCContainer) {
         container.register(service: GigyaConfig.self, isSingleton: true) { _ in GigyaConfig() }
 
-        container.register(service: IOCNetworkAdapterProtocol.self) { _ in
-            return NetworkAdapter()
+        container.register(service: IOCNetworkAdapterProtocol.self) { resolver in
+            let config = resolver.resolve(GigyaConfig.self)
+            return NetworkAdapter(config: config!)
         }
 
         container.register(service: IOCApiServiceProtocol.self) { resolver in

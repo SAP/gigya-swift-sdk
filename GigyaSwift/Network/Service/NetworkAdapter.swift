@@ -16,12 +16,17 @@ protocol IOCNetworkAdapterProtocol {
 }
 
 class NetworkAdapter: IOCNetworkAdapterProtocol {
+    let config: GigyaConfig
+
+    init(config: GigyaConfig) {
+        self.config = config
+    }
+
     func send(model: ApiRequestModel, completion: @escaping GigyaResponseHandler) {
         let request = GSRequest(forMethod: model.method, parameters: model.params)
 
-        let request1 = NetworkProvider(url: InternalConfig.General.sdkDomain)
+//        let request1 = NetworkProvider(url: InternalConfig.General.sdkDomain, config: config)
 
-        request1.dataRequest(gsession: nil, path: model.method, body: model.params, responseType: , completion: <#T##(NetworkResult<Decodable & Encodable>) -> Void#>)
         request.send { (res, error) in
             let data = res?.jsonString().data(using: .utf8) as NSData?
             completion(data, error)
