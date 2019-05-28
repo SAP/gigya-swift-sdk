@@ -33,9 +33,6 @@ protocol IOCGigyaWrapperProtocol: class {
     func setSession(_ session: GigyaSession)
 
     func logout()
-
-    func send<T>(model: ApiRequestModel, responseType: T.Type, completion: @escaping (GigyaApiResult<T>) -> Void) where T: Codable
-
 }
 
 class GigyaWrapper: IOCGigyaWrapperProtocol {
@@ -67,8 +64,5 @@ class GigyaWrapper: IOCGigyaWrapperProtocol {
         Gigya.logout { (res, error) in
             
         }
-    }
-
-    func send<T>(model: ApiRequestModel, responseType: T.Type, completion: @escaping (GigyaApiResult<T>) -> Void) where T: Codable {
     }
 }

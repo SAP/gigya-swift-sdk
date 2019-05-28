@@ -116,5 +116,43 @@ class TfaGlobalTests: XCTestCase {
         })
 
     }
+
+    func testResolverRegistrationEmail() {
+        let inactiveProviders = [["name": "gigyaPhone"]]
+
+        let dic: [String: Any] = ["errorCode": 0, "callId": "34324", "statusCode": 200, "gigyaAssertion": "123","phvToken": "123","providerAssertion": "123","regToken": "123", "inactiveProviders": inactiveProviders]
+        // swiftlint:disable force_try
+        let jsonData = try! JSONSerialization.data(withJSONObject: dic, options: .prettyPrinted)
+        // swiftlint:enable force_try
+
+        let error = NSError(domain: "gigya", code: 403102, userInfo: ["callId": "dasdasdsad"])
+
+        ResponseDataTest.error = error
+
+        ResponseDataTest.resData = jsonData
+
+        businessApi?.login(dataType: RequestTestModel.self, loginId: "tes@test.com", password: "151515", params: [:], completion: { (result) in
+            switch result {
+            case .success:
+                XCTFail()
+            case .failure(let error):
+                guard let interruption = error.interruption else {
+                    XCTAssert(true)
+                    return
+                }
+
+                switch interruption {
+                case .pendingTwoFactorRegistration(let resolver):
+                    self.expectFatalError(expectedMessage: "[TFARegistrationResolver<RequestTestModel>]: email is not supported in registration ") {
+                        resolver.verifyCode(provider: .email, authenticationCode: "123")
+                    }
+                default:
+                    break
+                }
+            }
+
+        })
+
+    }
 }
 

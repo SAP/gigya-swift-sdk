@@ -165,15 +165,15 @@ class PluginViewController<T: GigyaAccountProtocol>: WebViewController, WKScript
      */
     private func mapSendRequest(callbackId: String, apiMethod: String, params: [String: String]) {
         switch apiMethod {
-        case "socialize.socialLogin", "accounts.socialLogin":
+        case GigyaDefinitions.API.socialLogin, GigyaDefinitions.API.accountsSocialLogin:
             sendOauthRequest(callbackId: callbackId, apiMethod: apiMethod, params: params)
             break
-        case "accounts.register", "accounts.login":
+        case GigyaDefinitions.API.register, GigyaDefinitions.API.login:
             sendLoginRequest(callbackId: callbackId, apiMethod: apiMethod, params: params)
             break;
-        case "socialize.addConnection, accounts.addConnection":
+        case GigyaDefinitions.API.addConnection, GigyaDefinitions.API.accountsAddConnection:
             sendAddConnectionRequest(callbackId: callbackId, params: params)
-        case "socialize.removeConnection":
+        case GigyaDefinitions.API.removeConnection:
             sendRemoveConnectionRequest(callbackId: callbackId, params: params)
         default:
             sendRequest(callbackId: callbackId, apiMethod: apiMethod, params: params)

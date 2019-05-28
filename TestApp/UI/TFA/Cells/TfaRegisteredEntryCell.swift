@@ -26,7 +26,7 @@ class TfaRegisteredEntryCell: UITableViewCell, UIPickerViewDelegate, UIPickerVie
     @IBAction func onSendCode(_ sender: Any) {
         guard let provider = provider else { return }
         let index = entriesPickerView.selectedRow(inComponent: 0)
-        if provider == .gigyaPhone {
+        if provider == .phone {
             if let phones = self.phones {
                 let phone = phones[index]
                 print("Sending SMS code to: \(phone.obfuscated ?? "")")
@@ -46,8 +46,8 @@ class TfaRegisteredEntryCell: UITableViewCell, UIPickerViewDelegate, UIPickerVie
         guard let provider = provider else { return }
         print("Submit auth verification code: \(authCode) for provider: \(provider.rawValue)")
         
-        if provider == .gigyaPhone {
-            delegate?.onSubmitAuthCode(mode: .verification, provider: .gigyaPhone, code: authCode)
+        if provider == .phone {
+            delegate?.onSubmitAuthCode(mode: .verification, provider: .phone, code: authCode)
         } else if provider == .email {
             delegate?.onSubmitAuthCode(mode: .verification, provider: .email, code: authCode)
         }
@@ -68,7 +68,7 @@ class TfaRegisteredEntryCell: UITableViewCell, UIPickerViewDelegate, UIPickerVie
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         guard let provider = provider else { return 0 }
-        if provider == .gigyaPhone {
+        if provider == .phone {
             if let phones = self.phones {
                 return phones.count
             }
@@ -82,7 +82,7 @@ class TfaRegisteredEntryCell: UITableViewCell, UIPickerViewDelegate, UIPickerVie
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         guard let provider = provider else { return ""}
-        if provider == .gigyaPhone {
+        if provider == .phone {
             if let phones = self.phones {
                 return phones[row].obfuscated
             }

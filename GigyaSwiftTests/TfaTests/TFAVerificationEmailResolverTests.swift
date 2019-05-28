@@ -191,5 +191,26 @@ class TFAVerificationpEmailResolverTests: XCTestCase {
         runTfaVerificationEmailResolver(with: dic)
     }
 
+    func testTfaWithoutGigyaAssertionAfterInit() {
+        let activeProviders = [["name": "gigyaEmail"]]
+        let dic: [String: Any] = ["errorCode": 0, "callId": "34324", "statusCode": 200,"gigyaAssertion": "123","phvToken": "123","providerAssertion": "123","regToken": "123","activeProviders": activeProviders]
+
+        runTfaVerificationEmailResolver(with: dic, callback: {
+            ResponseDataTest.errorCalledCallBack = {
+                print(ResponseDataTest.errorCalled)
+                if ResponseDataTest.errorCalled == 3 {
+                    let dic: [String: Any] = ["errorCode": 123, "callId": "34324", "statusCode": 200]
+
+                    let jsonData = try! JSONSerialization.data(withJSONObject: dic, options: .prettyPrinted)
+                    // swiftlint:enable force_try
+
+                    ResponseDataTest.resData = jsonData
+                    ResponseDataTest.error = nil
+                }
+            }
+
+        })
+    }
+
 }
 
