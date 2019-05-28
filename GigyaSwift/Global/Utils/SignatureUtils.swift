@@ -11,9 +11,9 @@ import CommonCrypto
 
 class SignatureUtils {
 
-    func oauth1SignatureBaseString(_ sMethod: String, _ paramsToSend: [String: String]) -> String {
+    func oauth1SignatureBaseString(_ domain: String ,_ sMethod: String, _ paramsToSend: [String: String]) -> String {
         let method = "POST"
-        let url =  URL(string: "https://\(sMethod.components(separatedBy: ".").first!).\("")/\(sMethod)")!
+        let url =  URL(string: "https://\(sMethod.components(separatedBy: ".").first!).\(domain)/\(sMethod)")!
         let urlAllowed = NSCharacterSet(charactersIn: "!*'();:@&=+$,/?%#[] ").inverted
 
         let sortedParams = paramsToSend.sorted(by: <)

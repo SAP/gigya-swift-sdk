@@ -89,7 +89,8 @@ class NetworkProvider {
 
             var combinedData = bodyPrepareData.merging(params) { $1 }
 
-            let sig = sigUtils.hmac(algorithm: .SHA1, url: sigUtils.oauth1SignatureBaseString(path, combinedData as! [String: String]), secret: session.secret)
+            let sig = sigUtils.hmac(algorithm: .SHA1, url: sigUtils.oauth1SignatureBaseString(config.apiDomain! ,path, combinedData), secret: session.secret)
+
             combinedData["sig"] = sig
 
             return combinedData

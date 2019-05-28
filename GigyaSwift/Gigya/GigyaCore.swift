@@ -95,7 +95,8 @@ public class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
             let networkService = NetworkProvider(url: self.defaultApiDomain, config: self.config)
 
             networkService.dataRequest(gsession: session,path: api, params: params, completion: { (data, error) in
-
+                let json = try? JSONSerialization.jsonObject(with: data! as Data, options: [])
+                print(json)
             })
         }
     }
