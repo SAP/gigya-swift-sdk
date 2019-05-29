@@ -91,7 +91,7 @@ public class TFAResolver<T: Codable> : BaseResolver {
     
     //MARK: - TFA common flow.
     
-     func initTFA(tfaProvider: TFAProvider, mode: TFAMode, arguments: [String: Any]) {
+     func initTFA(tfaProvider: TFAProvider, mode: TFAMode, arguments: [String: String]) {
         let params = ["regToken": self.regToken, "provider" : tfaProvider.rawValue, "mode": mode.rawValue]
         self.businessDelegate?.sendApi(dataType: InitTFAModel.self, api: GigyaDefinitions.API.initTFA, params: params) { [weak self] result in
             switch result {
@@ -104,12 +104,12 @@ public class TFAResolver<T: Codable> : BaseResolver {
                 self?.gigyaAssertion = gigyaAssertion
 
                 switch tfaProvider {
-                case .gigyaPhone, .liveLink:
+                case .phone, .liveLink:
                     self?.onTfaInitializedWithPhoneProvider(mode: mode, arguments: arguments)
                 case .email:
-                    self?.onTfaInitializedWithEmailProvider()
+                    self?.onTfaInitializedWithEmailProvider(gigyaAssertion: gigyaAssertion)
                 case .totp:
-                    self?.onTfaInitializedWithTotpProvider(mode: mode, arguments: arguments)
+                    self?.onTfaInitializedWithTotpProvider(gigyaAssertion: gigyaAssertion, mode: mode, arguments: arguments)
                 }
             case .failure(let error):
                 self?.forwardError(error: error)
@@ -225,12 +225,7 @@ public class TFAResolver<T: Codable> : BaseResolver {
     
     // MARK: - Gigya Email provider specific flow.
     
-     func onTfaInitializedWithEmailProvider() {
-        guard let gigyaAssertion = self.gigyaAssertion else {
-            self.forwardGeneralError()
-            return
-        }
-
+    func onTfaInitializedWithEmailProvider(gigyaAssertion: String) {
         self.businessDelegate?.sendApi(dataType: TFAEmailsModel.self, api: GigyaDefinitions.API.getEmailsTFA, params: ["gigyaAssertion": gigyaAssertion]) { [weak self] result in
             switch result {
             case .success(let data):
@@ -284,26 +279,18 @@ public class TFAResolver<T: Codable> : BaseResolver {
     
     // MARK: - Gigya Totp provider specific flow.
     
-     func onTfaInitializedWithTotpProvider(mode: TFAMode, arguments: [String: Any]) {
+     func onTfaInitializedWithTotpProvider(gigyaAssertion: String, mode: TFAMode, arguments: [String: String]) {
         switch mode {
         case .register:
-            self.getTotpQRCode()
+            self.getTotpQRCode(gigyaAssertion: gigyaAssertion)
         case .verify:
-            guard let authorizationCode = arguments["authorizationCode"] as? String else {
-                self.forwardGeneralError()
-                return
-            }
+            guard let authorizationCode = arguments["authorizationCode"] else { return }
             
             self.verifyTotpAuthorizationCode(authorizationCode: authorizationCode)
         }
     }
     
-     func getTotpQRCode() {
-        guard let gigyaAssertion = self.gigyaAssertion else {
-            self.forwardGeneralError()
-            return
-        }
-
+    func getTotpQRCode(gigyaAssertion: String) {
         self.businessDelegate?.sendApi(dataType: TFATotpRegisterModel.self, api: GigyaDefinitions.API.totpRegisterTFA, params: ["gigyaAssertion": gigyaAssertion]) { [weak self] result in
             switch result {
                 
@@ -342,7 +329,8 @@ public class TFAResolver<T: Codable> : BaseResolver {
     private func makeImageFromQrData(data: String) -> UIImage? {
         // make qr image from string
         let split = data.components(separatedBy: ",")
-        if let dataDecoded = Data(base64Encoded: split[1], options: Data.Base64DecodingOptions.ignoreUnknownCharacters),
+
+        if split.count > 1, let dataDecoded = Data(base64Encoded: split[1], options: Data.Base64DecodingOptions.ignoreUnknownCharacters),
             let qrImage = UIImage(data: dataDecoded) {
             return qrImage
         }

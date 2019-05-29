@@ -74,7 +74,7 @@ class TfaViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         let selectedProvider = tfaProviders[row]
         switch selectedProvider.name  {
-        case .gigyaPhone, .liveLink:
+        case .phone, .liveLink:
             onTfaPhoneProviderSelection()
         case .totp:
             onTfaTotpProviderSelection()
@@ -189,7 +189,7 @@ class TfaViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         reloadTableWith(content: ["entries"])
         let indexPath = IndexPath(row: 0, section: 0)
         if let cell = contentTable.cellForRow(at: indexPath) as? TfaRegisteredEntryCell {
-            cell.provider = .gigyaPhone
+            cell.provider = .phone
             cell.phones = numbers
             cell.layoutSubviews()
         }
@@ -230,7 +230,7 @@ class TfaViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
          case .verification:
             if (provider == .totp) {
                 // TOTP verification flow starts. Will need to initialize TFA first with "verify" parameter for flow to continue.
-                verificationResolverDelegate?.startVerificationWithTotp(authorizationCode: code)
+                verificationResolverDelegate?.verificationWithTotp(authorizationCode: code)
                 return
             }
             verificationResolverDelegate?.verifyCode(provider: provider, authenticationCode: code)

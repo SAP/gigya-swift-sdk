@@ -20,7 +20,7 @@ public protocol TFAVerificationResolverProtocol {
     
     func sendEmailVerificationCode(registeredEmail: TFAEmail)
     
-    func startVerificationWithTotp(authorizationCode: String)
+    func verificationWithTotp(authorizationCode: String)
     
     func verifyCode(provider: TFAProvider, authenticationCode: String)
 }
@@ -42,17 +42,17 @@ class TFAVerificationResolver<T: Codable> : TFAResolver<T>, TFAVerificationResol
 
     func verifyCode(provider: TFAProvider, authenticationCode: String) {
         switch provider {
-        case .gigyaPhone, .liveLink:
+        case .phone, .liveLink:
             verifyPhoneAuthorizationCode(authorizationCode: authenticationCode)
         case .email:
             verifyEmailAuthorizationCode(authorizationCode: authenticationCode)
         case .totp:
-            verifyTotpAuthorizationCode(authorizationCode: authenticationCode)
+            GigyaLogger.error(with: TFAVerificationResolver.self, message: "totp is not supported in verification")
         }
     }
     
     func startVerificationWithPhone() {
-        initTFA(tfaProvider: .gigyaPhone, mode: .verify, arguments: [:])
+        initTFA(tfaProvider: .phone, mode: .verify, arguments: [:])
     }
     
     func sendPhoneVerificationCode(registeredPhone: TFARegisteredPhone) {
@@ -72,7 +72,7 @@ class TFAVerificationResolver<T: Codable> : TFAResolver<T>, TFAVerificationResol
         verifyRegisterdEmail(registeredEmail: registeredEmail)
     }
     
-    func startVerificationWithTotp(authorizationCode: String) {
+    func verificationWithTotp(authorizationCode: String) {
         initTFA(tfaProvider: .totp, mode: .verify, arguments: ["authorizationCode": authorizationCode])
     }
 }

@@ -14,7 +14,7 @@ class TfaAuthCodeCell: UITableViewCell {
     var delegate: SubmitionProtocl?
     
     var mode: TFAMode = .registration
-    var provider: TFAProvider = .gigyaPhone
+    var provider: TFAProvider = .phone
     
     @IBOutlet weak var authCodeTextField: UITextField!
     

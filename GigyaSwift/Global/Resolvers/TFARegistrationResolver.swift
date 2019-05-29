@@ -11,7 +11,7 @@ import Foundation
 public protocol TFARegistrationResolverProtocol {
     var tfaProviders: [TFAProviderModel] { get set }
     
-    func startRegistrationWithPhone(phoneNumber: String, method: String?)
+    func startRegistrationWithPhone(phoneNumber: String, method: String)
     
     func startRegistrationWithTotp()
     
@@ -29,12 +29,14 @@ class TFARegistrationResolver<T: Codable> : TFAResolver<T>, TFARegistrationResol
     }
     
     override func forwardInitialInterruption() {
+        super.forwardInitialInterruption()
+        
         let loginError = LoginApiError<T>(error: self.originalError, interruption: .pendingTwoFactorRegistration(resolver: self))
         self.completion(.failure(loginError))
     }
     
-    public func startRegistrationWithPhone(phoneNumber: String, method: String? = "sms") {
-        initTFA(tfaProvider: .gigyaPhone, mode: .register, arguments: ["phoneNumber" : phoneNumber, "method": method!] as [String: Any])
+    public func startRegistrationWithPhone(phoneNumber: String, method: String = "sms") {
+        initTFA(tfaProvider: .phone, mode: .register, arguments: ["phoneNumber" : phoneNumber, "method": method] as [String: String])
     }
     
     public func startRegistrationWithTotp() {
@@ -43,12 +45,12 @@ class TFARegistrationResolver<T: Codable> : TFAResolver<T>, TFARegistrationResol
     
     public func verifyCode(provider: TFAProvider, authenticationCode: String) {
         switch provider {
-        case .gigyaPhone, .liveLink:
+        case .phone, .liveLink:
             verifyPhoneAuthorizationCode(authorizationCode: authenticationCode)
         case .totp:
             verifyTotpAuthorizationCode(authorizationCode: authenticationCode)
-        default:
-            break
+        case .email:
+            GigyaLogger.error(with: TFARegistrationResolver.self, message: "email is not supported in registration")
         }
     }
 }
