@@ -246,6 +246,9 @@ class BusinessApiService: NSObject, IOCBusinessApiServiceProtocol {
                     resolver = TFARegistrationResolver(originalError: error, regToken: regToken, businessDelegate: self, completion: completion)
                 case .pendingTwoFactorVerification: // pending TFA verification
                     resolver = TFAVerificationResolver(originalError: error, regToken: regToken, businessDelegate: self , completion: completion)
+                case .pendingPasswordChange:
+                    let loginError = LoginApiError<T>(error: error, interruption: .pendingPasswordChange(regToken: regToken))
+                    completion(.failure(loginError))
                 }
             } else {
                 GigyaLogger.log(with: self, message: "[interruptionResolver] - interruption not supported")
@@ -258,7 +261,7 @@ class BusinessApiService: NSObject, IOCBusinessApiServiceProtocol {
             forwordFailed(error: error, completion: completion)
         }
     }
-
+    
     private func forwordFailed<T: Codable>(error: NetworkError, completion: @escaping (GigyaLoginResult<T>) -> Void) {
         let loginError = LoginApiError<T>(error: error, interruption: nil)
         completion(.failure(loginError))
