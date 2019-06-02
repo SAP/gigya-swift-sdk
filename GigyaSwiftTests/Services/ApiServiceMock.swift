@@ -10,6 +10,8 @@ import Foundation
 @testable import GigyaSwift
 
 class ApiServiceMock: IOCApiServiceProtocol {
+    required init(with requst: IOCNetworkAdapterProtocol, session: IOCSessionServiceProtocol) {
+
     var resData: Any?
 
     var showError: Bool = false

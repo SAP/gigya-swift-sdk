@@ -15,8 +15,11 @@ public typealias GigyaDictionary = [String: AnyCodable]
 class ApiService: IOCApiServiceProtocol {
     let networkAdapter: IOCNetworkAdapterProtocol?
 
-    required init(with networkAdapter: IOCNetworkAdapterProtocol) {
+    let sessionService: IOCSessionServiceProtocol?
+
+    required init(with networkAdapter: IOCNetworkAdapterProtocol, session: IOCSessionServiceProtocol) {
         self.networkAdapter = networkAdapter
+        self.sessionService = session
     }
 
     // Send request to server
@@ -38,6 +41,7 @@ class ApiService: IOCApiServiceProtocol {
             let errorModel = GigyaResponseModel(statusCode: .unknown, errorCode: code,
                                                       callId: callId,
                                                       errorMessage: error?.localizedDescription,
+                                                      sessionInfo: nil,
                                                       requestData: data as Data?)
 
             completion(.failure(NetworkError.gigyaError(data: errorModel)))
@@ -55,6 +59,8 @@ class ApiService: IOCApiServiceProtocol {
         do {
             var gigyaResponse = try DecodeEncodeUtils.decode(fromType: GigyaResponseModel.self, data: data as Data)
             gigyaResponse.requestData = data as Data
+
+            sessionService?.setSession(gigyaResponse)
 
             if gigyaResponse.errorCode == 0 {
                 let typedResponse = try DecodeEncodeUtils.decode(fromType: responseType.self, data: data as Data)

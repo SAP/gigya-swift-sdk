@@ -60,7 +60,9 @@ public class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
         config.apiDomain = apiDomain ?? self.defaultApiDomain
         config.apiKey = apiKey
 
-        gigyaApi.initGigyaSDK(apiKey: apiKey, apiDomain: apiDomain, application: application, launchOptions: launchOptions)
+//        gigyaApi.initGigyaSDK(apiKey: apiKey, apiDomain: apiDomain, application: application, launchOptions: launchOptions)
+
+        businessApiService.getSDKConfig()
     }
 
     // MARK: - Anonymous API
@@ -91,14 +93,25 @@ public class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
 
     // TODO: test api with self request
     public func sendTest1(api: String, params: [String: String] = [:]) {
-        Gigya.getSessionWithCompletionHandler { (session) in
-            let networkService = NetworkProvider(url: self.defaultApiDomain, config: self.config)
-
-            networkService.dataRequest(gsession: session,path: api, params: params, completion: { (data, error) in
-                let json = try? JSONSerialization.jsonObject(with: data! as Data, options: [])
-                print(json)
-            })
+        GSKeychainStorage.get(name: InternalConfig.Storage.keySession) { (result) in
+            switch result {
+            case .succses(let data):
+                let session: GigyaSession = NSKeyedUnarchiver.unarchiveObject(with: data!) as! GigyaSession
+                print(session)
+            case .error(let error):
+                break
+            }
+//            let session = NSKeyedUnarchiver.unarchiveObject(with: result)
         }
+
+//        Gigya.getSessionWithCompletionHandler { (session) in
+//            let networkService = NetworkProvider(url: self.defaultApiDomain, config: self.config)
+//
+//            networkService.dataRequest(gsession: session,path: api, params: params, completion: { (data, error) in
+//                let json = try? JSONSerialization.jsonObject(with: data! as Data, options: [])
+//                print(json)
+//            })
+//        }
     }
 
     // MARK: - Session
@@ -114,7 +127,6 @@ public class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
      * Logout of Gigya services.
      */
     public func logout(completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void) {
-        sessionService.clear()
         businessApiService.logout(completion: completion)
     }
 

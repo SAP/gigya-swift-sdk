@@ -27,9 +27,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
-        _ = LineSDKLogin.sharedInstance().handleOpen(url)
+        return LineSDKLogin.sharedInstance().handleOpen(url)
 
-        return WXApi.handleOpen(url, delegate: self)
+//        return WXApi.handleOpen(url, delegate: self)
     }
 
 //    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {

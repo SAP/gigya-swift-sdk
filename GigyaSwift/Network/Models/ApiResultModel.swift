@@ -13,6 +13,8 @@ public struct GigyaResponseModel: Codable {
     var errorCode: Int
     var callId: String
     let errorMessage: String?
+    let sessionInfo: SessionInfoModel?
+
     internal var requestData: Data? = nil
     
     func toDictionary() -> [String: Any] {

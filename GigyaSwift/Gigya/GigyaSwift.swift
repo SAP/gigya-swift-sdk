@@ -44,11 +44,15 @@ public class GigyaSwift {
 
         container.register(service: IOCNetworkAdapterProtocol.self) { resolver in
             let config = resolver.resolve(GigyaConfig.self)
-            return NetworkAdapter(config: config!)
+            let sessionService = resolver.resolve(IOCSessionServiceProtocol.self)
+
+            return NetworkAdapter(config: config!, sessionService: sessionService!)
         }
 
         container.register(service: IOCApiServiceProtocol.self) { resolver in
-            return ApiService(with: resolver.resolve(IOCNetworkAdapterProtocol.self)!)
+            let sessionService = resolver.resolve(IOCSessionServiceProtocol.self)
+
+            return ApiService(with: resolver.resolve(IOCNetworkAdapterProtocol.self)!, session: sessionService!)
         }
 
         container.register(service: IOCGigyaWrapperProtocol.self, isSingleton: true) { _ in
@@ -56,10 +60,11 @@ public class GigyaSwift {
         }
 
         container.register(service: IOCSessionServiceProtocol.self, isSingleton: true) { resolver in
+            let config = resolver.resolve(GigyaConfig.self)
             let gigyaApi = resolver.resolve(IOCGigyaWrapperProtocol.self)
             let accountService = resolver.resolve(IOCAccountServiceProtocol.self)
 
-            return SessionService(gigyaApi: gigyaApi!, accountService: accountService!)
+            return SessionService(config: config!, gigyaApi: gigyaApi!, accountService: accountService!)
         }
 
         container.register(service: IOCSocialProvidersManagerProtocol.self, isSingleton: true) { resolver in
@@ -70,12 +75,14 @@ public class GigyaSwift {
         }
 
         container.register(service: IOCBusinessApiServiceProtocol.self, isSingleton: true) { resolver in
+            let config = resolver.resolve(GigyaConfig.self)
             let apiService = resolver.resolve(IOCApiServiceProtocol.self)
             let sessionService = resolver.resolve(IOCSessionServiceProtocol.self)
             let accountService = resolver.resolve(IOCAccountServiceProtocol.self)
             let providerFactory = resolver.resolve(IOCSocialProvidersManagerProtocol.self)
 
-            return BusinessApiService(apiService: apiService!,
+            return BusinessApiService(config: config!,
+                                      apiService: apiService!,
                               sessionService: sessionService!,
                               accountService: accountService!,
                               providerFactory: providerFactory!)

@@ -70,6 +70,8 @@
 		E7BE36A42224260500A108D9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E7BE36A32224260500A108D9 /* Assets.xcassets */; };
 		E7BE36A72224260500A108D9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E7BE36A52224260500A108D9 /* LaunchScreen.storyboard */; };
 		E7BE36C82224306E00A108D9 /* GigyaSwift.swift in Headers */ = {isa = PBXBuildFile; fileRef = E7BE368A2224225100A108D9 /* GigyaSwift.swift */; };
+		E7BE57A8229E934C00C17D93 /* SessionInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BE57A7229E934C00C17D93 /* SessionInfoModel.swift */; };
+		E7BE57B222A3B42C00C17D93 /* InitSdkResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BE57B122A3B42C00C17D93 /* InitSdkResponseModel.swift */; };
 		E7C859C8228866D7005C1FBE /* GigyaSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7C859C7228866AA005C1FBE /* GigyaSDK.framework */; };
 		E7C859DB2289604F005C1FBE /* LinkAccountsResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C859DA2289604F005C1FBE /* LinkAccountsResolver.swift */; };
 		E7C859E02289B299005C1FBE /* InterruptionEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C859DF2289B299005C1FBE /* InterruptionEnum.swift */; };
@@ -261,6 +263,8 @@
 		E7BE36A32224260500A108D9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E7BE36A62224260500A108D9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E7BE36A82224260500A108D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E7BE57A7229E934C00C17D93 /* SessionInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionInfoModel.swift; sourceTree = "<group>"; };
+		E7BE57B122A3B42C00C17D93 /* InitSdkResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitSdkResponseModel.swift; sourceTree = "<group>"; };
 		E7C859C1228866AA005C1FBE /* GigyaSDK.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GigyaSDK.xcodeproj; path = "../../../Documents/gigya-ios-sdk/GigyaSDK.xcodeproj"; sourceTree = "<group>"; };
 		E7C859DA2289604F005C1FBE /* LinkAccountsResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkAccountsResolver.swift; sourceTree = "<group>"; };
 		E7C859DF2289B299005C1FBE /* InterruptionEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterruptionEnum.swift; sourceTree = "<group>"; };
@@ -762,6 +766,8 @@
 				E7CBB03C22356086000B6C11 /* GigyaInstanceProtocol.swift */,
 				E7CBB0592237DD2C000B6C11 /* GigyaSocielProviders.swift */,
 				E7C859E6228C52A0005C1FBE /* ConflictingAccount.swift */,
+				E7BE57A7229E934C00C17D93 /* SessionInfoModel.swift */,
+				E7BE57B122A3B42C00C17D93 /* InitSdkResponseModel.swift */,
 				E7C859DF2289B299005C1FBE /* InterruptionEnum.swift */,
 				E713E0FF2248C84000181328 /* Config */,
 				E7CBB03F223561DD000B6C11 /* User */,
@@ -1158,9 +1164,11 @@
 				D5C9DD3D227B0C9200E47095 /* PluginEvent.swift in Sources */,
 				E7CBAFD0222EB89D000B6C11 /* BusinessApiService.swift in Sources */,
 				E760668B2278998E005E4CFD /* WebLoginProvider.swift in Sources */,
+				E7BE57B222A3B42C00C17D93 /* InitSdkResponseModel.swift in Sources */,
 				E774A54D2242A12800BC67D1 /* AnyCodableUtils.swift in Sources */,
 				E73373E22263339400ADEDBB /* Provider.swift in Sources */,
 				E7ACF9B0226C844A00900C65 /* IOCAccountServiceProtocol.swift in Sources */,
+				E7BE57A8229E934C00C17D93 /* SessionInfoModel.swift in Sources */,
 				E7ACF9AC226C841300900C65 /* IOCApiServiceProtocol.swift in Sources */,
 				E73374622268B25B00ADEDBB /* SocialProvidersManager.swift in Sources */,
 				E713E0FE2248C83D00181328 /* GigyaConfig.swift in Sources */,
@@ -1523,7 +1531,7 @@
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = Gigya.Testapp;
+				PRODUCT_BUNDLE_IDENTIFIER = Gigya.TestAppnew;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "TestApp/TestApp-Bridging-Header.h";
@@ -1563,7 +1571,7 @@
 					"$(PROJECT_DIR)/TestApp/Frameworks/WechatSDK",
 				);
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = Gigya.Testapp;
+				PRODUCT_BUNDLE_IDENTIFIER = Gigya.TestAppnew;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "TestApp/TestApp-Bridging-Header.h";

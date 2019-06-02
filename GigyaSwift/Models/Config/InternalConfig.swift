@@ -17,7 +17,7 @@ struct InternalConfig {
     struct Storage {
         // Keychain Configuration
         internal static let defaultApiDomain = "us1.gigya.com"
-        internal static let serviceName = "gigya"
+        internal static let serviceName = "com.gigya.GigyaSDK"
         internal static let keySession = "com.gigya.GigyaSDK:Session"
         internal static let defaultTouchIDMessage = "Please authenticate to proceed"
 

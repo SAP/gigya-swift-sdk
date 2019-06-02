@@ -10,7 +10,41 @@ import Foundation
 import GigyaSDK
 
 // Alias to GSSession from objc sdk
-typealias GigyaSession = GSSession
+typealias GigyaSession = GigyaSessionA
+
+@objc class GigyaSessionA: NSObject, NSCoding {
+    var token: String = ""
+
+    var secret: String = ""
+
+    var lastLoginProvider = ""
+
+    init?(sessionToken token: String, secret: String) {
+        self.token = token
+        self.secret = secret
+    }
+
+    func encode(with aCoder: NSCoder) {
+        aCoder.encode(self.token, forKey: "authToken")
+        aCoder.encode(self.secret, forKey: "secret")
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        super.init()
+
+        guard let token = aDecoder.decodeObject(forKey: "authToken") as? String,
+            let secret = aDecoder.decodeObject(forKey: "secret") as? String else { return }
+
+        self.token = token
+        self.secret = secret
+    }
+
+    func isValid() -> Bool {
+        return !token.isEmpty && !secret.isEmpty
+    }
+
+    
+}
 
 protocol GigyaApiProtocol {
     var gigyaApi: GigyaWrapper { get }
@@ -55,17 +89,17 @@ class GigyaWrapper: IOCGigyaWrapperProtocol {
 
     func getSession(_ result: @escaping (GigyaSession?) -> Void) {
         Gigya.getSessionWithCompletionHandler { session in
-            return result(session)
+//            return result(session)
         }
     }
 
     func setSession(_ session: GigyaSession) {
-        Gigya.setSession(session)
+//        Gigya.setSession(session)
     }
 
     func logout() {
         Gigya.logout { (res, error) in
-            
+
         }
     }
 

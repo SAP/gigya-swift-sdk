@@ -9,6 +9,8 @@
 import Foundation
 
 protocol IOCBusinessApiServiceProtocol {
+    var config: GigyaConfig { get }
+
     var apiService: IOCApiServiceProtocol { get }
 
     var sessionService: IOCSessionServiceProtocol { get }
@@ -17,9 +19,11 @@ protocol IOCBusinessApiServiceProtocol {
 
     var socialProviderFactory: IOCSocialProvidersManagerProtocol { get }
 
-    init(apiService: IOCApiServiceProtocol, sessionService: IOCSessionServiceProtocol,
+    init(config: GigyaConfig, apiService: IOCApiServiceProtocol, sessionService: IOCSessionServiceProtocol,
          accountService: IOCAccountServiceProtocol, providerFactory: IOCSocialProvidersManagerProtocol)
 
+    func getSDKConfig()
+    
     func send(api: String, params: [String: String], completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void)
 
     func send<T: Codable>(dataType: T.Type, api: String, params: [String: String], completion: @escaping (GigyaApiResult<T>) -> Void)

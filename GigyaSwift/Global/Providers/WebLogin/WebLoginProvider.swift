@@ -44,7 +44,8 @@ class WebLoginProvider: Provider {
             guard
                 let token = jsonData?["accessToken"] as? String,
                 let secret = jsonData?["tokenSecret"] as? String,
-                let sessionObject = GigyaSession(sessionToken: token, secret: secret) else {
+                let sessionObject = GigyaSession(sessionToken: token, secret: secret),
+                sessionObject.token.isEmpty == false else {
                     let errorDesc = "token no available"
                     self?.loginFailed(error: errorDesc, completion: completion)
 

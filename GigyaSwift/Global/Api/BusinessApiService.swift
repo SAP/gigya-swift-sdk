@@ -10,6 +10,8 @@ import Foundation
 
 class BusinessApiService: NSObject, IOCBusinessApiServiceProtocol {
 
+    var config: GigyaConfig
+
     let apiService: IOCApiServiceProtocol
 
     var sessionService: IOCSessionServiceProtocol
@@ -22,12 +24,30 @@ class BusinessApiService: NSObject, IOCBusinessApiServiceProtocol {
 
     var resolver: BaseResolver?
 
-    required init(apiService: IOCApiServiceProtocol, sessionService: IOCSessionServiceProtocol,
+    required init(config: GigyaConfig, apiService: IOCApiServiceProtocol, sessionService: IOCSessionServiceProtocol,
                   accountService: IOCAccountServiceProtocol, providerFactory: IOCSocialProvidersManagerProtocol) {
+        self.config = config
         self.apiService = apiService
         self.sessionService = sessionService
         self.accountService = accountService
         self.socialProviderFactory = providerFactory
+    }
+
+    // Send regular request
+    func getSDKConfig() {
+        let params = ["include": "permissions,ids,appIds"]
+        let model = ApiRequestModel(method: GigyaDefinitions.API.getSdkConfig, params: params)
+
+        apiService.send(model: model, responseType: InitSdkResponseModel.self) { [weak self] result in
+            switch result {
+            case .success(let data):
+                self?.config.save(ids: data.ids)
+                print(data)
+            case .failure(let error):
+                print(error)
+                break
+            }
+        }
     }
 
     // Send regular request
@@ -174,8 +194,16 @@ class BusinessApiService: NSObject, IOCBusinessApiServiceProtocol {
     func logout(completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void) {
         GigyaLogger.log(with: self, message: "[logout]")
 
-        let model = ApiRequestModel(method: GigyaDefinitions.API.logout, params: nil)
-        apiService.send(model: model, responseType: GigyaDictionary.self, completion: completion)
+        let model = ApiRequestModel(method: GigyaDefinitions.API.logout, params: [:])
+        apiService.send(model: model, responseType: GigyaDictionary.self) { [weak self] result in
+            switch result {
+            case .success(let data):
+                completion(.success(data: data))
+                self?.sessionService.clear()
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
     }
 
     private func finalizeRegistration<T: Codable>(regToken: String, completion: @escaping (GigyaLoginResult<T>) -> Void) {

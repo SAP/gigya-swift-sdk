@@ -97,7 +97,9 @@ class ViewController: UIViewController {
         gigya.showScreenSet(name: "Default-RegistrationLogin", viewController: self) { [weak self] (result) in
             switch result {
             case .onLogin(let account):
-                self?.resultTextView!.text = account.toJson()
+                DispatchQueue.main.async {
+                    self?.resultTextView!.text = account.toJson()
+                }
             default:
                 break
             }
@@ -134,10 +136,14 @@ class ViewController: UIViewController {
                 self.gigya.addConnection(provider: provider, viewController: self, params: [:]) { result in
                     switch result {
                     case .success(let data):
-                        self.resultTextView?.text = data.toJson()
+                        DispatchQueue.main.async {
+                            self.resultTextView?.text = data.toJson()
+                        }
                         break
                     case .failure(_):
-                        self.resultTextView?.text = "Failed operation"
+                         DispatchQueue.main.async {
+                            self.resultTextView?.text = "Failed operation"
+                         }
                         break
                     }
                 }
@@ -192,13 +198,17 @@ class ViewController: UIViewController {
             gigya.getAccount() { [weak self] result in
                 switch result {
                 case .success(let data):
-                    self?.resultTextView?.text = data.toJson()
+                    DispatchQueue.main.async {
+                        self?.resultTextView?.text = data.toJson()
+                    }
                 case .failure(_):
                     break
                 }
             }
         } else {
-            self.resultTextView?.text = "Logged out"
+             DispatchQueue.main.async {
+                self.resultTextView?.text = "Logged out"
+            }
         }
     }
     
@@ -215,11 +225,13 @@ class ViewController: UIViewController {
     }
     
     @IBAction func loginWithProvider(_ sender: Any) {
-        gigya.login(with: .google, viewController: self ) { result in
+        gigya.login(with: .line, viewController: self ) { result in
             switch result {
             case .success(let data):
                 print(data)
-                self.resultTextView?.text = data.toJson()
+                DispatchQueue.main.async {
+                    self.resultTextView?.text = data.toJson()
+                }
             case .failure(let error):
                 print(error)
                 guard let interruption = error.interruption else { return }
@@ -243,7 +255,9 @@ class ViewController: UIViewController {
             switch result {
             case .success(let data):
                 print(data)
-                self.resultTextView?.text = "Logged out"
+                DispatchQueue.main.async {
+                    self.resultTextView?.text = "Logged out"
+                }
             case .failure(let error):
                 print(error)
             }

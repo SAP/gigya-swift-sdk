@@ -18,18 +18,27 @@ protocol IOCNetworkAdapterProtocol {
 class NetworkAdapter: IOCNetworkAdapterProtocol {
     let config: GigyaConfig
 
-    init(config: GigyaConfig) {
+    let sessionService: IOCSessionServiceProtocol
+
+    private let serial = DispatchQueue(label: "httpRequests")
+
+    init(config: GigyaConfig, sessionService: IOCSessionServiceProtocol) {
         self.config = config
+        self.sessionService = sessionService
     }
 
     func send(model: ApiRequestModel, completion: @escaping GigyaResponseHandler) {
-        let request = GSRequest(forMethod: model.method, parameters: model.params)
+        serial.async { [weak self] in
+            guard let self = self else {
+                completion(nil, nil)
+                return
+            }
 
-//        let request1 = NetworkProvider(url: InternalConfig.General.sdkDomain, config: config)
+            let networkService = NetworkProvider(url: self.config.apiDomain, config: self.config)
 
-        request.send { (res, error) in
-            let data = res?.jsonString().data(using: .utf8) as NSData?
-            completion(data, error)
+            networkService.dataRequest(gsession: self.sessionService.session, path: model.method, params: model.params as? [String : String], completion: { (data, error) in
+                completion(data, error)
+            })
         }
     }
 }
