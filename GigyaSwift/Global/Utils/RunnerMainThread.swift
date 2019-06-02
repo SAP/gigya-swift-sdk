@@ -7,3 +7,9 @@
 //
 
 import Foundation
+
+internal func main(work: @escaping () -> ()) {
+    DispatchQueue.main.async {
+        work()
+    }
+}

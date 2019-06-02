@@ -23,9 +23,6 @@ public class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
         return (container?.resolve(GigyaConfig.self))!
     }
 
-    private var gigyaApi: IOCGigyaWrapperProtocol {
-        return (container?.resolve(IOCGigyaWrapperProtocol.self))!
-    }
 
     private var businessApiService: IOCBusinessApiServiceProtocol {
         return (container?.resolve(IOCBusinessApiServiceProtocol.self))!
@@ -91,28 +88,6 @@ public class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
         businessApiService.send(dataType: dataType, api: api, params: params, completion: completion)
     }
 
-    // TODO: test api with self request
-    public func sendTest1(api: String, params: [String: String] = [:]) {
-        GSKeychainStorage.get(name: InternalConfig.Storage.keySession) { (result) in
-            switch result {
-            case .succses(let data):
-                let session: GigyaSession = NSKeyedUnarchiver.unarchiveObject(with: data!) as! GigyaSession
-                print(session)
-            case .error(let error):
-                break
-            }
-//            let session = NSKeyedUnarchiver.unarchiveObject(with: result)
-        }
-
-//        Gigya.getSessionWithCompletionHandler { (session) in
-//            let networkService = NetworkProvider(url: self.defaultApiDomain, config: self.config)
-//
-//            networkService.dataRequest(gsession: session,path: api, params: params, completion: { (data, error) in
-//                let json = try? JSONSerialization.jsonObject(with: data! as Data, options: [])
-//                print(json)
-//            })
-//        }
-    }
 
     // MARK: - Session
 

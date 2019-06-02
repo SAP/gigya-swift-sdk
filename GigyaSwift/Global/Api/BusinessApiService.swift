@@ -65,6 +65,7 @@ class BusinessApiService: NSObject, IOCBusinessApiServiceProtocol {
     }
 
     func getAccount<T: Codable>(dataType: T.Type, completion: @escaping (GigyaApiResult<T>) -> Void) {
+
         if accountService.isCachedAccount() {
             completion(.success(data: accountService.getAccount()))
         } else {
@@ -83,16 +84,18 @@ class BusinessApiService: NSObject, IOCBusinessApiServiceProtocol {
     }
 
     func setAccount<T: Codable>(obj: T, completion: @escaping (GigyaApiResult<T>) -> Void) {
-        let diffParams = accountService.setAccount(newAccount: obj)
-        let model = ApiRequestModel(method: GigyaDefinitions.API.setAccountInfo, params: diffParams)
+        DispatchQueue.global(qos: .utility).async { [weak self] in
+            let diffParams = self?.accountService.setAccount(newAccount: obj)
+            let model = ApiRequestModel(method: GigyaDefinitions.API.setAccountInfo, params: diffParams)
 
-        apiService.send(model: model, responseType: GigyaDictionary.self) { [weak self] result in
-            switch result {
-            case .success:
-                self?.accountService.clear()
-                self?.getAccount(dataType: T.self, completion: completion)
-            case .failure(let error):
-                completion(.failure(error))
+            self?.apiService.send(model: model, responseType: GigyaDictionary.self) { [weak self] result in
+                switch result {
+                case .success:
+                    self?.accountService.clear()
+                    self?.getAccount(dataType: T.self, completion: completion)
+                case .failure(let error):
+                    completion(.failure(error))
+                }
             }
         }
     }

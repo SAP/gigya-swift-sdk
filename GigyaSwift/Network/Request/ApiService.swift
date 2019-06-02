@@ -27,7 +27,9 @@ class ApiService: IOCApiServiceProtocol {
                           completion: @escaping (GigyaApiResult<T>) -> Void) {
         self.networkAdapter?.send(model: model) { (data, error) in
             if error == nil {
-                self.validateResult(responseType: responseType, data: data, completion: completion)
+                main { [weak self] in
+                    self?.validateResult(responseType: responseType, data: data, completion: completion)
+                }
                 return
             }
 
@@ -35,7 +37,8 @@ class ApiService: IOCApiServiceProtocol {
             let error = error as NSError?
 
             guard let code = error?.code, let callId = error?.userInfo["callId"] as? String else {
-                return completion(.failure(NetworkError.networkError(error!)))
+                main { completion(.failure(NetworkError.networkError(error!))) }
+                return
             }
 
             let errorModel = GigyaResponseModel(statusCode: .unknown, errorCode: code,
@@ -53,26 +56,27 @@ class ApiService: IOCApiServiceProtocol {
                                             completion: @escaping (GigyaApiResult<T>) -> Void) {
         guard let data = data else {
             GigyaLogger.log(with: self, message: "Error: data not found)")
-            return completion(.failure(NetworkError.dataNotFound))
+            main { completion(.failure(NetworkError.dataNotFound)) }
+            return
         }
 
         do {
             var gigyaResponse = try DecodeEncodeUtils.decode(fromType: GigyaResponseModel.self, data: data as Data)
             gigyaResponse.requestData = data as Data
 
-            sessionService?.setSession(gigyaResponse)
+            sessionService?.setSession(gigyaResponse.sessionInfo)
 
             if gigyaResponse.errorCode == 0 {
                 let typedResponse = try DecodeEncodeUtils.decode(fromType: responseType.self, data: data as Data)
-                completion(GigyaApiResult.success(data: typedResponse))
+                main { completion(GigyaApiResult.success(data: typedResponse)) }
             } else {    
                 GigyaLogger.log(with: self, message: "Failed: \(gigyaResponse)")
-                completion(.failure(.gigyaError(data: gigyaResponse)))
+                main { completion(.failure(.gigyaError(data: gigyaResponse))) }
             }
 
         } catch let error {
             GigyaLogger.log(with: self, message: error.localizedDescription)
-            completion(.failure(NetworkError.jsonParsingError(error)))
+            main { completion(.failure(NetworkError.jsonParsingError(error))) }
         }
     }
 }

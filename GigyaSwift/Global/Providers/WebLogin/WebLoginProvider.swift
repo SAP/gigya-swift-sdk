@@ -53,7 +53,8 @@ class WebLoginProvider: Provider {
                     return
             }
 
-            self?.sessionService.setSession(sessionObject)
+            let sessionInfo = SessionInfoModel(sessionToken: token, sessionSecret: secret)
+            self?.sessionService.setSession(sessionInfo)
 
             self?.delegate?.callGetAccount(completion: { (result) in
                 completion(result)

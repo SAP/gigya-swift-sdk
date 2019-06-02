@@ -10,8 +10,6 @@ import Foundation
 
 class SessionService: IOCSessionServiceProtocol {
 
-    var gigyaApi: IOCGigyaWrapperProtocol
-
     var accountService: IOCAccountServiceProtocol
 
     var session: GigyaSession?
@@ -22,8 +20,7 @@ class SessionService: IOCSessionServiceProtocol {
 
     private let semaphore = DispatchSemaphore(value: 0)
 
-    required init(config: GigyaConfig, gigyaApi: IOCGigyaWrapperProtocol, accountService: IOCAccountServiceProtocol) {
-        self.gigyaApi = gigyaApi
+    required init(config: GigyaConfig, accountService: IOCAccountServiceProtocol) {
         self.accountService = accountService
         self.config = config
 
@@ -40,8 +37,8 @@ class SessionService: IOCSessionServiceProtocol {
         return session?.isValid() ?? false
     }
     
-    func setSession(_ model: GigyaResponseModel) {
-        guard let sessionInfo = model.sessionInfo else {
+    func setSession(_ model: SessionInfoModel?) {
+        guard let sessionInfo = model else {
             return
         }
 
@@ -52,12 +49,6 @@ class SessionService: IOCSessionServiceProtocol {
             [weak self] err in
             self?.session = gsession
         }
-    }
-
-    func setSession(_ session: GigyaSession) {
-        GigyaLogger.log(with: self, message: "[setSession] - session: \(GigyaSession.debugDescription())")
-
-        gigyaApi.setSession(session)
     }
 
     func getSession() {

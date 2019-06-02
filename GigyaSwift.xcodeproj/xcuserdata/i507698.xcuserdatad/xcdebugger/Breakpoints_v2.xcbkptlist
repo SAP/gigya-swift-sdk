@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TestApp/ViewController.swift"
-            timestampString = "581158557.467463"
+            timestampString = "581167243.363162"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "217"
-            endingLineNumber = "217"
+            startingLineNumber = "207"
+            endingLineNumber = "207"
             landmarkName = "getAccount(_:)"
             landmarkType = "7">
             <Locations>
@@ -42,11 +42,11 @@
                   moduleName = "TestApp"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/i507698/SDKs/gigya-swift-sdk/TestApp/ViewController.swift"
-                  timestampString = "581158557.731091"
+                  timestampString = "581167340.924281"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "217"
-                  endingLineNumber = "217"
+                  startingLineNumber = "207"
+                  endingLineNumber = "207"
                   offsetFromSymbolStart = "51">
                </Location>
                <Location
@@ -57,11 +57,11 @@
                   moduleName = "TestApp"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/i507698/SDKs/gigya-swift-sdk/TestApp/ViewController.swift"
-                  timestampString = "581158557.733009"
+                  timestampString = "581167340.9266551"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "217"
-                  endingLineNumber = "217"
+                  startingLineNumber = "207"
+                  endingLineNumber = "207"
                   offsetFromSymbolStart = "132">
                </Location>
             </Locations>
@@ -102,22 +102,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GigyaSwift/Network/Request/ApiService.swift"
-            timestampString = "581158557.467828"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "63"
-            endingLineNumber = "63"
-            landmarkName = "validateResult(responseType:data:completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -128,54 +112,6 @@
             startingLineNumber = "306"
             endingLineNumber = "306"
             landmarkName = "sendOauthRequest(callbackId:apiMethod:params:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GigyaSwift/Gigya/GigyaCore.swift"
-            timestampString = "581158557.468453"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "100"
-            endingLineNumber = "100"
-            landmarkName = "sendTest1(api:params:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GigyaSwift/Global/Session/SessionService.swift"
-            timestampString = "581158557.468951"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "76"
-            endingLineNumber = "76"
-            landmarkName = "getSession()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GigyaSwift/Global/Session/SessionService.swift"
-            timestampString = "581158557.469129"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "71"
-            endingLineNumber = "71"
-            landmarkName = "getSession()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

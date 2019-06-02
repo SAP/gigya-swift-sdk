@@ -97,9 +97,7 @@ class ViewController: UIViewController {
         gigya.showScreenSet(name: "Default-RegistrationLogin", viewController: self) { [weak self] (result) in
             switch result {
             case .onLogin(let account):
-                DispatchQueue.main.async {
-                    self?.resultTextView!.text = account.toJson()
-                }
+                self?.resultTextView!.text = account.toJson()
             default:
                 break
             }
@@ -107,7 +105,7 @@ class ViewController: UIViewController {
     }
 
     @IBAction func login(_ sender: Any) {
-        gigya.sendTest1(api: "accounts.getAccountInfo")
+//        gigya.sendTest1(api: "accounts.getAccountInfo")
     }
     
     @IBAction func register(_ sender: Any) {
@@ -136,14 +134,10 @@ class ViewController: UIViewController {
                 self.gigya.addConnection(provider: provider, viewController: self, params: [:]) { result in
                     switch result {
                     case .success(let data):
-                        DispatchQueue.main.async {
-                            self.resultTextView?.text = data.toJson()
-                        }
+                        self.resultTextView?.text = data.toJson()
                         break
                     case .failure(_):
-                         DispatchQueue.main.async {
-                            self.resultTextView?.text = "Failed operation"
-                         }
+                        self.resultTextView?.text = "Failed operation"
                         break
                     }
                 }
@@ -198,17 +192,13 @@ class ViewController: UIViewController {
             gigya.getAccount() { [weak self] result in
                 switch result {
                 case .success(let data):
-                    DispatchQueue.main.async {
-                        self?.resultTextView?.text = data.toJson()
-                    }
+                    self?.resultTextView?.text = data.toJson()
                 case .failure(_):
                     break
                 }
             }
         } else {
-             DispatchQueue.main.async {
-                self.resultTextView?.text = "Logged out"
-            }
+            self.resultTextView?.text = "Logged out"
         }
     }
     
@@ -229,9 +219,7 @@ class ViewController: UIViewController {
             switch result {
             case .success(let data):
                 print(data)
-                DispatchQueue.main.async {
-                    self.resultTextView?.text = data.toJson()
-                }
+                self.resultTextView?.text = data.toJson()
             case .failure(let error):
                 print(error)
                 guard let interruption = error.interruption else { return }
@@ -255,9 +243,7 @@ class ViewController: UIViewController {
             switch result {
             case .success(let data):
                 print(data)
-                DispatchQueue.main.async {
-                    self.resultTextView?.text = "Logged out"
-                }
+                self.resultTextView?.text = "Logged out"
             case .failure(let error):
                 print(error)
             }
