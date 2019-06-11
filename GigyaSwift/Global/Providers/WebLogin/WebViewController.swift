@@ -67,7 +67,7 @@ class WebViewController: UIViewController {
         webView.load(URLRequest(url: url))
     }
 
-    @objc private func dismissView() {
+    @objc func dismissView() {
         self.dismiss(animated: true, completion: nil)
         userDidCancel()
     }

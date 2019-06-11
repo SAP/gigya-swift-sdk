@@ -84,7 +84,7 @@ public class TFAResolver<T: Codable> : BaseResolver {
      Forwarding a general error that breaks the flow.
      */
     func forwardGeneralError() {
-        let error = NetworkError.dataNotFound
+        let error = NetworkError.emptyResponse
         let loginError = LoginApiError<T>(error: error, interruption: nil)
         self.completion(.failure(loginError))
     }

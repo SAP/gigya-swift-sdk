@@ -39,8 +39,9 @@ class DecodeEncodeUtils {
         }
     }
 
-    static func parsePlistConfig() -> PlistConfig {
-        guard let url = Bundle.main.url(forResource: "Info", withExtension: "plist") else { return PlistConfig(apiKey: "", apiDomain: "") }
+    static func parsePlistConfig() -> PlistConfig? {
+        guard let url = Bundle.main.url(forResource: "Info", withExtension: "plist") else { return nil }
+
         do {
             let data = try Data(contentsOf: url)
             let decoder = PropertyListDecoder()

@@ -14,6 +14,8 @@ class BusinessApiService: NSObject, IOCBusinessApiServiceProtocol {
 
     var sessionService: IOCSessionServiceProtocol
 
+    var config: GigyaConfig
+
     var accountService: IOCAccountServiceProtocol
 
     var socialProviderFactory: IOCSocialProvidersManagerProtocol
@@ -22,8 +24,11 @@ class BusinessApiService: NSObject, IOCBusinessApiServiceProtocol {
 
     var resolver: BaseResolver?
 
-    required init(apiService: IOCApiServiceProtocol, sessionService: IOCSessionServiceProtocol,
+    var providersFactory: ProvidersLoginWrapper?
+
+    required init(config: GigyaConfig, apiService: IOCApiServiceProtocol, sessionService: IOCSessionServiceProtocol,
                   accountService: IOCAccountServiceProtocol, providerFactory: IOCSocialProvidersManagerProtocol) {
+        self.config = config
         self.apiService = apiService
         self.sessionService = sessionService
         self.accountService = accountService
@@ -144,6 +149,21 @@ class BusinessApiService: NSObject, IOCBusinessApiServiceProtocol {
         }
     }
 
+    func login<T: Codable>(providers: [GigyaSocielProviders], viewController: UIViewController, params: [String: Any], completion: @escaping (GigyaLoginResult<T>) -> Void) {
+        providersFactory = ProvidersLoginWrapper(config: config, providers: providers)
+        providersFactory?.show(params: params, viewController: viewController) { [weak self] json, error in
+            if let providerString = json?["provider"] as? String,
+               let provider = GigyaSocielProviders(rawValue: providerString) {
+                self?.login(provider: provider, viewController: viewController, params: params, dataType: T.self) {  [weak self] result in
+                    self?.providersFactory?.dismiss()
+                    self?.providersFactory = nil
+
+                    completion(result)
+                }
+            }
+        }
+    }
+
     func nativeSocialLogin<T: Codable>(params: [String: Any], completion: @escaping (GigyaApiResult<T>) -> Void) {
         let model = ApiRequestModel(method: GigyaDefinitions.API.notifySocialLogin, params: params)
 
@@ -246,6 +266,9 @@ class BusinessApiService: NSObject, IOCBusinessApiServiceProtocol {
                     resolver = TFARegistrationResolver(originalError: error, regToken: regToken, businessDelegate: self, completion: completion)
                 case .pendingTwoFactorVerification: // pending TFA verification
                     resolver = TFAVerificationResolver(originalError: error, regToken: regToken, businessDelegate: self , completion: completion)
+                case .pendingPasswordChange:
+                    let loginError = LoginApiError<T>(error: error, interruption: .pendingPasswordChange(regToken: regToken))
+                    completion(.failure(loginError))
                 }
             } else {
                 GigyaLogger.log(with: self, message: "[interruptionResolver] - interruption not supported")
@@ -258,7 +281,7 @@ class BusinessApiService: NSObject, IOCBusinessApiServiceProtocol {
             forwordFailed(error: error, completion: completion)
         }
     }
-
+    
     private func forwordFailed<T: Codable>(error: NetworkError, completion: @escaping (GigyaLoginResult<T>) -> Void) {
         let loginError = LoginApiError<T>(error: error, interruption: nil)
         completion(.failure(loginError))

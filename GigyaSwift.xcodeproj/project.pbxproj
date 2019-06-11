@@ -25,6 +25,9 @@
 		D5FF935422916ECD00CF33D6 /* TfaPhoneInputCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FF935322916ECD00CF33D6 /* TfaPhoneInputCell.swift */; };
 		D5FF935622917B8600CF33D6 /* TfaAuthCodeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FF935522917B8600CF33D6 /* TfaAuthCodeCell.swift */; };
 		D5FF93582291883700CF33D6 /* TfaQrCodeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FF93572291883700CF33D6 /* TfaQrCodeCell.swift */; };
+		E70DC25722AFEF7300D7346D /* ProvidersLoginWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70DC25622AFEF7300D7346D /* ProvidersLoginWrapper.swift */; };
+		E712E90822A662D6005397BA /* PluginViewWrapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E712E90722A662D6005397BA /* PluginViewWrapperTests.swift */; };
+		E712E90C22A664DB005397BA /* FakeUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E712E90B22A664DB005397BA /* FakeUIViewController.swift */; };
 		E713E0CC2247773100181328 /* GigyaSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7BE36732224219200A108D9 /* GigyaSwift.framework */; };
 		E713E0CD2247773100181328 /* GigyaSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E7BE36732224219200A108D9 /* GigyaSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E713E0FC2247C6E700181328 /* SignatureUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E713E0FB2247C6E700181328 /* SignatureUtils.swift */; };
@@ -88,6 +91,8 @@
 		E7BE5793229AB29100C17D93 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BE5792229AB29100C17D93 /* UIImage.swift */; };
 		E7BE5796229BCD4900C17D93 /* TfaRegistrationTotpResolverTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BE5795229BCD4900C17D93 /* TfaRegistrationTotpResolverTests.swift */; };
 		E7BE579A229D284A00C17D93 /* TFAVerificationpTotpResolverTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BE5799229D284A00C17D93 /* TFAVerificationpTotpResolverTests.swift */; };
+		E7BE57B922A40ED100C17D93 /* WebViewWrapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BE57B822A40ED100C17D93 /* WebViewWrapperTests.swift */; };
+		E7BE57BD22A41D0B00C17D93 /* FakeNavigationAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BE57BC22A41D0B00C17D93 /* FakeNavigationAction.swift */; };
 		E7C859C8228866D7005C1FBE /* GigyaSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7C859C7228866AA005C1FBE /* GigyaSDK.framework */; };
 		E7C859DB2289604F005C1FBE /* LinkAccountsResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C859DA2289604F005C1FBE /* LinkAccountsResolver.swift */; };
 		E7C859E02289B299005C1FBE /* InterruptionEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C859DF2289B299005C1FBE /* InterruptionEnum.swift */; };
@@ -164,6 +169,16 @@
 		E7E80DA0225203D400D3B663 /* ServiceMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7E80D9F225203D400D3B663 /* ServiceMaker.swift */; };
 		E7E80DA22252041D00D3B663 /* ResolverProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7E80DA12252041D00D3B663 /* ResolverProtocol.swift */; };
 		E7E80DA522535A5700D3B663 /* ResponseDataGlobal.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7E80DA422535A5700D3B663 /* ResponseDataGlobal.swift */; };
+		E7F63B1322A7E88200ABA24F /* PluginViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F63B1222A7E88200ABA24F /* PluginViewControllerTests.swift */; };
+		E7F63B1722A7E9FC00ABA24F /* FakeWKScriptMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F63B1622A7E9FC00ABA24F /* FakeWKScriptMessage.swift */; };
+		E7F63B1922A7ED5E00ABA24F /* LogRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F63B1822A7ED5E00ABA24F /* LogRecord.swift */; };
+		E7F63B3722A94C8700ABA24F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E7F63B3622A94C8700ABA24F /* AppDelegate.m */; };
+		E7F63B3A22A94C8700ABA24F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7F63B3922A94C8700ABA24F /* ViewController.m */; };
+		E7F63B3D22A94C8700ABA24F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E7F63B3B22A94C8700ABA24F /* Main.storyboard */; };
+		E7F63B3F22A94C8A00ABA24F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E7F63B3E22A94C8A00ABA24F /* Assets.xcassets */; };
+		E7F63B4222A94C8A00ABA24F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E7F63B4022A94C8A00ABA24F /* LaunchScreen.storyboard */; };
+		E7F63B4522A94C8A00ABA24F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E7F63B4422A94C8A00ABA24F /* main.m */; };
+		E7F63B4922A94CC300ABA24F /* GigyaSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7BE36732224219200A108D9 /* GigyaSwift.framework */; };
 		E7F94F5022247A7400A85640 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E7F94F4F22247A7400A85640 /* libz.tbd */; };
 		E7F94F5222247A7D00A85640 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E7F94F5122247A7D00A85640 /* libc++.tbd */; };
 		E7F94FAA22248C6800A85640 /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7F94FA922248C6800A85640 /* LocalAuthentication.framework */; };
@@ -236,6 +251,9 @@
 		D5FF935322916ECD00CF33D6 /* TfaPhoneInputCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TfaPhoneInputCell.swift; sourceTree = "<group>"; };
 		D5FF935522917B8600CF33D6 /* TfaAuthCodeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TfaAuthCodeCell.swift; sourceTree = "<group>"; };
 		D5FF93572291883700CF33D6 /* TfaQrCodeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TfaQrCodeCell.swift; sourceTree = "<group>"; };
+		E70DC25622AFEF7300D7346D /* ProvidersLoginWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProvidersLoginWrapper.swift; sourceTree = "<group>"; };
+		E712E90722A662D6005397BA /* PluginViewWrapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluginViewWrapperTests.swift; sourceTree = "<group>"; };
+		E712E90B22A664DB005397BA /* FakeUIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeUIViewController.swift; sourceTree = "<group>"; };
 		E713E0FB2247C6E700181328 /* SignatureUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignatureUtils.swift; sourceTree = "<group>"; };
 		E713E0FD2248C83D00181328 /* GigyaConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigyaConfig.swift; sourceTree = "<group>"; };
 		E713E1012248E41400181328 /* GigyaRequestSignature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigyaRequestSignature.swift; sourceTree = "<group>"; };
@@ -302,6 +320,8 @@
 		E7BE5792229AB29100C17D93 /* UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
 		E7BE5795229BCD4900C17D93 /* TfaRegistrationTotpResolverTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TfaRegistrationTotpResolverTests.swift; sourceTree = "<group>"; };
 		E7BE5799229D284A00C17D93 /* TFAVerificationpTotpResolverTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TFAVerificationpTotpResolverTests.swift; sourceTree = "<group>"; };
+		E7BE57B822A40ED100C17D93 /* WebViewWrapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewWrapperTests.swift; sourceTree = "<group>"; };
+		E7BE57BC22A41D0B00C17D93 /* FakeNavigationAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeNavigationAction.swift; sourceTree = "<group>"; };
 		E7C859C1228866AA005C1FBE /* GigyaSDK.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GigyaSDK.xcodeproj; path = "../../../Documents/gigya-ios-sdk/GigyaSDK.xcodeproj"; sourceTree = "<group>"; };
 		E7C859DA2289604F005C1FBE /* LinkAccountsResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkAccountsResolver.swift; sourceTree = "<group>"; };
 		E7C859DF2289B299005C1FBE /* InterruptionEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterruptionEnum.swift; sourceTree = "<group>"; };
@@ -374,6 +394,19 @@
 		E7E80D9F225203D400D3B663 /* ServiceMaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceMaker.swift; sourceTree = "<group>"; };
 		E7E80DA12252041D00D3B663 /* ResolverProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResolverProtocol.swift; sourceTree = "<group>"; };
 		E7E80DA422535A5700D3B663 /* ResponseDataGlobal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseDataGlobal.swift; sourceTree = "<group>"; };
+		E7F63B1222A7E88200ABA24F /* PluginViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluginViewControllerTests.swift; sourceTree = "<group>"; };
+		E7F63B1622A7E9FC00ABA24F /* FakeWKScriptMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeWKScriptMessage.swift; sourceTree = "<group>"; };
+		E7F63B1822A7ED5E00ABA24F /* LogRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogRecord.swift; sourceTree = "<group>"; };
+		E7F63B3322A94C8700ABA24F /* TestAppObjC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestAppObjC.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E7F63B3522A94C8700ABA24F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		E7F63B3622A94C8700ABA24F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		E7F63B3822A94C8700ABA24F /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		E7F63B3922A94C8700ABA24F /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		E7F63B3C22A94C8700ABA24F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		E7F63B3E22A94C8A00ABA24F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E7F63B4122A94C8A00ABA24F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		E7F63B4322A94C8A00ABA24F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E7F63B4422A94C8A00ABA24F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E7F94F4F22247A7400A85640 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		E7F94F5122247A7D00A85640 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		E7F94FA922248C6800A85640 /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
@@ -436,6 +469,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E7F63B3022A94C8700ABA24F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E7F63B4922A94CC300ABA24F /* GigyaSwift.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -477,6 +518,14 @@
 				D5B916A22292C87E004FAEF3 /* TfaRegisteredEntryCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		E70DC25522AFEF4900D7346D /* ProvidersLogin */ = {
+			isa = PBXGroup;
+			children = (
+				E70DC25622AFEF7300D7346D /* ProvidersLoginWrapper.swift */,
+			);
+			path = ProvidersLogin;
 			sourceTree = "<group>";
 		};
 		E713E0FF2248C84000181328 /* Config */ = {
@@ -552,6 +601,7 @@
 				E73373E12263339400ADEDBB /* Provider.swift */,
 				E73374612268B25B00ADEDBB /* SocialProvidersManager.swift */,
 				E7ACF9CB226F2A4100900C65 /* ProviderWrapperProtocol.swift */,
+				E70DC25522AFEF4900D7346D /* ProvidersLogin */,
 				E7C859BF22819890005C1FBE /* SocialLogin */,
 				E76066872278998E005E4CFD /* WebLogin */,
 			);
@@ -622,7 +672,7 @@
 			children = (
 				E7A6E0B6224256390063638F /* GigyaSwiftTests.swift */,
 				E7C85A042292DA77005C1FBE /* GoogleWrapper.swift */,
-				E7C85A082292E2B3005C1FBE /* New Group */,
+				E7C85A082292E2B3005C1FBE /* WebPluginTests */,
 				E73373D4225E326100ADEDBB /* GigyaLoggerTest.swift */,
 				E7C859FB2292B129005C1FBE /* TfaTests */,
 				E756A2972275CB44007FA801 /* Providers */,
@@ -667,6 +717,7 @@
 				E7BE36752224219200A108D9 /* GigyaSwift */,
 				E7BE369B2224260400A108D9 /* TestApp */,
 				E7A6E0B5224256390063638F /* GigyaSwiftTests */,
+				E7F63B3422A94C8700ABA24F /* TestAppObjC */,
 				E7BE36742224219200A108D9 /* Products */,
 				E7BE368C2224225900A108D9 /* Frameworks */,
 			);
@@ -678,6 +729,7 @@
 				E7BE36732224219200A108D9 /* GigyaSwift.framework */,
 				E7BE369A2224260400A108D9 /* TestApp.app */,
 				E7A6E0B4224256390063638F /* GigyaSwiftTests.xctest */,
+				E7F63B3322A94C8700ABA24F /* TestAppObjC.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -786,11 +838,14 @@
 			path = TfaTests;
 			sourceTree = "<group>";
 		};
-		E7C85A082292E2B3005C1FBE /* New Group */ = {
+		E7C85A082292E2B3005C1FBE /* WebPluginTests */ = {
 			isa = PBXGroup;
 			children = (
+				E7BE57B822A40ED100C17D93 /* WebViewWrapperTests.swift */,
+				E712E90722A662D6005397BA /* PluginViewWrapperTests.swift */,
+				E7F63B1222A7E88200ABA24F /* PluginViewControllerTests.swift */,
 			);
-			path = "New Group";
+			path = WebPluginTests;
 			sourceTree = "<group>";
 		};
 		E7C8FA522296BBD200E69634 /* Storge */ = {
@@ -981,6 +1036,10 @@
 			isa = PBXGroup;
 			children = (
 				E7E80D92224D063C00D3B663 /* GigyaContainerUtils.swift */,
+				E7BE57BC22A41D0B00C17D93 /* FakeNavigationAction.swift */,
+				E712E90B22A664DB005397BA /* FakeUIViewController.swift */,
+				E7F63B1822A7ED5E00ABA24F /* LogRecord.swift */,
+				E7F63B1622A7E9FC00ABA24F /* FakeWKScriptMessage.swift */,
 				E7BE5792229AB29100C17D93 /* UIImage.swift */,
 				E7E80DA422535A5700D3B663 /* ResponseDataGlobal.swift */,
 				E7E80D87224BBF2400D3B663 /* XCTestCase+FatalError.swift */,
@@ -1008,6 +1067,22 @@
 				E7E80D9F225203D400D3B663 /* ServiceMaker.swift */,
 			);
 			path = IOContainer;
+			sourceTree = "<group>";
+		};
+		E7F63B3422A94C8700ABA24F /* TestAppObjC */ = {
+			isa = PBXGroup;
+			children = (
+				E7F63B3522A94C8700ABA24F /* AppDelegate.h */,
+				E7F63B3622A94C8700ABA24F /* AppDelegate.m */,
+				E7F63B3822A94C8700ABA24F /* ViewController.h */,
+				E7F63B3922A94C8700ABA24F /* ViewController.m */,
+				E7F63B3B22A94C8700ABA24F /* Main.storyboard */,
+				E7F63B3E22A94C8A00ABA24F /* Assets.xcassets */,
+				E7F63B4022A94C8A00ABA24F /* LaunchScreen.storyboard */,
+				E7F63B4322A94C8A00ABA24F /* Info.plist */,
+				E7F63B4422A94C8A00ABA24F /* main.m */,
+			);
+			path = TestAppObjC;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1082,18 +1157,37 @@
 			productReference = E7BE369A2224260400A108D9 /* TestApp.app */;
 			productType = "com.apple.product-type.application";
 		};
+		E7F63B3222A94C8700ABA24F /* TestAppObjC */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E7F63B4622A94C8A00ABA24F /* Build configuration list for PBXNativeTarget "TestAppObjC" */;
+			buildPhases = (
+				E7F63B2F22A94C8700ABA24F /* Sources */,
+				E7F63B3022A94C8700ABA24F /* Frameworks */,
+				E7F63B3122A94C8700ABA24F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TestAppObjC;
+			productName = TestAppObjC;
+			productReference = E7F63B3322A94C8700ABA24F /* TestAppObjC.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		E7BE366A2224219200A108D9 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				DefaultBuildSystemTypeForWorkspace = Original;
 				LastSwiftUpdateCheck = 1010;
 				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = Gigya;
 				TargetAttributes = {
 					E7A6E0B3224256390063638F = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1020;
 					};
 					E7BE36722224219200A108D9 = {
 						CreatedOnToolsVersion = 10.1;
@@ -1102,6 +1196,9 @@
 					E7BE36992224260400A108D9 = {
 						CreatedOnToolsVersion = 10.1;
 						LastSwiftMigration = 1020;
+					};
+					E7F63B3222A94C8700ABA24F = {
+						CreatedOnToolsVersion = 10.2.1;
 					};
 				};
 			};
@@ -1127,6 +1224,7 @@
 				E7BE36722224219200A108D9 /* GigyaSwift */,
 				E7BE36992224260400A108D9 /* TestApp */,
 				E7A6E0B3224256390063638F /* GigyaSwiftTests */,
+				E7F63B3222A94C8700ABA24F /* TestAppObjC */,
 			);
 		};
 /* End PBXProject section */
@@ -1174,6 +1272,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E7F63B3122A94C8700ABA24F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E7F63B4222A94C8A00ABA24F /* LaunchScreen.storyboard in Resources */,
+				E7F63B3F22A94C8A00ABA24F /* Assets.xcassets in Resources */,
+				E7F63B3D22A94C8700ABA24F /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -1201,6 +1309,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E7F63B1322A7E88200ABA24F /* PluginViewControllerTests.swift in Sources */,
 				E7E80D85224BB59100D3B663 /* UserDataModel.swift in Sources */,
 				E73373D5225E326100ADEDBB /* GigyaLoggerTest.swift in Sources */,
 				E713E18C224A2E5800181328 /* NetworkAdapterMock.swift in Sources */,
@@ -1218,8 +1327,11 @@
 				E7C85A012292CA45005C1FBE /* SocialManagerTests.swift in Sources */,
 				E7C8FA542296BBF600E69634 /* UserDefaultsTests.swift in Sources */,
 				E7C8FA492295775000E69634 /* WebProviderLoginTests.swift in Sources */,
+				E712E90C22A664DB005397BA /* FakeUIViewController.swift in Sources */,
+				E7F63B1722A7E9FC00ABA24F /* FakeWKScriptMessage.swift in Sources */,
 				E7BE5796229BCD4900C17D93 /* TfaRegistrationTotpResolverTests.swift in Sources */,
 				E7C859FD2292B13D005C1FBE /* TfaLinkAccountTests.swift in Sources */,
+				E712E90822A662D6005397BA /* PluginViewWrapperTests.swift in Sources */,
 				E7E80D96224D101C00D3B663 /* ApiServiceTest.swift in Sources */,
 				E7C85A052292DA77005C1FBE /* GoogleWrapper.swift in Sources */,
 				E7C8FA4F22957E8C00E69634 /* TFAVerificationpPhoneResolverTests.swift in Sources */,
@@ -1232,12 +1344,15 @@
 				E7BE579A229D284A00C17D93 /* TFAVerificationpTotpResolverTests.swift in Sources */,
 				E7337467226C538300ADEDBB /* DecodeTestUtils.swift in Sources */,
 				E7E80D93224D063C00D3B663 /* GigyaContainerUtils.swift in Sources */,
+				E7BE57B922A40ED100C17D93 /* WebViewWrapperTests.swift in Sources */,
 				E7C8FA512296917C00E69634 /* TFAVerificationEmailResolverTests.swift in Sources */,
+				E7F63B1922A7ED5E00ABA24F /* LogRecord.swift in Sources */,
 				E733744722675CA000ADEDBB /* ApiServiceMock.swift in Sources */,
 				E7E80D98224D15B600D3B663 /* GigyaWrapperMock.swift in Sources */,
 				E7E80D8D224CF55300D3B663 /* GigyaCoreTest.swift in Sources */,
 				E756A29E2275CC59007FA801 /* SocialProviderWrapperMock.swift in Sources */,
 				E756A2992275CB5C007FA801 /* SocialProviderLoginTests.swift in Sources */,
+				E7BE57BD22A41D0B00C17D93 /* FakeNavigationAction.swift in Sources */,
 				E7BE5793229AB29100C17D93 /* UIImage.swift in Sources */,
 				E7BE57862296C04E00C17D93 /* StringTests.swift in Sources */,
 				E7E80D91224D052000D3B663 /* GigyaSessionServiceMock.swift in Sources */,
@@ -1281,6 +1396,7 @@
 				E7CBAFD0222EB89D000B6C11 /* BusinessApiService.swift in Sources */,
 				E760668B2278998E005E4CFD /* WebLoginProvider.swift in Sources */,
 				E774A54D2242A12800BC67D1 /* AnyCodableUtils.swift in Sources */,
+				E70DC25722AFEF7300D7346D /* ProvidersLoginWrapper.swift in Sources */,
 				E73373E22263339400ADEDBB /* Provider.swift in Sources */,
 				E7ACF9B0226C844A00900C65 /* IOCAccountServiceProtocol.swift in Sources */,
 				E7ACF9AC226C841300900C65 /* IOCApiServiceProtocol.swift in Sources */,
@@ -1335,6 +1451,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E7F63B2F22A94C8700ABA24F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E7F63B3A22A94C8700ABA24F /* ViewController.m in Sources */,
+				E7F63B4522A94C8A00ABA24F /* main.m in Sources */,
+				E7F63B3722A94C8700ABA24F /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -1372,6 +1498,22 @@
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
+		E7F63B3B22A94C8700ABA24F /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E7F63B3C22A94C8700ABA24F /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		E7F63B4022A94C8A00ABA24F /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E7F63B4122A94C8A00ABA24F /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -1391,7 +1533,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = Gigya.GigyaSwiftTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1412,7 +1554,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = Gigya.GigyaSwiftTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -1577,7 +1719,7 @@
 				SKIP_INSTALL = NO;
 				SWIFT_INCLUDE_PATHS = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1619,7 +1761,7 @@
 				SKIP_INSTALL = NO;
 				SWIFT_INCLUDE_PATHS = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -1655,12 +1797,12 @@
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = Gigya.Testapp;
+				PRODUCT_BUNDLE_IDENTIFIER = Gigya.TestAppnew;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "TestApp/TestApp-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1695,11 +1837,49 @@
 					"$(PROJECT_DIR)/TestApp/Frameworks/WechatSDK",
 				);
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = Gigya.Testapp;
+				PRODUCT_BUNDLE_IDENTIFIER = Gigya.TestAppnew;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "TestApp/TestApp-Bridging-Header.h";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		E7F63B4722A94C8A00ABA24F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = T48CNFXFQH;
+				INFOPLIST_FILE = TestAppObjC/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = Gigya.TestAppObjC;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		E7F63B4822A94C8A00ABA24F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = T48CNFXFQH;
+				INFOPLIST_FILE = TestAppObjC/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = Gigya.TestAppObjC;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -1739,6 +1919,15 @@
 			buildConfigurations = (
 				E7BE36AA2224260500A108D9 /* Debug */,
 				E7BE36AB2224260500A108D9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E7F63B4622A94C8A00ABA24F /* Build configuration list for PBXNativeTarget "TestAppObjC" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E7F63B4722A94C8A00ABA24F /* Debug */,
+				E7F63B4822A94C8A00ABA24F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

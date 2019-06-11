@@ -17,14 +17,14 @@ class WebLoginWrapper: NSObject, ProviderWrapperProtocol {
 
     private var config: GigyaConfig?
 
-    private var providerType: GigyaSocielProviders?
+    private let providerType: GigyaSocielProviders
 
     private var navigationController: UINavigationController?
 
-    private var completionHandler: (_ jsonData: [String: Any]?, _ error: String?) -> Void = { _, _  in }
+    private var completionHandler: ((_ jsonData: [String: Any]?, _ error: String?) -> Void)? = nil
 
     required override init() {
-
+        self.providerType = .google
     }
 
     init(config: GigyaConfig, providerType: GigyaSocielProviders) {
@@ -38,18 +38,14 @@ class WebLoginWrapper: NSObject, ProviderWrapperProtocol {
     }
 
     func webViewConfig() {
-        let urlString = getUrl()
-
-        guard let url = URL(string: urlString) else {
-            return
-        }
+        guard let url = getUrl() else { return }
 
         webViewController?.setDelegate(delegate: self)
 
         webViewController?.loadUrl(url: url)
 
         webViewController?.userDidCancel = { [weak self] in
-            self?.completionHandler(nil, "sign in cancelled")
+            self?.completionHandler?(nil, "sign in cancelled")
         }
 
     }
@@ -65,27 +61,24 @@ class WebLoginWrapper: NSObject, ProviderWrapperProtocol {
         }
     }
 
-    func logout() {
+    func getUrl() -> URL? {
+        var urlString = "https://socialize.\(config?.apiDomain ?? "")/socialize.login?"
+        urlString.append("redirect_uri=gsapi://login_result&")
+        urlString.append("response_type=token&")
+        urlString.append("client_id=\(config?.apiKey ?? "")&")
+        urlString.append("gmid=\(config?.gmid ?? "")&")
+        urlString.append("ucid=\(config?.ucid ?? "")&")
+        urlString.append("x_secret_type=oauth1&")
+        urlString.append("x_endPoint=socialize.login&")
+        urlString.append("x_sdk=\(InternalConfig.General.version)&")
+        urlString.append("x_provider=\(providerType.rawValue)")
 
-    }
-
-    func getUrl() -> String {
-        var url = "https://socialize.\(config?.apiDomain ?? "")/socialize.login?"
-        url.append("redirect_uri=gsapi://login_result&")
-        url.append("response_type=token&")
-        url.append("client_id=\(config?.apiKey ?? "")&")
-        url.append("gmid=\(config?.gmid ?? "")&")
-        url.append("ucid=\(config?.ucid ?? "")&")
-        url.append("x_secret_type=oauth1&")
-        url.append("x_endPoint=socialize.login&")
-        url.append("x_sdk=\(InternalConfig.General.version)&")
-        url.append("x_provider=\(providerType?.rawValue ?? "")")
+        guard let url = URL(string: urlString) else {
+            GigyaLogger.log(with: WebLoginWrapper.self, message: "Cna't make URL")
+            return nil
+        }
 
         return url
-    }
-
-    deinit {
-        print("[WebViewWra deinit]")
     }
 }
 
@@ -93,19 +86,19 @@ extension WebLoginWrapper: WKNavigationDelegate {
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         if navigationAction.navigationType == .other {
             if let url = navigationAction.request.url {
-                GigyaLogger.log(with: providerType?.rawValue ?? "WebView", message: "Log redirect url: \(url)")
+                GigyaLogger.log(with: providerType.rawValue, message: "Log redirect url: \(url)")
                 if
                     let status = url["status"],
                     status == "ok",
                     let accessToken = url["access_token"],
                     let tokenSecret = url["x_access_token_secret"] {
                     let json = ["status": status, "accessToken": accessToken, "tokenSecret": tokenSecret]
-                        completionHandler(json, nil)
+                        completionHandler?(json, nil)
 
                         // dismiss viewController
                         navigationController?.dismiss(animated: true, completion: nil)
                 } else if let status = url["status"], status != "ok" {
-                    completionHandler(nil, "Failed to login")
+                    completionHandler?(nil, "Failed to login")
                 }
             }
         }

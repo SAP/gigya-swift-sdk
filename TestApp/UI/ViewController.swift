@@ -191,6 +191,7 @@ class ViewController: UIViewController {
         tfaViewController?.registrationResolverDelegate = registrationResolver
         tfaViewController?.verificationResolverDelegate = verificationResolver
         self.navigationController?.pushViewController(tfaViewController!, animated: true)
+
     }
     
     func dismissTfaController() {
@@ -204,6 +205,7 @@ class ViewController: UIViewController {
             print("Need to be logged in to perform action")
             return
         }
+
         let alert = UIFactory.getConnectionAlert(title: "Add social connection") { [weak self] providerName in
            if let provider = GigyaSocielProviders(rawValue: providerName) {
             guard let self = self else { return }
@@ -274,13 +276,15 @@ class ViewController: UIViewController {
     }
     
     @IBAction func loginWithProvider(_ sender: Any) {
-        gigya.login(with: .google, viewController: self ) { [weak self] result in
+        gigya.login(with: .line, viewController: self ) { [weak self] result in
             switch result {
             case .success(let data):
                 print(data)
                 self?.resultTextView?.text = data.toJson()
+                self?.dismissTfaController()
             case .failure(let error):
                 print(error)
+
                 guard let interruption = error.interruption else { return }
                 // Evaluage interruption.
                 switch interruption {
@@ -301,8 +305,8 @@ class ViewController: UIViewController {
                     let providers = resolver.tfaProviders
                     // Present TFA controller for registration flow.
                     self?.presentTFAController(tfaProviders: providers, mode: .registration, registrationResolver: resolver)
-                case .onTotpQRCode(let code):
-                    self?.tfaViewController?.onQRCodeAvailable(qrImage: code)
+                case .onTotpQRCode(let image):
+                    self?.tfaViewController?.onQRCodeAvailable(qrImage: image)
                 case .onRegisteredPhoneNumbers(let registeredNumbers):
                     self?.tfaViewController?.onRegisteredPhone(numbers: registeredNumbers)
                 case .onRegisteredEmails(let emails):
@@ -318,7 +322,13 @@ class ViewController: UIViewController {
             }
         }
     }
-    
+    @IBAction func loginWithProviders(_ sender: Any) {
+        gigya.socialLoginWith(providers: [.facebook, .google, .line], viewController: self, params: [:]) { (result) in
+            
+        }
+
+    }
+
     @IBAction func logout(_ sender: Any) {
         gigya.logout() { result in
             switch result {
@@ -401,15 +411,20 @@ class ViewController: UIViewController {
             }
         }
     }
+
+    func aaa() {
+        GigyaSwift.sharedInstance().send(dataType: ValidateLoginData.self, api: "accounts.isAvailableLoginID", params: ["loginID": "sagi.shmuel@sap.com"]) { (res) in
+            switch res {
+            case .success(let data):
+                print(data)
+            case .failure(let error):
+
+                break
+            }
+        }
+    }
 }
-//        GigyaSwift.sharedInstance().send(dataType: ValidateLoginData.self, api: "accounts.isAvailableLoginID", params: ["loginID": "sagi.shmuel@sap.com"]) { (res) in
-//            switch res {
-//            case .success(let data):
-//                print(data)
-//            case .failure:
-//                break
-//            }
-//        }
+
 
     //
 //

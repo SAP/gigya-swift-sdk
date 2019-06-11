@@ -221,6 +221,70 @@ class GigyaCoreTest: XCTestCase {
         }
     }
 
+    func testAddConnection() {
+        let viewController = UIViewController()
+
+        let dic: [String: Any] = ["callId": "34324", "errorCode": 0, "statusCode": 200]
+
+        // swiftlint:disable force_try
+        let jsonData = try! JSONSerialization.data(withJSONObject: dic, options: .prettyPrinted)
+        // swiftlint:enable force_try
+        ResponseDataTest.resData = jsonData
+        ResponseDataTest.clientID = "123"
+        ResponseDataTest.providerToken = "123"
+        ResponseDataTest.providerSecret = "123"
+
+        GigyaSwift.sharedInstance().addConnection(provider: .yahoo, viewController: viewController, params: ["testParam": "test"]) { (result) in
+            switch result {
+            case .success(let data):
+                XCTAssertNotNil(data )
+            case .failure(let error):
+                XCTFail("Fail: \(error)")
+            }
+        }
+    }
+
+
+    func testRemoveConnection() {
+        let dic: [String: Any] = ["callId": "34324", "errorCode": 0, "statusCode": 200]
+
+        // swiftlint:disable force_try
+        let jsonData = try! JSONSerialization.data(withJSONObject: dic, options: .prettyPrinted)
+        // swiftlint:enable force_try
+        ResponseDataTest.resData = jsonData
+        ResponseDataTest.clientID = "123"
+        ResponseDataTest.providerToken = "123"
+        ResponseDataTest.providerSecret = "123"
+
+        GigyaSwift.sharedInstance().removeConnection(provider: .yahoo) { (result) in
+            switch result {
+            case .success(let data):
+                XCTAssertNotNil(data )
+            case .failure(let error):
+                XCTFail("Fail: \(error)")
+            }
+        }
+    }
+
+    // MARK: - Exclude tests
+
+    func testShowScreenSet() {
+        let viewController = UIViewController()
+
+        GigyaSwift.sharedInstance().showScreenSet(name: "registration", viewController: viewController) { (result) in
+
+        }
+    }
+
+//    func testShowComments() {
+//        let viewController = UIViewController()
+//
+//        GigyaSwift.sharedInstance().showComments(viewController: viewController) { _ in
+//
+//        }
+//    }
+
+
     func testPerformanceExample() {
         // This is an example of a performance test case.
         self.measure {

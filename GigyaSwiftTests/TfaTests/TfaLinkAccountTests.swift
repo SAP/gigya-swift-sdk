@@ -90,7 +90,7 @@ class TfaLinkAccountTests: XCTestCase {
             case .success:
                 XCTFail()
             case .failure(let error):
-                guard let interruption = error.interruption else {
+                guard let _ = error.interruption else {
                     XCTAssert(true) // interruption not support
                     return }
             }

@@ -43,7 +43,7 @@ class TfaRegistrationPhoneResolverTests: XCTestCase {
                 XCTAssertEqual(data.callId, dic["callId"] as! String)
             case .failure(let error):
                 print(error) // general error
-                if case .dataNotFound = error.error {
+                if case .emptyResponse = error.error {
                     XCTAssert(true)
                 }
 
@@ -74,7 +74,7 @@ class TfaRegistrationPhoneResolverTests: XCTestCase {
                     print("Phone verification code sent")
                 case .onEmailVerificationCodeSent:
                     print("Email verification code send")
-                case .onTotpQRCode(let qrCode):
+                case .onTotpQRCode:
                     print("Totp get qrcode image")
                 default:
                     XCTFail()
