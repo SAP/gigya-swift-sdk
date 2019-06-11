@@ -54,10 +54,13 @@ class GigyaInitTest: XCTestCase {
         }
     }
 
-    func testParsePlist() {
-        let plist = DecodeEncodeUtils.parsePlistConfig()
-        XCTAssertNotNil(plist)
-    }
+//    func testParsePlist() {
+//        if let plist = DecodeEncodeUtils.parsePlistConfig() {
+//            XCTAssertNotNil(plist)
+//        } else {
+//            XCTFail()
+//        }
+//    }
 
     // Dependencies tests
     func testConfigDependency() {
@@ -94,8 +97,8 @@ class GigyaInitTest: XCTestCase {
 
 }
 
-extension DecodeEncodeUtils {
-    static func parsePlistConfig() -> PlistConfig {
-        return PlistConfig(apiKey: "123", apiDomain: "")
-    }
-}
+//extension DecodeEncodeUtils {
+//    static func parsePlistConfig() -> PlistConfig? {
+//        return PlistConfig(apiKey: "123", apiDomain: "")
+//    }
+//}

@@ -1,0 +1,113 @@
+//
+//  ProvidersLoginViewController.swift
+//  GigyaSwift
+//
+//  Created by Shmuel, Sagi on 11/06/2019.
+//  Copyright © 2019 Gigya. All rights reserved.
+//
+
+import WebKit
+
+class ProvidersLoginWrapper: NSObject {
+
+    var webViewController: WebViewController?
+
+    private var config: GigyaConfig?
+
+    private let providers: [GigyaSocielProviders]
+
+    private var navigationController: UINavigationController?
+
+    private var completionHandler: ((_ jsonData: [String: Any]?, _ error: String?) -> Void)? = nil
+
+
+    init(config: GigyaConfig, providers: [GigyaSocielProviders]) {
+        self.providers = providers
+        self.config = config
+        self.webViewController = WebViewController()
+
+        super.init()
+
+        webViewConfig()
+
+    }
+
+    func webViewConfig() {
+        guard let url = getUrl(params: [:]) else { return }
+
+        webViewController?.loadUrl(url: url)
+
+        webViewController?.setDelegate(delegate: self)
+
+        webViewController?.userDidCancel = { [weak self] in
+            self?.completionHandler?(nil, "sign in cancelled")
+        }
+
+        webViewController?.title = "Sign In"
+
+    }
+
+    func show(params: [String: Any]?, viewController: UIViewController?,
+               completion: @escaping (_ jsonData: [String: Any]?, _ error: String?) -> Void) {
+
+
+        completionHandler = completion
+
+        navigationController = UINavigationController(rootViewController: webViewController!)
+
+
+        if let navigationController = navigationController {
+            viewController?.show(navigationController, sender: nil)
+        }
+    }
+
+    func getUrl(params: [String: Any]?) -> URL? {
+        let lang = params?["lang"] ?? "en"
+        let disabledProviders = params?["disabledProviders"] ?? ""
+
+        let providersString = providers.map { "\($0.rawValue)" }.joined(separator: ",")
+        var urlString = "https://socialize.\(config?.apiDomain ?? "")/gs/mobile/LoginUI.aspx?"
+        urlString.append("redirect_uri=gsapi://result&")
+        urlString.append("requestType=login&")
+        urlString.append("apikey=\(config?.apiKey ?? "")&")
+        urlString.append("gmid=\(config?.gmid ?? "")&")
+        urlString.append("ucid=\(config?.ucid ?? "")&")
+        urlString.append("sdk=\(InternalConfig.General.version)&")
+        urlString.append("enabledProviders=\(providersString)&")
+        urlString.append("disabledProviders=\(disabledProviders)&")
+        urlString.append("lang=\(lang)&")
+
+        guard let url = URL(string: urlString) else {
+            GigyaLogger.log(with: WebLoginWrapper.self, message: "Cna't make URL")
+            return nil
+        }
+
+        return url
+    }
+
+    func dismiss() {
+        navigationController?.dismiss(animated: true, completion: nil)
+    }
+}
+
+extension ProvidersLoginWrapper: WKNavigationDelegate {
+    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        if navigationAction.navigationType == .other {
+            if let url = navigationAction.request.url {
+                 GigyaLogger.log(with: self, message: "Log redirect url: \(url)")
+
+                if let provider = url["provider"]
+                {
+                    completionHandler?(["provider": provider], nil)
+
+                    // dismiss viewController
+//                    navigationController?.dismiss(animated: true, completion: nil)
+                } else {
+                    completionHandler?(nil, "Failed to login")
+                }
+            }
+        }
+        decisionHandler(.allow)
+    }
+
+}

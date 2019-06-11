@@ -26,6 +26,7 @@ class WebProviderLoginTests: XCTestCase {
         ResponseDataTest.resData = nil
         ResponseDataTest.providerToken = nil
         ResponseDataTest.providerSecret = nil
+        ResponseDataTest.providerError = nil
 
     }
 
@@ -101,6 +102,30 @@ class WebProviderLoginTests: XCTestCase {
         }
     }
 
+    func testLoginProviderError() {
+
+        let viewController = UIViewController()
+
+        let error = NSError(domain: "gigya", code: 400093, userInfo: ["callId": "dasdasdsad"])
+
+        ResponseDataTest.clientID = "123"
+        ResponseDataTest.error = error
+        ResponseDataTest.providerToken = "123"
+        ResponseDataTest.providerSecret = "123"
+        ResponseDataTest.providerError = "The operation couldn’t be completed. (gigya error 400093.)"
+
+        GigyaSwift.sharedInstance().login(with: .yahoo, viewController: viewController) { (result) in
+            switch result {
+            case .success:
+                XCTFail("Fail")
+            case .failure(let error):
+                if case .providerError(let data) = error.error {
+                    XCTAssertEqual(data, "The operation couldn’t be completed. (gigya error 400093.)")
+                }
+            }
+        }
+    }
+
     func testAddConnection() {
         let viewController = UIViewController()
 
@@ -122,6 +147,20 @@ class WebProviderLoginTests: XCTestCase {
                 XCTFail("Fail: \(error)")
             }
         }
+    }
+
+    func testWebLoginIsSession() {
+        XCTAssert(WebLoginProvider.isAvailable())
+    }
+
+    func testWebLoginGetSession() {
+        let businessApi = ioc.container.resolve(IOCBusinessApiServiceProtocol.self)!
+        let sessionService = ioc.container.resolve(IOCSessionServiceProtocol.self)!
+
+        let provider = WebLoginProvider(sessionService: sessionService, provider: WebProviderWrapperMock(), delegate: businessApi as! BusinessApiDelegate)
+
+        XCTAssertEqual(provider.getProviderSessions(token: "", expiration: ""), "")
+
     }
 
 }

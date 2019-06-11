@@ -11,9 +11,7 @@ import Foundation
 public enum NetworkError: Error {
     case gigyaError(data: GigyaResponseModel)
     case providerError(data: String)
-    case networkError(Error)
-    case dataNotFound // TODO: Need to emptyResponse
-    case jsonParsingError(Error)
-    case invalidStatusCode(Int)
-    case createURLRequestFailed // TODO: need to remove
+    case networkError(error: Error)
+    case emptyResponse
+    case jsonParsingError(error: Error)
 }

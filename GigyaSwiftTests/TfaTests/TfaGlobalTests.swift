@@ -138,7 +138,7 @@ class TfaGlobalTests: XCTestCase {
             case .success:
                 XCTFail()
             case .failure(let error):
-                guard let interruption = error.interruption else {
+                guard let _ = error.interruption else {
                     XCTAssert(true)
                     return
                 }
@@ -183,6 +183,46 @@ class TfaGlobalTests: XCTestCase {
                 }
             }
 
+        })
+
+    }
+
+
+    // MARK: Multiintteruption
+    func testLinkAccountResolverAndTotp() {
+        let dic: [String: Any] = ["errorCode": 403043, "callId": "34324", "statusCode": 200, "regToken": "123","conflictingAccount": ["loginProviders": ["googleplus"]]]
+        // swiftlint:disable force_try
+        let jsonData = try! JSONSerialization.data(withJSONObject: dic, options: .prettyPrinted)
+        // swiftlint:enable force_try
+
+        let error = NSError(domain: "gigya", code: 403043, userInfo: ["callId": "dasdasdsad"])
+
+        ResponseDataTest.error = error
+
+        ResponseDataTest.resData = jsonData
+
+        ResponseDataTest.errorCalled = 1
+
+        let email = "test@test.com"
+
+        businessApi?.login(dataType: RequestTestModel.self, loginId: "tes@test.com", password: "151515", params: [:], completion: { (result) in
+            switch result {
+            case .success:
+                XCTAssert(true)
+            case .failure(let error):
+                guard let interruption = error.interruption else { return }
+
+                switch interruption {
+                case .conflitingAccounts(let resolver):
+                    resolver.linkToSite(loginId: "123", password: "123")
+                case .pendingTwoFactorVerification(let resolver):
+                    resolver.startVerificationWithEmail()
+                    resolver.sendEmailVerificationCode(registeredEmail: TFAEmail(id: email, obfuscated: "123", lastVerification: "123"))
+                    resolver.verifyCode(provider: .email, authenticationCode: "1234")
+                default:
+                    XCTFail()
+                }
+            }
         })
 
     }

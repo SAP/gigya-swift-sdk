@@ -14,6 +14,8 @@ class BusinessApiService: NSObject, IOCBusinessApiServiceProtocol {
 
     var sessionService: IOCSessionServiceProtocol
 
+    var config: GigyaConfig
+
     var accountService: IOCAccountServiceProtocol
 
     var socialProviderFactory: IOCSocialProvidersManagerProtocol
@@ -22,8 +24,11 @@ class BusinessApiService: NSObject, IOCBusinessApiServiceProtocol {
 
     var resolver: BaseResolver?
 
-    required init(apiService: IOCApiServiceProtocol, sessionService: IOCSessionServiceProtocol,
+    var providersFactory: ProvidersLoginWrapper?
+
+    required init(config: GigyaConfig, apiService: IOCApiServiceProtocol, sessionService: IOCSessionServiceProtocol,
                   accountService: IOCAccountServiceProtocol, providerFactory: IOCSocialProvidersManagerProtocol) {
+        self.config = config
         self.apiService = apiService
         self.sessionService = sessionService
         self.accountService = accountService
@@ -141,6 +146,21 @@ class BusinessApiService: NSObject, IOCBusinessApiServiceProtocol {
 
         providerAdapter?.didFinish = { [weak self] in
             self?.clearOptionalObjects()
+        }
+    }
+
+    func login<T: Codable>(providers: [GigyaSocielProviders], viewController: UIViewController, params: [String: Any], completion: @escaping (GigyaLoginResult<T>) -> Void) {
+        providersFactory = ProvidersLoginWrapper(config: config, providers: providers)
+        providersFactory?.show(params: params, viewController: viewController) { [weak self] json, error in
+            if let providerString = json?["provider"] as? String,
+               let provider = GigyaSocielProviders(rawValue: providerString) {
+                self?.login(provider: provider, viewController: viewController, params: params, dataType: T.self) {  [weak self] result in
+                    self?.providersFactory?.dismiss()
+                    self?.providersFactory = nil
+
+                    completion(result)
+                }
+            }
         }
     }
 

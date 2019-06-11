@@ -38,7 +38,9 @@ class PluginViewController<T: GigyaAccountProtocol>: WebViewController, WKScript
         super.init(configuration: webViewConfiguration)
         
         // Add JS Interface.
-        let JSInterface = getJSInterface()
+        guard let apikey = config.apiKey else { return }
+
+        let JSInterface = getJSInterface(apikey: apikey)
         let userScript = WKUserScript(source: JSInterface, injectionTime: .atDocumentStart, forMainFrameOnly: false)
         contentController.addUserScript(userScript)
         contentController.add(self, name: JSEventHandler)
@@ -60,7 +62,7 @@ class PluginViewController<T: GigyaAccountProtocol>: WebViewController, WKScript
      Get the JS interface declaretion needed for injection.
      Without correctly declaring the JS interface the web JS plugin would not be able to bridge communicate with the application.
      */
-    private func getJSInterface() -> String {
+    private func getJSInterface(apikey: String) -> String {
         // List of available JS communication features - not all are used.
         let JSFeatures =  ["is_session_valid","send_request","send_oauth_request","get_ids","on_plugin_event","on_custom_event",
                            "register_for_namespace_events","on_js_exception","on_js_log","clear_session"];
@@ -69,7 +71,7 @@ class PluginViewController<T: GigyaAccountProtocol>: WebViewController, WKScript
         let JSInterface =  """
         window.__gigAPIAdapterSettings = {
         getAdapterName: function() { return 'mobile'; },
-        getAPIKey: function() { return '\(config.apiKey!)'; },
+        getAPIKey: function() { return '\(apikey)'; },
         getFeatures: function() { return '\(JSFeatures)';},
         getSettings: function() { return '{"logLevel":"error"}';},
         sendToMobile: function(action,method,queryStringParams) {
@@ -167,10 +169,8 @@ class PluginViewController<T: GigyaAccountProtocol>: WebViewController, WKScript
         switch apiMethod {
         case GigyaDefinitions.API.socialLogin, GigyaDefinitions.API.accountsSocialLogin:
             sendOauthRequest(callbackId: callbackId, apiMethod: apiMethod, params: params)
-            break
         case GigyaDefinitions.API.register, GigyaDefinitions.API.login:
             sendLoginRequest(callbackId: callbackId, apiMethod: apiMethod, params: params)
-            break;
         case GigyaDefinitions.API.addConnection, GigyaDefinitions.API.accountsAddConnection:
             sendAddConnectionRequest(callbackId: callbackId, params: params)
         case GigyaDefinitions.API.removeConnection:
@@ -233,6 +233,7 @@ class PluginViewController<T: GigyaAccountProtocol>: WebViewController, WKScript
      */
     private func sendLoginRequest(callbackId: String, apiMethod: String, params: [String: String]) {
         GigyaLogger.log(with: self, message: "sendLoginRequest: with params:\n\(params)")
+
         businessApiService.send(dataType: T.self, api: apiMethod, params: params) { [weak self] result in
             guard let self = self else { return }
             switch result {
@@ -252,6 +253,7 @@ class PluginViewController<T: GigyaAccountProtocol>: WebViewController, WKScript
      */
     private func sendAddConnectionRequest(callbackId: String, params: [String: String]) {
         GigyaLogger.log(with: self, message: "sendAddConnectionRequest: with params:\n\(params)")
+
         guard let providerToAdd = params["provider"] else { return }
         if let provider = GigyaSocielProviders(rawValue: providerToAdd) {
             businessApiService.addConnection(provider: provider, viewController: self, params: params, dataType: T.self) { [weak self] result in
@@ -274,6 +276,7 @@ class PluginViewController<T: GigyaAccountProtocol>: WebViewController, WKScript
      */
     private func sendRemoveConnectionRequest(callbackId: String, params: [String: String]) {
         GigyaLogger.log(with: self, message: "sendRemoveConnectionRequest: with params:\n\(params)")
+
         if let provider = params["provider"], let providerType = GigyaSocielProviders(rawValue: provider) {
             businessApiService.removeConnection(providerName: providerType) { [weak self] result in
                 guard let self = self else { return }
@@ -297,6 +300,7 @@ class PluginViewController<T: GigyaAccountProtocol>: WebViewController, WKScript
      */
     private func sendOauthRequest(callbackId: String, apiMethod: String, params: [String: String]) {
         GigyaLogger.log(with: self, message: "sendOauthRequest: with apiMethod = \(apiMethod)")
+        
         guard let providerName = params["provider"] else { return }
         if let provider = GigyaSocielProviders(rawValue: providerName) {
             businessApiService.login(provider: provider, viewController: self, params: params, dataType: T.self) { [weak self] result in

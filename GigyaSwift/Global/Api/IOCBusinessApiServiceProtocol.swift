@@ -9,6 +9,8 @@
 import Foundation
 
 protocol IOCBusinessApiServiceProtocol {
+    var config: GigyaConfig { get }
+
     var apiService: IOCApiServiceProtocol { get }
 
     var sessionService: IOCSessionServiceProtocol { get }
@@ -17,7 +19,7 @@ protocol IOCBusinessApiServiceProtocol {
 
     var socialProviderFactory: IOCSocialProvidersManagerProtocol { get }
 
-    init(apiService: IOCApiServiceProtocol, sessionService: IOCSessionServiceProtocol,
+    init(config: GigyaConfig, apiService: IOCApiServiceProtocol, sessionService: IOCSessionServiceProtocol,
          accountService: IOCAccountServiceProtocol, providerFactory: IOCSocialProvidersManagerProtocol)
 
     func send(api: String, params: [String: String], completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void)
@@ -33,6 +35,8 @@ protocol IOCBusinessApiServiceProtocol {
     func login<T: Codable>(dataType: T.Type, loginId: String, password: String, params: [String:Any], completion: @escaping (GigyaLoginResult<T>) -> Void)
 
     func login<T: Codable>(provider: GigyaSocielProviders, viewController: UIViewController, params: [String: Any], dataType: T.Type, completion: @escaping (GigyaLoginResult<T>) -> Void)
+
+    func login<T: Codable>(providers: [GigyaSocielProviders], viewController: UIViewController, params: [String: Any], completion: @escaping (GigyaLoginResult<T>) -> Void)
     
     func addConnection<T: Codable>(provider: GigyaSocielProviders, viewController: UIViewController, params: [String: Any], dataType: T.Type, completion: @escaping (GigyaApiResult<T>) -> Void)
     

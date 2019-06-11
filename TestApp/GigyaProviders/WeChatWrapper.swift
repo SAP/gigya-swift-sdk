@@ -19,7 +19,6 @@ class WeChatWrapper: NSObject, ProviderWrapperProtocol {
 
     required override init() {
         super.init()
-
     }
 
     func login(params: [String: Any]? = nil, viewController: UIViewController? = nil,

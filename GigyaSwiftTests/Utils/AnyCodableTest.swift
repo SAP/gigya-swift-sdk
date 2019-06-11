@@ -277,7 +277,7 @@ class AnyCodableTest: XCTestCase {
         do {
             let jsonEncoder = JSONEncoder()
             let jsonData = try jsonEncoder.encode(data)
-            let jsonString = String(data: jsonData, encoding: .utf8)
+            let _ = String(data: jsonData, encoding: .utf8)
 
             XCTFail()
         } catch let error {

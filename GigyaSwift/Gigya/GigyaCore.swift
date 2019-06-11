@@ -36,12 +36,12 @@ public class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
     }
     
     // MARK: - Initialize
-    internal init(container: IOCContainer, plistConfig: PlistConfig) {
+    internal init(container: IOCContainer, plistConfig: PlistConfig?) {
         self.container = container
 
         // Init Gigya Objc when thr host add params in plist
-        if let apiKey = plistConfig.apiKey, !apiKey.isEmpty {
-            initWithApi(apiKey: apiKey, apiDomain: plistConfig.apiDomain)
+        if let apiKey = plistConfig?.apiKey, !apiKey.isEmpty {
+            initWithApi(apiKey: apiKey, apiDomain: plistConfig?.apiDomain)
         }
     }
 
@@ -56,7 +56,7 @@ public class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
         guard !apiKey.isEmpty else {
             GigyaLogger.error(with: GigyaSwift.self, message: "please make sure you call 'initWithApi' or add apiKey to plist file")
         }
-//        config.isInitSdk = true
+
         config.apiDomain = apiDomain ?? self.defaultApiDomain
         config.apiKey = apiKey
 
@@ -88,17 +88,6 @@ public class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
     public func send<B: Codable>(dataType: B.Type, api: String, params: [String: String] = [:], completion: @escaping (GigyaApiResult<B>) -> Void ) {
         businessApiService.send(dataType: dataType, api: api, params: params, completion: completion)
     }
-
-    // TODO: test api with self request
-//    internal func sendTest1(api: String, params: [String: String] = [:]) {
-//        Gigya.getSessionWithCompletionHandler { (session) in
-//            let networkService = NetworkProvider(url: self.defaultApiDomain)
-//
-//            networkService.dataRequest(gsession: session!,path: api, body: params, responseType: GigyaDictionary.self, completion: { (res) in
-//
-//            })
-//        }
-//    }
 
     // MARK: - Session
 
@@ -186,8 +175,8 @@ public class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
      - Parameter completion:  Login response.
      */
 
-    public func socialLoginWith(providers: [GigyaSocielProviders], params: [String: Any], completion: (GigyaApiResult<Any>) -> Void) {
-
+    public func socialLoginWith(providers: [GigyaSocielProviders], viewController: UIViewController, params: [String: Any], completion: @escaping (GigyaLoginResult<T>) -> Void) {
+        businessApiService.login(providers: providers, viewController: viewController, params: params, completion: completion)
     }
     
     /**
@@ -237,7 +226,8 @@ public class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
      * :param completion:  Plugin completion.
      */
 
-    public func showComments() {
-
-    }
+//    private func showComments(viewController: UIViewController, params: [String: Any] = [:], completion: @escaping (PluginEvent<T>) -> Void) {
+//        let wrapper = PluginViewWrapper(config: config, sessionService: sessionService, businessApiService: businessApiService, plugin: "comments.commentsUI", params: params, completion: completion)
+//        wrapper.presentPluginController(viewController: viewController, dataType: T.self, screenSet: "")
+//    }
 }

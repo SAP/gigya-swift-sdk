@@ -69,15 +69,17 @@ public class GigyaSwift {
         }
 
         container.register(service: IOCBusinessApiServiceProtocol.self, isSingleton: true) { resolver in
+            let config = resolver.resolve(GigyaConfig.self)
             let apiService = resolver.resolve(IOCApiServiceProtocol.self)
             let sessionService = resolver.resolve(IOCSessionServiceProtocol.self)
             let accountService = resolver.resolve(IOCAccountServiceProtocol.self)
             let providerFactory = resolver.resolve(IOCSocialProvidersManagerProtocol.self)
 
-            return BusinessApiService(apiService: apiService!,
-                              sessionService: sessionService!,
-                              accountService: accountService!,
-                              providerFactory: providerFactory!)
+            return BusinessApiService(config: config!,
+                                      apiService: apiService!,
+                                      sessionService: sessionService!,
+                                      accountService: accountService!,
+                                      providerFactory: providerFactory!)
         }
 
         container.register(service: IOCAccountServiceProtocol.self, isSingleton: true) { _ in AccountService() }

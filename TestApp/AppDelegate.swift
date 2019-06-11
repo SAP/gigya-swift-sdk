@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        let gigya = GigyaSwift.getInstance(UserHost.self)
 //        GigyaSwift.getInstance().initWithApi(apiKey: "555")
 //        GigyaSwift.sharedInstance()
-
+        
         WXApi.registerApp("wx222c4ccaa989aa00")
 
         return true

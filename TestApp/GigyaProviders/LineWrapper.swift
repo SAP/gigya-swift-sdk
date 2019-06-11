@@ -35,11 +35,6 @@ class LineWrapper: NSObject, ProviderWrapperProtocol {
 
         line.start()
     }
-
-    func logout() {
-        let apiClient = LineSDKAPI.init(configuration: LineSDKConfiguration.defaultConfig())
-        apiClient.logout(queue: .main) { (_, _) in }
-    }
 }
 
 extension LineWrapper: LineSDKLoginDelegate {
@@ -49,7 +44,7 @@ extension LineWrapper: LineSDKLoginDelegate {
             return
         }
 
-        let jsonData = ["accessToken": credential?.accessToken?.accessToken ?? ""]
+        let jsonData = ["accessToken": credential?.accessToken?.accessToken ?? "", "uid" : profile?.userID ?? ""]
 
         completionHandler(jsonData, nil)
     }

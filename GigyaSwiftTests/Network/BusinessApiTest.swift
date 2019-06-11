@@ -172,7 +172,7 @@ class BusinessApiTest: XCTestCase {
         businessApi?.setAccount(obj: account, completion: { (result) in
             self.businessApi?.getAccount(dataType: GigyaAccount.self, completion: { (reult) in
                 switch result {
-                case .success(let data):
+                case .success:
                     XCTFail()
                 case .failure(_):
                     XCTAssert(true)
