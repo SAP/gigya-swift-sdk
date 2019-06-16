@@ -10,7 +10,7 @@ import Foundation
 
 public typealias PluginEventData = [String: Any]
 
-public enum PluginEvent<T: GigyaAccountProtocol> {
+public enum GigyaPluginEvent<T: GigyaAccountProtocol> {
     case onBeforeValidation(event : PluginEventData)
     case onBeforeSubmit(event: PluginEventData)
     case onSubmit(event: PluginEventData)
