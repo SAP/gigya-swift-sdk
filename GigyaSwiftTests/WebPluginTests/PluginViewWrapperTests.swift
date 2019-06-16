@@ -50,7 +50,7 @@ class PluginViewWrapperTests: XCTestCase {
     func testPluginGetHtml() {
         let plugin = "accounts.screenSet"
 
-        let complete: (PluginEvent<GigyaAccount>) -> Void = { _ in }
+        let complete: (GigyaPluginEvent<GigyaAccount>) -> Void = { _ in }
 
         let wrapper = PluginViewWrapper<GigyaAccount>(config: config, sessionService: sessionService, businessApiService: businessApi, plugin: plugin, params: [:], completion: complete)
 
@@ -68,7 +68,7 @@ class PluginViewWrapperTests: XCTestCase {
         
         let plugin = "accounts.screenSet"
 
-        let complete: (PluginEvent<GigyaAccount>) -> Void = { _ in }
+        let complete: (GigyaPluginEvent<GigyaAccount>) -> Void = { _ in }
 
         let wrapper = PluginViewWrapper<GigyaAccount>(config: config, sessionService: sessionService, businessApiService: businessApi, plugin: plugin, params: [:], completion: complete)
 
@@ -84,7 +84,7 @@ class PluginViewWrapperTests: XCTestCase {
     func testPluginHtmlCheckCommentsUI() {
         let plugin = "accounts.screenSet"
 
-        let complete: (PluginEvent<GigyaAccount>) -> Void = { _ in }
+        let complete: (GigyaPluginEvent<GigyaAccount>) -> Void = { _ in }
 
         let wrapper = PluginViewWrapper<GigyaAccount>(config: config, sessionService: sessionService, businessApiService: businessApi, plugin: plugin, params: ["commentsUI": "true","version": -1], completion: complete)
 
@@ -100,7 +100,7 @@ class PluginViewWrapperTests: XCTestCase {
     func testPluginHtmlRatingAndShowButton() {
         let plugin = "accounts.screenSet"
 
-        let complete: (PluginEvent<GigyaAccount>) -> Void = { _ in }
+        let complete: (GigyaPluginEvent<GigyaAccount>) -> Void = { _ in }
 
         let wrapper = PluginViewWrapper<GigyaAccount>(config: config, sessionService: sessionService, businessApiService: businessApi, plugin: plugin, params: ["RatingUI": "true","showCommentButton": "true"], completion: complete)
 

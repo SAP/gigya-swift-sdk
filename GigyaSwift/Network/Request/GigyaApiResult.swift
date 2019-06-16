@@ -27,7 +27,7 @@ public enum GigyaInterruptions<T: Codable> {
     case pendingRegistration(regToken: String)
     case pendingVerification(regToken: String)
     case pendingPasswordChange(regToken: String)
-    case conflitingAccounts(resolver: LinkAccountsResolver<T>)
+    case conflitingAccount(resolver: LinkAccountsResolver<T>)
     case pendingTwoFactorRegistration(resolver: TFARegistrationResolverProtocol)
     case pendingTwoFactorVerification(resolver: TFAVerificationResolverProtocol)
     case onPhoneVerificationCodeSent

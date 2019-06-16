@@ -96,7 +96,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var resultTextView: UITextView?
     
     @IBAction func showScreenSet(_ sender: Any) {
-        gigya.showScreenSet(name: "Default-RegistrationLogin", viewController: self) { [weak self] (result) in
+        gigya.showScreenSet(with: "Default-RegistrationLogin", viewController: self) { [weak self] (result) in
             switch result {
             case .onLogin(let account):
                 self?.resultTextView!.text = account.toJson()
@@ -150,8 +150,8 @@ class ViewController: UIViewController {
     
     @IBAction func register(_ sender: Any) {
         let alert = UIFactory.getRegistrationAlert { email, password, expiration in
-            let params = ["email": email!, "password": password!, "sessionExpiration": expiration!] as [String : Any]
-            self.gigya.register(params: params) { [weak self] result in
+            let params = ["sessionExpiration": expiration!] as [String : Any]
+            self.gigya.register(email: email!, password: password!, params: params) { [weak self] result in
                 switch result {
                 case .success(let data):
                     self?.resultTextView?.text = data.toJson()
@@ -265,14 +265,14 @@ class ViewController: UIViewController {
     
     
     @IBAction func getAccount(_ sender: Any) {
-        gigya.register(params: ["email": "dasdsad@testss.com", "password": "121233"]) { (result) in
-            switch result {
-            case .success(let data):
-                print(data)
-            case .failure(let error):
-                print(error)
-            }
-        }
+//        gigya.register(params: ["email": "dasdsad@testss.com", "password": "121233"]) { (result) in
+//            switch result {
+//            case .success(let data):
+//                print(data)
+//            case .failure(let error):
+//                print(error)
+//            }
+//        }
     }
     
     @IBAction func loginWithProvider(_ sender: Any) {
@@ -290,31 +290,8 @@ class ViewController: UIViewController {
                 switch interruption {
                 case .pendingVerification(let regToken):
                     print("regToken: \(regToken)")
-                case .conflitingAccounts(let resolver):
-                    //resolver.linkToSocial(provider: .facebook, viewController: self)
+                case .conflitingAccount(let resolver):
                     resolver.linkToSite(loginId: resolver.conflictingAccount?.loginID ?? "", password: "123123")
-                case .pendingRegistration(let regToken):
-                    print("regToken: \(regToken)")
-                case .pendingTwoFactorVerification(let resolver):
-                    // Reference active providers (verification).
-                    let providers = resolver.tfaProviders
-                    // Present TFA controller for verification flow.
-                    self?.presentTFAController(tfaProviders: providers, mode: .verification, verificationResolver: resolver)
-                case .pendingTwoFactorRegistration(let resolver):
-                    // Reference inactive providers (registration).
-                    let providers = resolver.tfaProviders
-                    // Present TFA controller for registration flow.
-                    self?.presentTFAController(tfaProviders: providers, mode: .registration, registrationResolver: resolver)
-                case .onTotpQRCode(let image):
-                    self?.tfaViewController?.onQRCodeAvailable(qrImage: image)
-                case .onRegisteredPhoneNumbers(let registeredNumbers):
-                    self?.tfaViewController?.onRegisteredPhone(numbers: registeredNumbers)
-                case .onRegisteredEmails(let emails):
-                    self?.tfaViewController?.onRegisteredEmail(addresses: emails)
-                case .onPhoneVerificationCodeSent:
-                    print("Phone verification code sent")
-                case .onEmailVerificationCodeSent:
-                    print("Email verification code send")
                 default:
                     break
                 }
@@ -324,7 +301,7 @@ class ViewController: UIViewController {
     }
     @IBAction func loginWithProviders(_ sender: Any) {
         gigya.socialLoginWith(providers: [.facebook, .google, .line], viewController: self, params: [:]) { (result) in
-            
+
         }
 
     }
@@ -403,7 +380,7 @@ class ViewController: UIViewController {
             case .success(let account):
                 var account = account
                 account.profile?.firstName = "test"
-                self?.gigya.setAccount(account: account, completion: { (rrr) in
+                self?.gigya.setAccount(with: account, completion: { (rrr) in
 
                 })
             case .failure:
@@ -459,6 +436,3 @@ class ViewController: UIViewController {
 
 //    }
     
-
-
-

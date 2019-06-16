@@ -138,21 +138,22 @@ public class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
      Register api
 
      - Parameter email:         user identity.
-     - Parameter pass:          user password.
+     - Parameter password:      user password.
      - Parameter completion:    Response GigyaApiResult.
      */
-    public func register(params: [String: Any], completion: @escaping (GigyaLoginResult<T>) -> Void) {
-        businessApiService.register(params: params, dataType: T.self, completion: completion)
+    public func register(email: String, password: String, params: [String: Any], completion: @escaping (GigyaLoginResult<T>) -> Void) {
+        businessApiService.register(email: email, password: password, params: params, dataType: T.self, completion: completion)
     }
 
     /**
      Get account api
 
      - Parameter type:         Host data schema.
+     - Parameter clearAccount: set true when you want to clear cache
      - Parameter completion:   Response GigyaApiResult<T>.
      */
-    public func getAccount(completion: @escaping (GigyaApiResult<T>) -> Void) {
-        businessApiService.getAccount(dataType: T.self, completion: completion)
+    public func getAccount(_ clearAccount: Bool = false, completion: @escaping (GigyaApiResult<T>) -> Void) {
+        businessApiService.getAccount(clearAccount: clearAccount, dataType: T.self, completion: completion)
     }
 
     /**
@@ -161,7 +162,7 @@ public class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
      - Parameter account:      Host data obj.
      - Parameter completion:   Response GigyaApiResult<T>.
     */
-    public func setAccount(account: T, completion: @escaping (GigyaApiResult<T>) -> Void) {
+    public func setAccount(with account: T, completion: @escaping (GigyaApiResult<T>) -> Void) {
         businessApiService.setAccount(obj: account, completion: completion)
     }
 
@@ -214,7 +215,7 @@ public class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
     - Parameter completion:  Plugin completion.
     */
     
-    public func showScreenSet(name: String, viewController: UIViewController, params: [String: Any] = [:], completion: @escaping (PluginEvent<T>) -> Void) {
+    public func showScreenSet(with name: String, viewController: UIViewController, params: [String: Any] = [:], completion: @escaping (GigyaPluginEvent<T>) -> Void) {
         let wrapper = PluginViewWrapper(config: config, sessionService: sessionService, businessApiService: businessApiService, plugin: "accounts.screenSet", params: params, completion: completion)
         wrapper.presentPluginController(viewController: viewController, dataType: T.self, screenSet: name)
     }

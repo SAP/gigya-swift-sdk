@@ -21,14 +21,14 @@ class PluginViewWrapper<T: GigyaAccountProtocol>: PluginViewWrapperProtocol {
     
     let businessApiService: IOCBusinessApiServiceProtocol
 
-    var completion: (PluginEvent<T>) -> Void?
+    var completion: (GigyaPluginEvent<T>) -> Void?
     
     var plugin: String
     
     var params: [String:Any]
     
     init(config: GigyaConfig, sessionService: IOCSessionServiceProtocol, businessApiService: IOCBusinessApiServiceProtocol,
-         plugin: String, params: [String: Any], completion: @escaping (PluginEvent<T>) -> Void) {
+         plugin: String, params: [String: Any], completion: @escaping (GigyaPluginEvent<T>) -> Void) {
         self.config = config
         self.sessionService = sessionService
         self.businessApiService = businessApiService

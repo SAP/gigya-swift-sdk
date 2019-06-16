@@ -19,7 +19,7 @@
 		D58EF4432279948B003DB878 /* PluginViewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58EF4422279948B003DB878 /* PluginViewWrapper.swift */; };
 		D58EF4452279CB38003DB878 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58EF4442279CB38003DB878 /* String.swift */; };
 		D5B916A32292C87E004FAEF3 /* TfaRegisteredEntryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B916A22292C87E004FAEF3 /* TfaRegisteredEntryCell.swift */; };
-		D5C9DD3D227B0C9200E47095 /* PluginEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C9DD3C227B0C9200E47095 /* PluginEvent.swift */; };
+		D5C9DD3D227B0C9200E47095 /* GigyaPluginEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C9DD3C227B0C9200E47095 /* GigyaPluginEvent.swift */; };
 		D5EABFC9228C99BD006895BB /* TFAVerificationResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5EABFC8228C99BD006895BB /* TFAVerificationResolver.swift */; };
 		D5EABFCB228CA73D006895BB /* TFAModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5EABFCA228CA73D006895BB /* TFAModels.swift */; };
 		D5FF935422916ECD00CF33D6 /* TfaPhoneInputCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FF935322916ECD00CF33D6 /* TfaPhoneInputCell.swift */; };
@@ -245,7 +245,7 @@
 		D58EF4422279948B003DB878 /* PluginViewWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluginViewWrapper.swift; sourceTree = "<group>"; };
 		D58EF4442279CB38003DB878 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		D5B916A22292C87E004FAEF3 /* TfaRegisteredEntryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TfaRegisteredEntryCell.swift; sourceTree = "<group>"; };
-		D5C9DD3C227B0C9200E47095 /* PluginEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluginEvent.swift; sourceTree = "<group>"; };
+		D5C9DD3C227B0C9200E47095 /* GigyaPluginEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigyaPluginEvent.swift; sourceTree = "<group>"; };
 		D5EABFC8228C99BD006895BB /* TFAVerificationResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TFAVerificationResolver.swift; sourceTree = "<group>"; };
 		D5EABFCA228CA73D006895BB /* TFAModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TFAModels.swift; sourceTree = "<group>"; };
 		D5FF935322916ECD00CF33D6 /* TfaPhoneInputCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TfaPhoneInputCell.swift; sourceTree = "<group>"; };
@@ -485,7 +485,7 @@
 			children = (
 				D52F88E922795F39007DE20F /* PluginViewController.swift */,
 				D58EF4422279948B003DB878 /* PluginViewWrapper.swift */,
-				D5C9DD3C227B0C9200E47095 /* PluginEvent.swift */,
+				D5C9DD3C227B0C9200E47095 /* GigyaPluginEvent.swift */,
 			);
 			path = Plugins;
 			sourceTree = "<group>";
@@ -1392,7 +1392,7 @@
 				E7CBAFC0222D1F5B000B6C11 /* ApiService.swift in Sources */,
 				E7DC2C3B228019AC00A13426 /* SocialLoginProvider.swift in Sources */,
 				E7CBAFD42230232D000B6C11 /* AccountService.swift in Sources */,
-				D5C9DD3D227B0C9200E47095 /* PluginEvent.swift in Sources */,
+				D5C9DD3D227B0C9200E47095 /* GigyaPluginEvent.swift in Sources */,
 				E7CBAFD0222EB89D000B6C11 /* BusinessApiService.swift in Sources */,
 				E760668B2278998E005E4CFD /* WebLoginProvider.swift in Sources */,
 				E774A54D2242A12800BC67D1 /* AnyCodableUtils.swift in Sources */,

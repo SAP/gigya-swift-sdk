@@ -23,10 +23,10 @@ class PluginViewController<T: GigyaAccountProtocol>: WebViewController, WKScript
     let JSEventHandler = "gsapi"
     let baseURL = "http://www.gigya.com"
     
-    var completion: (PluginEvent<T>) -> Void?
+    var completion: (GigyaPluginEvent<T>) -> Void?
     
     init(config: GigyaConfig, sessionService: IOCSessionServiceProtocol, businessApiService: IOCBusinessApiServiceProtocol,
-         completion: @escaping (PluginEvent<T>) -> Void?) {
+         completion: @escaping (GigyaPluginEvent<T>) -> Void?) {
         self.config = config
         self.sessionService = sessionService
         self.businessApiService = businessApiService

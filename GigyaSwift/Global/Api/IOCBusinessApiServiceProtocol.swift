@@ -26,11 +26,11 @@ protocol IOCBusinessApiServiceProtocol {
 
     func send<T: Codable>(dataType: T.Type, api: String, params: [String: String], completion: @escaping (GigyaApiResult<T>) -> Void)
 
-    func getAccount<T: Codable>(dataType: T.Type, completion: @escaping (GigyaApiResult<T>) -> Void)
+    func getAccount<T: Codable>(clearAccount: Bool, dataType: T.Type, completion: @escaping (GigyaApiResult<T>) -> Void)
 
     func setAccount<T: Codable>(obj: T, completion: @escaping (GigyaApiResult<T>) -> Void)
     
-    func register<T: Codable>(params: [String: Any], dataType: T.Type, completion: @escaping (GigyaLoginResult<T>) -> Void)
+    func register<T: Codable>(email: String, password: String, params: [String: Any], dataType: T.Type, completion: @escaping (GigyaLoginResult<T>) -> Void)
 
     func login<T: Codable>(dataType: T.Type, loginId: String, password: String, params: [String:Any], completion: @escaping (GigyaLoginResult<T>) -> Void)
 

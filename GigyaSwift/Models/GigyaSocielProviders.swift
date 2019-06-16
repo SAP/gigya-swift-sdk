@@ -15,6 +15,28 @@ public enum GigyaSocielProviders: String {
     case twitter
     case line
     case wechat
+    case amazon
+    case blogger
+    case foursquare
+    case instagram
+    case kakao
+    case linkedin
+    case livedoor
+    case messenger
+    case mixi
+    case naver
+    case netlog
+    case odnoklassniki
+    case orangeFrance = "orange france"
+    case paypaloauth
+    case tencentQq = "tencent qq"
+    case renren
+    case sinaWeibo = "sina weibo"
+    case spiceworks
+    case vkontakte
+    case wordpress
+    case xing
+    case yahooJapan = "Yahoo Japan"
 }
 
 public enum GigyaNativeSocielProviders: String, CaseIterable {

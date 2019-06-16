@@ -69,6 +69,7 @@ class ProvidersLoginWrapper: NSObject {
         var urlString = "https://socialize.\(config?.apiDomain ?? "")/gs/mobile/LoginUI.aspx?"
         urlString.append("redirect_uri=gsapi://result&")
         urlString.append("requestType=login&")
+        urlString.append("iosVersion=\(UIDevice.current.systemVersion)&")
         urlString.append("apikey=\(config?.apiKey ?? "")&")
         urlString.append("gmid=\(config?.gmid ?? "")&")
         urlString.append("ucid=\(config?.ucid ?? "")&")

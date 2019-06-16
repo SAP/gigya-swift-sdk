@@ -17,6 +17,7 @@ class AccountService: IOCAccountServiceProtocol {
 
     private var accountInvalidationTimestamp: Int = 0
 
+    // caches time in minutes
     private var accountCacheTime: Int = 5
 
     func getAccount<T: Codable>() -> T {

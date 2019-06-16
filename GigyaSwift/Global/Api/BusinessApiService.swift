@@ -49,7 +49,11 @@ class BusinessApiService: NSObject, IOCBusinessApiServiceProtocol {
         apiService.send(model: model, responseType: T.self, completion: completion)
     }
 
-    func getAccount<T: Codable>(dataType: T.Type, completion: @escaping (GigyaApiResult<T>) -> Void) {
+    func getAccount<T: Codable>(clearAccount: Bool = false, dataType: T.Type, completion: @escaping (GigyaApiResult<T>) -> Void) {
+        if clearAccount == true {
+            accountService.clear()
+        }
+
         if accountService.isCachedAccount() {
             completion(.success(data: accountService.getAccount()))
         } else {
@@ -82,14 +86,14 @@ class BusinessApiService: NSObject, IOCBusinessApiServiceProtocol {
         }
     }
 
-    func register<T: Codable>(params: [String: Any], dataType: T.Type, completion: @escaping (GigyaLoginResult<T>) -> Void) {
+    func register<T: Codable>(email: String, password: String, params: [String: Any], dataType: T.Type, completion: @escaping (GigyaLoginResult<T>) -> Void) {
         let model = ApiRequestModel(method: GigyaDefinitions.API.initRegistration)
 
         apiService.send(model: model, responseType: [String: AnyCodable].self) { [weak self] (result) in
             switch result {
             case .success(let data):
                 let regToken = data["regToken"]?.value ?? ""
-                let makeParams: [String: Any] = ["regToken": regToken, "finalizeRegistration": "true"].merging(params) { $1 }
+                let makeParams: [String: Any] = ["email": email,"password": password, "regToken": regToken, "finalizeRegistration": "true"].merging(params) { $1 }
 
                 let model = ApiRequestModel(method: GigyaDefinitions.API.register, params: makeParams)
 
@@ -155,9 +159,16 @@ class BusinessApiService: NSObject, IOCBusinessApiServiceProtocol {
             if let providerString = json?["provider"] as? String,
                let provider = GigyaSocielProviders(rawValue: providerString) {
                 self?.login(provider: provider, viewController: viewController, params: params, dataType: T.self) {  [weak self] result in
-                    self?.providersFactory?.dismiss()
-                    self?.providersFactory = nil
-
+                    switch result {
+                    case .success:
+                        self?.dismissProvidersLogin()
+                    case .failure(let errorObject):
+                        guard case .providerError = errorObject.error else {
+                            self?.dismissProvidersLogin()
+                            completion(result)
+                            return
+                        }
+                    }
                     completion(result)
                 }
             }
@@ -290,6 +301,11 @@ class BusinessApiService: NSObject, IOCBusinessApiServiceProtocol {
     private func clearOptionalObjects() {
         self.providerAdapter = nil
         self.resolver = nil
+    }
+
+    private func dismissProvidersLogin() {
+        self.providersFactory?.dismiss()
+        self.providersFactory = nil
     }
 
 }
