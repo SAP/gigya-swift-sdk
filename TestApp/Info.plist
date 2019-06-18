@@ -4,6 +4,8 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>CFBundleDisplayName</key>
+	<string></string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -62,9 +64,9 @@
 	<key>FacebookAppID</key>
 	<string>2497684063594329</string>
 	<key>GigyaApiDomain</key>
-	<string>us1.gigya.com</string>
+	<string>st1-il7.gigya.com</string>
 	<key>GigyaApiKey</key>
-	<string>3_Rnp81vcr2T8l9ikyU7zXDeT2BqhFoaEMK-X5_CGssphkkfNITZIU7FafZqJpJl5H</string>
+	<string>3_JUJ6sscTCIy89-s2wqmaLopFbpb_JWKVBRNCq6e6hdGArCB7jDAk7Fvmq5kChGIu</string>
 	<key>GoogleClientID</key>
 	<string>444662304199-camlom5iaqmrs7i1ernfv7eudr1ejkvm.apps.googleusercontent.com</string>
 	<key>GoogleServerClientID</key>
@@ -102,6 +104,11 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>fetch</string>
+		<string>remote-notification</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

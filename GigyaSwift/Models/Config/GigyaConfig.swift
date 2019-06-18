@@ -12,7 +12,7 @@ protocol GigyaConfigProtocol {
     var config: GigyaConfig { get set }
 }
 
-class GigyaConfig {
+public class GigyaConfig {
     var apiKey: String?
     var apiDomain: String?
     //TODO: Need to check if need isInitSdk

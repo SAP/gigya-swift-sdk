@@ -99,14 +99,23 @@
                                     <action selector="loginWithProviders:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xIk-1R-89f"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LbG-xu-49s">
+                                <rect key="frame" x="172" y="590" width="76" height="30"/>
+                                <state key="normal" title="OptIn Push"/>
+                                <connections>
+                                    <action selector="OptiInPush:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Q7g-LJ-jEm"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="LbG-xu-49s" firstAttribute="leading" secondItem="0fX-WN-aKg" secondAttribute="trailing" constant="70" id="1GL-rQ-r2L"/>
                             <constraint firstItem="owO-vP-SNV" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="16" id="2AI-Bd-Fzi"/>
                             <constraint firstItem="TiM-DB-mr3" firstAttribute="top" secondItem="0fX-WN-aKg" secondAttribute="bottom" constant="16" id="2YG-O4-hBB"/>
                             <constraint firstItem="0fX-WN-aKg" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="2p7-lC-fVD"/>
                             <constraint firstItem="fyN-es-d2v" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="6iT-v0-QyB"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Jkr-xe-GiC" secondAttribute="bottom" constant="16" id="Bzm-Q9-L5D"/>
+                            <constraint firstItem="eoH-ob-HH3" firstAttribute="top" secondItem="LbG-xu-49s" secondAttribute="bottom" constant="16" id="C95-sk-mha"/>
                             <constraint firstItem="eoH-ob-HH3" firstAttribute="top" secondItem="0fX-WN-aKg" secondAttribute="bottom" constant="16" id="CgK-ux-zSr"/>
                             <constraint firstItem="Cu6-gD-2R1" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="DKn-Fw-vGx"/>
                             <constraint firstItem="cq6-7s-6Kn" firstAttribute="top" secondItem="fNt-XW-RSV" secondAttribute="bottom" constant="16" id="JdH-eC-2tw"/>
@@ -133,7 +142,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1010" y="134"/>
+            <point key="canvasLocation" x="1008.8" y="133.5832083958021"/>
         </scene>
         <!--Tfa View Controller-->
         <scene sceneID="jNJ-zr-cag">

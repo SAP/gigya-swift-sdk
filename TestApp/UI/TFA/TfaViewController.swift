@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import GigyaSwift
+import GigyaTfa
 
 public enum TFAMode: String {
     case registration = "registration"
@@ -32,9 +33,9 @@ class TfaViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     var tfaProviders = [TFAProviderModel]()
     var tfaMode: TFAMode = .registration
     
-    var registrationResolverDelegate: TFARegistrationResolverProtocol?
-    var verificationResolverDelegate: TFAVerificationResolverProtocol?
-    
+//    var registrationResolverDelegate: TFARegistrationResolverProtocol?
+//    var verificationResolverDelegate: TFAVerificationResolverProtocol?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -80,6 +81,8 @@ class TfaViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
             onTfaTotpProviderSelection()
         case .email:
             onTfaEmailProviderSelection()
+        case .push:
+            break
         }
     }
     
@@ -137,7 +140,7 @@ class TfaViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
             reloadTableWith(content:  ["phoneInput"])
             break
         case .verification:
-            verificationResolverDelegate?.startVerificationWithPhone()
+//            verificationResolverDelegate?.startVerificationWithPhone()
             break
         }
     }
@@ -149,7 +152,7 @@ class TfaViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         switch tfaMode {
         case .registration:
             reloadTableWith(content:  [""])
-            registrationResolverDelegate?.startRegistrationWithTotp()
+//            registrationResolverDelegate?.startRegistrationWithTotp()
         case .verification:
             reloadTableWith(content: ["authCode"])
         }
@@ -160,8 +163,8 @@ class TfaViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
      */
     func onTfaEmailProviderSelection() {
         switch tfaMode {
-        case .verification:
-            verificationResolverDelegate?.startVerificationWithEmail()
+        case .verification: break
+//            verificationResolverDelegate?.startVerificationWithEmail()
         default:
             break
         }
@@ -170,15 +173,15 @@ class TfaViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     // MARK: - Submittion Protocol Implementation
     
     func onSubmitRegistered(email: TFAEmail) {
-        verificationResolverDelegate?.sendEmailVerificationCode(registeredEmail: email)
+//        verificationResolverDelegate?.sendEmailVerificationCode(registeredEmail: email)
     }
     
     func onSubmitRegistered(phone: TFARegisteredPhone) {
-        verificationResolverDelegate?.sendPhoneVerificationCode(registeredPhone: phone)
+//        verificationResolverDelegate?.sendPhoneVerificationCode(registeredPhone: phone)
     }
     
     func onSubmitPhone(number: String, andMethod: String) {
-        registrationResolverDelegate?.startRegistrationWithPhone(phoneNumber: number, method: andMethod)
+//        registrationResolverDelegate?.startRegistrationWithPhone(phoneNumber: number, method: andMethod)
         reloadTableWith(content:  ["phoneInput", "authCode"])
     }
     
@@ -225,15 +228,15 @@ class TfaViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
      */
     func onSubmitAuthCode(mode: TFAMode, provider: TFAProvider, code: String) {
          switch mode {
-         case .registration:
-            registrationResolverDelegate?.verifyCode(provider: provider, authenticationCode: code)
+         case .registration: break
+//            registrationResolverDelegate?.verifyCode(provider: provider, authenticationCode: code)
          case .verification:
             if (provider == .totp) {
                 // TOTP verification flow starts. Will need to initialize TFA first with "verify" parameter for flow to continue.
-                verificationResolverDelegate?.verificationWithTotp(authorizationCode: code)
+//                verificationResolverDelegate?.verificationWithTotp(authorizationCode: code)
                 return
             }
-            verificationResolverDelegate?.verifyCode(provider: provider, authenticationCode: code)
+//            verificationResolverDelegate?.verifyCode(provider: provider, authenticationCode: code)
         }
     }
 }

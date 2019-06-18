@@ -274,9 +274,11 @@ class BusinessApiService: NSObject, IOCBusinessApiServiceProtocol {
                 case .accountLinked: // account successfuly linked
                     self.finalizeRegistration(regToken: regToken, completion: completion)
                 case .pendingTwoFactorRegistration: // pending TFA registration
-                    resolver = TFARegistrationResolver(originalError: error, regToken: regToken, businessDelegate: self, completion: completion)
+//                    resolver = TFARegistrationResolver(originalError: error, regToken: regToken, businessDelegate: self, completion: completion)
+                    break
                 case .pendingTwoFactorVerification: // pending TFA verification
-                    resolver = TFAVerificationResolver(originalError: error, regToken: regToken, businessDelegate: self , completion: completion)
+//                    resolver = TFAVerificationResolver(originalError: error, regToken: regToken, businessDelegate: self , completion: completion)
+                    break
                 case .pendingPasswordChange:
                     let loginError = LoginApiError<T>(error: error, interruption: .pendingPasswordChange(regToken: regToken))
                     completion(.failure(loginError))

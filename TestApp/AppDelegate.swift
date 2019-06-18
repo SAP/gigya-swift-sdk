@@ -9,9 +9,12 @@
 import UIKit
 import GigyaSwift
 import LineSDK
+import Firebase
+import GoogleUtilities
+import GigyaTfa
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
 
     var window: UIWindow?
 
@@ -20,10 +23,39 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        let gigya = GigyaSwift.getInstance(UserHost.self)
 //        GigyaSwift.getInstance().initWithApi(apiKey: "555")
 //        GigyaSwift.sharedInstance()
-        
+        FirebaseApp.configure()
+        Messaging.messaging().delegate = self
+
         WXApi.registerApp("wx222c4ccaa989aa00")
 
         return true
+    }
+
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        let tokenParts = deviceToken.map { data in String(format: "%02.2hhx", data) }
+        let token = tokenParts.joined()
+        print("Device Token: \(token)")
+        Messaging.messaging().apnsToken = deviceToken
+    }
+
+    func application(
+        _ application: UIApplication,
+        didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        print("Failed to register: \(error)")
+    }
+
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
+        print("Firebase registration token: \(fcmToken)")
+        let dataDict:[String: String] = ["token": fcmToken]
+
+        GigyaTfa.shared.updatePushToken(key: fcmToken)
+
+        NotificationCenter.default.post(name: Notification.Name("FCMToken"), object: nil, userInfo: dataDict)
+
+    }
+
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+
     }
 
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {

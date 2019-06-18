@@ -34,7 +34,8 @@ public class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
     private var sessionService: IOCSessionServiceProtocol {
         return (container?.resolve(IOCSessionServiceProtocol.self))!
     }
-    
+
+
     // MARK: - Initialize
     internal init(container: IOCContainer, plistConfig: PlistConfig?) {
         self.container = container
@@ -221,14 +222,15 @@ public class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
     }
 
     /**
-     * Show comments (ScreenSet)
-     *
-     * :param params:   Comments ScreenSet parameters.
-     * :param completion:  Plugin completion.
+     Show comments (ScreenSet)
+
+     - Parameter params:   Comments ScreenSet parameters.
+     - Parameter completion:  Plugin completion.
      */
 
 //    private func showComments(viewController: UIViewController, params: [String: Any] = [:], completion: @escaping (PluginEvent<T>) -> Void) {
 //        let wrapper = PluginViewWrapper(config: config, sessionService: sessionService, businessApiService: businessApiService, plugin: "comments.commentsUI", params: params, completion: completion)
 //        wrapper.presentPluginController(viewController: viewController, dataType: T.self, screenSet: "")
 //    }
+
 }

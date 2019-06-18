@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol BusinessApiDelegate: class {
+public protocol BusinessApiDelegate: class {
     
     func sendApi(api: String, params: [String: String], completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void )
 

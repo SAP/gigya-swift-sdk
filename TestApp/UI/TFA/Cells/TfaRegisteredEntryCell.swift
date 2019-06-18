@@ -8,6 +8,7 @@
 
 import Foundation
 import GigyaSwift
+import GigyaTfa
 
 class TfaRegisteredEntryCell: UITableViewCell, UIPickerViewDelegate, UIPickerViewDataSource {
     

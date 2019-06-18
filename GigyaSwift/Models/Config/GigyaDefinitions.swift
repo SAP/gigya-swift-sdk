@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct GigyaDefinitions {
+public struct GigyaDefinitions {
     public struct API {
         // ACCOUNT
         public static let getSdkConfig = "socialize.getSDKConfig"

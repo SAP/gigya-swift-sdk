@@ -10,6 +10,7 @@ import UIKit
 import GigyaSwift
 import GigyaSDK
 import GoogleSignIn
+import GigyaTfa
 
 struct UserHost: GigyaAccountProtocol {
     
@@ -119,25 +120,26 @@ class ViewController: UIViewController {
                     // Evaluage interruption.
                     switch interruption {
                     case .pendingTwoFactorVerification(let resolver):
+                        break
                         // Reference active providers (verification).
-                        let providers = resolver.tfaProviders
-                        // Present TFA controller for verification flow.
-                        self?.presentTFAController(tfaProviders: providers, mode: .verification, verificationResolver: resolver)
-                    case .pendingTwoFactorRegistration(let resolver):
-                        // Reference inactive providers (registration).
-                        let providers = resolver.tfaProviders
-                        // Present TFA controller for registration flow.
-                        self?.presentTFAController(tfaProviders: providers, mode: .registration, registrationResolver: resolver)
-                    case .onTotpQRCode(let qrImage):
-                        self?.tfaViewController?.onQRCodeAvailable(qrImage: qrImage)
-                    case .onRegisteredPhoneNumbers(let registeredNumbers):
-                        self?.tfaViewController?.onRegisteredPhone(numbers: registeredNumbers)
-                    case .onRegisteredEmails(let emails):
-                        self?.tfaViewController?.onRegisteredEmail(addresses: emails)
-                    case .onPhoneVerificationCodeSent:
-                        print("Phone verification code sent")
-                    case .onEmailVerificationCodeSent:
-                        print("Email verification code send")
+//                        let providers = resolver.tfaProviders
+//                        // Present TFA controller for verification flow.
+//                        self?.presentTFAController(tfaProviders: providers, mode: .verification, verificationResolver: resolver)
+//                    case .pendingTwoFactorRegistration(let resolver):
+//                        // Reference inactive providers (registration).
+//                        let providers = resolver.tfaProviders
+//                        // Present TFA controller for registration flow.
+//                        self?.presentTFAController(tfaProviders: providers, mode: .registration, registrationResolver: resolver)
+//                    case .onTotpQRCode(let qrImage):
+//                        self?.tfaViewController?.onQRCodeAvailable(qrImage: qrImage)
+//                    case .onRegisteredPhoneNumbers(let registeredNumbers):
+//                        self?.tfaViewController?.onRegisteredPhone(numbers: registeredNumbers)
+//                    case .onRegisteredEmails(let emails):
+//                        self?.tfaViewController?.onRegisteredEmail(addresses: emails)
+//                    case .onPhoneVerificationCodeSent:
+//                        print("Phone verification code sent")
+//                    case .onEmailVerificationCodeSent:
+//                        print("Email verification code send")
                     default:
                         break
                     }
@@ -163,16 +165,17 @@ class ViewController: UIViewController {
                     // Evaluage interruption.
                     switch interruption {
                     case .pendingTwoFactorRegistration(let resolver):
+                        break
                         // Reference inactive providers (registration).
-                        let providers = resolver.tfaProviders
-                        // Present TFA controller for registration flow.
-                        self?.presentTFAController(tfaProviders: providers, mode: .registration, registrationResolver: resolver)
-                    case .onPhoneVerificationCodeSent:
-                        print("Phone verification code sent")
-                    case .onEmailVerificationCodeSent:
-                        print("Email verification code send")
-                    case .onTotpQRCode(let code):
-                        self?.tfaViewController?.onQRCodeAvailable(qrImage: code)
+//                        let providers = resolver.tfaProviders
+//                        // Present TFA controller for registration flow.
+//                        self?.presentTFAController(tfaProviders: providers, mode: .registration, registrationResolver: resolver)
+//                    case .onPhoneVerificationCodeSent:
+//                        print("Phone verification code sent")
+//                    case .onEmailVerificationCodeSent:
+//                        print("Email verification code send")
+//                    case .onTotpQRCode(let code):
+//                        self?.tfaViewController?.onQRCodeAvailable(qrImage: code)
                     default:
                         break
                     }
@@ -183,16 +186,16 @@ class ViewController: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
-    func presentTFAController(tfaProviders: [TFAProviderModel], mode: TFAMode, verificationResolver: TFAVerificationResolverProtocol? = nil, registrationResolver: TFARegistrationResolverProtocol? = nil) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        tfaViewController = storyboard.instantiateViewController(withIdentifier: "TFAUIAlertViewController") as? TfaViewController
-        tfaViewController?.tfaProviders = tfaProviders
-        tfaViewController?.tfaMode = mode
-        tfaViewController?.registrationResolverDelegate = registrationResolver
-        tfaViewController?.verificationResolverDelegate = verificationResolver
-        self.navigationController?.pushViewController(tfaViewController!, animated: true)
-
-    }
+//    func presentTFAController(tfaProviders: [TFAProviderModel], mode: TFAMode, verificationResolver: TFAVerificationResolverProtocol? = nil, registrationResolver: TFARegistrationResolverProtocol? = nil) {
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//        tfaViewController = storyboard.instantiateViewController(withIdentifier: "TFAUIAlertViewController") as? TfaViewController
+//        tfaViewController?.tfaProviders = tfaProviders
+//        tfaViewController?.tfaMode = mode
+//        tfaViewController?.registrationResolverDelegate = registrationResolver
+//        tfaViewController?.verificationResolverDelegate = verificationResolver
+//        self.navigationController?.pushViewController(tfaViewController!, animated: true)
+//
+//    }
     
     func dismissTfaController() {
         if self.tfaViewController != nil {
@@ -387,6 +390,10 @@ class ViewController: UIViewController {
                 break
             }
         }
+    }
+
+    @IBAction func OptiInPush(_ sender: Any) {
+        GigyaTfa.shared.OptiInPushTfa()
     }
 
     func aaa() {

@@ -10,7 +10,7 @@ import Foundation
 
 typealias ResolverHandling<T> = (ResolverProtocol) -> T
 
-class IOCContainer {
+public class IOCContainer {
     private var services: [String: ServiceMaker<Any>] = [:]
 
     func register<Service>(service: Service.Type, isSingleton: Bool = false, factory: @escaping ResolverHandling<Service>) {
@@ -21,7 +21,7 @@ class IOCContainer {
 }
 
 extension IOCContainer: ResolverProtocol {
-    func resolve<Service>(_ serviceType: Service.Type) -> Service? {
+    public func resolve<Service>(_ serviceType: Service.Type) -> Service? {
         let instanceName = String(describing: Service.self)
         let instance = services[instanceName]?.get()
 
