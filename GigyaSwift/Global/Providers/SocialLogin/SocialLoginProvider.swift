@@ -16,9 +16,9 @@ class SocialLoginProvider: Provider {
 
     let provider: ProviderWrapperProtocol
 
-    let providerType: GigyaSocielProviders
+    let providerType: GigyaSocialProviders
 
-    init(providerType: GigyaSocielProviders, provider: ProviderWrapperProtocol, delegate: BusinessApiDelegate) {
+    init(providerType: GigyaSocialProviders, provider: ProviderWrapperProtocol, delegate: BusinessApiDelegate) {
         self.provider = provider
         self.delegate = delegate
         self.providerType = providerType

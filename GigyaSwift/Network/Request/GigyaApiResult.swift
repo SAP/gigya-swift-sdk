@@ -24,7 +24,7 @@ public struct LoginApiError<T: Codable> {
 }
 
 public enum GigyaInterruptions<T: Codable> {
-    case pendingRegistration(regToken: String)
+    case pendingRegistration(resolver: PendingRegistrationResolver<T>)
     case pendingVerification(regToken: String)
     case pendingPasswordChange(regToken: String)
     case conflitingAccount(resolver: LinkAccountsResolver<T>)

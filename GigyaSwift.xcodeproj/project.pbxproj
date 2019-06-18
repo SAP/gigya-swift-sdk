@@ -33,6 +33,8 @@
 		E713E18C224A2E5800181328 /* NetworkAdapterMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E713E18B224A2E5800181328 /* NetworkAdapterMock.swift */; };
 		E71D4A2422817F83000892C2 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E71D4A2222817F83000892C2 /* libWeChatSDK.a */; };
 		E7221D7722B8D9C000C296A9 /* PushNotificationModes.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7221D7622B8D9BF00C296A9 /* PushNotificationModes.swift */; };
+		E7221D7922B8FC8700C296A9 /* PendingRegistrationResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7221D7822B8FC8700C296A9 /* PendingRegistrationResolver.swift */; };
+		E7221D7A22B903E500C296A9 /* GoogleWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7D59B1D227F34D3002FA864 /* GoogleWrapper.swift */; };
 		E73373AC2254D79200ADEDBB /* GigyaDefinitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73373AB2254D79200ADEDBB /* GigyaDefinitions.swift */; };
 		E73373B02254FD4800ADEDBB /* Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73373AF2254FD4800ADEDBB /* Int.swift */; };
 		E73373D5225E326100ADEDBB /* GigyaLoggerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73373D4225E326100ADEDBB /* GigyaLoggerTest.swift */; };
@@ -136,7 +138,7 @@
 		E7CBB03D22356086000B6C11 /* GigyaInstanceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CBB03C22356086000B6C11 /* GigyaInstanceProtocol.swift */; };
 		E7CBB041223561F4000B6C11 /* GigyaAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CBB040223561F4000B6C11 /* GigyaAccount.swift */; };
 		E7CBB04322356206000B6C11 /* GigyaProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CBB04222356206000B6C11 /* GigyaProfile.swift */; };
-		E7CBB05A2237DD2C000B6C11 /* GigyaSocielProviders.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CBB0592237DD2C000B6C11 /* GigyaSocielProviders.swift */; };
+		E7CBB05A2237DD2C000B6C11 /* GigyaSocialProviders.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CBB0592237DD2C000B6C11 /* GigyaSocialProviders.swift */; };
 		E7CBB068223E595D000B6C11 /* GigyaPlistConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CBB067223E595D000B6C11 /* GigyaPlistConfig.swift */; };
 		E7CBB06B223E59EA000B6C11 /* Decode+EncodeUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CBB06A223E59EA000B6C11 /* Decode+EncodeUtils.swift */; };
 		E7D59B20227F3872002FA864 /* Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7D59B1F227F3872002FA864 /* Bundle.swift */; };
@@ -283,6 +285,7 @@
 		E71D4A2222817F83000892C2 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
 		E7221D7422B7E1EA00C296A9 /* TestApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TestApp.entitlements; sourceTree = "<group>"; };
 		E7221D7622B8D9BF00C296A9 /* PushNotificationModes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationModes.swift; sourceTree = "<group>"; };
+		E7221D7822B8FC8700C296A9 /* PendingRegistrationResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingRegistrationResolver.swift; sourceTree = "<group>"; };
 		E73373AB2254D79200ADEDBB /* GigyaDefinitions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigyaDefinitions.swift; sourceTree = "<group>"; };
 		E73373AF2254FD4800ADEDBB /* Int.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Int.swift; sourceTree = "<group>"; };
 		E73373D4225E326100ADEDBB /* GigyaLoggerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigyaLoggerTest.swift; sourceTree = "<group>"; };
@@ -383,7 +386,7 @@
 		E7CBB03C22356086000B6C11 /* GigyaInstanceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigyaInstanceProtocol.swift; sourceTree = "<group>"; };
 		E7CBB040223561F4000B6C11 /* GigyaAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigyaAccount.swift; sourceTree = "<group>"; };
 		E7CBB04222356206000B6C11 /* GigyaProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigyaProfile.swift; sourceTree = "<group>"; };
-		E7CBB0592237DD2C000B6C11 /* GigyaSocielProviders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigyaSocielProviders.swift; sourceTree = "<group>"; };
+		E7CBB0592237DD2C000B6C11 /* GigyaSocialProviders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigyaSocialProviders.swift; sourceTree = "<group>"; };
 		E7CBB05B22380DEF000B6C11 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		E7CBB067223E595D000B6C11 /* GigyaPlistConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigyaPlistConfig.swift; sourceTree = "<group>"; };
 		E7CBB06A223E59EA000B6C11 /* Decode+EncodeUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Decode+EncodeUtils.swift"; sourceTree = "<group>"; };
@@ -933,6 +936,7 @@
 			isa = PBXGroup;
 			children = (
 				E7C859DA2289604F005C1FBE /* LinkAccountsResolver.swift */,
+				E7221D7822B8FC8700C296A9 /* PendingRegistrationResolver.swift */,
 			);
 			path = Resolvers;
 			sourceTree = "<group>";
@@ -1035,7 +1039,7 @@
 			isa = PBXGroup;
 			children = (
 				E7CBB03C22356086000B6C11 /* GigyaInstanceProtocol.swift */,
-				E7CBB0592237DD2C000B6C11 /* GigyaSocielProviders.swift */,
+				E7CBB0592237DD2C000B6C11 /* GigyaSocialProviders.swift */,
 				E7C859E6228C52A0005C1FBE /* ConflictingAccount.swift */,
 				E7C859DF2289B299005C1FBE /* InterruptionEnum.swift */,
 				E713E0FF2248C84000181328 /* Config */,
@@ -1662,12 +1666,13 @@
 				E7CBAFBC222D1863000B6C11 /* NetworkResult.swift in Sources */,
 				E73373AC2254D79200ADEDBB /* GigyaDefinitions.swift in Sources */,
 				E7C859E7228C52A0005C1FBE /* ConflictingAccount.swift in Sources */,
+				E7221D7922B8FC8700C296A9 /* PendingRegistrationResolver.swift in Sources */,
 				E7CBAFA4222BC881000B6C11 /* InternalConfig.swift in Sources */,
 				E7ACF9A8226C83F200900C65 /* IOCBusinessApiServiceProtocol.swift in Sources */,
 				E713E1022248E41400181328 /* GigyaRequestSignature.swift in Sources */,
 				D58EF4452279CB38003DB878 /* String.swift in Sources */,
 				E7CBAFBA222D1840000B6C11 /* NetworkError.swift in Sources */,
-				E7CBB05A2237DD2C000B6C11 /* GigyaSocielProviders.swift in Sources */,
+				E7CBB05A2237DD2C000B6C11 /* GigyaSocialProviders.swift in Sources */,
 				E7CBAF9D22282BE3000B6C11 /* KeychainStorage.swift in Sources */,
 				E7CBAFD2222EBD95000B6C11 /* SessionService.swift in Sources */,
 				E7A6E0CE22425A910063638F /* NetworkAdapter.swift in Sources */,
@@ -1692,6 +1697,7 @@
 				E7BE369D2224260400A108D9 /* AppDelegate.swift in Sources */,
 				D5B916A32292C87E004FAEF3 /* TfaRegisteredEntryCell.swift in Sources */,
 				D5FF935422916ECD00CF33D6 /* TfaPhoneInputCell.swift in Sources */,
+				E7221D7A22B903E500C296A9 /* GoogleWrapper.swift in Sources */,
 				D5FF935622917B8600CF33D6 /* TfaAuthCodeCell.swift in Sources */,
 				E7DC2C6F2280779A00A13426 /* WeChatWrapper.swift in Sources */,
 				E7DC2C3E22804A5400A13426 /* FacebookWrapper.swift in Sources */,

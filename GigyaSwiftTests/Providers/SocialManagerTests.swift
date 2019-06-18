@@ -57,6 +57,10 @@ class SocialManagerTests: XCTestCase {
 }
 
 extension SocialManagerTests: BusinessApiDelegate {
+    func callSetAccount<T>(params: [String : Any], completion: @escaping (GigyaApiResult<T>) -> Void) where T : Decodable, T : Encodable {
+        
+    }
+
     func callfinalizeRegistration<T>(regToken: String, completion: @escaping (GigyaLoginResult<T>) -> Void) where T : Decodable, T : Encodable {
         
     }
@@ -77,7 +81,7 @@ extension SocialManagerTests: BusinessApiDelegate {
 
     }
 
-    func callSociallogin<T>(provider: GigyaSocielProviders, viewController: UIViewController, params: [String : Any], dataType: T.Type, completion: @escaping (GigyaLoginResult<T>) -> Void) where T : Decodable, T : Encodable {
+    func callSociallogin<T>(provider: GigyaSocialProviders, viewController: UIViewController, params: [String : Any], dataType: T.Type, completion: @escaping (GigyaLoginResult<T>) -> Void) where T : Decodable, T : Encodable {
 
     }
 

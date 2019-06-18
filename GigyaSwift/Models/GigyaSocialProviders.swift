@@ -8,7 +8,7 @@
 
 import Foundation
 
-public enum GigyaSocielProviders: String {
+public enum GigyaSocialProviders: String {
     case facebook
     case google = "googleplus"
     case yahoo
@@ -39,7 +39,7 @@ public enum GigyaSocielProviders: String {
     case yahooJapan = "Yahoo Japan"
 }
 
-public enum GigyaNativeSocielProviders: String, CaseIterable {
+public enum GigyaNativeSocialProviders: String, CaseIterable {
     case facebook
     case google = "googleplus"
     case line

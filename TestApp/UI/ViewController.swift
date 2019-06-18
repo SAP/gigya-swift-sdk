@@ -210,7 +210,7 @@ class ViewController: UIViewController {
         }
 
         let alert = UIFactory.getConnectionAlert(title: "Add social connection") { [weak self] providerName in
-           if let provider = GigyaSocielProviders(rawValue: providerName) {
+           if let provider = GigyaSocialProviders(rawValue: providerName) {
             guard let self = self else { return }
                 self.gigya.addConnection(provider: provider, viewController: self, params: [:]) { result in
                     switch result {
@@ -233,7 +233,7 @@ class ViewController: UIViewController {
             return
         }
         let alert = UIFactory.getConnectionAlert(title: "Remove social connection") { [weak self] providerName in
-            self?.gigya.removeConnection(provider: GigyaSocielProviders(rawValue: providerName) ?? .google) { result in
+            self?.gigya.removeConnection(provider: GigyaSocialProviders(rawValue: providerName) ?? .google) { result in
                 switch result {
                 case .success(_):
                     self?.resultTextView?.text = "Connection removed"
@@ -291,8 +291,8 @@ class ViewController: UIViewController {
                 guard let interruption = error.interruption else { return }
                 // Evaluage interruption.
                 switch interruption {
-                case .pendingVerification(let regToken):
-                    print("regToken: \(regToken)")
+                case .pendingVerification(let resolver):
+                    print("regToken: \(resolver)")
                 case .conflitingAccount(let resolver):
                     resolver.linkToSite(loginId: resolver.conflictingAccount?.loginID ?? "", password: "123123")
                 default:
@@ -303,8 +303,29 @@ class ViewController: UIViewController {
         }
     }
     @IBAction func loginWithProviders(_ sender: Any) {
-        gigya.socialLoginWith(providers: [.facebook, .google, .line], viewController: self, params: [:]) { (result) in
+        gigya.socialLoginWith(providers: [.facebook, .google, .line], viewController: self, params: [:]) { [weak self] (result) in
+            switch result {
+            case .success(let data):
+                print(data)
+                self?.resultTextView?.text = data.toJson()
+                self?.dismissTfaController()
+            case .failure(let error):
+                print(error)
 
+                guard let interruption = error.interruption else { return }
+                // Evaluage interruption.
+                switch interruption {
+                case .pendingRegistration(let resolver):
+                    resolver.setAccount(params: ["data": ["specialCode": "20"]])
+                case .pendingVerification(let regToken):
+                    print("regToken: \(regToken)")
+                case .conflitingAccount(let resolver):
+                    resolver.linkToSite(loginId: resolver.conflictingAccount?.loginID ?? "", password: "123123")
+                default:
+                    break
+                }
+
+            }
         }
 
     }

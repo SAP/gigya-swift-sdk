@@ -14,14 +14,14 @@ class ProvidersLoginWrapper: NSObject {
 
     private var config: GigyaConfig?
 
-    private let providers: [GigyaSocielProviders]
+    private let providers: [GigyaSocialProviders]
 
     private var navigationController: UINavigationController?
 
     private var completionHandler: ((_ jsonData: [String: Any]?, _ error: String?) -> Void)? = nil
 
 
-    init(config: GigyaConfig, providers: [GigyaSocielProviders]) {
+    init(config: GigyaConfig, providers: [GigyaSocialProviders]) {
         self.providers = providers
         self.config = config
         self.webViewController = WebViewController()

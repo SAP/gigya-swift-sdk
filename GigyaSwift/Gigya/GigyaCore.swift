@@ -128,7 +128,7 @@ public class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
      - Parameter viewController:    your ViewController should be open login
      - Parameter completion:        Response GigyaApiResult.
      */
-    public func login(with provider: GigyaSocielProviders, viewController: UIViewController,
+    public func login(with provider: GigyaSocialProviders, viewController: UIViewController,
                       params: [String: Any] = [:], completion: @escaping (GigyaLoginResult<T>) -> Void) {
         businessApiService.login(provider: provider, viewController: viewController, params: params, dataType: T.self) { (res) in
             completion(res)
@@ -177,7 +177,7 @@ public class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
      - Parameter completion:  Login response.
      */
 
-    public func socialLoginWith(providers: [GigyaSocielProviders], viewController: UIViewController, params: [String: Any], completion: @escaping (GigyaLoginResult<T>) -> Void) {
+    public func socialLoginWith(providers: [GigyaSocialProviders], viewController: UIViewController, params: [String: Any], completion: @escaping (GigyaLoginResult<T>) -> Void) {
         businessApiService.login(providers: providers, viewController: viewController, params: params, completion: completion)
     }
     
@@ -190,7 +190,7 @@ public class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
      - Parameter completion:  Login response.
      */
     
-    public func addConnection(provider: GigyaSocielProviders, viewController: UIViewController, params: [String: Any], completion: @escaping (GigyaApiResult<T>) -> Void) {
+    public func addConnection(provider: GigyaSocialProviders, viewController: UIViewController, params: [String: Any], completion: @escaping (GigyaApiResult<T>) -> Void) {
         businessApiService.addConnection(provider: provider, viewController: viewController, params: params, dataType: T.self, completion: completion)
     }
     
@@ -201,7 +201,7 @@ public class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
      - Parameter completion:  Login response.
      */
     
-    public func removeConnection(provider: GigyaSocielProviders, completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void) {
+    public func removeConnection(provider: GigyaSocialProviders, completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void) {
         businessApiService.removeConnection(providerName: provider, completion: completion)
     }
 

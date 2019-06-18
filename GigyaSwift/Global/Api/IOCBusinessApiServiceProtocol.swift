@@ -29,18 +29,20 @@ protocol IOCBusinessApiServiceProtocol {
     func getAccount<T: Codable>(clearAccount: Bool, dataType: T.Type, completion: @escaping (GigyaApiResult<T>) -> Void)
 
     func setAccount<T: Codable>(obj: T, completion: @escaping (GigyaApiResult<T>) -> Void)
-    
+
+    func setAccount<T: Codable>(params: [String: Any], completion: @escaping (GigyaApiResult<T>) -> Void)
+
     func register<T: Codable>(email: String, password: String, params: [String: Any], dataType: T.Type, completion: @escaping (GigyaLoginResult<T>) -> Void)
 
-    func login<T: Codable>(dataType: T.Type, loginId: String, password: String, params: [String:Any], completion: @escaping (GigyaLoginResult<T>) -> Void)
+    func login<T: Codable>(dataType: T.Type, loginId: String, password: String, params: [String: Any], completion: @escaping (GigyaLoginResult<T>) -> Void)
 
-    func login<T: Codable>(provider: GigyaSocielProviders, viewController: UIViewController, params: [String: Any], dataType: T.Type, completion: @escaping (GigyaLoginResult<T>) -> Void)
+    func login<T: Codable>(provider: GigyaSocialProviders, viewController: UIViewController, params: [String: Any], dataType: T.Type, completion: @escaping (GigyaLoginResult<T>) -> Void)
 
-    func login<T: Codable>(providers: [GigyaSocielProviders], viewController: UIViewController, params: [String: Any], completion: @escaping (GigyaLoginResult<T>) -> Void)
+    func login<T: Codable>(providers: [GigyaSocialProviders], viewController: UIViewController, params: [String: Any], completion: @escaping (GigyaLoginResult<T>) -> Void)
     
-    func addConnection<T: Codable>(provider: GigyaSocielProviders, viewController: UIViewController, params: [String: Any], dataType: T.Type, completion: @escaping (GigyaApiResult<T>) -> Void)
+    func addConnection<T: Codable>(provider: GigyaSocialProviders, viewController: UIViewController, params: [String: Any], dataType: T.Type, completion: @escaping (GigyaApiResult<T>) -> Void)
     
-    func removeConnection(providerName: GigyaSocielProviders, completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void)
+    func removeConnection(providerName: GigyaSocialProviders, completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void)
     
     func logout(completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void)
     

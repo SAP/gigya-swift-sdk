@@ -17,7 +17,7 @@ class WebLoginWrapper: NSObject, ProviderWrapperProtocol {
 
     private var config: GigyaConfig?
 
-    private let providerType: GigyaSocielProviders
+    private let providerType: GigyaSocialProviders
 
     private var navigationController: UINavigationController?
 
@@ -27,7 +27,7 @@ class WebLoginWrapper: NSObject, ProviderWrapperProtocol {
         self.providerType = .google
     }
 
-    init(config: GigyaConfig, providerType: GigyaSocielProviders) {
+    init(config: GigyaConfig, providerType: GigyaSocialProviders) {
         self.providerType = providerType
         self.config = config
         self.webViewController = WebViewController()

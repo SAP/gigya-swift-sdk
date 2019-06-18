@@ -86,6 +86,19 @@ class BusinessApiService: NSObject, IOCBusinessApiServiceProtocol {
         }
     }
 
+    func setAccount<T: Codable>(params: [String: Any], completion: @escaping (GigyaApiResult<T>) -> Void) {
+        let model = ApiRequestModel(method: GigyaDefinitions.API.setAccountInfo, params: params)
+
+        apiService.send(model: model, responseType: T.self) { result in
+            switch result {
+            case .success(let data):
+                completion(.success(data: data))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+
     func register<T: Codable>(email: String, password: String, params: [String: Any], dataType: T.Type, completion: @escaping (GigyaLoginResult<T>) -> Void) {
         let model = ApiRequestModel(method: GigyaDefinitions.API.initRegistration)
 
@@ -135,7 +148,7 @@ class BusinessApiService: NSObject, IOCBusinessApiServiceProtocol {
         }
     }
 
-    func login<T: Codable>(provider: GigyaSocielProviders, viewController: UIViewController,
+    func login<T: Codable>(provider: GigyaSocialProviders, viewController: UIViewController,
                            params: [String: Any], dataType: T.Type, completion: @escaping (GigyaLoginResult<T>) -> Void) {
         providerAdapter = socialProviderFactory.getProvider(with: provider, delegate: self)
 
@@ -153,11 +166,11 @@ class BusinessApiService: NSObject, IOCBusinessApiServiceProtocol {
         }
     }
 
-    func login<T: Codable>(providers: [GigyaSocielProviders], viewController: UIViewController, params: [String: Any], completion: @escaping (GigyaLoginResult<T>) -> Void) {
+    func login<T: Codable>(providers: [GigyaSocialProviders], viewController: UIViewController, params: [String: Any], completion: @escaping (GigyaLoginResult<T>) -> Void) {
         providersFactory = ProvidersLoginWrapper(config: config, providers: providers)
         providersFactory?.show(params: params, viewController: viewController) { [weak self] json, error in
             if let providerString = json?["provider"] as? String,
-               let provider = GigyaSocielProviders(rawValue: providerString) {
+               let provider = GigyaSocialProviders(rawValue: providerString) {
                 self?.login(provider: provider, viewController: viewController, params: params, dataType: T.self) {  [weak self] result in
                     switch result {
                     case .success:
@@ -188,7 +201,7 @@ class BusinessApiService: NSObject, IOCBusinessApiServiceProtocol {
         }
     }
     
-    func addConnection<T: Codable>(provider: GigyaSocielProviders, viewController: UIViewController, params: [String: Any], dataType: T.Type, completion: @escaping (GigyaApiResult<T>) -> Void) {
+    func addConnection<T: Codable>(provider: GigyaSocialProviders, viewController: UIViewController, params: [String: Any], dataType: T.Type, completion: @escaping (GigyaApiResult<T>) -> Void) {
         GigyaLogger.log(with: self, message: "[addConnection] - start")
 
         providerAdapter = socialProviderFactory.getProvider(with: provider, delegate: self)
@@ -203,7 +216,7 @@ class BusinessApiService: NSObject, IOCBusinessApiServiceProtocol {
         }
     }
     
-    func removeConnection(providerName: GigyaSocielProviders, completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void) {
+    func removeConnection(providerName: GigyaSocialProviders, completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void) {
         let params = ["provider": providerName.rawValue]
 
         GigyaLogger.log(with: self, message: "[removeConnection]: params: \(params)")
@@ -264,8 +277,7 @@ class BusinessApiService: NSObject, IOCBusinessApiServiceProtocol {
 
                 switch errorCode {
                 case .pendingRegistration: // pending registration
-                    let loginError = LoginApiError<T>(error: error, interruption: .pendingRegistration(regToken: regToken))
-                    completion(.failure(loginError))
+                    resolver = PendingRegistrationResolver(originalError: error, regToken: regToken, businessDelegate: self, completion: completion)
                 case .pendingVerification: // pending veryfication
                     let loginError = LoginApiError<T>(error: error, interruption: .pendingVerification(regToken: regToken))
                     completion(.failure(loginError))

@@ -67,7 +67,7 @@ public class LinkAccountsResolver<T: Codable>: BaseResolver {
         GigyaLogger.log(with: self, message: "[linkToSite] - data: \(params)")
     }
     
-    public func linkToSocial(provider: GigyaSocielProviders, viewController: UIViewController) {
+    public func linkToSocial(provider: GigyaSocialProviders, viewController: UIViewController) {
         let params = ["loginMode": "link", "regToken": regToken]
         businessDelegate?.callSociallogin(provider: provider, viewController: viewController, params: params, dataType: T.self, completion: self.completion)
 
