@@ -6,7 +6,8 @@
 //  Copyright © 2019 Gigya. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
 protocol BaseResolver { }
 
 public class LinkAccountsResolver<T: Codable>: BaseResolver {

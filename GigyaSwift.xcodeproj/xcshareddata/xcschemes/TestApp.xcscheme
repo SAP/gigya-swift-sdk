@@ -33,8 +33,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E7BE36722224219200A108D9"
-            BuildableName = "GigyaSwift.framework"
-            BlueprintName = "GigyaSwift"
+            BuildableName = "Gigya.framework"
+            BlueprintName = "Gigya"
             ReferencedContainer = "container:GigyaSwift.xcodeproj">
          </BuildableReference>
       </CodeCoverageTargets>

@@ -8,7 +8,7 @@
 
 import Foundation
 import GoogleSignIn
-import GigyaSwift
+import Gigya
 
 class GoogleWrapper: NSObject, ProviderWrapperProtocol {
 

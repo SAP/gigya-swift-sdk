@@ -7,7 +7,7 @@
 //
 
 import UserNotifications
-import GigyaSwift
+import Gigya
 
 @available(iOS 10.0, *)
 class PushNotificationsService: NSObject, IOCPushNotificationsService {
@@ -21,7 +21,7 @@ class PushNotificationsService: NSObject, IOCPushNotificationsService {
     let pushAllowed = "com.gigya.GigyaTfa:pushKey"
 
     required override init() {
-        self.container = GigyaSwift.getContainer()
+        self.container = Gigya.getContainer()
         self.apiService = container.resolve(IOCApiServiceProtocol.self)!
     }
 

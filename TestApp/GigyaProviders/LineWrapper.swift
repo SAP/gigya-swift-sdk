@@ -8,7 +8,7 @@
 
 import Foundation
 import LineSDK
-import GigyaSwift
+import Gigya
 
 class LineWrapper: NSObject, ProviderWrapperProtocol {
 

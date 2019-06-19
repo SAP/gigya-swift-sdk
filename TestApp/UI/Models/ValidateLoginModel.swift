@@ -7,3 +7,8 @@
 //
 
 import Foundation
+
+struct ValidateLoginData: Codable {
+    let errorCode: Int
+    let callId: String
+}

@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import GigyaSwift
+import Gigya
 
 class WeChatWrapper: NSObject, ProviderWrapperProtocol {
 

@@ -7,11 +7,10 @@
 //
 
 import UIKit
-import GigyaSwift
+import Gigya
 import LineSDK
 import Firebase
 import GoogleUtilities
-import GigyaTfa
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
@@ -20,9 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-//        let gigya = GigyaSwift.getInstance(UserHost.self)
-//        GigyaSwift.getInstance().initWithApi(apiKey: "555")
-//        GigyaSwift.sharedInstance()
+
         FirebaseApp.configure()
         Messaging.messaging().delegate = self
 
@@ -48,10 +45,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
         print("Firebase registration token: \(fcmToken)")
         let dataDict:[String: String] = ["token": fcmToken]
 
-        GigyaTfa.shared.updatePushToken(key: fcmToken)
-
         NotificationCenter.default.post(name: Notification.Name("FCMToken"), object: nil, userInfo: dataDict)
-
     }
 
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
@@ -63,10 +57,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
 
         return WXApi.handleOpen(url, delegate: self)
     }
-
-//    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
-//        return WXApi.handleOpen(url, delegate: nil)
-//    }
 
     func applicationWillResignActive(_ application: UIApplication) {
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
@@ -87,10 +77,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
-//    func onResp(_ resp: BaseResp!) {
-//        print(resp.errStr)
-//        print(resp.errCode)
-//        
-//    }
 }

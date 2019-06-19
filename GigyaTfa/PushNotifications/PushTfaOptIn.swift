@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import GigyaSwift
+import Gigya
 
 protocol RegisterTfaProtocol {
     var gigyaAssertion: String? { get set }

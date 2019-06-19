@@ -7,19 +7,11 @@
 //
 
 import UIKit
-import GigyaSwift
-import GigyaSDK
-import GoogleSignIn
-
-
-struct ValidateLoginData: Codable {
-    let errorCode: Int
-    let callId: String
-}
+import Gigya
 
 class ViewController: UIViewController {
 
-    let gigya = GigyaSwift.sharedInstance(UserHost.self)
+    let gigya = Gigya.sharedInstance(UserHost.self)
     
     var isLoggedIn = false
 
@@ -242,12 +234,8 @@ class ViewController: UIViewController {
         }
     }
 
-    @IBAction func OptiInPush(_ sender: Any) {
-        GigyaTfa.shared.OptiInPushTfa()
-    }
-
     func ValidateLoginID() {
-        GigyaSwift.sharedInstance().send(dataType: ValidateLoginData.self, api: "accounts.isAvailableLoginID", params: ["loginID": "sagi.shmuel@sap.com"]) { (res) in
+        gigya.send(dataType: ValidateLoginData.self, api: "accounts.isAvailableLoginID", params: ["loginID": "sagi.shmuel@sap.com"]) { (res) in
             switch res {
             case .success(let data):
                 print(data)

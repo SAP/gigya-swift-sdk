@@ -1,5 +1,5 @@
-module GigyaSDK {
-    umbrella header "GigyaSDK.framework/Headers/Gigya.h"
+module GigyaInfra {
+    umbrella header "GigyaInfra.framework/Headers/Gigya.h"
     export *
     
     module * { export * }

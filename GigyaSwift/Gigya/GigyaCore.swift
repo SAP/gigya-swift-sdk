@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import GigyaSDK
+import GigyaInfra
 
 public class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
 
@@ -55,12 +55,12 @@ public class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
 
     public func initWithApi(apiKey: String, apiDomain: String? = nil, application: UIApplication? = nil, launchOptions: [AnyHashable: Any]? = nil) {
         guard !apiKey.isEmpty else {
-            GigyaLogger.error(with: GigyaSwift.self, message: "please make sure you call 'initWithApi' or add apiKey to plist file")
+            GigyaLogger.error(with: Gigya.self, message: "please make sure you call 'initWithApi' or add apiKey to plist file")
         }
 
         config.apiDomain = apiDomain ?? self.defaultApiDomain
         config.apiKey = apiKey
-
+        
         gigyaApi.initGigyaSDK(apiKey: apiKey, apiDomain: apiDomain, application: application, launchOptions: launchOptions)
     }
 

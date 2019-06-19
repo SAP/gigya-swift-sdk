@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import GigyaSDK
+import GigyaInfra
 
 public typealias GigyaResponseHandler = (NSData?, Error?) -> Void
 

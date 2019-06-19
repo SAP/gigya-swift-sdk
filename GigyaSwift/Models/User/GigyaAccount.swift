@@ -35,10 +35,8 @@ public protocol GigyaAccountProtocol: Codable {
     var socialProviders: String? { get set }
     var verified: String? { get set }
     var verifiedTimestamp: Double? { get set }
-    var regToken: String? { get set }
 
     // TODO: Need to add emails
-
 }
 
 public struct GigyaDataDefault: Codable { }
@@ -88,8 +86,6 @@ public struct GigyaAccount: GigyaAccountProtocol {
     public var verified: String?
 
     public var verifiedTimestamp: Double?
-
-    public var regToken: String?
 
     public let data: GigyaDataDefault?
 

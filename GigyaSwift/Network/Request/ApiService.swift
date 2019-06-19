@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import GigyaSDK
+import GigyaInfra
 
 typealias GigyaResponse = GSResponse
 public typealias GigyaDictionary = [String: AnyCodable]

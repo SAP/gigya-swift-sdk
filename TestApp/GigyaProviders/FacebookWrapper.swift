@@ -9,7 +9,7 @@
 import Foundation
 import FBSDKCoreKit
 import FBSDKLoginKit
-import GigyaSwift
+import Gigya
 
 class FacebookWrapper: NSObject, ProviderWrapperProtocol {
 
