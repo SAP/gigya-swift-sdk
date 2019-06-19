@@ -10,70 +10,7 @@ import UIKit
 import GigyaSwift
 import GigyaSDK
 import GoogleSignIn
-import GigyaTfa
 
-struct UserHost: GigyaAccountProtocol {
-    
-    var UID: String?
-
-    var UIDSignature: String?
-
-    var apiVersion: Int?
-
-    var created: String?
-
-    var createdTimestamp: Double?
-
-    var isActive: Bool?
-
-    var isRegistered: Bool?
-
-    var isVerified: Bool?
-
-    var lastLogin: String?
-
-    var lastLoginTimestamp: Double?
-
-    var lastUpdated: String?
-
-    var lastUpdatedTimestamp: Double?
-
-    var loginProvider: String?
-
-    var oldestDataUpdated: String?
-
-    var oldestDataUpdatedTimestamp: Double?
-
-    var registered: String?
-
-    var registeredTimestamp: Double?
-
-    var signatureTimestamp: String?
-
-    var socialProviders: String?
-
-    var verified: String?
-
-    var verifiedTimestamp: Double?
-
-    var regToken: String?
-
-    var profile: GigyaProfile?
-
-    let data: [String: AnyCodable]?
-    
-    func toJson() -> String {
-        do {
-            let jsonEncoder = JSONEncoder()
-            let jsonData = try jsonEncoder.encode(self)
-            let jsonString = String(data: jsonData, encoding: .utf8)
-            return jsonString ?? ""
-        } catch {
-            print(error)
-        }
-        return ""
-    }
-}
 
 struct ValidateLoginData: Codable {
     let errorCode: Int
@@ -85,9 +22,7 @@ class ViewController: UIViewController {
     let gigya = GigyaSwift.sharedInstance(UserHost.self)
     
     var isLoggedIn = false
-    
-    var tfaViewController: TfaViewController?
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -113,33 +48,15 @@ class ViewController: UIViewController {
                 switch result {
                 case .success(let data):
                     self?.resultTextView?.text = data.toJson()
-                    self?.dismissTfaController()
                 case .failure(let error):
                     print(error)
                     guard let interruption = error.interruption else { return }
                     // Evaluage interruption.
                     switch interruption {
-                    case .pendingTwoFactorVerification(let resolver):
+                    case .conflitingAccount(let resolver):
+                        resolver.linkToSite(loginId: resolver.conflictingAccount?.loginID ?? "", password: "123123")
+                    case .pendingTwoFactorVerification:
                         break
-                        // Reference active providers (verification).
-//                        let providers = resolver.tfaProviders
-//                        // Present TFA controller for verification flow.
-//                        self?.presentTFAController(tfaProviders: providers, mode: .verification, verificationResolver: resolver)
-//                    case .pendingTwoFactorRegistration(let resolver):
-//                        // Reference inactive providers (registration).
-//                        let providers = resolver.tfaProviders
-//                        // Present TFA controller for registration flow.
-//                        self?.presentTFAController(tfaProviders: providers, mode: .registration, registrationResolver: resolver)
-//                    case .onTotpQRCode(let qrImage):
-//                        self?.tfaViewController?.onQRCodeAvailable(qrImage: qrImage)
-//                    case .onRegisteredPhoneNumbers(let registeredNumbers):
-//                        self?.tfaViewController?.onRegisteredPhone(numbers: registeredNumbers)
-//                    case .onRegisteredEmails(let emails):
-//                        self?.tfaViewController?.onRegisteredEmail(addresses: emails)
-//                    case .onPhoneVerificationCodeSent:
-//                        print("Phone verification code sent")
-//                    case .onEmailVerificationCodeSent:
-//                        print("Email verification code send")
                     default:
                         break
                     }
@@ -157,25 +74,14 @@ class ViewController: UIViewController {
                 switch result {
                 case .success(let data):
                     self?.resultTextView?.text = data.toJson()
-                    self?.dismissTfaController()
                 case .failure(let error):
                     print(error) // general error
 
                     guard let interruption = error.interruption else { return }
                     // Evaluage interruption.
                     switch interruption {
-                    case .pendingTwoFactorRegistration(let resolver):
+                    case .pendingTwoFactorRegistration:
                         break
-                        // Reference inactive providers (registration).
-//                        let providers = resolver.tfaProviders
-//                        // Present TFA controller for registration flow.
-//                        self?.presentTFAController(tfaProviders: providers, mode: .registration, registrationResolver: resolver)
-//                    case .onPhoneVerificationCodeSent:
-//                        print("Phone verification code sent")
-//                    case .onEmailVerificationCodeSent:
-//                        print("Email verification code send")
-//                    case .onTotpQRCode(let code):
-//                        self?.tfaViewController?.onQRCodeAvailable(qrImage: code)
                     default:
                         break
                     }
@@ -184,23 +90,6 @@ class ViewController: UIViewController {
         }
     
         self.present(alert, animated: true, completion: nil)
-    }
-    
-//    func presentTFAController(tfaProviders: [TFAProviderModel], mode: TFAMode, verificationResolver: TFAVerificationResolverProtocol? = nil, registrationResolver: TFARegistrationResolverProtocol? = nil) {
-//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//        tfaViewController = storyboard.instantiateViewController(withIdentifier: "TFAUIAlertViewController") as? TfaViewController
-//        tfaViewController?.tfaProviders = tfaProviders
-//        tfaViewController?.tfaMode = mode
-//        tfaViewController?.registrationResolverDelegate = registrationResolver
-//        tfaViewController?.verificationResolverDelegate = verificationResolver
-//        self.navigationController?.pushViewController(tfaViewController!, animated: true)
-//
-//    }
-    
-    func dismissTfaController() {
-        if self.tfaViewController != nil {
-            self.navigationController?.popViewController(animated: true)
-        }
     }
     
     @IBAction func addConnection(_ sender: Any) {
@@ -265,26 +154,13 @@ class ViewController: UIViewController {
             self.resultTextView?.text = "Logged out"
         }
     }
-    
-    
-    @IBAction func getAccount(_ sender: Any) {
-//        gigya.register(params: ["email": "dasdsad@testss.com", "password": "121233"]) { (result) in
-//            switch result {
-//            case .success(let data):
-//                print(data)
-//            case .failure(let error):
-//                print(error)
-//            }
-//        }
-    }
-    
+
     @IBAction func loginWithProvider(_ sender: Any) {
         gigya.login(with: .line, viewController: self ) { [weak self] result in
             switch result {
             case .success(let data):
                 print(data)
                 self?.resultTextView?.text = data.toJson()
-                self?.dismissTfaController()
             case .failure(let error):
                 print(error)
 
@@ -302,13 +178,13 @@ class ViewController: UIViewController {
             }
         }
     }
+
     @IBAction func loginWithProviders(_ sender: Any) {
         gigya.socialLoginWith(providers: [.facebook, .google, .line], viewController: self, params: [:]) { [weak self] (result) in
             switch result {
             case .success(let data):
                 print(data)
                 self?.resultTextView?.text = data.toJson()
-                self?.dismissTfaController()
             case .failure(let error):
                 print(error)
 
@@ -344,68 +220,21 @@ class ViewController: UIViewController {
 
 
 
-//extension ViewController: PluginEventDelegate {
-//
-//    func onError(error: GigyaResponseModel) {
-//
-//    }
-//
-//    func onEvent(event: PluginEvent) {
-//        switch event {
-//        case .onLogin(let account):
-//            print(account)
-//            resultTextView?.text = (account as! UserHost).toJson()
-//        default:
-//            break
-//        }
-//    }
-//}
-
-        
-//        GigyaSwift.sharedInstance().login(loginId: "sagi.shmuel@sap.com", password: "151515") { res in
-//            switch res {
-//            case .success(let data):
-//                print(data)
-//            case .failure:
-//                break
-//            }
-   
-//
-//        GigyaSwift.sharedInstance().send(api: "accounts.isAvailableLoginID", params: ["loginID": "sagi.shmuel@sap.com"]) { (res) in
-//            switch res {
-//            case .success(let data):
-//                print(data)
-//            case .failure:
-//                break
-//            }
-//        }
-        
-
-//        gigya.getAccount { [weak self] res in
-//            switch res {
-//            case .success(let account):
-//                print(account)
-//            case .failure:
-//                break
-//            }
-//        }
     @IBAction func getAccount(_sender: Any) {
-//        gigya.register(params: ["email": "dasdsad@testss.com", "password": "121233"]) { (result) in
-//            switch result {
-//            case .success(let data):
-//                print(data)
-//            case .failure(let error):
-//                print(error)
-//            }
-//        }
-
         gigya.getAccount { [weak self] res in
             switch res {
             case .success(let account):
                 var account = account
                 account.profile?.firstName = "test"
-                self?.gigya.setAccount(with: account, completion: { (rrr) in
-
+                self?.gigya.setAccount(with: account, completion: { (result) in
+                    switch result {
+                    case .success:
+                        // Success
+                        break
+                    case .failure:
+                        // Fail
+                        break
+                    }
                 })
             case .failure:
                 break
@@ -417,50 +246,16 @@ class ViewController: UIViewController {
         GigyaTfa.shared.OptiInPushTfa()
     }
 
-    func aaa() {
+    func ValidateLoginID() {
         GigyaSwift.sharedInstance().send(dataType: ValidateLoginData.self, api: "accounts.isAvailableLoginID", params: ["loginID": "sagi.shmuel@sap.com"]) { (res) in
             switch res {
             case .success(let data):
                 print(data)
             case .failure(let error):
-
+                print(error)
                 break
             }
         }
     }
 }
-
-
-    //
-//
-//    @IBAction func loading(_ sender: Any) {
-//        login()
-//    }
-//
-//    func login() {
-//        Gigya.showPluginDialogOver(self, plugin: "accounts.screenSet", parameters: ["screenSet": "Default-RegistrationLogin"],
-//                                   completionHandler: { (wasClosed, error) in
-//
-//        })
-//    }
-
-//    func load() {
-//
-//        DispatchQueue.global().asyncAfter(deadline: .now()) {
-//            let model = GigyaApiReguestModel(method: "socialize.getSDKConfig")
-//
-//            print("sent now")
-//            aaa.send(responseType: [String: AnyCodable].self) { (res) in
-//                switch res {
-//                case .success(let data):
-//                    let newdata = data as [String: Any]
-//
-//                    break
-//                case .failure(_):
-//                    break
-//                }
-//            }
-//        }
-
-//    }
     
