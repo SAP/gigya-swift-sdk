@@ -8,6 +8,7 @@
 
 import UserNotifications
 import Gigya
+import GigyaInfra
 
 @available(iOS 10.0, *)
 class PushNotificationsService: NSObject, IOCPushNotificationsService {
@@ -20,9 +21,15 @@ class PushNotificationsService: NSObject, IOCPushNotificationsService {
 
     let pushAllowed = "com.gigya.GigyaTfa:pushKey"
 
+    var pushOptIn: PushTfaOptIn?
+
     required override init() {
         self.container = Gigya.getContainer()
         self.apiService = container.resolve(IOCApiServiceProtocol.self)!
+
+        super.init()
+
+        UNUserNotificationCenter.current().delegate = self
     }
 
     private var pushToken: String? {
@@ -93,27 +100,22 @@ class PushNotificationsService: NSObject, IOCPushNotificationsService {
         pushToken = key
     }
 
-    func optInToPushTfa() {
+    func optInToPushTfa(completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void) {
         registerForPushNotifications { [weak self] success in
-            guard let self = self, success != true else { return }
+            guard let self = self, success == true else { return }
 
-            let pushOptIn = PushTfaOptIn(apiService: self.apiService)
-            pushOptIn.pushToken = self.pushToken
 
-            pushOptIn.completion = { sucess in
-                if success == false {
-                    // error
-                }
-            }
+            self.pushOptIn = PushTfaOptIn(apiService: self.apiService, completion: completion)
+            self.pushOptIn?.pushToken = self.pushToken
 
-            pushOptIn.start()
+            self.pushOptIn?.start()
         }
     }
 
     private func sendPushKeyIfNeeded() {
         let key = UserDefaults.standard.object(forKey: pushSaveKey) as? String ?? ""
 
-        guard let pushToken = pushToken else { return }
+        guard let pushToken = pushToken, GigyaInfra.isSessionValid() == true else { return } // TODO: add session validation
 
         guard !pushToken.contains(key) else {
             return
@@ -122,13 +124,12 @@ class PushNotificationsService: NSObject, IOCPushNotificationsService {
         let model = ApiRequestModel(method: "accounts.auth.push.updateDevice", params: ["platform": "ios", "os": GeneralUtils.iosVersion(), "man": "apple", "pushToken": pushToken])
 
         apiService.send(model: model, responseType: GigyaDictionary.self) { result in
-
             switch result {
             case .success:
                 UserDefaults.standard.set(pushToken, forKey: self.pushSaveKey)
                 UserDefaults.standard.synchronize()
-            default:
-                break
+            case .failure(let error):
+                GigyaLogger.log(with: self, message: error.localizedDescription)
             }
         }
 
@@ -137,15 +138,36 @@ class PushNotificationsService: NSObject, IOCPushNotificationsService {
     private func verifyPushTfa(userInfo: [AnyHashable : Any]) {
         let title = userInfo["title"] as? String ?? ""
         let msg = userInfo["body"] as? String ?? ""
-        let gigyaAssertion = userInfo["gigyaAssertion"] as? String
         let modeString = userInfo["mode"] as? String ?? "verify"
+        let verificationToken = userInfo["verificationToken"] as? String ?? ""
+        let gigyaAssertion = userInfo["gigyaAssertion"] as? String ?? ""
 
-        let mode = PushNotificationModes(rawValue: modeString)
+        let mode = PushNotificationModes(rawValue: modeString) ?? PushNotificationModes.verify
 
         AlertControllerUtils.show(title: title, message: msg) { [weak self] isApproved in
-//            self?.businessService.send(api: "", params: ["approve": "\(isApproved)"], completion: { result in
-//
-//            })
+            if isApproved == true {
+                switch mode {
+                case .optin:
+                    self?.pushOptIn?.verifyOptIn(verificationToken: verificationToken)
+                case .verify:
+                    self?.completeVerification(gigyaAssertion: gigyaAssertion, verificationToken: verificationToken)
+                case .remove:
+                    break
+                }
+            }
+        }
+    }
+
+    private func completeVerification(gigyaAssertion: String, verificationToken: String) {
+        let model = ApiRequestModel(method: "accounts.tfa.push.verify", params: ["gigyaAssertion": gigyaAssertion, "verificationToken": verificationToken])
+
+        apiService.send(model: model, responseType: GigyaDictionary.self) { result in
+            switch result {
+            case .success:
+                GigyaLogger.log(with: self, message: "completeVerification - success")
+            case .failure(let error):
+                GigyaLogger.log(with: self, message: error.localizedDescription)
+            }
         }
     }
 }

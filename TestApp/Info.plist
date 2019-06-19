@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string></string>
+	<string>TestApp</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -64,7 +64,7 @@
 	<key>FacebookAppID</key>
 	<string>2497684063594329</string>
 	<key>GigyaApiDomain</key>
-	<string>us1.gigya.com</string>
+	<string>us1-st1.gigya.com</string>
 	<key>GigyaApiKey</key>
 	<string>3_Rnp81vcr2T8l9ikyU7zXDeT2BqhFoaEMK-X5_CGssphkkfNITZIU7FafZqJpJl5H</string>
 	<key>GoogleClientID</key>

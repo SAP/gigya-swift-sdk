@@ -28,10 +28,11 @@ class PushTfaOptIn: RegisterTfaProtocol {
 
     var pushToken: String?
 
-    var completion: (Bool) -> Void = { _ in }
+    var completion: (GigyaApiResult<GigyaDictionary>) -> Void = { _ in }
 
-    init(apiService: IOCApiServiceProtocol) {
+    init(apiService: IOCApiServiceProtocol, completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void) {
         self.apiService = apiService
+        self.completion = completion
     }
 
     func start() {
@@ -49,16 +50,17 @@ class PushTfaOptIn: RegisterTfaProtocol {
         apiService.send(model: model, responseType: InitTFAModel.self) { [weak self] result in
             switch result {
             case .success(let data):
+                print(data)
                 guard let gigyaAssertion = data.gigyaAssertion else {
-                    self?.completion(false)
+                    self?.completion(.failure(.emptyResponse))
                     return
                 }
 
                 self?.gigyaAssertion = gigyaAssertion
 
                 self?.callOptIn()
-            case .failure:
-                self?.completion(false)
+            case .failure(let error):
+                self?.completion(.failure(error))
             }
         }
     }
@@ -68,17 +70,53 @@ class PushTfaOptIn: RegisterTfaProtocol {
             return
         }
         
-        let model = ApiRequestModel(method: "accounts.auth.push.optin", params: ["gigyaAssertion": gigyaAssertion ,"deviceInfo": ["platform": "ios", "os": GeneralUtils.iosVersion(), "man": "apple", "pushToken": pushToken]])
+        let model = ApiRequestModel(method: "accounts.tfa.push.optin", params: ["gigyaAssertion": gigyaAssertion ,"deviceInfo": ["platform": "ios", "os": GeneralUtils.iosVersion(), "man": "apple", "pushToken": pushToken]])
 
-        apiService.send(model: model, responseType: GigyaResponseModel.self) { [weak self] result in
+        apiService.send(model: model, responseType: GigyaDictionary.self) { [weak self] result in
             switch result {
-            case .success:
+            case .success(let data):
                 // Success
-                self?.completion(true)
-            case .failure:
-                self?.completion(false)
+                self?.completion(.success(data: data))
+            case .failure(let error):
+                self?.completion(.failure(error))
             }
         }
 
+    }
+
+    func verifyOptIn(verificationToken: String) {
+        guard let gigyaAssertion = self.gigyaAssertion else {
+            return
+        }
+
+        let model = ApiRequestModel(method: "accounts.tfa.push.verify", params: ["gigyaAssertion": gigyaAssertion, "verificationToken": verificationToken])
+
+        apiService.send(model: model, responseType: GigyaDictionary.self) { [weak self] (result) in
+            switch result {
+            case .success(let data):
+                let providerAssertion = data["providerAssertion"]?.value as? String ?? ""
+
+                self?.finalizeTFA(providerAssertion: providerAssertion)
+            case .failure(let error):
+                self?.completion(.failure(error))
+            }
+        }
+    }
+
+    func finalizeTFA(providerAssertion: String) {
+        guard let gigyaAssertion = self.gigyaAssertion else {
+            return
+        }
+
+        let model = ApiRequestModel(method: "accounts.tfa.finalizeTFA", params: ["gigyaAssertion": gigyaAssertion, "providerAssertion": providerAssertion])
+
+        apiService.send(model: model, responseType: GigyaDictionary.self) { [weak self] (result) in
+            switch result {
+            case .success(let data):
+                self?.completion(.success(data: data))
+            case .failure(let error):
+                self?.completion(.failure(error))
+            }
+        }
     }
 }

@@ -8,6 +8,7 @@
 
 import UIKit
 import Gigya
+import GigyaTfa
 
 class ViewController: UIViewController {
 
@@ -243,6 +244,12 @@ class ViewController: UIViewController {
                 print(error)
                 break
             }
+        }
+    }
+
+    @IBAction func OptIn(_ sender: Any) {
+        GigyaTfa.shared.OptiInPushTfa { (result) in
+            
         }
     }
 }

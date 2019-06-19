@@ -11,6 +11,7 @@ import Gigya
 import LineSDK
 import Firebase
 import GoogleUtilities
+import GigyaTfa
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
@@ -32,6 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
         let tokenParts = deviceToken.map { data in String(format: "%02.2hhx", data) }
         let token = tokenParts.joined()
         print("Device Token: \(token)")
+
         Messaging.messaging().apnsToken = deviceToken
     }
 
@@ -45,6 +47,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
         print("Firebase registration token: \(fcmToken)")
         let dataDict:[String: String] = ["token": fcmToken]
 
+        GigyaTfa.shared.updatePushToken(key: fcmToken)
         NotificationCenter.default.post(name: Notification.Name("FCMToken"), object: nil, userInfo: dataDict)
     }
 

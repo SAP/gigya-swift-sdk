@@ -17,5 +17,5 @@ protocol IOCPushNotificationsService {
 
     func savePushKey(key: String)
 
-    func optInToPushTfa()
+    func optInToPushTfa(completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void)
 }

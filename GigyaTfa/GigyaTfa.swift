@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Gigya
 
 public class GigyaTfa {
 
@@ -43,7 +44,7 @@ public class GigyaTfa {
         pushService.savePushKey(key: key)
     }
 
-    public func OptiInPushTfa() {
-        pushService.optInToPushTfa()
+    public func OptiInPushTfa(completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void) {
+        pushService.optInToPushTfa(completion: completion)
     }
 }
