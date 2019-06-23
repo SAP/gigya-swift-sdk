@@ -26,6 +26,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
 
         WXApi.registerApp("wx222c4ccaa989aa00")
 
+        UNUserNotificationCenter.current().delegate = self
+
         return true
     }
 
@@ -79,5 +81,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    }
+}
+
+// MARK: Menagment notifications
+@available(iOS 10.0, *)
+extension AppDelegate: UNUserNotificationCenterDelegate {
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        // tap on notification
+        let userInfo = response.notification.request.content.userInfo
+
+        GigyaTfa.shared.verifyPushTfa(with: userInfo)
+    }
+
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        // present notification when the app in foreground
+
+        completionHandler([.alert, .sound])
     }
 }

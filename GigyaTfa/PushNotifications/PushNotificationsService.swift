@@ -28,8 +28,6 @@ class PushNotificationsService: NSObject, IOCPushNotificationsService {
         self.apiService = container.resolve(IOCApiServiceProtocol.self)!
 
         super.init()
-
-        UNUserNotificationCenter.current().delegate = self
     }
 
     private var pushToken: String? {
@@ -135,7 +133,7 @@ class PushNotificationsService: NSObject, IOCPushNotificationsService {
 
     }
 
-    private func verifyPushTfa(userInfo: [AnyHashable : Any]) {
+    func verifyPushTfa(userInfo: [AnyHashable : Any]) {
         let title = userInfo["title"] as? String ?? ""
         let msg = userInfo["body"] as? String ?? ""
         let modeString = userInfo["mode"] as? String ?? "verify"
@@ -169,22 +167,5 @@ class PushNotificationsService: NSObject, IOCPushNotificationsService {
                 GigyaLogger.log(with: self, message: error.localizedDescription)
             }
         }
-    }
-}
-
-// MARK: Menagment notifications
-@available(iOS 10.0, *)
-extension PushNotificationsService: UNUserNotificationCenterDelegate {
-    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-        // tap on notification
-         let userInfo = response.notification.request.content.userInfo
-
-        verifyPushTfa(userInfo: userInfo)
-    }
-
-    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        // present notification when the app in foreground
-
-        completionHandler([.alert, .sound])
     }
 }

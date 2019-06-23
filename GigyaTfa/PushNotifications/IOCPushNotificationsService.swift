@@ -17,5 +17,7 @@ protocol IOCPushNotificationsService {
 
     func savePushKey(key: String)
 
+    func verifyPushTfa(userInfo: [AnyHashable : Any])
+    
     func optInToPushTfa(completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void)
 }

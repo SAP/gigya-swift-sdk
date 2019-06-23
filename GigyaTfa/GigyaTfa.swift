@@ -47,4 +47,8 @@ public class GigyaTfa {
     public func OptiInPushTfa(completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void) {
         pushService.optInToPushTfa(completion: completion)
     }
+
+    public func verifyPushTfa(with userInfo: [AnyHashable : Any]) {
+        pushService.verifyPushTfa(userInfo: userInfo)
+    }
 }
