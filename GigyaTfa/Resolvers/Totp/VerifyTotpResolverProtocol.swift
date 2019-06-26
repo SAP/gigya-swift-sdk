@@ -7,3 +7,7 @@
 //
 
 import Foundation
+
+public protocol VerifyTotpResolverProtocol {
+    func verifyTOTPCode(verificationCode: String, rememberDevice: Bool, completion: @escaping (VerifyCodeResultCallback) -> Void )
+}

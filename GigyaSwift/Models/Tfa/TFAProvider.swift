@@ -10,7 +10,7 @@ import Foundation
 
 public enum TFAProvider: String, Codable {
     case phone = "gigyaPhone"
-    case liveLink = "liveLink"
+    case liveLink = "livelink"
     case email = "gigyaEmail"
     case totp = "gigyaTotp"
     case push = "gigyaPush"

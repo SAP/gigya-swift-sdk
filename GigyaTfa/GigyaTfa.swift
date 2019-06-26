@@ -6,14 +6,14 @@
 //  Copyright © 2019 Gigya. All rights reserved.
 //
 
-import Foundation
+import UserNotifications
 import Gigya
 
 public class GigyaTfa {
 
     public static let shared: GigyaTfa = GigyaTfa()
 
-    private let pushService: IOCPushNotificationsService
+    private let pushService: PushNotificationsServiceProtocol
 
     init() {
         self.pushService = PushNotificationsService()
@@ -48,7 +48,7 @@ public class GigyaTfa {
         pushService.optInToPushTfa(completion: completion)
     }
 
-    public func verifyPushTfa(with userInfo: [AnyHashable : Any]) {
-        pushService.verifyPushTfa(userInfo: userInfo)
+    public func verifyPushTfa(with response: UNNotificationResponse) {
+        pushService.verifyPushTfa(response: response)
     }
 }

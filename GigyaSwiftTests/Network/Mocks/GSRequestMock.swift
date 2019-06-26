@@ -7,7 +7,7 @@
 //
 
 import Foundation
-@testable import GigyaSDK
+//@testable import GigyaSDK
 
 //class GSRequestMock: GSRequest {
 //    init(forMethod method: String) {

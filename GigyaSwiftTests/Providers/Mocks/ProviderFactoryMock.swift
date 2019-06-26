@@ -7,7 +7,7 @@
 //
 
 import Foundation
-@testable import GigyaSwift
+@testable import Gigya
 
 class ProviderFactoryMock: IOCSocialProvidersManagerProtocol {
     let config: GigyaConfig

@@ -7,7 +7,7 @@
 //
 
 import Foundation
-@testable import GigyaSwift
+@testable import Gigya
 
 class ApiServiceMock: IOCApiServiceProtocol {
     var resData: Any?

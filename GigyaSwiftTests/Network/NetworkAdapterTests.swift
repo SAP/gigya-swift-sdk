@@ -7,12 +7,12 @@
 //
 
 import XCTest
-@testable import GigyaSwift
+@testable import Gigya
 
 class NetworkAdapterTests: XCTestCase {
 
     override func setUp() {
-        GigyaSwift.sharedInstance().initWithApi(apiKey: "123")
+        Gigya.sharedInstance().initWithApi(apiKey: "123")
     }
     
     func testRequest() {

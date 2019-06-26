@@ -35,6 +35,9 @@ public class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
         return (container?.resolve(IOCSessionServiceProtocol.self))!
     }
 
+    private var interruptionResolver: IOCInterruptionResolverFactory {
+        return (container?.resolve(IOCInterruptionResolverFactory.self))!
+    }
 
     // MARK: - Initialize
     internal init(container: IOCContainer, plistConfig: PlistConfig?) {
@@ -232,5 +235,24 @@ public class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
 //        let wrapper = PluginViewWrapper(config: config, sessionService: sessionService, businessApiService: businessApiService, plugin: "comments.commentsUI", params: params, completion: completion)
 //        wrapper.presentPluginController(viewController: viewController, dataType: T.self, screenSet: "")
 //    }
+
+    /**
+     Update interruption handling.
+     By default, the Gigya SDK will handle various API interruptions to allow simple resolving of certain common errors.
+     Setting interruptions to FALSE will force the end user to handle his own errors.
+
+     - Parameter sdkHandles: False if manually handling all errors.
+     */
+    public func handleInterruptions(sdkHandles: Bool) {
+        interruptionResolver.setEnabled(sdkHandles)
+    }
+
+    /**
+     Return SDK interruptions state.
+     if TRUE, interruption handling will be optional via the GigyaLoginCallback.
+     */
+    public func interruptionsEnabled() -> Bool {
+        return interruptionResolver.isEnabled
+    }
 
 }

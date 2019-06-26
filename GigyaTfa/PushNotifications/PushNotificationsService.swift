@@ -11,17 +11,18 @@ import Gigya
 import GigyaInfra
 
 @available(iOS 10.0, *)
-class PushNotificationsService: NSObject, IOCPushNotificationsService {
+class PushNotificationsService: NSObject, PushNotificationsServiceProtocol {
 
     let container: IOCContainer
 
     let apiService: IOCApiServiceProtocol
 
+    // User defaults params
     let pushSaveKey = "com.gigya.GigyaTfa:pushKey"
 
     let pushAllowed = "com.gigya.GigyaTfa:pushKey"
 
-    var pushOptIn: PushTfaOptIn?
+    var pushOptIn: PushTfaOptInService?
 
     required override init() {
         self.container = Gigya.getContainer()
@@ -36,29 +37,7 @@ class PushNotificationsService: NSObject, IOCPushNotificationsService {
         }
     }
 
-    func onRecivePush(userInfo: [AnyHashable : Any], completion: @escaping (UIBackgroundFetchResult) -> Void) {
-        UNUserNotificationCenter.current().getDeliveredNotifications(completionHandler: { deliveredNotifications -> () in
-
-            GigyaLogger.log(with: self, message: "\(deliveredNotifications.count) Delivered notifications-------")
-
-            // remove push by id
-            for notification in deliveredNotifications {
-                if let gid = notification.request.content.userInfo["gcm.message_id"] as? String,
-                    let idToDelete = userInfo["getId"] as? String,
-                    gid.contains(idToDelete)
-                {
-                    UNUserNotificationCenter.current().removeDeliveredNotifications(withIdentifiers: [notification.request.identifier])
-                }
-
-
-                print(notification.request.identifier)
-            }
-
-            completion(.newData)
-
-        })
-    }
-
+    // MARK: Register for push notification
     func registerForPushNotifications(compilation: @escaping (_ success: Bool) -> ()) {
         UNUserNotificationCenter.current()
             .requestAuthorization(options: [.alert, .sound, .badge]) { [weak self] granted, error in
@@ -94,20 +73,52 @@ class PushNotificationsService: NSObject, IOCPushNotificationsService {
         }
     }
 
-    func savePushKey(key: String) {
-        pushToken = key
+    // MARK: Delete push's
+
+    func onRecivePush(userInfo: [AnyHashable : Any], completion: @escaping (UIBackgroundFetchResult) -> Void) {
+        UNUserNotificationCenter.current().getDeliveredNotifications(completionHandler: { deliveredNotifications -> () in
+
+            GigyaLogger.log(with: self, message: "\(deliveredNotifications.count) Delivered notifications-------")
+
+            let modeString = userInfo["mode"] as? String ?? ""
+            let mode = PushNotificationModes(rawValue: modeString) ?? .verify
+
+            // delete push notification with cancel mode
+            if mode == .cancel {
+            // remove push by gigyaAssertion
+                for notification in deliveredNotifications {
+                    if let gid = notification.request.content.userInfo["gigyaAssertion"] as? String,
+                        let idToDelete = userInfo["gigyaAssertion"] as? String,
+                        gid.contains(idToDelete)
+                    {
+                        UNUserNotificationCenter.current().removeDeliveredNotifications(withIdentifiers: [notification.request.identifier])
+                    }
+
+
+                    print(notification.request.identifier)
+                }
+            }
+
+            completion(.newData)
+
+        })
     }
 
     func optInToPushTfa(completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void) {
         registerForPushNotifications { [weak self] success in
             guard let self = self, success == true else { return }
 
-
-            self.pushOptIn = PushTfaOptIn(apiService: self.apiService, completion: completion)
+            self.pushOptIn = PushTfaOptInService(apiService: self.apiService, completion: completion)
             self.pushOptIn?.pushToken = self.pushToken
 
             self.pushOptIn?.start()
         }
+    }
+
+    // MARK: Push key management
+
+    func savePushKey(key: String) {
+        pushToken = key
     }
 
     private func sendPushKeyIfNeeded() {
@@ -119,7 +130,7 @@ class PushNotificationsService: NSObject, IOCPushNotificationsService {
             return
         }
 
-        let model = ApiRequestModel(method: "accounts.auth.push.updateDevice", params: ["platform": "ios", "os": GeneralUtils.iosVersion(), "man": "apple", "pushToken": pushToken])
+        let model = ApiRequestModel(method: GigyaDefinitions.API.pushUpdateDeviceTFA, params: ["platform": "ios", "os": GeneralUtils.iosVersion(), "man": "apple", "pushToken": pushToken])
 
         apiService.send(model: model, responseType: GigyaDictionary.self) { result in
             switch result {
@@ -133,15 +144,21 @@ class PushNotificationsService: NSObject, IOCPushNotificationsService {
 
     }
 
-    func verifyPushTfa(userInfo: [AnyHashable : Any]) {
+    // MARK: Verification push Tfa
+
+    func verifyPushTfa(response: UNNotificationResponse) {
+        let userInfo = response.notification.request.content.userInfo
         let title = userInfo["title"] as? String ?? ""
         let msg = userInfo["body"] as? String ?? ""
-        let modeString = userInfo["mode"] as? String ?? "verify"
+        let modeString = userInfo["mode"] as? String ?? ""
         let verificationToken = userInfo["verificationToken"] as? String ?? ""
         let gigyaAssertion = userInfo["gigyaAssertion"] as? String ?? ""
 
-        let mode = PushNotificationModes(rawValue: modeString) ?? PushNotificationModes.verify
-
+        let mode = PushNotificationModes(rawValue: modeString) ?? PushNotificationModes.cancel
+        if mode == .cancel {
+            return
+        }
+        
         AlertControllerUtils.show(title: title, message: msg) { [weak self] isApproved in
             if isApproved == true {
                 switch mode {
@@ -149,7 +166,7 @@ class PushNotificationsService: NSObject, IOCPushNotificationsService {
                     self?.pushOptIn?.verifyOptIn(verificationToken: verificationToken)
                 case .verify:
                     self?.completeVerification(gigyaAssertion: gigyaAssertion, verificationToken: verificationToken)
-                case .remove:
+                case .cancel:
                     break
                 }
             }
@@ -157,12 +174,24 @@ class PushNotificationsService: NSObject, IOCPushNotificationsService {
     }
 
     private func completeVerification(gigyaAssertion: String, verificationToken: String) {
-        let model = ApiRequestModel(method: "accounts.tfa.push.verify", params: ["gigyaAssertion": gigyaAssertion, "verificationToken": verificationToken])
+        let model = ApiRequestModel(method: GigyaDefinitions.API.pushVerifyTFA, params: ["gigyaAssertion": gigyaAssertion, "verificationToken": verificationToken])
 
         apiService.send(model: model, responseType: GigyaDictionary.self) { result in
             switch result {
             case .success:
                 GigyaLogger.log(with: self, message: "completeVerification - success")
+
+                let content = UNMutableNotificationContent()
+                content.title = NSLocalizedString("Verify push TFA", comment: "")
+                content.body = NSLocalizedString("Successfully authenticated login request", comment: "")
+
+                let request = UNNotificationRequest(identifier: "completeVerification", content: content, trigger: nil)
+
+                UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+
+                GeneralUtils.showNotification(title: "Verify push TFA", body: "Successfully authenticated login request", id: "completeVerification")
+
+
             case .failure(let error):
                 GigyaLogger.log(with: self, message: error.localizedDescription)
             }

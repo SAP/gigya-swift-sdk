@@ -101,6 +101,7 @@ extension ProvidersLoginWrapper: WKNavigationDelegate {
                 {
                     completionHandler?(["provider": provider], nil)
 
+                    // TODO: delete?
                     // dismiss viewController
 //                    navigationController?.dismiss(animated: true, completion: nil)
                 } else {

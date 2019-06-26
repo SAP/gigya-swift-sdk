@@ -7,7 +7,8 @@
 //
 
 import XCTest
-@testable import GigyaSwift
+@testable import Gigya
+@testable import GigyaTfa
 
 class TfaRegistrationTotpResolverTests: XCTestCase {
     var ioc: GigyaContainerUtils?
@@ -63,19 +64,28 @@ class TfaRegistrationTotpResolverTests: XCTestCase {
                 }
                 // Evaluage interruption.
                 switch interruption {
-                case .pendingTwoFactorRegistration(let resolver):
+                case .pendingTwoFactorRegistration(let interruption, let providers, let factory):
+                    let resolver = factory.getResolver(for: RegisterTotpResolver.self)
                     // Reference inactive providers (registration).
                     callback()
-                    resolver.startRegistrationWithTotp()
-                    callback2()
-                    resolver.verifyCode(provider: .totp, authenticationCode: "1234")
-
-                case .onPhoneVerificationCodeSent:
-                    print("Phone verification code sent")
-                case .onEmailVerificationCodeSent:
-                    print("Email verification code send")
-                case .onTotpQRCode:
-                    break
+                    resolver.registerTotp(completion: { (result) in
+                        switch result {
+                        case .QRCodeAvilabe(let image, let resolver):
+                            callback2()
+                            resolver.verifyTOTPCode(verificationCode: "1234", rememberDevice: false, completion: { (result) in
+                                switch result {
+                                case .resolved:
+                                    XCTAssertTrue(true)
+                                case .invalidCode:
+                                    errorCallback("invalidCode")
+                                case .failed(let error):
+                                    errorCallback(error.localizedDescription)
+                                }
+                            })
+                        case .error(let error):
+                            errorCallback(error.localizedDescription)
+                        }
+                    })
                 default:
                     XCTFail()
                 }
@@ -85,7 +95,7 @@ class TfaRegistrationTotpResolverTests: XCTestCase {
 
     func testTfaSuccess() {
         let activeProviders = [["name": "gigyaTotp"]]
-        let inactiveProviders = [["name": "liveLink"]]
+        let inactiveProviders = [["name": "livelink"]]
 
         let dic: [String: Any] = ["errorCode": 0, "callId": "34324", "statusCode": 200, "gigyaAssertion": "123","phvToken": "123","providerAssertion": "123","regToken": "123","activeProviders": activeProviders, "inactiveProviders": inactiveProviders, "sctToken": "123","qrCode": qrCodeImage]
 
@@ -105,7 +115,7 @@ class TfaRegistrationTotpResolverTests: XCTestCase {
 
     func testTfaInitError() {
         let activeProviders = [["name": "gigyaTotp"]]
-        let inactiveProviders = [["name": "liveLink"]]
+        let inactiveProviders = [["name": "livelink"]]
 
         let dic: [String: Any] = ["errorCode": 0, "callId": "34324", "statusCode": 200, "gigyaAssertion": "123","phvToken": "123","providerAssertion": "123","regToken": "123","activeProviders": activeProviders, "inactiveProviders": inactiveProviders]
 
@@ -119,12 +129,14 @@ class TfaRegistrationTotpResolverTests: XCTestCase {
 
             ResponseDataTest.resData = jsonData
 
+        }, errorCallback: { error in
+            XCTAssertNotNil(error)
         })
     }
 
     func testTfaiVerifyError() {
         let activeProviders = [["name": "gigyaTotp"]]
-        let inactiveProviders = [["name": "liveLink"]]
+        let inactiveProviders = [["name": "livelink"]]
 
         let dic: [String: Any] = ["errorCode": 0, "callId": "34324", "statusCode": 200, "gigyaAssertion": "123","phvToken": "123","providerAssertion": "123","regToken": "123","activeProviders": activeProviders, "inactiveProviders": inactiveProviders]
 
@@ -138,12 +150,14 @@ class TfaRegistrationTotpResolverTests: XCTestCase {
 
             ResponseDataTest.resData = jsonData
             ResponseDataTest.error = nil
+        }, errorCallback: { error in
+            XCTAssertNotNil(error)
         })
     }
 
     func testTfaFinalizeError() {
         let activeProviders = [["name": "gigyaTotp"]]
-        let inactiveProviders = [["name": "liveLink"]]
+        let inactiveProviders = [["name": "livelink"]]
 
         let dic: [String: Any] = ["errorCode": 0, "callId": "34324", "statusCode": 200, "gigyaAssertion": "123","phvToken": "123","providerAssertion": "123","regToken": "123","activeProviders": activeProviders, "inactiveProviders": inactiveProviders]
 
@@ -162,12 +176,14 @@ class TfaRegistrationTotpResolverTests: XCTestCase {
 
                 }
             }
+        }, errorCallback: { error in
+            XCTAssertNotNil(error)
         })
     }
 
     func testTfaSendSmsError() {
         let activeProviders = [["name": "gigyaTotp"]]
-        let inactiveProviders = [["name": "liveLink"]]
+        let inactiveProviders = [["name": "livelink"]]
 
         let dic: [String: Any] = ["errorCode": 0, "callId": "34324", "statusCode": 200, "gigyaAssertion": "123","phvToken": "123","providerAssertion": "123","regToken": "123","activeProviders": activeProviders, "inactiveProviders": inactiveProviders]
 
@@ -186,42 +202,54 @@ class TfaRegistrationTotpResolverTests: XCTestCase {
 
                 }
             }
+        }, errorCallback: { error in
+            XCTAssertNotNil(error)
         })
     }
 
     func testTfaWithoutActiveProviders() {
         let dic: [String: Any] = ["errorCode": 0, "callId": "34324", "statusCode": 200, "gigyaAssertion": "123","phvToken": "123","providerAssertion": "123","regToken": "123","activeProviders": []]
 
-        runTfaRegistrationResolver(with: dic)
+        runTfaRegistrationResolver(with: dic, errorCallback: { error in
+            XCTAssertNotNil(error)
+        })
     }
 
     func testTfaWithoutAssertion() {
         let activeProviders = [["name": "gigyaTotp"]]
         let dic: [String: Any] = ["errorCode": 0, "callId": "34324", "statusCode": 200,"regToken": "123","activeProviders": activeProviders]
 
-        runTfaRegistrationResolver(with: dic)
+        runTfaRegistrationResolver(with: dic, errorCallback: { error in
+            XCTAssertNotNil(error)
+        })
     }
 
     func testTfaWithoutPhvToken() {
         let activeProviders = [["name": "gigyaTotp"]]
         let dic: [String: Any] = ["errorCode": 0, "callId": "34324", "statusCode": 200, "gigyaAssertion": "123","providerAssertion": "123","regToken": "123","activeProviders": activeProviders]
 
-        runTfaRegistrationResolver(with: dic)
+        runTfaRegistrationResolver(with: dic, errorCallback: { error in
+            XCTAssertNotNil(error)
+        })
     }
 
     func testTfaWithoutProviderAssertion() {
         let activeProviders = [["name": "gigyaTotp"]]
         let dic: [String: Any] = ["errorCode": 0, "callId": "34324", "statusCode": 200, "gigyaAssertion": "123","phvToken": "123","regToken": "123","activeProviders": activeProviders]
 
-        runTfaRegistrationResolver(with: dic)
+        runTfaRegistrationResolver(with: dic, errorCallback: { error in
+            XCTAssertNotNil(error)
+        })
     }
 
     func testTfaMakeQrFail() {
         let activeProviders = [["name": "gigyaTotp"]]
-        let inactiveProviders = [["name": "liveLink"]]
+        let inactiveProviders = [["name": "livelink"]]
 
         let dic: [String: Any] = ["errorCode": 0, "callId": "34324", "statusCode": 200, "gigyaAssertion": "123","phvToken": "123","providerAssertion": "123","regToken": "123","activeProviders": activeProviders, "inactiveProviders": inactiveProviders, "sctToken": "123","qrCode": "gotof.ailed"]
 
-        runTfaRegistrationResolver(with: dic)
+        runTfaRegistrationResolver(with: dic, errorCallback: { error in
+            XCTAssertNotNil(error)
+        })
     }
 }

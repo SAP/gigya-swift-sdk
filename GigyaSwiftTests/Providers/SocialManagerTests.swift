@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import GigyaSwift
+@testable import Gigya
 
 class SocialManagerTests: XCTestCase {
     let ioc = GigyaContainerUtils()
@@ -57,6 +57,10 @@ class SocialManagerTests: XCTestCase {
 }
 
 extension SocialManagerTests: BusinessApiDelegate {
+    func callSetAccount<T>(dataType: T.Type, params: [String : Any], completion: @escaping (GigyaApiResult<T>) -> Void) where T : Decodable, T : Encodable {
+        
+    }
+
     func callSetAccount<T>(params: [String : Any], completion: @escaping (GigyaApiResult<T>) -> Void) where T : Decodable, T : Encodable {
         
     }

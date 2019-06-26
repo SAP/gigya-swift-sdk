@@ -7,7 +7,8 @@
 //
 
 import XCTest
-@testable import GigyaSwift
+@testable import Gigya
+@testable import GigyaTfa
 
 class TFAVerificationpTotpResolverTests: XCTestCase {
     var ioc: GigyaContainerUtils?
@@ -62,24 +63,26 @@ class TFAVerificationpTotpResolverTests: XCTestCase {
                 }
                 // Evaluage interruption.
                 switch interruption {
-                case .pendingTwoFactorVerification(let resolver):
+                case .pendingTwoFactorVerification(let interruption, let providers, let factory):
                     // Reference inactive providers (registration).
-                    let activeProviders = resolver.tfaProviders
+                    let resolver = factory.getResolver(for: VerifyTotpResolver.self)
+                    let activeProviders = providers!
                     XCTAssertNotEqual(activeProviders.count, 0)
 
                     callback()
-                    resolver.verificationWithTotp(authorizationCode: "")
+                    resolver.verifyTOTPCode(verificationCode: "123", rememberDevice: false, completion: { (result) in
+                        switch result {
+                        case .resolved:
+                            XCTAssertTrue(true)
+                        case .invalidCode:
+                            errorCallback("invalidCode")
+                        case .failed(let error):
+                            errorCallback(error.localizedDescription)
+
+                        }
+                    })
                     callback2()
 
-                case .onPhoneVerificationCodeSent:
-                    print("Phone verification code sent")
-                case .onEmailVerificationCodeSent:
-                    print("Email verification code send")
-
-                case .onRegisteredPhoneNumbers:
-                    break
-                case .onTotpQRCode:
-                    break
                 default:
                     XCTFail()
                 }
@@ -89,7 +92,7 @@ class TFAVerificationpTotpResolverTests: XCTestCase {
 
     func testTfaSuccess() {
         let activeProviders = [["name": "gigyaTotp"]]
-        let inactiveProviders = [["name": "liveLink"]]
+        let inactiveProviders = [["name": "livelink"]]
         let phones = [["id": "4324", "obfuscated": "432432", "lastMethod": "d"]]
 
         let dic: [String: Any] = ["errorCode": 0, "callId": "34324", "statusCode": 200, "gigyaAssertion": "123","phvToken": "123","providerAssertion": "123","regToken": "123","activeProviders": activeProviders, "inactiveProviders": inactiveProviders, "phones": phones]
@@ -111,7 +114,7 @@ class TFAVerificationpTotpResolverTests: XCTestCase {
 
     func testTfaiVerifyError() {
         let activeProviders = [["name": "gigyaTotp"]]
-        let inactiveProviders = [["name": "liveLink"]]
+        let inactiveProviders = [["name": "livelink"]]
 
         let dic: [String: Any] = ["errorCode": 0, "callId": "34324", "statusCode": 200, "gigyaAssertion": "123","phvToken": "123","providerAssertion": "123","regToken": "123","activeProviders": activeProviders, "inactiveProviders": inactiveProviders]
 
@@ -125,12 +128,14 @@ class TFAVerificationpTotpResolverTests: XCTestCase {
 
             ResponseDataTest.resData = jsonData
             ResponseDataTest.error = nil
+        }, errorCallback: { error in
+            XCTAssertNotNil(error)
         })
     }
 
     func testTfaFinalizeError() {
         let activeProviders = [["name": "gigyaTotp"]]
-        let inactiveProviders = [["name": "liveLink"]]
+        let inactiveProviders = [["name": "livelink"]]
 
         let dic: [String: Any] = ["errorCode": 0, "callId": "34324", "statusCode": 200, "gigyaAssertion": "123","phvToken": "123","providerAssertion": "123","regToken": "123","activeProviders": activeProviders, "inactiveProviders": inactiveProviders]
 
@@ -149,6 +154,8 @@ class TFAVerificationpTotpResolverTests: XCTestCase {
 
                 }
             }
+        }, errorCallback: { error in
+            XCTAssertNotNil(error)
         })
     }
 
@@ -156,44 +163,46 @@ class TFAVerificationpTotpResolverTests: XCTestCase {
         let activeProviders = [["name": "gigyaTotp"]]
         let dic: [String: Any] = ["errorCode": 0, "callId": "34324", "statusCode": 200,"regToken": "123","activeProviders": activeProviders, "gigyaAssertion": ""]
 
-        runTfaVerificationTotpResolver(with: dic)
-    }
-
-    func testResolverVerifyCodenotSupprted() {
-        let inactiveProviders = [["name": "gigyaTotp"]]
-
-        let dic: [String: Any] = ["errorCode": 0, "callId": "34324", "statusCode": 200, "gigyaAssertion": "123","phvToken": "123","providerAssertion": "123","regToken": "123", "inactiveProviders": inactiveProviders]
-        // swiftlint:disable force_try
-        let jsonData = try! JSONSerialization.data(withJSONObject: dic, options: .prettyPrinted)
-        // swiftlint:enable force_try
-
-        let error = NSError(domain: "gigya", code: 403101, userInfo: ["callId": "dasdasdsad"])
-
-        ResponseDataTest.error = error
-
-        ResponseDataTest.resData = jsonData
-
-        businessApi?.login(dataType: RequestTestModel.self, loginId: "tes@test.com", password: "151515", params: [:], completion: { (result) in
-            switch result {
-            case .success:
-                XCTFail()
-            case .failure(let error):
-                guard let interruption = error.interruption else {
-                    XCTAssert(true)
-                    return
-                }
-
-                switch interruption {
-                case .pendingTwoFactorVerification(let resolver):
-                    self.expectFatalError(expectedMessage: "[TFAVerificationResolver<RequestTestModel>]: totp is not supported in verification ") {
-                        resolver.verifyCode(provider: .totp, authenticationCode: "123")
-                    }
-                default:
-                    break
-                }
-            }
-
+        runTfaVerificationTotpResolver(with: dic, errorCallback: { error in
+            XCTAssertNotNil(error)
         })
-
     }
+//
+//    func testResolverVerifyCodenotSupprted() {
+//        let inactiveProviders = [["name": "gigyaTotp"]]
+//
+//        let dic: [String: Any] = ["errorCode": 0, "callId": "34324", "statusCode": 200, "gigyaAssertion": "123","phvToken": "123","providerAssertion": "123","regToken": "123", "inactiveProviders": inactiveProviders]
+//        // swiftlint:disable force_try
+//        let jsonData = try! JSONSerialization.data(withJSONObject: dic, options: .prettyPrinted)
+//        // swiftlint:enable force_try
+//
+//        let error = NSError(domain: "gigya", code: 403101, userInfo: ["callId": "dasdasdsad"])
+//
+//        ResponseDataTest.error = error
+//
+//        ResponseDataTest.resData = jsonData
+//
+//        businessApi?.login(dataType: RequestTestModel.self, loginId: "tes@test.com", password: "151515", params: [:], completion: { (result) in
+//            switch result {
+//            case .success:
+//                XCTFail()
+//            case .failure(let error):
+//                guard let interruption = error.interruption else {
+//                    XCTAssert(true)
+//                    return
+//                }
+//
+//                switch interruption {
+//                case .pendingTwoFactorVerification(let resolver):
+//                    self.expectFatalError(expectedMessage: "[TFAVerificationResolver<RequestTestModel>]: totp is not supported in verification ") {
+//                        resolver.verifyCode(provider: .totp, authenticationCode: "123")
+//                    }
+//                default:
+//                    break
+//                }
+//            }
+//
+//        })
+//
+//    }
 }

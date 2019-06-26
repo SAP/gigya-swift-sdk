@@ -8,9 +8,11 @@
 
 import UIKit
 
-protocol BaseResolver { }
+@objc protocol BaseResolver {
+    @objc optional func start()
+}
 
-public class LinkAccountsResolver<T: Codable>: BaseResolver {
+public class LinkAccountsResolver<T: GigyaAccountProtocol>: BaseResolver {
 
     let originalError: NetworkError
 
@@ -27,11 +29,9 @@ public class LinkAccountsResolver<T: Codable>: BaseResolver {
         self.regToken = regToken
         self.completion = completion
         self.businessDelegate = businessDelegate
-        
-        start()
     }
 
-    private func start() {
+    internal func start() {
         // Request the conflicting account.
         getConflictingAccount()
     }

@@ -11,5 +11,5 @@ import Foundation
 enum PushNotificationModes: String {
     case optin
     case verify
-    case remove
+    case cancel
 }

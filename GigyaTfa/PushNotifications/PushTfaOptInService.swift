@@ -9,7 +9,7 @@
 import UserNotifications
 import Gigya
 
-protocol RegisterTfaProtocol {
+protocol PushTfaOptInServiceProtocol {
     var gigyaAssertion: String? { get set }
 
     var regToken: String? { get set }
@@ -19,7 +19,7 @@ protocol RegisterTfaProtocol {
     func start()
 }
 
-class PushTfaOptInService: RegisterTfaProtocol {
+class PushTfaOptInService: PushTfaOptInServiceProtocol {
     let apiService: IOCApiServiceProtocol
 
     var gigyaAssertion: String?

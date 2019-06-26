@@ -7,7 +7,8 @@
 //
 
 import XCTest
-@testable import GigyaSwift
+@testable import Gigya
+@testable import GigyaTfa
 
 class TFAVerificationpEmailResolverTests: XCTestCase {
     var ioc: GigyaContainerUtils?
@@ -62,23 +63,40 @@ class TFAVerificationpEmailResolverTests: XCTestCase {
                 }
                 // Evaluage interruption.
                 switch interruption {
-                case .pendingTwoFactorVerification(let resolver):
+                case .pendingTwoFactorVerification(let interruption, let providers, let factory):
+                    let resolver = factory.getResolver(for: RegisteredEmailsResolver.self)
                     // Reference inactive providers (registration).
                     callback()
-                    resolver.startVerificationWithEmail()
-                    callback2()
-                    resolver.sendEmailVerificationCode(registeredEmail: TFAEmail(id: email, obfuscated: "123", lastVerification: "123"))
+                    resolver.getRegisteredEmails(completion: { (result) in
+                        switch result {
+                        case .registeredEmails(let emails):
+                            resolver.sendEmailCode(with: emails.last!, completion: { (result) in
+                                switch result {
+                                case .emailVerificationCodeSent(let resolver):
+                                    callback2()
+                                    resolver.verifyCode(provider: .email, verificationCode: "123", rememberDevice: false, completion: { (result) in
+                                        switch result {
+                                        case .resolved:
+                                            XCTAssertTrue(true)
+                                        case .invalidCode:
+                                            errorCallback("invalidCode")
+                                        case .failed(let error):
+                                            errorCallback(error.localizedDescription)
+                                        }
+                                    })
+                                case .error(let error):
+                                    errorCallback(error.localizedDescription)
+                                default:
+                                    break
+                                }
+                            })
+                        case .error(let error):
+                            errorCallback(error.localizedDescription)
+                        default:
+                            break
 
-                    resolver.verifyCode(provider: .email, authenticationCode: "1234")
-
-                case .onPhoneVerificationCodeSent:
-                    print("Phone verification code sent")
-                case .onEmailVerificationCodeSent:
-                    print("Email verification code send")
-                case .onRegisteredEmails:
-                    break
-                case .onTotpQRCode:
-                    break
+                        }
+                    })
                 default:
                     XCTFail()
                 }
@@ -88,7 +106,7 @@ class TFAVerificationpEmailResolverTests: XCTestCase {
 
     func testTfaSuccess() {
         let activeProviders = [["name": "gigyaEmail"]]
-        let inactiveProviders = [["name": "liveLink"]]
+        let inactiveProviders = [["name": "livelink"]]
         let emails = [["id": "test@test.com", "obfuscated": "123", "lastVerification": "123"]]
 
         let dic: [String: Any] = ["errorCode": 0, "callId": "34324", "statusCode": 200, "gigyaAssertion": "123","phvToken": "123","providerAssertion": "123","regToken": "123","activeProviders": activeProviders, "inactiveProviders": inactiveProviders, "emails": emails]
@@ -110,7 +128,7 @@ class TFAVerificationpEmailResolverTests: XCTestCase {
 
     func testTfaiVerifyError() {
         let activeProviders = [["name": "gigyaEmail"]]
-        let inactiveProviders = [["name": "liveLink"]]
+        let inactiveProviders = [["name": "livelink"]]
 
         let dic: [String: Any] = ["errorCode": 0, "callId": "34324", "statusCode": 200, "gigyaAssertion": "123","phvToken": "123","providerAssertion": "123","regToken": "123","activeProviders": activeProviders, "inactiveProviders": inactiveProviders]
 
@@ -124,12 +142,14 @@ class TFAVerificationpEmailResolverTests: XCTestCase {
 
             ResponseDataTest.resData = jsonData
             ResponseDataTest.error = nil
+        }, errorCallback: { error in
+            XCTAssertNotNil(error)
         })
     }
 
     func testTfaFinalizeError() {
         let activeProviders = [["name": "gigyaEmail"]]
-        let inactiveProviders = [["name": "liveLink"]]
+        let inactiveProviders = [["name": "livelink"]]
 
         let dic: [String: Any] = ["errorCode": 0, "callId": "34324", "statusCode": 200, "gigyaAssertion": "123","phvToken": "123","providerAssertion": "123","regToken": "123","activeProviders": activeProviders, "inactiveProviders": inactiveProviders]
 
@@ -148,21 +168,25 @@ class TFAVerificationpEmailResolverTests: XCTestCase {
 
                 }
             }
+        }, errorCallback: { error in
+            XCTAssertNotNil(error)
         })
     }
 
     func testTfaSendEmailCodeNotFoundError() {
         let activeProviders = [["name": "gigyaEmail"]]
-        let inactiveProviders = [["name": "liveLink"]]
+        let inactiveProviders = [["name": "livelink"]]
 
         let dic: [String: Any] = ["errorCode": 0, "callId": "34324", "statusCode": 200, "gigyaAssertion": "123","phvToken": "123","providerAssertion": "123","regToken": "123","activeProviders": activeProviders, "inactiveProviders": inactiveProviders]
 
-        runTfaVerificationEmailResolver(with: dic, email: "")
+        runTfaVerificationEmailResolver(with: dic, email: "", errorCallback: { error in
+            XCTAssertNotNil(error)
+        })
     }
 
     func testTfaSendSmsError() {
         let activeProviders = [["name": "gigyaEmail"]]
-        let inactiveProviders = [["name": "liveLink"]]
+        let inactiveProviders = [["name": "livelink"]]
 
         let dic: [String: Any] = ["errorCode": 0, "callId": "34324", "statusCode": 200, "gigyaAssertion": "123","phvToken": "123","providerAssertion": "123","regToken": "123","activeProviders": activeProviders, "inactiveProviders": inactiveProviders]
 
@@ -181,6 +205,8 @@ class TFAVerificationpEmailResolverTests: XCTestCase {
 
                 }
             }
+        }, errorCallback: { error in
+            XCTAssertNotNil(error)
         })
     }
 
@@ -188,7 +214,9 @@ class TFAVerificationpEmailResolverTests: XCTestCase {
         let activeProviders = [["name": "gigyaEmail"]]
         let dic: [String: Any] = ["errorCode": 0, "callId": "34324", "statusCode": 200,"regToken": "123","activeProviders": activeProviders]
 
-        runTfaVerificationEmailResolver(with: dic)
+        runTfaVerificationEmailResolver(with: dic, errorCallback: { error in
+            XCTAssertNotNil(error)
+        })
     }
 
     func testTfaWithoutGigyaAssertionAfterInit() {
@@ -209,6 +237,8 @@ class TFAVerificationpEmailResolverTests: XCTestCase {
                 }
             }
 
+        }, errorCallback: { error in
+            XCTAssertNotNil(error)
         })
     }
 

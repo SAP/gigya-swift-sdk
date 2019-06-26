@@ -6,4 +6,8 @@
 //  Copyright © 2019 Gigya. All rights reserved.
 //
 
-import Foundation
+import Gigya
+
+public protocol RegisterPhonesResolverProtocol {
+    func registerPhone(phone: String, method: TFAPhoneMethod, completion: @escaping (RegisterPhonesResult) -> Void )
+}

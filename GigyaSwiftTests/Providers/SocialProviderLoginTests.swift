@@ -8,19 +8,19 @@
 
 import Foundation
 import XCTest
-@testable import GigyaSwift
+@testable import Gigya
 
 class SocialProviderLoginTests: XCTestCase {
     let ioc = GigyaContainerUtils()
-    var gigya = GigyaSwift.sharedInstance()
+    var gigya = Gigya.sharedInstance()
 
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
         ResponseDataTest.resData = nil
         ResponseDataTest.error = nil
-        GigyaSwift.sharedInstance().container = ioc.container
+        Gigya.sharedInstance().container = ioc.container
 
-        GigyaSwift.sharedInstance().initWithApi(apiKey: "123")
+        Gigya.sharedInstance().initWithApi(apiKey: "123")
 
     }
 
@@ -40,7 +40,7 @@ class SocialProviderLoginTests: XCTestCase {
         ResponseDataTest.clientID = "123"
         ResponseDataTest.providerToken = "123"
         
-        GigyaSwift.sharedInstance().login(with: .google, viewController: viewController, params: ["testParam": "test"]) { (result) in
+        Gigya.sharedInstance().login(with: .google, viewController: viewController, params: ["testParam": "test"]) { (result) in
             switch result {
             case .success(let data):
                 XCTAssertNotNil(data )
@@ -61,7 +61,7 @@ class SocialProviderLoginTests: XCTestCase {
         ResponseDataTest.resData = jsonData
         ResponseDataTest.providerToken = nil
 
-        GigyaSwift.sharedInstance().login(with: .google, viewController: viewController) { (result) in
+        Gigya.sharedInstance().login(with: .google, viewController: viewController) { (result) in
             switch result {
             case .success:
                 XCTFail("Fail")
@@ -82,7 +82,7 @@ class SocialProviderLoginTests: XCTestCase {
         ResponseDataTest.clientID = "123"
         ResponseDataTest.error = error
 
-        GigyaSwift.sharedInstance().login(with: .google, viewController: viewController) { (result) in
+        Gigya.sharedInstance().login(with: .google, viewController: viewController) { (result) in
             switch result {
             case .success:
                 XCTFail("Fail")
@@ -106,7 +106,7 @@ class SocialProviderLoginTests: XCTestCase {
         ResponseDataTest.clientID = "123"
         ResponseDataTest.providerToken = "123"
 
-        GigyaSwift.sharedInstance().addConnection(provider: .google, viewController: viewController, params: ["testParam": "test"]) { (result) in
+        Gigya.sharedInstance().addConnection(provider: .google, viewController: viewController, params: ["testParam": "test"]) { (result) in
             switch result {
             case .success(let data):
                 XCTAssertNotNil(data )

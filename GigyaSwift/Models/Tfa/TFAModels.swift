@@ -122,3 +122,8 @@ public enum TFAMode: String {
     case register
     case verify
 }
+
+public enum TFAPhoneMethod: String {
+    case sms
+    case voice
+}

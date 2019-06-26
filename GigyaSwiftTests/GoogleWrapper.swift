@@ -6,8 +6,8 @@
 //  Copyright © 2019 Gigya. All rights reserved.
 //
 
-import Foundation
-import GigyaSwift
+import UIKit
+import Gigya
 
 class GoogleWrapper: NSObject, ProviderWrapperProtocol {
 

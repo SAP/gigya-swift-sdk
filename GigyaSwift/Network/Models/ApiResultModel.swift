@@ -9,10 +9,11 @@
 import Foundation
 
 public struct GigyaResponseModel: Codable {
-    var statusCode: ApiStatusCode
-    var errorCode: Int
-    var callId: String
-    let errorMessage: String?
+    public var statusCode: ApiStatusCode
+    public var errorCode: Int
+    public var callId: String
+    public let errorMessage: String?
+
     internal var requestData: Data? = nil
     
     func toDictionary() -> [String: Any] {

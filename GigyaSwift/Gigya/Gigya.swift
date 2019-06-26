@@ -85,15 +85,23 @@ public class Gigya {
             let sessionService = resolver.resolve(IOCSessionServiceProtocol.self)
             let accountService = resolver.resolve(IOCAccountServiceProtocol.self)
             let providerFactory = resolver.resolve(IOCSocialProvidersManagerProtocol.self)
+            let interruptionsHandler = resolver.resolve(IOCInterruptionResolverFactory.self)
 
             return BusinessApiService(config: config!,
                                       apiService: apiService!,
                                       sessionService: sessionService!,
                                       accountService: accountService!,
-                                      providerFactory: providerFactory!)
+                                      providerFactory: providerFactory!,
+                                      interruptionsHandler: interruptionsHandler!)
         }
 
-        container.register(service: IOCAccountServiceProtocol.self, isSingleton: true) { _ in AccountService() }
+        container.register(service: IOCAccountServiceProtocol.self, isSingleton: true) { _ in
+            return AccountService()
+        }
+
+        container.register(service: IOCInterruptionResolverFactory.self) { _ in
+            return InterruptionResolverFactory()
+        }
     }
 
     #if DEBUG

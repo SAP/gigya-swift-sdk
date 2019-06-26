@@ -54,7 +54,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
     }
 
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-
+        GigyaTfa.shared.recivePush(userInfo: userInfo, completion: completionHandler)
     }
 
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
@@ -89,9 +89,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
 extension AppDelegate: UNUserNotificationCenterDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         // tap on notification
-        let userInfo = response.notification.request.content.userInfo
-
-        GigyaTfa.shared.verifyPushTfa(with: userInfo)
+        GigyaTfa.shared.verifyPushTfa(with: response)
     }
 
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {

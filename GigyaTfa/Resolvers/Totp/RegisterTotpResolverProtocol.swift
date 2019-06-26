@@ -7,3 +7,7 @@
 //
 
 import Foundation
+
+protocol RegisterTotpResolverProtocol {
+    func registerTotp(completion: @escaping (RegisterTotpResult) -> Void )
+}

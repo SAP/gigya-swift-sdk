@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class PendingRegistrationResolver<T: Codable>: BaseResolver {
+public class PendingRegistrationResolver<T: GigyaAccountProtocol>: BaseResolver {
 
     let originalError: NetworkError
 
@@ -27,7 +27,7 @@ public class PendingRegistrationResolver<T: Codable>: BaseResolver {
         start()
     }
 
-    func start() {
+    internal func start() {
         let loginError = LoginApiError<T>(error: self.originalError, interruption: .pendingRegistration(resolver: self))
         self.completion(.failure(loginError))
     }

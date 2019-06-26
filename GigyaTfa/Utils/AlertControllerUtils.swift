@@ -18,7 +18,7 @@ class AlertControllerUtils {
             UIAlertAction in
             result(true)
         }
-        let cancelAction = UIAlertAction(title: NSLocalizedString("Reject", comment: ""), style: .cancel) {
+        let cancelAction = UIAlertAction(title: NSLocalizedString("Deny", comment: ""), style: .cancel) {
             UIAlertAction in
             result(false)
         }

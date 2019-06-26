@@ -7,3 +7,10 @@
 //
 
 import Foundation
+import Gigya
+
+public protocol RegisteredPhonesResolverProtocol {
+    func getRegisteredPhones(completion: @escaping (RegisteredPhonesResult) -> Void)
+
+    func sendVerificationCode(with phone: TFARegisteredPhone, method: TFAPhoneMethod, completion: @escaping (RegisteredPhonesResult) -> Void)
+}

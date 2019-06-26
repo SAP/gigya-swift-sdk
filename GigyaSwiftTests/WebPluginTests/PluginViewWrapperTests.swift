@@ -7,11 +7,11 @@
 //
 
 import XCTest
-@testable import GigyaSwift
+@testable import Gigya
 
 class PluginViewWrapperTests: XCTestCase {
     let ioc = GigyaContainerUtils()
-    var gigya = GigyaSwift.sharedInstance()
+    var gigya = Gigya.sharedInstance()
 
     var config: GigyaConfig {
         return ioc.container.resolve(GigyaConfig.self)!
@@ -30,9 +30,9 @@ class PluginViewWrapperTests: XCTestCase {
         // Put setup code here. This method is called before the invocation of each test method in the class.
         ResponseDataTest.resData = nil
         ResponseDataTest.error = nil
-        GigyaSwift.sharedInstance().container = ioc.container
+        Gigya.sharedInstance().container = ioc.container
 
-        GigyaSwift.sharedInstance().initWithApi(apiKey: "123")
+        Gigya.sharedInstance().initWithApi(apiKey: "123")
 
         ResponseDataTest.clientID = nil
         ResponseDataTest.resData = nil

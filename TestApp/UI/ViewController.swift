@@ -48,8 +48,11 @@ class ViewController: UIViewController {
                     switch interruption {
                     case .conflitingAccount(let resolver):
                         resolver.linkToSite(loginId: resolver.conflictingAccount?.loginID ?? "", password: "123123")
-                    case .pendingTwoFactorVerification:
-                        break
+                    case .pendingTwoFactorVerification(let interruption, let activeProviders, let factory):
+                        self?.presentTFAController(tfaProviders: activeProviders!, mode: .verification, factoryResolver: factory)
+
+                    case .pendingTwoFactorRegistration(let interruption, let inactiveProviders, let factory):
+                        self?.presentTFAController(tfaProviders: inactiveProviders!, mode: .registration, factoryResolver: factory)
                     default:
                         break
                     }
@@ -149,7 +152,7 @@ class ViewController: UIViewController {
     }
 
     @IBAction func loginWithProvider(_ sender: Any) {
-        gigya.login(with: .line, viewController: self ) { [weak self] result in
+        gigya.login(with: .google, viewController: self ) { [weak self] result in
             switch result {
             case .success(let data):
                 print(data)
@@ -249,8 +252,24 @@ class ViewController: UIViewController {
 
     @IBAction func OptIn(_ sender: Any) {
         GigyaTfa.shared.OptiInPushTfa { (result) in
-            
+            switch result {
+            case .success:
+                break
+            case .failure(let error):
+                let alertController = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
+                alertController.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+            }
         }
+    }
+
+    func presentTFAController(tfaProviders: [TFAProviderModel], mode: TFAMode, factoryResolver: TFAResolverFactory<UserHost>) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let tfaViewController = storyboard.instantiateViewController(withIdentifier: "TFAUIAlertViewController") as? TfaViewController
+        tfaViewController?.tfaProviders = tfaProviders
+        tfaViewController?.tfaMode = mode
+        tfaViewController?.factoryResolver = factoryResolver
+        self.navigationController?.pushViewController(tfaViewController!, animated: true)
+
     }
 }
     

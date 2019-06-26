@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import GigyaSwift
+@testable import Gigya
 
 class TfaLinkAccountTests: XCTestCase {
     var ioc: GigyaContainerUtils?
@@ -121,7 +121,7 @@ class TfaLinkAccountTests: XCTestCase {
                 guard let interruption = error.interruption else { return }
 
                 switch interruption {
-                case .conflitingAccounts(let resolver):
+                case .conflitingAccount(let resolver):
                     resolver.linkToSite(loginId: "123", password: "123")
                 default:
                     XCTFail()
@@ -153,7 +153,7 @@ class TfaLinkAccountTests: XCTestCase {
                 guard let interruption = error.interruption else { return }
 
                 switch interruption {
-                case .conflitingAccounts(let resolver):
+                case .conflitingAccount(let resolver):
                     let viewController = UIViewController()
 
                     ResponseDataTest.clientID = "123"
