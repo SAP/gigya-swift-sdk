@@ -6,18 +6,16 @@
 //  Copyright © 2019 Gigya. All rights reserved.
 //
 
-import Foundation
+import UserNotifications
 import Gigya
 
-protocol IOCPushNotificationsService {
+protocol PushNotificationsServiceProtocol {
 
     func onRecivePush(userInfo: [AnyHashable : Any], completion: @escaping (UIBackgroundFetchResult) -> Void)
 
-//    func registerForPushNotifications(compilation: @escaping (_ success: Bool) -> ())
-
     func savePushKey(key: String)
 
-    func verifyPushTfa(userInfo: [AnyHashable : Any])
+    func verifyPushTfa(response: UNNotificationResponse)
     
     func optInToPushTfa(completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void)
 }

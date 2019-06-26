@@ -6,7 +6,7 @@
 //  Copyright © 2019 Gigya. All rights reserved.
 //
 
-import Foundation
+import UserNotifications
 import Gigya
 
 protocol RegisterTfaProtocol {
@@ -19,7 +19,7 @@ protocol RegisterTfaProtocol {
     func start()
 }
 
-class PushTfaOptIn: RegisterTfaProtocol {
+class PushTfaOptInService: RegisterTfaProtocol {
     let apiService: IOCApiServiceProtocol
 
     var gigyaAssertion: String?
@@ -70,7 +70,7 @@ class PushTfaOptIn: RegisterTfaProtocol {
             return
         }
         
-        let model = ApiRequestModel(method: "accounts.tfa.push.optin", params: ["gigyaAssertion": gigyaAssertion ,"deviceInfo": ["platform": "ios", "os": GeneralUtils.iosVersion(), "man": "apple", "pushToken": pushToken]])
+        let model = ApiRequestModel(method: GigyaDefinitions.API.pushOptinTFA, params: ["gigyaAssertion": gigyaAssertion ,"deviceInfo": ["platform": "ios", "os": GeneralUtils.iosVersion(), "man": "apple", "pushToken": pushToken]])
 
         apiService.send(model: model, responseType: GigyaDictionary.self) { [weak self] result in
             switch result {
@@ -113,6 +113,8 @@ class PushTfaOptIn: RegisterTfaProtocol {
         apiService.send(model: model, responseType: GigyaDictionary.self) { [weak self] (result) in
             switch result {
             case .success(let data):
+                GeneralUtils.showNotification(title: "Opt-In for push TFA", body: "This device is now registered for push TFA", id: "verifyOptIn")
+                
                 self?.completion(.success(data: data))
             case .failure(let error):
                 self?.completion(.failure(error))
