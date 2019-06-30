@@ -16,15 +16,15 @@ public struct GigyaResponseModel: Codable {
 
     internal var requestData: Data? = nil
     
-    func toDictionary() -> [String: Any] {
+    internal func toDictionary() -> [String: Any] {
         return DecodeEncodeUtils.dataToDictionary(data: self.requestData)
     }
     
-    func asJson() -> String {
+    internal func asJson() -> String {
         return toDictionary().asJson
     }
 
-    func isInterruptionSupported() -> Bool {
+    internal func isInterruptionSupported() -> Bool {
         let errosCodes = Interruption.allCases
 
         if let interruption = Interruption(rawValue: self.errorCode), errosCodes.contains(interruption) {

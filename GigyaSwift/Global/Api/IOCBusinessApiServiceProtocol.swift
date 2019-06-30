@@ -23,9 +23,9 @@ protocol IOCBusinessApiServiceProtocol {
          accountService: IOCAccountServiceProtocol, providerFactory: IOCSocialProvidersManagerProtocol,
          interruptionsHandler: IOCInterruptionResolverFactory)
 
-    func send(api: String, params: [String: String], completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void)
+    func send(api: String, params: [String: Any], completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void)
 
-    func send<T: Codable>(dataType: T.Type, api: String, params: [String: String], completion: @escaping (GigyaApiResult<T>) -> Void)
+    func send<T: Codable>(dataType: T.Type, api: String, params: [String: Any], completion: @escaping (GigyaApiResult<T>) -> Void)
 
     func getAccount<T: GigyaAccountProtocol>(clearAccount: Bool, dataType: T.Type, completion: @escaping (GigyaApiResult<T>) -> Void)
 

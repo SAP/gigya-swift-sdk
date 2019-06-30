@@ -38,14 +38,14 @@ class BusinessApiService: NSObject, IOCBusinessApiServiceProtocol {
     }
 
     // Send regular request
-    func send(api: String, params: [String: String] = [:], completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void ) {
+    func send(api: String, params: [String: Any] = [:], completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void ) {
         let model = ApiRequestModel(method: api, params: params)
 
         apiService.send(model: model, responseType: GigyaDictionary.self, completion: completion)
     }
 
     // Send request with generic type.
-    func send<T: Codable>(dataType: T.Type, api: String, params: [String: String] = [:], completion: @escaping (GigyaApiResult<T>) -> Void ) {
+    func send<T: Codable>(dataType: T.Type, api: String, params: [String: Any] = [:], completion: @escaping (GigyaApiResult<T>) -> Void ) {
         let model = ApiRequestModel(method: api, params: params)
 
         apiService.send(model: model, responseType: T.self, completion: completion)

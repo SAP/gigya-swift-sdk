@@ -77,7 +77,7 @@ public class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
      - Parameter completion:   Response GigyaApiResult<GigyaDictionary>.
      */
 
-    public func send(api: String, params: [String: String] = [:], completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void ) {
+    public func send(api: String, params: [String: Any] = [:], completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void ) {
         businessApiService.send(api: api, params: params, completion: completion)
     }
 
@@ -89,7 +89,7 @@ public class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
      - Parameter completion:  Response GigyaApiResult<T>.
      */
 
-    public func send<B: Codable>(dataType: B.Type, api: String, params: [String: String] = [:], completion: @escaping (GigyaApiResult<B>) -> Void ) {
+    public func send<B: Codable>(dataType: B.Type, api: String, params: [String: Any] = [:], completion: @escaping (GigyaApiResult<B>) -> Void ) {
         businessApiService.send(dataType: dataType, api: api, params: params, completion: completion)
     }
 
