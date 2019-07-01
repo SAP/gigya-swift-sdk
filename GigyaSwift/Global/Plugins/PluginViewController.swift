@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import GigyaSDK
+import GigyaInfra
 import WebKit
 
 class PluginViewController<T: GigyaAccountProtocol>: WebViewController, WKScriptMessageHandler {
@@ -255,7 +255,7 @@ class PluginViewController<T: GigyaAccountProtocol>: WebViewController, WKScript
         GigyaLogger.log(with: self, message: "sendAddConnectionRequest: with params:\n\(params)")
 
         guard let providerToAdd = params["provider"] else { return }
-        if let provider = GigyaSocielProviders(rawValue: providerToAdd) {
+        if let provider = GigyaSocialProviders(rawValue: providerToAdd) {
             businessApiService.addConnection(provider: provider, viewController: self, params: params, dataType: T.self) { [weak self] result in
                 guard let self = self else { return }
                 switch result {
@@ -277,7 +277,7 @@ class PluginViewController<T: GigyaAccountProtocol>: WebViewController, WKScript
     private func sendRemoveConnectionRequest(callbackId: String, params: [String: String]) {
         GigyaLogger.log(with: self, message: "sendRemoveConnectionRequest: with params:\n\(params)")
 
-        if let provider = params["provider"], let providerType = GigyaSocielProviders(rawValue: provider) {
+        if let provider = params["provider"], let providerType = GigyaSocialProviders(rawValue: provider) {
             businessApiService.removeConnection(providerName: providerType) { [weak self] result in
                 guard let self = self else { return }
                 switch result {
@@ -302,7 +302,7 @@ class PluginViewController<T: GigyaAccountProtocol>: WebViewController, WKScript
         GigyaLogger.log(with: self, message: "sendOauthRequest: with apiMethod = \(apiMethod)")
         
         guard let providerName = params["provider"] else { return }
-        if let provider = GigyaSocielProviders(rawValue: providerName) {
+        if let provider = GigyaSocialProviders(rawValue: providerName) {
             businessApiService.login(provider: provider, viewController: self, params: params, dataType: T.self) { [weak self] result in
                 guard let self = self else { return }
                 switch result {

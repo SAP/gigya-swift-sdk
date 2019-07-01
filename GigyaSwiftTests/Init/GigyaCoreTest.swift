@@ -7,20 +7,20 @@
 //
 
 import XCTest
-@testable import GigyaSwift
+@testable import Gigya
 
 class GigyaCoreTest: XCTestCase {
 
     let ioc = GigyaContainerUtils()
-    var gigya = GigyaSwift.sharedInstance()
+    var gigya = Gigya.sharedInstance()
 
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
         ResponseDataTest.resData = nil
         ResponseDataTest.error = nil
-        GigyaSwift.sharedInstance().container = ioc.container
+        Gigya.sharedInstance().container = ioc.container
 
-        GigyaSwift.sharedInstance().initWithApi(apiKey: "123")
+        Gigya.sharedInstance().initWithApi(apiKey: "123")
 
     }
 
@@ -37,7 +37,7 @@ class GigyaCoreTest: XCTestCase {
 
         ResponseDataTest.resData = jsonData
 
-        GigyaSwift.sharedInstance().send(api: "dasd") { (res) in
+        Gigya.sharedInstance().send(api: "dasd") { (res) in
             if case .success = res {
                 XCTAssert(true)
             } else {
@@ -57,7 +57,7 @@ class GigyaCoreTest: XCTestCase {
 
         ResponseDataTest.resData = jsonData
 
-        GigyaSwift.sharedInstance().send(dataType: RequestTestModel.self, api: "adas") { (res) in
+        Gigya.sharedInstance().send(dataType: RequestTestModel.self, api: "adas") { (res) in
             if case .success = res {
                 XCTAssert(true)
             } else {
@@ -82,7 +82,7 @@ class GigyaCoreTest: XCTestCase {
 
         ResponseDataTest.resData = jsonData
 
-        GigyaSwift.sharedInstance().login(loginId: "test@test.com", password: "141414") { (res) in
+        Gigya.sharedInstance().login(loginId: "test@test.com", password: "141414") { (res) in
             if case .success = res {
                 XCTAssert(true)
             } else {
@@ -106,7 +106,7 @@ class GigyaCoreTest: XCTestCase {
         // swiftlint:enable force_try
         ResponseDataTest.resData = jsonData
 
-        GigyaSwift.sharedInstance().getAccount { (res) in
+        Gigya.sharedInstance().getAccount { (res) in
             if case .success = res {
                 XCTAssert(true)
             } else {
@@ -116,12 +116,12 @@ class GigyaCoreTest: XCTestCase {
     }
 
     func testGetAccountFailed() {
-        let accountService = GigyaSwift.sharedInstance().container?.resolve(IOCAccountServiceProtocol.self)
+        let accountService = Gigya.sharedInstance().container?.resolve(IOCAccountServiceProtocol.self)
         accountService?.account = [String: String]()
 
         ResponseDataTest.resData = nil
         expectFatalError(expectedMessage: "[AccountService]: something happend with getAccount ") {
-            GigyaSwift.sharedInstance().getAccount { (res) in
+            Gigya.sharedInstance().getAccount { (res) in
                 if case .success = res {
                     XCTAssert(true)
                 } else {
@@ -146,9 +146,9 @@ class GigyaCoreTest: XCTestCase {
         // swiftlint:enable force_try
         ResponseDataTest.resData = jsonData
 
-        GigyaSwift.sharedInstance().getAccount { (res) in
+        Gigya.sharedInstance().getAccount { (res) in
             if case .success = res {
-                GigyaSwift.sharedInstance().getAccount { rrr in
+                Gigya.sharedInstance().getAccount { rrr in
                     switch rrr {
                     case .success(let data):
                         XCTAssertNotNil(data)
@@ -165,7 +165,7 @@ class GigyaCoreTest: XCTestCase {
     func testGetAccountError() {
         ResponseDataTest.resData = nil
 
-        GigyaSwift.sharedInstance().getAccount { (res) in
+        Gigya.sharedInstance().getAccount { (res) in
             if case .success = res {
                 XCTFail("Fail")
             } else {
@@ -175,11 +175,11 @@ class GigyaCoreTest: XCTestCase {
     }
 
     func testLogout() {
-        GigyaSwift.sharedInstance().logout() { result in
+        Gigya.sharedInstance().logout() { result in
 
         }
 
-        XCTAssert(!GigyaSwift.sharedInstance().isLoggedIn())
+        XCTAssert(!Gigya.sharedInstance().isLoggedIn())
     }
 
     func testRegister() {
@@ -197,7 +197,7 @@ class GigyaCoreTest: XCTestCase {
         // swiftlint:enable force_try
         ResponseDataTest.resData = jsonData
 
-        GigyaSwift.sharedInstance().register(params: ["email": "sadfsaf@dasf.com", "password": "123123"]) { (result) in
+        Gigya.sharedInstance().register(email: "test@trest", password: "123", params: [:]) { (result) in
             switch result {
             case .success(let data):
                 XCTAssertNotNil(data)
@@ -211,7 +211,7 @@ class GigyaCoreTest: XCTestCase {
 
         ResponseDataTest.resData = nil
 
-        GigyaSwift.sharedInstance().register(params: ["email": "sadfsaf@dasf.com", "password": "123123"]) { (result) in
+        Gigya.sharedInstance().register(email: "test@test", password: "123", params: [:]) { (result) in
             switch result {
             case .success:
                 XCTFail("Fail")
@@ -234,7 +234,7 @@ class GigyaCoreTest: XCTestCase {
         ResponseDataTest.providerToken = "123"
         ResponseDataTest.providerSecret = "123"
 
-        GigyaSwift.sharedInstance().addConnection(provider: .yahoo, viewController: viewController, params: ["testParam": "test"]) { (result) in
+        Gigya.sharedInstance().addConnection(provider: .yahoo, viewController: viewController, params: ["testParam": "test"]) { (result) in
             switch result {
             case .success(let data):
                 XCTAssertNotNil(data )
@@ -256,7 +256,7 @@ class GigyaCoreTest: XCTestCase {
         ResponseDataTest.providerToken = "123"
         ResponseDataTest.providerSecret = "123"
 
-        GigyaSwift.sharedInstance().removeConnection(provider: .yahoo) { (result) in
+        Gigya.sharedInstance().removeConnection(provider: .yahoo) { (result) in
             switch result {
             case .success(let data):
                 XCTAssertNotNil(data )
@@ -271,7 +271,7 @@ class GigyaCoreTest: XCTestCase {
     func testShowScreenSet() {
         let viewController = UIViewController()
 
-        GigyaSwift.sharedInstance().showScreenSet(name: "registration", viewController: viewController) { (result) in
+        Gigya.sharedInstance().showScreenSet(with: "registration", viewController: viewController) { (result) in
 
         }
     }

@@ -6,7 +6,7 @@
 //  Copyright © 2019 Gigya. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 @objc public protocol ProviderWrapperProtocol {
     init()

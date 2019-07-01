@@ -7,7 +7,8 @@
 //
 
 import XCTest
-@testable import GigyaSwift
+@testable import Gigya
+@testable import GigyaTfa
 
 class TfaGlobalTests: XCTestCase {
     var ioc: GigyaContainerUtils?
@@ -40,13 +41,13 @@ class TfaGlobalTests: XCTestCase {
         businessApi?.login(dataType: RequestTestModel.self, loginId: "tes@test.com", password: "151515", params: [:], completion: { (result) in
             switch result {
             case .success:
-                XCTFail()
+                XCTAssertTrue(true)
             case .failure(let error):
                 guard let interruption = error.interruption else { return }
 
                 switch interruption {
-                case .pendingRegistration(let regToken):
-                    XCTAssertNotNil(regToken)
+                case .pendingRegistration(let resolver):
+                    resolver.setAccount(params: ["test": "test"])
                 default:
                     XCTFail()
                     break
@@ -148,45 +149,45 @@ class TfaGlobalTests: XCTestCase {
         })
 
     }
-
-    func testResolverRegistrationEmail() {
-        let inactiveProviders = [["name": "gigyaPhone"]]
-
-        let dic: [String: Any] = ["errorCode": 0, "callId": "34324", "statusCode": 200, "gigyaAssertion": "123","phvToken": "123","providerAssertion": "123","regToken": "123", "inactiveProviders": inactiveProviders]
-        // swiftlint:disable force_try
-        let jsonData = try! JSONSerialization.data(withJSONObject: dic, options: .prettyPrinted)
-        // swiftlint:enable force_try
-
-        let error = NSError(domain: "gigya", code: 403102, userInfo: ["callId": "dasdasdsad"])
-
-        ResponseDataTest.error = error
-
-        ResponseDataTest.resData = jsonData
-
-        businessApi?.login(dataType: RequestTestModel.self, loginId: "tes@test.com", password: "151515", params: [:], completion: { (result) in
-            switch result {
-            case .success:
-                XCTFail()
-            case .failure(let error):
-                guard let interruption = error.interruption else {
-                    XCTAssert(true)
-                    return
-                }
-
-                switch interruption {
-                case .pendingTwoFactorRegistration(let resolver):
-                    self.expectFatalError(expectedMessage: "[TFARegistrationResolver<RequestTestModel>]: email is not supported in registration ") {
-                        resolver.verifyCode(provider: .email, authenticationCode: "123")
-                    }
-                default:
-                    break
-                }
-            }
-
-        })
-
-    }
-
+//
+//    func testResolverRegistrationEmail() {
+//        let inactiveProviders = [["name": "gigyaPhone"]]
+//
+//        let dic: [String: Any] = ["errorCode": 0, "callId": "34324", "statusCode": 200, "gigyaAssertion": "123","phvToken": "123","providerAssertion": "123","regToken": "123", "inactiveProviders": inactiveProviders]
+//        // swiftlint:disable force_try
+//        let jsonData = try! JSONSerialization.data(withJSONObject: dic, options: .prettyPrinted)
+//        // swiftlint:enable force_try
+//
+//        let error = NSError(domain: "gigya", code: 403102, userInfo: ["callId": "dasdasdsad"])
+//
+//        ResponseDataTest.error = error
+//
+//        ResponseDataTest.resData = jsonData
+//
+//        businessApi?.login(dataType: RequestTestModel.self, loginId: "tes@test.com", password: "151515", params: [:], completion: { (result) in
+//            switch result {
+//            case .success:
+//                XCTFail()
+//            case .failure(let error):
+//                guard let interruption = error.interruption else {
+//                    XCTAssert(true)
+//                    return
+//                }
+//
+//                switch interruption {
+//                case .pendingTwoFactorRegistration(let interruption, let providers, let factory)
+//                    self.expectFatalError(expectedMessage: "[TFARegistrationResolver<RequestTestModel>]: email is not supported in registration ") {
+//                        let factoryResolver = factory.getResolver(for: RegisteredEmailsResolver.self)
+////                        resolver.verifyCode(provider: .email, authenticationCode: "123")
+//                    }
+//                default:
+//                    break
+//                }
+//            }
+//
+//        })
+//
+//    }
 
     // MARK: Multiintteruption
     func testLinkAccountResolverAndTotp() {
@@ -213,18 +214,63 @@ class TfaGlobalTests: XCTestCase {
                 guard let interruption = error.interruption else { return }
 
                 switch interruption {
-                case .conflitingAccounts(let resolver):
+                case .conflitingAccount(let resolver):
+
+                    let error = NSError(domain: "gigya", code: 403101, userInfo: ["callId": "dasdasdsad"])
+
+                    ResponseDataTest.error = error
+
+                    ResponseDataTest.errorCalled = 0
+
                     resolver.linkToSite(loginId: "123", password: "123")
-                case .pendingTwoFactorVerification(let resolver):
-                    resolver.startVerificationWithEmail()
-                    resolver.sendEmailVerificationCode(registeredEmail: TFAEmail(id: email, obfuscated: "123", lastVerification: "123"))
-                    resolver.verifyCode(provider: .email, authenticationCode: "1234")
+                    
+                case .pendingTwoFactorVerification(let interruption, let providers, let factory):
+                    let factoryResolver = factory.getResolver(for: RegisteredEmailsResolver.self)
+
+                    let dic: [String: Any] = ["errorCode": 0, "callId": "34324", "statusCode": 200, "regToken": "123","emails": [["id": "test@test.vom"]],"gigyaAssertion": "stud"]
+                    // swiftlint:disable force_try
+                    let jsonData = try! JSONSerialization.data(withJSONObject: dic, options: .prettyPrinted)
+                    // swiftlint:enable force_try
+
+                    ResponseDataTest.error = nil
+
+                    ResponseDataTest.resData = jsonData
+
+                    factoryResolver.getRegisteredEmails(completion: { (result) in
+                        switch result {
+                        case .registeredEmails(let emails):
+                            factoryResolver.sendEmailCode(with: emails.last!, completion: { (result) in
+
+                            })
+                            break
+                        case .emailVerificationCodeSent(let resolver):
+                            resolver.verifyCode(provider: .email, verificationCode: "123", rememberDevice: false, completion: { (result) in
+                                switch result {
+                                case .resolved:
+                                    XCTAssertTrue(true)
+                                default:
+                                    XCTFail()
+                                }
+                            })
+                        case .error(let error):
+                            print(error)
+                            XCTFail()
+                        }
+                    })
+
                 default:
                     XCTFail()
                 }
             }
         })
 
+    }
+
+    func testSetEnable() {
+        let interruption = ioc?.container.resolve(IOCInterruptionResolverFactory.self)
+        interruption?.setEnabled(true)
+
+        XCTAssertTrue(Gigya.sharedInstance().interruptionsEnabled())
     }
 }
 

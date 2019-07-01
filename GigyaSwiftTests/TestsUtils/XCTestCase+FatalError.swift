@@ -6,7 +6,7 @@
 //  Copyright © 2019 Gigya. All rights reserved.
 //
 import XCTest
-@testable import GigyaSwift
+@testable import Gigya
 
 extension XCTestCase {
     func expectFatalError(expectedMessage: String, testcase: @escaping () -> Void) {

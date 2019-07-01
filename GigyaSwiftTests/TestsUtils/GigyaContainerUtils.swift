@@ -7,7 +7,7 @@
 //
 
 import Foundation
-@testable import GigyaSwift
+@testable import Gigya
 
 class GigyaContainerUtils {
     let container: IOCContainer = IOCContainer()
@@ -44,18 +44,26 @@ class GigyaContainerUtils {
         }
 
         container.register(service: IOCBusinessApiServiceProtocol.self) { resolver in
+            let config = resolver.resolve(GigyaConfig.self)
             let apiService = resolver.resolve(IOCApiServiceProtocol.self)
             let sessionService = resolver.resolve(IOCSessionServiceProtocol.self)
             let accountService = resolver.resolve(IOCAccountServiceProtocol.self)
             let providerFactory = resolver.resolve(IOCSocialProvidersManagerProtocol.self)
+            let interruptionsHandler = resolver.resolve(IOCInterruptionResolverFactory.self)
 
-            return BusinessApiService(apiService: apiService!,
+
+            return BusinessApiService(config: config!, apiService: apiService!,
                                         sessionService: sessionService!,
                                         accountService: accountService!,
-                                        providerFactory: providerFactory!)
+                                        providerFactory: providerFactory!,
+                                        interruptionsHandler: interruptionsHandler!)
         }
 
         container.register(service: IOCAccountServiceProtocol.self, isSingleton: true) { _ in AccountService() }
+
+        container.register(service: IOCInterruptionResolverFactory.self) { _ in
+            return InterruptionResolverFactory()
+        }
     }
 
 }

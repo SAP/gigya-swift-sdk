@@ -9,21 +9,22 @@
 import Foundation
 
 public struct GigyaResponseModel: Codable {
-    var statusCode: ApiStatusCode
-    var errorCode: Int
-    var callId: String
-    let errorMessage: String?
+    public var statusCode: ApiStatusCode
+    public var errorCode: Int
+    public var callId: String
+    public let errorMessage: String?
+
     internal var requestData: Data? = nil
     
-    func toDictionary() -> [String: Any] {
+    internal func toDictionary() -> [String: Any] {
         return DecodeEncodeUtils.dataToDictionary(data: self.requestData)
     }
     
-    func asJson() -> String {
+    internal func asJson() -> String {
         return toDictionary().asJson
     }
 
-    func isInterruptionSupported() -> Bool {
+    internal func isInterruptionSupported() -> Bool {
         let errosCodes = Interruption.allCases
 
         if let interruption = Interruption(rawValue: self.errorCode), errosCodes.contains(interruption) {

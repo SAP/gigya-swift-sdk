@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct GigyaDefinitions {
+public struct GigyaDefinitions {
     public struct API {
         // ACCOUNT
         public static let getSdkConfig = "socialize.getSDKConfig"
@@ -43,6 +43,9 @@ struct GigyaDefinitions {
         public static let sendVerificationCodeTFA = "accounts.tfa.phone.sendVerificationCode"
         public static let totpRegisterTFA = "accounts.tfa.totp.register"
         public static let totpVerifyTFA = "accounts.tfa.totp.verify"
+        public static let pushUpdateDeviceTFA = "accounts.auth.push.updateDevice"
+        public static let pushVerifyTFA = "accounts.tfa.push.verify"
+        public static let pushOptinTFA = "accounts.tfa.push.optin"
     }
 
     public struct Tfa {
@@ -54,6 +57,10 @@ struct GigyaDefinitions {
     public struct Plugin {
         public static let finished = "finished"
         public static let canceled = "canceled"
+    }
+
+    public struct ErrorCode {
+        public static let invalidJwt = 400006
     }
 
 }

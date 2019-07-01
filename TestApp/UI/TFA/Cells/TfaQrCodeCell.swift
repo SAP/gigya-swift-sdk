@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import GigyaSwift
+import Gigya
 
 class TfaQrCodeCell: UITableViewCell {
 

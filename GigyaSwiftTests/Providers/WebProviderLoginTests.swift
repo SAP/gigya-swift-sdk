@@ -8,19 +8,19 @@
 
 import Foundation
 import XCTest
-@testable import GigyaSwift
+@testable import Gigya
 
 class WebProviderLoginTests: XCTestCase {
     let ioc = GigyaContainerUtils()
-    var gigya = GigyaSwift.sharedInstance()
+    var gigya = Gigya.sharedInstance()
 
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
         ResponseDataTest.resData = nil
         ResponseDataTest.error = nil
-        GigyaSwift.sharedInstance().container = ioc.container
+        Gigya.sharedInstance().container = ioc.container
 
-        GigyaSwift.sharedInstance().initWithApi(apiKey: "123")
+        Gigya.sharedInstance().initWithApi(apiKey: "123")
 
         ResponseDataTest.clientID = nil
         ResponseDataTest.resData = nil
@@ -47,7 +47,7 @@ class WebProviderLoginTests: XCTestCase {
         ResponseDataTest.providerToken = "123"
         ResponseDataTest.providerSecret = "123"
 
-        GigyaSwift.sharedInstance().login(with: .yahoo, viewController: viewController, params: ["testParam": "test"]) { (result) in
+        Gigya.sharedInstance().login(with: .yahoo, viewController: viewController, params: ["testParam": "test"]) { (result) in
             switch result {
             case .success(let data):
                 XCTAssertNotNil(data )
@@ -67,7 +67,7 @@ class WebProviderLoginTests: XCTestCase {
         ResponseDataTest.clientID = "123"
         ResponseDataTest.resData = jsonData
 
-        GigyaSwift.sharedInstance().login(with: .yahoo, viewController: viewController) { (result) in
+        Gigya.sharedInstance().login(with: .yahoo, viewController: viewController) { (result) in
             switch result {
             case .success:
                 XCTFail("Fail")
@@ -90,7 +90,7 @@ class WebProviderLoginTests: XCTestCase {
         ResponseDataTest.providerToken = "123"
         ResponseDataTest.providerSecret = "123"
 
-        GigyaSwift.sharedInstance().login(with: .yahoo, viewController: viewController) { (result) in
+        Gigya.sharedInstance().login(with: .yahoo, viewController: viewController) { (result) in
             switch result {
             case .success:
                 XCTFail("Fail")
@@ -114,7 +114,7 @@ class WebProviderLoginTests: XCTestCase {
         ResponseDataTest.providerSecret = "123"
         ResponseDataTest.providerError = "The operation couldn’t be completed. (gigya error 400093.)"
 
-        GigyaSwift.sharedInstance().login(with: .yahoo, viewController: viewController) { (result) in
+        Gigya.sharedInstance().login(with: .yahoo, viewController: viewController) { (result) in
             switch result {
             case .success:
                 XCTFail("Fail")
@@ -139,7 +139,7 @@ class WebProviderLoginTests: XCTestCase {
         ResponseDataTest.providerToken = "123"
         ResponseDataTest.providerSecret = "123"
 
-        GigyaSwift.sharedInstance().addConnection(provider: .yahoo, viewController: viewController, params: ["testParam": "test"]) { (result) in
+        Gigya.sharedInstance().addConnection(provider: .yahoo, viewController: viewController, params: ["testParam": "test"]) { (result) in
             switch result {
             case .success(let data):
                 XCTAssertNotNil(data )

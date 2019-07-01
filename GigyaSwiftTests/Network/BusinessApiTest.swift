@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import GigyaSwift
+@testable import Gigya
 
 class BusinessApiTest: XCTestCase {
 
@@ -87,7 +87,7 @@ class BusinessApiTest: XCTestCase {
         // swiftlint:enable force_try
         ResponseDataTest.resData = jsonData
 
-        businessApi?.getAccount(dataType: RequestTestModel.self, completion: { (result) in
+        businessApi?.getAccount(clearAccount: true, dataType: RequestTestModel.self, completion: { (result) in
             switch result {
             case .success(let data):
                 XCTAssertNotNil(data.callId)
@@ -99,32 +99,32 @@ class BusinessApiTest: XCTestCase {
         })
     }
 
-    func testGetAccountDic() {
-        // This is an example of a functional test case.
-        let dic: [String: Any] = ["callId": "34324", "errorCode": 0, "statusCode": 200]
-        // swiftlint:disable force_try
-        let jsonData = try! JSONSerialization.data(withJSONObject: dic, options: .prettyPrinted)
-        // swiftlint:enable force_try
-        ResponseDataTest.resData = jsonData
-
-        businessApi?.getAccount(dataType: [String: AnyCodable].self, completion: { (result) in
-            switch result {
-            case .success(let data):
-                XCTAssertNotNil(data["callId"])
-                XCTAssertNotNil(data["errorCode"])
-                XCTAssertNotNil(data["statusCode"])
-            case .failure(let error):
-                XCTFail("Fail: \(error)")
-            }
-        })
-    }
+//    func testGetAccountDic() {
+//        // This is an example of a functional test case.
+//        let dic: [String: Any] = ["callId": "34324", "errorCode": 0, "statusCode": 200]
+//        // swiftlint:disable force_try
+//        let jsonData = try! JSONSerialization.data(withJSONObject: dic, options: .prettyPrinted)
+//        // swiftlint:enable force_try
+//        ResponseDataTest.resData = jsonData
+//
+//        businessApi?.getAccount(clearAccount: true, dataType: [String: AnyCodable].self, completion: { (result) in
+//            switch result {
+//            case .success(let data):
+//                XCTAssertNotNil(data["callId"])
+//                XCTAssertNotNil(data["errorCode"])
+//                XCTAssertNotNil(data["statusCode"])
+//            case .failure(let error):
+//                XCTFail("Fail: \(error)")
+//            }
+//        })
+//    }
 
     func testGetAccountError() {
         // This is an example of a functional test case.
 
         ResponseDataTest.resData = nil
 
-        businessApi?.getAccount(dataType: [String: AnyCodable].self, completion: { (result) in
+        businessApi?.getAccount(clearAccount: true, dataType: RequestTestModel.self, completion: { (result) in
             switch result {
             case .success:
                 XCTFail("Fail")
@@ -142,12 +142,12 @@ class BusinessApiTest: XCTestCase {
         // swiftlint:enable force_try
         ResponseDataTest.resData = jsonData
 
-        accountService?.account = GigyaAccount(UID: nil, profile: nil, UIDSignature: nil, apiVersion: 1, created: nil, createdTimestamp: nil, isActive: nil, isRegistered: nil, isVerified: nil, lastLogin: nil, lastLoginTimestamp: nil, lastUpdated: nil, lastUpdatedTimestamp: nil, loginProvider: nil, oldestDataUpdated: nil, oldestDataUpdatedTimestamp: nil, registered: nil, registeredTimestamp: nil, signatureTimestamp: nil, socialProviders: nil, verified: nil, verifiedTimestamp: nil, regToken: nil, data: nil)
+        accountService?.account = GigyaAccount(UID: nil, profile: nil, UIDSignature: nil, apiVersion: 1, created: nil, createdTimestamp: nil, isActive: nil, isRegistered: nil, isVerified: nil, lastLogin: nil, lastLoginTimestamp: nil, lastUpdated: nil, lastUpdatedTimestamp: nil, loginProvider: nil, oldestDataUpdated: nil, oldestDataUpdatedTimestamp: nil, registered: nil, registeredTimestamp: nil, signatureTimestamp: nil, socialProviders: nil, verified: nil, verifiedTimestamp: nil, data: nil)
 
-        let account = GigyaAccount(UID: "123", profile: nil, UIDSignature: "123", apiVersion: 1, created: nil, createdTimestamp: nil, isActive: nil, isRegistered: nil, isVerified: nil, lastLogin: nil, lastLoginTimestamp: nil, lastUpdated: nil, lastUpdatedTimestamp: nil, loginProvider: nil, oldestDataUpdated: nil, oldestDataUpdatedTimestamp: nil, registered: nil, registeredTimestamp: nil, signatureTimestamp: nil, socialProviders: nil, verified: nil, verifiedTimestamp: nil, regToken: nil, data: nil)
+        let account = GigyaAccount(UID: "123", profile: nil, UIDSignature: "123", apiVersion: 1, created: nil, createdTimestamp: nil, isActive: nil, isRegistered: nil, isVerified: nil, lastLogin: nil, lastLoginTimestamp: nil, lastUpdated: nil, lastUpdatedTimestamp: nil, loginProvider: nil, oldestDataUpdated: nil, oldestDataUpdatedTimestamp: nil, registered: nil, registeredTimestamp: nil, signatureTimestamp: nil, socialProviders: nil, verified: nil, verifiedTimestamp: nil, data: nil)
 
         businessApi?.setAccount(obj: account, completion: { (result) in
-            self.businessApi?.getAccount(dataType: GigyaAccount.self, completion: { (reult) in
+            self.businessApi?.getAccount(clearAccount: true, dataType: GigyaAccount.self, completion: { (reult) in
                 switch result {
                 case .success(let data):
                     XCTAssertEqual(data.UID, account.UID)
@@ -165,12 +165,12 @@ class BusinessApiTest: XCTestCase {
         // swiftlint:enable force_try
         ResponseDataTest.resData = jsonData
 
-        accountService?.account = GigyaAccount(UID: nil, profile: nil, UIDSignature: nil, apiVersion: 1, created: nil, createdTimestamp: nil, isActive: nil, isRegistered: nil, isVerified: nil, lastLogin: nil, lastLoginTimestamp: nil, lastUpdated: nil, lastUpdatedTimestamp: nil, loginProvider: nil, oldestDataUpdated: nil, oldestDataUpdatedTimestamp: nil, registered: nil, registeredTimestamp: nil, signatureTimestamp: nil, socialProviders: nil, verified: nil, verifiedTimestamp: nil, regToken: nil, data: nil)
+        accountService?.account = GigyaAccount(UID: nil, profile: nil, UIDSignature: nil, apiVersion: 1, created: nil, createdTimestamp: nil, isActive: nil, isRegistered: nil, isVerified: nil, lastLogin: nil, lastLoginTimestamp: nil, lastUpdated: nil, lastUpdatedTimestamp: nil, loginProvider: nil, oldestDataUpdated: nil, oldestDataUpdatedTimestamp: nil, registered: nil, registeredTimestamp: nil, signatureTimestamp: nil, socialProviders: nil, verified: nil, verifiedTimestamp: nil, data: nil)
 
-        let account = GigyaAccount(UID: "123", profile: nil, UIDSignature: "123", apiVersion: 1, created: nil, createdTimestamp: nil, isActive: nil, isRegistered: nil, isVerified: nil, lastLogin: nil, lastLoginTimestamp: nil, lastUpdated: nil, lastUpdatedTimestamp: nil, loginProvider: nil, oldestDataUpdated: nil, oldestDataUpdatedTimestamp: nil, registered: nil, registeredTimestamp: nil, signatureTimestamp: nil, socialProviders: nil, verified: nil, verifiedTimestamp: nil, regToken: nil, data: nil)
+        let account = GigyaAccount(UID: "123", profile: nil, UIDSignature: "123", apiVersion: 1, created: nil, createdTimestamp: nil, isActive: nil, isRegistered: nil, isVerified: nil, lastLogin: nil, lastLoginTimestamp: nil, lastUpdated: nil, lastUpdatedTimestamp: nil, loginProvider: nil, oldestDataUpdated: nil, oldestDataUpdatedTimestamp: nil, registered: nil, registeredTimestamp: nil, signatureTimestamp: nil, socialProviders: nil, verified: nil, verifiedTimestamp: nil, data: nil)
 
         businessApi?.setAccount(obj: account, completion: { (result) in
-            self.businessApi?.getAccount(dataType: GigyaAccount.self, completion: { (reult) in
+            self.businessApi?.getAccount(clearAccount: true, dataType: GigyaAccount.self, completion: { (reult) in
                 switch result {
                 case .success:
                     XCTFail()
@@ -188,12 +188,12 @@ class BusinessApiTest: XCTestCase {
         // swiftlint:enable force_try
         ResponseDataTest.resData = jsonData
 
-        accountService?.account = GigyaAccount(UID: nil, profile: nil, UIDSignature: nil, apiVersion: 1, created: nil, createdTimestamp: nil, isActive: nil, isRegistered: nil, isVerified: nil, lastLogin: nil, lastLoginTimestamp: nil, lastUpdated: nil, lastUpdatedTimestamp: nil, loginProvider: nil, oldestDataUpdated: nil, oldestDataUpdatedTimestamp: nil, registered: nil, registeredTimestamp: nil, signatureTimestamp: nil, socialProviders: nil, verified: nil, verifiedTimestamp: nil, regToken: nil, data: nil)
+        accountService?.account = GigyaAccount(UID: nil, profile: nil, UIDSignature: nil, apiVersion: 1, created: nil, createdTimestamp: nil, isActive: nil, isRegistered: nil, isVerified: nil, lastLogin: nil, lastLoginTimestamp: nil, lastUpdated: nil, lastUpdatedTimestamp: nil, loginProvider: nil, oldestDataUpdated: nil, oldestDataUpdatedTimestamp: nil, registered: nil, registeredTimestamp: nil, signatureTimestamp: nil, socialProviders: nil, verified: nil, verifiedTimestamp: nil, data: nil)
 
-        let account = GigyaAccount(UID: "123", profile: nil, UIDSignature: "123", apiVersion: 1, created: nil, createdTimestamp: nil, isActive: nil, isRegistered: nil, isVerified: nil, lastLogin: nil, lastLoginTimestamp: nil, lastUpdated: nil, lastUpdatedTimestamp: nil, loginProvider: nil, oldestDataUpdated: nil, oldestDataUpdatedTimestamp: nil, registered: nil, registeredTimestamp: nil, signatureTimestamp: nil, socialProviders: nil, verified: nil, verifiedTimestamp: nil, regToken: nil, data: nil)
+        let account = GigyaAccount(UID: "123", profile: nil, UIDSignature: "123", apiVersion: 1, created: nil, createdTimestamp: nil, isActive: nil, isRegistered: nil, isVerified: nil, lastLogin: nil, lastLoginTimestamp: nil, lastUpdated: nil, lastUpdatedTimestamp: nil, loginProvider: nil, oldestDataUpdated: nil, oldestDataUpdatedTimestamp: nil, registered: nil, registeredTimestamp: nil, signatureTimestamp: nil, socialProviders: nil, verified: nil, verifiedTimestamp: nil, data: nil)
 
         businessApi?.setAccount(obj: account, completion: { (result) in
-            self.businessApi?.getAccount(dataType: GigyaAccount.self, completion: { (reult) in
+            self.businessApi?.getAccount(clearAccount: true, dataType: GigyaAccount.self, completion: { (reult) in
                 switch result {
                 case .success:
                     XCTFail()

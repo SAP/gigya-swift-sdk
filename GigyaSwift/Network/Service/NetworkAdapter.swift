@@ -7,11 +7,11 @@
 //
 
 import Foundation
-import GigyaSDK
+import GigyaInfra
 
 public typealias GigyaResponseHandler = (NSData?, Error?) -> Void
 
-protocol IOCNetworkAdapterProtocol {
+public protocol IOCNetworkAdapterProtocol {
     func send(model: ApiRequestModel, completion: @escaping GigyaResponseHandler)
 }
 

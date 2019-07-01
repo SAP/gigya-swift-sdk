@@ -6,8 +6,8 @@
 //  Copyright © 2019 Gigya. All rights reserved.
 //
 
-import Foundation
-@testable import GigyaSwift
+import UIKit
+@testable import Gigya
 
 class SocialProviderWrapperMock: NSObject, ProviderWrapperProtocol {
 

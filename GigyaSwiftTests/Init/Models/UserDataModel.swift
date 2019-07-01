@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import GigyaSwift
+import Gigya
 
 struct UserDataModel: GigyaAccountProtocol {
     var UID: String?

@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import GigyaSDK
+import GigyaInfra
 
 public class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
 
@@ -34,14 +34,18 @@ public class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
     private var sessionService: IOCSessionServiceProtocol {
         return (container?.resolve(IOCSessionServiceProtocol.self))!
     }
-    
+
+    private var interruptionResolver: IOCInterruptionResolverFactory {
+        return (container?.resolve(IOCInterruptionResolverFactory.self))!
+    }
+
     // MARK: - Initialize
     internal init(container: IOCContainer, plistConfig: PlistConfig?) {
         self.container = container
 
         // Init Gigya Objc when thr host add params in plist
         if let apiKey = plistConfig?.apiKey, !apiKey.isEmpty {
-            initWithApi(apiKey: apiKey, apiDomain: plistConfig?.apiDomain)
+            initFor(apiKey: apiKey, apiDomain: plistConfig?.apiDomain)
         }
     }
 
@@ -52,15 +56,15 @@ public class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
      - Parameter apiDomain:  Request Domain.
      */
 
-    public func initWithApi(apiKey: String, apiDomain: String? = nil, application: UIApplication? = nil, launchOptions: [AnyHashable: Any]? = nil) {
+    public func initFor(apiKey: String, apiDomain: String? = nil) {
         guard !apiKey.isEmpty else {
-            GigyaLogger.error(with: GigyaSwift.self, message: "please make sure you call 'initWithApi' or add apiKey to plist file")
+            GigyaLogger.error(with: Gigya.self, message: "please make sure you call 'initWithApi' or add apiKey to plist file")
         }
 
         config.apiDomain = apiDomain ?? self.defaultApiDomain
         config.apiKey = apiKey
-
-        gigyaApi.initGigyaSDK(apiKey: apiKey, apiDomain: apiDomain, application: application, launchOptions: launchOptions)
+        
+        gigyaApi.initGigyaSDK(apiKey: apiKey, apiDomain: apiDomain, application: nil, launchOptions: nil)
     }
 
     // MARK: - Anonymous API
@@ -73,7 +77,7 @@ public class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
      - Parameter completion:   Response GigyaApiResult<GigyaDictionary>.
      */
 
-    public func send(api: String, params: [String: String] = [:], completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void ) {
+    public func send(api: String, params: [String: Any] = [:], completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void ) {
         businessApiService.send(api: api, params: params, completion: completion)
     }
 
@@ -85,7 +89,7 @@ public class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
      - Parameter completion:  Response GigyaApiResult<T>.
      */
 
-    public func send<B: Codable>(dataType: B.Type, api: String, params: [String: String] = [:], completion: @escaping (GigyaApiResult<B>) -> Void ) {
+    public func send<B: Codable>(dataType: B.Type, api: String, params: [String: Any] = [:], completion: @escaping (GigyaApiResult<B>) -> Void ) {
         businessApiService.send(dataType: dataType, api: api, params: params, completion: completion)
     }
 
@@ -127,7 +131,7 @@ public class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
      - Parameter viewController:    your ViewController should be open login
      - Parameter completion:        Response GigyaApiResult.
      */
-    public func login(with provider: GigyaSocielProviders, viewController: UIViewController,
+    public func login(with provider: GigyaSocialProviders, viewController: UIViewController,
                       params: [String: Any] = [:], completion: @escaping (GigyaLoginResult<T>) -> Void) {
         businessApiService.login(provider: provider, viewController: viewController, params: params, dataType: T.self) { (res) in
             completion(res)
@@ -176,7 +180,7 @@ public class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
      - Parameter completion:  Login response.
      */
 
-    public func socialLoginWith(providers: [GigyaSocielProviders], viewController: UIViewController, params: [String: Any], completion: @escaping (GigyaLoginResult<T>) -> Void) {
+    public func socialLoginWith(providers: [GigyaSocialProviders], viewController: UIViewController, params: [String: Any], completion: @escaping (GigyaLoginResult<T>) -> Void) {
         businessApiService.login(providers: providers, viewController: viewController, params: params, completion: completion)
     }
     
@@ -189,7 +193,7 @@ public class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
      - Parameter completion:  Login response.
      */
     
-    public func addConnection(provider: GigyaSocielProviders, viewController: UIViewController, params: [String: Any], completion: @escaping (GigyaApiResult<T>) -> Void) {
+    public func addConnection(provider: GigyaSocialProviders, viewController: UIViewController, params: [String: Any], completion: @escaping (GigyaApiResult<T>) -> Void) {
         businessApiService.addConnection(provider: provider, viewController: viewController, params: params, dataType: T.self, completion: completion)
     }
     
@@ -200,7 +204,7 @@ public class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
      - Parameter completion:  Login response.
      */
     
-    public func removeConnection(provider: GigyaSocielProviders, completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void) {
+    public func removeConnection(provider: GigyaSocialProviders, completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void) {
         businessApiService.removeConnection(providerName: provider, completion: completion)
     }
 
@@ -221,14 +225,34 @@ public class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
     }
 
     /**
-     * Show comments (ScreenSet)
-     *
-     * :param params:   Comments ScreenSet parameters.
-     * :param completion:  Plugin completion.
+     Show comments (ScreenSet)
+
+     - Parameter params:   Comments ScreenSet parameters.
+     - Parameter completion:  Plugin completion.
      */
 
 //    private func showComments(viewController: UIViewController, params: [String: Any] = [:], completion: @escaping (PluginEvent<T>) -> Void) {
 //        let wrapper = PluginViewWrapper(config: config, sessionService: sessionService, businessApiService: businessApiService, plugin: "comments.commentsUI", params: params, completion: completion)
 //        wrapper.presentPluginController(viewController: viewController, dataType: T.self, screenSet: "")
 //    }
+
+    /**
+     Update interruption handling.
+     By default, the Gigya SDK will handle various API interruptions to allow simple resolving of certain common errors.
+     Setting interruptions to FALSE will force the end user to handle his own errors.
+
+     - Parameter sdkHandles: False if manually handling all errors.
+     */
+    public func handleInterruptions(sdkHandles: Bool) {
+        interruptionResolver.setEnabled(sdkHandles)
+    }
+
+    /**
+     Return SDK interruptions state.
+     if TRUE, interruption handling will be optional via the GigyaLoginCallback.
+     */
+    public func interruptionsEnabled() -> Bool {
+        return interruptionResolver.isEnabled
+    }
+
 }

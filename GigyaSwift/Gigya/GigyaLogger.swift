@@ -8,14 +8,14 @@
 
 import Foundation
 
-class GigyaLogger {
+public class GigyaLogger {
     private static var debugMode: Bool = true
 
     static func setDebugMode(to debugModeEnabled: Bool) {
         self.debugMode = debugModeEnabled
     }
 
-    static func isDebug() -> Bool {
+    internal static func isDebug() -> Bool {
         return self.debugMode
     }
 
@@ -23,17 +23,17 @@ class GigyaLogger {
         fatalError("\(message)")
     }
 
-    static func error(with clazz: AnyClass, message: String, generic: Any? = nil) -> Never {
+    public static func error(with clazz: AnyClass, message: String, generic: Any? = nil) -> Never {
         fatalError("[\(String(describing: clazz))]: \(message) \(genericName(generic))")
     }
 
-    static func log(with clazz: Any, message: String) {
+    public static func log(with clazz: Any, message: String) {
         if debugMode {
             print("[\(genericName(clazz))]: \(message)")
         }
     }
 
-    static func genericName(_ clazz: Any?) -> String {
+    internal static func genericName(_ clazz: Any?) -> String {
         guard let clazz = clazz else {
             return ""
         }

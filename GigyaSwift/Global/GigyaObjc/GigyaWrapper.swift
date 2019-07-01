@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import GigyaSDK
+import GigyaInfra
 
 // Alias to GSSession from objc sdk
 typealias GigyaSession = GSSession
@@ -39,7 +39,7 @@ class GigyaWrapper: IOCGigyaWrapperProtocol {
 
     // init objc sdk
     func initGigyaSDK(apiKey: String, apiDomain: String? = nil, application: UIApplication? = nil, launchOptions: [AnyHashable: Any]? = nil) {
-        Gigya.initWithAPIKey(apiKey, application: application, launchOptions: launchOptions, apiDomain: apiDomain)
+        GigyaInfra.initWithAPIKey(apiKey, application: application, launchOptions: launchOptions, apiDomain: apiDomain)
 
         // TODO: need to move
         GSLogger.sharedInstance()?.enabled = true
@@ -47,21 +47,21 @@ class GigyaWrapper: IOCGigyaWrapperProtocol {
 
     // MARK: - Session manager
     func isValidSession() -> Bool {
-        return Gigya.isSessionValid()
+        return GigyaInfra.isSessionValid()
     }
 
     func getSession(_ result: @escaping (GigyaSession?) -> Void) {
-        Gigya.getSessionWithCompletionHandler { session in
+        GigyaInfra.getSessionWithCompletionHandler { session in
             return result(session)
         }
     }
 
     func setSession(_ session: GigyaSession) {
-        Gigya.setSession(session)
+        GigyaInfra.setSession(session)
     }
 
     func logout() {
-        Gigya.logout { (res, error) in
+        GigyaInfra.logout { (res, error) in
             
         }
     }

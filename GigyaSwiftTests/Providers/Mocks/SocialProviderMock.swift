@@ -7,7 +7,7 @@
 //
 
 import Foundation
-@testable import GigyaSwift
+@testable import Gigya
 
 class SocialProviderMock: SocialLoginProvider {
     func loginSuccess<T>(providerSessions: String, loginMode: String, params: [String: Any], completion: @escaping (GigyaApiResult<T>) -> Void) {

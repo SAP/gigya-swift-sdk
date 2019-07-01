@@ -7,7 +7,7 @@
 //
 
 import Foundation
-@testable import GigyaSwift
+@testable import Gigya
 
 class DecodeTestUtils {
     static func toObject<D, T: Codable>(data: D, toType: T.Type) throws -> T {

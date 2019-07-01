@@ -7,15 +7,15 @@
 //
 
 import Foundation
-@testable import GigyaSwift
+@testable import Gigya
 
 class BusinessApiServiceMock: BusinessApiService {
     var resData: Any?
 
     var showError: Bool = false
 
-    required init(apiService: IOCApiServiceProtocol, sessionService: IOCSessionServiceProtocol, accountService: IOCAccountServiceProtocol, providerFactory: IOCSocialProvidersManagerProtocol) {
-        super.init(apiService: apiService, sessionService: sessionService, accountService: accountService, providerFactory: providerFactory)
+    required init(config: GigyaConfig ,apiService: IOCApiServiceProtocol, sessionService: IOCSessionServiceProtocol, accountService: IOCAccountServiceProtocol, providerFactory: IOCSocialProvidersManagerProtocol, interruptionsHandler: IOCInterruptionResolverFactory) {
+        super.init(config: config, apiService: apiService, sessionService: sessionService, accountService: accountService, providerFactory: providerFactory, interruptionsHandler: interruptionsHandler)
     }
 //
 //    override func send(api: String, params: [String: String] = [:], completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void) {

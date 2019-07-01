@@ -9,9 +9,21 @@
 import Foundation
 // TODO: Need to make unit test
 
-public class GigyaSwift {
+public class Gigya {
 
     private static var storedInstance: GigyaInstanceProtocol?
+
+    private static var container: IOCContainer?
+
+    // Get container - internal sdk usage
+    public static func getContainer() -> IOCContainer {
+        if container == nil {
+            container = IOCContainer()
+            registerDependencies(with: container!)
+        }
+
+        return container!
+    }
 
     // Get instance with default user
     @discardableResult
@@ -23,8 +35,7 @@ public class GigyaSwift {
     @discardableResult
     public static func sharedInstance<T: GigyaAccountProtocol>(_ dataType: T.Type) -> GigyaCore<T> {
         if storedInstance == nil {
-            let container: IOCContainer = IOCContainer()
-            registerDependencies(with: container)
+            let container: IOCContainer = getContainer()
 
             let plistConfig = DecodeEncodeUtils.parsePlistConfig()
             let newInstance = GigyaCore<T>(container: container, plistConfig: plistConfig)

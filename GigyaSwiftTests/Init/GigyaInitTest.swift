@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import GigyaSwift
+@testable import Gigya
 
 class GigyaInitTest: XCTestCase {
 
@@ -21,36 +21,36 @@ class GigyaInitTest: XCTestCase {
 
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
-        GigyaSwift.removeStoredInstance()
+        Gigya.removeStoredInstance()
     }
 
     func testInitWithOutSchema() {
-        let gigya = GigyaSwift.sharedInstance()
+        let gigya = Gigya.sharedInstance()
 
         let className = String(describing: gigya.self)
 
-        XCTAssertEqual(className, "GigyaSwift.GigyaCore<GigyaSwift.GigyaAccount>")
+        XCTAssertEqual(className, "Gigya.GigyaCore<Gigya.GigyaAccount>")
     }
 
     func testInitWithSchema() {
-        let gigya = GigyaSwift.sharedInstance(UserDataModel.self)
+        let gigya = Gigya.sharedInstance(UserDataModel.self)
 
         let className = String(describing: gigya.self)
 
-        XCTAssertEqual(className, "GigyaSwift.GigyaCore<GigyaSwiftTests.UserDataModel>")
+        XCTAssertEqual(className, "Gigya.GigyaCore<GigyaSwiftTests.UserDataModel>")
     }
 
     func testInitWithWrongSchema() {
-        GigyaSwift.sharedInstance(UserDataModel.self)
+        Gigya.sharedInstance(UserDataModel.self)
 
-        expectFatalError(expectedMessage: "[GigyaSwift]: You need to use:  UserDataModel") {
-            GigyaSwift.sharedInstance()
+        expectFatalError(expectedMessage: "[Gigya]: You need to use:  UserDataModel") {
+            Gigya.sharedInstance()
         }
     }
 
     func testInitWithOutApiKey() {
-        expectFatalError(expectedMessage: "[GigyaSwift]: please make sure you call 'initWithApi' or add apiKey to plist file ") {
-            GigyaSwift.sharedInstance().initWithApi(apiKey: "")
+        expectFatalError(expectedMessage: "[Gigya]: please make sure you call 'initWithApi' or add apiKey to plist file ") {
+            Gigya.sharedInstance().initWithApi(apiKey: "")
         }
     }
 
@@ -64,27 +64,27 @@ class GigyaInitTest: XCTestCase {
 
     // Dependencies tests
     func testConfigDependency() {
-        let config = GigyaSwift.sharedInstance().container?.resolve(GigyaConfig.self)
+        let config = Gigya.sharedInstance().container?.resolve(GigyaConfig.self)
         XCTAssertNotNil(config)
     }
 
     func testGigyaApiDependency() {
-        let gigyaApi = GigyaSwift.sharedInstance().container?.resolve(IOCGigyaWrapperProtocol.self)
+        let gigyaApi = Gigya.sharedInstance().container?.resolve(IOCGigyaWrapperProtocol.self)
         XCTAssertNotNil(gigyaApi)
     }
 
     func testAccountServiceDependency() {
-        let accountService = GigyaSwift.sharedInstance().container?.resolve(IOCAccountServiceProtocol.self)
+        let accountService = Gigya.sharedInstance().container?.resolve(IOCAccountServiceProtocol.self)
         XCTAssertNotNil(accountService)
     }
 
     func testSessionServiceDependency() {
-        let sessionService = GigyaSwift.sharedInstance().container?.resolve(IOCSessionServiceProtocol.self)
+        let sessionService = Gigya.sharedInstance().container?.resolve(IOCSessionServiceProtocol.self)
         XCTAssertNotNil(sessionService)
     }
 
     func testApiServiceDependency() {
-        let apiService = GigyaSwift.sharedInstance().container?.resolve(IOCApiServiceProtocol.self)
+        let apiService = Gigya.sharedInstance().container?.resolve(IOCApiServiceProtocol.self)
         XCTAssertNotNil(apiService)
     }
 

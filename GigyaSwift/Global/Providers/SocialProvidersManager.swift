@@ -9,7 +9,7 @@
 import Foundation
 
 protocol IOCSocialProvidersManagerProtocol {
-    func getProvider(with socialProvider: GigyaSocielProviders, delegate: BusinessApiDelegate) -> Provider
+    func getProvider(with socialProvider: GigyaSocialProviders, delegate: BusinessApiDelegate) -> Provider
 }
 
 class SocialProvidersManager: IOCSocialProvidersManagerProtocol {
@@ -17,7 +17,7 @@ class SocialProvidersManager: IOCSocialProvidersManagerProtocol {
 
     let sessionService: IOCSessionServiceProtocol
 
-    private var providersContainer: [GigyaNativeSocielProviders: ProviderWrapperProtocol] = [:]
+    private var providersContainer: [GigyaNativeSocialProviders: ProviderWrapperProtocol] = [:]
 
     init(sessionService: IOCSessionServiceProtocol, config: GigyaConfig) {
         self.sessionService = sessionService
@@ -27,7 +27,7 @@ class SocialProvidersManager: IOCSocialProvidersManagerProtocol {
     }
 
     func checkIncludedProviders() {
-        for provider in GigyaNativeSocielProviders.allCases {
+        for provider in GigyaNativeSocialProviders.allCases {
             if let providerWrapperClass = NSClassFromString("\(Bundle.appName()).\(provider.getClassName())") {
                 guard let providerWrapper = providerWrapperClass as AnyClass as? ProviderWrapperProtocol.Type else {
                     GigyaLogger.error(message: "\(provider.getClassName()) not extend to ProviderWrapperProtocol")
@@ -40,8 +40,8 @@ class SocialProvidersManager: IOCSocialProvidersManagerProtocol {
         }
     }
 
-    func getProvider(with socialProvider: GigyaSocielProviders, delegate: BusinessApiDelegate) -> Provider {
-        if let providerType: GigyaNativeSocielProviders = GigyaNativeSocielProviders(rawValue: socialProvider.rawValue) {
+    func getProvider(with socialProvider: GigyaSocialProviders, delegate: BusinessApiDelegate) -> Provider {
+        if let providerType: GigyaNativeSocialProviders = GigyaNativeSocialProviders(rawValue: socialProvider.rawValue) {
             if let wrapper = providersContainer[providerType] {
                 GigyaLogger.log(with: self, message: "[\(socialProvider.rawValue)] - use sdk")
 

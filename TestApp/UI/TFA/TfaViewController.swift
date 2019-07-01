@@ -8,7 +8,8 @@
 
 import Foundation
 import UIKit
-import GigyaSwift
+import Gigya
+import GigyaTfa
 
 public enum TFAMode: String {
     case registration = "registration"
@@ -31,9 +32,28 @@ class TfaViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     var content = [String]()
     var tfaProviders = [TFAProviderModel]()
     var tfaMode: TFAMode = .registration
-    
-    var registrationResolverDelegate: TFARegistrationResolverProtocol?
-    var verificationResolverDelegate: TFAVerificationResolverProtocol?
+
+    lazy var registeredEmailsResolver = {
+        return factoryResolver?.getResolver(for: RegisteredEmailsResolver.self)
+    }()
+
+    lazy var registerPhoneResolver = {
+        return factoryResolver?.getResolver(for: RegisterPhoneResolver.self)
+    }()
+
+    lazy var registeredPhonesResolver = {
+        return factoryResolver?.getResolver(for: RegisteredPhonesResolver.self)
+    }()
+
+    lazy var registerTotpsResolver = {
+        return factoryResolver?.getResolver(for: RegisterTotpResolver.self)
+    }()
+
+    var verifyCodeResolver: VerifyCodeResolverProtocol?
+
+    var verifyTotpResolver: VerifyTotpResolverProtocol?
+
+    var factoryResolver: TFAResolverFactory<UserHost>?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,8 +75,6 @@ class TfaViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
             self.providerPickerView.delegate?.pickerView?(self.providerPickerView, didSelectRow: 0, inComponent: 0)
         }
     }
-
-    
     // MARK: - Providers UIPickerView Delegations
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -80,6 +98,8 @@ class TfaViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
             onTfaTotpProviderSelection()
         case .email:
             onTfaEmailProviderSelection()
+        case .push:
+            break
         }
     }
     
@@ -137,7 +157,7 @@ class TfaViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
             reloadTableWith(content:  ["phoneInput"])
             break
         case .verification:
-            verificationResolverDelegate?.startVerificationWithPhone()
+            registeredPhonesResolver?.getRegisteredPhones(completion: registeredPhonesResult(result:))
             break
         }
     }
@@ -149,9 +169,10 @@ class TfaViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         switch tfaMode {
         case .registration:
             reloadTableWith(content:  [""])
-            registrationResolverDelegate?.startRegistrationWithTotp()
+            registerTotpsResolver?.registerTotp(completion: registerTotpResult(result:))
         case .verification:
             reloadTableWith(content: ["authCode"])
+            verifyTotpResolver = factoryResolver?.getResolver(for: VerifyTotpResolver.self)
         }
     }
     
@@ -161,7 +182,8 @@ class TfaViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     func onTfaEmailProviderSelection() {
         switch tfaMode {
         case .verification:
-            verificationResolverDelegate?.startVerificationWithEmail()
+            registeredEmailsResolver = factoryResolver?.getResolver(for: RegisteredEmailsResolver.self)
+            registeredEmailsResolver?.getRegisteredEmails(completion: registeredEmailsResult(result:))
         default:
             break
         }
@@ -170,16 +192,62 @@ class TfaViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     // MARK: - Submittion Protocol Implementation
     
     func onSubmitRegistered(email: TFAEmail) {
-        verificationResolverDelegate?.sendEmailVerificationCode(registeredEmail: email)
+        registeredEmailsResolver?.sendEmailCode(with: email, completion: registeredEmailsResult(result:))
     }
     
     func onSubmitRegistered(phone: TFARegisteredPhone) {
-        verificationResolverDelegate?.sendPhoneVerificationCode(registeredPhone: phone)
+        registeredPhonesResolver?.sendVerificationCode(with: phone, method: .sms, completion: registeredPhonesResult(result:))
     }
     
     func onSubmitPhone(number: String, andMethod: String) {
-        registrationResolverDelegate?.startRegistrationWithPhone(phoneNumber: number, method: andMethod)
+        registerPhoneResolver?.registerPhone(phone: number, completion: registerPhoneResult(result:))
+
         reloadTableWith(content:  ["phoneInput", "authCode"])
+    }
+
+    // MARK: - Resolvers Closures
+    func registeredEmailsResult(result: RegisteredEmailsResult) {
+        switch result {
+        case .registeredEmails(let emails):
+            onRegisteredEmail(addresses: emails)
+        case .emailVerificationCodeSent(let resolver):
+            verifyCodeResolver = resolver
+            break
+        case .error(_):
+            break
+
+        }
+    }
+
+    func registerPhoneResult(result: RegisterPhonesResult) {
+        switch result {
+        case .verificationCodeSent(let resolver):
+            verifyCodeResolver = resolver
+        case .error(_):
+            break
+        }
+    }
+
+    func registeredPhonesResult(result: RegisteredPhonesResult) {
+        switch result {
+        case .registeredPhones(let phones):
+            onRegisteredPhone(numbers: phones)
+        case .verificationCodeSent(let resolver):
+            verifyCodeResolver = resolver
+        case .error(_):
+            break
+
+        }
+    }
+
+    func registerTotpResult(result: RegisterTotpResult) {
+        switch result {
+        case .QRCodeAvilabe(let image, let resolver):
+            onQRCodeAvailable(qrImage: image)
+            verifyTotpResolver = resolver
+        case .error(_):
+            break
+        }
     }
     
     /*
@@ -224,17 +292,64 @@ class TfaViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
      Submit auth code.
      */
     func onSubmitAuthCode(mode: TFAMode, provider: TFAProvider, code: String) {
-         switch mode {
-         case .registration:
-            registrationResolverDelegate?.verifyCode(provider: provider, authenticationCode: code)
-         case .verification:
-            if (provider == .totp) {
-                // TOTP verification flow starts. Will need to initialize TFA first with "verify" parameter for flow to continue.
-                verificationResolverDelegate?.verificationWithTotp(authorizationCode: code)
-                return
-            }
-            verificationResolverDelegate?.verifyCode(provider: provider, authenticationCode: code)
+        if (provider == .totp) {
+            // TOTP verification flow starts. Will need to initialize TFA first with "verify" parameter for flow to continue.
+            //                verificationResolverDelegate?.verificationWithTotp(authorizationCode: code)
+            sendVerificationTotp(code: code)
+            return
         }
+
+        sendVerifyCode(mode: mode, provider: provider, code: code)
+
+    }
+
+    func sendVerifyCode(mode: TFAMode, provider: TFAProvider, code: String) {
+        verifyCodeResolver?.verifyCode(provider: provider, verificationCode: code, rememberDevice: false, completion: { [weak self] (result) in
+            guard let self = self else { return }
+
+            switch result {
+            case .resolved:
+                print("Email verification sucess")
+
+                self.navigationController?.popViewController(animated: true)
+            case .invalidCode:
+                let alertController = UIAlertController(title: "Error", message: "Invalid code", preferredStyle: .alert)
+                alertController.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+
+                self.present(alertController, animated: true, completion: nil)
+
+            case .failed(let error):
+                let alertController = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
+                alertController.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+
+                self.present(alertController, animated: true, completion: nil)
+            }
+        })
+    }
+
+    func sendVerificationTotp(code: String) {
+        verifyTotpResolver?.verifyTOTPCode(verificationCode: code, rememberDevice: false, completion: { (result) in
+            switch result {
+            case .resolved:
+                print("Email verification sucess")
+
+                self.navigationController?.popViewController(animated: true)
+
+            case .invalidCode:
+                let alertController = UIAlertController(title: "Error", message: "Invalid code", preferredStyle: .alert)
+                alertController.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+
+                self.present(alertController, animated: true, completion: nil)
+
+            case .failed(let error):
+                let alertController = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
+                alertController.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+
+                self.present(alertController, animated: true, completion: nil)
+
+
+            }
+        })
     }
 }
 

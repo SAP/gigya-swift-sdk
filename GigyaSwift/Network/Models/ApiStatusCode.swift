@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum ApiStatusCode: Int {
+public enum ApiStatusCode: Int {
     case success = 200
 //    case fail = 403
     case unknown

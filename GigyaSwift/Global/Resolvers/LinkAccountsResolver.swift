@@ -6,10 +6,13 @@
 //  Copyright © 2019 Gigya. All rights reserved.
 //
 
-import Foundation
-protocol BaseResolver { }
+import UIKit
 
-public class LinkAccountsResolver<T: Codable>: BaseResolver {
+@objc protocol BaseResolver {
+    @objc optional func start()
+}
+
+public class LinkAccountsResolver<T: GigyaAccountProtocol>: BaseResolver {
 
     let originalError: NetworkError
 
@@ -26,11 +29,9 @@ public class LinkAccountsResolver<T: Codable>: BaseResolver {
         self.regToken = regToken
         self.completion = completion
         self.businessDelegate = businessDelegate
-        
-        start()
     }
 
-    private func start() {
+    internal func start() {
         // Request the conflicting account.
         getConflictingAccount()
     }
@@ -67,7 +68,7 @@ public class LinkAccountsResolver<T: Codable>: BaseResolver {
         GigyaLogger.log(with: self, message: "[linkToSite] - data: \(params)")
     }
     
-    public func linkToSocial(provider: GigyaSocielProviders, viewController: UIViewController) {
+    public func linkToSocial(provider: GigyaSocialProviders, viewController: UIViewController) {
         let params = ["loginMode": "link", "regToken": regToken]
         businessDelegate?.callSociallogin(provider: provider, viewController: viewController, params: params, dataType: T.self, completion: self.completion)
 

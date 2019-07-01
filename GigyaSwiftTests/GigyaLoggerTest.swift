@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import GigyaSwift
+@testable import Gigya
 
 class GigyaLoggerTest: XCTestCase {
     override func setUp() {

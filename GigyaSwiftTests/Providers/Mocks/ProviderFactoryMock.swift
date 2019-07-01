@@ -7,7 +7,7 @@
 //
 
 import Foundation
-@testable import GigyaSwift
+@testable import Gigya
 
 class ProviderFactoryMock: IOCSocialProvidersManagerProtocol {
     let config: GigyaConfig
@@ -18,7 +18,7 @@ class ProviderFactoryMock: IOCSocialProvidersManagerProtocol {
         self.config = config
     }
 
-    func getProvider(with socialProvider: GigyaSocielProviders, delegate: BusinessApiDelegate) -> Provider {
+    func getProvider(with socialProvider: GigyaSocialProviders, delegate: BusinessApiDelegate) -> Provider {
         switch socialProvider {
         case .facebook, .google:
             return SocialProviderMock(providerType: .google, provider: SocialProviderWrapperMock(), delegate: delegate)

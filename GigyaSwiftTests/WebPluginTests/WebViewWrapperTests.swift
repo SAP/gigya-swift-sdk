@@ -8,7 +8,7 @@
 
 import XCTest
 import WebKit
-@testable import GigyaSwift
+@testable import Gigya
 
 class WebViewWrapperTests: XCTestCase {
 
@@ -107,12 +107,5 @@ class WebViewWrapperTests: XCTestCase {
 
         webViewWrapper.webViewController?.webView.navigationDelegate?.webView?(webViewWrapper.webViewController!.webView, decidePolicyFor: fakeAction, decisionHandler: { receivedPolicy = $0 })
 
-    }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
     }
 }

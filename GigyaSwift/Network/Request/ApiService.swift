@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import GigyaSDK
+import GigyaInfra
 
 typealias GigyaResponse = GSResponse
 public typealias GigyaDictionary = [String: AnyCodable]
@@ -22,6 +22,7 @@ class ApiService: IOCApiServiceProtocol {
     // Send request to server
     func send<T: Codable>(model: ApiRequestModel, responseType: T.Type,
                           completion: @escaping (GigyaApiResult<T>) -> Void) {
+        
         self.networkAdapter?.send(model: model) { (data, error) in
             if error == nil {
                 self.validateResult(responseType: responseType, data: data, completion: completion)

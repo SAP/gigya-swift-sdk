@@ -8,31 +8,26 @@
 
 import Foundation
 
-public enum GigyaApiResult<Response> {
-    case success(data: Response)
+public enum GigyaApiResult<ResponseType> {
+    case success(data: ResponseType)
     case failure(_ error: NetworkError)
 }
 
-public enum GigyaLoginResult<Response: Codable> {
-    case success(data: Response)
-    case failure(LoginApiError<Response>)
+public enum GigyaLoginResult<ResponseType: GigyaAccountProtocol> {
+    case success(data: ResponseType)
+    case failure(LoginApiError<ResponseType>)
 }
 
-public struct LoginApiError<T: Codable> {
+public struct LoginApiError<T: GigyaAccountProtocol> {
     public let error: NetworkError
     public let interruption: GigyaInterruptions<T>?
 }
 
-public enum GigyaInterruptions<T: Codable> {
-    case pendingRegistration(regToken: String)
+public enum GigyaInterruptions<T: GigyaAccountProtocol> {
+    case pendingRegistration(resolver: PendingRegistrationResolver<T>)
     case pendingVerification(regToken: String)
     case pendingPasswordChange(regToken: String)
     case conflitingAccount(resolver: LinkAccountsResolver<T>)
-    case pendingTwoFactorRegistration(resolver: TFARegistrationResolverProtocol)
-    case pendingTwoFactorVerification(resolver: TFAVerificationResolverProtocol)
-    case onPhoneVerificationCodeSent
-    case onRegisteredPhoneNumbers(numbers: [TFARegisteredPhone])
-    case onRegisteredEmails(emails: [TFAEmail])
-    case onEmailVerificationCodeSent
-    case onTotpQRCode(qrCode: UIImage?)
+    case pendingTwoFactorRegistration(response: GigyaResponseModel, inactiveProviders: [TFAProviderModel]?, factory: TFAResolverFactory<T>)
+    case pendingTwoFactorVerification(response: GigyaResponseModel, activeProviders: [TFAProviderModel]?, factory: TFAResolverFactory<T>)
 }

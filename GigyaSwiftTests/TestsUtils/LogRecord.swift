@@ -7,7 +7,7 @@
 //
 
 import Foundation
-@testable import GigyaSwift
+@testable import Gigya
 
 class LogRecord {
     static var closure: (String) -> () = { _ in }
