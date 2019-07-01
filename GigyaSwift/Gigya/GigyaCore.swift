@@ -23,9 +23,6 @@ public class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
         return (container?.resolve(GigyaConfig.self))!
     }
 
-    private var gigyaApi: IOCGigyaWrapperProtocol {
-        return (container?.resolve(IOCGigyaWrapperProtocol.self))!
-    }
 
     private var businessApiService: IOCBusinessApiServiceProtocol {
         return (container?.resolve(IOCBusinessApiServiceProtocol.self))!
@@ -63,8 +60,10 @@ public class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
 
         config.apiDomain = apiDomain ?? self.defaultApiDomain
         config.apiKey = apiKey
-        
-        gigyaApi.initGigyaSDK(apiKey: apiKey, apiDomain: apiDomain, application: nil, launchOptions: nil)
+
+//        gigyaApi.initGigyaSDK(apiKey: apiKey, apiDomain: apiDomain, application: application, launchOptions: launchOptions)
+
+        businessApiService.getSDKConfig()
     }
 
     // MARK: - Anonymous API
@@ -93,6 +92,7 @@ public class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
         businessApiService.send(dataType: dataType, api: api, params: params, completion: completion)
     }
 
+
     // MARK: - Session
 
     /**
@@ -106,7 +106,6 @@ public class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
      * Logout of Gigya services.
      */
     public func logout(completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void) {
-        sessionService.clear()
         businessApiService.logout(completion: completion)
     }
 

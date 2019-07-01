@@ -24,6 +24,7 @@ protocol IOCBusinessApiServiceProtocol {
          interruptionsHandler: IOCInterruptionResolverFactory)
 
     func send(api: String, params: [String: Any], completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void)
+    func getSDKConfig()
 
     func send<T: Codable>(dataType: T.Type, api: String, params: [String: Any], completion: @escaping (GigyaApiResult<T>) -> Void)
 

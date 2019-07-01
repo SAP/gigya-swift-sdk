@@ -50,8 +50,8 @@ class PluginViewWrapper<T: GigyaAccountProtocol>: PluginViewWrapperProtocol {
         }
         
         let html = getHtml(self.plugin)
-        GigyaLogger.log(with: self, message: "Initial HTML:\n\(html)")
-        
+//        GigyaLogger.log(with: self, message: "Initial HTML:\n\(html)")
+
         // Present plugin view controller.
         let pluginViewController = PluginViewController(config: config, sessionService: sessionService, businessApiService: businessApiService, completion: completion)
         let navigationController = UINavigationController(rootViewController: pluginViewController)

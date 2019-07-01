@@ -58,9 +58,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
     }
 
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
-        _ = LineSDKLogin.sharedInstance().handleOpen(url)
+        return LineSDKLogin.sharedInstance().handleOpen(url)
 
-        return WXApi.handleOpen(url, delegate: self)
+//        return WXApi.handleOpen(url, delegate: self)
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

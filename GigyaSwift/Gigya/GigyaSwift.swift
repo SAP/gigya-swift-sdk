@@ -53,23 +53,24 @@ public class Gigya {
     private static func registerDependencies(with container: IOCContainer) {
         container.register(service: GigyaConfig.self, isSingleton: true) { _ in GigyaConfig() }
 
-        container.register(service: IOCNetworkAdapterProtocol.self) { _ in
-            return NetworkAdapter()
+        container.register(service: IOCNetworkAdapterProtocol.self) { resolver in
+            let config = resolver.resolve(GigyaConfig.self)
+            let sessionService = resolver.resolve(IOCSessionServiceProtocol.self)
+
+            return NetworkAdapter(config: config!, sessionService: sessionService!)
         }
 
         container.register(service: IOCApiServiceProtocol.self) { resolver in
-            return ApiService(with: resolver.resolve(IOCNetworkAdapterProtocol.self)!)
-        }
+            let sessionService = resolver.resolve(IOCSessionServiceProtocol.self)
 
-        container.register(service: IOCGigyaWrapperProtocol.self, isSingleton: true) { _ in
-            return GigyaWrapper()
+            return ApiService(with: resolver.resolve(IOCNetworkAdapterProtocol.self)!, session: sessionService!)
         }
 
         container.register(service: IOCSessionServiceProtocol.self, isSingleton: true) { resolver in
-            let gigyaApi = resolver.resolve(IOCGigyaWrapperProtocol.self)
+            let config = resolver.resolve(GigyaConfig.self)
             let accountService = resolver.resolve(IOCAccountServiceProtocol.self)
 
-            return SessionService(gigyaApi: gigyaApi!, accountService: accountService!)
+            return SessionService(config: config!, accountService: accountService!)
         }
 
         container.register(service: IOCSocialProvidersManagerProtocol.self, isSingleton: true) { resolver in

@@ -44,7 +44,8 @@ class WebLoginProvider: Provider {
             guard
                 let token = jsonData?["accessToken"] as? String,
                 let secret = jsonData?["tokenSecret"] as? String,
-                let sessionObject = GigyaSession(sessionToken: token, secret: secret) else {
+                let sessionObject = GigyaSession(sessionToken: token, secret: secret),
+                sessionObject.token.isEmpty == false else {
                     let errorDesc = "token no available"
                     self?.loginFailed(error: errorDesc, completion: completion)
 
@@ -52,7 +53,8 @@ class WebLoginProvider: Provider {
                     return
             }
 
-            self?.sessionService.setSession(sessionObject)
+            let sessionInfo = SessionInfoModel(sessionToken: token, sessionSecret: secret)
+            self?.sessionService.setSession(sessionInfo)
 
             self?.delegate?.callGetAccount(completion: { (result) in
                 completion(result)

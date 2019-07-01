@@ -14,6 +14,7 @@ public struct GigyaResponseModel: Codable {
     public var callId: String
     public let errorMessage: String?
 
+    let sessionInfo: SessionInfoModel?
     internal var requestData: Data? = nil
     
     internal func toDictionary() -> [String: Any] {

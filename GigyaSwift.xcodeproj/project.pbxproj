@@ -103,6 +103,10 @@
 		E7BE5793229AB29100C17D93 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BE5792229AB29100C17D93 /* UIImage.swift */; };
 		E7BE57B922A40ED100C17D93 /* WebViewWrapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BE57B822A40ED100C17D93 /* WebViewWrapperTests.swift */; };
 		E7BE57BD22A41D0B00C17D93 /* FakeNavigationAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BE57BC22A41D0B00C17D93 /* FakeNavigationAction.swift */; };
+		E7BE36C82224306E00A108D9 /* GigyaSwift.swift in Headers */ = {isa = PBXBuildFile; fileRef = E7BE368A2224225100A108D9 /* GigyaSwift.swift */; };
+		E7BE57A8229E934C00C17D93 /* SessionInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BE57A7229E934C00C17D93 /* SessionInfoModel.swift */; };
+		E7BE57B222A3B42C00C17D93 /* InitSdkResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BE57B122A3B42C00C17D93 /* InitSdkResponseModel.swift */; };
+		E7BE57B622A3E3ED00C17D93 /* RunnerMainThread.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BE57B522A3E3ED00C17D93 /* RunnerMainThread.swift */; };
 		E7C859DB2289604F005C1FBE /* LinkAccountsResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C859DA2289604F005C1FBE /* LinkAccountsResolver.swift */; };
 		E7C859E02289B299005C1FBE /* InterruptionEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C859DF2289B299005C1FBE /* InterruptionEnum.swift */; };
 		E7C859E7228C52A0005C1FBE /* ConflictingAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C859E6228C52A0005C1FBE /* ConflictingAccount.swift */; };
@@ -337,6 +341,9 @@
 		E7BE5799229D284A00C17D93 /* TFAVerificationpTotpResolverTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TFAVerificationpTotpResolverTests.swift; sourceTree = "<group>"; };
 		E7BE57B822A40ED100C17D93 /* WebViewWrapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewWrapperTests.swift; sourceTree = "<group>"; };
 		E7BE57BC22A41D0B00C17D93 /* FakeNavigationAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeNavigationAction.swift; sourceTree = "<group>"; };
+		E7BE57A7229E934C00C17D93 /* SessionInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionInfoModel.swift; sourceTree = "<group>"; };
+		E7BE57B122A3B42C00C17D93 /* InitSdkResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitSdkResponseModel.swift; sourceTree = "<group>"; };
+		E7BE57B522A3E3ED00C17D93 /* RunnerMainThread.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunnerMainThread.swift; sourceTree = "<group>"; };
 		E7C859DA2289604F005C1FBE /* LinkAccountsResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkAccountsResolver.swift; sourceTree = "<group>"; };
 		E7C859DF2289B299005C1FBE /* InterruptionEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterruptionEnum.swift; sourceTree = "<group>"; };
 		E7C859E6228C52A0005C1FBE /* ConflictingAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConflictingAccount.swift; sourceTree = "<group>"; };
@@ -835,12 +842,12 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		E7C859BF22819890005C1FBE /* SocialLogin */ = {
+		E7C859C2228866AA005C1FBE /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E7DC2C3A228019AC00A13426 /* SocialLoginProvider.swift */,
+				E7C859C7228866AA005C1FBE /* GigyaSDK.framework */,
 			);
-			path = SocialLogin;
+			name = Products;
 			sourceTree = "<group>";
 		};
 		E7C859D822896038005C1FBE /* Resolvers */ = {
@@ -957,6 +964,8 @@
 				E7CBB03C22356086000B6C11 /* GigyaInstanceProtocol.swift */,
 				E7CBB0592237DD2C000B6C11 /* GigyaSocialProviders.swift */,
 				E7C859E6228C52A0005C1FBE /* ConflictingAccount.swift */,
+				E7BE57A7229E934C00C17D93 /* SessionInfoModel.swift */,
+				E7BE57B122A3B42C00C17D93 /* InitSdkResponseModel.swift */,
 				E7C859DF2289B299005C1FBE /* InterruptionEnum.swift */,
 				E71D3C9A22BF906300A413D7 /* Tfa */,
 				E713E0FF2248C84000181328 /* Config */,
@@ -997,6 +1006,7 @@
 			children = (
 				E7CBB06A223E59EA000B6C11 /* Decode+EncodeUtils.swift */,
 				E7E80D89224BC17000D3B663 /* FatalErrorUtils.swift */,
+				E7BE57B522A3E3ED00C17D93 /* RunnerMainThread.swift */,
 				E713E0FB2247C6E700181328 /* SignatureUtils.swift */,
 				E774A54C2242A12800BC67D1 /* AnyCodableUtils.swift */,
 				E7E80D9E2252036800D3B663 /* IOContainer */,
@@ -1494,10 +1504,13 @@
 				D5C9DD3D227B0C9200E47095 /* GigyaPluginEvent.swift in Sources */,
 				E7CBAFD0222EB89D000B6C11 /* BusinessApiService.swift in Sources */,
 				E760668B2278998E005E4CFD /* WebLoginProvider.swift in Sources */,
+				E7BE57B222A3B42C00C17D93 /* InitSdkResponseModel.swift in Sources */,
 				E774A54D2242A12800BC67D1 /* AnyCodableUtils.swift in Sources */,
 				E70DC25722AFEF7300D7346D /* ProvidersLoginWrapper.swift in Sources */,
+				E7BE57B622A3E3ED00C17D93 /* RunnerMainThread.swift in Sources */,
 				E73373E22263339400ADEDBB /* Provider.swift in Sources */,
 				E7ACF9B0226C844A00900C65 /* IOCAccountServiceProtocol.swift in Sources */,
+				E7BE57A8229E934C00C17D93 /* SessionInfoModel.swift in Sources */,
 				E7ACF9AC226C841300900C65 /* IOCApiServiceProtocol.swift in Sources */,
 				E71D3C9D22BF906300A413D7 /* TFAProvider.swift in Sources */,
 				E73374622268B25B00ADEDBB /* SocialProvidersManager.swift in Sources */,

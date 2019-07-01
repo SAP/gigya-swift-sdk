@@ -10,14 +10,14 @@ import Foundation
 
 struct InternalConfig {
     struct General {
-        internal static let version = "ios_4.0.0"
+        internal static let version = "ios_3.6.11"
         internal static let sdkDomain = "com.gigya.GigyaSDK"
     }
 
     struct Storage {
         // Keychain Configuration
         internal static let defaultApiDomain = "us1.gigya.com"
-        internal static let serviceName = "gigya"
+        internal static let serviceName = "com.gigya.GigyaSDK"
         internal static let keySession = "com.gigya.GigyaSDK:Session"
         internal static let defaultTouchIDMessage = "Please authenticate to proceed"
 
