@@ -44,7 +44,7 @@ public class Gigya {
         }
 
         guard let instance = storedInstance as? GigyaCore<T> else {
-            GigyaLogger.error(with: self, message: "You need to use: ", generic: storedInstance)
+            GigyaLogger.error(with: self, message: "Gigya instance was originally created with a different GigyaAccountProtocol:", generic: storedInstance)
         }
 
         return instance

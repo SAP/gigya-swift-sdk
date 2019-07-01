@@ -131,11 +131,11 @@ class BusinessApiService: NSObject, IOCBusinessApiServiceProtocol {
     }
 
     func login<T: GigyaAccountProtocol>(dataType: T.Type, loginId: String, password: String, params: [String: Any], completion: @escaping (GigyaLoginResult<T>) -> Void) {
-        var mutatedParams = params
-        mutatedParams["loginID"] = loginId
-        mutatedParams["password"] = password
+        var loginParams = params
+        loginParams["loginID"] = loginId
+        loginParams["password"] = password
         
-        let model = ApiRequestModel(method: GigyaDefinitions.API.login, params: mutatedParams)
+        let model = ApiRequestModel(method: GigyaDefinitions.API.login, params: loginParams)
 
         apiService.send(model: model, responseType: T.self) { [weak self] result in
             switch result {

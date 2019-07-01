@@ -8,14 +8,14 @@
 
 import Foundation
 
-public enum GigyaApiResult<Response> {
-    case success(data: Response)
+public enum GigyaApiResult<ResponseType> {
+    case success(data: ResponseType)
     case failure(_ error: NetworkError)
 }
 
-public enum GigyaLoginResult<Response: GigyaAccountProtocol> {
-    case success(data: Response)
-    case failure(LoginApiError<Response>)
+public enum GigyaLoginResult<ResponseType: GigyaAccountProtocol> {
+    case success(data: ResponseType)
+    case failure(LoginApiError<ResponseType>)
 }
 
 public struct LoginApiError<T: GigyaAccountProtocol> {

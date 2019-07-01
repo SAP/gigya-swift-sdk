@@ -45,7 +45,7 @@ public class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
 
         // Init Gigya Objc when thr host add params in plist
         if let apiKey = plistConfig?.apiKey, !apiKey.isEmpty {
-            initWithApi(apiKey: apiKey, apiDomain: plistConfig?.apiDomain)
+            initFor(apiKey: apiKey, apiDomain: plistConfig?.apiDomain)
         }
     }
 
@@ -56,7 +56,7 @@ public class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
      - Parameter apiDomain:  Request Domain.
      */
 
-    public func initWithApi(apiKey: String, apiDomain: String? = nil, application: UIApplication? = nil, launchOptions: [AnyHashable: Any]? = nil) {
+    public func initFor(apiKey: String, apiDomain: String? = nil) {
         guard !apiKey.isEmpty else {
             GigyaLogger.error(with: Gigya.self, message: "please make sure you call 'initWithApi' or add apiKey to plist file")
         }
@@ -64,7 +64,7 @@ public class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
         config.apiDomain = apiDomain ?? self.defaultApiDomain
         config.apiKey = apiKey
         
-        gigyaApi.initGigyaSDK(apiKey: apiKey, apiDomain: apiDomain, application: application, launchOptions: launchOptions)
+        gigyaApi.initGigyaSDK(apiKey: apiKey, apiDomain: apiDomain, application: nil, launchOptions: nil)
     }
 
     // MARK: - Anonymous API
