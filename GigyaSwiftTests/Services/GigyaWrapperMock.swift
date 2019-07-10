@@ -9,7 +9,7 @@
 import Foundation
 @testable import Gigya
 
-class GigyaWrapperMock: GigyaWrapper {
+//class GigyaWrapperMock: GigyaWrapper {
 
 //    override func send<T>(model: ApiRequestModel, responseType: T.Type, completion: @escaping (GigyaApiResult<T>) -> Void) {
 //        guard let response = ResponseDataTest.resData else {
@@ -24,8 +24,8 @@ class GigyaWrapperMock: GigyaWrapper {
 //            completion(.success(data: [:] as! T))
 //        }
 //    }
-
-    override func isValidSession() -> Bool {
-        return false
-    }
-}
+//
+//    override func isValidSession() -> Bool {
+//        return false
+//    }
+//}

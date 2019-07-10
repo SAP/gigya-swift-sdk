@@ -10,11 +10,13 @@ import UIKit
 
 class BusinessApiService: NSObject, IOCBusinessApiServiceProtocol {
 
+    var config: GigyaConfig
+
     let apiService: IOCApiServiceProtocol
 
     var sessionService: IOCSessionServiceProtocol
 
-    var config: GigyaConfig
+    var biometricService: BiometricServiceInternalProtocol
 
     var accountService: IOCAccountServiceProtocol
 
@@ -26,15 +28,37 @@ class BusinessApiService: NSObject, IOCBusinessApiServiceProtocol {
 
     var providersFactory: ProvidersLoginWrapper?
 
-    required init(config: GigyaConfig, apiService: IOCApiServiceProtocol, sessionService: IOCSessionServiceProtocol,
-                  accountService: IOCAccountServiceProtocol, providerFactory: IOCSocialProvidersManagerProtocol,
-                  interruptionsHandler: IOCInterruptionResolverFactory) {
+    required init(config: GigyaConfig,
+                  apiService: IOCApiServiceProtocol,
+                  sessionService: IOCSessionServiceProtocol,
+                  accountService: IOCAccountServiceProtocol,
+                  providerFactory: IOCSocialProvidersManagerProtocol,
+                  interruptionsHandler: IOCInterruptionResolverFactory,
+                  biometricService: BiometricServiceInternalProtocol) {
         self.config = config
         self.apiService = apiService
         self.sessionService = sessionService
+        self.biometricService = biometricService
         self.accountService = accountService
         self.socialProviderFactory = providerFactory
         self.interruptionsHandler = interruptionsHandler
+    }
+
+    // Send regular request
+    func getSDKConfig() {
+        let params = ["include": "permissions,ids,appIds"]
+        let model = ApiRequestModel(method: GigyaDefinitions.API.getSdkConfig, params: params)
+
+        apiService.send(model: model, responseType: InitSdkResponseModel.self) { [weak self] result in
+            switch result {
+            case .success(let data):
+                self?.config.save(ids: data.ids)
+                print(data)
+            case .failure(let error):
+                print(error)
+                break
+            }
+        }
     }
 
     // Send regular request
@@ -74,16 +98,18 @@ class BusinessApiService: NSObject, IOCBusinessApiServiceProtocol {
     }
 
     func setAccount<T: Codable>(obj: T, completion: @escaping (GigyaApiResult<T>) -> Void) {
-        let diffParams = accountService.setAccount(newAccount: obj)
-        let model = ApiRequestModel(method: GigyaDefinitions.API.setAccountInfo, params: diffParams)
+        DispatchQueue.global(qos: .utility).async { [weak self] in
+            let diffParams = self?.accountService.setAccount(newAccount: obj)
+            let model = ApiRequestModel(method: GigyaDefinitions.API.setAccountInfo, params: diffParams)
 
-        apiService.send(model: model, responseType: GigyaDictionary.self) { [weak self] result in
-            switch result {
-            case .success:
-                self?.accountService.clear()
-                self?.getAccount(dataType: T.self, completion: completion)
-            case .failure(let error):
-                completion(.failure(error))
+            self?.apiService.send(model: model, responseType: GigyaDictionary.self) { [weak self] result in
+                switch result {
+                case .success:
+                    self?.accountService.clear()
+                    self?.getAccount(dataType: T.self, completion: completion)
+                case .failure(let error):
+                    completion(.failure(error))
+                }
             }
         }
     }
@@ -128,6 +154,10 @@ class BusinessApiService: NSObject, IOCBusinessApiServiceProtocol {
                 completion(.failure(loginError))
             }
         }
+    }
+
+    func setSessionBiometric() {
+
     }
 
     func login<T: GigyaAccountProtocol>(dataType: T.Type, loginId: String, password: String, params: [String: Any], completion: @escaping (GigyaLoginResult<T>) -> Void) {
@@ -231,8 +261,18 @@ class BusinessApiService: NSObject, IOCBusinessApiServiceProtocol {
     func logout(completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void) {
         GigyaLogger.log(with: self, message: "[logout]")
 
-        let model = ApiRequestModel(method: GigyaDefinitions.API.logout, params: nil)
-        apiService.send(model: model, responseType: GigyaDictionary.self, completion: completion)
+        let model = ApiRequestModel(method: GigyaDefinitions.API.logout, params: [:])
+        apiService.send(model: model, responseType: GigyaDictionary.self) { [weak self] result in
+            switch result {
+            case .success(let data):
+                completion(.success(data: data))
+                
+                self?.sessionService.clear()
+                self?.biometricService.clearBiometric()
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
     }
 
     func finalizeRegistration<T: Codable>(regToken: String, completion: @escaping (GigyaLoginResult<T>) -> Void) {

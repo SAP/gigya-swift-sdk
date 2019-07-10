@@ -272,7 +272,7 @@ class AnyCodableTest: XCTestCase {
     }
 
     func testEncodeError() {
-        let data = [AnyCodable(GigyaResponseModel(statusCode: .unknown, errorCode: 0, callId: "", errorMessage: "", requestData: nil))]
+        let data = [AnyCodable(GigyaResponseModel(statusCode: .unknown, errorCode: 0, callId: "", errorMessage: "", sessionInfo: nil, requestData: nil))]
 
         do {
             let jsonEncoder = JSONEncoder()

@@ -53,23 +53,38 @@ public class Gigya {
     private static func registerDependencies(with container: IOCContainer) {
         container.register(service: GigyaConfig.self, isSingleton: true) { _ in GigyaConfig() }
 
-        container.register(service: IOCNetworkAdapterProtocol.self) { _ in
-            return NetworkAdapter()
+        container.register(service: IOCNetworkAdapterProtocol.self) { resolver in
+            let config = resolver.resolve(GigyaConfig.self)
+            let sessionService = resolver.resolve(IOCSessionServiceProtocol.self)
+
+            return NetworkAdapter(config: config!, sessionService: sessionService!)
         }
 
         container.register(service: IOCApiServiceProtocol.self) { resolver in
-            return ApiService(with: resolver.resolve(IOCNetworkAdapterProtocol.self)!)
+            let sessionService = resolver.resolve(IOCSessionServiceProtocol.self)
+
+            return ApiService(with: resolver.resolve(IOCNetworkAdapterProtocol.self)!, session: sessionService!)
         }
 
-        container.register(service: IOCGigyaWrapperProtocol.self, isSingleton: true) { _ in
-            return GigyaWrapper()
-        }
 
         container.register(service: IOCSessionServiceProtocol.self, isSingleton: true) { resolver in
-            let gigyaApi = resolver.resolve(IOCGigyaWrapperProtocol.self)
+            let config = resolver.resolve(GigyaConfig.self)
             let accountService = resolver.resolve(IOCAccountServiceProtocol.self)
 
-            return SessionService(gigyaApi: gigyaApi!, accountService: accountService!)
+            return SessionService(config: config!, accountService: accountService!)
+        }
+
+        container.register(service: IOCBiometricServiceProtocol.self, isSingleton: true) { resolver in
+            let config = resolver.resolve(GigyaConfig.self)
+            let sessionService = resolver.resolve(IOCSessionServiceProtocol.self)
+
+            return BiometricService(config: config!, sessionService: sessionService!)
+        }
+
+        container.register(service: BiometricServiceInternalProtocol.self, isSingleton: true) { resolver in
+            let biometric = resolver.resolve(IOCBiometricServiceProtocol.self)
+
+            return biometric as! BiometricServiceInternalProtocol
         }
 
         container.register(service: IOCSocialProvidersManagerProtocol.self, isSingleton: true) { resolver in
@@ -86,13 +101,15 @@ public class Gigya {
             let accountService = resolver.resolve(IOCAccountServiceProtocol.self)
             let providerFactory = resolver.resolve(IOCSocialProvidersManagerProtocol.self)
             let interruptionsHandler = resolver.resolve(IOCInterruptionResolverFactory.self)
+            let biometricService = resolver.resolve(BiometricServiceInternalProtocol.self)
 
             return BusinessApiService(config: config!,
                                       apiService: apiService!,
                                       sessionService: sessionService!,
                                       accountService: accountService!,
                                       providerFactory: providerFactory!,
-                                      interruptionsHandler: interruptionsHandler!)
+                                      interruptionsHandler: interruptionsHandler!,
+                                      biometricService: biometricService!)
         }
 
         container.register(service: IOCAccountServiceProtocol.self, isSingleton: true) { _ in

@@ -7,16 +7,18 @@
 //
 
 import Foundation
-import GigyaInfra
 
-typealias GigyaResponse = GSResponse
+//typealias GigyaResponse = GSResponse
 public typealias GigyaDictionary = [String: AnyCodable]
 
 class ApiService: IOCApiServiceProtocol {
     let networkAdapter: IOCNetworkAdapterProtocol?
 
-    required init(with networkAdapter: IOCNetworkAdapterProtocol) {
+    let sessionService: IOCSessionServiceProtocol?
+
+    required init(with networkAdapter: IOCNetworkAdapterProtocol, session: IOCSessionServiceProtocol) {
         self.networkAdapter = networkAdapter
+        self.sessionService = session
     }
 
     // Send request to server
@@ -25,7 +27,9 @@ class ApiService: IOCApiServiceProtocol {
         
         self.networkAdapter?.send(model: model) { (data, error) in
             if error == nil {
-                self.validateResult(responseType: responseType, data: data, completion: completion)
+                main { [weak self] in
+                    self?.validateResult(responseType: responseType, data: data, completion: completion)
+                }
                 return
             }
 
@@ -33,12 +37,14 @@ class ApiService: IOCApiServiceProtocol {
             let error = error as NSError?
 
             guard let code = error?.code, let callId = error?.userInfo["callId"] as? String else {
-                return completion(.failure(NetworkError.networkError(error: error!)))
+                main { completion(.failure(NetworkError.networkError(error: error!))) }
+                return
             }
 
             let errorModel = GigyaResponseModel(statusCode: .unknown, errorCode: code,
                                                       callId: callId,
                                                       errorMessage: error?.localizedDescription,
+                                                      sessionInfo: nil,
                                                       requestData: data as Data?)
 
             completion(.failure(NetworkError.gigyaError(data: errorModel)))
@@ -50,24 +56,27 @@ class ApiService: IOCApiServiceProtocol {
                                             completion: @escaping (GigyaApiResult<T>) -> Void) {
         guard let data = data else {
             GigyaLogger.log(with: self, message: "Error: data not found)")
-            return completion(.failure(NetworkError.emptyResponse))
+            main { completion(.failure(NetworkError.emptyResponse)) }
+            return
         }
 
         do {
             var gigyaResponse = try DecodeEncodeUtils.decode(fromType: GigyaResponseModel.self, data: data as Data)
             gigyaResponse.requestData = data as Data
 
+            sessionService?.setSession(gigyaResponse.sessionInfo)
+
             if gigyaResponse.errorCode == 0 {
                 let typedResponse = try DecodeEncodeUtils.decode(fromType: responseType.self, data: data as Data)
-                completion(GigyaApiResult.success(data: typedResponse))
+                main { completion(GigyaApiResult.success(data: typedResponse)) }
             } else {    
                 GigyaLogger.log(with: self, message: "Failed: \(gigyaResponse)")
-                completion(.failure(.gigyaError(data: gigyaResponse)))
+                main { completion(.failure(.gigyaError(data: gigyaResponse))) }
             }
 
         } catch let error {
             GigyaLogger.log(with: self, message: error.localizedDescription)
-            completion(.failure(NetworkError.jsonParsingError(error: error)))
+            main { completion(.failure(NetworkError.jsonParsingError(error: error))) }
         }
     }
 }

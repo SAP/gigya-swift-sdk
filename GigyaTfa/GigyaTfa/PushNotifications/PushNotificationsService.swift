@@ -8,7 +8,6 @@
 
 import UserNotifications
 import Gigya
-import GigyaInfra
 
 @available(iOS 10.0, *)
 class PushNotificationsService: NSObject, PushNotificationsServiceProtocol {
@@ -16,6 +15,10 @@ class PushNotificationsService: NSObject, PushNotificationsServiceProtocol {
     let container: IOCContainer
 
     let apiService: IOCApiServiceProtocol
+
+    let sessionService: IOCSessionServiceProtocol
+
+    let biometricService: IOCBiometricServiceProtocol
 
     // User defaults params
     let pushSaveKey = "com.gigya.GigyaTfa:pushKey"
@@ -27,6 +30,8 @@ class PushNotificationsService: NSObject, PushNotificationsServiceProtocol {
     required override init() {
         self.container = Gigya.getContainer()
         self.apiService = container.resolve(IOCApiServiceProtocol.self)!
+        self.sessionService = container.resolve(IOCSessionServiceProtocol.self)!
+        self.biometricService = container.resolve(IOCBiometricServiceProtocol.self)!
 
         super.init()
     }
@@ -124,7 +129,7 @@ class PushNotificationsService: NSObject, PushNotificationsServiceProtocol {
     private func sendPushKeyIfNeeded() {
         let key = UserDefaults.standard.object(forKey: pushSaveKey) as? String ?? ""
 
-        guard let pushToken = pushToken, GigyaInfra.isSessionValid() == true else { return } // TODO: add session validation
+        guard let pushToken = pushToken, sessionService.isValidSession() == true else { return } // TODO: add session validation
 
         guard !pushToken.contains(key) else {
             return
@@ -158,16 +163,33 @@ class PushNotificationsService: NSObject, PushNotificationsServiceProtocol {
         if mode == .cancel {
             return
         }
-        
+
+        let completeVerificationFlow = { [weak self] in
+            switch mode {
+            case .optin:
+                self?.pushOptIn?.verifyOptIn(verificationToken: verificationToken)
+            case .verify:
+                self?.completeVerification(gigyaAssertion: gigyaAssertion, verificationToken: verificationToken)
+            case .cancel:
+                break
+            }
+        }
+
         AlertControllerUtils.show(title: title, message: msg) { [weak self] isApproved in
             if isApproved == true {
-                switch mode {
-                case .optin:
-                    self?.pushOptIn?.verifyOptIn(verificationToken: verificationToken)
-                case .verify:
-                    self?.completeVerification(gigyaAssertion: gigyaAssertion, verificationToken: verificationToken)
-                case .cancel:
-                    break
+                guard let self = self else { return }
+
+                if self.biometricService.isOptIn {
+                    self.biometricService.unlockSession { (result) in
+                        switch result {
+                        case .success:
+                            completeVerificationFlow()
+                        case .failure:
+                            GigyaLogger.log(with: self, message: "can't unlock session")
+                        }
+                    }
+                } else {
+                    completeVerificationFlow()
                 }
             }
         }

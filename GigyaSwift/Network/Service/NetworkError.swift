@@ -14,4 +14,5 @@ public enum NetworkError: Error {
     case networkError(error: Error)
     case emptyResponse
     case jsonParsingError(error: Error)
+    case createURLRequestFailed
 }

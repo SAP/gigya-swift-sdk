@@ -14,12 +14,35 @@ internal enum KeychainPasscode: String, Codable {
     case requirePasscode = "keychainRequirePasscode"
 }
 
+internal enum KeychainMode {
+    case biometric
+    case regular
+
+    func attributeAccess() -> CFTypeRef {
+        switch self {
+        case .biometric:
+            return kSecAttrAccessibleWhenUnlockedThisDeviceOnly
+        case .regular:
+            return kSecAttrAccessibleAlwaysThisDeviceOnly
+        }
+    }
+
+    func flag() -> SecAccessControlCreateFlags {
+        switch self {
+        case .biometric:
+            return .userPresence
+        case .regular:
+            return .or
+        }
+    }
+}
+
 internal enum KeychainResult {
     case succses(data: Data?)
     case error(error: KeychainError)
 }
 
-internal enum KeychainError {
+internal enum KeychainError: String {
     case addFailed
     case getAttributeFailed
     case deleteFailed

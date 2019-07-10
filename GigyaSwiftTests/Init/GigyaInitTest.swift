@@ -43,14 +43,14 @@ class GigyaInitTest: XCTestCase {
     func testInitWithWrongSchema() {
         Gigya.sharedInstance(UserDataModel.self)
 
-        expectFatalError(expectedMessage: "[Gigya]: You need to use:  UserDataModel") {
+        expectFatalError(expectedMessage: "[Gigya]: Gigya instance was originally created with a different GigyaAccountProtocol: UserDataModel") {
             Gigya.sharedInstance()
         }
     }
 
     func testInitWithOutApiKey() {
         expectFatalError(expectedMessage: "[Gigya]: please make sure you call 'initWithApi' or add apiKey to plist file ") {
-            Gigya.sharedInstance().initWithApi(apiKey: "")
+            Gigya.sharedInstance().initFor(apiKey: "")
         }
     }
 
@@ -66,11 +66,6 @@ class GigyaInitTest: XCTestCase {
     func testConfigDependency() {
         let config = Gigya.sharedInstance().container?.resolve(GigyaConfig.self)
         XCTAssertNotNil(config)
-    }
-
-    func testGigyaApiDependency() {
-        let gigyaApi = Gigya.sharedInstance().container?.resolve(IOCGigyaWrapperProtocol.self)
-        XCTAssertNotNil(gigyaApi)
     }
 
     func testAccountServiceDependency() {

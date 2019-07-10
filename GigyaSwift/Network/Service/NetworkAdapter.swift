@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import GigyaInfra
 
 public typealias GigyaResponseHandler = (NSData?, Error?) -> Void
 
@@ -16,12 +15,29 @@ public protocol IOCNetworkAdapterProtocol {
 }
 
 class NetworkAdapter: IOCNetworkAdapterProtocol {
-    func send(model: ApiRequestModel, completion: @escaping GigyaResponseHandler) {
-        let request = GSRequest(forMethod: model.method, parameters: model.params)
+    let config: GigyaConfig
 
-        request.send { (res, error) in
-            let data = res?.jsonString().data(using: .utf8) as NSData?
-            completion(data, error)
+    let sessionService: IOCSessionServiceProtocol
+
+    private let serial = DispatchQueue(label: "httpRequests")
+
+    init(config: GigyaConfig, sessionService: IOCSessionServiceProtocol) {
+        self.config = config
+        self.sessionService = sessionService
+    }
+
+    func send(model: ApiRequestModel, completion: @escaping GigyaResponseHandler) {
+        serial.async { [weak self] in
+            guard let self = self else {
+                completion(nil, nil)
+                return
+            }
+
+            let networkService = NetworkProvider(url: self.config.apiDomain, config: self.config)
+
+            networkService.dataRequest(gsession: self.sessionService.session, path: model.method, params: model.params, completion: { (data, error) in
+                completion(data, error)
+            })
         }
     }
 }

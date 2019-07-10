@@ -13,8 +13,6 @@ class GigyaApiService: XCTestCase {
 
     var ioc: GigyaContainerUtils?
 
-    var gigyaWrapperMock: IOCGigyaWrapperProtocol?
-
     var apiService: IOCApiServiceProtocol?
 
     var businessApi: IOCBusinessApiServiceProtocol?
@@ -25,7 +23,6 @@ class GigyaApiService: XCTestCase {
         // Put setup code here. This method is called before the invocation of each test method in the class.
         ioc = GigyaContainerUtils()
 
-        gigyaWrapperMock = ioc?.container.resolve(IOCGigyaWrapperProtocol.self)
         apiService =  ioc?.container.resolve(IOCApiServiceProtocol.self)
         businessApi =  ioc?.container.resolve(IOCBusinessApiServiceProtocol.self)
 

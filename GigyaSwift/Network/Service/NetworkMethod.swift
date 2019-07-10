@@ -8,16 +8,16 @@
 
 import Foundation
 
-//enum NetworkMethod {
-//    case get
-//    case post
-//
-//    var description: String {
-//        switch self {
-//        case .get:
-//            return "GET"
-//        case .post:
-//            return "POST"
-//        }
-//    }
-//}
+enum NetworkMethod {
+    case get
+    case post
+
+    var description: String {
+        switch self {
+        case .get:
+            return "GET"
+        case .post:
+            return "POST"
+        }
+    }
+}

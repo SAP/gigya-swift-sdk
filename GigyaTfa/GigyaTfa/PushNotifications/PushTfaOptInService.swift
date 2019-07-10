@@ -69,8 +69,9 @@ class PushTfaOptInService: PushTfaOptInServiceProtocol {
         guard let pushToken = pushToken , let gigyaAssertion = self.gigyaAssertion else {
             return
         }
-        
-        let model = ApiRequestModel(method: GigyaDefinitions.API.pushOptinTFA, params: ["gigyaAssertion": gigyaAssertion ,"deviceInfo": ["platform": "ios", "os": GeneralUtils.iosVersion(), "man": "apple", "pushToken": pushToken]])
+
+        let deviceInfo = ["platform": "ios", "os": GeneralUtils.iosVersion(), "man": "apple", "pushToken": pushToken]
+        let model = ApiRequestModel(method: GigyaDefinitions.API.pushOptinTFA, params: ["gigyaAssertion": gigyaAssertion ,"deviceInfo": deviceInfo])
 
         apiService.send(model: model, responseType: GigyaDictionary.self) { [weak self] result in
             switch result {

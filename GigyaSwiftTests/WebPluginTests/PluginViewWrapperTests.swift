@@ -32,7 +32,7 @@ class PluginViewWrapperTests: XCTestCase {
         ResponseDataTest.error = nil
         Gigya.sharedInstance().container = ioc.container
 
-        Gigya.sharedInstance().initWithApi(apiKey: "123")
+        Gigya.sharedInstance().initFor(apiKey: "123")
 
         ResponseDataTest.clientID = nil
         ResponseDataTest.resData = nil

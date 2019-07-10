@@ -9,7 +9,7 @@
 import Foundation
 
 public protocol IOCApiServiceProtocol {
-    init(with requst: IOCNetworkAdapterProtocol)
+    init(with requst: IOCNetworkAdapterProtocol, session: IOCSessionServiceProtocol)
 
     func send<T: Codable & Any>(model: ApiRequestModel, responseType: T.Type, completion: @escaping (GigyaApiResult<T>) -> Void)
 }

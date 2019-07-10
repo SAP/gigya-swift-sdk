@@ -10,14 +10,18 @@ import Foundation
 @testable import Gigya
 
 class ApiServiceMock: IOCApiServiceProtocol {
+
     var resData: Any?
 
     var showError: Bool = false
 
     let request: IOCNetworkAdapterProtocol?
 
-    required init(with requst: IOCNetworkAdapterProtocol) {
+    let sessionService: IOCSessionServiceProtocol
+
+    required init(with requst: IOCNetworkAdapterProtocol, session: IOCSessionServiceProtocol) {
         self.request = requst
+        self.sessionService = session
     }
 
     // Send request to server

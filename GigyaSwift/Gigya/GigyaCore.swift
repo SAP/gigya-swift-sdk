@@ -6,12 +6,20 @@
 //  Copyright © 2019 Gigya. All rights reserved.
 //
 
-import Foundation
-import GigyaInfra
+import UIKit
 
 public class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
 
     internal var container: IOCContainer?
+
+    // Mark: - biometric service
+
+    /*
+     When you want to activity and use biometric (TouchID / FaceID) should need to use this object.
+    */
+    public var biometric: IOCBiometricServiceProtocol {
+         return (container?.resolve(IOCBiometricServiceProtocol.self))!
+    }
 
     // Default api domain
     private var defaultApiDomain: String {
@@ -21,10 +29,6 @@ public class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
     // Initialize Dependencies
     private var config: GigyaConfig {
         return (container?.resolve(GigyaConfig.self))!
-    }
-
-    private var gigyaApi: IOCGigyaWrapperProtocol {
-        return (container?.resolve(IOCGigyaWrapperProtocol.self))!
     }
 
     private var businessApiService: IOCBusinessApiServiceProtocol {
@@ -63,8 +67,10 @@ public class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
 
         config.apiDomain = apiDomain ?? self.defaultApiDomain
         config.apiKey = apiKey
-        
-        gigyaApi.initGigyaSDK(apiKey: apiKey, apiDomain: apiDomain, application: nil, launchOptions: nil)
+
+//        gigyaApi.initGigyaSDK(apiKey: apiKey, apiDomain: apiDomain, application: application, launchOptions: launchOptions)
+
+        businessApiService.getSDKConfig()
     }
 
     // MARK: - Anonymous API
@@ -93,6 +99,7 @@ public class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
         businessApiService.send(dataType: dataType, api: api, params: params, completion: completion)
     }
 
+
     // MARK: - Session
 
     /**
@@ -106,7 +113,6 @@ public class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
      * Logout of Gigya services.
      */
     public func logout(completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void) {
-        sessionService.clear()
         businessApiService.logout(completion: completion)
     }
 

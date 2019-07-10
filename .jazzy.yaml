@@ -1,0 +1,17 @@
+module: Gigya
+
+include:
+  - "**/Gigya/GigyaCore.swift"
+  - "**/Network/Request/*.swift"
+  - "**/Models/GigyaSocialProviders.swift"
+  - "**/Models/User/GigyaAccount.swift"
+  - "**/Global/Plugins/GigyaPluginEvent.swift"
+
+
+copyright: 'Gigya © 2019.'
+
+//swift_version: 5
+
+theme: fullwidth
+
+

@@ -1,6 +1,0 @@
-framework module GigyaInfra {
-    umbrella header "Gigya.h"
-
-    export *
-    module * { export * }
-}

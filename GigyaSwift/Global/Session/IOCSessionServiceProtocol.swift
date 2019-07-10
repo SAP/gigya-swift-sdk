@@ -8,21 +8,24 @@
 
 import Foundation
 
-protocol IOCSessionServiceProtocol {
-    var gigyaApi: IOCGigyaWrapperProtocol { get }
+public protocol IOCSessionServiceProtocol {
 
     var accountService: IOCAccountServiceProtocol { get }
 
     var session: GigyaSession? { get set }
 
-    init(gigyaApi: IOCGigyaWrapperProtocol, accountService: IOCAccountServiceProtocol)
+    init(config: GigyaConfig, accountService: IOCAccountServiceProtocol)
 
     func isValidSession() -> Bool
 
-    func setSession(_ session: GigyaSession)
+    func setSession(_ model: SessionInfoModel?)
 
-    func getSession(result: @escaping (GigyaSession?) -> Void)
+    func getSession(biometric: Bool, completion: @escaping ((Bool) -> Void))
+
+    func setSessionAs(biometric: Bool, completion: @escaping (GigyaBiometricResult) -> Void)
 
     func clear()
+
+    func clearSession()
 
 }

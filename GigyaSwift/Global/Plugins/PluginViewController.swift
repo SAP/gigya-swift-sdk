@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import GigyaInfra
 import WebKit
 
 class PluginViewController<T: GigyaAccountProtocol>: WebViewController, WKScriptMessageHandler {
@@ -145,7 +144,10 @@ class PluginViewController<T: GigyaAccountProtocol>: WebViewController, WKScript
     private func invokeCallback(callbackId: String, and result: String) {
         let JS = "gigya._.apiAdapters.mobile.mobileCallbacks['\(callbackId)'](\(result));"
         GigyaLogger.log(with: self, message: "invokeCallback:\n\(JS)")
-        webView.evaluateJavaScript(JS)
+
+        DispatchQueue.main.async {
+            self.webView.evaluateJavaScript(JS)
+        }
     }
     
     /**
