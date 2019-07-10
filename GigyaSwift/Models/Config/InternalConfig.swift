@@ -10,7 +10,7 @@ import Foundation
 
 struct InternalConfig {
     struct General {
-        internal static let version = "ios_3.6.11"
+        internal static let version = "ios_swift_1.0.0"
         internal static let sdkDomain = "com.gigya.GigyaSDK"
     }
 
@@ -24,5 +24,8 @@ struct InternalConfig {
         // UserDefaults objects
         internal static let UCID = "com.gigya.GigyaSDK:ucid"
         internal static let GMID = "com.gigya.GigyaSDK:gmid"
+        internal static let biometricAllow = "com.gigya.GigyaSDK:biometricAllow"
+        internal static let biometricLocked = "com.gigya.GigyaSDK:biometricLocked"
+
     }
 }

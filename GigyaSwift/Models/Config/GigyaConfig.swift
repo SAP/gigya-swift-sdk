@@ -23,11 +23,22 @@ public class GigyaConfig {
             return UserDefaults.standard.object(forKey: InternalConfig.Storage.GMID) as? String
         }
     }
-
     
     var ucid: String? {
         get {
            return UserDefaults.standard.object(forKey: InternalConfig.Storage.UCID) as? String
+        }
+    }
+
+    internal var biometricAllow: Bool? {
+        get {
+            return UserDefaults.standard.object(forKey: InternalConfig.Storage.biometricAllow) as? Bool
+        }
+    }
+
+    internal var biometricLocked: Bool? {
+        get {
+            return UserDefaults.standard.object(forKey: InternalConfig.Storage.biometricLocked) as? Bool
         }
     }
 

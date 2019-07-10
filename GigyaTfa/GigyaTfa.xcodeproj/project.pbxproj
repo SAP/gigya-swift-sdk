@@ -21,6 +21,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		E719373E22D4823400CD149E /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = E719373D22D4823400CD149E /* Dictionary.swift */; };
 		E7EEF33222C8BB880004DF5D /* GigyaTfa.h in Headers */ = {isa = PBXBuildFile; fileRef = E7EEF33022C8BB880004DF5D /* GigyaTfa.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E7EEF35722C8BBDB0004DF5D /* AlertControllerUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7EEF33922C8BBDB0004DF5D /* AlertControllerUtils.swift */; };
 		E7EEF35822C8BBDB0004DF5D /* GeneralUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7EEF33A22C8BBDB0004DF5D /* GeneralUtils.swift */; };
@@ -43,10 +44,10 @@
 		E7EEF36B22C8BBDB0004DF5D /* RegisteredEmailsResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7EEF35522C8BBDB0004DF5D /* RegisteredEmailsResolver.swift */; };
 		E7EEF36C22C8BBDB0004DF5D /* RegisteredEmailsResolverProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7EEF35622C8BBDB0004DF5D /* RegisteredEmailsResolverProtocol.swift */; };
 		E7EEF3EB22C9028A0004DF5D /* Gigya.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7EEF3E922C902890004DF5D /* Gigya.framework */; };
-		E7EEF3EC22C9028A0004DF5D /* GigyaInfra.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7EEF3EA22C902890004DF5D /* GigyaInfra.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E719373D22D4823400CD149E /* Dictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dictionary.swift; sourceTree = "<group>"; };
 		E7EEF32D22C8BB880004DF5D /* GigyaTfa.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GigyaTfa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7EEF33022C8BB880004DF5D /* GigyaTfa.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GigyaTfa.h; sourceTree = "<group>"; };
 		E7EEF33122C8BB880004DF5D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -73,7 +74,6 @@
 		E7EEF3B622C8D5300004DF5D /* Gigya.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Gigya.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7EEF3B822C8D5350004DF5D /* GigyaInfra.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GigyaInfra.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7EEF3E922C902890004DF5D /* Gigya.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Gigya.framework; sourceTree = SOURCE_ROOT; };
-		E7EEF3EA22C902890004DF5D /* GigyaInfra.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GigyaInfra.framework; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,7 +81,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E7EEF3EC22C9028A0004DF5D /* GigyaInfra.framework in Frameworks */,
 				E7EEF3EB22C9028A0004DF5D /* Gigya.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -110,7 +109,6 @@
 			isa = PBXGroup;
 			children = (
 				E7EEF3E922C902890004DF5D /* Gigya.framework */,
-				E7EEF3EA22C902890004DF5D /* GigyaInfra.framework */,
 				E7EEF33B22C8BBDB0004DF5D /* Extensions */,
 				E7EEF33F22C8BBDB0004DF5D /* GigyaTfa.swift */,
 				E7EEF33D22C8BBDB0004DF5D /* Models */,
@@ -136,6 +134,7 @@
 			isa = PBXGroup;
 			children = (
 				E7EEF33C22C8BBDB0004DF5D /* UIAlertController.swift */,
+				E719373D22D4823400CD149E /* Dictionary.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -332,6 +331,7 @@
 				E7EEF36122C8BBDB0004DF5D /* RegistredPhonesResolver.swift in Sources */,
 				E7EEF35922C8BBDB0004DF5D /* UIAlertController.swift in Sources */,
 				E7EEF36822C8BBDB0004DF5D /* VerifyTotpResolverProtocol.swift in Sources */,
+				E719373E22D4823400CD149E /* Dictionary.swift in Sources */,
 				E7EEF35D22C8BBDB0004DF5D /* PushNotificationsService.swift in Sources */,
 				E7EEF36322C8BBDB0004DF5D /* RegisterPhoneResolver.swift in Sources */,
 				E7EEF35F22C8BBDB0004DF5D /* PushNotificationsServiceProtocol.swift in Sources */,

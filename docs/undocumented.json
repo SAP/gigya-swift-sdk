@@ -1,0 +1,831 @@
+{
+  "warnings": [
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Gigya/GigyaCore.swift",
+      "line": 11,
+      "symbol": "GigyaCore",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Global/Plugins/GigyaPluginEvent.swift",
+      "line": 11,
+      "symbol": "PluginEventData",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Global/Plugins/GigyaPluginEvent.swift",
+      "line": 13,
+      "symbol": "GigyaPluginEvent",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Global/Plugins/GigyaPluginEvent.swift",
+      "line": 14,
+      "symbol": "GigyaPluginEvent.onBeforeValidation(event:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Global/Plugins/GigyaPluginEvent.swift",
+      "line": 15,
+      "symbol": "GigyaPluginEvent.onBeforeSubmit(event:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Global/Plugins/GigyaPluginEvent.swift",
+      "line": 16,
+      "symbol": "GigyaPluginEvent.onSubmit(event:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Global/Plugins/GigyaPluginEvent.swift",
+      "line": 17,
+      "symbol": "GigyaPluginEvent.onAfterSubmit(event:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Global/Plugins/GigyaPluginEvent.swift",
+      "line": 18,
+      "symbol": "GigyaPluginEvent.onBeforeScreenLoad(event:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Global/Plugins/GigyaPluginEvent.swift",
+      "line": 19,
+      "symbol": "GigyaPluginEvent.onAfterScreenLoad(event:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Global/Plugins/GigyaPluginEvent.swift",
+      "line": 20,
+      "symbol": "GigyaPluginEvent.onFieldChanged(event:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Global/Plugins/GigyaPluginEvent.swift",
+      "line": 21,
+      "symbol": "GigyaPluginEvent.onHide(event:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Global/Plugins/GigyaPluginEvent.swift",
+      "line": 22,
+      "symbol": "GigyaPluginEvent.onLogin(account:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Global/Plugins/GigyaPluginEvent.swift",
+      "line": 23,
+      "symbol": "GigyaPluginEvent.onLogout",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Global/Plugins/GigyaPluginEvent.swift",
+      "line": 24,
+      "symbol": "GigyaPluginEvent.onConnectionAdded",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Global/Plugins/GigyaPluginEvent.swift",
+      "line": 25,
+      "symbol": "GigyaPluginEvent.onConnectionRemoved",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Global/Plugins/GigyaPluginEvent.swift",
+      "line": 26,
+      "symbol": "GigyaPluginEvent.error(event:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Models/GigyaSocialProviders.swift",
+      "line": 11,
+      "symbol": "GigyaSocialProviders",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Models/GigyaSocialProviders.swift",
+      "line": 12,
+      "symbol": "GigyaSocialProviders.facebook",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Models/GigyaSocialProviders.swift",
+      "line": 13,
+      "symbol": "GigyaSocialProviders.google",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Models/GigyaSocialProviders.swift",
+      "line": 14,
+      "symbol": "GigyaSocialProviders.yahoo",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Models/GigyaSocialProviders.swift",
+      "line": 15,
+      "symbol": "GigyaSocialProviders.twitter",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Models/GigyaSocialProviders.swift",
+      "line": 16,
+      "symbol": "GigyaSocialProviders.line",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Models/GigyaSocialProviders.swift",
+      "line": 17,
+      "symbol": "GigyaSocialProviders.wechat",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Models/GigyaSocialProviders.swift",
+      "line": 18,
+      "symbol": "GigyaSocialProviders.amazon",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Models/GigyaSocialProviders.swift",
+      "line": 19,
+      "symbol": "GigyaSocialProviders.blogger",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Models/GigyaSocialProviders.swift",
+      "line": 20,
+      "symbol": "GigyaSocialProviders.foursquare",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Models/GigyaSocialProviders.swift",
+      "line": 21,
+      "symbol": "GigyaSocialProviders.instagram",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Models/GigyaSocialProviders.swift",
+      "line": 22,
+      "symbol": "GigyaSocialProviders.kakao",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Models/GigyaSocialProviders.swift",
+      "line": 23,
+      "symbol": "GigyaSocialProviders.linkedin",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Models/GigyaSocialProviders.swift",
+      "line": 24,
+      "symbol": "GigyaSocialProviders.livedoor",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Models/GigyaSocialProviders.swift",
+      "line": 25,
+      "symbol": "GigyaSocialProviders.messenger",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Models/GigyaSocialProviders.swift",
+      "line": 26,
+      "symbol": "GigyaSocialProviders.mixi",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Models/GigyaSocialProviders.swift",
+      "line": 27,
+      "symbol": "GigyaSocialProviders.naver",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Models/GigyaSocialProviders.swift",
+      "line": 28,
+      "symbol": "GigyaSocialProviders.netlog",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Models/GigyaSocialProviders.swift",
+      "line": 29,
+      "symbol": "GigyaSocialProviders.odnoklassniki",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Models/GigyaSocialProviders.swift",
+      "line": 30,
+      "symbol": "GigyaSocialProviders.orangeFrance",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Models/GigyaSocialProviders.swift",
+      "line": 31,
+      "symbol": "GigyaSocialProviders.paypaloauth",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Models/GigyaSocialProviders.swift",
+      "line": 32,
+      "symbol": "GigyaSocialProviders.tencentQq",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Models/GigyaSocialProviders.swift",
+      "line": 33,
+      "symbol": "GigyaSocialProviders.renren",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Models/GigyaSocialProviders.swift",
+      "line": 34,
+      "symbol": "GigyaSocialProviders.sinaWeibo",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Models/GigyaSocialProviders.swift",
+      "line": 35,
+      "symbol": "GigyaSocialProviders.spiceworks",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Models/GigyaSocialProviders.swift",
+      "line": 36,
+      "symbol": "GigyaSocialProviders.vkontakte",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Models/GigyaSocialProviders.swift",
+      "line": 37,
+      "symbol": "GigyaSocialProviders.wordpress",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Models/GigyaSocialProviders.swift",
+      "line": 38,
+      "symbol": "GigyaSocialProviders.xing",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Models/GigyaSocialProviders.swift",
+      "line": 39,
+      "symbol": "GigyaSocialProviders.yahooJapan",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Models/GigyaSocialProviders.swift",
+      "line": 42,
+      "symbol": "GigyaNativeSocialProviders",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Models/GigyaSocialProviders.swift",
+      "line": 43,
+      "symbol": "GigyaNativeSocialProviders.facebook",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Models/GigyaSocialProviders.swift",
+      "line": 44,
+      "symbol": "GigyaNativeSocialProviders.google",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Models/GigyaSocialProviders.swift",
+      "line": 45,
+      "symbol": "GigyaNativeSocialProviders.line",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Models/GigyaSocialProviders.swift",
+      "line": 46,
+      "symbol": "GigyaNativeSocialProviders.wechat",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Models/User/GigyaAccount.swift",
+      "line": 11,
+      "symbol": "GigyaAccountProtocol",
+      "symbol_kind": "source.lang.swift.decl.protocol",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Models/User/GigyaAccount.swift",
+      "line": 12,
+      "symbol": "GigyaAccountProtocol.UID",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Models/User/GigyaAccount.swift",
+      "line": 13,
+      "symbol": "GigyaAccountProtocol.profile",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Models/User/GigyaAccount.swift",
+      "line": 14,
+      "symbol": "GigyaAccountProtocol.UIDSignature",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Models/User/GigyaAccount.swift",
+      "line": 15,
+      "symbol": "GigyaAccountProtocol.apiVersion",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Models/User/GigyaAccount.swift",
+      "line": 16,
+      "symbol": "GigyaAccountProtocol.created",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Models/User/GigyaAccount.swift",
+      "line": 17,
+      "symbol": "GigyaAccountProtocol.createdTimestamp",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Models/User/GigyaAccount.swift",
+      "line": 19,
+      "symbol": "GigyaAccountProtocol.isActive",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Models/User/GigyaAccount.swift",
+      "line": 20,
+      "symbol": "GigyaAccountProtocol.isRegistered",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Models/User/GigyaAccount.swift",
+      "line": 21,
+      "symbol": "GigyaAccountProtocol.isVerified",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Models/User/GigyaAccount.swift",
+      "line": 23,
+      "symbol": "GigyaAccountProtocol.lastLogin",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Models/User/GigyaAccount.swift",
+      "line": 24,
+      "symbol": "GigyaAccountProtocol.lastLoginTimestamp",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Models/User/GigyaAccount.swift",
+      "line": 25,
+      "symbol": "GigyaAccountProtocol.lastUpdated",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Models/User/GigyaAccount.swift",
+      "line": 26,
+      "symbol": "GigyaAccountProtocol.lastUpdatedTimestamp",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Models/User/GigyaAccount.swift",
+      "line": 27,
+      "symbol": "GigyaAccountProtocol.loginProvider",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Models/User/GigyaAccount.swift",
+      "line": 28,
+      "symbol": "GigyaAccountProtocol.oldestDataUpdated",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Models/User/GigyaAccount.swift",
+      "line": 29,
+      "symbol": "GigyaAccountProtocol.oldestDataUpdatedTimestamp",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Models/User/GigyaAccount.swift",
+      "line": 30,
+      "symbol": "GigyaAccountProtocol.registered",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Models/User/GigyaAccount.swift",
+      "line": 31,
+      "symbol": "GigyaAccountProtocol.registeredTimestamp",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Models/User/GigyaAccount.swift",
+      "line": 34,
+      "symbol": "GigyaAccountProtocol.signatureTimestamp",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Models/User/GigyaAccount.swift",
+      "line": 35,
+      "symbol": "GigyaAccountProtocol.socialProviders",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Models/User/GigyaAccount.swift",
+      "line": 36,
+      "symbol": "GigyaAccountProtocol.verified",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Models/User/GigyaAccount.swift",
+      "line": 37,
+      "symbol": "GigyaAccountProtocol.verifiedTimestamp",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Models/User/GigyaAccount.swift",
+      "line": 42,
+      "symbol": "GigyaDataDefault",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Models/User/GigyaAccount.swift",
+      "line": 44,
+      "symbol": "GigyaAccount",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Models/User/GigyaAccount.swift",
+      "line": 46,
+      "symbol": "GigyaAccount.UID",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Models/User/GigyaAccount.swift",
+      "line": 48,
+      "symbol": "GigyaAccount.profile",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Models/User/GigyaAccount.swift",
+      "line": 50,
+      "symbol": "GigyaAccount.UIDSignature",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Models/User/GigyaAccount.swift",
+      "line": 52,
+      "symbol": "GigyaAccount.apiVersion",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Models/User/GigyaAccount.swift",
+      "line": 54,
+      "symbol": "GigyaAccount.created",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Models/User/GigyaAccount.swift",
+      "line": 56,
+      "symbol": "GigyaAccount.createdTimestamp",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Models/User/GigyaAccount.swift",
+      "line": 58,
+      "symbol": "GigyaAccount.isActive",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Models/User/GigyaAccount.swift",
+      "line": 60,
+      "symbol": "GigyaAccount.isRegistered",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Models/User/GigyaAccount.swift",
+      "line": 62,
+      "symbol": "GigyaAccount.isVerified",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Models/User/GigyaAccount.swift",
+      "line": 64,
+      "symbol": "GigyaAccount.lastLogin",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Models/User/GigyaAccount.swift",
+      "line": 66,
+      "symbol": "GigyaAccount.lastLoginTimestamp",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Models/User/GigyaAccount.swift",
+      "line": 68,
+      "symbol": "GigyaAccount.lastUpdated",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Models/User/GigyaAccount.swift",
+      "line": 70,
+      "symbol": "GigyaAccount.lastUpdatedTimestamp",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Models/User/GigyaAccount.swift",
+      "line": 72,
+      "symbol": "GigyaAccount.loginProvider",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Models/User/GigyaAccount.swift",
+      "line": 74,
+      "symbol": "GigyaAccount.oldestDataUpdated",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Models/User/GigyaAccount.swift",
+      "line": 76,
+      "symbol": "GigyaAccount.oldestDataUpdatedTimestamp",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Models/User/GigyaAccount.swift",
+      "line": 78,
+      "symbol": "GigyaAccount.registered",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Models/User/GigyaAccount.swift",
+      "line": 80,
+      "symbol": "GigyaAccount.registeredTimestamp",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Models/User/GigyaAccount.swift",
+      "line": 82,
+      "symbol": "GigyaAccount.signatureTimestamp",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Models/User/GigyaAccount.swift",
+      "line": 84,
+      "symbol": "GigyaAccount.socialProviders",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Models/User/GigyaAccount.swift",
+      "line": 86,
+      "symbol": "GigyaAccount.verified",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Models/User/GigyaAccount.swift",
+      "line": 88,
+      "symbol": "GigyaAccount.verifiedTimestamp",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Models/User/GigyaAccount.swift",
+      "line": 90,
+      "symbol": "GigyaAccount.data",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Network/Request/ApiService.swift",
+      "line": 12,
+      "symbol": "GigyaDictionary",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Network/Request/GigyaApiResult.swift",
+      "line": 11,
+      "symbol": "GigyaApiResult",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Network/Request/GigyaApiResult.swift",
+      "line": 12,
+      "symbol": "GigyaApiResult.success(data:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Network/Request/GigyaApiResult.swift",
+      "line": 13,
+      "symbol": "GigyaApiResult.failure(_:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Network/Request/GigyaApiResult.swift",
+      "line": 16,
+      "symbol": "GigyaLoginResult",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Network/Request/GigyaApiResult.swift",
+      "line": 17,
+      "symbol": "GigyaLoginResult.success(data:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Network/Request/GigyaApiResult.swift",
+      "line": 18,
+      "symbol": "GigyaLoginResult.failure(_:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Network/Request/GigyaApiResult.swift",
+      "line": 21,
+      "symbol": "LoginApiError",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Network/Request/GigyaApiResult.swift",
+      "line": 22,
+      "symbol": "LoginApiError.error",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Network/Request/GigyaApiResult.swift",
+      "line": 23,
+      "symbol": "LoginApiError.interruption",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Network/Request/GigyaApiResult.swift",
+      "line": 26,
+      "symbol": "GigyaInterruptions",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Network/Request/GigyaApiResult.swift",
+      "line": 27,
+      "symbol": "GigyaInterruptions.pendingRegistration(resolver:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Network/Request/GigyaApiResult.swift",
+      "line": 28,
+      "symbol": "GigyaInterruptions.pendingVerification(regToken:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Network/Request/GigyaApiResult.swift",
+      "line": 29,
+      "symbol": "GigyaInterruptions.pendingPasswordChange(regToken:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Network/Request/GigyaApiResult.swift",
+      "line": 30,
+      "symbol": "GigyaInterruptions.conflitingAccount(resolver:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Network/Request/GigyaApiResult.swift",
+      "line": 31,
+      "symbol": "GigyaInterruptions.pendingTwoFactorRegistration(response:inactiveProviders:factory:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Network/Request/GigyaApiResult.swift",
+      "line": 32,
+      "symbol": "GigyaInterruptions.pendingTwoFactorVerification(response:activeProviders:factory:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Network/Request/GigyaApiResult.swift",
+      "line": 35,
+      "symbol": "GigyaBiometricResult",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Network/Request/GigyaApiResult.swift",
+      "line": 36,
+      "symbol": "GigyaBiometricResult.success",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Network/Request/GigyaApiResult.swift",
+      "line": 37,
+      "symbol": "GigyaBiometricResult.failure",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    }
+  ],
+  "source_directory": "/Users/i507698/SDKs/gigya-swift-sdk"
+}

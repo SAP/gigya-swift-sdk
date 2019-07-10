@@ -7,9 +7,8 @@
 //
 
 import Foundation
-import GigyaInfra
 
-typealias GigyaResponse = GSResponse
+//typealias GigyaResponse = GSResponse
 public typealias GigyaDictionary = [String: AnyCodable]
 
 class ApiService: IOCApiServiceProtocol {
@@ -38,7 +37,7 @@ class ApiService: IOCApiServiceProtocol {
             let error = error as NSError?
 
             guard let code = error?.code, let callId = error?.userInfo["callId"] as? String else {
-                main { completion(.failure(NetworkError.networkError(error!))) }
+                main { completion(.failure(NetworkError.networkError(error: error!))) }
                 return
             }
 
@@ -57,7 +56,7 @@ class ApiService: IOCApiServiceProtocol {
                                             completion: @escaping (GigyaApiResult<T>) -> Void) {
         guard let data = data else {
             GigyaLogger.log(with: self, message: "Error: data not found)")
-            main { completion(.failure(NetworkError.dataNotFound)) }
+            main { completion(.failure(NetworkError.emptyResponse)) }
             return
         }
 
@@ -77,7 +76,7 @@ class ApiService: IOCApiServiceProtocol {
 
         } catch let error {
             GigyaLogger.log(with: self, message: error.localizedDescription)
-            main { completion(.failure(NetworkError.jsonParsingError(error))) }
+            main { completion(.failure(NetworkError.jsonParsingError(error: error))) }
         }
     }
 }

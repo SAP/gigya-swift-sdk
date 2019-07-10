@@ -51,7 +51,7 @@ class ProvidersLoginWrapperTests: XCTestCase {
 
     func testGetUrlWithoutKeyDomain() {
         config.apiKey = nil
-        config.apiDomain = nil
+        config.apiDomain = ""
 
         webViewWrapper = ProvidersLoginWrapper(config: config, providers: [.google, .facebook])
 

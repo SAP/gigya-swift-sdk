@@ -15,7 +15,7 @@ struct GigyaRequestSignature: Codable {
     var httpStatusCodes: String = "false"
     var nonce: String
     var oauthToken: String?
-    var sdk: String = "iOS_3.6.11"
+    var sdk: String = InternalConfig.General.version
     var targetEnv: String = "mobile"
     var timestamp: String
     var ucid: String?

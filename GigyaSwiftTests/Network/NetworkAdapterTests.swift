@@ -12,11 +12,13 @@ import XCTest
 class NetworkAdapterTests: XCTestCase {
 
     override func setUp() {
-        Gigya.sharedInstance().initWithApi(apiKey: "123")
+        Gigya.sharedInstance().initFor(apiKey: "123")
     }
     
     func testRequest() {
-        let adapter = NetworkAdapter()
+        let config = GigyaConfig()
+        let accountService = AccountService()
+        let adapter = NetworkAdapter(config: config, sessionService: SessionService(config: config, accountService: accountService))
 
         adapter.send(model: ApiRequestModel(method: "test")) { (data, error) in
             

@@ -27,7 +27,9 @@ public class GigyaLogger {
         fatalError("[\(String(describing: clazz))]: \(message) \(genericName(generic))")
     }
 
-    public static func log(with clazz: Any, message: String) {
+    public static func log(with clazz: Any?, message: String) {
+        guard let clazz = clazz else { return }
+        
         if debugMode {
             print("[\(genericName(clazz))]: \(message)")
         }

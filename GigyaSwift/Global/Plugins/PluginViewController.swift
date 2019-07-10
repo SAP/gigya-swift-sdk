@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import GigyaInfra
 import WebKit
 
 class PluginViewController<T: GigyaAccountProtocol>: WebViewController, WKScriptMessageHandler {

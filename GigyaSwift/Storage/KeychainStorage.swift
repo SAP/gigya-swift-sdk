@@ -16,15 +16,15 @@ internal class GSKeychainStorage {
      Params: name: String, data: Data?, completionHandler: Clousre
      Action: Save Dictionary in Keychain with name
     */
-    internal static func add(with name: String, data: Data?, completionHandler: GSKeychainCompletionHandler?) {
+    internal static func add(with name: String, data: Data?, state: KeychainMode = .regular, completionHandler: GSKeychainCompletionHandler?) {
         guard let data = data else {
             assertionFailure("There is not have data")
             return
         }
 
         guard let accessControl = SecAccessControlCreateWithFlags(kCFAllocatorDefault,
-                                                                  kSecAttrAccessibleWhenPasscodeSetThisDeviceOnly,
-                                                                  SecAccessControlCreateFlags.userPresence,
+                                                                  state.attributeAccess(),
+                                                                  state.flag(),
                                                                   nil) else {
                                                                                    completionHandler?(.error(error: .getAttributeFailed)) // "Can not require passcode on current version of iOS"
                                                                     return

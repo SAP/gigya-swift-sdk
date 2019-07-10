@@ -7,3 +7,19 @@
 //
 
 import Foundation
+
+public protocol IOCBiometricServiceProtocol {
+
+    var isLocked: Bool { get }
+
+    var isOptIn: Bool { get }
+
+    func optIn(completion: @escaping (GigyaBiometricResult) -> Void)
+
+    func optOut(completion: @escaping (GigyaBiometricResult) -> Void)
+
+    func unlockSession(completion: @escaping (GigyaBiometricResult) -> Void)
+
+    func lockSession(completion: @escaping (GigyaBiometricResult) -> Void)
+    
+}

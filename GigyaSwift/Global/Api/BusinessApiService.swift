@@ -16,7 +16,7 @@ class BusinessApiService: NSObject, IOCBusinessApiServiceProtocol {
 
     var sessionService: IOCSessionServiceProtocol
 
-    var config: GigyaConfig
+    var biometricService: BiometricServiceInternalProtocol
 
     var accountService: IOCAccountServiceProtocol
 
@@ -28,12 +28,17 @@ class BusinessApiService: NSObject, IOCBusinessApiServiceProtocol {
 
     var providersFactory: ProvidersLoginWrapper?
 
-    required init(config: GigyaConfig, apiService: IOCApiServiceProtocol, sessionService: IOCSessionServiceProtocol,
-                  accountService: IOCAccountServiceProtocol, providerFactory: IOCSocialProvidersManagerProtocol,
-                  interruptionsHandler: IOCInterruptionResolverFactory) {
+    required init(config: GigyaConfig,
+                  apiService: IOCApiServiceProtocol,
+                  sessionService: IOCSessionServiceProtocol,
+                  accountService: IOCAccountServiceProtocol,
+                  providerFactory: IOCSocialProvidersManagerProtocol,
+                  interruptionsHandler: IOCInterruptionResolverFactory,
+                  biometricService: BiometricServiceInternalProtocol) {
         self.config = config
         self.apiService = apiService
         self.sessionService = sessionService
+        self.biometricService = biometricService
         self.accountService = accountService
         self.socialProviderFactory = providerFactory
         self.interruptionsHandler = interruptionsHandler
@@ -151,6 +156,10 @@ class BusinessApiService: NSObject, IOCBusinessApiServiceProtocol {
         }
     }
 
+    func setSessionBiometric() {
+
+    }
+
     func login<T: GigyaAccountProtocol>(dataType: T.Type, loginId: String, password: String, params: [String: Any], completion: @escaping (GigyaLoginResult<T>) -> Void) {
         var loginParams = params
         loginParams["loginID"] = loginId
@@ -257,7 +266,9 @@ class BusinessApiService: NSObject, IOCBusinessApiServiceProtocol {
             switch result {
             case .success(let data):
                 completion(.success(data: data))
+                
                 self?.sessionService.clear()
+                self?.biometricService.clearBiometric()
             case .failure(let error):
                 completion(.failure(error))
             }

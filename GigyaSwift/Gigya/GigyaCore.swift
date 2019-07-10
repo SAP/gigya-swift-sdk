@@ -6,12 +6,20 @@
 //  Copyright © 2019 Gigya. All rights reserved.
 //
 
-import Foundation
-import GigyaInfra
+import UIKit
 
 public class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
 
     internal var container: IOCContainer?
+
+    // Mark: - biometric service
+
+    /*
+     When you want to activity and use biometric (TouchID / FaceID) should need to use this object.
+    */
+    public var biometric: IOCBiometricServiceProtocol {
+         return (container?.resolve(IOCBiometricServiceProtocol.self))!
+    }
 
     // Default api domain
     private var defaultApiDomain: String {
@@ -22,7 +30,6 @@ public class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
     private var config: GigyaConfig {
         return (container?.resolve(GigyaConfig.self))!
     }
-
 
     private var businessApiService: IOCBusinessApiServiceProtocol {
         return (container?.resolve(IOCBusinessApiServiceProtocol.self))!

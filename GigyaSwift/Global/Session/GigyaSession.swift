@@ -8,7 +8,8 @@
 //
 import Foundation
 
-@objc public class GigyaSession: NSObject, NSCoding {
+@objc(GSSession)
+public class GigyaSession: NSObject, NSCoding {
     var token: String = ""
 
     var secret: String = ""

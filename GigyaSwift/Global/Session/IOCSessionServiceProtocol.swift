@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol IOCSessionServiceProtocol {
+public protocol IOCSessionServiceProtocol {
 
     var accountService: IOCAccountServiceProtocol { get }
 
@@ -19,9 +19,13 @@ protocol IOCSessionServiceProtocol {
     func isValidSession() -> Bool
 
     func setSession(_ model: SessionInfoModel?)
-    
-    func getSession()
+
+    func getSession(biometric: Bool, completion: @escaping ((Bool) -> Void))
+
+    func setSessionAs(biometric: Bool, completion: @escaping (GigyaBiometricResult) -> Void)
 
     func clear()
+
+    func clearSession()
 
 }

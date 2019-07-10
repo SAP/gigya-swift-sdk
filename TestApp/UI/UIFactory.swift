@@ -93,4 +93,11 @@ class UIFactory {
         
         return alert
     }
+
+    static func showAlert(vc: UIViewController?, msg: String) {
+        let alertController = UIAlertController(title: "Gigya", message: msg, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+
+        vc?.present(alertController, animated: true, completion: nil)
+    }
 }

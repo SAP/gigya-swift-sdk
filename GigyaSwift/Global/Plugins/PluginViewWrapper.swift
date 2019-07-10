@@ -63,7 +63,9 @@ class PluginViewWrapper<T: GigyaAccountProtocol>: PluginViewWrapperProtocol {
     // MARK: - HTML
     
     func getHtml(_ plugin: String) -> String {
-        guard let apiKey = config.apiKey, let apiDomain = config.apiDomain else { return "" }
+        guard let apiKey = config.apiKey else { return "" }
+
+        let apiDomain = config.apiDomain
         
         // Organize parameters.
         params["containerID"] = "pluginContainer"

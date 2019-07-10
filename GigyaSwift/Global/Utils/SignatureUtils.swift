@@ -11,33 +11,59 @@ import CommonCrypto
 
 class SignatureUtils {
 
-    func oauth1SignatureBaseString(_ domain: String ,_ sMethod: String, _ paramsToSend: [String: String]) -> String {
+    static func prepareSignature(config: GigyaConfig, session: GigyaSession?, path: String, params: [String: Any] = [:]) throws -> [String: Any] {
+        let timestamp: Int = Int(Date().timeIntervalSince1970)
+        let nonce = String(timestamp) + "_" + String(describing: arc4random())
+
+        //swiftlint:disable:next line_length
+        let signatureModel = GigyaRequestSignature(oauthToken: session?.token, apikey: config.apiKey!, nonce: nonce, timestamp: String(timestamp), ucid: config.ucid, gmid: config.gmid)
+
+        let encoderPrepareData = try JSONEncoder().encode(signatureModel)
+        let bodyPrepareData = try JSONSerialization.jsonObject(with: encoderPrepareData, options: .allowFragments) as! [String: String]
+
+        let combinedData = params.merging(bodyPrepareData) { $1 }
+
+        var newParams = combinedData.mapValues { value -> String in
+            if let isDictionary = value as? [String: Any] {
+                return isDictionary.asJson
+            } else {
+                return "\(value)"
+            }
+        }
+
+        if let session = session {
+            let sig = hmac(algorithm: .SHA1, url: oauth1SignatureBaseString(config.apiDomain ,path, newParams), secret: session.secret)
+
+            newParams["sig"] = sig
+        }
+
+        return newParams
+    }
+    
+    private static func oauth1SignatureBaseString(_ domain: String ,_ sMethod: String, _ paramsToSend: [String: Any]) -> String {
         let method = "POST"
         let url =  URL(string: "https://\(sMethod.components(separatedBy: ".").first!).\(domain)/\(sMethod)")!
-        let urlAllowed = NSCharacterSet(charactersIn: "!*'();:@&=+$,/?%#[] ").inverted
+        let urlAllowed = NSCharacterSet(charactersIn: "!*'();/:@&=+$,?%#[]{}\" ").inverted
 
-        let sortedParams = paramsToSend.sorted(by: <)
-        var query = ""
+        let params = paramsToSend.mapValues { value in return "\(value)" }
 
-        for param in sortedParams {
-            let value = param.value.addingPercentEncoding(withAllowedCharacters: urlAllowed) ?? ""
-            query += "\(param.key)=\(value)&"
-        }
-        query = String(query.dropLast())
+        let bodyString: String = params.sorted(by: <).reduce("") { "\($0)\($1.0)=\($1.1.addingPercentEncoding(withAllowedCharacters: urlAllowed) ?? "")&" }
 
-        let baseString = "\(method)&\(url.description.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!)&\(query.addingPercentEncoding(withAllowedCharacters: urlAllowed)!)"
+        let baseString = "\(method)&\(url.description.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!)&\(bodyString.dropLast().addingPercentEncoding(withAllowedCharacters: urlAllowed)!)"
 
         return baseString
     }
 
-    func hmac(algorithm: CryptoAlgorithm, url: String, secret: String) -> String {
+    private static func hmac(algorithm: CryptoAlgorithm, url: String, secret: String) -> String {
         let digestLen = algorithm.digestLength
         let result = UnsafeMutablePointer<CUnsignedChar>.allocate(capacity: digestLen)
 
         let decodedSecret = Data(base64Encoded: secret, options: .ignoreUnknownCharacters)!
         let decodedCount = decodedSecret.count
 
-        let secretBytes = decodedSecret.withUnsafeBytes { (pointer: UnsafePointer<Int8>) -> [Int8] in
+        let secretBytes = decodedSecret.withUnsafeBytes { (dataBytes) -> [Int8] in
+            let pointer: UnsafePointer<Int8> = dataBytes.baseAddress!.assumingMemoryBound(to: Int8.self)
+
             let buffer = UnsafeBufferPointer(start: pointer,
                                              count: decodedCount)
             return [Int8](buffer)
@@ -51,6 +77,7 @@ class SignatureUtils {
         let data = Data(bytes: result, count: digestLen)
         return data.base64EncodedString().addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
     }
+
 }
 
 enum CryptoAlgorithm {

@@ -60,7 +60,7 @@ class ViewController: UIViewController {
             }
         }
 
-         self.present(alert, animated: true, completion: nil)
+        self.present(alert, animated: true, completion: nil)
     }
     
     @IBAction func register(_ sender: Any) {
@@ -136,18 +136,27 @@ class ViewController: UIViewController {
     }
     
     func checkLoginState() {
-        isLoggedIn = gigya.isLoggedIn()
-        if (isLoggedIn) {
-            gigya.getAccount() { [weak self] result in
-                switch result {
-                case .success(let data):
-                    self?.resultTextView?.text = data.toJson()
-                case .failure(_):
-                    break
-                }
-            }
+        if gigya.biometric.isOptIn {
+            self.resultTextView?.text = "Session Opt-in, need to unlock"
+        }
+
+        else if gigya.biometric.isLocked {
+            self.resultTextView?.text = "Session Locked"
         } else {
-            self.resultTextView?.text = "Logged out"
+
+            isLoggedIn = gigya.isLoggedIn()
+            if (isLoggedIn) {
+                gigya.getAccount() { [weak self] result in
+                    switch result {
+                    case .success(let data):
+                        self?.resultTextView?.text = data.toJson()
+                    case .failure(_):
+                        break
+                    }
+                }
+            } else {
+                self.resultTextView?.text = "Logged out"
+            }
         }
     }
 
@@ -270,6 +279,65 @@ class ViewController: UIViewController {
         tfaViewController?.factoryResolver = factoryResolver
         self.navigationController?.pushViewController(tfaViewController!, animated: true)
 
+    }
+
+    @IBAction func OptiInBiometric(_ sender: Any) {
+        gigya.biometric.optIn { (result) in
+            switch result {
+            case .success:
+                // soccess
+                UIFactory.showAlert(vc: self, msg: "Opt-in success")
+            case .failure:
+                //error
+                UIFactory.showAlert(vc: self, msg: "error in opt in")
+            }
+        }
+    }
+
+    @IBAction func OptOutBiometric(_ sender: Any) {
+        gigya.biometric.optOut { (result) in
+            switch result {
+            case .success:
+                // soccess
+                UIFactory.showAlert(vc: self, msg: "Opt-out success")
+            case .failure:
+                //error
+                UIFactory.showAlert(vc: self, msg: "error in opt out")
+            }
+        }
+    }
+
+    @IBAction func UnlockSessionBiometric(_ sender: Any) {
+        gigya.biometric.unlockSession { [weak self] (result) in
+            switch result {
+            case .success:
+                // soccess
+                self?.gigya.getAccount() { [weak self] result in
+                    switch result {
+                    case .success(let data):
+                        self?.resultTextView?.text = data.toJson()
+                        UIFactory.showAlert(vc: self, msg: "unlock success")
+                    case .failure(let error):
+                        UIFactory.showAlert(vc: self, msg: error.localizedDescription)
+                    }
+                }
+            case .failure:
+                //error
+                UIFactory.showAlert(vc: self, msg: "error")
+            }
+        }
+    }
+    
+    @IBAction func LockSessionBiometric(_ sender: Any) {
+        gigya.biometric.lockSession { [weak self] (result) in
+            switch result {
+            case .success:
+                self?.resultTextView?.text = "Session Locked"
+                UIFactory.showAlert(vc: self, msg: "lock success")
+            case .failure:
+                UIFactory.showAlert(vc: self, msg: "error in lock session")
+            }
+        }
     }
 }
     

@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol IOCAccountServiceProtocol: class {
+public protocol IOCAccountServiceProtocol: class {
     var account: Any? { get set }
 
     func getAccount<T: Codable>() -> T

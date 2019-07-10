@@ -107,6 +107,34 @@
                                     <action selector="OptIn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2tt-oi-mfb"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NHW-O1-ecN">
+                                <rect key="frame" x="165" y="498" width="110" height="30"/>
+                                <state key="normal" title="Opt in biometric"/>
+                                <connections>
+                                    <action selector="OptiInBiometric:" destination="BYZ-38-t0r" eventType="touchUpInside" id="oWm-SO-XfP"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="20R-EK-hdL">
+                                <rect key="frame" x="165" y="544" width="121" height="30"/>
+                                <state key="normal" title="Opt out biometric"/>
+                                <connections>
+                                    <action selector="OptOutBiometric:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VhW-rg-dH6"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hhx-Bt-vKE">
+                                <rect key="frame" x="165" y="590" width="174" height="30"/>
+                                <state key="normal" title="Unlock Session biometric"/>
+                                <connections>
+                                    <action selector="UnlockSessionBiometric:" destination="BYZ-38-t0r" eventType="touchUpInside" id="flW-OC-kck"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8sE-Kg-WNH">
+                                <rect key="frame" x="165" y="636" width="159" height="30"/>
+                                <state key="normal" title="Lock Session biometric"/>
+                                <connections>
+                                    <action selector="LockSessionBiometric:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rnj-sz-f36"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -116,23 +144,31 @@
                             <constraint firstItem="0fX-WN-aKg" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="2p7-lC-fVD"/>
                             <constraint firstItem="Jkr-xe-GiC" firstAttribute="top" secondItem="eoH-ob-HH3" secondAttribute="bottom" constant="16" id="2xI-ch-at2"/>
                             <constraint firstItem="fyN-es-d2v" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="6iT-v0-QyB"/>
+                            <constraint firstItem="hhx-Bt-vKE" firstAttribute="top" secondItem="20R-EK-hdL" secondAttribute="bottom" constant="16" id="AW2-3C-TEG"/>
                             <constraint firstItem="Cu6-gD-2R1" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="DKn-Fw-vGx"/>
                             <constraint firstItem="cq6-7s-6Kn" firstAttribute="top" secondItem="fNt-XW-RSV" secondAttribute="bottom" constant="16" id="JdH-eC-2tw"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="owO-vP-SNV" secondAttribute="trailing" constant="16" id="KJ2-A9-xhx"/>
                             <constraint firstItem="9wC-xP-8OI" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="Nde-ba-g2z"/>
+                            <constraint firstItem="NHW-O1-ecN" firstAttribute="top" secondItem="Jkr-xe-GiC" secondAttribute="bottom" constant="16" id="R45-Yl-OOX"/>
                             <constraint firstItem="owO-vP-SNV" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="RMc-LD-XvY"/>
                             <constraint firstItem="Cu6-gD-2R1" firstAttribute="top" secondItem="fyN-es-d2v" secondAttribute="bottom" constant="16" id="U4r-Fs-aWR"/>
                             <constraint firstItem="Jkr-xe-GiC" firstAttribute="leading" secondItem="cq6-7s-6Kn" secondAttribute="trailing" constant="97" id="UfP-Kp-Jye"/>
                             <constraint firstItem="TiM-DB-mr3" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="YjH-RD-fcU"/>
                             <constraint firstItem="WvG-tz-Pye" firstAttribute="top" secondItem="owO-vP-SNV" secondAttribute="bottom" constant="40" id="Z3E-a7-GZJ"/>
+                            <constraint firstItem="8sE-Kg-WNH" firstAttribute="top" secondItem="hhx-Bt-vKE" secondAttribute="bottom" constant="16" id="duC-hH-cOv"/>
                             <constraint firstItem="fNt-XW-RSV" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="faR-xz-gJk"/>
+                            <constraint firstItem="hhx-Bt-vKE" firstAttribute="leading" secondItem="0fX-WN-aKg" secondAttribute="trailing" constant="63" id="fbf-co-naf"/>
                             <constraint firstItem="fNt-XW-RSV" firstAttribute="top" secondItem="9wC-xP-8OI" secondAttribute="bottom" constant="16" id="grl-cd-jq3"/>
                             <constraint firstItem="eoH-ob-HH3" firstAttribute="top" secondItem="WvG-tz-Pye" secondAttribute="bottom" constant="16" id="j1j-ii-8ZM"/>
+                            <constraint firstItem="8sE-Kg-WNH" firstAttribute="leading" secondItem="TiM-DB-mr3" secondAttribute="trailing" constant="18" id="jYj-MI-32s"/>
                             <constraint firstItem="fyN-es-d2v" firstAttribute="top" secondItem="cq6-7s-6Kn" secondAttribute="bottom" constant="16" id="n3S-lC-AcB"/>
                             <constraint firstItem="eoH-ob-HH3" firstAttribute="leading" secondItem="fNt-XW-RSV" secondAttribute="trailing" constant="116" id="nud-H2-ahr"/>
+                            <constraint firstItem="20R-EK-hdL" firstAttribute="top" secondItem="NHW-O1-ecN" secondAttribute="bottom" constant="16" id="rgP-rq-l7C"/>
                             <constraint firstItem="cq6-7s-6Kn" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="sbW-3R-EwQ"/>
+                            <constraint firstItem="20R-EK-hdL" firstAttribute="leading" secondItem="Cu6-gD-2R1" secondAttribute="trailing" constant="11" id="sby-LG-uY9"/>
                             <constraint firstItem="9wC-xP-8OI" firstAttribute="top" secondItem="owO-vP-SNV" secondAttribute="bottom" constant="40" id="uHF-J9-Mfc"/>
                             <constraint firstItem="0fX-WN-aKg" firstAttribute="top" secondItem="Cu6-gD-2R1" secondAttribute="bottom" constant="16" id="uiG-dv-EM9"/>
+                            <constraint firstItem="NHW-O1-ecN" firstAttribute="leading" secondItem="fyN-es-d2v" secondAttribute="trailing" constant="38" id="wdi-LA-kRe"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>

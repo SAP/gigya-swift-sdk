@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import GigyaSDK
 
 class NetworkProvider {
     let url: String
@@ -20,8 +19,8 @@ class NetworkProvider {
     }
 
     func dataRequest(gsession: GigyaSession?,
-                                    path: String, params: [String: String]?, method: NetworkMethod = .post, completion: @escaping GigyaResponseHandler) {
-        let url = "https://\(path.split(separator: ".")[0]).\(self.url)"
+                                    path: String, params: [String: Any]?, method: NetworkMethod = .post, completion: @escaping GigyaResponseHandler) {
+        let url = makeUrl(with: path)
 
         guard var dataURL = URL(string: url) else {
             DispatchQueue.main.async { completion(nil, NetworkError.createURLRequestFailed) }
@@ -39,14 +38,20 @@ class NetworkProvider {
 
         // Encode body request to params
         do {
-            let bodyData = try prepareSignature(session: gsession, path: path, params: newParams ?? [:]) as! [String: String]
-            let bodyString: String = bodyData.sorted(by: <).reduce("") { "\($0)\($1.0)=\($1.1.addingPercentEncoding(withAllowedCharacters: urlAllowed) ?? "")&" }
+            let bodyData = try SignatureUtils.prepareSignature(config: config, session: gsession, path: path, params: newParams ?? [:])
+            let bodyDataParmas = bodyData.mapValues { value -> String in
+                return "\(value)"
+            }
+
+            let bodyString: String = bodyDataParmas.sorted(by: <).reduce("") { "\($0)\($1.0)=\($1.1.addingPercentEncoding(withAllowedCharacters: urlAllowed) ?? "")&" }
 
             request.httpBody = bodyString.dropLast().data(using: String.Encoding.utf8)
 
-            print("[ApiService] httpBody, jsonData: ", String(data: request.httpBody!, encoding: .utf8) ?? "no body data")
+            GigyaLogger.log(with: self, message: "httpBody, jsonData: \(String(data: request.httpBody!, encoding: .utf8) ?? "no body data")")
 
         } catch {
+            GigyaLogger.log(with: self, message: "Error: \(NetworkError.createURLRequestFailed.localizedDescription)")
+
             completion(nil, NetworkError.createURLRequestFailed)
             return
         }
@@ -57,12 +62,12 @@ class NetworkProvider {
         let task = session.dataTask(with: request, completionHandler: { data, _, error in
 
             guard error == nil else {
-                completion(nil, NetworkError.networkError(error!))
+                completion(nil, NetworkError.networkError(error: error!))
                 return
             }
 
             guard let data = data else {
-                completion(nil, NetworkError.dataNotFound)
+                completion(nil, NetworkError.emptyResponse)
                 return
             }
 
@@ -74,26 +79,8 @@ class NetworkProvider {
         task.resume()
     }
 
-    private func prepareSignature(session: GigyaSession?, path: String, params: [String: String] = [:]) throws -> [String: Any] {
-        let timestamp: Int = Int(Date().timeIntervalSince1970) + 0
-        let nonce = String(timestamp) + "_" + String(describing: arc4random())
-
-        let sigUtils = SignatureUtils()
-
-        //swiftlint:disable:next line_length
-        let signatureModel = GigyaRequestSignature(oauthToken: session?.token, apikey: config.apiKey!, nonce: nonce, timestamp: String(timestamp), ucid: config.ucid, gmid: config.gmid)
-
-        let encoderPrepareData = try JSONEncoder().encode(signatureModel)
-        let bodyPrepareData = try JSONSerialization.jsonObject(with: encoderPrepareData, options: .allowFragments) as! [String: String]
-
-        var combinedData = params.merging(bodyPrepareData) { $1 }
-
-        if let session = session {
-            let sig = sigUtils.hmac(algorithm: .SHA1, url: sigUtils.oauth1SignatureBaseString(config.apiDomain ,path, combinedData), secret: session.secret)
-
-            combinedData["sig"] = sig
-        }
-
-        return combinedData
+    private func makeUrl(with path: String) -> String {
+        let url = "https://\(path.split(separator: ".")[0]).\(self.url)"
+        return url
     }
 }

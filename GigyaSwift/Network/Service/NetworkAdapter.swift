@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import GigyaInfra
 
 public typealias GigyaResponseHandler = (NSData?, Error?) -> Void
 
@@ -36,7 +35,7 @@ class NetworkAdapter: IOCNetworkAdapterProtocol {
 
             let networkService = NetworkProvider(url: self.config.apiDomain, config: self.config)
 
-            networkService.dataRequest(gsession: self.sessionService.session, path: model.method, params: model.params as? [String : String], completion: { (data, error) in
+            networkService.dataRequest(gsession: self.sessionService.session, path: model.method, params: model.params, completion: { (data, error) in
                 completion(data, error)
             })
         }
