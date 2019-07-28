@@ -8,23 +8,39 @@
 
 import Foundation
 
-class SessionService: IOCSessionServiceProtocol {
+class SessionService: SessionServiceProtocol {
 
-    var accountService: IOCAccountServiceProtocol
+    var accountService: AccountServiceProtocol
+
+    let keychainHelper: KeychainStorageFactory
 
     var session: GigyaSession?
 
-    var config: GigyaConfig
+    let config: GigyaConfig
+
+    let persistenceService: PersistenceService
 
     private var sessionLoad: Bool = false
 
     private let semaphore = DispatchSemaphore(value: 0)
 
-    required init(config: GigyaConfig, accountService: IOCAccountServiceProtocol) {
+    init(config: GigyaConfig, persistenceService: PersistenceService, accountService: AccountServiceProtocol, keychainHelper: KeychainStorageFactory) {
         self.accountService = accountService
+        self.keychainHelper = keychainHelper
         self.config = config
+        self.persistenceService = persistenceService
 
-        getSession(biometric: config.biometricAllow ?? false)
+        checkFirstRun()
+        getSession(skipLoadSession: persistenceService.biometricAllow ?? false)
+    }
+
+    func checkFirstRun() {
+        let hasRunBefore = persistenceService.hasRunBefore ?? false
+        if hasRunBefore == false {
+            UserDefaults.standard.setValue(true, forKey: InternalConfig.Storage.hasRunBefore)
+
+            clear()
+        }
     }
 
     func isValidSession() -> Bool {
@@ -53,18 +69,18 @@ class SessionService: IOCSessionServiceProtocol {
 
         let data = NSKeyedArchiver.archivedData(withRootObject: gsession)
 
-        GSKeychainStorage.add(with: InternalConfig.Storage.keySession, data: data) {
+        keychainHelper.add(with: InternalConfig.Storage.keySession, data: data) {
             [weak self] err in
             self?.session = gsession
         }
     }
 
-    func getSession(biometric: Bool = false, completion: @escaping ((Bool) -> Void) = { _ in}) {
-        if biometric == true {
+    func getSession(skipLoadSession: Bool = false, completion: @escaping ((Bool) -> Void) = { _ in}) {
+        if skipLoadSession == true {
             return
         }
         
-        GSKeychainStorage.get(name: InternalConfig.Storage.keySession) { [weak self] (result) in
+        keychainHelper.get(name: InternalConfig.Storage.keySession) { [weak self] (result) in
             guard let self = self else {
                 return
             }
@@ -72,6 +88,7 @@ class SessionService: IOCSessionServiceProtocol {
             switch result {
             case .succses(let data):
                 guard let session: GigyaSession = NSKeyedUnarchiver.unarchiveObject(with: data!) as? GigyaSession else {
+                    completion(false)
                     return
                 }
                 self.sessionLoad = true
@@ -99,10 +116,10 @@ class SessionService: IOCSessionServiceProtocol {
             mode = .biometric
         }
 
-        GSKeychainStorage.delete(name: InternalConfig.Storage.keySession) { (result) in
+        keychainHelper.delete(name: InternalConfig.Storage.keySession) { [weak self] (result) in
             switch result {
             case .succses:
-                GSKeychainStorage.add(with: InternalConfig.Storage.keySession, data: data, state: mode) { [weak self] (result) in
+                self?.keychainHelper.add(with: InternalConfig.Storage.keySession, data: data, state: mode) { [weak self] (result) in
                     switch result {
                     case .succses:
                         completion(.success)
@@ -138,7 +155,7 @@ class SessionService: IOCSessionServiceProtocol {
     }
 
     private func removeFromKeychain() {
-        GSKeychainStorage.delete(name: InternalConfig.Storage.keySession) { [weak self] (result) in
+        keychainHelper.delete(name: InternalConfig.Storage.keySession) { [weak self] (result) in
             switch result {
             case .succses(let data):
                 GigyaLogger.log(with: self, message: "Session saved in the keyChain - data: \(data ?? Data())")

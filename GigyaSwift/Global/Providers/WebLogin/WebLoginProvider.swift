@@ -18,9 +18,9 @@ class WebLoginProvider: Provider {
 
     var completionHandler: (String?, String?, Error?) -> Void = { _, _, _  in }
 
-    let sessionService: IOCSessionServiceProtocol
+    let sessionService: SessionServiceProtocol
 
-    init(sessionService: IOCSessionServiceProtocol, provider: ProviderWrapperProtocol, delegate: BusinessApiDelegate) {
+    init(sessionService: SessionServiceProtocol, provider: ProviderWrapperProtocol, delegate: BusinessApiDelegate) {
         self.provider = provider
         self.delegate = delegate
         self.sessionService = sessionService

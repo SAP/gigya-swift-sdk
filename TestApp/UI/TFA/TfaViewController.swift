@@ -60,12 +60,20 @@ class TfaViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         
         contentTable.delegate = self
         contentTable.dataSource = self
-        
+
         contentTable.rowHeight = UITableView.automaticDimension
         contentTable.estimatedRowHeight = UITableView.automaticDimension
         
         self.providerPickerView.delegate = self
         self.providerPickerView.dataSource = self
+
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+
+        //Uncomment the line below if you want the tap not not interfere and cancel other interactions.
+        //tap.cancelsTouchesInView = false
+
+        view.addGestureRecognizer(tap)
+
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -92,8 +100,10 @@ class TfaViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         let selectedProvider = tfaProviders[row]
         switch selectedProvider.name  {
-        case .phone, .liveLink:
+        case .phone:
             onTfaPhoneProviderSelection()
+        case .liveLink:
+            onTfaLivelinkProviderSelection()
         case .totp:
             onTfaTotpProviderSelection()
         case .email:
@@ -157,6 +167,22 @@ class TfaViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
             reloadTableWith(content:  ["phoneInput"])
             break
         case .verification:
+            registeredPhonesResolver?.getRegisteredPhones(completion: registeredPhonesResult(result:))
+            break
+        }
+    }
+
+    /*
+     LiveLink TFA provider selected.
+     */
+    func onTfaLivelinkProviderSelection() {
+        switch tfaMode {
+        case .registration:
+            registerPhoneResolver?.provider(.liveLink)
+            reloadTableWith(content:  ["phoneInput"])
+            break
+        case .verification:
+            registeredPhonesResolver?.provider(.liveLink)
             registeredPhonesResolver?.getRegisteredPhones(completion: registeredPhonesResult(result:))
             break
         }
@@ -350,6 +376,11 @@ class TfaViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
 
             }
         })
+    }
+
+    @objc func dismissKeyboard() {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
     }
 }
 

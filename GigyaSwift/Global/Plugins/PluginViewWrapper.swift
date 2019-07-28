@@ -9,17 +9,18 @@
 import UIKit
 
 protocol PluginViewWrapperProtocol {
-    
     func presentPluginController<T: GigyaAccountProtocol>(viewController: UIViewController, dataType: T.Type, screenSet: String?)
 }
 
 class PluginViewWrapper<T: GigyaAccountProtocol>: PluginViewWrapperProtocol {
     
     let config: GigyaConfig
+
+    let persistenceService: PersistenceService
     
-    let sessionService: IOCSessionServiceProtocol
+    let sessionService: SessionServiceProtocol
     
-    let businessApiService: IOCBusinessApiServiceProtocol
+    let businessApiService: BusinessApiServiceProtocol
 
     var completion: (GigyaPluginEvent<T>) -> Void?
     
@@ -27,9 +28,10 @@ class PluginViewWrapper<T: GigyaAccountProtocol>: PluginViewWrapperProtocol {
     
     var params: [String:Any]
     
-    init(config: GigyaConfig, sessionService: IOCSessionServiceProtocol, businessApiService: IOCBusinessApiServiceProtocol,
+    init(config: GigyaConfig, persistenceService: PersistenceService, sessionService: SessionServiceProtocol, businessApiService: BusinessApiServiceProtocol,
          plugin: String, params: [String: Any], completion: @escaping (GigyaPluginEvent<T>) -> Void) {
         self.config = config
+        self.persistenceService = persistenceService
         self.sessionService = sessionService
         self.businessApiService = businessApiService
         self.completion = completion
@@ -53,7 +55,7 @@ class PluginViewWrapper<T: GigyaAccountProtocol>: PluginViewWrapperProtocol {
 //        GigyaLogger.log(with: self, message: "Initial HTML:\n\(html)")
 
         // Present plugin view controller.
-        let pluginViewController = PluginViewController(config: config, sessionService: sessionService, businessApiService: businessApiService, completion: completion)
+        let pluginViewController = PluginViewController(config: config, persistenceService: persistenceService, sessionService: sessionService, businessApiService: businessApiService, completion: completion)
         let navigationController = UINavigationController(rootViewController: pluginViewController)
         viewController.present(navigationController, animated: true) {
             pluginViewController.load(html: html)

@@ -22,11 +22,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
         // Override point for customization after application launch.
 
         FirebaseApp.configure()
+        
         Messaging.messaging().delegate = self
 
         WXApi.registerApp("wx222c4ccaa989aa00")
 
         UNUserNotificationCenter.current().delegate = self
+
+        Messaging.messaging().shouldEstablishDirectChannel = true
 
         return true
     }
@@ -51,6 +54,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
 
         GigyaTfa.shared.updatePushToken(key: fcmToken)
         NotificationCenter.default.post(name: Notification.Name("FCMToken"), object: nil, userInfo: dataDict)
+    }
+
+    func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage) {
+        GigyaTfa.shared.foregrundNotification(with: remoteMessage.appData)
     }
 
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
@@ -93,8 +100,6 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     }
 
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        // present notification when the app in foreground
-
-        completionHandler([.alert, .sound])
+        completionHandler([.badge, .sound, .alert])
     }
 }

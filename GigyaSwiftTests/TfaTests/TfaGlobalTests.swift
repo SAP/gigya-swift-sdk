@@ -11,21 +11,21 @@ import XCTest
 @testable import GigyaTfa
 
 class TfaGlobalTests: XCTestCase {
-    var ioc: GigyaContainerUtils?
+    var ioc = GigyaContainerUtils.shared
 
-    var businessApi: IOCBusinessApiServiceProtocol?
+    var businessApi: BusinessApiServiceProtocol?
 
     override func setUp() {
         ioc = GigyaContainerUtils()
 
-        businessApi =  ioc?.container.resolve(IOCBusinessApiServiceProtocol.self)
+        businessApi =  ioc.container.resolve(BusinessApiServiceProtocol.self)
 
         ResponseDataTest.resData = nil
         ResponseDataTest.error = nil
         ResponseDataTest.errorCalled = 0
 
     }
-    
+
     func testPendingRegistration() {
         let dic: [String: Any] = ["errorCode": 206002, "callId": "34324", "statusCode": 200, "regToken": "123"]
         // swiftlint:disable force_try
@@ -34,19 +34,35 @@ class TfaGlobalTests: XCTestCase {
 
         let error = NSError(domain: "gigya", code: 206001, userInfo: ["callId": "dasdasdsad"])
 
+        ResponseDataTest.errorCalledCallBack = { }
+
         ResponseDataTest.error = error
 
         ResponseDataTest.resData = jsonData
+        var finish = false
+        let expectation = self.expectation(description: "testPendingRegistration")
 
         businessApi?.login(dataType: RequestTestModel.self, loginId: "tes@test.com", password: "151515", params: [:], completion: { (result) in
             switch result {
             case .success:
                 XCTAssertTrue(true)
+                if finish == false {
+                    finish = true
+                    expectation.fulfill()
+                }
             case .failure(let error):
                 guard let interruption = error.interruption else { return }
 
                 switch interruption {
                 case .pendingRegistration(let resolver):
+                    ResponseDataTest.error = nil
+                    let dic: [String: Any] = ["errorCode": 0, "callId": "34324", "statusCode": 200, "regToken": "123"]
+                    // swiftlint:disable force_try
+                    let jsonData = try! JSONSerialization.data(withJSONObject: dic, options: .prettyPrinted)
+                    // swiftlint:enable force_try
+
+                    ResponseDataTest.resData = jsonData
+
                     resolver.setAccount(params: ["test": "test"])
                 default:
                     XCTFail()
@@ -55,6 +71,8 @@ class TfaGlobalTests: XCTestCase {
                 break
             }
         })
+
+        self.waitForExpectations(timeout: 5, handler: nil)
 
     }
 
@@ -267,10 +285,10 @@ class TfaGlobalTests: XCTestCase {
     }
 
     func testSetEnable() {
-        let interruption = ioc?.container.resolve(IOCInterruptionResolverFactory.self)
+        let interruption = ioc.container.resolve(InterruptionResolverFactory.self)
         interruption?.setEnabled(true)
 
-        XCTAssertTrue(Gigya.sharedInstance().interruptionsEnabled())
+        XCTAssertTrue(Gigya.sharedInstance().interruptionsEnabled)
     }
 }
 

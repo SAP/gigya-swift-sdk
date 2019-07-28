@@ -11,12 +11,12 @@ import Foundation
 //typealias GigyaResponse = GSResponse
 public typealias GigyaDictionary = [String: AnyCodable]
 
-class ApiService: IOCApiServiceProtocol {
-    let networkAdapter: IOCNetworkAdapterProtocol?
+class ApiService: ApiServiceProtocol {
+    let networkAdapter: NetworkAdapterProtocol?
 
-    let sessionService: IOCSessionServiceProtocol?
+    let sessionService: SessionServiceProtocol?
 
-    required init(with networkAdapter: IOCNetworkAdapterProtocol, session: IOCSessionServiceProtocol) {
+    required init(with networkAdapter: NetworkAdapterProtocol, session: SessionServiceProtocol) {
         self.networkAdapter = networkAdapter
         self.sessionService = session
     }
@@ -68,6 +68,9 @@ class ApiService: IOCApiServiceProtocol {
 
             if gigyaResponse.errorCode == 0 {
                 let typedResponse = try DecodeEncodeUtils.decode(fromType: responseType.self, data: data as Data)
+
+                GigyaLogger.log(with: self, message: "[Response]: \(typedResponse)")
+
                 main { completion(GigyaApiResult.success(data: typedResponse)) }
             } else {    
                 GigyaLogger.log(with: self, message: "Failed: \(gigyaResponse)")

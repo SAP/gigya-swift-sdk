@@ -11,14 +11,14 @@ import XCTest
 @testable import GigyaTfa
 
 class TfaRegistrationPhoneResolverTests: XCTestCase {
-    var ioc: GigyaContainerUtils?
+    var ioc = GigyaContainerUtils.shared
 
-    var businessApi: IOCBusinessApiServiceProtocol?
+    var businessApi: BusinessApiServiceProtocol?
 
     override func setUp() {
         ioc = GigyaContainerUtils()
 
-        businessApi =  ioc?.container.resolve(IOCBusinessApiServiceProtocol.self)
+        businessApi =  ioc.container.resolve(BusinessApiServiceProtocol.self)
 
         ResponseDataTest.resData = nil
         ResponseDataTest.error = nil

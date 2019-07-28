@@ -11,14 +11,13 @@ import XCTest
 @testable import Gigya
 
 class SocialProviderLoginTests: XCTestCase {
-    let ioc = GigyaContainerUtils()
-    var gigya = Gigya.sharedInstance()
+    let ioc = GigyaContainerUtils.shared
 
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
         ResponseDataTest.resData = nil
         ResponseDataTest.error = nil
-        Gigya.sharedInstance().container = ioc.container
+        Gigya.container = ioc.container
 
         Gigya.sharedInstance().initFor(apiKey: "123")
 

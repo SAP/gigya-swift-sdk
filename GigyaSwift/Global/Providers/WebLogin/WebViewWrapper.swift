@@ -17,7 +17,9 @@ class WebLoginWrapper: NSObject, ProviderWrapperProtocol {
 
     private var config: GigyaConfig?
 
-    private let providerType: GigyaSocialProviders
+    private var persistenceService: PersistenceService?
+
+    private var providerType: GigyaSocialProviders
 
     private var navigationController: UINavigationController?
 
@@ -27,9 +29,10 @@ class WebLoginWrapper: NSObject, ProviderWrapperProtocol {
         self.providerType = .google
     }
 
-    init(config: GigyaConfig, providerType: GigyaSocialProviders) {
+    init(config: GigyaConfig, persistenceService: PersistenceService, providerType: GigyaSocialProviders) {
         self.providerType = providerType
         self.config = config
+        self.persistenceService = persistenceService
         self.webViewController = WebViewController()
 
         super.init()
@@ -66,8 +69,8 @@ class WebLoginWrapper: NSObject, ProviderWrapperProtocol {
         urlString.append("redirect_uri=gsapi://login_result&")
         urlString.append("response_type=token&")
         urlString.append("client_id=\(config?.apiKey ?? "")&")
-        urlString.append("gmid=\(config?.gmid ?? "")&")
-        urlString.append("ucid=\(config?.ucid ?? "")&")
+        urlString.append("gmid=\(persistenceService?.gmid ?? "")&")
+        urlString.append("ucid=\(persistenceService?.ucid ?? "")&")
         urlString.append("x_secret_type=oauth1&")
         urlString.append("x_endPoint=socialize.login&")
         urlString.append("x_sdk=\(InternalConfig.General.version)&")

@@ -12,9 +12,10 @@ import WebKit
 
 class ProvidersLoginWrapperTests: XCTestCase {
 
-    var webViewWrapper: ProvidersLoginWrapper = ProvidersLoginWrapper(config: GigyaConfig(), providers: [.google])
+    var webViewWrapper: ProvidersLoginWrapper? = ProvidersLoginWrapper(config: GigyaConfig(), persistenceService: PersistenceService(), providers: [.google])
 
     var config = GigyaConfig()
+    var persistenceService = PersistenceService()
 
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -29,12 +30,12 @@ class ProvidersLoginWrapperTests: XCTestCase {
     func testGetUrlSuccess() {
         config.apiKey = "test_valid_key"
 
-        webViewWrapper = ProvidersLoginWrapper(config: config, providers: [.google, .facebook])
+        webViewWrapper = ProvidersLoginWrapper(config: config, persistenceService: persistenceService, providers: [.google, .facebook])
 
-        let url = webViewWrapper.getUrl(params: [:])
+        let url = webViewWrapper?.getUrl(params: [:])
         if url?.absoluteString.contains("test_valid_key") == true {
             XCTAssert(true)
-            webViewWrapper.dismiss()
+            webViewWrapper?.dismiss()
         } else {
             XCTFail()
         }
@@ -44,51 +45,54 @@ class ProvidersLoginWrapperTests: XCTestCase {
         config.apiKey = "§§urlNotVlid*&%#$@/.,\\\\//d„„23"
         config.apiDomain = "us1.gigya.com"
 
-        webViewWrapper = ProvidersLoginWrapper(config: config, providers: [.google, .facebook])
+        webViewWrapper = ProvidersLoginWrapper(config: config, persistenceService: persistenceService, providers: [.google, .facebook])
 
-        XCTAssertNil(webViewWrapper.getUrl(params: [:])?.absoluteString)
+        XCTAssertNil(webViewWrapper?.getUrl(params: [:])?.absoluteString)
     }
 
     func testGetUrlWithoutKeyDomain() {
         config.apiKey = nil
         config.apiDomain = ""
 
-        webViewWrapper = ProvidersLoginWrapper(config: config, providers: [.google, .facebook])
+        webViewWrapper = ProvidersLoginWrapper(config: config, persistenceService: persistenceService, providers: [.google, .facebook])
 
-        XCTAssert(webViewWrapper.getUrl(params: [:])!.absoluteString.contains("apikey=&"))
+        XCTAssert(webViewWrapper!.getUrl(params: [:])!.absoluteString.contains("apikey=&"))
     }
 
     func testLoginUserCancel() {
         config.apiKey = "test_valid_key"
         config.apiDomain = "us1.gigya.com"
 
-        webViewWrapper = ProvidersLoginWrapper(config: config, providers: [.google, .facebook])
+        webViewWrapper = ProvidersLoginWrapper(config: config, persistenceService: persistenceService, providers: [.google, .facebook])
 
         let vc = UIViewController()
 
-        webViewWrapper.show(params: [:], viewController: vc) { (json, error) in
+        webViewWrapper?.show(params: [:], viewController: vc) { (json, error) in
             XCTAssert(error?.contains("sign in cancelled") ?? false)
+            self.webViewWrapper = nil
+
         }
 
-        webViewWrapper.webViewController?.dismissView()
+        webViewWrapper?.webViewController?.dismissView()
     }
 
     func testLoginDelegate() {
         config.apiKey = "test_valid_key"
         config.apiDomain = "us1.gigya.com"
 
-        webViewWrapper = ProvidersLoginWrapper(config: config, providers: [.google, .facebook])
+        webViewWrapper = ProvidersLoginWrapper(config: config, persistenceService: persistenceService, providers: [.google, .facebook])
 
         var receivedPolicy: WKNavigationActionPolicy?
         let fakeAction = FakeNavigationAction(testRequest: URLRequest(url: URL(string: "https://socialize.us1.gigya.com/socialize.login?status=ok&access_token=123&x_access_token_secret=123&provider=googleplus")!))
         let vc = UIViewController()
 
-        webViewWrapper.show(params: [:], viewController: vc) { (result, error) in
+        webViewWrapper?.show(params: [:], viewController: vc) { (result, error) in
             XCTAssertNotNil(result)
+            self.webViewWrapper = nil
         }
 
         print(receivedPolicy as Any)
-        webViewWrapper.webViewController?.webView.navigationDelegate?.webView?(webViewWrapper.webViewController!.webView, decidePolicyFor: fakeAction, decisionHandler: { receivedPolicy = $0 })
+        webViewWrapper!.webViewController?.webView.navigationDelegate?.webView?(webViewWrapper!.webViewController!.webView, decidePolicyFor: fakeAction, decisionHandler: { receivedPolicy = $0 })
     }
 
     func testLoginDelegateFail() {
@@ -96,24 +100,18 @@ class ProvidersLoginWrapperTests: XCTestCase {
         config.apiDomain = "us1.gigya.com"
         let vc = UIViewController()
 
-        webViewWrapper = ProvidersLoginWrapper(config: config, providers: [.google, .facebook])
+        webViewWrapper = ProvidersLoginWrapper(config: config, persistenceService: persistenceService, providers: [.google, .facebook])
 
         var receivedPolicy: WKNavigationActionPolicy?
         let fakeAction = FakeNavigationAction(testRequest: URLRequest(url: URL(string: "https://socialize.us1.gigya.com/socialize.login?status=none&access_token=123&x_access_token_secret=123")!))
-        webViewWrapper.show(params: [:], viewController: vc) { (result, error) in
+        webViewWrapper?.show(params: [:], viewController: vc) { (result, error) in
             XCTAssertNotNil(error)
+            self.webViewWrapper = nil
         }
 
         print(receivedPolicy)
 
-        webViewWrapper.webViewController?.webView.navigationDelegate?.webView?(webViewWrapper.webViewController!.webView, decidePolicyFor: fakeAction, decisionHandler: { receivedPolicy = $0 })
+        webViewWrapper!.webViewController?.webView.navigationDelegate?.webView?(webViewWrapper!.webViewController!.webView, decidePolicyFor: fakeAction, decisionHandler: { receivedPolicy = $0 })
 
-    }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
     }
 }

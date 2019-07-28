@@ -9,11 +9,11 @@
 import Foundation
 @testable import Gigya
 
-class ProviderFactoryMock: IOCSocialProvidersManagerProtocol {
+class ProviderFactoryMock: SocialProvidersManagerProtocol {
     let config: GigyaConfig
-    let sessionService: IOCSessionServiceProtocol
+    let sessionService: SessionServiceProtocol
 
-    init(sessionService: IOCSessionServiceProtocol, config: GigyaConfig) {
+    init(sessionService: SessionServiceProtocol, config: GigyaConfig) {
         self.sessionService = sessionService
         self.config = config
     }

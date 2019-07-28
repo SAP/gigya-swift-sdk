@@ -23,7 +23,7 @@ class ViewController: UIViewController {
     }
     
     @IBOutlet weak var resultTextView: UITextView?
-    
+
     @IBAction func showScreenSet(_ sender: Any) {
         gigya.showScreenSet(with: "Default-RegistrationLogin", viewController: self) { [weak self] (result) in
             switch result {
@@ -76,8 +76,13 @@ class ViewController: UIViewController {
                     guard let interruption = error.interruption else { return }
                     // Evaluage interruption.
                     switch interruption {
-                    case .pendingTwoFactorRegistration:
-                        break
+                    case .conflitingAccount(let resolver):
+                        resolver.linkToSite(loginId: resolver.conflictingAccount?.loginID ?? "", password: "123123")
+                    case .pendingTwoFactorVerification(let interruption, let activeProviders, let factory):
+                        self?.presentTFAController(tfaProviders: activeProviders!, mode: .verification, factoryResolver: factory)
+
+                    case .pendingTwoFactorRegistration(let interruption, let inactiveProviders, let factory):
+                        self?.presentTFAController(tfaProviders: inactiveProviders!, mode: .registration, factoryResolver: factory)
                     default:
                         break
                     }
@@ -285,7 +290,7 @@ class ViewController: UIViewController {
         gigya.biometric.optIn { (result) in
             switch result {
             case .success:
-                // soccess
+                // success
                 UIFactory.showAlert(vc: self, msg: "Opt-in success")
             case .failure:
                 //error

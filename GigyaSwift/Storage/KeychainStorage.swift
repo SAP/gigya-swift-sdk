@@ -10,13 +10,20 @@ import Foundation
 
 typealias GSKeychainCompletionHandler = (KeychainResult) -> Void
 
-internal class GSKeychainStorage {
+internal class KeychainStorageFactory {
+    let plistConfig: PlistConfig?
+
+    init(plistFactory: PlistConfigFactory) {
+        self.plistConfig = plistFactory.parsePlistConfig()
+    }
+
     /*
      Mehod: add
      Params: name: String, data: Data?, completionHandler: Clousre
      Action: Save Dictionary in Keychain with name
     */
-    internal static func add(with name: String, data: Data?, state: KeychainMode = .regular, completionHandler: GSKeychainCompletionHandler?) {
+
+    func add(with name: String, data: Data?, state: KeychainMode = .regular, completionHandler: GSKeychainCompletionHandler?) {
         guard let data = data else {
             assertionFailure("There is not have data")
             return
@@ -55,12 +62,12 @@ internal class GSKeychainStorage {
      Params: name: String, completionHandler: Clousre
      Action: get Data from Keychain
      */
-    static internal func get(name: String, _ completionHandler: GSKeychainCompletionHandler?) {
+    func get(name: String, _ completionHandler: GSKeychainCompletionHandler?) {
         let query: [CFString: Any] = [ kSecClass: kSecClassGenericPassword,
                                       kSecAttrService: InternalConfig.Storage.serviceName,
                                       kSecAttrAccount: name,
                                       kSecReturnData: true,
-                                      kSecUseOperationPrompt: InternalConfig.Storage.defaultTouchIDMessage // TODO: need to add message from plist
+                                      kSecUseOperationPrompt: plistConfig?.touchIDText ?? InternalConfig.Storage.defaultTouchIDMessage
                                       ]
 
         DispatchQueue.global().async {
@@ -85,7 +92,7 @@ internal class GSKeychainStorage {
      Params: name: String, completionHandler: Clousre
      Action: delete Data from Keychain
      */
-    static internal func delete(name: String, completionHandler: GSKeychainCompletionHandler?) {
+    func delete(name: String, completionHandler: GSKeychainCompletionHandler?) {
         let query: [CFString: Any] = [kSecClass: kSecClassGenericPassword,
                                        kSecAttrService: InternalConfig.Storage.serviceName,
                                        kSecAttrAccount: name]

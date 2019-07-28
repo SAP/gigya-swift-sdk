@@ -15,6 +15,8 @@ public class RegisterPhoneResolver<T: GigyaAccountProtocol>: TFAResolver<T>, Reg
     internal let interruption: GigyaResponseModel
     internal let completionHandler: (GigyaLoginResult<T>) -> Void
 
+    private var provider: TFAProvider = .phone
+
     lazy var verifyCodeResolver: VerifyCodeResolver = {
         return VerifyCodeResolver(businessApiDelegate: self.businessApiDelegate, interruption: self.interruption, completionHandler: self.completionHandler)
     }()
@@ -27,10 +29,14 @@ public class RegisterPhoneResolver<T: GigyaAccountProtocol>: TFAResolver<T>, Reg
         super.init(businessApiDelegate: businessApiDelegate, interruption: interruption, completionHandler: completionHandler)
     }
 
+    public func provider(_ provider: TFAProvider) {
+        self.provider = provider
+    }
+
     public func registerPhone(phone: String, method: TFAPhoneMethod = .sms, completion: @escaping (RegisterPhonesResult) -> Void ) {
         var params: [String: String] = [:]
         params["regToken"] = self.regToken
-        params["provider"] = TFAProvider.phone.rawValue
+        params["provider"] = provider.rawValue
         params["mode"] = TFAMode.register.rawValue
 
         businessApiDelegate.sendApi(dataType: InitTFAModel.self, api: GigyaDefinitions.API.initTFA, params: params) { [weak self] result in

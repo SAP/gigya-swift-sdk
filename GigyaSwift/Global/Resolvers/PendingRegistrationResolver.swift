@@ -12,7 +12,7 @@ public class PendingRegistrationResolver<T: GigyaAccountProtocol>: BaseResolver 
 
     let originalError: NetworkError
 
-    let regToken: String
+    public let regToken: String
 
     weak var businessDelegate: BusinessApiDelegate?
 

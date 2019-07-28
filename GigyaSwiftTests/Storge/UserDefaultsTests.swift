@@ -10,16 +10,15 @@ import XCTest
 @testable import Gigya
 
 class UserDefaultsTests: XCTestCase {
-    let ioc = GigyaContainerUtils()
+    let ioc = GigyaContainerUtils.shared
     var config: GigyaConfig?
+    var persistenceService: PersistenceService?
 
     override func setUp() {
         config = ioc.container.resolve(GigyaConfig.self)
-
+        persistenceService = ioc.container.resolve(PersistenceService.self)
         UserDefaults.standard.set("testSaveGmid", forKey: InternalConfig.Storage.GMID)
         UserDefaults.standard.set("testSaveUcid", forKey: InternalConfig.Storage.UCID)
-
-        UserDefaults.standard.synchronize()
     }
 
     override func tearDown() {
@@ -28,7 +27,7 @@ class UserDefaultsTests: XCTestCase {
     }
 
     func testGetGmid() {
-        if let gmid = config?.gmid {
+        if let gmid = persistenceService?.gmid {
             XCTAssertNotNil(gmid)
         } else {
             XCTFail()
@@ -36,7 +35,7 @@ class UserDefaultsTests: XCTestCase {
     }
 
     func testGetUcid() {
-        if let ucid = config?.ucid {
+        if let ucid = persistenceService?.ucid {
             XCTAssertNotNil(ucid)
         } else {
             XCTFail()
@@ -46,7 +45,7 @@ class UserDefaultsTests: XCTestCase {
     func testGetFail() {
         tearDown()
 
-        if let _ = config?.gmid {
+        if let _ = persistenceService?.gmid {
             XCTFail()
         } else {
             XCTAssert(true)

@@ -21,7 +21,7 @@ internal enum KeychainMode {
     func attributeAccess() -> CFTypeRef {
         switch self {
         case .biometric:
-            return kSecAttrAccessibleWhenUnlockedThisDeviceOnly
+            return kSecAttrAccessibleWhenUnlocked
         case .regular:
             return kSecAttrAccessibleAlwaysThisDeviceOnly
         }

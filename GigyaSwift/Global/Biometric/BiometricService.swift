@@ -8,18 +8,20 @@
 
 import Foundation
 
-class BiometricService: IOCBiometricServiceProtocol, BiometricServiceInternalProtocol {
+class BiometricService: BiometricServiceProtocol, BiometricServiceInternalProtocol {
 
     let config: GigyaConfig
 
-    let sessionService: IOCSessionServiceProtocol
+    let persistenceService: PersistenceService
+
+    let sessionService: SessionServiceProtocol
 
     /**
      Returns the indication if the session was opted-in.
      */
 
     var isOptIn: Bool {
-        return config.biometricAllow ?? false
+        return persistenceService.biometricAllow ?? false
     }
 
     /**
@@ -27,12 +29,13 @@ class BiometricService: IOCBiometricServiceProtocol, BiometricServiceInternalPro
      */
 
     var isLocked: Bool {
-        return config.biometricLocked ?? false
+        return persistenceService.biometricLocked ?? false
     }
 
-    init(config: GigyaConfig, sessionService: IOCSessionServiceProtocol) {
+    init(config: GigyaConfig, persistenceService: PersistenceService, sessionService: SessionServiceProtocol) {
         self.sessionService = sessionService
         self.config = config
+        self.persistenceService = persistenceService
     }
 
     // MARK: - Biometric
@@ -82,13 +85,13 @@ class BiometricService: IOCBiometricServiceProtocol, BiometricServiceInternalPro
      - Parameter completion:  Response GigyaBiometricResult.
      */
     public func unlockSession(completion: @escaping (GigyaBiometricResult) -> Void) {
-        guard config.biometricAllow == true else {
+        guard persistenceService.biometricAllow == true else {
             GigyaLogger.log(with: "biometric", message: "can't load session because user don't opt in")
             completion(.failure)
             return
         }
 
-        sessionService.getSession(biometric: false) { (success) in
+        sessionService.getSession(skipLoadSession: false) { (success) in
             if success == true {
                 completion(.success)
             } else {
@@ -124,13 +127,9 @@ class BiometricService: IOCBiometricServiceProtocol, BiometricServiceInternalPro
 
     private func setBiometricEnable(to allow: Bool) {
         UserDefaults.standard.setValue(allow, forKey: InternalConfig.Storage.biometricAllow)
-
-        UserDefaults.standard.synchronize()
     }
 
     private func setBiometricLocked(to enable: Bool) {
         UserDefaults.standard.setValue(enable, forKey: InternalConfig.Storage.biometricLocked)
-
-        UserDefaults.standard.synchronize()
     }
 }

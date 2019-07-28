@@ -7,7 +7,9 @@
 //
 
 import Foundation
-
+/**
+ The `GigyaSocialProviders` it is list of supported providers.
+ */
 public enum GigyaSocialProviders: String {
     case facebook
     case google = "googleplus"
@@ -39,6 +41,9 @@ public enum GigyaSocialProviders: String {
     case yahooJapan = "Yahoo Japan"
 }
 
+/**
+ The `GigyaNativeSocialProviders` it is list of supported native providers.
+ */
 public enum GigyaNativeSocialProviders: String, CaseIterable {
     case facebook
     case google = "googleplus"

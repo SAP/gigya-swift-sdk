@@ -8,7 +8,7 @@
 
 import Foundation
 
-public protocol IOCBiometricServiceProtocol {
+public protocol BiometricServiceProtocol {
 
     var isLocked: Bool { get }
 

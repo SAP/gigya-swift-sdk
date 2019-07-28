@@ -12,10 +12,12 @@ import WebKit
 class PluginViewController<T: GigyaAccountProtocol>: WebViewController, WKScriptMessageHandler {
     
     let config: GigyaConfig
+
+    let persistenceService: PersistenceService
+
+    let sessionService: SessionServiceProtocol
     
-    let sessionService: IOCSessionServiceProtocol
-    
-    let businessApiService: IOCBusinessApiServiceProtocol
+    let businessApiService: BusinessApiServiceProtocol
     
     let contentController = WKUserContentController()
     
@@ -24,9 +26,10 @@ class PluginViewController<T: GigyaAccountProtocol>: WebViewController, WKScript
     
     var completion: (GigyaPluginEvent<T>) -> Void?
     
-    init(config: GigyaConfig, sessionService: IOCSessionServiceProtocol, businessApiService: IOCBusinessApiServiceProtocol,
+    init(config: GigyaConfig, persistenceService: PersistenceService, sessionService: SessionServiceProtocol, businessApiService: BusinessApiServiceProtocol,
          completion: @escaping (GigyaPluginEvent<T>) -> Void?) {
         self.config = config
+        self.persistenceService = persistenceService
         self.sessionService = sessionService
         self.businessApiService = businessApiService
         self.completion = completion
@@ -108,7 +111,7 @@ class PluginViewController<T: GigyaAccountProtocol>: WebViewController, WKScript
         // Invoke action.
         switch action {
         case "get_ids":
-            let ids = ["ucid": config.ucid ?? "","gcid": config.gmid ?? ""]
+            let ids = ["ucid": persistenceService.ucid ?? "","gcid": persistenceService.gmid ?? ""]
             invokeCallback(callbackId: callbackId, and: ids.asJson)
         case "is_session_valid":
             let isValid = sessionService.isValidSession()

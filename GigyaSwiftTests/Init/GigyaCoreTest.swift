@@ -11,14 +11,17 @@ import XCTest
 
 class GigyaCoreTest: XCTestCase {
 
-    let ioc = GigyaContainerUtils()
-    var gigya = Gigya.sharedInstance()
+    let ioc = GigyaContainerUtils.shared
 
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
         ResponseDataTest.resData = nil
         ResponseDataTest.error = nil
-        Gigya.sharedInstance().container = ioc.container
+
+        Gigya.container = ioc.container
+
+        let accountService = Gigya.container?.resolve(AccountServiceProtocol.self)
+        accountService?.clear()
 
         Gigya.sharedInstance().initFor(apiKey: "123")
 
@@ -116,16 +119,18 @@ class GigyaCoreTest: XCTestCase {
     }
 
     func testGetAccountFailed() {
-        let accountService = Gigya.sharedInstance().container?.resolve(IOCAccountServiceProtocol.self)
+        let accountService = Gigya.container?.resolve(AccountServiceProtocol.self)
         accountService?.account = [String: String]()
 
         ResponseDataTest.resData = nil
+        ResponseDataTest.error = nil
+
         expectFatalError(expectedMessage: "[AccountService]: something happend with getAccount ") {
             Gigya.sharedInstance().getAccount { (res) in
                 if case .success = res {
-                    XCTAssert(true)
-                } else {
                     XCTFail("Fail")
+                } else {
+                     XCTAssert(true)
                 }
             }
         }
@@ -175,11 +180,14 @@ class GigyaCoreTest: XCTestCase {
     }
 
     func testLogout() {
+        let expectation = self.expectation(description: "testLogout")
+
         Gigya.sharedInstance().logout() { result in
-
+            expectation.fulfill()
+            XCTAssertFalse(Gigya.sharedInstance().isLoggedIn())
         }
+        self.waitForExpectations(timeout: 5, handler: nil)
 
-        XCTAssert(!Gigya.sharedInstance().isLoggedIn())
     }
 
     func testRegister() {
@@ -284,12 +292,5 @@ class GigyaCoreTest: XCTestCase {
 //        }
 //    }
 
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
 
 }

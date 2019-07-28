@@ -8,7 +8,7 @@
 
 import Foundation
 
-class InterruptionResolverFactory: IOCInterruptionResolverFactory {
+class InterruptionResolverFactory: InterruptionResolverFactoryProtocol {
     var resolver: BaseResolver?
 
     private var enabled: Bool = true
@@ -71,6 +71,7 @@ class InterruptionResolverFactory: IOCInterruptionResolverFactory {
                 forwordFailed(error: error, completion: completion)
             }
         default:
+            // When the error is not an intteruption, it's should return the original error to the client.
             GigyaLogger.log(with: self, message: "[interruptionResolver] - error: \(error)")
 
             forwordFailed(error: error, completion: completion)

@@ -14,6 +14,8 @@ class ProvidersLoginWrapper: NSObject {
 
     private var config: GigyaConfig?
 
+    private var persistenceService: PersistenceService?
+
     private let providers: [GigyaSocialProviders]
 
     private var navigationController: UINavigationController?
@@ -21,9 +23,10 @@ class ProvidersLoginWrapper: NSObject {
     private var completionHandler: ((_ jsonData: [String: Any]?, _ error: String?) -> Void)? = nil
 
 
-    init(config: GigyaConfig, providers: [GigyaSocialProviders]) {
+    init(config: GigyaConfig, persistenceService: PersistenceService, providers: [GigyaSocialProviders]) {
         self.providers = providers
         self.config = config
+        self.persistenceService = persistenceService
         self.webViewController = WebViewController()
 
         super.init()
@@ -71,8 +74,8 @@ class ProvidersLoginWrapper: NSObject {
         urlString.append("requestType=login&")
         urlString.append("iosVersion=\(UIDevice.current.systemVersion)&")
         urlString.append("apikey=\(config?.apiKey ?? "")&")
-        urlString.append("gmid=\(config?.gmid ?? "")&")
-        urlString.append("ucid=\(config?.ucid ?? "")&")
+        urlString.append("gmid=\(persistenceService?.gmid ?? "")&")
+        urlString.append("ucid=\(persistenceService?.ucid ?? "")&")
         urlString.append("sdk=\(InternalConfig.General.version)&")
         urlString.append("enabledProviders=\(providersString)&")
         urlString.append("disabledProviders=\(disabledProviders)&")

@@ -11,17 +11,18 @@ import XCTest
 
 class GigyaInitTest: XCTestCase {
 
-    var ioc: GigyaContainerUtils?
-
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
-        ioc = GigyaContainerUtils()
+        let ioc = GigyaContainerUtils.shared
+        Gigya.container = ioc.container
 
     }
 
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         Gigya.removeStoredInstance()
+
+        Gigya.container = nil
     }
 
     func testInitWithOutSchema() {
@@ -33,6 +34,12 @@ class GigyaInitTest: XCTestCase {
     }
 
     func testInitWithSchema() {
+        Gigya.removeStoredInstance()
+
+        let ioc = GigyaContainerUtils.shared
+        ioc.registerDependencie(UserDataModel.self)
+        Gigya.container = ioc.container
+
         let gigya = Gigya.sharedInstance(UserDataModel.self)
 
         let className = String(describing: gigya.self)
@@ -41,59 +48,45 @@ class GigyaInitTest: XCTestCase {
     }
 
     func testInitWithWrongSchema() {
+        Gigya.removeStoredInstance()
+
+        let ioc = GigyaContainerUtils.shared
+        ioc.registerDependencie(UserDataModel.self)
+        Gigya.container = ioc.container
+
         Gigya.sharedInstance(UserDataModel.self)
 
         expectFatalError(expectedMessage: "[Gigya]: Gigya instance was originally created with a different GigyaAccountProtocol: UserDataModel") {
             Gigya.sharedInstance()
         }
     }
-
-    func testInitWithOutApiKey() {
-        expectFatalError(expectedMessage: "[Gigya]: please make sure you call 'initWithApi' or add apiKey to plist file ") {
-            Gigya.sharedInstance().initFor(apiKey: "")
-        }
-    }
-
-//    func testParsePlist() {
-//        if let plist = DecodeEncodeUtils.parsePlistConfig() {
-//            XCTAssertNotNil(plist)
-//        } else {
-//            XCTFail()
+//
+//    func testInitWithOutApiKey() {
+//        expectFatalError(expectedMessage: "[Gigya]: please make sure you call 'initWithApi' or add apiKey to plist file ") {
+//            Gigya.sharedInstance().initFor(apiKey: "")
 //        }
 //    }
 
     // Dependencies tests
     func testConfigDependency() {
-        let config = Gigya.sharedInstance().container?.resolve(GigyaConfig.self)
+
+        let config = Gigya.container?.resolve(GigyaConfig.self)
         XCTAssertNotNil(config)
     }
 
     func testAccountServiceDependency() {
-        let accountService = Gigya.sharedInstance().container?.resolve(IOCAccountServiceProtocol.self)
+        let accountService = Gigya.container?.resolve(AccountServiceProtocol.self)
         XCTAssertNotNil(accountService)
     }
 
     func testSessionServiceDependency() {
-        let sessionService = Gigya.sharedInstance().container?.resolve(IOCSessionServiceProtocol.self)
+        let sessionService = Gigya.container?.resolve(SessionServiceProtocol.self)
         XCTAssertNotNil(sessionService)
     }
 
     func testApiServiceDependency() {
-        let apiService = Gigya.sharedInstance().container?.resolve(IOCApiServiceProtocol.self)
+        let apiService = Gigya.container?.resolve(ApiServiceProtocol.self)
         XCTAssertNotNil(apiService)
     }
 
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
-
 }
-
-//extension DecodeEncodeUtils {
-//    static func parsePlistConfig() -> PlistConfig? {
-//        return PlistConfig(apiKey: "123", apiDomain: "")
-//    }
-//}

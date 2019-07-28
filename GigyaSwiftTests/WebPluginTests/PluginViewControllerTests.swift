@@ -12,19 +12,22 @@ import WebKit
 @testable import Gigya
 
 class PluginViewControllerTests: XCTestCase {
-    let ioc = GigyaContainerUtils()
-    var gigya = Gigya.sharedInstance()
+    let ioc = GigyaContainerUtils.shared
 
     var config: GigyaConfig {
         return ioc.container.resolve(GigyaConfig.self)!
     }
 
-    var businessApi: IOCBusinessApiServiceProtocol {
-        return ioc.container.resolve(IOCBusinessApiServiceProtocol.self)!
+    var persistenceService: PersistenceService {
+        return ioc.container.resolve(PersistenceService.self)!
     }
 
-    var sessionService: IOCSessionServiceProtocol {
-        return ioc.container.resolve(IOCSessionServiceProtocol.self)!
+    var businessApi: BusinessApiServiceProtocol {
+        return ioc.container.resolve(BusinessApiServiceProtocol.self)!
+    }
+
+    var sessionService: SessionServiceProtocol {
+        return ioc.container.resolve(SessionServiceProtocol.self)!
     }
 
 
@@ -32,7 +35,7 @@ class PluginViewControllerTests: XCTestCase {
         // Put setup code here. This method is called before the invocation of each test method in the class.
         ResponseDataTest.resData = nil
         ResponseDataTest.error = nil
-        Gigya.sharedInstance().container = ioc.container
+        Gigya.container = ioc.container
 
         Gigya.sharedInstance().initFor(apiKey: "123")
 
@@ -46,7 +49,7 @@ class PluginViewControllerTests: XCTestCase {
     }
 
     func testLoad() {
-        let plugin = PluginViewController<GigyaAccount>(config: config, sessionService: sessionService, businessApiService: businessApi) { event in }
+        let plugin = PluginViewController<GigyaAccount>(config: config, persistenceService: persistenceService, sessionService: sessionService, businessApiService: businessApi) { event in }
 
         let contentController = WKUserContentController()
 

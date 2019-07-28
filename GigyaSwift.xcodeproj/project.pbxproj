@@ -15,6 +15,8 @@
 		D58EF4432279948B003DB878 /* PluginViewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58EF4422279948B003DB878 /* PluginViewWrapper.swift */; };
 		D58EF4452279CB38003DB878 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58EF4442279CB38003DB878 /* String.swift */; };
 		D5C9DD3D227B0C9200E47095 /* GigyaPluginEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C9DD3C227B0C9200E47095 /* GigyaPluginEvent.swift */; };
+		E705014922DDC04200EBD579 /* BiometricTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E705014822DDC04200EBD579 /* BiometricTests.swift */; };
+		E705014C22DDC8B900EBD579 /* KeychainMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E705014B22DDC8B900EBD579 /* KeychainMock.swift */; };
 		E70519D522C0C8B3008ECB25 /* TfaAuthCodeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70519D022C0C8B3008ECB25 /* TfaAuthCodeCell.swift */; };
 		E70519D622C0C8B3008ECB25 /* TfaRegisteredEntryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70519D122C0C8B3008ECB25 /* TfaRegisteredEntryCell.swift */; };
 		E70519D722C0C8B3008ECB25 /* TfaPhoneInputCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70519D222C0C8B3008ECB25 /* TfaPhoneInputCell.swift */; };
@@ -29,6 +31,7 @@
 		E70519F822C255F7008ECB25 /* TFAVerificationpTotpResolverTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BE5799229D284A00C17D93 /* TFAVerificationpTotpResolverTests.swift */; };
 		E70519FA22C27267008ECB25 /* ProvidersLoginWrapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70519F922C27267008ECB25 /* ProvidersLoginWrapperTests.swift */; };
 		E70DC25722AFEF7300D7346D /* ProvidersLoginWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70DC25622AFEF7300D7346D /* ProvidersLoginWrapper.swift */; };
+		E711A8B522E9A12500ADA304 /* URLSessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E711A8B422E9A12500ADA304 /* URLSessionTests.swift */; };
 		E712E90822A662D6005397BA /* PluginViewWrapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E712E90722A662D6005397BA /* PluginViewWrapperTests.swift */; };
 		E712E90C22A664DB005397BA /* FakeUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E712E90B22A664DB005397BA /* FakeUIViewController.swift */; };
 		E713E0CC2247773100181328 /* Gigya.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7BE36732224219200A108D9 /* Gigya.framework */; };
@@ -39,7 +42,9 @@
 		E713E18C224A2E5800181328 /* NetworkAdapterMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E713E18B224A2E5800181328 /* NetworkAdapterMock.swift */; };
 		E719373622D32FB800CD149E /* BiometricService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E719373522D32FB800CD149E /* BiometricService.swift */; };
 		E719373822D33F1F00CD149E /* BiometricServiceInternalProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E719373722D33F1F00CD149E /* BiometricServiceInternalProtocol.swift */; };
-		E719373A22D33F3700CD149E /* IOCBiometricServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E719373922D33F3700CD149E /* IOCBiometricServiceProtocol.swift */; };
+		E719373A22D33F3700CD149E /* BiometricServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E719373922D33F3700CD149E /* BiometricServiceProtocol.swift */; };
+		E719374122D5CCCF00CD149E /* GigyaIOCContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E719374022D5CCCF00CD149E /* GigyaIOCContainer.swift */; };
+		E719374322D5E6C600CD149E /* PlistConfigFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E719374222D5E6C600CD149E /* PlistConfigFactory.swift */; };
 		E71D3C8C22BF7C2E00A413D7 /* Resolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71D3C8B22BF7C2E00A413D7 /* Resolver.swift */; };
 		E71D3C8E22BF8B6E00A413D7 /* TFAResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71D3C8D22BF8B6E00A413D7 /* TFAResolver.swift */; };
 		E71D3C9022BF8D3E00A413D7 /* TFAProviderResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71D3C8F22BF8D3E00A413D7 /* TFAProviderResolver.swift */; };
@@ -47,7 +52,7 @@
 		E71D3C9E22BF906300A413D7 /* TFAModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71D3C9C22BF906300A413D7 /* TFAModels.swift */; };
 		E71D3CA022BF95FF00A413D7 /* TFAResolverFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71D3C9F22BF95FF00A413D7 /* TFAResolverFactory.swift */; };
 		E71D3CA222BFA81F00A413D7 /* InterruptionResolverFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71D3CA122BFA81F00A413D7 /* InterruptionResolverFactory.swift */; };
-		E71D3CA422BFA84000A413D7 /* IOCInterruptionResolverFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71D3CA322BFA84000A413D7 /* IOCInterruptionResolverFactory.swift */; };
+		E71D3CA422BFA84000A413D7 /* InterruptionResolverFactoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71D3CA322BFA84000A413D7 /* InterruptionResolverFactoryProtocol.swift */; };
 		E71D4A2422817F83000892C2 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E71D4A2222817F83000892C2 /* libWeChatSDK.a */; };
 		E7221D7922B8FC8700C296A9 /* PendingRegistrationResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7221D7822B8FC8700C296A9 /* PendingRegistrationResolver.swift */; };
 		E7221D7A22B903E500C296A9 /* GoogleWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7D59B1D227F34D3002FA864 /* GoogleWrapper.swift */; };
@@ -73,6 +78,8 @@
 		E756A29E2275CC59007FA801 /* SocialProviderWrapperMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E756A29D2275CC59007FA801 /* SocialProviderWrapperMock.swift */; };
 		E756A2A02275D46D007FA801 /* SocialProviderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E756A29F2275D46D007FA801 /* SocialProviderMock.swift */; };
 		E756A2AD22771B6F007FA801 /* Url.swift in Sources */ = {isa = PBXBuildFile; fileRef = E756A2AC22771B6F007FA801 /* Url.swift */; };
+		E7584EE922E0524D007229FE /* FacebookWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7584EE822E0524D007229FE /* FacebookWrapper.swift */; };
+		E7584EEB22E0BC22007229FE /* View.xib in Resources */ = {isa = PBXBuildFile; fileRef = E7584EEA22E0BC22007229FE /* View.xib */; };
 		E760668B2278998E005E4CFD /* WebLoginProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E76066882278998E005E4CFD /* WebLoginProvider.swift */; };
 		E760668C2278998E005E4CFD /* WebViewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E76066892278998E005E4CFD /* WebViewWrapper.swift */; };
 		E760668D2278998E005E4CFD /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E760668A2278998E005E4CFD /* WebViewController.swift */; };
@@ -88,10 +95,10 @@
 		E7A6E0B9224256390063638F /* Gigya.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7BE36732224219200A108D9 /* Gigya.framework */; };
 		E7A6E0CA224258C80063638F /* GigyaRequstTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A6E0C9224258C80063638F /* GigyaRequstTest.swift */; };
 		E7A6E0CE22425A910063638F /* NetworkAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A6E0CD22425A910063638F /* NetworkAdapter.swift */; };
-		E7ACF9A8226C83F200900C65 /* IOCBusinessApiServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7ACF9A7226C83F200900C65 /* IOCBusinessApiServiceProtocol.swift */; };
-		E7ACF9AC226C841300900C65 /* IOCApiServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7ACF9AB226C841300900C65 /* IOCApiServiceProtocol.swift */; };
-		E7ACF9AE226C843100900C65 /* IOCSessionServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7ACF9AD226C843100900C65 /* IOCSessionServiceProtocol.swift */; };
-		E7ACF9B0226C844A00900C65 /* IOCAccountServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7ACF9AF226C844A00900C65 /* IOCAccountServiceProtocol.swift */; };
+		E7ACF9A8226C83F200900C65 /* BusinessApiServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7ACF9A7226C83F200900C65 /* BusinessApiServiceProtocol.swift */; };
+		E7ACF9AC226C841300900C65 /* ApiServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7ACF9AB226C841300900C65 /* ApiServiceProtocol.swift */; };
+		E7ACF9AE226C843100900C65 /* SessionServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7ACF9AD226C843100900C65 /* SessionServiceProtocol.swift */; };
+		E7ACF9B0226C844A00900C65 /* AccountServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7ACF9AF226C844A00900C65 /* AccountServiceProtocol.swift */; };
 		E7ACF9CC226F2A4100900C65 /* ProviderWrapperProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7ACF9CB226F2A4100900C65 /* ProviderWrapperProtocol.swift */; };
 		E7BE36782224219200A108D9 /* GigyaSwift.h in Headers */ = {isa = PBXBuildFile; fileRef = E7BE36762224219200A108D9 /* GigyaSwift.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E7BE368B2224225100A108D9 /* Gigya.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BE368A2224225100A108D9 /* Gigya.swift */; };
@@ -136,9 +143,10 @@
 		E7D3E22822CA01760033BAF1 /* SessionInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7D3E22622CA016E0033BAF1 /* SessionInfoModel.swift */; };
 		E7D3E22A22CA01F90033BAF1 /* InitSdkResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7D3E22922CA01F90033BAF1 /* InitSdkResponseModel.swift */; };
 		E7D3E22C22CA02F60033BAF1 /* RunnerMainThread.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7D3E22B22CA02F60033BAF1 /* RunnerMainThread.swift */; };
+		E7D412F022E87B140082A3E3 /* URLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7D412EF22E87B140082A3E3 /* URLSession.swift */; };
+		E7D412F422E8A38F0082A3E3 /* PersistenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7D412F322E8A38F0082A3E3 /* PersistenceService.swift */; };
 		E7D59B20227F3872002FA864 /* Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7D59B1F227F3872002FA864 /* Bundle.swift */; };
 		E7DC2C3B228019AC00A13426 /* SocialLoginProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DC2C3A228019AC00A13426 /* SocialLoginProvider.swift */; };
-		E7DC2C3E22804A5400A13426 /* FacebookWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DC2C3D22804A5400A13426 /* FacebookWrapper.swift */; };
 		E7DC2C4A22804C2F00A13426 /* FBSDKPlacesKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7DC2C4022804C2F00A13426 /* FBSDKPlacesKit.framework */; };
 		E7DC2C4B22804C2F00A13426 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7DC2C4122804C2F00A13426 /* FBSDKShareKit.framework */; };
 		E7DC2C4C22804C2F00A13426 /* AccountKitStrings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E7DC2C4222804C2F00A13426 /* AccountKitStrings.bundle */; };
@@ -237,6 +245,8 @@
 		D58EF4422279948B003DB878 /* PluginViewWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluginViewWrapper.swift; sourceTree = "<group>"; };
 		D58EF4442279CB38003DB878 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		D5C9DD3C227B0C9200E47095 /* GigyaPluginEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigyaPluginEvent.swift; sourceTree = "<group>"; };
+		E705014822DDC04200EBD579 /* BiometricTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricTests.swift; sourceTree = "<group>"; };
+		E705014B22DDC8B900EBD579 /* KeychainMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainMock.swift; sourceTree = "<group>"; };
 		E70519D022C0C8B3008ECB25 /* TfaAuthCodeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TfaAuthCodeCell.swift; sourceTree = "<group>"; };
 		E70519D122C0C8B3008ECB25 /* TfaRegisteredEntryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TfaRegisteredEntryCell.swift; sourceTree = "<group>"; };
 		E70519D222C0C8B3008ECB25 /* TfaPhoneInputCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TfaPhoneInputCell.swift; sourceTree = "<group>"; };
@@ -244,6 +254,7 @@
 		E70519D422C0C8B3008ECB25 /* TfaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TfaViewController.swift; sourceTree = "<group>"; };
 		E70519F922C27267008ECB25 /* ProvidersLoginWrapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProvidersLoginWrapperTests.swift; sourceTree = "<group>"; };
 		E70DC25622AFEF7300D7346D /* ProvidersLoginWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProvidersLoginWrapper.swift; sourceTree = "<group>"; };
+		E711A8B422E9A12500ADA304 /* URLSessionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionTests.swift; sourceTree = "<group>"; };
 		E712E90722A662D6005397BA /* PluginViewWrapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluginViewWrapperTests.swift; sourceTree = "<group>"; };
 		E712E90B22A664DB005397BA /* FakeUIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeUIViewController.swift; sourceTree = "<group>"; };
 		E713E0FB2247C6E700181328 /* SignatureUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignatureUtils.swift; sourceTree = "<group>"; };
@@ -252,7 +263,9 @@
 		E713E18B224A2E5800181328 /* NetworkAdapterMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkAdapterMock.swift; sourceTree = "<group>"; };
 		E719373522D32FB800CD149E /* BiometricService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricService.swift; sourceTree = "<group>"; };
 		E719373722D33F1F00CD149E /* BiometricServiceInternalProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricServiceInternalProtocol.swift; sourceTree = "<group>"; };
-		E719373922D33F3700CD149E /* IOCBiometricServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOCBiometricServiceProtocol.swift; sourceTree = "<group>"; };
+		E719373922D33F3700CD149E /* BiometricServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricServiceProtocol.swift; sourceTree = "<group>"; };
+		E719374022D5CCCF00CD149E /* GigyaIOCContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigyaIOCContainer.swift; sourceTree = "<group>"; };
+		E719374222D5E6C600CD149E /* PlistConfigFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlistConfigFactory.swift; sourceTree = "<group>"; };
 		E71D3C8B22BF7C2E00A413D7 /* Resolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resolver.swift; sourceTree = "<group>"; };
 		E71D3C8D22BF8B6E00A413D7 /* TFAResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TFAResolver.swift; sourceTree = "<group>"; };
 		E71D3C8F22BF8D3E00A413D7 /* TFAProviderResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TFAProviderResolver.swift; sourceTree = "<group>"; };
@@ -260,7 +273,7 @@
 		E71D3C9C22BF906300A413D7 /* TFAModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TFAModels.swift; sourceTree = "<group>"; };
 		E71D3C9F22BF95FF00A413D7 /* TFAResolverFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TFAResolverFactory.swift; sourceTree = "<group>"; };
 		E71D3CA122BFA81F00A413D7 /* InterruptionResolverFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterruptionResolverFactory.swift; sourceTree = "<group>"; };
-		E71D3CA322BFA84000A413D7 /* IOCInterruptionResolverFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOCInterruptionResolverFactory.swift; sourceTree = "<group>"; };
+		E71D3CA322BFA84000A413D7 /* InterruptionResolverFactoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterruptionResolverFactoryProtocol.swift; sourceTree = "<group>"; };
 		E71D4A1E22817F83000892C2 /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
 		E71D4A1F22817F83000892C2 /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
 		E71D4A2022817F83000892C2 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
@@ -287,6 +300,8 @@
 		E756A29D2275CC59007FA801 /* SocialProviderWrapperMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialProviderWrapperMock.swift; sourceTree = "<group>"; };
 		E756A29F2275D46D007FA801 /* SocialProviderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialProviderMock.swift; sourceTree = "<group>"; };
 		E756A2AC22771B6F007FA801 /* Url.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Url.swift; sourceTree = "<group>"; };
+		E7584EE822E0524D007229FE /* FacebookWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebookWrapper.swift; sourceTree = "<group>"; };
+		E7584EEA22E0BC22007229FE /* View.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = View.xib; sourceTree = "<group>"; };
 		E76066882278998E005E4CFD /* WebLoginProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebLoginProvider.swift; sourceTree = "<group>"; };
 		E76066892278998E005E4CFD /* WebViewWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewWrapper.swift; sourceTree = "<group>"; };
 		E760668A2278998E005E4CFD /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
@@ -304,10 +319,10 @@
 		E7A6E0C9224258C80063638F /* GigyaRequstTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigyaRequstTest.swift; sourceTree = "<group>"; };
 		E7A6E0CD22425A910063638F /* NetworkAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkAdapter.swift; sourceTree = "<group>"; };
 		E7AB6B7422940D3C008C3993 /* TfaRegistrationPhoneResolverTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TfaRegistrationPhoneResolverTests.swift; sourceTree = "<group>"; };
-		E7ACF9A7226C83F200900C65 /* IOCBusinessApiServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOCBusinessApiServiceProtocol.swift; sourceTree = "<group>"; };
-		E7ACF9AB226C841300900C65 /* IOCApiServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOCApiServiceProtocol.swift; sourceTree = "<group>"; };
-		E7ACF9AD226C843100900C65 /* IOCSessionServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOCSessionServiceProtocol.swift; sourceTree = "<group>"; };
-		E7ACF9AF226C844A00900C65 /* IOCAccountServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOCAccountServiceProtocol.swift; sourceTree = "<group>"; };
+		E7ACF9A7226C83F200900C65 /* BusinessApiServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessApiServiceProtocol.swift; sourceTree = "<group>"; };
+		E7ACF9AB226C841300900C65 /* ApiServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiServiceProtocol.swift; sourceTree = "<group>"; };
+		E7ACF9AD226C843100900C65 /* SessionServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionServiceProtocol.swift; sourceTree = "<group>"; };
+		E7ACF9AF226C844A00900C65 /* AccountServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountServiceProtocol.swift; sourceTree = "<group>"; };
 		E7ACF9CB226F2A4100900C65 /* ProviderWrapperProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderWrapperProtocol.swift; sourceTree = "<group>"; };
 		E7BE36732224219200A108D9 /* Gigya.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Gigya.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7BE36762224219200A108D9 /* GigyaSwift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GigyaSwift.h; sourceTree = "<group>"; };
@@ -361,13 +376,14 @@
 		E7D3E22622CA016E0033BAF1 /* SessionInfoModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionInfoModel.swift; sourceTree = "<group>"; };
 		E7D3E22922CA01F90033BAF1 /* InitSdkResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitSdkResponseModel.swift; sourceTree = "<group>"; };
 		E7D3E22B22CA02F60033BAF1 /* RunnerMainThread.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunnerMainThread.swift; sourceTree = "<group>"; };
+		E7D412EF22E87B140082A3E3 /* URLSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSession.swift; sourceTree = "<group>"; };
+		E7D412F322E8A38F0082A3E3 /* PersistenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceService.swift; sourceTree = "<group>"; };
 		E7D59B17227F33DA002FA864 /* GoogleSignIn.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleSignIn.bundle; path = ../GoogleSignIn.bundle; sourceTree = "<group>"; };
 		E7D59B18227F33DA002FA864 /* GoogleSignIn.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleSignIn.framework; path = ../GoogleSignIn.framework; sourceTree = "<group>"; };
 		E7D59B19227F33DB002FA864 /* GoogleSignInDependencies.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleSignInDependencies.framework; path = ../GoogleSignInDependencies.framework; sourceTree = "<group>"; };
 		E7D59B1D227F34D3002FA864 /* GoogleWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleWrapper.swift; sourceTree = "<group>"; };
 		E7D59B1F227F3872002FA864 /* Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bundle.swift; sourceTree = "<group>"; };
 		E7DC2C3A228019AC00A13426 /* SocialLoginProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialLoginProvider.swift; sourceTree = "<group>"; };
-		E7DC2C3D22804A5400A13426 /* FacebookWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebookWrapper.swift; sourceTree = "<group>"; };
 		E7DC2C4022804C2F00A13426 /* FBSDKPlacesKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKPlacesKit.framework; sourceTree = "<group>"; };
 		E7DC2C4122804C2F00A13426 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
 		E7DC2C4222804C2F00A13426 /* AccountKitStrings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AccountKitStrings.bundle; sourceTree = "<group>"; };
@@ -497,6 +513,23 @@
 			path = UI;
 			sourceTree = "<group>";
 		};
+		E705014722DDC01B00EBD579 /* Biometric */ = {
+			isa = PBXGroup;
+			children = (
+				E705014A22DDC89D00EBD579 /* Mocks */,
+				E705014822DDC04200EBD579 /* BiometricTests.swift */,
+			);
+			path = Biometric;
+			sourceTree = "<group>";
+		};
+		E705014A22DDC89D00EBD579 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				E705014B22DDC8B900EBD579 /* KeychainMock.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
 		E70519CE22C0C8B3008ECB25 /* TFA */ = {
 			isa = PBXGroup;
 			children = (
@@ -555,8 +588,8 @@
 				E7CBAFCF222EB89D000B6C11 /* BusinessApiService.swift */,
 				E733743C22671FDD00ADEDBB /* BusinessApiDelegate.swift */,
 				E7CBAFBF222D1F5B000B6C11 /* ApiService.swift */,
-				E7ACF9A7226C83F200900C65 /* IOCBusinessApiServiceProtocol.swift */,
-				E7ACF9AB226C841300900C65 /* IOCApiServiceProtocol.swift */,
+				E7ACF9A7226C83F200900C65 /* BusinessApiServiceProtocol.swift */,
+				E7ACF9AB226C841300900C65 /* ApiServiceProtocol.swift */,
 			);
 			path = Api;
 			sourceTree = "<group>";
@@ -582,7 +615,7 @@
 			isa = PBXGroup;
 			children = (
 				E719373522D32FB800CD149E /* BiometricService.swift */,
-				E719373922D33F3700CD149E /* IOCBiometricServiceProtocol.swift */,
+				E719373922D33F3700CD149E /* BiometricServiceProtocol.swift */,
 				E719373722D33F1F00CD149E /* BiometricServiceInternalProtocol.swift */,
 			);
 			path = Biometric;
@@ -632,6 +665,7 @@
 			isa = PBXGroup;
 			children = (
 				E73373AF2254FD4800ADEDBB /* Int.swift */,
+				E7D412EF22E87B140082A3E3 /* URLSession.swift */,
 				E756A2AC22771B6F007FA801 /* Url.swift */,
 				E7D59B1F227F3872002FA864 /* Bundle.swift */,
 				D58EF440227993C6003DB878 /* Dictionary.swift */,
@@ -665,7 +699,7 @@
 			isa = PBXGroup;
 			children = (
 				E7CBAFD32230232D000B6C11 /* AccountService.swift */,
-				E7ACF9AF226C844A00900C65 /* IOCAccountServiceProtocol.swift */,
+				E7ACF9AF226C844A00900C65 /* AccountServiceProtocol.swift */,
 			);
 			path = Account;
 			sourceTree = "<group>";
@@ -675,7 +709,7 @@
 			children = (
 				E7CBAFD1222EBD95000B6C11 /* SessionService.swift */,
 				E7CBAFCD222EA268000B6C11 /* GigyaSession.swift */,
-				E7ACF9AD226C843100900C65 /* IOCSessionServiceProtocol.swift */,
+				E7ACF9AD226C843100900C65 /* SessionServiceProtocol.swift */,
 			);
 			path = Session;
 			sourceTree = "<group>";
@@ -737,6 +771,7 @@
 				E7A6E0BF224257810063638F /* Network */,
 				E7C8FA522296BBD200E69634 /* Storge */,
 				E7BE57822296C03400C17D93 /* Extensions */,
+				E705014722DDC01B00EBD579 /* Biometric */,
 				E7A6E0B8224256390063638F /* Info.plist */,
 			);
 			path = GigyaSwiftTests;
@@ -747,6 +782,7 @@
 			children = (
 				E7A6E0C9224258C80063638F /* GigyaRequstTest.swift */,
 				E7BE578E229AA5B100C17D93 /* NetworkAdapterTests.swift */,
+				E711A8B422E9A12500ADA304 /* URLSessionTests.swift */,
 				E7E80D95224D101C00D3B663 /* ApiServiceTest.swift */,
 				E7337444226754C400ADEDBB /* BusinessApiTest.swift */,
 				E774A5602243D7C100BC67D1 /* Models */,
@@ -836,6 +872,7 @@
 				E7BE36A32224260500A108D9 /* Assets.xcassets */,
 				E7BE36A52224260500A108D9 /* LaunchScreen.storyboard */,
 				D584D345228D7993004CA28F /* CountryCodes.json */,
+				E7584EEA22E0BC22007229FE /* View.xib */,
 				E7BE36A82224260500A108D9 /* Info.plist */,
 				E7DC2C702280786D00A13426 /* TestApp-Bridging-Header.h */,
 			);
@@ -866,7 +903,7 @@
 				E7221D7822B8FC8700C296A9 /* PendingRegistrationResolver.swift */,
 				E71D3C8B22BF7C2E00A413D7 /* Resolver.swift */,
 				E71D3CA122BFA81F00A413D7 /* InterruptionResolverFactory.swift */,
-				E71D3CA322BFA84000A413D7 /* IOCInterruptionResolverFactory.swift */,
+				E71D3CA322BFA84000A413D7 /* InterruptionResolverFactoryProtocol.swift */,
 			);
 			path = Resolvers;
 			sourceTree = "<group>";
@@ -942,6 +979,7 @@
 		E7CBAFA2222BC871000B6C11 /* Global */ = {
 			isa = PBXGroup;
 			children = (
+				E7D412F322E8A38F0082A3E3 /* PersistenceService.swift */,
 				E719373422D32FA100CD149E /* Biometric */,
 				E73373DE2263312F00ADEDBB /* Providers */,
 				D52F88E422795793007DE20F /* Plugins */,
@@ -1003,8 +1041,10 @@
 			children = (
 				E7CBB06A223E59EA000B6C11 /* Decode+EncodeUtils.swift */,
 				E7D3E22B22CA02F60033BAF1 /* RunnerMainThread.swift */,
+				E719374222D5E6C600CD149E /* PlistConfigFactory.swift */,
 				E7E80D89224BC17000D3B663 /* FatalErrorUtils.swift */,
 				E713E0FB2247C6E700181328 /* SignatureUtils.swift */,
+				E719374022D5CCCF00CD149E /* GigyaIOCContainer.swift */,
 				E774A54C2242A12800BC67D1 /* AnyCodableUtils.swift */,
 				E7E80D9E2252036800D3B663 /* IOContainer */,
 			);
@@ -1046,8 +1086,8 @@
 		E7DC2C5E228055B200A13426 /* GigyaProviders */ = {
 			isa = PBXGroup;
 			children = (
-				E7DC2C3D22804A5400A13426 /* FacebookWrapper.swift */,
 				E7DC2C5F228055CA00A13426 /* LineWrapper.swift */,
+				E7584EE822E0524D007229FE /* FacebookWrapper.swift */,
 				E7DC2C6E2280779A00A13426 /* WeChatWrapper.swift */,
 				E7D59B1D227F34D3002FA864 /* GoogleWrapper.swift */,
 			);
@@ -1262,6 +1302,7 @@
 				E7DC2C4C22804C2F00A13426 /* AccountKitStrings.bundle in Resources */,
 				E7DC2C4D22804C2F00A13426 /* FacebookSDKStrings.bundle in Resources */,
 				D584D346228D7993004CA28F /* CountryCodes.json in Resources */,
+				E7584EEB22E0BC22007229FE /* View.xib in Resources */,
 				E7BE36A42224260500A108D9 /* Assets.xcassets in Resources */,
 				E735C2F822B7DBF7007A055E /* GoogleService-Info.plist in Resources */,
 				E7BE36A22224260400A108D9 /* Main.storyboard in Resources */,
@@ -1398,6 +1439,7 @@
 				E70519F522C24D3D008ECB25 /* TFAVerificationpPhoneResolverTests.swift in Sources */,
 				E7E80D88224BBF2400D3B663 /* XCTestCase+FatalError.swift in Sources */,
 				E756A2A02275D46D007FA801 /* SocialProviderMock.swift in Sources */,
+				E705014C22DDC8B900EBD579 /* KeychainMock.swift in Sources */,
 				E7337445226754C400ADEDBB /* BusinessApiTest.swift in Sources */,
 				E73373D8225F222F00ADEDBB /* AnyCodableTest.swift in Sources */,
 				E7E80DA522535A5700D3B663 /* ResponseDataGlobal.swift in Sources */,
@@ -1406,6 +1448,7 @@
 				E7E80D7E224BADFC00D3B663 /* GigyaInitTest.swift in Sources */,
 				E7A6E0B7224256390063638F /* GigyaSwiftTests.swift in Sources */,
 				E7C85A012292CA45005C1FBE /* SocialManagerTests.swift in Sources */,
+				E711A8B522E9A12500ADA304 /* URLSessionTests.swift in Sources */,
 				E7C8FA542296BBF600E69634 /* UserDefaultsTests.swift in Sources */,
 				E7C8FA492295775000E69634 /* WebProviderLoginTests.swift in Sources */,
 				E712E90C22A664DB005397BA /* FakeUIViewController.swift in Sources */,
@@ -1419,6 +1462,7 @@
 				E7BE578F229AA5B100C17D93 /* NetworkAdapterTests.swift in Sources */,
 				E73373DA225F7ED100ADEDBB /* GSRequestMock.swift in Sources */,
 				E7A6E0CA224258C80063638F /* GigyaRequstTest.swift in Sources */,
+				E705014922DDC04200EBD579 /* BiometricTests.swift in Sources */,
 				E774A5642243D88900BC67D1 /* RequestTestParseFailModel.swift in Sources */,
 				E7337467226C538300ADEDBB /* DecodeTestUtils.swift in Sources */,
 				E7E80D93224D063C00D3B663 /* GigyaContainerUtils.swift in Sources */,
@@ -1459,6 +1503,7 @@
 				E7C859DB2289604F005C1FBE /* LinkAccountsResolver.swift in Sources */,
 				E7CBB068223E595D000B6C11 /* GigyaPlistConfig.swift in Sources */,
 				E756A2AD22771B6F007FA801 /* Url.swift in Sources */,
+				E719374322D5E6C600CD149E /* PlistConfigFactory.swift in Sources */,
 				E7CBAFC5222E7314000B6C11 /* GigyaResult.swift in Sources */,
 				E7CBAFCE222EA268000B6C11 /* GigyaSession.swift in Sources */,
 				E7CBAFB8222D17C9000B6C11 /* NetworkProvider.swift in Sources */,
@@ -1466,12 +1511,13 @@
 				E7C859E02289B299005C1FBE /* InterruptionEnum.swift in Sources */,
 				E7CBB06B223E59EA000B6C11 /* Decode+EncodeUtils.swift in Sources */,
 				E7D3E22A22CA01F90033BAF1 /* InitSdkResponseModel.swift in Sources */,
-				E719373A22D33F3700CD149E /* IOCBiometricServiceProtocol.swift in Sources */,
+				E719373A22D33F3700CD149E /* BiometricServiceProtocol.swift in Sources */,
 				D58EF4432279948B003DB878 /* PluginViewWrapper.swift in Sources */,
 				E7D3E22C22CA02F60033BAF1 /* RunnerMainThread.swift in Sources */,
 				E7A6E0AC224245D00063638F /* ApiResultModel.swift in Sources */,
 				E7D59B20227F3872002FA864 /* Bundle.swift in Sources */,
-				E71D3CA422BFA84000A413D7 /* IOCInterruptionResolverFactory.swift in Sources */,
+				E71D3CA422BFA84000A413D7 /* InterruptionResolverFactoryProtocol.swift in Sources */,
+				E7D412F422E8A38F0082A3E3 /* PersistenceService.swift in Sources */,
 				E71D3C9E22BF906300A413D7 /* TFAModels.swift in Sources */,
 				E7CBAFC0222D1F5B000B6C11 /* ApiService.swift in Sources */,
 				E71D3C8C22BF7C2E00A413D7 /* Resolver.swift in Sources */,
@@ -1483,9 +1529,10 @@
 				E774A54D2242A12800BC67D1 /* AnyCodableUtils.swift in Sources */,
 				E70DC25722AFEF7300D7346D /* ProvidersLoginWrapper.swift in Sources */,
 				E73373E22263339400ADEDBB /* Provider.swift in Sources */,
-				E7ACF9B0226C844A00900C65 /* IOCAccountServiceProtocol.swift in Sources */,
-				E7ACF9AC226C841300900C65 /* IOCApiServiceProtocol.swift in Sources */,
+				E7ACF9B0226C844A00900C65 /* AccountServiceProtocol.swift in Sources */,
+				E7ACF9AC226C841300900C65 /* ApiServiceProtocol.swift in Sources */,
 				E71D3C9D22BF906300A413D7 /* TFAProvider.swift in Sources */,
+				E719374122D5CCCF00CD149E /* GigyaIOCContainer.swift in Sources */,
 				E73374622268B25B00ADEDBB /* SocialProvidersManager.swift in Sources */,
 				E713E0FE2248C83D00181328 /* GigyaConfig.swift in Sources */,
 				E760668C2278998E005E4CFD /* WebViewWrapper.swift in Sources */,
@@ -1497,9 +1544,10 @@
 				E71D3C9022BF8D3E00A413D7 /* TFAProviderResolver.swift in Sources */,
 				E73373AC2254D79200ADEDBB /* GigyaDefinitions.swift in Sources */,
 				E7C859E7228C52A0005C1FBE /* ConflictingAccount.swift in Sources */,
+				E7D412F022E87B140082A3E3 /* URLSession.swift in Sources */,
 				E7221D7922B8FC8700C296A9 /* PendingRegistrationResolver.swift in Sources */,
 				E7CBAFA4222BC881000B6C11 /* InternalConfig.swift in Sources */,
-				E7ACF9A8226C83F200900C65 /* IOCBusinessApiServiceProtocol.swift in Sources */,
+				E7ACF9A8226C83F200900C65 /* BusinessApiServiceProtocol.swift in Sources */,
 				E71D3CA022BF95FF00A413D7 /* TFAResolverFactory.swift in Sources */,
 				E7D3E22822CA01760033BAF1 /* SessionInfoModel.swift in Sources */,
 				E713E1022248E41400181328 /* GigyaRequestSignature.swift in Sources */,
@@ -1509,7 +1557,7 @@
 				E7CBAF9D22282BE3000B6C11 /* KeychainStorage.swift in Sources */,
 				E7CBAFD2222EBD95000B6C11 /* SessionService.swift in Sources */,
 				E7A6E0CE22425A910063638F /* NetworkAdapter.swift in Sources */,
-				E7ACF9AE226C843100900C65 /* IOCSessionServiceProtocol.swift in Sources */,
+				E7ACF9AE226C843100900C65 /* SessionServiceProtocol.swift in Sources */,
 				E7ACF9CC226F2A4100900C65 /* ProviderWrapperProtocol.swift in Sources */,
 				D52F88EA22795F39007DE20F /* PluginViewController.swift in Sources */,
 				E7CBB03B22356068000B6C11 /* GigyaCore.swift in Sources */,
@@ -1524,6 +1572,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D584D342228D6089004CA28F /* UIFactory.swift in Sources */,
+				E7584EE922E0524D007229FE /* FacebookWrapper.swift in Sources */,
 				E7221D8222B90C2A00C296A9 /* ValidateLoginModel.swift in Sources */,
 				E70519D822C0C8B3008ECB25 /* TfaQrCodeCell.swift in Sources */,
 				E7BE369F2224260400A108D9 /* ViewController.swift in Sources */,
@@ -1536,7 +1585,6 @@
 				E7DC2C6F2280779A00A13426 /* WeChatWrapper.swift in Sources */,
 				E70519D522C0C8B3008ECB25 /* TfaAuthCodeCell.swift in Sources */,
 				E70519D922C0C8B3008ECB25 /* TfaViewController.swift in Sources */,
-				E7DC2C3E22804A5400A13426 /* FacebookWrapper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
