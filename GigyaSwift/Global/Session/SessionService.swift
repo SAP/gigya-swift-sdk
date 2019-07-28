@@ -69,10 +69,18 @@ class SessionService: SessionServiceProtocol {
 
         let data = NSKeyedArchiver.archivedData(withRootObject: gsession)
 
-        keychainHelper.add(with: InternalConfig.Storage.keySession, data: data) {
-            [weak self] err in
-            self?.session = gsession
+        if self.session == nil {
+            removeFromKeychain { [weak self] in
+                self?.keychainHelper.add(with: InternalConfig.Storage.keySession, data: data) { err in }
+            }
+
+            persistenceService.setBiometricEnable(to: false)
+            persistenceService.setBiometricLocked(to: false)
+        } else {
+            keychainHelper.add(with: InternalConfig.Storage.keySession, data: data) { err in }
         }
+
+        self.session = gsession
     }
 
     func getSession(skipLoadSession: Bool = false, completion: @escaping ((Bool) -> Void) = { _ in}) {
@@ -154,7 +162,7 @@ class SessionService: SessionServiceProtocol {
         session = nil
     }
 
-    private func removeFromKeychain() {
+    private func removeFromKeychain(completion: @escaping () -> Void = {}) {
         keychainHelper.delete(name: InternalConfig.Storage.keySession) { [weak self] (result) in
             switch result {
             case .succses(let data):
@@ -162,6 +170,8 @@ class SessionService: SessionServiceProtocol {
             case .error(let error):
                 GigyaLogger.log(with: self, message: "Problem with saveing session in the keyChain - error: \(error.rawValue)")
             }
+
+            completion()
         }
     }
 

@@ -44,8 +44,16 @@ class PersistenceService {
     }
 
     // save gmid, ucid to userDefaults
-    func save(ids: InitSdkIdsModel) {
+    internal func save(ids: InitSdkIdsModel) {
         UserDefaults.standard.setValue(ids.gmid, forKey: InternalConfig.Storage.GMID)
         UserDefaults.standard.setValue(ids.ucid, forKey: InternalConfig.Storage.UCID)
+    }
+
+    internal func setBiometricEnable(to allow: Bool) {
+        UserDefaults.standard.setValue(allow, forKey: InternalConfig.Storage.biometricAllow)
+    }
+
+    internal func setBiometricLocked(to enable: Bool) {
+        UserDefaults.standard.setValue(enable, forKey: InternalConfig.Storage.biometricLocked)
     }
 }

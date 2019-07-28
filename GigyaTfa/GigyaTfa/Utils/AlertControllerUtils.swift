@@ -10,24 +10,27 @@ import Foundation
 
 class AlertControllerUtils {
     static func show(title: String, message: String, result: @escaping (Bool) -> Void) {
-        // Create the alert controller
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        DispatchQueue.main.async {
+            // Create the alert controller
+            let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
 
-        // Create the actions
-        let okAction = UIAlertAction(title: NSLocalizedString("Approve", comment: ""), style: .default) {
-            UIAlertAction in
-            result(true)
+            // Create the actions
+            let okAction = UIAlertAction(title: NSLocalizedString("Approve", comment: ""), style: .default) {
+                UIAlertAction in
+                result(true)
+            }
+            let cancelAction = UIAlertAction(title: NSLocalizedString("Deny", comment: ""), style: .cancel) {
+                UIAlertAction in
+                result(false)
+            }
+
+            // Add the actions
+            alertController.addAction(okAction)
+            alertController.addAction(cancelAction)
+
+            // Present the controller
+
+            alertController.show()
         }
-        let cancelAction = UIAlertAction(title: NSLocalizedString("Deny", comment: ""), style: .cancel) {
-            UIAlertAction in
-            result(false)
-        }
-
-        // Add the actions
-        alertController.addAction(okAction)
-        alertController.addAction(cancelAction)
-
-        // Present the controller
-        alertController.show()
     }
 }

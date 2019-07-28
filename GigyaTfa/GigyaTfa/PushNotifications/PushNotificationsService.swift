@@ -164,27 +164,29 @@ class PushNotificationsService: NSObject, PushNotificationsServiceProtocol {
         }
 
         let completeVerificationFlow = { [weak self] in
-            switch mode {
-            case .optin:
-                self?.pushOptIn?.verifyOptIn(verificationToken: verificationToken)
-            case .verify:
-                self?.completeVerification(gigyaAssertion: gigyaAssertion, verificationToken: verificationToken)
-            case .cancel:
-                break
+            AlertControllerUtils.show(title: title, message: msg) { [weak self] isApproved in
+                if isApproved == true {
+                    switch mode {
+                    case .optin:
+                        self?.pushOptIn?.verifyOptIn(verificationToken: verificationToken)
+                    case .verify:
+                        self?.completeVerification(gigyaAssertion: gigyaAssertion, verificationToken: verificationToken)
+                    case .cancel:
+                        break
+                    }
+                }
             }
         }
 
         if biometricService.isOptIn {
-            biometricService.unlockSession { (result) in
-                switch result {
-                case .success:
-                    AlertControllerUtils.show(title: title, message: msg) { isApproved in
-                        if isApproved == true {
-                            completeVerificationFlow()
-                        }
+            DispatchQueue.main.async { [weak self] in
+                self?.biometricService.unlockSession { (result) in
+                    switch result {
+                    case .success:
+                        completeVerificationFlow()
+                    case .failure:
+                        GigyaLogger.log(with: self, message: "can't unlock session")
                     }
-                case .failure:
-                    GigyaLogger.log(with: self, message: "can't unlock session")
                 }
             }
         } else {

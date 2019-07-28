@@ -50,7 +50,7 @@ class BiometricService: BiometricServiceProtocol, BiometricServiceInternalProtoc
         sessionService.setSessionAs(biometric: true) { [weak self] (result) in
             switch result {
             case .success:
-                self?.setBiometricEnable(to: true)
+                self?.persistenceService.setBiometricEnable(to: true)
 
                 completion(.success)
             case .failure:
@@ -69,7 +69,7 @@ class BiometricService: BiometricServiceProtocol, BiometricServiceInternalProtoc
         sessionService.setSessionAs(biometric: false) { [weak self] (result) in
             switch result {
             case .success:
-                self?.setBiometricEnable(to: false)
+                self?.persistenceService.setBiometricEnable(to: false)
 
                 completion(.success)
             case .failure:
@@ -109,7 +109,7 @@ class BiometricService: BiometricServiceProtocol, BiometricServiceInternalProtoc
     public func lockSession(completion: @escaping (GigyaBiometricResult) -> Void) {
         if isOptIn {
             sessionService.clearSession()
-            setBiometricLocked(to: true)
+            persistenceService.setBiometricLocked(to: true)
             completion(.success)
         } else {
             GigyaLogger.log(with: "biometric", message: "can't lock session because user don't opt in")
@@ -121,15 +121,7 @@ class BiometricService: BiometricServiceProtocol, BiometricServiceInternalProtoc
     // Mark: - Internal functions
 
     internal func clearBiometric() {
-        setBiometricEnable(to: false)
-        setBiometricLocked(to: false)
-    }
-
-    private func setBiometricEnable(to allow: Bool) {
-        UserDefaults.standard.setValue(allow, forKey: InternalConfig.Storage.biometricAllow)
-    }
-
-    private func setBiometricLocked(to enable: Bool) {
-        UserDefaults.standard.setValue(enable, forKey: InternalConfig.Storage.biometricLocked)
+        persistenceService.setBiometricEnable(to: false)
+        persistenceService.setBiometricLocked(to: false)
     }
 }
