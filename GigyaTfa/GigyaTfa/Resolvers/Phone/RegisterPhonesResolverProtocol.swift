@@ -11,5 +11,5 @@ import Gigya
 public protocol RegisterPhonesResolverProtocol {
     func provider(_ provider: TFAProvider)
     
-    func registerPhone(phone: String, method: TFAPhoneMethod, completion: @escaping (RegisterPhonesResult) -> Void )
+    func registerPhone(phone: String, method: TFAPhoneMethod, lang: String, completion: @escaping (RegisterPhonesResult) -> Void )
 }

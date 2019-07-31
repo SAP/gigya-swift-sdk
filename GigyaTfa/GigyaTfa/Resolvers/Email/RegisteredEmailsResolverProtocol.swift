@@ -12,5 +12,5 @@ import Gigya
 public protocol RegisteredEmailsResolverProtocol {
     func getRegisteredEmails(completion: @escaping (RegisteredEmailsResult) -> Void)
 
-    func sendEmailCode(with email: TFAEmail, completion: @escaping (RegisteredEmailsResult) -> Void)
+    func sendEmailCode(with email: TFAEmail, lang: String, completion: @escaping (RegisteredEmailsResult) -> Void)
 }
