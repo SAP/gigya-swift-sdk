@@ -44,14 +44,14 @@ public class RegisterPhoneResolver<T: GigyaAccountProtocol>: TFAResolver<T>, Reg
             case .success(let data):
                 self?.gigyaAssertion = data.gigyaAssertion
 
-                self?.registerPhoneNumber(with: phone, method: method, completion: completion)
+                self?.registerPhoneNumber(with: phone, method: method, lang: lang, completion: completion)
             case .failure(let error):
                 completion(.error(error))
             }
         }
     }
 
-    private func registerPhoneNumber(with phone: String, method: TFAPhoneMethod = .sms, lang: String = "eng", completion: @escaping (RegisterPhonesResult) -> Void) {
+    private func registerPhoneNumber(with phone: String, method: TFAPhoneMethod = .sms, lang: String, completion: @escaping (RegisterPhonesResult) -> Void) {
         var params: [String: String] = [:]
         params["phone"] = phone
         params["gigyaAssertion"] = self.gigyaAssertion

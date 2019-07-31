@@ -24,9 +24,9 @@ class SignatureUtils {
          let signatureModel = GigyaRequestSignature(oauthToken: session?.token, apikey: config.apiKey!, nonce: nonce, timestamp: timestamp, ucid: persistenceService.ucid, gmid: persistenceService.gmid)
 
         let encoderPrepareData = try JSONEncoder().encode(signatureModel)
-        let bodyPrepareData = try JSONSerialization.jsonObject(with: encoderPrepareData, options: .allowFragments) as! [String: String]
+        let bodyPrepareData = try JSONSerialization.jsonObject(with: encoderPrepareData, options: .allowFragments) as! [String: Any]
 
-        let combinedData = params.merging(bodyPrepareData) { $1 }
+        let combinedData = bodyPrepareData.merging(params) { $1 }
 
         var newParams = combinedData.mapValues { value -> String in
             if let isDictionary = value as? [String: Any] {
