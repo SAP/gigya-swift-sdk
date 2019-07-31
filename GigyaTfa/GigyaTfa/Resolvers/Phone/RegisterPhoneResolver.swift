@@ -33,7 +33,7 @@ public class RegisterPhoneResolver<T: GigyaAccountProtocol>: TFAResolver<T>, Reg
         self.provider = provider
     }
 
-    public func registerPhone(phone: String, method: TFAPhoneMethod = .sms, completion: @escaping (RegisterPhonesResult) -> Void ) {
+    public func registerPhone(phone: String, method: TFAPhoneMethod = .sms, lang: String = "eng", completion: @escaping (RegisterPhonesResult) -> Void ) {
         var params: [String: String] = [:]
         params["regToken"] = self.regToken
         params["provider"] = provider.rawValue
@@ -51,7 +51,7 @@ public class RegisterPhoneResolver<T: GigyaAccountProtocol>: TFAResolver<T>, Reg
         }
     }
 
-    private func registerPhoneNumber(with phone: String, method: TFAPhoneMethod = .sms, lang: String = "eng" completion: @escaping (RegisterPhonesResult) -> Void) {
+    private func registerPhoneNumber(with phone: String, method: TFAPhoneMethod = .sms, lang: String = "eng", completion: @escaping (RegisterPhonesResult) -> Void) {
         var params: [String: String] = [:]
         params["phone"] = phone
         params["gigyaAssertion"] = self.gigyaAssertion
