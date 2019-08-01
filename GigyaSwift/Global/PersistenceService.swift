@@ -43,6 +43,12 @@ class PersistenceService {
         }
     }
 
+    internal var expirationSession: Double? {
+        get {
+            return UserDefaults.standard.double(forKey: InternalConfig.Storage.expirationSession)
+        }
+    }
+
     // save gmid, ucid to userDefaults
     internal func save(ids: InitSdkIdsModel) {
         UserDefaults.standard.setValue(ids.gmid, forKey: InternalConfig.Storage.GMID)
@@ -55,5 +61,9 @@ class PersistenceService {
 
     internal func setBiometricLocked(to enable: Bool) {
         UserDefaults.standard.setValue(enable, forKey: InternalConfig.Storage.biometricLocked)
+    }
+
+    internal func setExpirationSession(to double: Double) {
+        UserDefaults.standard.setValue(double, forKey: InternalConfig.Storage.expirationSession)
     }
 }
