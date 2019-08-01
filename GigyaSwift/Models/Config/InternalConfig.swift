@@ -27,6 +27,7 @@ struct InternalConfig {
         internal static let biometricAllow = "com.gigya.GigyaSDK:biometricAllow"
         internal static let biometricLocked = "com.gigya.GigyaSDK:biometricLocked"
         internal static let hasRunBefore = "com.gigya.GigyaSDK:hasRunBefore"
+        internal static let expirationSession = "com.gigya.GigyaSDK:expirationSession"
 
     }
 }
