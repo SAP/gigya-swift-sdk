@@ -45,9 +45,8 @@ class SessionService: SessionServiceProtocol {
 
     func isValidSession() -> Bool {
         GigyaLogger.log(with: self, message: "[isValidSession]: start")
-        let biomatricAllow = true
 
-        if sessionLoad == false && biomatricAllow == false {
+        if sessionLoad == false && persistenceService.biometricAllow == false {
             semaphore.wait()
         }
 
