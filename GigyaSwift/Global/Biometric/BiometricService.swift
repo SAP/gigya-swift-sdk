@@ -91,12 +91,14 @@ class BiometricService: BiometricServiceProtocol, BiometricServiceInternalProtoc
             return
         }
 
-        sessionService.getSession(skipLoadSession: false) { (success) in
+        sessionService.getSession(skipLoadSession: false) { [weak self] (success) in
             if success == true {
                 completion(.success)
             } else {
                 completion(.failure)
             }
+
+            self?.sessionService.revokeSemphore()
         }
     }
 
