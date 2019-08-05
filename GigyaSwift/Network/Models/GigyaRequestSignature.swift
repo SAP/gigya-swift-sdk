@@ -19,7 +19,6 @@ struct GigyaRequestSignature: Codable {
     var targetEnv: String = "mobile"
     var timestamp: String?
     var ucid: String?
-    var lang: String = "en"
 
     init(oauthToken: String?, apikey: String, nonce: String?, timestamp: String?, ucid: String?, gmid: String?) {
         self.oauthToken = oauthToken
@@ -41,7 +40,6 @@ struct GigyaRequestSignature: Codable {
         case sdk
         case httpStatusCodes
         case format
-        case lang
     }
 
 }
