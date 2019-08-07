@@ -73,7 +73,7 @@ public class RegisteredPhonesResolver<T: GigyaAccountProtocol>: TFAResolver<T>, 
 
     }
 
-    public func sendVerificationCode(with phone: TFARegisteredPhone, method: TFAPhoneMethod, lang: String = "eng", completion: @escaping (RegisteredPhonesResult) -> Void) {
+    public func sendVerificationCode(with phone: TFARegisteredPhone, method: TFAPhoneMethod, lang: String = "en", completion: @escaping (RegisteredPhonesResult) -> Void) {
         var params: [String: String] = [:]
         params["phoneID"] = phone.id
         params["gigyaAssertion"] = self.gigyaAssertion

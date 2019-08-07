@@ -64,10 +64,9 @@ public class RegisteredEmailsResolver<T: GigyaAccountProtocol>: TFAResolver<T>, 
                 completion(.error(error))
             }
         }
-
     }
 
-    public func sendEmailCode(with email: TFAEmail, lang: String = "eng", completion: @escaping (RegisteredEmailsResult) -> Void) {
+    public func sendEmailCode(with email: TFAEmail, lang: String = "en", completion: @escaping (RegisteredEmailsResult) -> Void) {
         var params: [String: String] = [:]
         params["emailID"] = email.id
         params["gigyaAssertion"] = self.gigyaAssertion
