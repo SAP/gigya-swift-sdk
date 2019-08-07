@@ -20,8 +20,16 @@ class ViewController: UIViewController {
         super.viewDidLoad()
 
         checkLoginState()
+
+        let not = NotificationCenter.default
+        not.addObserver(self, selector: #selector(gigyaSessionExpire(_:)), name: Notification.Name("didGigyaSessionExpire"), object: nil)
+
     }
-    
+
+    @objc func gigyaSessionExpire(_ notification: Notification) {
+
+    }
+
     @IBOutlet weak var resultTextView: UITextView?
 
     @IBAction func showScreenSet(_ sender: Any) {
@@ -345,4 +353,3 @@ class ViewController: UIViewController {
         }
     }
 }
-    
