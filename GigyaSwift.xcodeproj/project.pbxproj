@@ -73,6 +73,7 @@
 		E73374622268B25B00ADEDBB /* SocialProvidersManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73374612268B25B00ADEDBB /* SocialProvidersManager.swift */; };
 		E7337467226C538300ADEDBB /* DecodeTestUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7337466226C538300ADEDBB /* DecodeTestUtils.swift */; };
 		E735C2F822B7DBF7007A055E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E735C2F722B7DBF7007A055E /* GoogleService-Info.plist */; };
+		E73A930222F974120004F93E /* Notification.Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73A930122F974120004F93E /* Notification.Name.swift */; };
 		E756A2992275CB5C007FA801 /* SocialProviderLoginTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E756A2982275CB5C007FA801 /* SocialProviderLoginTests.swift */; };
 		E756A29C2275CC13007FA801 /* ProviderFactoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E756A29B2275CC13007FA801 /* ProviderFactoryMock.swift */; };
 		E756A29E2275CC59007FA801 /* SocialProviderWrapperMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E756A29D2275CC59007FA801 /* SocialProviderWrapperMock.swift */; };
@@ -146,6 +147,8 @@
 		E7D412F022E87B140082A3E3 /* URLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7D412EF22E87B140082A3E3 /* URLSession.swift */; };
 		E7D412F422E8A38F0082A3E3 /* PersistenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7D412F322E8A38F0082A3E3 /* PersistenceService.swift */; };
 		E7D59B20227F3872002FA864 /* Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7D59B1F227F3872002FA864 /* Bundle.swift */; };
+		E7DA293A22F19AA00062F950 /* GigyaTfa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7DA293922F19AA00062F950 /* GigyaTfa.framework */; };
+		E7DA293B22F19AA00062F950 /* GigyaTfa.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E7DA293922F19AA00062F950 /* GigyaTfa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E7DC2C3B228019AC00A13426 /* SocialLoginProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DC2C3A228019AC00A13426 /* SocialLoginProvider.swift */; };
 		E7DC2C4A22804C2F00A13426 /* FBSDKPlacesKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7DC2C4022804C2F00A13426 /* FBSDKPlacesKit.framework */; };
 		E7DC2C4B22804C2F00A13426 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7DC2C4122804C2F00A13426 /* FBSDKShareKit.framework */; };
@@ -181,8 +184,6 @@
 		E7E80DA0225203D400D3B663 /* ServiceMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7E80D9F225203D400D3B663 /* ServiceMaker.swift */; };
 		E7E80DA22252041D00D3B663 /* ResolverProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7E80DA12252041D00D3B663 /* ResolverProtocol.swift */; };
 		E7E80DA522535A5700D3B663 /* ResponseDataGlobal.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7E80DA422535A5700D3B663 /* ResponseDataGlobal.swift */; };
-		E7EEF3BB22C8D5AD0004DF5D /* GigyaTfa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7EEF3BA22C8D5AD0004DF5D /* GigyaTfa.framework */; };
-		E7EEF3BC22C8D5AD0004DF5D /* GigyaTfa.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E7EEF3BA22C8D5AD0004DF5D /* GigyaTfa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E7F63B1322A7E88200ABA24F /* PluginViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F63B1222A7E88200ABA24F /* PluginViewControllerTests.swift */; };
 		E7F63B1722A7E9FC00ABA24F /* FakeWKScriptMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F63B1622A7E9FC00ABA24F /* FakeWKScriptMessage.swift */; };
 		E7F63B1922A7ED5E00ABA24F /* LogRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F63B1822A7ED5E00ABA24F /* LogRecord.swift */; };
@@ -224,9 +225,9 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				E7EEF3BC22C8D5AD0004DF5D /* GigyaTfa.framework in Embed Frameworks */,
 				E713E0CD2247773100181328 /* Gigya.framework in Embed Frameworks */,
 				E7DC2C5522804C4200A13426 /* FBSDKCoreKit.framework in Embed Frameworks */,
+				E7DA293B22F19AA00062F950 /* GigyaTfa.framework in Embed Frameworks */,
 				E7DC2C5922804C6B00A13426 /* FBSDKLoginKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -295,6 +296,7 @@
 		E73374612268B25B00ADEDBB /* SocialProvidersManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialProvidersManager.swift; sourceTree = "<group>"; };
 		E7337466226C538300ADEDBB /* DecodeTestUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecodeTestUtils.swift; sourceTree = "<group>"; };
 		E735C2F722B7DBF7007A055E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		E73A930122F974120004F93E /* Notification.Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.Name.swift; sourceTree = "<group>"; };
 		E756A2982275CB5C007FA801 /* SocialProviderLoginTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialProviderLoginTests.swift; sourceTree = "<group>"; };
 		E756A29B2275CC13007FA801 /* ProviderFactoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderFactoryMock.swift; sourceTree = "<group>"; };
 		E756A29D2275CC59007FA801 /* SocialProviderWrapperMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialProviderWrapperMock.swift; sourceTree = "<group>"; };
@@ -383,6 +385,7 @@
 		E7D59B19227F33DB002FA864 /* GoogleSignInDependencies.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleSignInDependencies.framework; path = ../GoogleSignInDependencies.framework; sourceTree = "<group>"; };
 		E7D59B1D227F34D3002FA864 /* GoogleWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleWrapper.swift; sourceTree = "<group>"; };
 		E7D59B1F227F3872002FA864 /* Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bundle.swift; sourceTree = "<group>"; };
+		E7DA293922F19AA00062F950 /* GigyaTfa.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GigyaTfa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7DC2C3A228019AC00A13426 /* SocialLoginProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialLoginProvider.swift; sourceTree = "<group>"; };
 		E7DC2C4022804C2F00A13426 /* FBSDKPlacesKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKPlacesKit.framework; sourceTree = "<group>"; };
 		E7DC2C4122804C2F00A13426 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
@@ -416,7 +419,6 @@
 		E7E80DA12252041D00D3B663 /* ResolverProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResolverProtocol.swift; sourceTree = "<group>"; };
 		E7E80DA422535A5700D3B663 /* ResponseDataGlobal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseDataGlobal.swift; sourceTree = "<group>"; };
 		E7EEF3B322C8D4EB0004DF5D /* GigyaTfa.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GigyaTfa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E7EEF3BA22C8D5AD0004DF5D /* GigyaTfa.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GigyaTfa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7F63B1222A7E88200ABA24F /* PluginViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluginViewControllerTests.swift; sourceTree = "<group>"; };
 		E7F63B1622A7E9FC00ABA24F /* FakeWKScriptMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeWKScriptMessage.swift; sourceTree = "<group>"; };
 		E7F63B1822A7ED5E00ABA24F /* LogRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogRecord.swift; sourceTree = "<group>"; };
@@ -465,9 +467,9 @@
 				E7DC2C5722804C6400A13426 /* FBSDKLoginKit.framework in Frameworks */,
 				E73373F422633BD300ADEDBB /* SystemConfiguration.framework in Frameworks */,
 				E7DC2C5322804C2F00A13426 /* FBSDKMarketingKit.framework in Frameworks */,
-				E7EEF3BB22C8D5AD0004DF5D /* GigyaTfa.framework in Frameworks */,
 				E73373F322633BCC00ADEDBB /* LocalAuthentication.framework in Frameworks */,
 				E7DC2C4E22804C2F00A13426 /* FBSDKCoreKit.framework in Frameworks */,
+				E7DA293A22F19AA00062F950 /* GigyaTfa.framework in Frameworks */,
 				E7DC2C4B22804C2F00A13426 /* FBSDKShareKit.framework in Frameworks */,
 				E713E0CC2247773100181328 /* Gigya.framework in Frameworks */,
 				E71D4A2422817F83000892C2 /* libWeChatSDK.a in Frameworks */,
@@ -665,6 +667,7 @@
 			isa = PBXGroup;
 			children = (
 				E73373AF2254FD4800ADEDBB /* Int.swift */,
+				E73A930122F974120004F93E /* Notification.Name.swift */,
 				E7D412EF22E87B140082A3E3 /* URLSession.swift */,
 				E756A2AC22771B6F007FA801 /* Url.swift */,
 				E7D59B1F227F3872002FA864 /* Bundle.swift */,
@@ -803,7 +806,7 @@
 		E7BE36692224219200A108D9 = {
 			isa = PBXGroup;
 			children = (
-				E7EEF3BA22C8D5AD0004DF5D /* GigyaTfa.framework */,
+				E7DA293922F19AA00062F950 /* GigyaTfa.framework */,
 				E7BE36752224219200A108D9 /* GigyaSwift */,
 				E7BE369B2224260400A108D9 /* TestApp */,
 				E7A6E0B5224256390063638F /* GigyaSwiftTests */,
@@ -1192,7 +1195,6 @@
 				E7BE36702224219200A108D9 /* Frameworks */,
 				E7BE36712224219200A108D9 /* Resources */,
 				E7CBAFA1222831C4000B6C11 /* ShellScript */,
-				E7221DD622BA24FD00C296A9 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1250,6 +1252,9 @@
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
+							};
+							com.apple.Keychain = {
+								enabled = 0;
 							};
 							com.apple.Push = {
 								enabled = 1;
@@ -1386,24 +1391,6 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TestApp/Pods-TestApp-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		E7221DD622BA24FD00C296A9 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "
-";
-		};
 		E7CBAFA1222831C4000B6C11 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1489,6 +1476,7 @@
 				E7CBAFBE222D18A6000B6C11 /* NetworkMethod.swift in Sources */,
 				E760668D2278998E005E4CFD /* WebViewController.swift in Sources */,
 				E7E80DA22252041D00D3B663 /* ResolverProtocol.swift in Sources */,
+				E73A930222F974120004F93E /* Notification.Name.swift in Sources */,
 				D58EF441227993C6003DB878 /* Dictionary.swift in Sources */,
 				E774A54B224283DF00BC67D1 /* ApiRequestModel.swift in Sources */,
 				E7E80D9D22510EC600D3B663 /* IOCContainer.swift in Sources */,

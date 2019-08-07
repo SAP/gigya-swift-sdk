@@ -214,20 +214,28 @@ class SessionService: SessionServiceProtocol {
     }
 
     public func cancelSessionCountdownTimer() {
+        GigyaLogger.log(with: self, message: "[startSessionCountdown] - Timer cancel")
+
         if let sessionLifeCountdownTimer = sessionLifeCountdownTimer {
             sessionLifeCountdownTimer.invalidate()
         }
     }
 
     private func startSessionCountdown(futureTime: Double) {
-        // TODO: Add canceletion to timer
+        GigyaLogger.log(with: self, message: "[startSessionCountdown] - Timer start")
 
         sessionLifeCountdownTimer = Timer.scheduledTimer(withTimeInterval: futureTime, repeats: false, block: { [weak self] (timer) in
+            // cancel timer
             timer.invalidate()
 
+            // unregister events (foreground / background)
             self?.persistenceService.setExpirationSession(to: 0)
             self?.unregisterAppStateEvents()
-            // TODO: Add notification broadcast or listener?
+
+            // Send notification broadcast 
+            NotificationCenter.default.post(name: .didGigyaSessionExpire, object: nil)
+
+            GigyaLogger.log(with: self, message: "[startSessionCountdown] - Timer finish")
 
         })
 

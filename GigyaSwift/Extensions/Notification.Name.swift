@@ -6,8 +6,8 @@
 //  Copyright © 2019 Gigya. All rights reserved.
 //
 
-import Foundation
+import NotificationCenter
 
 extension Notification.Name {
-    static let didGigyaSessionExpire = Notification.Name("didGigyaSessionExpire")
+    static var didGigyaSessionExpire = Notification.Name(rawValue: "didGigyaSessionExpire")
 }
