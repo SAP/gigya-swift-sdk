@@ -50,7 +50,6 @@ class PushTfaOptInService: PushTfaOptInServiceProtocol {
         apiService.send(model: model, responseType: InitTFAModel.self) { [weak self] result in
             switch result {
             case .success(let data):
-                print(data)
                 guard let gigyaAssertion = data.gigyaAssertion else {
                     self?.completion(.failure(.emptyResponse))
                     return

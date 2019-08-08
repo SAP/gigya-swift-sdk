@@ -34,8 +34,9 @@ class SocialLoginProvider: Provider {
             }
 
             let expiration = "\(jsonData?["tokenExpiration"] as? Int ?? 0)"
+            let code = jsonData?["code"] as? String // Apple sign in Code
 
-            self.loginSuccess(providerSessions: self.getProviderSessions(token: token, expiration: expiration), loginMode: loginMode, params: params, completion: completion)
+            self.loginSuccess(providerSessions: self.getProviderSessions(token: token, expiration: expiration, code: code), loginMode: loginMode, params: params, completion: completion)
 
             self.logout()
         }
@@ -48,7 +49,7 @@ class SocialLoginProvider: Provider {
         didFinish()
     }
 
-    func getProviderSessions(token: String, expiration: String?) -> String {
+    func getProviderSessions(token: String, expiration: String?, code: String?) -> String {
         switch providerType {
         case .facebook:
             return "{\"\(providerType.rawValue)\": {\"authToken\": \"\(token)\", tokenExpiration: \"\(expiration ?? "")\"}}"
@@ -58,6 +59,9 @@ class SocialLoginProvider: Provider {
             return "{\"\(providerType.rawValue)\": {\"code\": \"\(token)\"}}"
         case .wechat:
             return "{\"\(providerType.rawValue)\": {\"authToken\": \"\(token)\", providerUID: \"\(provider.clientID ?? "")\"}}"
+        case .appleSignin:
+            //TODO: When needed?
+            return "{\"\(providerType.rawValue)\": {\"jwt\": \"\(token)\", code: \"\(code!)\"}}"
         default:
             break
         }

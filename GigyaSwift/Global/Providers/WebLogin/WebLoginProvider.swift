@@ -68,7 +68,7 @@ class WebLoginProvider: Provider {
         didFinish()
     }
 
-    func getProviderSessions(token: String, expiration: String?) -> String {
+    func getProviderSessions(token: String, expiration: String?, code: String?) -> String {
         return ""
     }
 

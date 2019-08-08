@@ -43,6 +43,8 @@ class ViewController: UIViewController {
                     self?.resultTextView?.text = data.toJson()
                 case .failure(let error):
                     print(error)
+
+
                     guard let interruption = error.interruption else { return }
                     // Evaluage interruption.
                     switch interruption {
@@ -73,9 +75,19 @@ class ViewController: UIViewController {
                 case .failure(let error):
                     print(error) // general error
 
+                    switch error.error {
+                    case .gigyaError(let data):
+                        print(data)
+                    default:
+                        break
+                    }
                     guard let interruption = error.interruption else { return }
                     // Evaluage interruption.
                     switch interruption {
+                    case .pendingRegistration(let resolver):
+                        let params = ["preferences": ["Visitor": ["isConsentGranted": "true"]]]
+                        resolver.setAccount(params: params)
+
                     case .conflitingAccount(let resolver):
                         resolver.linkToSite(loginId: resolver.conflictingAccount?.loginID ?? "", password: "123123")
                     case .pendingTwoFactorVerification(let interruption, let activeProviders, let factory):
@@ -166,7 +178,7 @@ class ViewController: UIViewController {
     }
 
     @IBAction func loginWithProvider(_ sender: Any) {
-        gigya.login(with: .google, viewController: self ) { [weak self] result in
+        gigya.login(with: .appleSignin, viewController: self ) { [weak self] result in
             switch result {
             case .success(let data):
                 print(data)
@@ -190,7 +202,7 @@ class ViewController: UIViewController {
     }
 
     @IBAction func loginWithProviders(_ sender: Any) {
-        gigya.socialLoginWith(providers: [.facebook, .google, .line], viewController: self, params: [:]) { [weak self] (result) in
+        gigya.socialLoginWith(providers: [.facebook, .google, .line, .appleSignin], viewController: self, params: [:]) { [weak self] (result) in
             switch result {
             case .success(let data):
                 print(data)

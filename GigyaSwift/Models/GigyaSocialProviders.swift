@@ -39,16 +39,48 @@ public enum GigyaSocialProviders: String {
     case wordpress
     case xing
     case yahooJapan = "Yahoo Japan"
+    case appleSignin
+
+    func isOnlySdk() -> Bool {
+        switch self {
+        case .facebook, .wechat, .appleSignin:
+            return true
+        default:
+            return false
+        }
+    }
+
+    func isSupported() -> Bool {
+        guard let provider = GigyaNativeSocialProviders(rawValue: self.rawValue) else { return true }
+
+        if GigyaNativeSocialProviders.allCases.contains(provider) {
+            return true
+        }
+
+        return false
+    }
 }
 
 /**
  The `GigyaNativeSocialProviders` it is list of supported native providers.
  */
 public enum GigyaNativeSocialProviders: String, CaseIterable {
+    public static var allCases: [GigyaNativeSocialProviders] {
+        var casesAvailable: [GigyaNativeSocialProviders] = [.facebook, .google, .line ,.wechat]
+        if #available(iOS 13.0, *) {
+            casesAvailable.append(.appleSignin)
+        } else {
+            GigyaLogger.log(with: self, message: "[.appleSignin] not available")
+        }
+
+        return casesAvailable
+    }
+
     case facebook
     case google = "googleplus"
     case line
     case wechat
+    case appleSignin
 
     func getClassName() -> String {
         switch self {
@@ -60,6 +92,8 @@ public enum GigyaNativeSocialProviders: String, CaseIterable {
             return "LineWrapper"
         case .wechat:
             return "WeChatWrapper"
+        case .appleSignin:
+            return "AppleSignInWrapper"
         }
     }
 }

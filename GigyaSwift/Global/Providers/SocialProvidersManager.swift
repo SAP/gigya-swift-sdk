@@ -50,7 +50,7 @@ class SocialProvidersManager: SocialProvidersManagerProtocol {
 
                 return SocialLoginProvider(providerType: socialProvider, provider: wrapper, delegate: delegate)
             } else {
-                if socialProvider == .facebook || socialProvider == .wechat {
+                if socialProvider.isOnlySdk() {
                     GigyaLogger.error(message: "[\(socialProvider.rawValue)] can't login with WebView, install related sdk.")
                 }
             }

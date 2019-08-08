@@ -19,7 +19,7 @@ public struct GigyaResponseModel: Codable {
 
     internal var requestData: Data? = nil
     
-    internal func toDictionary() -> [String: Any] {
+    public func toDictionary() -> [String: Any] {
         return DecodeEncodeUtils.dataToDictionary(data: self.requestData)
     }
     
