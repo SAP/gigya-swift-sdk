@@ -38,7 +38,12 @@ internal enum KeychainMode {
 }
 
 internal enum KeychainResult {
-    case succses(data: Data?)
+    case success(data: Data?)
+    case error(error: KeychainError)
+}
+
+internal enum KeychainResultWithObject<T: Any> {
+    case success(data: T)
     case error(error: KeychainError)
 }
 

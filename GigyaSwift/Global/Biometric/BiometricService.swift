@@ -21,7 +21,7 @@ class BiometricService: BiometricServiceProtocol, BiometricServiceInternalProtoc
      */
 
     var isOptIn: Bool {
-        return persistenceService.biometricAllow ?? false
+        return persistenceService.biometricAllow
     }
 
     /**
@@ -91,14 +91,12 @@ class BiometricService: BiometricServiceProtocol, BiometricServiceInternalProtoc
             return
         }
 
-        sessionService.getSession(skipLoadSession: false) { [weak self] (success) in
+        sessionService.getSession() { (success) in
             if success == true {
                 completion(.success)
             } else {
                 completion(.failure)
             }
-
-            self?.sessionService.revokeSemphore()
         }
     }
 
