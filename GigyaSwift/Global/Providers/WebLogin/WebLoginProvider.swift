@@ -53,7 +53,7 @@ class WebLoginProvider: Provider {
                     return
             }
 
-            let sessionExpiration = params["sessionExpiration"] as? String
+            let sessionExpiration = jsonData?["sessionExpiration"] as? String
 
             let sessionInfo = SessionInfoModel(sessionToken: token, sessionSecret: secret, sessionExpiration: sessionExpiration)
             self?.sessionService.setSession(sessionInfo)

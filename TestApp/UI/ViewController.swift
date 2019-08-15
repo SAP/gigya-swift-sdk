@@ -27,7 +27,7 @@ class ViewController: UIViewController {
     }
 
     @objc func gigyaSessionExpire(_ notification: Notification) {
-
+        UIFactory.showAlert(vc: self, msg: "Session is expire!")
     }
 
     @IBOutlet weak var resultTextView: UITextView?
