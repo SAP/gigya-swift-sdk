@@ -61,7 +61,7 @@ class SocialLoginProvider: Provider {
             return "{\"\(providerType.rawValue)\": {\"authToken\": \"\(token)\", providerUID: \"\(provider.clientID ?? "")\"}}"
         case .appleSignin:
             //TODO: When needed?
-            return "{\"\(providerType.rawValue)\": {\"jwt\": \"\(token)\", code: \"\(code!)\"}}"
+            return "{\"\(providerType.rawValue)\": {\"idToken\": \"\(token)\", code: \"\(code!)\"}}"
         default:
             break
         }

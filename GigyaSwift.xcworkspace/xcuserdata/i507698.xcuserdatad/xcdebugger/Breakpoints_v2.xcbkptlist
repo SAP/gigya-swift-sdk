@@ -496,5 +496,22 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "AC31D7F7-AF03-4B8B-8D36-7A3295104C06"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            condition = "Ss"
+            continueAfterRunningActions = "No"
+            filePath = "GigyaSwift/Global/Providers/SocialLogin/SocialLoginProvider.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "64"
+            endingLineNumber = "64"
+            landmarkName = "getProviderSessions(token:expiration:code:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>
