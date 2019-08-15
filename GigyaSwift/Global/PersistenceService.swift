@@ -31,9 +31,9 @@ class PersistenceService {
         }
     }
 
-    internal var biometricAllow: Bool? {
+    internal var biometricAllow: Bool {
         get {
-            return UserDefaults.standard.bool(forKey: InternalConfig.Storage.biometricAllow)
+            return UserDefaults.standard.bool(forKey: InternalConfig.Storage.biometricAllow) ?? false
         }
     }
 

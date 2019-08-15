@@ -31,7 +31,12 @@ class SessionService: SessionServiceProtocol {
         self.persistenceService = persistenceService
 
         checkFirstRun()
-        getSession(skipLoadSession: persistenceService.biometricAllow ?? false)
+
+        if persistenceService.biometricAllow == false {
+            getSession() { [weak self] success in
+                GigyaLogger.log(with: self, message: "[SessionService.getFromInit]: is success: - \(success)")
+            }
+        }
     }
 
     func checkFirstRun() {
@@ -69,47 +74,47 @@ class SessionService: SessionServiceProtocol {
         let data = NSKeyedArchiver.archivedData(withRootObject: gsession)
 
         if self.session == nil {
-            removeFromKeychain { [weak self] in
-                self?.keychainHelper.add(with: InternalConfig.Storage.keySession, data: data) { err in }
-            }
-
             persistenceService.setBiometricEnable(to: false)
             persistenceService.setBiometricLocked(to: false)
-        } else {
-            keychainHelper.add(with: InternalConfig.Storage.keySession, data: data) { err in }
+        }
+
+        removeFromKeychain { [weak self] in
+            self?.keychainHelper.add(with: InternalConfig.Storage.keySession, data: data)  { [weak self] err in
+                GigyaLogger.log(with: self, message: "[setSession]: \(err)")
+            }
         }
 
         self.session = gsession
     }
 
-    func getSession(skipLoadSession: Bool = false, completion: @escaping ((Bool) -> Void) = { _ in}) {
-        if skipLoadSession == true {
-            return
+    func getSession(completion: @escaping ((Bool) -> Void) = { _ in} ) {
+        let done: (Bool) -> () = { [weak self] success in
+            self?.revokeSemaphore()
+            completion(success)
         }
-        
-        keychainHelper.get(name: InternalConfig.Storage.keySession) { [weak self] (result) in
+
+        keychainHelper.get(object: GigyaSession.self, name: InternalConfig.Storage.keySession) { [weak self] (result) in
             guard let self = self else {
+                done(false)
                 return
             }
 
             switch result {
-            case .succses(let data):
-                guard let session: GigyaSession = NSKeyedUnarchiver.unarchiveObject(with: data!) as? GigyaSession else {
-                    completion(false)
-                    return
-                }
+            case .success(let sessionObject):
                 self.sessionLoad = true
-                self.session = session
+                self.session = sessionObject
 
-                completion(true)
+                done(true)
             case .error(let error):
                 self.sessionLoad = true
-                completion(false)
+                done(false)
                 GigyaLogger.log(with: self, message: error.rawValue)
             }
-
-            self.semaphore.signal()
         }
+    }
+
+    private func revokeSemaphore() {
+        self.semaphore.signal()
     }
 
     func setSessionAs(biometric: Bool, completion: @escaping (GigyaBiometricResult) -> Void) {
@@ -125,10 +130,10 @@ class SessionService: SessionServiceProtocol {
 
         keychainHelper.delete(name: InternalConfig.Storage.keySession) { [weak self] (result) in
             switch result {
-            case .succses:
+            case .success:
                 self?.keychainHelper.add(with: InternalConfig.Storage.keySession, data: data, state: mode) { [weak self] (result) in
                     switch result {
-                    case .succses:
+                    case .success:
                         completion(.success)
                     case .error(let error):
                         GigyaLogger.log(with: self, message: "can't using session with biometric - error: \(error.rawValue)")
@@ -164,14 +169,17 @@ class SessionService: SessionServiceProtocol {
     private func removeFromKeychain(completion: @escaping () -> Void = {}) {
         keychainHelper.delete(name: InternalConfig.Storage.keySession) { [weak self] (result) in
             switch result {
-            case .succses(let data):
-                GigyaLogger.log(with: self, message: "Session saved in the keyChain - data: \(data ?? Data())")
+            case .success(let data):
+                GigyaLogger.log(with: self, message: "Session remove from keyChain - data: \(data ?? Data())")
             case .error(let error):
-                GigyaLogger.log(with: self, message: "Problem with saveing session in the keyChain - error: \(error.rawValue)")
+                GigyaLogger.log(with: self, message: "Problem with removing session from keyChain - error: \(error.rawValue)")
             }
 
             completion()
         }
     }
 
+    deinit {
+        GigyaLogger.log(with: self, message: "[SessionService]: failed - data not found")
+    }
 }

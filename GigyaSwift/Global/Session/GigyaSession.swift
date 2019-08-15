@@ -9,7 +9,9 @@
 import Foundation
 
 @objc(GSSession)
-public class GigyaSession: NSObject, NSCoding {
+public class GigyaSession: NSObject, NSSecureCoding {
+    public static var supportsSecureCoding: Bool = true
+
     var token: String = ""
 
     var secret: String = ""
@@ -28,6 +30,8 @@ public class GigyaSession: NSObject, NSCoding {
 
     required public init?(coder aDecoder: NSCoder) {
         super.init()
+
+        GigyaLogger.log(with: self, message: "[GigyaSession] decode - \(aDecoder.debugDescription)")
 
         guard let token = aDecoder.decodeObject(forKey: "authToken") as? String,
             let secret = aDecoder.decodeObject(forKey: "secret") as? String else { return }

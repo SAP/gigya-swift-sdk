@@ -16,7 +16,7 @@ public protocol SessionServiceProtocol {
 
     func setSession(_ model: SessionInfoModel?)
 
-    func getSession(skipLoadSession: Bool, completion: @escaping ((Bool) -> Void))
+    func getSession(completion: @escaping ((Bool) -> Void))
 
     func setSessionAs(biometric: Bool, completion: @escaping (GigyaBiometricResult) -> Void)
 
