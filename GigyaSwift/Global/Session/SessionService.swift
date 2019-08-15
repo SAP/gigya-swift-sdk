@@ -88,6 +88,7 @@ class SessionService: SessionServiceProtocol {
     }
 
     func getSession(completion: @escaping ((Bool) -> Void) = { _ in} ) {
+        // closure to make tasks before call completion
         let done: (Bool) -> () = { [weak self] success in
             self?.revokeSemaphore()
             completion(success)
@@ -104,10 +105,10 @@ class SessionService: SessionServiceProtocol {
                 self.sessionLoad = true
                 self.session = sessionObject
 
-                done(true)
+                didFinish(true)
             case .error(let error):
                 self.sessionLoad = true
-                done(false)
+                didFinish(false)
                 GigyaLogger.log(with: self, message: error.rawValue)
             }
         }
