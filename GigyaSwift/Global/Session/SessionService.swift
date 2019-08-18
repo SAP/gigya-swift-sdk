@@ -125,22 +125,28 @@ class SessionService: SessionServiceProtocol {
 
     func getSession(completion: @escaping ((Bool) -> Void) = { _ in} ) {
         // closure to make tasks before call completion
-        let done: (Bool) -> () = { [weak self] success in
+        let didFinish: (Bool) -> () = { [weak self] success in
             self?.revokeSemaphore()
             completion(success)
         }
 
         keychainHelper.get(object: GigyaSession.self, name: InternalConfig.Storage.keySession) { [weak self] (result) in
             guard let self = self else {
-                done(false)
+                didFinish(false)
                 return
             }
 
             switch result {
             case .success(let sessionObject):
+                if sessionObject.isActive() == false {
+                    didFinish(true)
+                    return
+                }
+
                 self.sessionLoad = true
                 self.session = sessionObject
 
+                self.startSessionCountdownTimerIfNeeded()
                 didFinish(true)
             case .error(let error):
                 self.sessionLoad = true
