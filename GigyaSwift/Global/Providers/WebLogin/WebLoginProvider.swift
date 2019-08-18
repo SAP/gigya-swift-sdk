@@ -53,7 +53,9 @@ class WebLoginProvider: Provider {
                     return
             }
 
-            let sessionInfo = SessionInfoModel(sessionToken: token, sessionSecret: secret)
+            let sessionExpiration = jsonData?["sessionExpiration"] as? String
+
+            let sessionInfo = SessionInfoModel(sessionToken: token, sessionSecret: secret, sessionExpiration: sessionExpiration)
             self?.sessionService.setSession(sessionInfo)
 
             self?.delegate?.callGetAccount(completion: { (result) in

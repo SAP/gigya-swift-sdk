@@ -95,7 +95,9 @@ extension WebLoginWrapper: WKNavigationDelegate {
                     status == "ok",
                     let accessToken = url["access_token"],
                     let tokenSecret = url["x_access_token_secret"] {
-                    let json = ["status": status, "accessToken": accessToken, "tokenSecret": tokenSecret]
+                    let sessionExpiration = url["expires_in"] ?? "0"
+
+                    let json = ["status": status, "accessToken": accessToken, "tokenSecret": tokenSecret, "sessionExpiration": sessionExpiration]
                         completionHandler?(json, nil)
 
                         // dismiss viewController

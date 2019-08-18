@@ -20,8 +20,18 @@ class ViewController: UIViewController {
         super.viewDidLoad()
 
         checkLoginState()
+
+        let not = NotificationCenter.default
+        not.addObserver(self, selector: #selector(gigyaSessionExpire(_:)), name: Notification.Name("didGigyaSessionExpire"), object: nil)
+
     }
-    
+
+    @objc func gigyaSessionExpire(_ notification: Notification) {
+        checkLoginState()
+
+        UIFactory.showAlert(vc: self, msg: "Session is expire!")
+    }
+
     @IBOutlet weak var resultTextView: UITextView?
 
     @IBAction func showScreenSet(_ sender: Any) {
@@ -37,7 +47,7 @@ class ViewController: UIViewController {
 
     @IBAction func login(_ sender: Any) {
         let alert = UIFactory.getLoginAlert { email, password in
-            self.gigya.login(loginId: email!, password: password!) { [weak self] result in
+            self.gigya.login(loginId: email!, password: password!, params: ["sessionExpiration": "20"]) { [weak self] result in
                 switch result {
                 case .success(let data):
                     self?.resultTextView?.text = data.toJson()
@@ -345,4 +355,3 @@ class ViewController: UIViewController {
         }
     }
 }
-    

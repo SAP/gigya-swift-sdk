@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class SessionService: SessionServiceProtocol {
 
@@ -24,6 +25,8 @@ class SessionService: SessionServiceProtocol {
 
     private let semaphore = DispatchSemaphore(value: 0)
 
+    private var sessionLifeCountdownTimer: Timer?
+
     init(config: GigyaConfig, persistenceService: PersistenceService, accountService: AccountServiceProtocol, keychainHelper: KeychainStorageFactory) {
         self.accountService = accountService
         self.keychainHelper = keychainHelper
@@ -37,6 +40,24 @@ class SessionService: SessionServiceProtocol {
                 GigyaLogger.log(with: self, message: "[SessionService.getFromInit]: is success: - \(success)")
             }
         }
+    }
+
+    private func registerAppStateEvents() {
+        NotificationCenter.default.addObserver(self, selector: #selector(appMovedToBackground), name: UIApplication.willResignActiveNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(appReturnToForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
+    }
+
+    private func unregisterAppStateEvents() {
+        NotificationCenter.default.removeObserver(self, name: UIApplication.willResignActiveNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIApplication.willEnterForegroundNotification, object: nil)
+    }
+
+    @objc func appMovedToBackground() {
+        sessionLifeCountdownTimer?.invalidate()
+    }
+
+    @objc func appReturnToForeground() {
+        startSessionCountdownTimerIfNeeded()
     }
 
     func checkFirstRun() {
@@ -60,9 +81,9 @@ class SessionService: SessionServiceProtocol {
         return session?.isValid() ?? false
     }
     
-    func setSession(_ model: SessionInfoModel?) {
+    func setSession(_ sessionInfo: SessionInfoModel?) {
         guard
-            let sessionInfo = model,
+            let sessionInfo = sessionInfo,
             let sessionToken = sessionInfo.sessionToken,
             let sessionSecret = sessionInfo.sessionSecret,
             let gsession = GigyaSession(sessionToken: sessionToken, secret: sessionSecret)
@@ -71,9 +92,19 @@ class SessionService: SessionServiceProtocol {
                 return
         }
 
+        if let sessionExpiration = Double(sessionInfo.sessionExpiration ?? "0"), sessionExpiration > 0 {
+            let sessionExpirationTimestamp = Date().timeIntervalSince1970 + sessionExpiration
+            gsession.sessionExpirationTimestamp = sessionExpirationTimestamp
+        }
+
         let data = NSKeyedArchiver.archivedData(withRootObject: gsession)
 
         if self.session == nil {
+            // When session not in the heap, need to remove the session from keyChain. (with biometric can't override the session after client called OptOut)
+            removeFromKeychain { [weak self] in
+                self?.keychainHelper.add(with: InternalConfig.Storage.keySession, data: data) { err in }
+            }
+
             persistenceService.setBiometricEnable(to: false)
             persistenceService.setBiometricLocked(to: false)
         }
@@ -85,26 +116,37 @@ class SessionService: SessionServiceProtocol {
         }
 
         self.session = gsession
+
+        // Check session expiration.
+        if let sessionExpiration = self.session?.sessionExpirationTimestamp, sessionExpiration > 0 {
+            startSessionCountdownTimerIfNeeded()
+        }
     }
 
     func getSession(completion: @escaping ((Bool) -> Void) = { _ in} ) {
         // closure to make tasks before call completion
-        let done: (Bool) -> () = { [weak self] success in
+        let didFinish: (Bool) -> () = { [weak self] success in
             self?.revokeSemaphore()
             completion(success)
         }
 
         keychainHelper.get(object: GigyaSession.self, name: InternalConfig.Storage.keySession) { [weak self] (result) in
             guard let self = self else {
-                done(false)
+                didFinish(false)
                 return
             }
 
             switch result {
             case .success(let sessionObject):
+                if sessionObject.isActive() == false {
+                    didFinish(true)
+                    return
+                }
+
                 self.sessionLoad = true
                 self.session = sessionObject
 
+                self.startSessionCountdownTimerIfNeeded()
                 didFinish(true)
             case .error(let error):
                 self.sessionLoad = true
@@ -146,6 +188,67 @@ class SessionService: SessionServiceProtocol {
                 completion(.failure)
             }
         }
+    }
+
+    // MARK: - SESSION EXPIRATION
+
+    private func expireSession() {
+        NotificationCenter.default.post(name: .didGigyaSessionExpire, object: nil)
+        clear()
+    }
+
+    func startSessionCountdownTimerIfNeeded() {
+        guard let session = session else { return }
+
+        if !session.isValid() {
+            expireSession()
+        } else {
+            let sessionExpiration = session.sessionExpirationTimestamp ?? 0
+            let currentTime = Date().timeIntervalSince1970
+            let timeUntilSessionExpires = sessionExpiration - currentTime
+
+            GigyaLogger.log(with: self, message: "startSessionCountdownTimerIfNeeded: Session is set to expire in: \(timeUntilSessionExpires) start countdown timer")
+
+            if timeUntilSessionExpires > 0 {
+                // start session
+                startSessionCountdown(futureTime: timeUntilSessionExpires)
+                registerAppStateEvents()
+            }
+
+        }
+    }
+
+    public func cancelSessionCountdownTimer() {
+        GigyaLogger.log(with: self, message: "[startSessionCountdown] - Timer cancel")
+
+        if let sessionLifeCountdownTimer = sessionLifeCountdownTimer {
+            sessionLifeCountdownTimer.invalidate()
+        }
+    }
+
+    private func startSessionCountdown(futureTime: Double) {
+        GigyaLogger.log(with: self, message: "[startSessionCountdown] - Timer start")
+
+        sessionLifeCountdownTimer = Timer.scheduledTimer(withTimeInterval: futureTime, repeats: false, block: { [weak self] (timer) in
+            // cancel timer
+            timer.invalidate()
+
+            // clear timer from memory
+            self?.sessionLifeCountdownTimer = nil
+
+            // unregister events (foreground / background)
+            self?.persistenceService.setExpirationSession(to: 0)
+            self?.unregisterAppStateEvents()
+
+            // call to check session expirtation (remove session and send broadcast)
+            if let session = self?.session, !session.isValid() {
+                self?.expireSession()
+            }
+
+            GigyaLogger.log(with: self, message: "[startSessionCountdown] - Timer finish")
+
+        })
+
     }
 
     func clear() {
