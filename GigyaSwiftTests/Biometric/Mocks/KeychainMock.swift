@@ -13,18 +13,18 @@ class KeychainMock: KeychainStorageFactory {
 
     override func add(with name: String, data: Data?, state: KeychainMode = .regular, completionHandler: GSKeychainCompletionHandler?) {
 
-        completionHandler!(KeychainResult.succses(data: nil))
+        completionHandler!(KeychainResult.success(data: nil))
     }
 
     override func get(name: String, _ completionHandler: GSKeychainCompletionHandler?) {
         let session = GigyaSession(sessionToken: "123", secret: "123")
         let archive = try! NSKeyedArchiver.archivedData(withRootObject: session!, requiringSecureCoding: false)
 
-        completionHandler!(KeychainResult.succses(data: archive))
+        completionHandler!(KeychainResult.success(data: archive))
     }
 
     override func delete(name: String, completionHandler: GSKeychainCompletionHandler?) {
-        completionHandler!(KeychainResult.succses(data: nil))
+        completionHandler!(KeychainResult.success(data: nil))
     }
 
 }

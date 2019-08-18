@@ -226,8 +226,8 @@ class TfaViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     }
     
     func onSubmitPhone(number: String, andMethod: String) {
-        registerPhoneResolver?.registerPhone(phone: number, completion: registerPhoneResult(result:))
-
+//        registerPhoneResolver?.registerPhone(phone: number ,completion: registerPhoneResult(result:))
+        registerPhoneResolver?.registerPhone(phone: number, lang: "fr", completion: registerPhoneResult(result:))
         reloadTableWith(content:  ["phoneInput", "authCode"])
     }
 

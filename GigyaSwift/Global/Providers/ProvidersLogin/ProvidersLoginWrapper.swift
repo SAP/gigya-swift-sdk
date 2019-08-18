@@ -65,7 +65,7 @@ class ProvidersLoginWrapper: NSObject {
     }
 
     func getUrl(params: [String: Any]?) -> URL? {
-        let lang = params?["lang"] ?? "en"
+        let lang = params?["lang"] ?? InternalConfig.General.defaultLang
         let disabledProviders = params?["disabledProviders"] ?? ""
 
         let providersString = providers.map { "\($0.rawValue)" }.joined(separator: ",")
