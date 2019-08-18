@@ -27,6 +27,8 @@ class ViewController: UIViewController {
     }
 
     @objc func gigyaSessionExpire(_ notification: Notification) {
+        checkLoginState()
+
         UIFactory.showAlert(vc: self, msg: "Session is expire!")
     }
 
@@ -45,7 +47,7 @@ class ViewController: UIViewController {
 
     @IBAction func login(_ sender: Any) {
         let alert = UIFactory.getLoginAlert { email, password in
-            self.gigya.login(loginId: email!, password: password!) { [weak self] result in
+            self.gigya.login(loginId: email!, password: password!, params: ["sessionExpiration": "20"]) { [weak self] result in
                 switch result {
                 case .success(let data):
                     self?.resultTextView?.text = data.toJson()
