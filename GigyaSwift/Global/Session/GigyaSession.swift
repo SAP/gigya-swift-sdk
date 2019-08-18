@@ -16,7 +16,7 @@ public class GigyaSession: NSObject, NSSecureCoding {
 
     var secret: String = ""
 
-    var sessionExpiration: Double?
+    var sessionExpirationTimestamp: Double?
 
     var lastLoginProvider = ""
 
@@ -28,7 +28,7 @@ public class GigyaSession: NSObject, NSSecureCoding {
     public func encode(with aCoder: NSCoder) {
         aCoder.encode(self.token, forKey: "authToken")
         aCoder.encode(self.secret, forKey: "secret")
-        aCoder.encode(self.sessionExpiration, forKey: "sessionExpiration")
+        aCoder.encode(self.sessionExpirationTimestamp, forKey: "sessionExpirationTimestamp")
     }
 
     required public init?(coder aDecoder: NSCoder) {
@@ -42,15 +42,19 @@ public class GigyaSession: NSObject, NSSecureCoding {
         self.token = token
         self.secret = secret
 
-        let expiration = aDecoder.decodeObject(forKey: "sessionExpiration") as? Double
-        self.sessionExpiration = expiration
+        let expiration = aDecoder.decodeObject(forKey: "sessionExpirationTimestamp") as? Double
+        self.sessionExpirationTimestamp = expiration
     }
 
     func isValid() -> Bool {
-        if let sessionExpiration = self.sessionExpiration, sessionExpiration > 0, Date().timeIntervalSince1970 > sessionExpiration {
+        if let sessionExpiration = self.sessionExpirationTimestamp, sessionExpiration > 0, Date().timeIntervalSince1970 > sessionExpiration {
             return false
         }
 
+        return isActive()
+    }
+
+    func isActive() -> Bool {
         return !token.isEmpty && !secret.isEmpty
     }
 }

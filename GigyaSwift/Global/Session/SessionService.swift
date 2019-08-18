@@ -25,8 +25,6 @@ class SessionService: SessionServiceProtocol {
 
     private let semaphore = DispatchSemaphore(value: 0)
 
-//    private var sessionExpirationTimestamp: Double = 0
-
     private var sessionLifeCountdownTimer: Timer?
 
     init(config: GigyaConfig, persistenceService: PersistenceService, accountService: AccountServiceProtocol, keychainHelper: KeychainStorageFactory) {
@@ -92,7 +90,7 @@ class SessionService: SessionServiceProtocol {
 
         if let sessionExpiration = Double(sessionInfo.sessionExpiration ?? "0"), sessionExpiration > 0 {
             let sessionExpirationTimestamp = Date().timeIntervalSince1970 + sessionExpiration
-            gsession.sessionExpiration = sessionExpirationTimestamp
+            gsession.sessionExpirationTimestamp = sessionExpirationTimestamp
         }
 
         let data = NSKeyedArchiver.archivedData(withRootObject: gsession)
@@ -112,7 +110,7 @@ class SessionService: SessionServiceProtocol {
         self.session = gsession
 
         // Check session expiration.
-        if let sessionExpiration = self.session?.sessionExpiration, sessionExpiration > 0 {
+        if let sessionExpiration = self.session?.sessionExpirationTimestamp, sessionExpiration > 0 {
             startSessionCountdownTimerIfNeeded()
         }
     }
@@ -129,7 +127,7 @@ class SessionService: SessionServiceProtocol {
 
             switch result {
             case .succses(let data):
-                guard let session: GigyaSession = NSKeyedUnarchiver.unarchiveObject(with: data!) as? GigyaSession else {
+                guard let session: GigyaSession = NSKeyedUnarchiver.unarchiveObject(with: data!) as? GigyaSession, session.isActive() else {
                     completion(false)
                     return
                 }
@@ -137,7 +135,6 @@ class SessionService: SessionServiceProtocol {
                 self.sessionLoad = true
                 self.session = session
 
-                self.checkSessionExpiration()
                 self.startSessionCountdownTimerIfNeeded()
 
                 completion(true)
@@ -184,19 +181,18 @@ class SessionService: SessionServiceProtocol {
 
     // MARK: - SESSION EXPIRATION
 
-    private func checkSessionExpiration() {
-        // Check if session expire, Clear if so.
-        if let sessionExpiration = session?.sessionExpiration, sessionExpiration > 0 && sessionExpiration < Date().timeIntervalSince1970 {
-            NotificationCenter.default.post(name: .didGigyaSessionExpire, object: nil)
-            clear()
-        }
+    private func expireSession() {
+        NotificationCenter.default.post(name: .didGigyaSessionExpire, object: nil)
+        clear()
     }
 
     func startSessionCountdownTimerIfNeeded() {
         guard let session = session else { return }
 
-        if session.isValid() {
-            let sessionExpiration = session.sessionExpiration ?? 0
+        if !session.isValid() {
+            expireSession()
+        } else {
+            let sessionExpiration = session.sessionExpirationTimestamp ?? 0
             let currentTime = Date().timeIntervalSince1970
             let timeUntilSessionExpires = sessionExpiration - currentTime
 
@@ -207,8 +203,7 @@ class SessionService: SessionServiceProtocol {
                 startSessionCountdown(futureTime: timeUntilSessionExpires)
                 registerAppStateEvents()
             }
-        } else {
-            checkSessionExpiration()
+
         }
     }
 
@@ -235,7 +230,9 @@ class SessionService: SessionServiceProtocol {
             self?.unregisterAppStateEvents()
 
             // call to check session expirtation (remove session and send broadcast)
-            self?.checkSessionExpiration()
+            if let session = self?.session, !session.isValid() {
+                self?.expireSession()
+            }
 
             GigyaLogger.log(with: self, message: "[startSessionCountdown] - Timer finish")
 

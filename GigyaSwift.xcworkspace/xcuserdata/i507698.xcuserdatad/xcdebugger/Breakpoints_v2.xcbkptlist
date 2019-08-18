@@ -26,7 +26,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TestApp/UI/ViewController.swift"
-            timestampString = "587812040.894323"
+            timestampString = "587829580.766589"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "334"
@@ -42,7 +42,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TestApp/UI/ViewController.swift"
-            timestampString = "587812040.894395"
+            timestampString = "587829580.766656"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "331"
@@ -272,70 +272,6 @@
             startingLineNumber = "51"
             endingLineNumber = "51"
             landmarkName = "dataRequest(gsession:path:params:method:completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GigyaSwift/Global/Providers/WebLogin/WebLoginProvider.swift"
-            timestampString = "587568375.741431"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "34"
-            endingLineNumber = "34"
-            landmarkName = "login(type:params:viewController:loginMode:completion:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Gigya.WebLoginProvider.login&lt;A where A: Gigya.GigyaAccountProtocol&gt;(type: A.Type, params: Swift.Dictionary&lt;Swift.String, Any&gt;, viewController: Swift.Optional&lt;__C.UIViewController&gt;, loginMode: Swift.String, completion: (Gigya.GigyaApiResult&lt;A&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "Gigya"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Global/Providers/WebLogin/WebLoginProvider.swift"
-                  timestampString = "587812041.763"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "35"
-                  endingLineNumber = "35"
-                  offsetFromSymbolStart = "116">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;Swift.Dictionary&lt;Swift.String, Any&gt;&gt;, Swift.Optional&lt;Swift.String&gt;) -&gt; () in Gigya.WebLoginProvider.login&lt;A where A: Gigya.GigyaAccountProtocol&gt;(type: A.Type, params: Swift.Dictionary&lt;Swift.String, Any&gt;, viewController: Swift.Optional&lt;__C.UIViewController&gt;, loginMode: Swift.String, completion: (Gigya.GigyaApiResult&lt;A&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "Gigya"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Global/Providers/WebLogin/WebLoginProvider.swift"
-                  timestampString = "587812041.766511"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "35"
-                  endingLineNumber = "35"
-                  offsetFromSymbolStart = "482">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GigyaSwift/Global/Providers/WebLogin/WebLoginProvider.swift"
-            timestampString = "587568375.741521"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "36"
-            endingLineNumber = "36"
-            landmarkName = "login(type:params:viewController:loginMode:completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
