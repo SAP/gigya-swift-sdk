@@ -39,7 +39,7 @@ public enum GigyaSocialProviders: String {
     case wordpress
     case xing
     case yahooJapan = "Yahoo Japan"
-    case appleSignin
+    case appleSignin = "apple"
 
     func isOnlySdk() -> Bool {
         switch self {
@@ -80,7 +80,7 @@ public enum GigyaNativeSocialProviders: String, CaseIterable {
     case google = "googleplus"
     case line
     case wechat
-    case appleSignin
+    case appleSignin = "apple"
 
     func getClassName() -> String {
         switch self {

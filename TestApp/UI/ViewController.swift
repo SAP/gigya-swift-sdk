@@ -21,8 +21,21 @@ class ViewController: UIViewController {
 
         checkLoginState()
     }
-    
+
     @IBOutlet weak var resultTextView: UITextView?
+
+    @IBAction func changeSetttings(_ sender: Any) {
+        let alert = UIFactory.getChangeSettingAlert(dc: gigya.config.apiDomain, api: gigya.config.apiKey!) { [weak self] dc, api in
+            UserDefaults.standard.removeObject(forKey: "com.gigya.GigyaSDK:ucid")
+            UserDefaults.standard.removeObject(forKey: "com.gigya.GigyaSDK:gmid")
+
+            self?.gigya.initFor(apiKey: api!, apiDomain: dc!)
+
+            UIFactory.showAlert(vc: self, msg: "your new dc: \(dc!), api: \(api!)")
+        }
+        self.present(alert, animated: true, completion: nil)
+
+    }
 
     @IBAction func showScreenSet(_ sender: Any) {
         gigya.showScreenSet(with: "Default-RegistrationLogin", viewController: self) { [weak self] (result) in

@@ -10,7 +10,33 @@ import Foundation
 import UIKit
 
 class UIFactory {
-    
+    static func getChangeSettingAlert(dc: String, api: String, onSubmit: @escaping (_ dc: String?, _ api: String?) -> Void) -> UIAlertController {
+        let alert = UIAlertController(title: "Change settings", message: "", preferredStyle: .alert)
+        alert.addTextField { (textField) in
+            textField.text = dc
+            textField.accessibilityIdentifier = "dc"
+            textField.placeholder = "dc"
+        }
+        alert.addTextField { (textField) in
+            textField.text = api
+            textField.accessibilityIdentifier = "api"
+            textField.placeholder = "api"
+        }
+
+        alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: { [weak alert] (_) in
+            alert?.dismiss(animated: true, completion: nil)
+        }))
+
+        alert.addAction(UIAlertAction(title: "Submit", style: .default, handler: { [weak alert] (_) in
+            let dcTextField = alert?.textFields![0]
+            let apiTextField = alert?.textFields![1]
+
+            onSubmit(dcTextField?.text, apiTextField?.text)
+        }))
+
+        return alert
+    }
+
     static func getLoginAlert(onSubmit: @escaping (_ email: String?, _ password: String?) -> Void) -> UIAlertController {
         let alert = UIAlertController(title: "Login with registered user", message: "", preferredStyle: .alert)
         alert.addTextField { (textField) in

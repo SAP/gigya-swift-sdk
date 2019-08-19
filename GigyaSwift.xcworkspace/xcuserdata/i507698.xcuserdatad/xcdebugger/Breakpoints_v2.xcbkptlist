@@ -32,10 +32,10 @@
             timestampString = "586871834.616258"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "321"
-            endingLineNumber = "321"
-            landmarkName = "OptOutBiometric(_:)"
-            landmarkType = "7">
+            startingLineNumber = "326"
+            endingLineNumber = "326"
+            landmarkName = "ViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -49,9 +49,9 @@
             timestampString = "586871834.616383"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "318"
-            endingLineNumber = "318"
-            landmarkName = "OptOutBiometric(_:)"
+            startingLineNumber = "323"
+            endingLineNumber = "323"
+            landmarkName = "OptiInBiometric(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -321,9 +321,9 @@
             timestampString = "586871834.61667"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "249"
-            endingLineNumber = "249"
-            landmarkName = "getAccount(_sender:)"
+            startingLineNumber = "254"
+            endingLineNumber = "254"
+            landmarkName = "logout(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -338,8 +338,8 @@
             timestampString = "586871834.616747"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "262"
-            endingLineNumber = "262"
+            startingLineNumber = "267"
+            endingLineNumber = "267"
             landmarkName = "getAccount(_sender:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -358,40 +358,6 @@
             startingLineNumber = "51"
             endingLineNumber = "51"
             landmarkName = "dataRequest(gsession:path:params:method:completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "6BA59CB3-54A9-4996-A85A-E48C57693CDB"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "TestApp/UI/ViewController.swift"
-            timestampString = "586871834.616861"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "77"
-            endingLineNumber = "77"
-            landmarkName = "register(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "7D622411-D7AF-4C03-BDCC-882DA852821D"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "TestApp/UI/ViewController.swift"
-            timestampString = "586871834.616948"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "89"
-            endingLineNumber = "89"
-            landmarkName = "register(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -488,6 +454,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GigyaSwift/Global/Session/SessionService.swift"
+            timestampString = "0"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "50"
@@ -499,18 +466,65 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "AC31D7F7-AF03-4B8B-8D36-7A3295104C06"
+            uuid = "A0937453-33DC-40E0-AE9A-DDE0805EEA4D"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
-            condition = "Ss"
             continueAfterRunningActions = "No"
-            filePath = "GigyaSwift/Global/Providers/SocialLogin/SocialLoginProvider.swift"
+            filePath = "TestApp/UI/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "64"
-            endingLineNumber = "64"
-            landmarkName = "getProviderSessions(token:expiration:code:)"
+            startingLineNumber = "201"
+            endingLineNumber = "201"
+            landmarkName = "loginWithProvider(_:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "437355B6-6390-447E-A27A-B4F71EF34C9E"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GigyaSwift/Global/Api/BusinessApiService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "227"
+            endingLineNumber = "227"
+            landmarkName = "nativeSocialLogin(params:completion:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "437355B6-6390-447E-A27A-B4F71EF34C9E - 8416eb93c92ba21a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Gigya.BusinessApiService.nativeSocialLogin&lt;A where A: Swift.Decodable, A: Swift.Encodable&gt;(params: Swift.Dictionary&lt;Swift.String, Any&gt;, completion: (Gigya.GigyaApiResult&lt;A&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Gigya"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Global/Api/BusinessApiService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "228"
+                  endingLineNumber = "228"
+                  offsetFromSymbolStart = "312">
+               </Location>
+               <Location
+                  uuid = "437355B6-6390-447E-A27A-B4F71EF34C9E - 670e991748f70001"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Gigya.GigyaApiResult&lt;Swift.Dictionary&lt;Swift.String, Gigya.AnyCodable&gt;&gt;) -&gt; () in Gigya.BusinessApiService.nativeSocialLogin&lt;A where A: Swift.Decodable, A: Swift.Encodable&gt;(params: Swift.Dictionary&lt;Swift.String, Any&gt;, completion: (Gigya.GigyaApiResult&lt;A&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Gigya"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Global/Api/BusinessApiService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "228"
+                  endingLineNumber = "228"
+                  offsetFromSymbolStart = "144">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
