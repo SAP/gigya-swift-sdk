@@ -209,7 +209,6 @@ class ViewController: UIViewController {
                 default:
                     break
                 }
-                
             }
         }
     }
