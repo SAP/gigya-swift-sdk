@@ -32,7 +32,7 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>com.gigya.test-objc3</string>
+			<string>Gigya.TestGigyaApp</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>fb2497684063594329</string>
@@ -66,7 +66,7 @@
 	<key>GigyaApiDomain</key>
 	<string>il1-st5.gigya.com</string>
 	<key>GigyaApiKey</key>
-	<string>3_4g2eR6P44CsMFTJLaBwsHUEFh0CUSCb3N8twxrQPmL79PlQvTFC-OPlfCnv88kQh</string>
+	<string>3_5SW2T_hsDa-vkhKIkpiLGVswiQLdQTtiZoO2NHLDkDvVhZ3F2knJl1gIscsc6bnI</string>
 	<key>GoogleClientID</key>
 	<string>444662304199-camlom5iaqmrs7i1ernfv7eudr1ejkvm.apps.googleusercontent.com</string>
 	<key>GoogleServerClientID</key>

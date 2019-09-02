@@ -55,7 +55,13 @@ class ViewController: UIViewController {
                 case .success(let data):
                     self?.resultTextView?.text = data.toJson()
                 case .failure(let error):
-                    print(error)
+                    
+                    switch error.error {
+                    case .gigyaError(let data):
+                        let errorData = data.toDictionary()
+                    default:
+                        break
+                    }
 
 
                     guard let interruption = error.interruption else { return }

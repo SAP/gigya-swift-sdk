@@ -52,7 +52,15 @@ extension AppleSignInWrapper: ASAuthorizationControllerDelegate {
                 let authorizationCodeEncoded = String(decoding: authorizationCode, as: UTF8.self)
                 let identityTokenEncoded = String(decoding: identityToken, as: UTF8.self)
 
-                let jsonData: [String: Any] = ["code": authorizationCodeEncoded, "accessToken": identityTokenEncoded]
+                var jsonData: [String: Any] = ["code": authorizationCodeEncoded, "accessToken": identityTokenEncoded]
+
+                if let firstName = appleIDCredential.fullName?.givenName {
+                    jsonData["firstName"] = firstName
+                }
+
+                if let lastName = appleIDCredential.fullName?.familyName {
+                    jsonData["lastName"] = lastName
+                }
 
                 completionHandler(jsonData, nil)
             } else {
