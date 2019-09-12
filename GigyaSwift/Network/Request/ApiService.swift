@@ -24,7 +24,6 @@ class ApiService: ApiServiceProtocol {
     // Send request to server
     func send<T: Codable>(model: ApiRequestModel, responseType: T.Type,
                           completion: @escaping (GigyaApiResult<T>) -> Void) {
-        
         self.networkAdapter?.send(model: model) { (data, error) in
             if error == nil {
                 main { [weak self] in

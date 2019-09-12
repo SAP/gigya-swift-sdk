@@ -13,26 +13,23 @@ public final class Gigya {
 
     private static var storedInstance: GigyaInstanceProtocol?
 
-    internal static var container: IOCContainer?
+    internal static var gigyaContainer: GigyaContainerProtocol?
 
     // Get container - internal sdk usage
     public static func getContainer() -> IOCContainer {
-        guard let container = container else {
-            GigyaLogger.error(message: "error")
+        guard let container = gigyaContainer?.container else {
+            GigyaLogger.error(message: "container not found")
         }
 
         return container
     }
 
-    private static func makeContainer<T: GigyaAccountProtocol>(_ type: T.Type) -> IOCContainer {
-        if let container = container {
-            return container
-        } else {
-            let gigyaContainer = GigyaIOCContainer<T>()
-            self.container = gigyaContainer.container
-
-            return gigyaContainer.container
+    private static func makeContainer<T: GigyaAccountProtocol>(_ type: T.Type) {
+        guard gigyaContainer?.container == nil else{
+            return
         }
+
+        self.gigyaContainer = GigyaIOCContainer<T>()
     }
 
     // Get instance with default user
@@ -45,10 +42,11 @@ public final class Gigya {
     @discardableResult
     public static func sharedInstance<T: GigyaAccountProtocol>(_ dataType: T.Type) -> GigyaCore<T> {
         if storedInstance == nil {
+            if gigyaContainer == nil {
+                makeContainer(T.self)
+            }
 
-            self.container = makeContainer(T.self)
-
-            let newInstance = container?.resolve(GigyaCore<T>.self)
+            let newInstance = self.gigyaContainer?.container.resolve(GigyaCore<T>.self)
             storedInstance = newInstance
             return newInstance!
         }
@@ -60,9 +58,9 @@ public final class Gigya {
         return instance
     }
 
-    #if DEBUG
+//    #if DEBUG
     internal static func removeStoredInstance() {
         storedInstance = nil
     }
-    #endif
+//    #endif
 }

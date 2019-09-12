@@ -19,11 +19,13 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        checkLoginState()
-
         let not = NotificationCenter.default
         not.addObserver(self, selector: #selector(gigyaSessionExpire(_:)), name: Notification.Name("didGigyaSessionExpire"), object: nil)
 
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        checkLoginState()
     }
 
     @objc func gigyaSessionExpire(_ notification: Notification) {
@@ -176,17 +178,21 @@ class ViewController: UIViewController {
     }
 
     @IBAction func loginWithProvider(_ sender: Any) {
-        gigya.login(with: .google, viewController: self ) { [weak self] result in
+        gigya.login(with: .twitter, viewController: self ) { [weak self] result in
             switch result {
             case .success(let data):
                 print(data)
                 self?.resultTextView?.text = data.toJson()
             case .failure(let error):
                 print(error)
-
+                
                 guard let interruption = error.interruption else { return }
                 // Evaluage interruption.
                 switch interruption {
+                case .pendingRegistration(let resolver):
+                    resolver.setAccount(params: ["profile":["zip": "121673"]])
+                    break
+//                    resolver.setAccount(params: ["profile": ["zip": "1234"]])
                 case .pendingVerification(let resolver):
                     print("regToken: \(resolver)")
                 case .conflitingAccount(let resolver):
@@ -200,7 +206,7 @@ class ViewController: UIViewController {
     }
 
     @IBAction func loginWithProviders(_ sender: Any) {
-        gigya.socialLoginWith(providers: [.facebook, .google, .line], viewController: self, params: [:]) { [weak self] (result) in
+        gigya.socialLoginWith(providers: [.facebook, .google, .line, .twitter], viewController: self, params: [:]) { [weak self] (result) in
             switch result {
             case .success(let data):
                 print(data)

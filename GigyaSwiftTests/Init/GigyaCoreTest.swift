@@ -18,12 +18,14 @@ class GigyaCoreTest: XCTestCase {
         ResponseDataTest.resData = nil
         ResponseDataTest.error = nil
 
-        Gigya.container = ioc.container
-
-        let accountService = Gigya.container?.resolve(AccountServiceProtocol.self)
-        accountService?.clear()
+        Gigya.gigyaContainer = GigyaIOCContainer<GigyaAccount>()
+        Gigya.gigyaContainer?.container = ioc.container
 
         Gigya.sharedInstance().initFor(apiKey: "123")
+
+
+        let accountService = ioc.container.resolve(AccountServiceProtocol.self)
+        accountService?.clear()
 
     }
 
@@ -39,6 +41,7 @@ class GigyaCoreTest: XCTestCase {
         // swiftlint:enable force_try
 
         ResponseDataTest.resData = jsonData
+        Gigya.gigyaContainer?.container = ioc.container
 
         Gigya.sharedInstance().send(api: "dasd") { (res) in
             if case .success = res {
@@ -59,6 +62,7 @@ class GigyaCoreTest: XCTestCase {
 //        let model = RequestTestModel(callId: "34324", errorCode: 0, statusCode: 200)
 
         ResponseDataTest.resData = jsonData
+        Gigya.gigyaContainer?.container = ioc.container
 
         Gigya.sharedInstance().send(dataType: RequestTestModel.self, api: "adas") { (res) in
             if case .success = res {
@@ -84,6 +88,7 @@ class GigyaCoreTest: XCTestCase {
         // swiftlint:enable force_try
 
         ResponseDataTest.resData = jsonData
+        Gigya.gigyaContainer?.container = ioc.container
 
         Gigya.sharedInstance().login(loginId: "test@test.com", password: "141414") { (res) in
             if case .success = res {
@@ -108,6 +113,7 @@ class GigyaCoreTest: XCTestCase {
         let jsonData = try! JSONSerialization.data(withJSONObject: accountDic, options: .prettyPrinted)
         // swiftlint:enable force_try
         ResponseDataTest.resData = jsonData
+        Gigya.gigyaContainer?.container = ioc.container
 
         Gigya.sharedInstance().getAccount { (res) in
             if case .success = res {
@@ -119,7 +125,8 @@ class GigyaCoreTest: XCTestCase {
     }
 
     func testGetAccountFailed() {
-        let accountService = Gigya.container?.resolve(AccountServiceProtocol.self)
+
+        let accountService = ioc.container.resolve(AccountServiceProtocol.self)
         accountService?.account = [String: String]()
 
         ResponseDataTest.resData = nil
@@ -150,6 +157,7 @@ class GigyaCoreTest: XCTestCase {
         let jsonData = try! JSONSerialization.data(withJSONObject: accountDic, options: .prettyPrinted)
         // swiftlint:enable force_try
         ResponseDataTest.resData = jsonData
+        Gigya.gigyaContainer?.container = ioc.container
 
         Gigya.sharedInstance().getAccount { (res) in
             if case .success = res {
@@ -169,6 +177,7 @@ class GigyaCoreTest: XCTestCase {
 
     func testGetAccountError() {
         ResponseDataTest.resData = nil
+        Gigya.gigyaContainer?.container = ioc.container
 
         Gigya.sharedInstance().getAccount { (res) in
             if case .success = res {
@@ -181,6 +190,7 @@ class GigyaCoreTest: XCTestCase {
 
     func testLogout() {
         let expectation = self.expectation(description: "testLogout")
+        Gigya.gigyaContainer?.container = ioc.container
 
         Gigya.sharedInstance().logout() { result in
             expectation.fulfill()
@@ -204,6 +214,7 @@ class GigyaCoreTest: XCTestCase {
         let jsonData = try! JSONSerialization.data(withJSONObject: accountDic, options: .prettyPrinted)
         // swiftlint:enable force_try
         ResponseDataTest.resData = jsonData
+        Gigya.gigyaContainer?.container = ioc.container
 
         Gigya.sharedInstance().register(email: "test@trest", password: "123", params: [:]) { (result) in
             switch result {

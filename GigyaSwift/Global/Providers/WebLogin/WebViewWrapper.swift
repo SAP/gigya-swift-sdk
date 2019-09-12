@@ -98,12 +98,16 @@ extension WebLoginWrapper: WKNavigationDelegate {
                     let sessionExpiration = url["expires_in"] ?? "0"
 
                     let json = ["status": status, "accessToken": accessToken, "tokenSecret": tokenSecret, "sessionExpiration": sessionExpiration]
-                        completionHandler?(json, nil)
 
-                        // dismiss viewController
-                        navigationController?.dismiss(animated: true, completion: nil)
-                } else if let status = url["status"], status != "ok" {
-                    completionHandler?(nil, "Failed to login")
+                    // dismiss viewController
+                    navigationController?.dismiss(animated: true, completion: nil)
+
+                    completionHandler?(json, nil)
+                } else if let error = url["error_description"], !error.isEmpty {
+
+                    navigationController?.dismiss(animated: true, completion: nil)
+
+                    completionHandler?(nil, url.absoluteString)
                 }
             }
         }

@@ -204,8 +204,10 @@ class BusinessApiService: NSObject, BusinessApiServiceProtocol {
         providersFactory = ProvidersLoginWrapper(config: config, persistenceService: persistenceService, providers: providers)
         providersFactory?.show(params: params, viewController: viewController) { [weak self] json, error in
             if let providerString = json?["provider"] as? String,
-               let provider = GigyaSocialProviders(rawValue: providerString) {
-                self?.login(provider: provider, viewController: viewController, params: params, dataType: T.self) {  [weak self] result in
+               let provider = GigyaSocialProviders(rawValue: providerString),
+               let vc = self?.providersFactory?.webViewController
+                {
+                self?.login(provider: provider, viewController: vc, params: params, dataType: T.self) { [weak self] result in
                     switch result {
                     case .success:
                         self?.dismissProvidersLogin()

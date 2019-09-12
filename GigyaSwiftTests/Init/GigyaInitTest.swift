@@ -11,10 +11,12 @@ import XCTest
 
 class GigyaInitTest: XCTestCase {
 
+    let ioc = GigyaContainerUtils.shared
+
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
-        let ioc = GigyaContainerUtils.shared
-        Gigya.container = ioc.container
+        Gigya.gigyaContainer = GigyaIOCContainer<GigyaAccount>()
+        Gigya.gigyaContainer?.container = ioc.container
 
     }
 
@@ -22,10 +24,14 @@ class GigyaInitTest: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         Gigya.removeStoredInstance()
 
-        Gigya.container = nil
+//        Gigya.gigyaContainer?.container = nil
     }
 
     func testInitWithOutSchema() {
+
+        Gigya.gigyaContainer = GigyaIOCContainer<GigyaAccount>()
+        Gigya.gigyaContainer?.container = ioc.container
+
         let gigya = Gigya.sharedInstance()
 
         let className = String(describing: gigya.self)
@@ -38,9 +44,9 @@ class GigyaInitTest: XCTestCase {
 
         let ioc = GigyaContainerUtils.shared
         ioc.registerDependencie(UserDataModel.self)
-        Gigya.container = ioc.container
 
         let gigya = Gigya.sharedInstance(UserDataModel.self)
+        Gigya.gigyaContainer?.container = ioc.container
 
         let className = String(describing: gigya.self)
 
@@ -52,7 +58,9 @@ class GigyaInitTest: XCTestCase {
 
         let ioc = GigyaContainerUtils.shared
         ioc.registerDependencie(UserDataModel.self)
-        Gigya.container = ioc.container
+
+        Gigya.gigyaContainer = GigyaIOCContainer<GigyaAccount>()
+        Gigya.gigyaContainer?.container = ioc.container
 
         Gigya.sharedInstance(UserDataModel.self)
 
@@ -70,22 +78,22 @@ class GigyaInitTest: XCTestCase {
     // Dependencies tests
     func testConfigDependency() {
 
-        let config = Gigya.container?.resolve(GigyaConfig.self)
+        let config = Gigya.gigyaContainer?.container.resolve(GigyaConfig.self)
         XCTAssertNotNil(config)
     }
 
     func testAccountServiceDependency() {
-        let accountService = Gigya.container?.resolve(AccountServiceProtocol.self)
+        let accountService = Gigya.gigyaContainer?.container.resolve(AccountServiceProtocol.self)
         XCTAssertNotNil(accountService)
     }
 
     func testSessionServiceDependency() {
-        let sessionService = Gigya.container?.resolve(SessionServiceProtocol.self)
+        let sessionService = Gigya.gigyaContainer?.container.resolve(SessionServiceProtocol.self)
         XCTAssertNotNil(sessionService)
     }
 
     func testApiServiceDependency() {
-        let apiService = Gigya.container?.resolve(ApiServiceProtocol.self)
+        let apiService = Gigya.gigyaContainer?.container.resolve(ApiServiceProtocol.self)
         XCTAssertNotNil(apiService)
     }
 

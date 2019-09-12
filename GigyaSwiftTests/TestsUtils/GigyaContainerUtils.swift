@@ -111,6 +111,7 @@ class GigyaContainerUtils {
             let interruptionResolver = resolver.resolve(InterruptionResolverFactory.self)
             let plistFactory = resolver.resolve(PlistConfigFactory.self)
             let persistenceService = resolver.resolve(PersistenceService.self)
+            let container = resolver.resolve(IOCContainer.self)
 
             return GigyaCore(config: config!,
                              persistenceService: persistenceService!,
@@ -118,7 +119,20 @@ class GigyaContainerUtils {
                              sessionService: sessionService!,
                              interruptionResolver: interruptionResolver!,
                              biometric: biometricService!,
-                             plistFactory: plistFactory!)
+                             plistFactory: plistFactory!, container: container!)
+        }
+
+        container.register(service: GigyaWebBridge<T>.self) { resolver in
+            let config = resolver.resolve(GigyaConfig.self)
+            let persistenceService = resolver.resolve(PersistenceService.self)
+            let sessionService = resolver.resolve(SessionServiceProtocol.self)
+            let businessService = resolver.resolve(BusinessApiServiceProtocol.self)
+
+            return GigyaWebBridge(config: config!, persistenceService: persistenceService!, sessionService: sessionService!, businessApiService: businessService!)
+        }
+
+        container.register(service: IOCContainer.self) { [weak self] _ in
+            return self!.container
         }
     }
 

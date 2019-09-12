@@ -22,18 +22,21 @@ class PluginViewWrapper<T: GigyaAccountProtocol>: PluginViewWrapperProtocol {
     
     let businessApiService: BusinessApiServiceProtocol
 
+    let webBridge: GigyaWebBridge<T>
+
     var completion: (GigyaPluginEvent<T>) -> Void?
     
     var plugin: String
     
     var params: [String:Any]
     
-    init(config: GigyaConfig, persistenceService: PersistenceService, sessionService: SessionServiceProtocol, businessApiService: BusinessApiServiceProtocol,
+    init(config: GigyaConfig, persistenceService: PersistenceService, sessionService: SessionServiceProtocol, businessApiService: BusinessApiServiceProtocol, webBridge: GigyaWebBridge<T>,
          plugin: String, params: [String: Any], completion: @escaping (GigyaPluginEvent<T>) -> Void) {
         self.config = config
         self.persistenceService = persistenceService
         self.sessionService = sessionService
         self.businessApiService = businessApiService
+        self.webBridge = webBridge
         self.completion = completion
         self.plugin = plugin
         self.params = params
@@ -46,7 +49,7 @@ class PluginViewWrapper<T: GigyaAccountProtocol>: PluginViewWrapperProtocol {
      - Parameter dataType: Account scheme.
      - Parameter screenSet: Requested screen set.
      */
-    func presentPluginController<T: GigyaAccountProtocol>(viewController: UIViewController, dataType: T.Type, screenSet: String? = nil) {
+    func presentPluginController<C: GigyaAccountProtocol>(viewController: UIViewController, dataType: C.Type, screenSet: String? = nil) {
         if let screenSet = screenSet {
             params["screenSet"] =  screenSet
         }
@@ -54,11 +57,26 @@ class PluginViewWrapper<T: GigyaAccountProtocol>: PluginViewWrapperProtocol {
         let html = getHtml(self.plugin)
 //        GigyaLogger.log(with: self, message: "Initial HTML:\n\(html)")
 
+        var pluginViewController: PluginViewController<T>?
+
+        // make completionHandler to know when need to dismiss viewController
+        let eventHandler: (GigyaPluginEvent<T>) -> Void = { result in
+            switch result {
+            case .onHide(let event):
+                pluginViewController?.dismiss(animated: true, completion: nil)
+            default:
+                break
+            }
+
+            self.completion(result)
+        }
+
         // Present plugin view controller.
-        let pluginViewController = PluginViewController(config: config, persistenceService: persistenceService, sessionService: sessionService, businessApiService: businessApiService, completion: completion)
-        let navigationController = UINavigationController(rootViewController: pluginViewController)
+
+        pluginViewController = PluginViewController(webBridge: webBridge, pluginEvent: eventHandler)
+        let navigationController = UINavigationController(rootViewController: pluginViewController!)
         viewController.present(navigationController, animated: true) {
-            pluginViewController.load(html: html)
+            self.webBridge.load(html: html)
         }
     }
     

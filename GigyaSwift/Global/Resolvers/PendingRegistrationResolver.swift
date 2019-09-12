@@ -36,7 +36,7 @@ public class PendingRegistrationResolver<T: GigyaAccountProtocol>: BaseResolver 
         var newParams = params
         newParams["regToken"] = self.regToken
 
-        businessDelegate?.callSetAccount(dataType: T.self, params: newParams, completion: { [weak self] (result) in
+        businessDelegate?.sendApi(api: GigyaDefinitions.API.setAccountInfo, params: newParams, completion: { [weak self] (result) in
             switch result {
             case .success:
                 guard let self = self else { return }

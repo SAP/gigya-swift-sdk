@@ -17,7 +17,9 @@ class WebProviderLoginTests: XCTestCase {
         // Put setup code here. This method is called before the invocation of each test method in the class.
         ResponseDataTest.resData = nil
         ResponseDataTest.error = nil
-        Gigya.container = ioc.container
+
+        Gigya.gigyaContainer = GigyaIOCContainer<GigyaAccount>()
+        Gigya.gigyaContainer?.container = ioc.container
 
         Gigya.sharedInstance().initFor(apiKey: "123")
 

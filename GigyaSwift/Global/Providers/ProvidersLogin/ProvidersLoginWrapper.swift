@@ -22,7 +22,6 @@ class ProvidersLoginWrapper: NSObject {
 
     private var completionHandler: ((_ jsonData: [String: Any]?, _ error: String?) -> Void)? = nil
 
-
     init(config: GigyaConfig, persistenceService: PersistenceService, providers: [GigyaSocialProviders]) {
         self.providers = providers
         self.config = config
@@ -100,18 +99,14 @@ extension ProvidersLoginWrapper: WKNavigationDelegate {
             if let url = navigationAction.request.url {
                  GigyaLogger.log(with: self, message: "Log redirect url: \(url)")
 
-                if let provider = url["provider"]
-                {
+                if let provider = url["provider"] {
                     completionHandler?(["provider": provider], nil)
-
-                    // TODO: delete?
-                    // dismiss viewController
-//                    navigationController?.dismiss(animated: true, completion: nil)
                 } else {
                     completionHandler?(nil, "Failed to login")
                 }
             }
         }
+        
         decisionHandler(.allow)
     }
 

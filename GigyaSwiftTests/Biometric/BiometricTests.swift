@@ -80,7 +80,7 @@ class BiometricTests: XCTestCase {
             biometricService?.unlockSession(completion: { (result) in
                 switch result {
                 case .success:
-                    self.sessionService?.getSession(recreate: false, completion: { (result) in
+                    self.sessionService?.getSession(completion: { (result) in
                         if result == true {
                             XCTAssertEqual(self.sessionService?.session?.secret, "123")
                         }
