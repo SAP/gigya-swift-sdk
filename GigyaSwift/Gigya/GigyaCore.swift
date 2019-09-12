@@ -23,7 +23,7 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
     }
 
     // Initialize Dependencies
-    private let config: GigyaConfig
+    public let config: GigyaConfig // TODO: Need to change to private, only for testing
 
     private let persistenceService: PersistenceService
 

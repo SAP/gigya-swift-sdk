@@ -17,7 +17,7 @@ protocol Provider: class {
 
     func logout()
 
-    func getProviderSessions(token: String, expiration: String?) -> String
+    func getProviderSessions(token: String, expiration: String?, code: String?, firstName: String?, lastName: String?) -> String
 
     var didFinish: () -> Void { get set }
 

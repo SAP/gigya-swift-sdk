@@ -58,6 +58,7 @@
 		E7221D7A22B903E500C296A9 /* GoogleWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7D59B1D227F34D3002FA864 /* GoogleWrapper.swift */; };
 		E7221D8022B90C0C00C296A9 /* UserHostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7221D7F22B90C0C00C296A9 /* UserHostModel.swift */; };
 		E7221D8222B90C2A00C296A9 /* ValidateLoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7221D8122B90C2A00C296A9 /* ValidateLoginModel.swift */; };
+		E730B03C231D0E250051B4DF /* AuthenticationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7FFD59022FB032B00DBE663 /* AuthenticationServices.framework */; };
 		E73373AC2254D79200ADEDBB /* GigyaDefinitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73373AB2254D79200ADEDBB /* GigyaDefinitions.swift */; };
 		E73373B02254FD4800ADEDBB /* Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73373AF2254FD4800ADEDBB /* Int.swift */; };
 		E73373D5225E326100ADEDBB /* GigyaLoggerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73373D4225E326100ADEDBB /* GigyaLoggerTest.swift */; };
@@ -191,6 +192,7 @@
 		E7F94FAA22248C6800A85640 /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7F94FA922248C6800A85640 /* LocalAuthentication.framework */; };
 		E7F94FAC22248C7200A85640 /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7F94FAB22248C7200A85640 /* SafariServices.framework */; };
 		E7F94FAE22248C7C00A85640 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7F94FAD22248C7C00A85640 /* SystemConfiguration.framework */; };
+		E7FFD59322FB0A8A00DBE663 /* AppleSignInWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FFD59222FB0A8A00DBE663 /* AppleSignInWrapper.swift */; };
 		E7FFF8F32320013A002EC944 /* GigyaTfa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7FFF8F22320013A002EC944 /* GigyaTfa.framework */; };
 		E7FFF8F42320013A002EC944 /* GigyaTfa.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E7FFF8F22320013A002EC944 /* GigyaTfa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E7FFF8F6232003AD002EC944 /* WebBridgeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FFF8F5232003AD002EC944 /* WebBridgeViewController.swift */; };
@@ -478,6 +480,7 @@
 				E713E0CC2247773100181328 /* Gigya.framework in Frameworks */,
 				E71D4A2422817F83000892C2 /* libWeChatSDK.a in Frameworks */,
 				E7DC2C4F22804C2F00A13426 /* Bolts.framework in Frameworks */,
+				E730B03C231D0E250051B4DF /* AuthenticationServices.framework in Frameworks */,
 				E7DC2C5022804C2F00A13426 /* AccountKit.framework in Frameworks */,
 				E7DC2C5422804C4200A13426 /* FBSDKCoreKit.framework in Frameworks */,
 				E7DC2C4A22804C2F00A13426 /* FBSDKPlacesKit.framework in Frameworks */,
@@ -851,6 +854,7 @@
 		E7BE368C2224225900A108D9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E7FFD59022FB032B00DBE663 /* AuthenticationServices.framework */,
 				E7EEF3B322C8D4EB0004DF5D /* GigyaTfa.framework */,
 				E7DC2C6A228076E600A13426 /* libsqlite3.tbd */,
 				E7F94FB722248DB100A85640 /* GoogleSignIn.bundle */,
@@ -1098,6 +1102,7 @@
 				E7DC2C5F228055CA00A13426 /* LineWrapper.swift */,
 				E7584EE822E0524D007229FE /* FacebookWrapper.swift */,
 				E7DC2C6E2280779A00A13426 /* WeChatWrapper.swift */,
+				E7FFD59222FB0A8A00DBE663 /* AppleSignInWrapper.swift */,
 				E7D59B1D227F34D3002FA864 /* GoogleWrapper.swift */,
 			);
 			path = GigyaProviders;
@@ -1568,6 +1573,7 @@
 			files = (
 				E7FFF8F6232003AD002EC944 /* WebBridgeViewController.swift in Sources */,
 				D584D342228D6089004CA28F /* UIFactory.swift in Sources */,
+				E7FFD59322FB0A8A00DBE663 /* AppleSignInWrapper.swift in Sources */,
 				E7584EE922E0524D007229FE /* FacebookWrapper.swift in Sources */,
 				E7221D8222B90C2A00C296A9 /* ValidateLoginModel.swift in Sources */,
 				E70519D822C0C8B3008ECB25 /* TfaQrCodeCell.swift in Sources */,
