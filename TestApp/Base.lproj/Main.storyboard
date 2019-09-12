@@ -135,6 +135,13 @@
                                     <action selector="LockSessionBiometric:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rnj-sz-f36"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f6E-bX-ckL">
+                                <rect key="frame" x="16" y="312" width="80" height="30"/>
+                                <state key="normal" title="Web Bridge"/>
+                                <connections>
+                                    <segue destination="6dQ-xk-LHw" kind="show" id="pd6-GS-wad"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -153,6 +160,7 @@
                             <constraint firstItem="owO-vP-SNV" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="RMc-LD-XvY"/>
                             <constraint firstItem="Cu6-gD-2R1" firstAttribute="top" secondItem="fyN-es-d2v" secondAttribute="bottom" constant="16" id="U4r-Fs-aWR"/>
                             <constraint firstItem="Jkr-xe-GiC" firstAttribute="leading" secondItem="cq6-7s-6Kn" secondAttribute="trailing" constant="97" id="UfP-Kp-Jye"/>
+                            <constraint firstItem="9wC-xP-8OI" firstAttribute="top" secondItem="f6E-bX-ckL" secondAttribute="bottom" constant="18" id="V7s-ph-sqS"/>
                             <constraint firstItem="TiM-DB-mr3" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="YjH-RD-fcU"/>
                             <constraint firstItem="WvG-tz-Pye" firstAttribute="top" secondItem="owO-vP-SNV" secondAttribute="bottom" constant="40" id="Z3E-a7-GZJ"/>
                             <constraint firstItem="8sE-Kg-WNH" firstAttribute="top" secondItem="hhx-Bt-vKE" secondAttribute="bottom" constant="16" id="duC-hH-cOv"/>
@@ -491,6 +499,21 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A7T-dT-k97" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1864.8" y="133.13343328335833"/>
+        </scene>
+        <!--Web Bridge View Controller-->
+        <scene sceneID="KHy-jP-KTq">
+            <objects>
+                <viewController id="6dQ-xk-LHw" customClass="WebBridgeViewController" customModule="TestApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="U8d-vh-s2u">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="fFj-wS-0OH"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="69H-Jc-stS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1008.8" y="904.49775112443785"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Lgc-Vm-SmU">

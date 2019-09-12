@@ -218,7 +218,8 @@ class TfaViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     // MARK: - Submittion Protocol Implementation
     
     func onSubmitRegistered(email: TFAEmail) {
-        registeredEmailsResolver?.sendEmailCode(with: email, completion: registeredEmailsResult(result:))
+//        registeredEmailsResolver?.sendEmailCode(with: email, completion: registeredEmailsResult(result:))
+        registeredEmailsResolver?.sendEmailCode(with: email, lang: "fr", completion: registeredEmailsResult(result:))
     }
     
     func onSubmitRegistered(phone: TFARegisteredPhone) {

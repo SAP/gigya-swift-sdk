@@ -33,6 +33,8 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
 
     private let interruptionResolver: InterruptionResolverFactoryProtocol
 
+    private let container: IOCContainer
+
     // MARK: - Biometric service
 
     /**
@@ -42,13 +44,14 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
 
     // MARK: - Initialize
 
-    internal init(config: GigyaConfig, persistenceService: PersistenceService, businessApiService: BusinessApiServiceProtocol, sessionService: SessionServiceProtocol, interruptionResolver: InterruptionResolverFactoryProtocol, biometric: BiometricServiceProtocol, plistFactory: PlistConfigFactory) {
+    internal init(config: GigyaConfig, persistenceService: PersistenceService, businessApiService: BusinessApiServiceProtocol, sessionService: SessionServiceProtocol, interruptionResolver: InterruptionResolverFactoryProtocol, biometric: BiometricServiceProtocol, plistFactory: PlistConfigFactory, container: IOCContainer) {
         self.config = config
         self.persistenceService = persistenceService
         self.businessApiService = businessApiService
         self.sessionService = sessionService
         self.interruptionResolver = interruptionResolver
         self.biometric = biometric
+        self.container = container
 
         // load plist and make init
         let plistConfig = plistFactory.parsePlistConfig()
@@ -230,7 +233,9 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
     */
     
     public func showScreenSet(with name: String, viewController: UIViewController, params: [String: Any] = [:], completion: @escaping (GigyaPluginEvent<T>) -> Void) {
-        let wrapper = PluginViewWrapper(config: config, persistenceService: persistenceService, sessionService: sessionService, businessApiService: businessApiService, plugin: "accounts.screenSet", params: params, completion: completion)
+        let webBridge = createWebBridge()
+
+        let wrapper = PluginViewWrapper(config: config, persistenceService: persistenceService, sessionService: sessionService, businessApiService: businessApiService, webBridge: webBridge, plugin: "accounts.screenSet", params: params, completion: completion)
         wrapper.presentPluginController(viewController: viewController, dataType: T.self, screenSet: name)
     }
 
@@ -265,6 +270,12 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
      */
     public func handleInterruptions(sdkHandles: Bool) {
         interruptionResolver.setEnabled(sdkHandles)
+    }
+
+    public func createWebBridge() -> GigyaWebBridge<T> {
+        let webBridge = container.resolve(GigyaWebBridge<T>.self)
+
+        return webBridge!
     }
 
 }

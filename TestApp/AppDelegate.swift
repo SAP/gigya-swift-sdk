@@ -27,6 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
 
         WXApi.registerApp("wx222c4ccaa989aa00")
 
+
         UNUserNotificationCenter.current().delegate = self
 
         Messaging.messaging().shouldEstablishDirectChannel = true
@@ -65,9 +66,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
     }
 
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
-        return LineSDKLogin.sharedInstance().handleOpen(url)
+        let _ = LineSDKLogin.sharedInstance().handleOpen(url)
 
-//        return WXApi.handleOpen(url, delegate: self)
+        return WXApi.handleOpen(url, delegate: self)
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

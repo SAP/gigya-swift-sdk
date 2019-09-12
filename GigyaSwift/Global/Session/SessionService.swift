@@ -33,11 +33,11 @@ class SessionService: SessionServiceProtocol {
         self.config = config
         self.persistenceService = persistenceService
 
-        checkFirstRun()
-
-        if persistenceService.biometricAllow == false {
-            getSession() { [weak self] success in
-                GigyaLogger.log(with: self, message: "[SessionService.getFromInit]: is success: - \(success)")
+        checkFirstRun { [weak self] in
+            if self?.persistenceService.biometricAllow == false {
+                self?.getSession() { [weak self] success in
+                    GigyaLogger.log(with: self, message: "[SessionService.getFromInit]: is success: - \(success)")
+                }
             }
         }
     }
@@ -60,12 +60,16 @@ class SessionService: SessionServiceProtocol {
         startSessionCountdownTimerIfNeeded()
     }
 
-    func checkFirstRun() {
+    func checkFirstRun(completion: @escaping () -> Void) {
         let hasRunBefore = persistenceService.hasRunBefore ?? false
         if hasRunBefore == false {
             UserDefaults.standard.setValue(true, forKey: InternalConfig.Storage.hasRunBefore)
 
-            clear()
+            clear(completion: completion)
+
+            GigyaLogger.log(with: self, message: "hasRunBefore: clear session")
+        } else {
+            completion()
         }
     }
 
@@ -76,9 +80,9 @@ class SessionService: SessionServiceProtocol {
             semaphore.wait()
         }
 
-        GigyaLogger.log(with: self, message: "[isValidSession]: finish")
+        GigyaLogger.log(with: self, message: "[isValidSession]: finish - result: \(String(describing: self.session?.isValid()))")
 
-        return session?.isValid() ?? false
+        return self.session?.isValid() ?? false
     }
     
     func setSession(_ sessionInfo: SessionInfoModel?) {
@@ -145,6 +149,8 @@ class SessionService: SessionServiceProtocol {
 
                 self.sessionLoad = true
                 self.session = sessionObject
+
+                GigyaLogger.log(with: self, message: "session load to dump")
 
                 self.startSessionCountdownTimerIfNeeded()
                 didFinish(true)
@@ -252,10 +258,16 @@ class SessionService: SessionServiceProtocol {
     }
 
     func clear() {
+        clear { }
+    }
+
+    func clear(completion: @escaping () -> Void) {
         GigyaLogger.log(with: self, message: "[logout]")
 
         // remove session from Keychain
-        removeFromKeychain()
+        removeFromKeychain {
+            completion()
+        }
 
         clearSession()
     }
@@ -267,7 +279,7 @@ class SessionService: SessionServiceProtocol {
         accountService.clear()
 
         // clear session from memory
-        session = nil
+        self.session = nil
     }
 
     private func removeFromKeychain(completion: @escaping () -> Void = {}) {

@@ -35,9 +35,11 @@ class PluginViewControllerTests: XCTestCase {
         // Put setup code here. This method is called before the invocation of each test method in the class.
         ResponseDataTest.resData = nil
         ResponseDataTest.error = nil
-        Gigya.container = ioc.container
 
-        Gigya.sharedInstance().initFor(apiKey: "123")
+        Gigya.gigyaContainer = GigyaIOCContainer<GigyaAccount>()
+        Gigya.gigyaContainer?.container = ioc.container
+
+        Gigya.sharedInstance(UserDataModel.self).initFor(apiKey: "123")
 
         ResponseDataTest.clientID = nil
         ResponseDataTest.resData = nil
@@ -49,14 +51,16 @@ class PluginViewControllerTests: XCTestCase {
     }
 
     func testLoad() {
-        let plugin = PluginViewController<GigyaAccount>(config: config, persistenceService: persistenceService, sessionService: sessionService, businessApiService: businessApi) { event in }
+        let webBridge = GigyaWebBridge<GigyaAccount>(config: config, persistenceService: persistenceService, sessionService: sessionService, businessApiService: businessApi)
+
+        let plugin = PluginViewController(webBridge: webBridge) { (event) in }
 
         let contentController = WKUserContentController()
 
         let data = ["callbackID": "123", "action": "test", "params": ["action": "123"]] as [String : Any]
         let message = FakeWKScriptMessage(data: data)
 
-        plugin.userContentController(contentController, didReceive: message)
+//        plugin.contentController(contentController, didReceive: message)
 
     }
 

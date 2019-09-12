@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GigyaSwiftTests/Providers/WebProviderLoginTests.swift"
-            timestampString = "585751366.414717"
+            timestampString = "589818365.9319789"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "72"
-            endingLineNumber = "72"
+            startingLineNumber = "74"
+            endingLineNumber = "74"
             landmarkName = "testLoginNoneToken()"
             landmarkType = "7">
          </BreakpointContent>

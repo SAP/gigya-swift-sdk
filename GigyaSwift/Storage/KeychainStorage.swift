@@ -120,7 +120,7 @@ internal class KeychainStorageFactory {
                                        kSecAttrService: InternalConfig.Storage.serviceName,
                                        kSecAttrAccount: name]
 
-        DispatchQueue.global(qos: .utility).async {
+        DispatchQueue.global(qos: .userInitiated).async {
             let status = SecItemDelete(query as CFDictionary)
 
             if status != errSecSuccess {

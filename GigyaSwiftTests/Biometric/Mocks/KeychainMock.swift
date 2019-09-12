@@ -15,16 +15,16 @@ class KeychainMock: KeychainStorageFactory {
 
         completionHandler!(KeychainResult.success(data: nil))
     }
+    override func get<T: NSObject & NSCoding>(object: T.Type, name: String, _ completionHandler: @escaping ((KeychainResultWithObject<T>) -> Void)) {
+        let session = GigyaSession(sessionToken: "123", secret: "123") as! T
+//        let archive = try! NSKeyedArchiver.archivedData(withRootObject: session!, requiringSecureCoding: false)
 
-    override func get(name: String, _ completionHandler: GSKeychainCompletionHandler?) {
-        let session = GigyaSession(sessionToken: "123", secret: "123")
-        let archive = try! NSKeyedArchiver.archivedData(withRootObject: session!, requiringSecureCoding: false)
+        completionHandler(.success(data: session))
 
-        completionHandler!(KeychainResult.success(data: archive))
     }
 
     override func delete(name: String, completionHandler: GSKeychainCompletionHandler?) {
-        completionHandler!(KeychainResult.success(data: nil))
+        completionHandler?(KeychainResult.success(data: nil))
     }
 
 }
