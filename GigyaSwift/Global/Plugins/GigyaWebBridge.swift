@@ -37,7 +37,7 @@ public class GigyaWebBridge<T: GigyaAccountProtocol>: NSObject, WKScriptMessageH
         super.init()
     }
 
-    public func registerWebView(webView: WKWebView, viewController: UIViewController, pluginEvent: @escaping (GigyaPluginEvent<T>) -> Void) {
+    public func attachTo(webView: WKWebView, viewController: UIViewController, pluginEvent: @escaping (GigyaPluginEvent<T>) -> Void) {
         guard let apikey = config.apiKey else { return }
 
         let contentController = webView.configuration.userContentController
@@ -312,6 +312,7 @@ public class GigyaWebBridge<T: GigyaAccountProtocol>: NSObject, WKScriptMessageH
         GigyaLogger.log(with: self, message: "sendOauthRequest: with apiMethod = \(apiMethod)")
 
         guard let providerName = params["provider"] else { return }
+
         if let provider = GigyaSocialProviders(rawValue: providerName) {
             businessApiService.login(provider: provider, viewController: viewController!, params: params, dataType: T.self) { [weak self] result in
                 guard let self = self else { return }

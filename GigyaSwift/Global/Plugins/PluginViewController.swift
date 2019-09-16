@@ -23,7 +23,7 @@ class PluginViewController<T: GigyaAccountProtocol>: WebViewController {
         
         super.init(configuration: webViewConfiguration)
 
-        self.webBridge.registerWebView(webView: self.webView, viewController: self, pluginEvent: pluginEvent)
+        self.webBridge.attachTo(webView: self.webView, viewController: self, pluginEvent: pluginEvent)
 
         self.webBridge.viewController = self
     }

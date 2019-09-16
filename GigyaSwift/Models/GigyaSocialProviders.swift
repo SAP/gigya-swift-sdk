@@ -10,9 +10,10 @@ import Foundation
 /**
  The `GigyaSocialProviders` it is list of supported providers.
  */
-public enum GigyaSocialProviders: String {
+public enum GigyaSocialProviders {
+
     case facebook
-    case google = "googleplus"
+    case google
     case yahoo
     case twitter
     case line
@@ -29,21 +30,24 @@ public enum GigyaSocialProviders: String {
     case naver
     case netlog
     case odnoklassniki
-    case orangeFrance = "orange france"
+    case orangeFrance
     case paypaloauth
-    case tencentQq = "tencent qq"
+    case tencentQq
     case renren
-    case sinaWeibo = "sina weibo"
+    case sinaWeibo
     case spiceworks
     case vkontakte
     case wordpress
     case xing
-    case yahooJapan = "Yahoo Japan"
-    case appleSignin = "apple"
+    case yahooJapan
+    case apple
+    case web(provider: String)
+
+    static var webValue: String?
 
     func isOnlySdk() -> Bool {
         switch self {
-        case .facebook, .wechat, .appleSignin:
+        case .facebook, .wechat, .apple:
             return true
         default:
             return false
@@ -59,6 +63,91 @@ public enum GigyaSocialProviders: String {
 
         return false
     }
+
+    var rawValue: String {
+        switch self {
+        case .google:
+            return "googleplus"
+        case .orangeFrance:
+            return "orange france"
+        case .tencentQq:
+            return "tencentQq"
+        case .sinaWeibo:
+            return "sina weibo"
+        case .yahooJapan:
+            return "yahoo japan"
+        case .web(let provider):
+            return provider
+        default:
+            return String(describing: self)
+        }
+
+    }
+
+    public init?(rawValue: String) {
+        switch rawValue {
+        case "facebook":
+            self = .facebook
+        case "google":
+            self = .google
+        case "yahoo":
+            self = .yahoo
+        case "twitter":
+            self = .yahoo
+        case "line":
+            self = .line
+        case "wechat":
+            self = .wechat
+        case "amazon":
+            self = .amazon
+        case "blogger":
+            self = .blogger
+        case "foursquare":
+            self = .foursquare
+        case "instagram":
+            self = .instagram
+        case "kakao":
+            self = .kakao
+        case "linkedin":
+            self = .linkedin
+        case "livedoor":
+            self = .livedoor
+        case "messenger":
+            self = .messenger
+        case "mixi":
+            self = .mixi
+        case "naver":
+            self = .naver
+        case "netlog":
+            self = .netlog
+        case "odnoklassniki":
+            self = .odnoklassniki
+        case "orangeFrance":
+            self = .orangeFrance
+        case "paypaloauth":
+            self = .paypaloauth
+        case "tencentQq":
+            self = .tencentQq
+        case "renren":
+            self = .renren
+        case "sinaWeibo":
+            self = .sinaWeibo
+        case "spiceworks":
+            self = .spiceworks
+        case "vkontakte":
+            self = .vkontakte
+        case "wordpress":
+            self = .wordpress
+        case "xing":
+            self = .xing
+        case "yahooJapan":
+            self = .yahooJapan
+        case "apple":
+            self = .apple
+        default:
+            self = .web(provider: rawValue)
+        }
+    }
 }
 
 /**
@@ -68,9 +157,9 @@ public enum GigyaNativeSocialProviders: String, CaseIterable {
     public static var allCases: [GigyaNativeSocialProviders] {
         var casesAvailable: [GigyaNativeSocialProviders] = [.facebook, .google, .line ,.wechat]
         if #available(iOS 13.0, *) {
-            casesAvailable.append(.appleSignin)
+            casesAvailable.append(.apple)
         } else {
-            GigyaLogger.log(with: self, message: "[.appleSignin] not available")
+            GigyaLogger.log(with: self, message: "[.apple] not available")
         }
 
         return casesAvailable
@@ -80,7 +169,7 @@ public enum GigyaNativeSocialProviders: String, CaseIterable {
     case google = "googleplus"
     case line
     case wechat
-    case appleSignin = "apple"
+    case apple = "apple"
 
     func getClassName() -> String {
         switch self {
@@ -92,8 +181,9 @@ public enum GigyaNativeSocialProviders: String, CaseIterable {
             return "LineWrapper"
         case .wechat:
             return "WeChatWrapper"
-        case .appleSignin:
+        case .apple:
             return "AppleSignInWrapper"
         }
     }
+
 }

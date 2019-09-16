@@ -49,11 +49,14 @@ class SocialProvidersManager: SocialProvidersManagerProtocol {
                 GigyaLogger.log(with: self, message: "[\(socialProvider.rawValue)] - use sdk")
 
                 return SocialLoginProvider(providerType: socialProvider, provider: wrapper, delegate: delegate)
-            } else {
-                if socialProvider.isOnlySdk() {
-                    GigyaLogger.error(message: "[\(socialProvider.rawValue)] can't login with WebView, install related sdk.")
-                }
             }
+        }
+
+        switch socialProvider {
+        case .facebook, .wechat:
+            GigyaLogger.error(message: "[\(socialProvider.rawValue)] can't login with WebView, install related sdk.")
+        default:
+            break
         }
 
         GigyaLogger.log(with: self, message: "[\(socialProvider.rawValue)] - use webview")

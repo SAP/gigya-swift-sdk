@@ -58,6 +58,7 @@ class SocialManagerTests: XCTestCase {
 }
 
 extension SocialManagerTests: BusinessApiDelegate {
+
     func callSetAccount<T>(dataType: T.Type, params: [String : Any], completion: @escaping (GigyaApiResult<T>) -> Void) where T : Decodable, T : Encodable {
         
     }
@@ -70,11 +71,11 @@ extension SocialManagerTests: BusinessApiDelegate {
         
     }
 
-    func sendApi(api: String, params: [String : String], completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void) {
+    func sendApi(api: String, params: [String: Any], completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void) {
 
     }
 
-    func sendApi<T>(dataType: T.Type, api: String, params: [String : String], completion: @escaping (GigyaApiResult<T>) -> Void) where T : Decodable, T : Encodable {
+    func sendApi<T>(dataType: T.Type, api: String, params: [String: Any], completion: @escaping (GigyaApiResult<T>) -> Void) where T : Decodable, T : Encodable {
 
     }
 

@@ -103,20 +103,13 @@ class SessionService: SessionServiceProtocol {
 
         let data = NSKeyedArchiver.archivedData(withRootObject: gsession)
 
-        if self.session == nil {
-            // When session not in the heap, need to remove the session from keyChain. (with biometric can't override the session after client called OptOut)
-            removeFromKeychain { [weak self] in
-                self?.keychainHelper.add(with: InternalConfig.Storage.keySession, data: data) { err in }
-            }
-
-            persistenceService.setBiometricEnable(to: false)
-            persistenceService.setBiometricLocked(to: false)
+        keychainHelper.add(with: InternalConfig.Storage.keySession, data: data)  { [weak self] err in
+            GigyaLogger.log(with: self, message: "[setSession]: \(err)")
         }
 
-        removeFromKeychain { [weak self] in
-            self?.keychainHelper.add(with: InternalConfig.Storage.keySession, data: data)  { [weak self] err in
-                GigyaLogger.log(with: self, message: "[setSession]: \(err)")
-            }
+        if self.session == nil {
+            persistenceService.setBiometricEnable(to: false)
+            persistenceService.setBiometricLocked(to: false)
         }
 
         self.session = gsession

@@ -19,8 +19,8 @@ class FacebookWrapper: NSObject, ProviderWrapperProtocol {
 
     private let defaultReadPermissions = ["email"]
 
-    lazy var fbLogin: FBSDKLoginManager = {
-        return FBSDKLoginManager()
+    lazy var fbLogin: LoginManager = {
+        return LoginManager()
     }()
 
     required override init() {
@@ -31,11 +31,7 @@ class FacebookWrapper: NSObject, ProviderWrapperProtocol {
                completion: @escaping (_ jsonData: [String: Any]?, _ error: String?) -> Void) {
         completionHandler = completion
 
-        if let loginBehavior = params?["facebookLoginBehavior"] as? FBSDKLoginBehavior {
-            fbLogin.loginBehavior = loginBehavior
-        }
-
-        fbLogin.logIn(withReadPermissions: defaultReadPermissions, from: viewController) { (result, error) in
+        fbLogin.logIn(permissions: defaultReadPermissions, from: viewController) { (result, error) in
             if result?.isCancelled != false {
                 completion(nil, "sign in cancelled")
                 return
@@ -45,7 +41,7 @@ class FacebookWrapper: NSObject, ProviderWrapperProtocol {
                 completion(nil, error.localizedDescription)
             }
 
-            let jsonData: [String: Any] = ["accessToken": result?.token.tokenString ?? "", "tokenExpiration": result?.token.expirationDate.timeIntervalSince1970 ?? 0]
+            let jsonData: [String: Any] = ["accessToken": result?.token?.tokenString ?? "", "tokenExpiration": result?.token?.expirationDate.timeIntervalSince1970 ?? 0]
 
             completion(jsonData, nil)
         }

@@ -143,6 +143,7 @@ class ViewController: UIViewController {
         }
 
         let alert = UIFactory.getConnectionAlert(title: "Add social connection") { [weak self] providerName in
+
            if let provider = GigyaSocialProviders(rawValue: providerName) {
             guard let self = self else { return }
                 self.gigya.addConnection(provider: provider, viewController: self, params: [:]) { result in

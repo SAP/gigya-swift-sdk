@@ -13,21 +13,17 @@ import Gigya
 class WebBridgeViewController: UIViewController, WKUIDelegate {
 
     var webView: WKWebView!
-    let createWebBridge = Gigya.sharedInstance(UserHost.self).createWebBridge()
 
     override func loadView() {
         super.loadView()
 
-        let webConfiguration = WKWebViewConfiguration()
-
-        let contentController = WKUserContentController()
-        webConfiguration.userContentController = contentController
-
-        webView = WKWebView(frame: .zero, configuration: webConfiguration)
+        webView = WKWebView(frame: .zero)
         webView.uiDelegate = self
         view = webView
+        let webBridge = Gigya.sharedInstance(UserHost.self).createWebBridge()
 
-        createWebBridge.registerWebView(webView: webView, viewController: self) { [weak self] (event) in
+        webBridge.attachTo(webView: webView, viewController: self) { [weak self] (event) in
+            print(event)
             switch event {
             case .onLogin(let account):
                 self?.navigationController?.popViewController(animated: true)
@@ -41,7 +37,10 @@ class WebBridgeViewController: UIViewController, WKUIDelegate {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        let myURL = URL(string: "http://localhost:3232/simple/invisible-captcha.html")
+//        let myURL = URL(string: "http://localhost:3232/simple/invisible-captcha.html")
+        let myURL = URL(string: "http://localhost:3333/saml/sp.html")
+
+
         let myRequest = URLRequest(url: myURL!)
         webView.load(myRequest)
     }

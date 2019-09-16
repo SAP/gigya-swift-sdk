@@ -64,7 +64,7 @@
 	<key>FacebookAppID</key>
 	<string>2497684063594329</string>
 	<key>GigyaApiDomain</key>
-	<string>il1-st5.gigya.com</string>
+	<string>us1.gigya.com</string>
 	<key>GigyaApiKey</key>
 	<string>3_KF6Dwf0BoTktLiX54s_rSWRiklW69xCLG8pZa413Z6pkuBGBwQeSK9k19grZfCDe</string>
 	<key>GoogleClientID</key>

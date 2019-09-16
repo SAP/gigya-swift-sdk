@@ -87,7 +87,7 @@ class WebLoginWrapper: NSObject, ProviderWrapperProtocol {
 
 extension WebLoginWrapper: WKNavigationDelegate {
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
-        if navigationAction.navigationType == .other {
+        if navigationAction.navigationType == .other || navigationAction.navigationType == .formSubmitted {
             if let url = navigationAction.request.url {
                 GigyaLogger.log(with: providerType.rawValue, message: "Log redirect url: \(url)")
                 if

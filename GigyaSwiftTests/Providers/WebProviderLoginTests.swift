@@ -165,7 +165,7 @@ class WebProviderLoginTests: XCTestCase {
 
         let provider = WebLoginProvider(sessionService: sessionService, provider: WebProviderWrapperMock(), delegate: businessApi as! BusinessApiDelegate)
 
-        XCTAssertEqual(provider.getProviderSessions(token: "", expiration: ""), "")
+        XCTAssertEqual(provider.getProviderSessions(token: "", expiration: "", code: "", firstName: "", lastName: ""), "")
 
     }
 
