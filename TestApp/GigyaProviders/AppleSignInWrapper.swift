@@ -14,6 +14,21 @@ import AuthenticationServices
 class AppleSignInWrapper: NSObject, ProviderWrapperProtocol {
     var clientID: String?
 
+    private lazy var appleLogin: AppleSignInInternalWrapper = {
+        return AppleSignInInternalWrapper()
+    }()
+
+    required override init() {
+        super.init()
+    }
+
+    func login(params: [String : Any]?, viewController: UIViewController?, completion: @escaping ([String : Any]?, String?) -> Void) {
+        appleLogin.login(params: params, viewController: viewController, completion: completion)
+    }
+}
+
+@available(iOS 13.0, *)
+private class AppleSignInInternalWrapper: NSObject {
     lazy var appleIDProvider: ASAuthorizationAppleIDProvider = {
         return ASAuthorizationAppleIDProvider()
     }()
@@ -22,15 +37,9 @@ class AppleSignInWrapper: NSObject, ProviderWrapperProtocol {
 
     private var completionHandler: (_ jsonData: [String: Any]?, _ error: String?) -> Void = { _, _  in }
 
-    required override init() {
-        super.init()
-
-    }
-
     func login(params: [String : Any]?, viewController: UIViewController?, completion: @escaping ([String : Any]?, String?) -> Void) {
         self.completionHandler = completion
         self.viewController = viewController
-
         let appleIDProvider = ASAuthorizationAppleIDProvider()
 
         let request = appleIDProvider.createRequest()
@@ -41,10 +50,11 @@ class AppleSignInWrapper: NSObject, ProviderWrapperProtocol {
         authorizationController.presentationContextProvider = self
         authorizationController.performRequests()
     }
+
 }
 
 @available(iOS 13.0, *)
-extension AppleSignInWrapper: ASAuthorizationControllerDelegate {
+extension AppleSignInInternalWrapper: ASAuthorizationControllerDelegate {
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
         if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
             if let authorizationCode = appleIDCredential.authorizationCode, let identityToken = appleIDCredential.identityToken {
@@ -77,7 +87,7 @@ extension AppleSignInWrapper: ASAuthorizationControllerDelegate {
 }
 
 @available(iOS 13.0, *)
-extension AppleSignInWrapper: ASAuthorizationControllerPresentationContextProviding {
+extension AppleSignInInternalWrapper: ASAuthorizationControllerPresentationContextProviding {
     func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
         return self.viewController!.view.window!
     }

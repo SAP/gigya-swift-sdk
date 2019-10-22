@@ -11,12 +11,16 @@ import Foundation
 extension Dictionary {
 
     var asJson: String {
+        do {
 
-        if let jsonData: Data = try? JSONSerialization.data(withJSONObject: self, options:[]),
-            let result = String(data: jsonData, encoding: .utf8) {
-            return result
+            let jsonData: Data = try JSONSerialization.data(withJSONObject: self, options:[])
+            let result = String(data: jsonData, encoding: .utf8)
+            return result ?? ""
+        } catch {
+            GigyaLogger.log(with: self, message: error.localizedDescription)
         }
-        
+
         return ""
+
     }
 }

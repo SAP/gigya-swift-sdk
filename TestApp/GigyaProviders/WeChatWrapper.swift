@@ -9,7 +9,7 @@
 import UIKit
 import Gigya
 
-class WeChatWrapper: NSObject, ProviderWrapperProtocol {
+class WeChatWrapper: ProviderWrapperProtocol {
 
     var clientID: String? = {
         return Bundle.main.infoDictionary?["WeChatAppID"] as? String
@@ -17,8 +17,8 @@ class WeChatWrapper: NSObject, ProviderWrapperProtocol {
 
     private var completionHandler: (_ jsonData: [String: Any]?, _ error: String?) -> Void = { _, _  in }
 
-    required override init() {
-        super.init()
+    required init() {
+
     }
 
     func login(params: [String: Any]? = nil, viewController: UIViewController? = nil,
@@ -34,7 +34,7 @@ class WeChatWrapper: NSObject, ProviderWrapperProtocol {
 
         WXApi.send(request)
 
-        WXApi.sendAuthReq(request, viewController: viewController, delegate: nil)
+        WXApi.sendAuthReq(request, viewController: viewController!, delegate: nil)
 
         NotificationCenter.default.addObserver(self, selector: #selector(onDidReceiveData(_:)), name: Notification.Name("weChatDidReceiveData"), object: nil)
 
@@ -67,7 +67,7 @@ class WeChatWrapper: NSObject, ProviderWrapperProtocol {
 }
 
 extension AppDelegate: WXApiDelegate {
-    func onResp(_ resp: BaseResp!) {
+    func onResp(_ resp: BaseResp) {
         guard resp.errCode == 0, let response: SendAuthResp = resp as? SendAuthResp else {
             let json = ["error": resp.errStr]
             NotificationCenter.default.post(name: Notification.Name("weChatDidReceiveData"), object: json)

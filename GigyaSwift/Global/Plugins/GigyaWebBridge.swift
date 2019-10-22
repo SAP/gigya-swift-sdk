@@ -161,7 +161,7 @@ public class GigyaWebBridge<T: GigyaAccountProtocol>: NSObject, WKScriptMessageH
     private func invokeError(callbackId: String, error: NetworkError) {
         switch error {
         case .gigyaError(let data):
-//            self.completion(.error(event: data.toDictionary()))
+            self.completion(.error(event: data.toDictionary()))
             self.invokeCallback(callbackId: callbackId, and: data.asJson())
         default:
             break
@@ -216,6 +216,7 @@ public class GigyaWebBridge<T: GigyaAccountProtocol>: NSObject, WKScriptMessageH
      Generic send request method.
      */
     private func sendRequest(callbackId: String, apiMethod: String, params: [String: String]) {
+
         GigyaLogger.log(with: self, message: "sendRequest: with apiMethod = \(apiMethod)")
         businessApiService.send(api: apiMethod, params: params) { [weak self] result in
             guard let self = self else { return }
@@ -223,7 +224,8 @@ public class GigyaWebBridge<T: GigyaAccountProtocol>: NSObject, WKScriptMessageH
             case .success(let data):
                 GigyaLogger.log(with: self, message: "sendRequest: success")
                 // Mapping AnyCodable values. Otherwise we will crash in the JSON dictionary conversion.
-                let mapped: [String: Any] = data.mapValues { value in return value.value }
+                var mapped: [String: Any] = data.mapValues { value in return value.value }
+
                 self.invokeCallback(callbackId: callbackId, and: mapped.asJson)
             case .failure(let error):
                 GigyaLogger.log(with: self, message: "sendRequest: error:\n\(error.localizedDescription)")

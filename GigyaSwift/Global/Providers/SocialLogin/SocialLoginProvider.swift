@@ -63,7 +63,7 @@ class SocialLoginProvider: Provider {
         case .wechat:
             return "{\"\(providerType.rawValue)\": {\"authToken\": \"\(token)\", providerUID: \"\(provider.clientID ?? "")\"}}"
         case .apple:
-            return "{\"\(providerType.rawValue)\": {\"idToken\": \"\(token)\", code: \"\(code!)\"}}"
+            return "{\"\(providerType.rawValue)\": {\"idToken\": \"\(token)\", code: \"\(code!)\", lastName: \"\(lastName!)\", firstName: \"\(firstName!)\"}}"
         default:
             break
         }

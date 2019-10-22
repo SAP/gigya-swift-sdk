@@ -15,10 +15,10 @@
             timestampString = "586020535.026024"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "310"
-            endingLineNumber = "310"
-            landmarkName = "ValidateLoginID()"
-            landmarkType = "7">
+            startingLineNumber = "308"
+            endingLineNumber = "308"
+            landmarkName = "ViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -32,9 +32,9 @@
             timestampString = "586020535.0261"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "307"
-            endingLineNumber = "307"
-            landmarkName = "ValidateLoginID()"
+            startingLineNumber = "305"
+            endingLineNumber = "305"
+            landmarkName = "logout(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -189,40 +189,6 @@
             endingLineNumber = "28"
             landmarkName = "send(model:responseType:completion:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "46D3AD90-BBE7-4190-A534-EC0C4D0DA856 - a04b7aed83d03b83"
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Gigya.ApiService.send&lt;A where A: Swift.Decodable, A: Swift.Encodable&gt;(model: Gigya.ApiRequestModel, responseType: A.Type, completion: (Gigya.GigyaApiResult&lt;A&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "Gigya"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Network/Request/ApiService.swift"
-                  timestampString = "585737346.642974"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "28"
-                  endingLineNumber = "28"
-                  offsetFromSymbolStart = "335">
-               </Location>
-               <Location
-                  uuid = "46D3AD90-BBE7-4190-A534-EC0C4D0DA856 - 717c62942d90c3e5"
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;__C.NSData&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Gigya.ApiService.send&lt;A where A: Swift.Decodable, A: Swift.Encodable&gt;(model: Gigya.ApiRequestModel, responseType: A.Type, completion: (Gigya.GigyaApiResult&lt;A&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "Gigya"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Network/Request/ApiService.swift"
-                  timestampString = "585737346.64468"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "28"
-                  endingLineNumber = "28"
-                  offsetFromSymbolStart = "355">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -304,9 +270,9 @@
             timestampString = "586020535.026481"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "238"
-            endingLineNumber = "238"
-            landmarkName = "loginWithProvider(_:)"
+            startingLineNumber = "236"
+            endingLineNumber = "236"
+            landmarkName = "checkLoginState()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -321,40 +287,72 @@
             timestampString = "586020535.02653"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "251"
-            endingLineNumber = "251"
-            landmarkName = "loginWithProviders(_:)"
+            startingLineNumber = "249"
+            endingLineNumber = "249"
+            landmarkName = "loginWithProvider(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "35803B41-9DF0-48E4-9AF2-F0B8BEA88934"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TestApp/GigyaProviders/WeChatWrapper.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "31"
+            endingLineNumber = "31"
+            landmarkName = "login(params:viewController:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "161D8497-51AC-4C15-A4C3-C7EAB5BBF9B6"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GigyaSwift/Network/Request/ApiService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "27"
+            endingLineNumber = "27"
+            landmarkName = "send(model:responseType:completion:)"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "DFE4E7F7-EDC0-41F1-A625-E2B78C7BDB24 - 647e1e1b63a3343d"
-                  shouldBeEnabled = "Yes"
+                  uuid = "161D8497-51AC-4C15-A4C3-C7EAB5BBF9B6 - a04b7aed83d03b83"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Gigya.GigyaLoginResult&lt;TestApp.UserHost&gt;) -&gt; () in TestApp.ViewController.loginWithProviders(Any) -&gt; ()"
-                  moduleName = "TestApp"
+                  symbolName = "Gigya.ApiService.send&lt;A where A: Swift.Decodable, A: Swift.Encodable&gt;(model: Gigya.ApiRequestModel, responseType: A.Type, completion: (Gigya.GigyaApiResult&lt;A&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Gigya"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/i507698/SDKs/gigya-swift-sdk/TestApp/UI/ViewController.swift"
+                  urlString = "file:///Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Network/Request/ApiService.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "251"
-                  endingLineNumber = "251"
-                  offsetFromSymbolStart = "10059">
+                  startingLineNumber = "27"
+                  endingLineNumber = "27"
+                  offsetFromSymbolStart = "299">
                </Location>
                <Location
-                  uuid = "DFE4E7F7-EDC0-41F1-A625-E2B78C7BDB24 - 647e1e1b63a3343d"
-                  shouldBeEnabled = "Yes"
+                  uuid = "161D8497-51AC-4C15-A4C3-C7EAB5BBF9B6 - 717c62942d90c3e5"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Gigya.GigyaLoginResult&lt;TestApp.UserHost&gt;) -&gt; () in TestApp.ViewController.loginWithProviders(Any) -&gt; ()"
-                  moduleName = "TestApp"
+                  symbolName = "closure #1 (Swift.Optional&lt;__C.NSData&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Gigya.ApiService.send&lt;A where A: Swift.Decodable, A: Swift.Encodable&gt;(model: Gigya.ApiRequestModel, responseType: A.Type, completion: (Gigya.GigyaApiResult&lt;A&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Gigya"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/i507698/SDKs/gigya-swift-sdk/TestApp/UI/ViewController.swift"
+                  urlString = "file:///Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Network/Request/ApiService.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "251"
-                  endingLineNumber = "251"
-                  offsetFromSymbolStart = "10358">
+                  startingLineNumber = "27"
+                  endingLineNumber = "27"
+                  offsetFromSymbolStart = "362">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -362,18 +360,49 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "47AAF5FE-181F-4222-8071-139555E28F0F"
-            shouldBeEnabled = "No"
+            uuid = "4E6647FE-06FE-45C2-A40F-A04D0C1C3F83"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GigyaSwift/Network/Service/NetworkProvider.swift"
-            timestampString = "586012150.658895"
+            filePath = "GigyaSwift/Global/Plugins/GigyaWebBridge.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "51"
-            endingLineNumber = "51"
-            landmarkName = "dataRequest(gsession:path:params:method:completion:)"
+            startingLineNumber = "244"
+            endingLineNumber = "244"
+            landmarkName = "sendLoginRequest(callbackId:apiMethod:params:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "4E6647FE-06FE-45C2-A40F-A04D0C1C3F83 - f3c2dbe7d2c1bf34"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Gigya.GigyaWebBridge.(sendLoginRequest in _E6B8BD9CF046BF62263D552BE6B943FB)(callbackId: Swift.String, apiMethod: Swift.String, params: Swift.Dictionary&lt;Swift.String, Swift.String&gt;) -&gt; ()"
+                  moduleName = "Gigya"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Global/Plugins/GigyaWebBridge.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "244"
+                  endingLineNumber = "244"
+                  offsetFromSymbolStart = "696">
+               </Location>
+               <Location
+                  uuid = "4E6647FE-06FE-45C2-A40F-A04D0C1C3F83 - 577915f46e29b44b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Gigya.GigyaApiResult&lt;A&gt;) -&gt; () in Gigya.GigyaWebBridge.(sendLoginRequest in _E6B8BD9CF046BF62263D552BE6B943FB)(callbackId: Swift.String, apiMethod: Swift.String, params: Swift.Dictionary&lt;Swift.String, Swift.String&gt;) -&gt; ()"
+                  moduleName = "Gigya"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Global/Plugins/GigyaWebBridge.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "244"
+                  endingLineNumber = "244"
+                  offsetFromSymbolStart = "366">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

@@ -1,0 +1,153 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testsuites name='GigyaSwiftTests.xctest' tests='110' failures='0'>
+  <testsuite name='GigyaSwiftTests.AnyCodableTest' tests='20' failures='0'>
+    <testcase classname='GigyaSwiftTests.AnyCodableTest' name='testArray' time='0.003'/>
+    <testcase classname='GigyaSwiftTests.AnyCodableTest' name='testBool' time='0.001'/>
+    <testcase classname='GigyaSwiftTests.AnyCodableTest' name='testCompareArray' time='0.000'/>
+    <testcase classname='GigyaSwiftTests.AnyCodableTest' name='testCompareDic' time='0.000'/>
+    <testcase classname='GigyaSwiftTests.AnyCodableTest' name='testDictionary' time='0.002'/>
+    <testcase classname='GigyaSwiftTests.AnyCodableTest' name='testDouble' time='0.001'/>
+    <testcase classname='GigyaSwiftTests.AnyCodableTest' name='testEncodeArray' time='0.001'/>
+    <testcase classname='GigyaSwiftTests.AnyCodableTest' name='testEncodeBool' time='0.000'/>
+    <testcase classname='GigyaSwiftTests.AnyCodableTest' name='testEncodeDate' time='0.000'/>
+    <testcase classname='GigyaSwiftTests.AnyCodableTest' name='testEncodeDictionary' time='0.001'/>
+    <testcase classname='GigyaSwiftTests.AnyCodableTest' name='testEncodeDouble' time='0.000'/>
+    <testcase classname='GigyaSwiftTests.AnyCodableTest' name='testEncodeError' time='0.002'/>
+    <testcase classname='GigyaSwiftTests.AnyCodableTest' name='testEncodeInt' time='0.000'/>
+    <testcase classname='GigyaSwiftTests.AnyCodableTest' name='testEncodeNil' time='0.000'/>
+    <testcase classname='GigyaSwiftTests.AnyCodableTest' name='testEncodeString' time='0.000'/>
+    <testcase classname='GigyaSwiftTests.AnyCodableTest' name='testEncodeURL' time='0.001'/>
+    <testcase classname='GigyaSwiftTests.AnyCodableTest' name='testEquatableFalse' time='0.000'/>
+    <testcase classname='GigyaSwiftTests.AnyCodableTest' name='testInt' time='0.000'/>
+    <testcase classname='GigyaSwiftTests.AnyCodableTest' name='testNil' time='0.000'/>
+    <testcase classname='GigyaSwiftTests.AnyCodableTest' name='testString' time='0.001'/>
+  </testsuite>
+  <testsuite name='GigyaSwiftTests.BiometricTests' tests='7' failures='0'>
+    <testcase classname='GigyaSwiftTests.BiometricTests' name='testIsLocked' time='0.002'/>
+    <testcase classname='GigyaSwiftTests.BiometricTests' name='testIsOptIn' time='0.000'/>
+    <testcase classname='GigyaSwiftTests.BiometricTests' name='testLock' time='0.001'/>
+    <testcase classname='GigyaSwiftTests.BiometricTests' name='testLockSessionFail' time='0.000'/>
+    <testcase classname='GigyaSwiftTests.BiometricTests' name='testOptIn' time='0.001'/>
+    <testcase classname='GigyaSwiftTests.BiometricTests' name='testOptOut' time='0.001'/>
+    <testcase classname='GigyaSwiftTests.BiometricTests' name='testUnlockSession' time='0.001'/>
+  </testsuite>
+  <testsuite name='GigyaSwiftTests.BusinessApiTest' tests='9' failures='0'>
+    <testcase classname='GigyaSwiftTests.BusinessApiTest' name='testGetAccount' time='0.002'/>
+    <testcase classname='GigyaSwiftTests.BusinessApiTest' name='testGetAccountError' time='0.000'/>
+    <testcase classname='GigyaSwiftTests.BusinessApiTest' name='testLogin' time='0.001'/>
+    <testcase classname='GigyaSwiftTests.BusinessApiTest' name='testLoginWithError' time='0.001'/>
+    <testcase classname='GigyaSwiftTests.BusinessApiTest' name='testPerformanceExample' time='0.404'/>
+    <testcase classname='GigyaSwiftTests.BusinessApiTest' name='testRemoveConnection' time='0.001'/>
+    <testcase classname='GigyaSwiftTests.BusinessApiTest' name='testSetAccount' time='0.009'/>
+    <testcase classname='GigyaSwiftTests.BusinessApiTest' name='testSetAccountFailed' time='0.001'/>
+    <testcase classname='GigyaSwiftTests.BusinessApiTest' name='testSetAccountFailInGetAccount' time='0.001'/>
+  </testsuite>
+  <testsuite name='GigyaSwiftTests.GigyaApiService' tests='6' failures='0'>
+    <testcase classname='GigyaSwiftTests.GigyaApiService' name='testGigyaResponseFailed' time='0.001'/>
+    <testcase classname='GigyaSwiftTests.GigyaApiService' name='testResponseGeneric' time='0.001'/>
+    <testcase classname='GigyaSwiftTests.GigyaApiService' name='testResponseGenericParseError' time='0.001'/>
+    <testcase classname='GigyaSwiftTests.GigyaApiService' name='testSendApiService' time='0.001'/>
+    <testcase classname='GigyaSwiftTests.GigyaApiService' name='testSendReturnError' time='0.001'/>
+    <testcase classname='GigyaSwiftTests.GigyaApiService' name='testSendReturnErrorFromGigyaObjc' time='0.003'/>
+  </testsuite>
+  <testsuite name='GigyaSwiftTests.GigyaCoreTest' tests='13' failures='0'>
+    <testcase classname='GigyaSwiftTests.GigyaCoreTest' name='testAddConnection' time='0.004'/>
+    <testcase classname='GigyaSwiftTests.GigyaCoreTest' name='testGetAccount' time='0.001'/>
+    <testcase classname='GigyaSwiftTests.GigyaCoreTest' name='testGetAccountError' time='0.001'/>
+    <testcase classname='GigyaSwiftTests.GigyaCoreTest' name='testGetAccountFailed' time='0.001'/>
+    <testcase classname='GigyaSwiftTests.GigyaCoreTest' name='testGetAccountFromHip' time='0.001'/>
+    <testcase classname='GigyaSwiftTests.GigyaCoreTest' name='testLogin' time='0.002'/>
+    <testcase classname='GigyaSwiftTests.GigyaCoreTest' name='testLogout' time='0.014'/>
+    <testcase classname='GigyaSwiftTests.GigyaCoreTest' name='testRegister' time='0.003'/>
+    <testcase classname='GigyaSwiftTests.GigyaCoreTest' name='testRegisterFail' time='0.002'/>
+    <testcase classname='GigyaSwiftTests.GigyaCoreTest' name='testRemoveConnection' time='0.001'/>
+    <testcase classname='GigyaSwiftTests.GigyaCoreTest' name='testSendApiGeneric' time='0.001'/>
+    <testcase classname='GigyaSwiftTests.GigyaCoreTest' name='testSendRegular' time='0.001'/>
+    <testcase classname='GigyaSwiftTests.GigyaCoreTest' name='testShowScreenSet' time='0.035'/>
+  </testsuite>
+  <testsuite name='GigyaSwiftTests.GigyaInitTest' tests='7' failures='0'>
+    <testcase classname='GigyaSwiftTests.GigyaInitTest' name='testAccountServiceDependency' time='0.001'/>
+    <testcase classname='GigyaSwiftTests.GigyaInitTest' name='testApiServiceDependency' time='0.002'/>
+    <testcase classname='GigyaSwiftTests.GigyaInitTest' name='testConfigDependency' time='0.003'/>
+    <testcase classname='GigyaSwiftTests.GigyaInitTest' name='testInitWithOutSchema' time='0.002'/>
+    <testcase classname='GigyaSwiftTests.GigyaInitTest' name='testInitWithSchema' time='0.002'/>
+    <testcase classname='GigyaSwiftTests.GigyaInitTest' name='testInitWithWrongSchema' time='0.002'/>
+    <testcase classname='GigyaSwiftTests.GigyaInitTest' name='testSessionServiceDependency' time='0.001'/>
+  </testsuite>
+  <testsuite name='GigyaSwiftTests.GigyaLoggerTest' tests='2' failures='0'>
+    <testcase classname='GigyaSwiftTests.GigyaLoggerTest' name='testMakeStringFromClass' time='0.001'/>
+    <testcase classname='GigyaSwiftTests.GigyaLoggerTest' name='testSetDebugToTrue' time='0.002'/>
+  </testsuite>
+  <testsuite name='GigyaSwiftTests.GigyaSwiftTests' tests='1' failures='0'>
+    <testcase classname='GigyaSwiftTests.GigyaSwiftTests' name='testExample' time='0.002'/>
+  </testsuite>
+  <testsuite name='GigyaSwiftTests.NetworkAdapterTests' tests='1' failures='0'>
+    <testcase classname='GigyaSwiftTests.NetworkAdapterTests' name='testRequest' time='0.004'/>
+  </testsuite>
+  <testsuite name='GigyaSwiftTests.PluginViewControllerTests' tests='1' failures='0'>
+    <testcase classname='GigyaSwiftTests.PluginViewControllerTests' name='testLoad' time='0.014'/>
+  </testsuite>
+  <testsuite name='GigyaSwiftTests.PluginViewWrapperTests' tests='4' failures='0'>
+    <testcase classname='GigyaSwiftTests.PluginViewWrapperTests' name='testPluginGetHtml' time='0.018'/>
+    <testcase classname='GigyaSwiftTests.PluginViewWrapperTests' name='testPluginGetHtmlNoneApiKey' time='0.017'/>
+    <testcase classname='GigyaSwiftTests.PluginViewWrapperTests' name='testPluginHtmlCheckCommentsUI' time='0.024'/>
+    <testcase classname='GigyaSwiftTests.PluginViewWrapperTests' name='testPluginHtmlRatingAndShowButton' time='0.018'/>
+  </testsuite>
+  <testsuite name='GigyaSwiftTests.ProvidersLoginWrapperTests' tests='6' failures='0'>
+    <testcase classname='GigyaSwiftTests.ProvidersLoginWrapperTests' name='testGetUrlFail' time='0.012'/>
+    <testcase classname='GigyaSwiftTests.ProvidersLoginWrapperTests' name='testGetUrlSuccess' time='0.011'/>
+    <testcase classname='GigyaSwiftTests.ProvidersLoginWrapperTests' name='testGetUrlWithoutKeyDomain' time='0.011'/>
+    <testcase classname='GigyaSwiftTests.ProvidersLoginWrapperTests' name='testLoginDelegate' time='0.015'/>
+    <testcase classname='GigyaSwiftTests.ProvidersLoginWrapperTests' name='testLoginDelegateFail' time='0.015'/>
+    <testcase classname='GigyaSwiftTests.ProvidersLoginWrapperTests' name='testLoginUserCancel' time='0.013'/>
+  </testsuite>
+  <testsuite name='GigyaSwiftTests.SocialManagerTests' tests='3' failures='0'>
+    <testcase classname='GigyaSwiftTests.SocialManagerTests' name='testGetGoogleProvider' time='0.003'/>
+    <testcase classname='GigyaSwiftTests.SocialManagerTests' name='testGetProvider' time='0.003'/>
+    <testcase classname='GigyaSwiftTests.SocialManagerTests' name='testGetWechatProvider' time='0.003'/>
+  </testsuite>
+  <testsuite name='GigyaSwiftTests.SocialProviderLoginTests' tests='4' failures='0'>
+    <testcase classname='GigyaSwiftTests.SocialProviderLoginTests' name='testAddConnection' time='0.003'/>
+    <testcase classname='GigyaSwiftTests.SocialProviderLoginTests' name='testLoginNoneToken' time='0.002'/>
+    <testcase classname='GigyaSwiftTests.SocialProviderLoginTests' name='testLoginSuccess' time='0.002'/>
+    <testcase classname='GigyaSwiftTests.SocialProviderLoginTests' name='testLoginWithError' time='0.002'/>
+  </testsuite>
+  <testsuite name='GigyaSwiftTests.StringsTests' tests='4' failures='0'>
+    <testcase classname='GigyaSwiftTests.StringsTests' name='testDictionaryToJson' time='0.003'/>
+    <testcase classname='GigyaSwiftTests.StringsTests' name='testGetStringBySubscript' time='0.002'/>
+    <testcase classname='GigyaSwiftTests.StringsTests' name='testGetStringFailed' time='0.001'/>
+    <testcase classname='GigyaSwiftTests.StringsTests' name='testStringToDictionary' time='0.001'/>
+  </testsuite>
+  <testsuite name='GigyaSwiftTests.TfaLinkAccountTests' tests='5' failures='0'>
+    <testcase classname='GigyaSwiftTests.TfaLinkAccountTests' name='testLinkAccountError' time='0.012'/>
+    <testcase classname='GigyaSwiftTests.TfaLinkAccountTests' name='testLinkAccountResolver' time='0.003'/>
+    <testcase classname='GigyaSwiftTests.TfaLinkAccountTests' name='testLinkAccountWithProviderResolver' time='0.002'/>
+    <testcase classname='GigyaSwiftTests.TfaLinkAccountTests' name='testLinkedAccount' time='0.004'/>
+    <testcase classname='GigyaSwiftTests.TfaLinkAccountTests' name='testResolverNotSupprted' time='0.002'/>
+  </testsuite>
+  <testsuite name='GigyaSwiftTests.URLSessionTests' tests='1' failures='0'>
+    <testcase classname='GigyaSwiftTests.URLSessionTests' name='testInstance' time='0.001'/>
+  </testsuite>
+  <testsuite name='GigyaSwiftTests.UserDefaultsTests' tests='3' failures='0'>
+    <testcase classname='GigyaSwiftTests.UserDefaultsTests' name='testGetFail' time='0.001'/>
+    <testcase classname='GigyaSwiftTests.UserDefaultsTests' name='testGetGmid' time='0.002'/>
+    <testcase classname='GigyaSwiftTests.UserDefaultsTests' name='testGetUcid' time='0.002'/>
+  </testsuite>
+  <testsuite name='GigyaSwiftTests.WebProviderLoginTests' tests='7' failures='0'>
+    <testcase classname='GigyaSwiftTests.WebProviderLoginTests' name='testAddConnection' time='0.002'/>
+    <testcase classname='GigyaSwiftTests.WebProviderLoginTests' name='testLoginNoneToken' time='0.002'/>
+    <testcase classname='GigyaSwiftTests.WebProviderLoginTests' name='testLoginProviderError' time='0.002'/>
+    <testcase classname='GigyaSwiftTests.WebProviderLoginTests' name='testLoginSuccess' time='0.002'/>
+    <testcase classname='GigyaSwiftTests.WebProviderLoginTests' name='testLoginWithError' time='0.005'/>
+    <testcase classname='GigyaSwiftTests.WebProviderLoginTests' name='testWebLoginGetSession' time='0.002'/>
+    <testcase classname='GigyaSwiftTests.WebProviderLoginTests' name='testWebLoginIsSession' time='0.002'/>
+  </testsuite>
+  <testsuite name='GigyaSwiftTests.WebViewWrapperTests' tests='6' failures='0'>
+    <testcase classname='GigyaSwiftTests.WebViewWrapperTests' name='testGetUrlFail' time='0.014'/>
+    <testcase classname='GigyaSwiftTests.WebViewWrapperTests' name='testGetUrlSuccess' time='0.013'/>
+    <testcase classname='GigyaSwiftTests.WebViewWrapperTests' name='testGetUrlWithoutKeyDomain' time='0.013'/>
+    <testcase classname='GigyaSwiftTests.WebViewWrapperTests' name='testLoginDelegate' time='0.016'/>
+    <testcase classname='GigyaSwiftTests.WebViewWrapperTests' name='testLoginDelegateFail' time='0.015'/>
+    <testcase classname='GigyaSwiftTests.WebViewWrapperTests' name='testLoginUserCancel' time='0.017'/>
+  </testsuite>
+</testsuites>

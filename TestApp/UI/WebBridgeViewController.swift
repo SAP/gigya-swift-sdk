@@ -23,12 +23,10 @@ class WebBridgeViewController: UIViewController, WKUIDelegate {
         let webBridge = Gigya.sharedInstance(UserHost.self).createWebBridge()
 
         webBridge.attachTo(webView: webView, viewController: self) { [weak self] (event) in
-            print(event)
             switch event {
             case .onLogin(let account):
                 self?.navigationController?.popViewController(animated: true)
-            default:
-                break
+            default: break
             }
         }
     }
@@ -39,8 +37,6 @@ class WebBridgeViewController: UIViewController, WKUIDelegate {
         // Do any additional setup after loading the view.
 //        let myURL = URL(string: "http://localhost:3232/simple/invisible-captcha.html")
         let myURL = URL(string: "http://localhost:3333/saml/sp.html")
-
-
         let myRequest = URLRequest(url: myURL!)
         webView.load(myRequest)
     }

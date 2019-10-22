@@ -11,7 +11,7 @@ import FBSDKCoreKit
 import FBSDKLoginKit
 import Gigya
 
-class FacebookWrapper: NSObject, ProviderWrapperProtocol {
+class FacebookWrapper: ProviderWrapperProtocol {
 
     private var completionHandler: (_ jsonData: [String: Any]?, _ error: String?) -> Void = { _, _  in }
 
@@ -23,8 +23,8 @@ class FacebookWrapper: NSObject, ProviderWrapperProtocol {
         return LoginManager()
     }()
 
-    required override init() {
-        super.init()
+    required init() {
+
     }
 
     func login(params: [String: Any]?, viewController: UIViewController?,

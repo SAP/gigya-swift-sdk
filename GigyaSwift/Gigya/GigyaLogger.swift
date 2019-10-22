@@ -11,7 +11,7 @@ import Foundation
 public class GigyaLogger {
     private static var debugMode: Bool = true
 
-    static func setDebugMode(to debugModeEnabled: Bool) {
+    public static func setDebugMode(to debugModeEnabled: Bool) {
         self.debugMode = debugModeEnabled
     }
 

@@ -7,6 +7,7 @@
 //
 
 import XCTest
+import WebKit
 @testable import Gigya
 
 class PluginViewWrapperTests: XCTestCase {
@@ -124,4 +125,93 @@ class PluginViewWrapperTests: XCTestCase {
         XCTAssert(html.contains("RatingUI"))
 
     }
+
+    func testPluginEventOnLoginTest() {
+        // This is an example of a functional test case.
+        let responseDic: [String: Any] = ["callId": "fasfsaf", "errorCode": 0, "statusCode": 200]
+        //swiftlint:disable:next force_try
+        let objData = try! JSONSerialization.data(withJSONObject: responseDic, options: .prettyPrinted)
+
+        ResponseDataTest.providerToken = "dasf"
+        ResponseDataTest.providerSecret = "dasdas"
+        ResponseDataTest.resData = objData as NSData
+
+
+        let plugin = "accounts.screenSet"
+
+        let complete: (GigyaPluginEvent<GigyaAccount>) -> Void = { result in
+            switch result {
+            case .onLogin(let account):
+                XCTAssertNotNil(account)
+            default:
+                XCTFail()
+            }
+        }
+
+        let webBridge = GigyaWebBridge<GigyaAccount>(config: config, persistenceService: persistenceService, sessionService: sessionService, businessApiService: businessApi)
+        let wrapper = PluginViewWrapper<GigyaAccount>(config: config, persistenceService: persistenceService, sessionService: sessionService, businessApiService: businessApi, webBridge: webBridge, plugin: plugin, params: [:], completion: complete)
+
+        let vc = FakeUIViewController()
+        wrapper.presentPluginController(viewController: vc, dataType: GigyaAccount.self, screenSet: plugin)
+
+        webBridge.userContentController(webBridge.contentController, didReceive: OnLoginCustomWKScriptMessage())
+
+
+    }
+
+
+    func testPluginEventRequestTest() {
+        // This is an example of a functional test case.
+        let responseDic: [String: Any] = ["callId": "fasfsaf", "errorCode": 5, "statusCode": 200]
+        //swiftlint:disable:next force_try
+        let objData = try! JSONSerialization.data(withJSONObject: responseDic, options: .prettyPrinted)
+
+        ResponseDataTest.resData = objData as NSData
+
+
+        let plugin = "accounts.screenSet"
+
+        let complete: (GigyaPluginEvent<GigyaAccount>) -> Void = { result in
+            switch result {
+            case .error(let event):
+                XCTAssertNotNil(event)
+            default:
+                XCTFail()
+            }
+        }
+
+        let webBridge = GigyaWebBridge<GigyaAccount>(config: config, persistenceService: persistenceService, sessionService: sessionService, businessApiService: businessApi)
+        let wrapper = PluginViewWrapper<GigyaAccount>(config: config, persistenceService: persistenceService, sessionService: sessionService, businessApiService: businessApi, webBridge: webBridge, plugin: plugin, params: [:], completion: complete)
+
+        let vc = FakeUIViewController()
+        wrapper.presentPluginController(viewController: vc, dataType: GigyaAccount.self, screenSet: plugin)
+
+        webBridge.userContentController(webBridge.contentController, didReceive: ReqCustomWKScriptMessage())
+
+
+    }
+
 }
+
+
+class OnLoginCustomWKScriptMessage: WKScriptMessage {
+    override var name: String {
+        return "123"
+    }
+
+    override var body: Any {
+        return ["action": "send_oauth_request","params": "callbackID=123&params=provider%3Dfacebook", "method": GigyaDefinitions.API.socialLogin]
+    }
+}
+
+class ReqCustomWKScriptMessage: WKScriptMessage {
+    override var name: String {
+        return "123"
+    }
+
+    override var body: Any {
+        return ["action": "send_request","params": "callbackID=123&params=provider%3Dfacebook", "method": "GigyaDefinitions.API.socialLogin"]
+    }
+}
+
+

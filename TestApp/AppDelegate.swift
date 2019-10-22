@@ -25,8 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
         
         Messaging.messaging().delegate = self
 
-        WXApi.registerApp("wx222c4ccaa989aa00")
-
+        WXApi.registerApp("wx222c4ccaa989aa00", universalLink: "https://")
 
         UNUserNotificationCenter.current().delegate = self
 

@@ -15,6 +15,8 @@ class NetworkProvider {
 
     let persistenceService: PersistenceService
 
+    var session = URLSession.sharedInternal
+
     init(url: String, config: GigyaConfig, persistenceService: PersistenceService) {
         self.url = url
         self.config = config
@@ -35,8 +37,6 @@ class NetworkProvider {
         let newParams = params
 
         dataURL.appendPathComponent(path)
-
-        let session = URLSession.sharedInternal
 
         var request: URLRequest = URLRequest(url: dataURL)
 

@@ -124,4 +124,23 @@ class BiometricTests: XCTestCase {
             }
         })
     }
+
+        func testDecoderSession() {
+
+            let path = NSTemporaryDirectory() as NSString
+            let locToSave = path.appendingPathComponent("teststasks")
+
+            let newTask = GigyaSession(sessionToken: "test", secret: "test")
+
+            // save tasks
+            NSKeyedArchiver.archiveRootObject([newTask], toFile: locToSave)
+
+            // load tasks
+            let data = NSKeyedUnarchiver.unarchiveObject(withFile: locToSave) as? [GigyaSession]
+
+            XCTAssertNotNil(data)
+            XCTAssertEqual(data!.first!.token, "test")
+            XCTAssertEqual(data!.first!.secret, "test")
+
+        }
 }

@@ -90,6 +90,8 @@ public enum GigyaSocialProviders {
             self = .facebook
         case "google":
             self = .google
+        case "googleplus":
+            self = .google
         case "yahoo":
             self = .yahoo
         case "twitter":

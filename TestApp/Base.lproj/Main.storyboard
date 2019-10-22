@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14854.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="92V-yH-a3l">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="92V-yH-a3l">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14806.4"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -19,7 +19,7 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="249" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="owO-vP-SNV">
                                 <rect key="frame" x="16" y="60" width="343" height="240"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <accessibility key="accessibilityConfiguration" identifier="Result Text View">
+                                <accessibility key="accessibilityConfiguration" identifier="LogText">
                                     <accessibilityTraits key="traits" notEnabled="YES"/>
                                 </accessibility>
                                 <constraints>
@@ -38,7 +38,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9wC-xP-8OI">
                                 <rect key="frame" x="16" y="340" width="111" height="30"/>
-                                <accessibility key="accessibilityConfiguration" identifier="Show Screenset"/>
+                                <accessibility key="accessibilityConfiguration" identifier="ShowScreenset"/>
                                 <state key="normal" title="Show Screenset"/>
                                 <connections>
                                     <action selector="showScreenSet:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6jO-Dx-AyC"/>
@@ -46,7 +46,9 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fNt-XW-RSV">
                                 <rect key="frame" x="16" y="386" width="38" height="30"/>
-                                <accessibility key="accessibilityConfiguration" identifier="Login"/>
+                                <accessibility key="accessibilityConfiguration" identifier="Login">
+                                    <bool key="isElement" value="YES"/>
+                                </accessibility>
                                 <state key="normal" title="Login"/>
                                 <connections>
                                     <action selector="login:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4qB-ug-GRz"/>
@@ -62,7 +64,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fyN-es-d2v">
                                 <rect key="frame" x="16" y="478" width="111" height="30"/>
-                                <accessibility key="accessibilityConfiguration" identifier="Add Connection"/>
+                                <accessibility key="accessibilityConfiguration" identifier="AddConnection"/>
                                 <state key="normal" title="Add Connection"/>
                                 <connections>
                                     <action selector="addConnection:" destination="BYZ-38-t0r" eventType="touchUpInside" id="EYy-0e-c83"/>
@@ -70,7 +72,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cu6-gD-2R1">
                                 <rect key="frame" x="16" y="524" width="138" height="30"/>
-                                <accessibility key="accessibilityConfiguration" identifier="Remove Connection"/>
+                                <accessibility key="accessibilityConfiguration" identifier="RemoveConnection"/>
                                 <state key="normal" title="Remove Connection"/>
                                 <connections>
                                     <action selector="removeConnection:" destination="BYZ-38-t0r" eventType="touchUpInside" id="WIr-sA-s0a"/>
@@ -78,7 +80,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0fX-WN-aKg">
                                 <rect key="frame" x="16" y="570" width="86" height="30"/>
-                                <accessibility key="accessibilityConfiguration" identifier="Get Account"/>
+                                <accessibility key="accessibilityConfiguration" identifier="GetAccount"/>
                                 <state key="normal" title="Get Account"/>
                                 <connections>
                                     <action selector="getAccountWith_sender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="wDr-Ak-IRv"/>
@@ -86,7 +88,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TiM-DB-mr3">
                                 <rect key="frame" x="16" y="616" width="131" height="30"/>
-                                <accessibility key="accessibilityConfiguration" identifier="Login with provider"/>
+                                <accessibility key="accessibilityConfiguration" identifier="Loginwithprovider"/>
                                 <state key="normal" title="Login with provider"/>
                                 <connections>
                                     <action selector="loginWithProvider:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ek2-rR-upU"/>
@@ -94,7 +96,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eoH-ob-HH3">
                                 <rect key="frame" x="170" y="386" width="139" height="30"/>
-                                <accessibility key="accessibilityConfiguration" identifier="Login with provider"/>
+                                <accessibility key="accessibilityConfiguration" identifier="Loginwithproviders"/>
                                 <state key="normal" title="Login with providers"/>
                                 <connections>
                                     <action selector="loginWithProviders:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xIk-1R-89f"/>
@@ -102,6 +104,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WvG-tz-Pye">
                                 <rect key="frame" x="170" y="340" width="42" height="30"/>
+                                <accessibility key="accessibilityConfiguration" identifier="pushOptIn"/>
                                 <state key="normal" title="Opt in"/>
                                 <connections>
                                     <action selector="OptIn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2tt-oi-mfb"/>
@@ -109,6 +112,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NHW-O1-ecN">
                                 <rect key="frame" x="165" y="478" width="110" height="30"/>
+                                <accessibility key="accessibilityConfiguration" identifier="OptinBiometric"/>
                                 <state key="normal" title="Opt in biometric"/>
                                 <connections>
                                     <action selector="OptiInBiometric:" destination="BYZ-38-t0r" eventType="touchUpInside" id="oWm-SO-XfP"/>
@@ -116,6 +120,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="20R-EK-hdL">
                                 <rect key="frame" x="165" y="524" width="121" height="30"/>
+                                <accessibility key="accessibilityConfiguration" identifier="OptoutBiometric"/>
                                 <state key="normal" title="Opt out biometric"/>
                                 <connections>
                                     <action selector="OptOutBiometric:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VhW-rg-dH6"/>
@@ -123,6 +128,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hhx-Bt-vKE">
                                 <rect key="frame" x="165" y="570" width="174" height="30"/>
+                                <accessibility key="accessibilityConfiguration" identifier="UnlockSession"/>
                                 <state key="normal" title="Unlock Session biometric"/>
                                 <connections>
                                     <action selector="UnlockSessionBiometric:" destination="BYZ-38-t0r" eventType="touchUpInside" id="flW-OC-kck"/>
@@ -130,13 +136,15 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8sE-Kg-WNH">
                                 <rect key="frame" x="165" y="616" width="159" height="30"/>
+                                <accessibility key="accessibilityConfiguration" identifier="LockSession"/>
                                 <state key="normal" title="Lock Session biometric"/>
                                 <connections>
                                     <action selector="LockSessionBiometric:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rnj-sz-f36"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f6E-bX-ckL">
-                                <rect key="frame" x="16" y="312" width="80" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f6E-bX-ckL">
+                                <rect key="frame" x="16" y="292" width="80" height="30"/>
+                                <accessibility key="accessibilityConfiguration" identifier="WebBridge"/>
                                 <state key="normal" title="Web Bridge"/>
                                 <connections>
                                     <segue destination="6dQ-xk-LHw" kind="show" id="pd6-GS-wad"/>
@@ -163,9 +171,9 @@
                             <constraint firstItem="9wC-xP-8OI" firstAttribute="top" secondItem="f6E-bX-ckL" secondAttribute="bottom" constant="18" id="V7s-ph-sqS"/>
                             <constraint firstItem="TiM-DB-mr3" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="YjH-RD-fcU"/>
                             <constraint firstItem="WvG-tz-Pye" firstAttribute="top" secondItem="owO-vP-SNV" secondAttribute="bottom" constant="40" id="Z3E-a7-GZJ"/>
-                            <constraint firstItem="WvG-tz-Pye" firstAttribute="top" secondItem="B1q-mp-f3s" secondAttribute="bottom" constant="20" id="Zq8-CT-wa8"/>
                             <constraint firstItem="8sE-Kg-WNH" firstAttribute="top" secondItem="hhx-Bt-vKE" secondAttribute="bottom" constant="16" id="duC-hH-cOv"/>
-                            <constraint firstItem="B1q-mp-f3s" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="fZE-Zo-wdh"/>
+                            <constraint firstItem="f6E-bX-ckL" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="e9e-XB-z7M"/>
+                            <constraint firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="fZE-Zo-wdh"/>
                             <constraint firstItem="fNt-XW-RSV" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="faR-xz-gJk"/>
                             <constraint firstItem="hhx-Bt-vKE" firstAttribute="leading" secondItem="0fX-WN-aKg" secondAttribute="trailing" constant="63" id="fbf-co-naf"/>
                             <constraint firstItem="fNt-XW-RSV" firstAttribute="top" secondItem="9wC-xP-8OI" secondAttribute="bottom" constant="16" id="grl-cd-jq3"/>
@@ -243,7 +251,6 @@
                                                 </pickerView>
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Phone number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ldY-Qp-Jnl">
                                                     <rect key="frame" x="20" y="104" width="335" height="29"/>
-                                                    <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
@@ -298,7 +305,6 @@
                                                 </label>
                                                 <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Code..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BBz-8Y-6mI">
                                                     <rect key="frame" x="20" y="30" width="335" height="30"/>
-                                                    <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
@@ -350,7 +356,6 @@
                                                 </imageView>
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Code..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yJx-xW-Tab">
                                                     <rect key="frame" x="133" y="34" width="222" height="34"/>
-                                                    <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
@@ -426,7 +431,6 @@
                                                 </button>
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Code..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ft3-jc-7UQ" userLabel="Code Text Field">
                                                     <rect key="frame" x="20" y="160" width="335" height="34"/>
-                                                    <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>

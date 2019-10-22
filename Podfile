@@ -8,7 +8,7 @@ target 'TestApp' do
   use_frameworks!
 
   # Pods for TestApp
-  pod 'GoogleSignIn', :modular_headers => false
+  pod 'GoogleSignIn', '5.0.1', :modular_headers => false
   pod 'FBSDKCoreKit'
   pod 'FBSDKLoginKit'
 

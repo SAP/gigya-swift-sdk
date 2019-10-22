@@ -1,0 +1,11 @@
+framework module GigyaTfa {
+  umbrella header "GigyaTfa.h"
+
+  export *
+  module * { export * }
+}
+
+module GigyaTfa.Swift {
+    header "GigyaTfa-Swift.h"
+    requires objc
+}

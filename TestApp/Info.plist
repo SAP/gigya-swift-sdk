@@ -58,15 +58,21 @@
 				<string>wx222c4ccaa989aa00</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array/>
+		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>FacebookAppID</key>
 	<string>2497684063594329</string>
 	<key>GigyaApiDomain</key>
-	<string>us1.gigya.com</string>
+	<string>ru1.gigya.com</string>
 	<key>GigyaApiKey</key>
-	<string>3_KF6Dwf0BoTktLiX54s_rSWRiklW69xCLG8pZa413Z6pkuBGBwQeSK9k19grZfCDe</string>
+	<string>3_P0I0iFQmZDJVDuZvV_GVa9DCfwVshKdpxwM5lGJA1GAI9zmRirzOUf6vmFQDH-BE</string>
 	<key>GoogleClientID</key>
 	<string>444662304199-camlom5iaqmrs7i1ernfv7eudr1ejkvm.apps.googleusercontent.com</string>
 	<key>GoogleServerClientID</key>
@@ -91,6 +97,7 @@
 		<string>line3rdp.$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 		<string>wechat</string>
 		<string>weixin</string>
+		<string>weixinULAPI</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
