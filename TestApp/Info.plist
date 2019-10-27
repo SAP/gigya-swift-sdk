@@ -70,9 +70,9 @@
 	<key>FacebookAppID</key>
 	<string>2497684063594329</string>
 	<key>GigyaApiDomain</key>
-	<string>ru1.gigya.com</string>
+	<string>eu1.gigya.com</string>
 	<key>GigyaApiKey</key>
-	<string>3_P0I0iFQmZDJVDuZvV_GVa9DCfwVshKdpxwM5lGJA1GAI9zmRirzOUf6vmFQDH-BE</string>
+	<string>3_240zzpNtzfNkcKv3w-v7lse9nUcrMYEcTJix9ZWSAvGEssQm0VbiBxhTgtQXRnBQ</string>
 	<key>GoogleClientID</key>
 	<string>444662304199-camlom5iaqmrs7i1ernfv7eudr1ejkvm.apps.googleusercontent.com</string>
 	<key>GoogleServerClientID</key>

@@ -34,10 +34,21 @@ class WebLoginProvider: Provider {
 
         provider.login(params: params, viewController: viewController) { [weak self] jsonData, error in
             guard error == nil else {
-                let errorDesc = error!
-                self?.loginFailed(error: errorDesc, completion: completion)
 
-                GigyaLogger.log(with: WebLoginProvider.self, message: errorDesc)
+                let errorDesc = error!["error_description"]
+                 let getErrorCode = errorDesc?.split(separator: "+").first
+                 let errorCode = Int("\(getErrorCode ?? "-1")") ?? -1
+                 let regToken = error!["regToken"] ?? ""
+
+                 let data = ["regToken": regToken, "errorCode": errorCode] as [String : Any]
+
+                 let objData = try! JSONSerialization.data(withJSONObject: data, options: .prettyPrinted)
+
+                 let errorObject = NetworkError.gigyaError(data: GigyaResponseModel(statusCode: .unknown, errorCode: errorCode, callId: "", errorMessage: error, sessionInfo: nil, requestData: objData))
+
+                 self?.loginGigyaFailed(error: errorObject, completion: completion)
+
+                GigyaLogger.log(with: WebLoginProvider.self, message: errorObject.localizedDescription)
                 return
             }
 
