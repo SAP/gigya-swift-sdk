@@ -14,12 +14,11 @@ class GeneralUtils {
         return UIDevice.current.systemVersion
     }
 
-    static func showNotification(title: String, body: String, id: String) {
+    static func showNotification(title: String, body: String, id: String, userInfo: [AnyHashable: Any] = [:]) {
         let content = UNMutableNotificationContent()
         content.title = NSLocalizedString(title, comment: "")
         content.body = NSLocalizedString(body, comment: "")
-
-
+        content.userInfo = userInfo
         let request = UNNotificationRequest(identifier: id, content: content, trigger: nil)
 
         UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)

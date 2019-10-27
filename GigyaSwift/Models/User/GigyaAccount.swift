@@ -41,6 +41,9 @@ public protocol GigyaAccountProtocol: Codable {
 
 public struct GigyaDataDefault: Codable { }
 
+/**
+The `GigyaAccount` is an default of custom generic scheme type
+ */
 public struct GigyaAccount: GigyaAccountProtocol {
 
     public var UID: String?

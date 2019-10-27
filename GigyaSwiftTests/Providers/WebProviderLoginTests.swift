@@ -11,14 +11,15 @@ import XCTest
 @testable import Gigya
 
 class WebProviderLoginTests: XCTestCase {
-    let ioc = GigyaContainerUtils()
-    var gigya = Gigya.sharedInstance()
+    let ioc = GigyaContainerUtils.shared
 
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
         ResponseDataTest.resData = nil
         ResponseDataTest.error = nil
-        Gigya.sharedInstance().container = ioc.container
+
+        Gigya.gigyaContainer = GigyaIOCContainer<GigyaAccount>()
+        Gigya.gigyaContainer?.container = ioc.container
 
         Gigya.sharedInstance().initFor(apiKey: "123")
 
@@ -89,7 +90,12 @@ class WebProviderLoginTests: XCTestCase {
         ResponseDataTest.error = error
         ResponseDataTest.providerToken = "123"
         ResponseDataTest.providerSecret = "123"
+        ResponseDataTest.errorCalled = 0
 
+        Gigya.sharedInstance().logout { (res) in
+
+        }
+        
         Gigya.sharedInstance().login(with: .yahoo, viewController: viewController) { (result) in
             switch result {
             case .success:
@@ -154,12 +160,12 @@ class WebProviderLoginTests: XCTestCase {
     }
 
     func testWebLoginGetSession() {
-        let businessApi = ioc.container.resolve(IOCBusinessApiServiceProtocol.self)!
-        let sessionService = ioc.container.resolve(IOCSessionServiceProtocol.self)!
+        let businessApi = ioc.container.resolve(BusinessApiServiceProtocol.self)!
+        let sessionService = ioc.container.resolve(SessionServiceProtocol.self)!
 
         let provider = WebLoginProvider(sessionService: sessionService, provider: WebProviderWrapperMock(), delegate: businessApi as! BusinessApiDelegate)
 
-        XCTAssertEqual(provider.getProviderSessions(token: "", expiration: ""), "")
+        XCTAssertEqual(provider.getProviderSessions(token: "", expiration: "", code: "", firstName: "", lastName: ""), "")
 
     }
 

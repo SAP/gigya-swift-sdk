@@ -10,19 +10,22 @@ import XCTest
 @testable import Gigya
 
 class PluginViewWrapperTests: XCTestCase {
-    let ioc = GigyaContainerUtils()
-    var gigya = Gigya.sharedInstance()
+    let ioc = GigyaContainerUtils.shared
 
     var config: GigyaConfig {
         return ioc.container.resolve(GigyaConfig.self)!
     }
 
-    var businessApi: IOCBusinessApiServiceProtocol {
-        return ioc.container.resolve(IOCBusinessApiServiceProtocol.self)!
+    var persistenceService: PersistenceService {
+        return ioc.container.resolve(PersistenceService.self)!
     }
 
-    var sessionService: IOCSessionServiceProtocol {
-        return ioc.container.resolve(IOCSessionServiceProtocol.self)!
+    var businessApi: BusinessApiServiceProtocol {
+        return ioc.container.resolve(BusinessApiServiceProtocol.self)!
+    }
+
+    var sessionService: SessionServiceProtocol {
+        return ioc.container.resolve(SessionServiceProtocol.self)!
     }
 
 
@@ -30,9 +33,14 @@ class PluginViewWrapperTests: XCTestCase {
         // Put setup code here. This method is called before the invocation of each test method in the class.
         ResponseDataTest.resData = nil
         ResponseDataTest.error = nil
-        Gigya.sharedInstance().container = ioc.container
 
-        Gigya.sharedInstance().initFor(apiKey: "123")
+        config.apiKey = "123"
+
+        Gigya.gigyaContainer = GigyaIOCContainer<GigyaAccount>()
+        Gigya.gigyaContainer?.container = ioc.container
+
+        
+        Gigya.sharedInstance(UserDataModel.self).initFor(apiKey: "123")
 
         ResponseDataTest.clientID = nil
         ResponseDataTest.resData = nil
@@ -52,7 +60,8 @@ class PluginViewWrapperTests: XCTestCase {
 
         let complete: (GigyaPluginEvent<GigyaAccount>) -> Void = { _ in }
 
-        let wrapper = PluginViewWrapper<GigyaAccount>(config: config, sessionService: sessionService, businessApiService: businessApi, plugin: plugin, params: [:], completion: complete)
+        let webBridge = GigyaWebBridge<GigyaAccount>(config: config, persistenceService: persistenceService, sessionService: sessionService, businessApiService: businessApi)
+        let wrapper = PluginViewWrapper<GigyaAccount>(config: config, persistenceService: persistenceService, sessionService: sessionService, businessApiService: businessApi, webBridge: webBridge, plugin: plugin, params: [:], completion: complete)
 
         let vc = FakeUIViewController()
         wrapper.presentPluginController(viewController: vc, dataType: GigyaAccount.self, screenSet: plugin)
@@ -69,8 +78,9 @@ class PluginViewWrapperTests: XCTestCase {
         let plugin = "accounts.screenSet"
 
         let complete: (GigyaPluginEvent<GigyaAccount>) -> Void = { _ in }
+        let webBridge = GigyaWebBridge<GigyaAccount>(config: config, persistenceService: persistenceService, sessionService: sessionService, businessApiService: businessApi)
 
-        let wrapper = PluginViewWrapper<GigyaAccount>(config: config, sessionService: sessionService, businessApiService: businessApi, plugin: plugin, params: [:], completion: complete)
+        let wrapper = PluginViewWrapper<GigyaAccount>(config: config, persistenceService: persistenceService, sessionService: sessionService, businessApiService: businessApi, webBridge: webBridge, plugin: plugin, params: [:], completion: complete)
 
         let vc = FakeUIViewController()
         wrapper.presentPluginController(viewController: vc, dataType: GigyaAccount.self, screenSet: plugin)
@@ -85,8 +95,9 @@ class PluginViewWrapperTests: XCTestCase {
         let plugin = "accounts.screenSet"
 
         let complete: (GigyaPluginEvent<GigyaAccount>) -> Void = { _ in }
+        let webBridge = GigyaWebBridge<GigyaAccount>(config: config, persistenceService: persistenceService, sessionService: sessionService, businessApiService: businessApi)
 
-        let wrapper = PluginViewWrapper<GigyaAccount>(config: config, sessionService: sessionService, businessApiService: businessApi, plugin: plugin, params: ["commentsUI": "true","version": -1], completion: complete)
+        let wrapper = PluginViewWrapper<GigyaAccount>(config: config, persistenceService: persistenceService, sessionService: sessionService, businessApiService: businessApi, webBridge: webBridge, plugin: plugin, params: ["commentsUI": "true","version": -1], completion: complete)
 
         let vc = FakeUIViewController()
         wrapper.presentPluginController(viewController: vc, dataType: GigyaAccount.self, screenSet: plugin)
@@ -102,7 +113,8 @@ class PluginViewWrapperTests: XCTestCase {
 
         let complete: (GigyaPluginEvent<GigyaAccount>) -> Void = { _ in }
 
-        let wrapper = PluginViewWrapper<GigyaAccount>(config: config, sessionService: sessionService, businessApiService: businessApi, plugin: plugin, params: ["RatingUI": "true","showCommentButton": "true"], completion: complete)
+        let webBridge = GigyaWebBridge<GigyaAccount>(config: config, persistenceService: persistenceService, sessionService: sessionService, businessApiService: businessApi)
+        let wrapper = PluginViewWrapper<GigyaAccount>(config: config, persistenceService: persistenceService, sessionService: sessionService, businessApiService: businessApi, webBridge: webBridge, plugin: plugin, params: ["RatingUI": "true","showCommentButton": "true"], completion: complete)
 
         let vc = FakeUIViewController()
         wrapper.presentPluginController(viewController: vc, dataType: GigyaAccount.self, screenSet: plugin)

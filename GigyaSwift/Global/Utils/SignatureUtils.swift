@@ -11,17 +11,22 @@ import CommonCrypto
 
 class SignatureUtils {
 
-    static func prepareSignature(config: GigyaConfig, session: GigyaSession?, path: String, params: [String: Any] = [:]) throws -> [String: Any] {
-        let timestamp: Int = Int(Date().timeIntervalSince1970)
-        let nonce = String(timestamp) + "_" + String(describing: arc4random())
+    static func prepareSignature(config: GigyaConfig, persistenceService: PersistenceService, session: GigyaSession?, path: String, params: [String: Any] = [:]) throws -> [String: Any] {
+        var timestamp: String?
+        var nonce: String?
+
+        if session != nil {
+            timestamp = String(Int(Date().timeIntervalSince1970))
+            nonce = String(timestamp!) + "_" + String(describing: arc4random())
+        }
 
         //swiftlint:disable:next line_length
-        let signatureModel = GigyaRequestSignature(oauthToken: session?.token, apikey: config.apiKey!, nonce: nonce, timestamp: String(timestamp), ucid: config.ucid, gmid: config.gmid)
+         let signatureModel = GigyaRequestSignature(oauthToken: session?.token, apikey: config.apiKey!, nonce: nonce, timestamp: timestamp, ucid: persistenceService.ucid, gmid: persistenceService.gmid)
 
         let encoderPrepareData = try JSONEncoder().encode(signatureModel)
-        let bodyPrepareData = try JSONSerialization.jsonObject(with: encoderPrepareData, options: .allowFragments) as! [String: String]
+        let bodyPrepareData = try JSONSerialization.jsonObject(with: encoderPrepareData, options: .allowFragments) as! [String: Any]
 
-        let combinedData = params.merging(bodyPrepareData) { $1 }
+        let combinedData = bodyPrepareData.merging(params) { $1 }
 
         var newParams = combinedData.mapValues { value -> String in
             if let isDictionary = value as? [String: Any] {

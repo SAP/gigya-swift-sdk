@@ -8,18 +8,20 @@
 
 import Foundation
 
-class BiometricService: IOCBiometricServiceProtocol, BiometricServiceInternalProtocol {
+class BiometricService: BiometricServiceProtocol, BiometricServiceInternalProtocol {
 
     let config: GigyaConfig
 
-    let sessionService: IOCSessionServiceProtocol
+    let persistenceService: PersistenceService
+
+    let sessionService: SessionServiceProtocol
 
     /**
      Returns the indication if the session was opted-in.
      */
 
     var isOptIn: Bool {
-        return config.biometricAllow ?? false
+        return persistenceService.biometricAllow
     }
 
     /**
@@ -27,12 +29,13 @@ class BiometricService: IOCBiometricServiceProtocol, BiometricServiceInternalPro
      */
 
     var isLocked: Bool {
-        return config.biometricLocked ?? false
+        return persistenceService.biometricLocked ?? false
     }
 
-    init(config: GigyaConfig, sessionService: IOCSessionServiceProtocol) {
+    init(config: GigyaConfig, persistenceService: PersistenceService, sessionService: SessionServiceProtocol) {
         self.sessionService = sessionService
         self.config = config
+        self.persistenceService = persistenceService
     }
 
     // MARK: - Biometric
@@ -47,7 +50,7 @@ class BiometricService: IOCBiometricServiceProtocol, BiometricServiceInternalPro
         sessionService.setSessionAs(biometric: true) { [weak self] (result) in
             switch result {
             case .success:
-                self?.setBiometricEnable(to: true)
+                self?.persistenceService.setBiometricEnable(to: true)
 
                 completion(.success)
             case .failure:
@@ -66,7 +69,7 @@ class BiometricService: IOCBiometricServiceProtocol, BiometricServiceInternalPro
         sessionService.setSessionAs(biometric: false) { [weak self] (result) in
             switch result {
             case .success:
-                self?.setBiometricEnable(to: false)
+                self?.persistenceService.setBiometricEnable(to: false)
 
                 completion(.success)
             case .failure:
@@ -82,13 +85,13 @@ class BiometricService: IOCBiometricServiceProtocol, BiometricServiceInternalPro
      - Parameter completion:  Response GigyaBiometricResult.
      */
     public func unlockSession(completion: @escaping (GigyaBiometricResult) -> Void) {
-        guard config.biometricAllow == true else {
+        guard persistenceService.biometricAllow == true else {
             GigyaLogger.log(with: "biometric", message: "can't load session because user don't opt in")
             completion(.failure)
             return
         }
 
-        sessionService.getSession(biometric: false) { (success) in
+        sessionService.getSession() { (success) in
             if success == true {
                 completion(.success)
             } else {
@@ -106,7 +109,7 @@ class BiometricService: IOCBiometricServiceProtocol, BiometricServiceInternalPro
     public func lockSession(completion: @escaping (GigyaBiometricResult) -> Void) {
         if isOptIn {
             sessionService.clearSession()
-            setBiometricLocked(to: true)
+            persistenceService.setBiometricLocked(to: true)
             completion(.success)
         } else {
             GigyaLogger.log(with: "biometric", message: "can't lock session because user don't opt in")
@@ -118,19 +121,7 @@ class BiometricService: IOCBiometricServiceProtocol, BiometricServiceInternalPro
     // Mark: - Internal functions
 
     internal func clearBiometric() {
-        setBiometricEnable(to: false)
-        setBiometricLocked(to: false)
-    }
-
-    private func setBiometricEnable(to allow: Bool) {
-        UserDefaults.standard.setValue(allow, forKey: InternalConfig.Storage.biometricAllow)
-
-        UserDefaults.standard.synchronize()
-    }
-
-    private func setBiometricLocked(to enable: Bool) {
-        UserDefaults.standard.setValue(enable, forKey: InternalConfig.Storage.biometricLocked)
-
-        UserDefaults.standard.synchronize()
+        persistenceService.setBiometricEnable(to: false)
+        persistenceService.setBiometricLocked(to: false)
     }
 }

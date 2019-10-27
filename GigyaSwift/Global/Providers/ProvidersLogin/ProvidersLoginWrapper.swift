@@ -14,16 +14,18 @@ class ProvidersLoginWrapper: NSObject {
 
     private var config: GigyaConfig?
 
+    private var persistenceService: PersistenceService?
+
     private let providers: [GigyaSocialProviders]
 
     private var navigationController: UINavigationController?
 
     private var completionHandler: ((_ jsonData: [String: Any]?, _ error: String?) -> Void)? = nil
 
-
-    init(config: GigyaConfig, providers: [GigyaSocialProviders]) {
+    init(config: GigyaConfig, persistenceService: PersistenceService, providers: [GigyaSocialProviders]) {
         self.providers = providers
         self.config = config
+        self.persistenceService = persistenceService
         self.webViewController = WebViewController()
 
         super.init()
@@ -62,17 +64,17 @@ class ProvidersLoginWrapper: NSObject {
     }
 
     func getUrl(params: [String: Any]?) -> URL? {
-        let lang = params?["lang"] ?? "en"
+        let lang = params?["lang"] ?? InternalConfig.General.defaultLang
         let disabledProviders = params?["disabledProviders"] ?? ""
 
-        let providersString = providers.map { "\($0.rawValue)" }.joined(separator: ",")
+        let providersString = providers.filter { $0.isSupported() }.map { "\($0)" }.joined(separator: ",")
         var urlString = "https://socialize.\(config?.apiDomain ?? "")/gs/mobile/LoginUI.aspx?"
         urlString.append("redirect_uri=gsapi://result&")
         urlString.append("requestType=login&")
         urlString.append("iosVersion=\(UIDevice.current.systemVersion)&")
         urlString.append("apikey=\(config?.apiKey ?? "")&")
-        urlString.append("gmid=\(config?.gmid ?? "")&")
-        urlString.append("ucid=\(config?.ucid ?? "")&")
+        urlString.append("gmid=\(persistenceService?.gmid ?? "")&")
+        urlString.append("ucid=\(persistenceService?.ucid ?? "")&")
         urlString.append("sdk=\(InternalConfig.General.version)&")
         urlString.append("enabledProviders=\(providersString)&")
         urlString.append("disabledProviders=\(disabledProviders)&")
@@ -97,18 +99,14 @@ extension ProvidersLoginWrapper: WKNavigationDelegate {
             if let url = navigationAction.request.url {
                  GigyaLogger.log(with: self, message: "Log redirect url: \(url)")
 
-                if let provider = url["provider"]
-                {
+                if let provider = url["provider"] {
                     completionHandler?(["provider": provider], nil)
-
-                    // TODO: delete?
-                    // dismiss viewController
-//                    navigationController?.dismiss(animated: true, completion: nil)
                 } else {
                     completionHandler?(nil, "Failed to login")
                 }
             }
         }
+        
         decisionHandler(.allow)
     }
 

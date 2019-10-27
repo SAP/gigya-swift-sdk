@@ -33,6 +33,15 @@ public class GigyaTfa {
         pushService.onRecivePush(userInfo: userInfo, completion: completion)
     }
 
+    // Foreground notification receive
+    public func foregrundNotification(with data: [AnyHashable : Any]) {
+        let title = data["title"] as? String ?? ""
+        let body = data["body"] as? String ?? ""
+        let gigyaAssertion = data["gigyaAssertion"] as? String ?? ""
+
+        GeneralUtils.showNotification(title: title, body: body, id: gigyaAssertion, userInfo: data)
+    }
+
     /**
      Save push token ( from FCM )
 

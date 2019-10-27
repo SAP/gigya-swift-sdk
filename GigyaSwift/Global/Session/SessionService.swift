@@ -7,42 +7,87 @@
 //
 
 import Foundation
+import UIKit
 
-class SessionService: IOCSessionServiceProtocol {
+class SessionService: SessionServiceProtocol {
 
-    var accountService: IOCAccountServiceProtocol
+    var accountService: AccountServiceProtocol
+
+    let keychainHelper: KeychainStorageFactory
 
     var session: GigyaSession?
 
-    var config: GigyaConfig
+    let config: GigyaConfig
+
+    let persistenceService: PersistenceService
 
     private var sessionLoad: Bool = false
 
     private let semaphore = DispatchSemaphore(value: 0)
 
-    required init(config: GigyaConfig, accountService: IOCAccountServiceProtocol) {
-        self.accountService = accountService
-        self.config = config
+    private var sessionLifeCountdownTimer: Timer?
 
-        getSession(biometric: config.biometricAllow ?? false)
+    init(config: GigyaConfig, persistenceService: PersistenceService, accountService: AccountServiceProtocol, keychainHelper: KeychainStorageFactory) {
+        self.accountService = accountService
+        self.keychainHelper = keychainHelper
+        self.config = config
+        self.persistenceService = persistenceService
+
+        checkFirstRun { [weak self] in
+            if self?.persistenceService.biometricAllow == false {
+                self?.getSession() { [weak self] success in
+                    GigyaLogger.log(with: self, message: "[SessionService.getFromInit]: is success: - \(success)")
+                }
+            }
+        }
+    }
+
+    private func registerAppStateEvents() {
+        NotificationCenter.default.addObserver(self, selector: #selector(appMovedToBackground), name: UIApplication.willResignActiveNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(appReturnToForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
+    }
+
+    private func unregisterAppStateEvents() {
+        NotificationCenter.default.removeObserver(self, name: UIApplication.willResignActiveNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIApplication.willEnterForegroundNotification, object: nil)
+    }
+
+    @objc func appMovedToBackground() {
+        sessionLifeCountdownTimer?.invalidate()
+    }
+
+    @objc func appReturnToForeground() {
+        startSessionCountdownTimerIfNeeded()
+    }
+
+    func checkFirstRun(completion: @escaping () -> Void) {
+        let hasRunBefore = persistenceService.hasRunBefore ?? false
+        if hasRunBefore == false {
+            UserDefaults.standard.setValue(true, forKey: InternalConfig.Storage.hasRunBefore)
+
+            clear(completion: completion)
+
+            GigyaLogger.log(with: self, message: "hasRunBefore: clear session")
+        } else {
+            completion()
+        }
     }
 
     func isValidSession() -> Bool {
         GigyaLogger.log(with: self, message: "[isValidSession]: start")
-        let biomatricAllow = true
 
-        if sessionLoad == false && biomatricAllow == false {
+        if sessionLoad == false && persistenceService.biometricAllow == false {
             semaphore.wait()
         }
 
-        GigyaLogger.log(with: self, message: "[isValidSession]: finish")
+        GigyaLogger.log(with: self, message: "[isValidSession]: finish - result: \(String(describing: self.session?.isValid()))")
 
-        return session?.isValid() ?? false
+        return self.session?.isValid() ?? false
     }
     
-    func setSession(_ model: SessionInfoModel?) {
+    func setSession(_ sessionInfo: SessionInfoModel?) {
         guard
-            let sessionInfo = model,
+            let sessionInfo = sessionInfo,
             let sessionToken = sessionInfo.sessionToken,
             let sessionSecret = sessionInfo.sessionSecret,
             let gsession = GigyaSession(sessionToken: sessionToken, secret: sessionSecret)
@@ -51,41 +96,67 @@ class SessionService: IOCSessionServiceProtocol {
                 return
         }
 
+        if let sessionExpiration = Double(sessionInfo.sessionExpiration ?? "0"), sessionExpiration > 0 {
+            let sessionExpirationTimestamp = Date().timeIntervalSince1970 + sessionExpiration
+            gsession.sessionExpirationTimestamp = sessionExpirationTimestamp
+        }
+
         let data = NSKeyedArchiver.archivedData(withRootObject: gsession)
 
-        GSKeychainStorage.add(with: InternalConfig.Storage.keySession, data: data) {
-            [weak self] err in
-            self?.session = gsession
+        keychainHelper.add(with: InternalConfig.Storage.keySession, data: data)  { [weak self] err in
+            GigyaLogger.log(with: self, message: "[setSession]: \(err)")
+        }
+
+        if self.session == nil {
+            persistenceService.setBiometricEnable(to: false)
+            persistenceService.setBiometricLocked(to: false)
+        }
+
+        self.session = gsession
+
+        // Check session expiration.
+        if let sessionExpiration = self.session?.sessionExpirationTimestamp, sessionExpiration > 0 {
+            startSessionCountdownTimerIfNeeded()
         }
     }
 
-    func getSession(biometric: Bool = false, completion: @escaping ((Bool) -> Void) = { _ in}) {
-        if biometric == true {
-            return
+    func getSession(completion: @escaping ((Bool) -> Void) = { _ in} ) {
+        // closure to make tasks before call completion
+        let didFinish: (Bool) -> () = { [weak self] success in
+            self?.revokeSemaphore()
+            completion(success)
         }
-        
-        GSKeychainStorage.get(name: InternalConfig.Storage.keySession) { [weak self] (result) in
+
+        keychainHelper.get(object: GigyaSession.self, name: InternalConfig.Storage.keySession) { [weak self] (result) in
             guard let self = self else {
+                didFinish(false)
                 return
             }
 
             switch result {
-            case .succses(let data):
-                guard let session: GigyaSession = NSKeyedUnarchiver.unarchiveObject(with: data!) as? GigyaSession else {
+            case .success(let sessionObject):
+                if sessionObject.isActive() == false {
+                    didFinish(true)
                     return
                 }
-                self.sessionLoad = true
-                self.session = session
 
-                completion(true)
+                self.sessionLoad = true
+                self.session = sessionObject
+
+                GigyaLogger.log(with: self, message: "session load to dump")
+
+                self.startSessionCountdownTimerIfNeeded()
+                didFinish(true)
             case .error(let error):
                 self.sessionLoad = true
-                completion(false)
+                didFinish(false)
                 GigyaLogger.log(with: self, message: error.rawValue)
             }
-
-            self.semaphore.signal()
         }
+    }
+
+    private func revokeSemaphore() {
+        self.semaphore.signal()
     }
 
     func setSessionAs(biometric: Bool, completion: @escaping (GigyaBiometricResult) -> Void) {
@@ -99,12 +170,12 @@ class SessionService: IOCSessionServiceProtocol {
             mode = .biometric
         }
 
-        GSKeychainStorage.delete(name: InternalConfig.Storage.keySession) { (result) in
+        keychainHelper.delete(name: InternalConfig.Storage.keySession) { [weak self] (result) in
             switch result {
-            case .succses:
-                GSKeychainStorage.add(with: InternalConfig.Storage.keySession, data: data, state: mode) { [weak self] (result) in
+            case .success:
+                self?.keychainHelper.add(with: InternalConfig.Storage.keySession, data: data, state: mode) { [weak self] (result) in
                     switch result {
-                    case .succses:
+                    case .success:
                         completion(.success)
                     case .error(let error):
                         GigyaLogger.log(with: self, message: "can't using session with biometric - error: \(error.rawValue)")
@@ -118,11 +189,78 @@ class SessionService: IOCSessionServiceProtocol {
         }
     }
 
+    // MARK: - SESSION EXPIRATION
+
+    private func expireSession() {
+        NotificationCenter.default.post(name: .didGigyaSessionExpire, object: nil)
+        clear()
+    }
+
+    func startSessionCountdownTimerIfNeeded() {
+        guard let session = session else { return }
+
+        if !session.isValid() {
+            expireSession()
+        } else {
+            let sessionExpiration = session.sessionExpirationTimestamp ?? 0
+            let currentTime = Date().timeIntervalSince1970
+            let timeUntilSessionExpires = sessionExpiration - currentTime
+
+            GigyaLogger.log(with: self, message: "startSessionCountdownTimerIfNeeded: Session is set to expire in: \(timeUntilSessionExpires) start countdown timer")
+
+            if timeUntilSessionExpires > 0 {
+                // start session
+                startSessionCountdown(futureTime: timeUntilSessionExpires)
+                registerAppStateEvents()
+            }
+
+        }
+    }
+
+    public func cancelSessionCountdownTimer() {
+        GigyaLogger.log(with: self, message: "[startSessionCountdown] - Timer cancel")
+
+        if let sessionLifeCountdownTimer = sessionLifeCountdownTimer {
+            sessionLifeCountdownTimer.invalidate()
+        }
+    }
+
+    private func startSessionCountdown(futureTime: Double) {
+        GigyaLogger.log(with: self, message: "[startSessionCountdown] - Timer start")
+
+        sessionLifeCountdownTimer = Timer.scheduledTimer(withTimeInterval: futureTime, repeats: false, block: { [weak self] (timer) in
+            // cancel timer
+            timer.invalidate()
+
+            // clear timer from memory
+            self?.sessionLifeCountdownTimer = nil
+
+            // unregister events (foreground / background)
+            self?.persistenceService.setExpirationSession(to: 0)
+            self?.unregisterAppStateEvents()
+
+            // call to check session expirtation (remove session and send broadcast)
+            if let session = self?.session, !session.isValid() {
+                self?.expireSession()
+            }
+
+            GigyaLogger.log(with: self, message: "[startSessionCountdown] - Timer finish")
+
+        })
+
+    }
+
     func clear() {
+        clear { }
+    }
+
+    func clear(completion: @escaping () -> Void) {
         GigyaLogger.log(with: self, message: "[logout]")
 
         // remove session from Keychain
-        removeFromKeychain()
+        removeFromKeychain {
+            completion()
+        }
 
         clearSession()
     }
@@ -134,18 +272,23 @@ class SessionService: IOCSessionServiceProtocol {
         accountService.clear()
 
         // clear session from memory
-        session = nil
+        self.session = nil
     }
 
-    private func removeFromKeychain() {
-        GSKeychainStorage.delete(name: InternalConfig.Storage.keySession) { [weak self] (result) in
+    private func removeFromKeychain(completion: @escaping () -> Void = {}) {
+        keychainHelper.delete(name: InternalConfig.Storage.keySession) { [weak self] (result) in
             switch result {
-            case .succses(let data):
-                GigyaLogger.log(with: self, message: "Session saved in the keyChain - data: \(data ?? Data())")
+            case .success(let data):
+                GigyaLogger.log(with: self, message: "Session remove from keyChain - data: \(data ?? Data())")
             case .error(let error):
-                GigyaLogger.log(with: self, message: "Problem with saveing session in the keyChain - error: \(error.rawValue)")
+                GigyaLogger.log(with: self, message: "Problem with removing session from keyChain - error: \(error.rawValue)")
             }
+
+            completion()
         }
     }
 
+    deinit {
+        GigyaLogger.log(with: self, message: "[SessionService]: failed - data not found")
+    }
 }

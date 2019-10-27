@@ -13,40 +13,7 @@ protocol GigyaConfigProtocol {
 }
 
 public class GigyaConfig {
-    var apiKey: String?
-    var apiDomain: String = InternalConfig.General.sdkDomain
-    //TODO: Need to check if need isInitSdk
-    var isInitSdk: Bool = false
-
-    var gmid: String? {
-        get {
-            return UserDefaults.standard.object(forKey: InternalConfig.Storage.GMID) as? String
-        }
-    }
+    public var apiKey: String?
+    public var apiDomain: String = InternalConfig.General.sdkDomain
     
-    var ucid: String? {
-        get {
-           return UserDefaults.standard.object(forKey: InternalConfig.Storage.UCID) as? String
-        }
-    }
-
-    internal var biometricAllow: Bool? {
-        get {
-            return UserDefaults.standard.object(forKey: InternalConfig.Storage.biometricAllow) as? Bool
-        }
-    }
-
-    internal var biometricLocked: Bool? {
-        get {
-            return UserDefaults.standard.object(forKey: InternalConfig.Storage.biometricLocked) as? Bool
-        }
-    }
-
-    // save gmid, ucid to userDefaults
-    func save(ids: InitSdkIdsModel) {
-        UserDefaults.standard.setValue(ids.gmid, forKey: InternalConfig.Storage.GMID)
-        UserDefaults.standard.setValue(ids.ucid, forKey: InternalConfig.Storage.UCID)
-
-        UserDefaults.standard.synchronize()
-    }
 }

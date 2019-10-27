@@ -16,6 +16,8 @@ class WebViewWrapperTests: XCTestCase {
 
     var config = GigyaConfig()
 
+    var persistenceService = PersistenceService()
+
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
         config.apiDomain = "us1.gigya.com"
@@ -29,7 +31,7 @@ class WebViewWrapperTests: XCTestCase {
     func testGetUrlSuccess() {
         config.apiKey = "test_valid_key"
 
-        webViewWrapper = WebLoginWrapper(config: config, providerType: .google)
+        webViewWrapper = WebLoginWrapper(config: config, persistenceService: persistenceService, providerType: .google)
 
         let url = webViewWrapper.getUrl()
         if url?.absoluteString.contains("test_valid_key") == true {
@@ -43,7 +45,7 @@ class WebViewWrapperTests: XCTestCase {
         config.apiKey = "§§urlNotVlid*&%#$@/.,\\\\//d„„23"
         config.apiDomain = "us1.gigya.com"
 
-        webViewWrapper = WebLoginWrapper(config: config, providerType: .google)
+        webViewWrapper = WebLoginWrapper(config: config, persistenceService: persistenceService, providerType: .google)
 
         XCTAssertNil(webViewWrapper.getUrl()?.absoluteString) 
     }
@@ -52,7 +54,7 @@ class WebViewWrapperTests: XCTestCase {
         config.apiKey = nil
         config.apiDomain = ""
 
-        webViewWrapper = WebLoginWrapper(config: config, providerType: .google)
+        webViewWrapper = WebLoginWrapper(config: config, persistenceService: persistenceService, providerType: .google)
 
         XCTAssert(webViewWrapper.getUrl()!.absoluteString.contains("client_id=&"))
     }
@@ -61,7 +63,7 @@ class WebViewWrapperTests: XCTestCase {
         config.apiKey = "test_valid_key"
         config.apiDomain = "us1.gigya.com"
 
-        webViewWrapper = WebLoginWrapper(config: config, providerType: .google)
+        webViewWrapper = WebLoginWrapper(config: config, persistenceService: persistenceService, providerType: .google)
 
         let vc = UIViewController()
 
@@ -76,7 +78,7 @@ class WebViewWrapperTests: XCTestCase {
         config.apiKey = "test_valid_key"
         config.apiDomain = "us1.gigya.com"
 
-        webViewWrapper = WebLoginWrapper(config: config, providerType: .google)
+        webViewWrapper = WebLoginWrapper(config: config, persistenceService: persistenceService, providerType: .google)
 
         var receivedPolicy: WKNavigationActionPolicy?
         let fakeAction = FakeNavigationAction(testRequest: URLRequest(url: URL(string: "https://socialize.us1.gigya.com/socialize.login?status=ok&access_token=123&x_access_token_secret=123")!))
@@ -95,7 +97,7 @@ class WebViewWrapperTests: XCTestCase {
         config.apiDomain = "us1.gigya.com"
         let vc = UIViewController()
 
-        webViewWrapper = WebLoginWrapper(config: config, providerType: .google)
+        webViewWrapper = WebLoginWrapper(config: config, persistenceService: persistenceService, providerType: .google)
 
         var receivedPolicy: WKNavigationActionPolicy?
         let fakeAction = FakeNavigationAction(testRequest: URLRequest(url: URL(string: "https://socialize.us1.gigya.com/socialize.login?status=none&access_token=123&x_access_token_secret=123")!))

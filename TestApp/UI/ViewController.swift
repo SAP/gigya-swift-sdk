@@ -19,11 +19,36 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let not = NotificationCenter.default
+        not.addObserver(self, selector: #selector(gigyaSessionExpire(_:)), name: Notification.Name("didGigyaSessionExpire"), object: nil)
+
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
         checkLoginState()
     }
-    
+
+    @objc func gigyaSessionExpire(_ notification: Notification) {
+        checkLoginState()
+
+        UIFactory.showAlert(vc: self, msg: "Session is expire!")
+    }
+
     @IBOutlet weak var resultTextView: UITextView?
-    
+
+    @IBAction func changeSetttings(_ sender: Any) {
+        let alert = UIFactory.getChangeSettingAlert(dc: gigya.config.apiDomain, api: gigya.config.apiKey!) { [weak self] dc, api in
+            UserDefaults.standard.removeObject(forKey: "com.gigya.GigyaSDK:ucid")
+            UserDefaults.standard.removeObject(forKey: "com.gigya.GigyaSDK:gmid")
+
+            self?.gigya.initFor(apiKey: api!, apiDomain: dc!)
+
+            UIFactory.showAlert(vc: self, msg: "your new dc: \(dc!), api: \(api!)")
+        }
+        self.present(alert, animated: true, completion: nil)
+
+    }
+
     @IBAction func showScreenSet(_ sender: Any) {
         gigya.showScreenSet(with: "Default-RegistrationLogin", viewController: self) { [weak self] (result) in
             switch result {
@@ -37,12 +62,20 @@ class ViewController: UIViewController {
 
     @IBAction func login(_ sender: Any) {
         let alert = UIFactory.getLoginAlert { email, password in
-            self.gigya.login(loginId: email!, password: password!) { [weak self] result in
+            self.gigya.login(loginId: email!, password: password!, params: ["sessionExpiration": "20"]) { [weak self] result in
                 switch result {
                 case .success(let data):
                     self?.resultTextView?.text = data.toJson()
                 case .failure(let error):
-                    print(error)
+                    
+                    switch error.error {
+                    case .gigyaError(let data):
+                        let errorData = data.toDictionary()
+                    default:
+                        break
+                    }
+
+
                     guard let interruption = error.interruption else { return }
                     // Evaluage interruption.
                     switch interruption {
@@ -73,11 +106,26 @@ class ViewController: UIViewController {
                 case .failure(let error):
                     print(error) // general error
 
+                    switch error.error {
+                    case .gigyaError(let data):
+                        print(data)
+                    default:
+                        break
+                    }
                     guard let interruption = error.interruption else { return }
                     // Evaluage interruption.
                     switch interruption {
-                    case .pendingTwoFactorRegistration:
-                        break
+                    case .pendingRegistration(let resolver):
+                        let params = ["preferences": ["Visitor": ["isConsentGranted": "true"]]]
+                        resolver.setAccount(params: params)
+
+                    case .conflitingAccount(let resolver):
+                        resolver.linkToSite(loginId: resolver.conflictingAccount?.loginID ?? "", password: "123123")
+                    case .pendingTwoFactorVerification(let interruption, let activeProviders, let factory):
+                        self?.presentTFAController(tfaProviders: activeProviders!, mode: .verification, factoryResolver: factory)
+
+                    case .pendingTwoFactorRegistration(let interruption, let inactiveProviders, let factory):
+                        self?.presentTFAController(tfaProviders: inactiveProviders!, mode: .registration, factoryResolver: factory)
                     default:
                         break
                     }
@@ -95,6 +143,7 @@ class ViewController: UIViewController {
         }
 
         let alert = UIFactory.getConnectionAlert(title: "Add social connection") { [weak self] providerName in
+
            if let provider = GigyaSocialProviders(rawValue: providerName) {
             guard let self = self else { return }
                 self.gigya.addConnection(provider: provider, viewController: self, params: [:]) { result in
@@ -168,10 +217,14 @@ class ViewController: UIViewController {
                 self?.resultTextView?.text = data.toJson()
             case .failure(let error):
                 print(error)
-
+                
                 guard let interruption = error.interruption else { return }
                 // Evaluage interruption.
                 switch interruption {
+                case .pendingRegistration(let resolver):
+                    resolver.setAccount(params: ["profile":["zip": "121673"]])
+                    break
+//                    resolver.setAccount(params: ["profile": ["zip": "1234"]])
                 case .pendingVerification(let resolver):
                     print("regToken: \(resolver)")
                 case .conflitingAccount(let resolver):
@@ -179,7 +232,6 @@ class ViewController: UIViewController {
                 default:
                     break
                 }
-                
             }
         }
     }
@@ -285,7 +337,7 @@ class ViewController: UIViewController {
         gigya.biometric.optIn { (result) in
             switch result {
             case .success:
-                // soccess
+                // success
                 UIFactory.showAlert(vc: self, msg: "Opt-in success")
             case .failure:
                 //error
@@ -340,4 +392,3 @@ class ViewController: UIViewController {
         }
     }
 }
-    

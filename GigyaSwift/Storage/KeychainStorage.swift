@@ -10,13 +10,20 @@ import Foundation
 
 typealias GSKeychainCompletionHandler = (KeychainResult) -> Void
 
-internal class GSKeychainStorage {
+internal class KeychainStorageFactory {
+    let plistConfig: PlistConfig?
+
+    init(plistFactory: PlistConfigFactory) {
+        self.plistConfig = plistFactory.parsePlistConfig()
+    }
+
     /*
      Mehod: add
      Params: name: String, data: Data?, completionHandler: Clousre
      Action: Save Dictionary in Keychain with name
     */
-    internal static func add(with name: String, data: Data?, state: KeychainMode = .regular, completionHandler: GSKeychainCompletionHandler?) {
+
+    func add(with name: String, data: Data?, state: KeychainMode = .regular, completionHandler: GSKeychainCompletionHandler?) {
         guard let data = data else {
             assertionFailure("There is not have data")
             return
@@ -37,15 +44,17 @@ internal class GSKeychainStorage {
                                             kSecUseAuthenticationUI: true,
                                             kSecAttrAccessControl: accessControl]
 
-        DispatchQueue.global().async {
+        DispatchQueue.global(qos: .utility).async {
             let status = SecItemAdd(attributes as CFDictionary, nil)
 
             if status != errSecSuccess {
                 completionHandler?(KeychainResult.error(error: .addFailed))
+
+                GigyaLogger.log(with: self, message: "[KeychainStorageFactory.add]: failed - \(status.description)")
                 return
             }
 
-            completionHandler?(KeychainResult.succses(data: nil))
+            completionHandler?(KeychainResult.success(data: nil))
             return
         }
     }
@@ -55,27 +64,48 @@ internal class GSKeychainStorage {
      Params: name: String, completionHandler: Clousre
      Action: get Data from Keychain
      */
-    static internal func get(name: String, _ completionHandler: GSKeychainCompletionHandler?) {
+    func get<T: NSObject & NSCoding>(object: T.Type, name: String, _ completionHandler: @escaping ((KeychainResultWithObject<T>) -> Void)) {
         let query: [CFString: Any] = [ kSecClass: kSecClassGenericPassword,
                                       kSecAttrService: InternalConfig.Storage.serviceName,
                                       kSecAttrAccount: name,
                                       kSecReturnData: true,
-                                      kSecUseOperationPrompt: InternalConfig.Storage.defaultTouchIDMessage // TODO: need to add message from plist
+                                      kSecUseOperationPrompt: plistConfig?.touchIDText ?? InternalConfig.Storage.defaultTouchIDMessage
                                       ]
 
-        DispatchQueue.global().async {
+        DispatchQueue.global(qos: .userInitiated).async {
             var extractedData: CFTypeRef?
             let status = SecItemCopyMatching(query as CFDictionary, &extractedData)
 
             if status == errSecSuccess {
                 if let data = extractedData as? Data {
-                    completionHandler?(KeychainResult.succses(data: data))
+
+                    var session: T?
+                    if #available(iOS 11.0, *) {
+                        do {
+                            session = try NSKeyedUnarchiver.unarchivedObject(ofClass: T.self, from: data)
+                        } catch (let error) {
+                            GigyaLogger.log(with: self, message: "[getSession]: failed unarchiveObject session - \(error.localizedDescription) ")
+                        }
+                    } else {
+                        // Fallback on earlier versions
+                        session = NSKeyedUnarchiver.unarchiveObject(with: data) as? T
+                    }
+
+                    guard let sessionObject = session else {
+                        completionHandler(.error(error: .getAttributeFailed))
+                        return
+                    }
+                    
+                    completionHandler(.success(data: sessionObject))
+                    GigyaLogger.log(with: self, message: "[KeychainStorageFactory.get]: succses")
                     return
                 } else {
-                    completionHandler?(KeychainResult.error(error: .getAttributeFailed))
+                    completionHandler(.error(error: .getAttributeFailed))
+                    GigyaLogger.log(with: self, message: "[KeychainStorageFactory.get]: failed - data not found")
                 }
             } else {
-                    completionHandler?(KeychainResult.error(error: .getAttributeFailed))
+                    completionHandler(.error(error: .getAttributeFailed))
+                    GigyaLogger.log(with: self, message: "[KeychainStorageFactory.get]: failed - \(status)")
             }
         }
     }
@@ -85,19 +115,23 @@ internal class GSKeychainStorage {
      Params: name: String, completionHandler: Clousre
      Action: delete Data from Keychain
      */
-    static internal func delete(name: String, completionHandler: GSKeychainCompletionHandler?) {
+    func delete(name: String, completionHandler: GSKeychainCompletionHandler?) {
         let query: [CFString: Any] = [kSecClass: kSecClassGenericPassword,
                                        kSecAttrService: InternalConfig.Storage.serviceName,
                                        kSecAttrAccount: name]
 
-        DispatchQueue.global().async {
+        DispatchQueue.global(qos: .userInitiated).async {
             let status = SecItemDelete(query as CFDictionary)
 
             if status != errSecSuccess {
                 completionHandler?(KeychainResult.error(error: .deleteFailed))
             } else {
-                completionHandler?(KeychainResult.succses(data: nil))
+                completionHandler?(KeychainResult.success(data: nil))
             }
         }
+    }
+
+    deinit {
+        GigyaLogger.log(with: self, message: "[KeychainStorageFactory]: deinit")
     }
 }

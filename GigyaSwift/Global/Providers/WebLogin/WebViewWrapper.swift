@@ -17,7 +17,9 @@ class WebLoginWrapper: NSObject, ProviderWrapperProtocol {
 
     private var config: GigyaConfig?
 
-    private let providerType: GigyaSocialProviders
+    private var persistenceService: PersistenceService?
+
+    private var providerType: GigyaSocialProviders
 
     private var navigationController: UINavigationController?
 
@@ -27,9 +29,10 @@ class WebLoginWrapper: NSObject, ProviderWrapperProtocol {
         self.providerType = .google
     }
 
-    init(config: GigyaConfig, providerType: GigyaSocialProviders) {
+    init(config: GigyaConfig, persistenceService: PersistenceService, providerType: GigyaSocialProviders) {
         self.providerType = providerType
         self.config = config
+        self.persistenceService = persistenceService
         self.webViewController = WebViewController()
 
         super.init()
@@ -66,8 +69,8 @@ class WebLoginWrapper: NSObject, ProviderWrapperProtocol {
         urlString.append("redirect_uri=gsapi://login_result&")
         urlString.append("response_type=token&")
         urlString.append("client_id=\(config?.apiKey ?? "")&")
-        urlString.append("gmid=\(config?.gmid ?? "")&")
-        urlString.append("ucid=\(config?.ucid ?? "")&")
+        urlString.append("gmid=\(persistenceService?.gmid ?? "")&")
+        urlString.append("ucid=\(persistenceService?.ucid ?? "")&")
         urlString.append("x_secret_type=oauth1&")
         urlString.append("x_endPoint=socialize.login&")
         urlString.append("x_sdk=\(InternalConfig.General.version)&")
@@ -84,7 +87,7 @@ class WebLoginWrapper: NSObject, ProviderWrapperProtocol {
 
 extension WebLoginWrapper: WKNavigationDelegate {
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
-        if navigationAction.navigationType == .other {
+        if navigationAction.navigationType == .other || navigationAction.navigationType == .formSubmitted {
             if let url = navigationAction.request.url {
                 GigyaLogger.log(with: providerType.rawValue, message: "Log redirect url: \(url)")
                 if
@@ -92,13 +95,19 @@ extension WebLoginWrapper: WKNavigationDelegate {
                     status == "ok",
                     let accessToken = url["access_token"],
                     let tokenSecret = url["x_access_token_secret"] {
-                    let json = ["status": status, "accessToken": accessToken, "tokenSecret": tokenSecret]
-                        completionHandler?(json, nil)
+                    let sessionExpiration = url["expires_in"] ?? "0"
 
-                        // dismiss viewController
-                        navigationController?.dismiss(animated: true, completion: nil)
-                } else if let status = url["status"], status != "ok" {
-                    completionHandler?(nil, "Failed to login")
+                    let json = ["status": status, "accessToken": accessToken, "tokenSecret": tokenSecret, "sessionExpiration": sessionExpiration]
+
+                    // dismiss viewController
+                    navigationController?.dismiss(animated: true, completion: nil)
+
+                    completionHandler?(json, nil)
+                } else if let error = url["error_description"], !error.isEmpty {
+
+                    navigationController?.dismiss(animated: true, completion: nil)
+
+                    completionHandler?(nil, url.absoluteString)
                 }
             }
         }

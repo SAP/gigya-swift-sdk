@@ -18,9 +18,9 @@ class WebLoginProvider: Provider {
 
     var completionHandler: (String?, String?, Error?) -> Void = { _, _, _  in }
 
-    let sessionService: IOCSessionServiceProtocol
+    let sessionService: SessionServiceProtocol
 
-    init(sessionService: IOCSessionServiceProtocol, provider: ProviderWrapperProtocol, delegate: BusinessApiDelegate) {
+    init(sessionService: SessionServiceProtocol, provider: ProviderWrapperProtocol, delegate: BusinessApiDelegate) {
         self.provider = provider
         self.delegate = delegate
         self.sessionService = sessionService
@@ -53,7 +53,9 @@ class WebLoginProvider: Provider {
                     return
             }
 
-            let sessionInfo = SessionInfoModel(sessionToken: token, sessionSecret: secret)
+            let sessionExpiration = jsonData?["sessionExpiration"] as? String
+
+            let sessionInfo = SessionInfoModel(sessionToken: token, sessionSecret: secret, sessionExpiration: sessionExpiration)
             self?.sessionService.setSession(sessionInfo)
 
             self?.delegate?.callGetAccount(completion: { (result) in
@@ -68,7 +70,7 @@ class WebLoginProvider: Provider {
         didFinish()
     }
 
-    func getProviderSessions(token: String, expiration: String?) -> String {
+    func getProviderSessions(token: String, expiration: String?, code: String?, firstName: String?, lastName: String?) -> String {
         return ""
     }
 

@@ -9,17 +9,17 @@
 import Foundation
 @testable import Gigya
 
-class ApiServiceMock: IOCApiServiceProtocol {
+class ApiServiceMock: ApiServiceProtocol {
 
     var resData: Any?
 
     var showError: Bool = false
 
-    let request: IOCNetworkAdapterProtocol?
+    let request: NetworkAdapterProtocol?
 
-    let sessionService: IOCSessionServiceProtocol
+    let sessionService: SessionServiceProtocol
 
-    required init(with requst: IOCNetworkAdapterProtocol, session: IOCSessionServiceProtocol) {
+    required init(with requst: NetworkAdapterProtocol, session: SessionServiceProtocol) {
         self.request = requst
         self.sessionService = session
     }

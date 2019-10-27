@@ -6,12 +6,12 @@ include:
   - "**/Models/GigyaSocialProviders.swift"
   - "**/Models/User/GigyaAccount.swift"
   - "**/Global/Plugins/GigyaPluginEvent.swift"
-
+  - "**/Global/Biometric/BiometricServiceProtocol.swift"
 
 copyright: 'Gigya © 2019.'
 
 //swift_version: 5
 
 theme: fullwidth
-
+undocumented_text: ""
 

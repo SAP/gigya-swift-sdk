@@ -21,7 +21,7 @@ internal enum KeychainMode {
     func attributeAccess() -> CFTypeRef {
         switch self {
         case .biometric:
-            return kSecAttrAccessibleWhenUnlockedThisDeviceOnly
+            return kSecAttrAccessibleWhenUnlocked
         case .regular:
             return kSecAttrAccessibleAlwaysThisDeviceOnly
         }
@@ -38,7 +38,12 @@ internal enum KeychainMode {
 }
 
 internal enum KeychainResult {
-    case succses(data: Data?)
+    case success(data: Data?)
+    case error(error: KeychainError)
+}
+
+internal enum KeychainResultWithObject<T: Any> {
+    case success(data: T)
     case error(error: KeychainError)
 }
 

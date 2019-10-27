@@ -8,20 +8,23 @@
 
 import Foundation
 
-protocol IOCSocialProvidersManagerProtocol {
+protocol SocialProvidersManagerProtocol {
     func getProvider(with socialProvider: GigyaSocialProviders, delegate: BusinessApiDelegate) -> Provider
 }
 
-class SocialProvidersManager: IOCSocialProvidersManagerProtocol {
+class SocialProvidersManager: SocialProvidersManagerProtocol {
     let config: GigyaConfig
 
-    let sessionService: IOCSessionServiceProtocol
+    let sessionService: SessionServiceProtocol
+
+    let persistenceService: PersistenceService
 
     private var providersContainer: [GigyaNativeSocialProviders: ProviderWrapperProtocol] = [:]
 
-    init(sessionService: IOCSessionServiceProtocol, config: GigyaConfig) {
+    init(sessionService: SessionServiceProtocol, config: GigyaConfig, persistenceService: PersistenceService) {
         self.sessionService = sessionService
         self.config = config
+        self.persistenceService = persistenceService
         
         checkIncludedProviders()
     }
@@ -46,15 +49,18 @@ class SocialProvidersManager: IOCSocialProvidersManagerProtocol {
                 GigyaLogger.log(with: self, message: "[\(socialProvider.rawValue)] - use sdk")
 
                 return SocialLoginProvider(providerType: socialProvider, provider: wrapper, delegate: delegate)
-            } else {
-                if socialProvider == .facebook || socialProvider == .wechat {
-                    GigyaLogger.error(message: "[\(socialProvider.rawValue)] can't login with WebView, install related sdk.")
-                }
             }
+        }
+
+        switch socialProvider {
+        case .facebook, .wechat:
+            GigyaLogger.error(message: "[\(socialProvider.rawValue)] can't login with WebView, install related sdk.")
+        default:
+            break
         }
 
         GigyaLogger.log(with: self, message: "[\(socialProvider.rawValue)] - use webview")
 
-        return WebLoginProvider(sessionService: sessionService, provider: WebLoginWrapper(config: config, providerType: socialProvider), delegate: delegate)
+        return WebLoginProvider(sessionService: sessionService, provider: WebLoginWrapper(config: config, persistenceService: persistenceService, providerType: socialProvider), delegate: delegate)
     }
 }

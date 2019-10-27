@@ -9,6 +9,8 @@ target 'TestApp' do
 
   # Pods for TestApp
   pod 'GoogleSignIn', :modular_headers => false
+  pod 'FBSDKCoreKit'
+  pod 'FBSDKLoginKit'
 
   pod 'Firebase/Analytics'
   pod 'Firebase/Messaging'

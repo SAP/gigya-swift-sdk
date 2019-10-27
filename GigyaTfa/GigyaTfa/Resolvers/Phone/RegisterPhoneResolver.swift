@@ -15,6 +15,8 @@ public class RegisterPhoneResolver<T: GigyaAccountProtocol>: TFAResolver<T>, Reg
     internal let interruption: GigyaResponseModel
     internal let completionHandler: (GigyaLoginResult<T>) -> Void
 
+    private var provider: TFAProvider = .phone
+
     lazy var verifyCodeResolver: VerifyCodeResolver = {
         return VerifyCodeResolver(businessApiDelegate: self.businessApiDelegate, interruption: self.interruption, completionHandler: self.completionHandler)
     }()
@@ -27,10 +29,14 @@ public class RegisterPhoneResolver<T: GigyaAccountProtocol>: TFAResolver<T>, Reg
         super.init(businessApiDelegate: businessApiDelegate, interruption: interruption, completionHandler: completionHandler)
     }
 
-    public func registerPhone(phone: String, method: TFAPhoneMethod = .sms, completion: @escaping (RegisterPhonesResult) -> Void ) {
+    public func provider(_ provider: TFAProvider) {
+        self.provider = provider
+    }
+
+    public func registerPhone(phone: String, method: TFAPhoneMethod = .sms, lang: String = "en", completion: @escaping (RegisterPhonesResult) -> Void ) {
         var params: [String: String] = [:]
         params["regToken"] = self.regToken
-        params["provider"] = TFAProvider.phone.rawValue
+        params["provider"] = provider.rawValue
         params["mode"] = TFAMode.register.rawValue
 
         businessApiDelegate.sendApi(dataType: InitTFAModel.self, api: GigyaDefinitions.API.initTFA, params: params) { [weak self] result in
@@ -38,19 +44,19 @@ public class RegisterPhoneResolver<T: GigyaAccountProtocol>: TFAResolver<T>, Reg
             case .success(let data):
                 self?.gigyaAssertion = data.gigyaAssertion
 
-                self?.registerPhoneNumber(with: phone, method: method, completion: completion)
+                self?.registerPhoneNumber(with: phone, method: method, lang: lang, completion: completion)
             case .failure(let error):
                 completion(.error(error))
             }
         }
     }
 
-    private func registerPhoneNumber(with phone: String, method: TFAPhoneMethod = .sms, completion: @escaping (RegisterPhonesResult) -> Void) {
+    private func registerPhoneNumber(with phone: String, method: TFAPhoneMethod = .sms, lang: String, completion: @escaping (RegisterPhonesResult) -> Void) {
         var params: [String: String] = [:]
         params["phone"] = phone
         params["gigyaAssertion"] = self.gigyaAssertion
         params["method"] = method.rawValue
-        params["lang"] = "eng"
+        params["lang"] = lang
 
         businessApiDelegate.sendApi(dataType: TFAVerificationCodeModel.self, api: GigyaDefinitions.API.sendVerificationCodeTFA, params: params) { [weak self] result in
             guard let self = self else { return }

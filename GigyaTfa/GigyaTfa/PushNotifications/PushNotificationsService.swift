@@ -14,11 +14,11 @@ class PushNotificationsService: NSObject, PushNotificationsServiceProtocol {
 
     let container: IOCContainer
 
-    let apiService: IOCApiServiceProtocol
+    let apiService: ApiServiceProtocol
 
-    let sessionService: IOCSessionServiceProtocol
+    let sessionService: SessionServiceProtocol
 
-    let biometricService: IOCBiometricServiceProtocol
+    let biometricService: BiometricServiceProtocol
 
     // User defaults params
     let pushSaveKey = "com.gigya.GigyaTfa:pushKey"
@@ -29,9 +29,9 @@ class PushNotificationsService: NSObject, PushNotificationsServiceProtocol {
 
     required override init() {
         self.container = Gigya.getContainer()
-        self.apiService = container.resolve(IOCApiServiceProtocol.self)!
-        self.sessionService = container.resolve(IOCSessionServiceProtocol.self)!
-        self.biometricService = container.resolve(IOCBiometricServiceProtocol.self)!
+        self.apiService = container.resolve(ApiServiceProtocol.self)!
+        self.sessionService = container.resolve(SessionServiceProtocol.self)!
+        self.biometricService = container.resolve(BiometricServiceProtocol.self)!
 
         super.init()
     }
@@ -141,7 +141,6 @@ class PushNotificationsService: NSObject, PushNotificationsServiceProtocol {
             switch result {
             case .success:
                 UserDefaults.standard.set(pushToken, forKey: self.pushSaveKey)
-                UserDefaults.standard.synchronize()
             case .failure(let error):
                 GigyaLogger.log(with: self, message: error.localizedDescription)
             }
@@ -165,34 +164,35 @@ class PushNotificationsService: NSObject, PushNotificationsServiceProtocol {
         }
 
         let completeVerificationFlow = { [weak self] in
-            switch mode {
-            case .optin:
-                self?.pushOptIn?.verifyOptIn(verificationToken: verificationToken)
-            case .verify:
-                self?.completeVerification(gigyaAssertion: gigyaAssertion, verificationToken: verificationToken)
-            case .cancel:
-                break
-            }
-        }
-
-        AlertControllerUtils.show(title: title, message: msg) { [weak self] isApproved in
-            if isApproved == true {
-                guard let self = self else { return }
-
-                if self.biometricService.isOptIn {
-                    self.biometricService.unlockSession { (result) in
-                        switch result {
-                        case .success:
-                            completeVerificationFlow()
-                        case .failure:
-                            GigyaLogger.log(with: self, message: "can't unlock session")
-                        }
+            AlertControllerUtils.show(title: title, message: msg) { [weak self] isApproved in
+                if isApproved == true {
+                    switch mode {
+                    case .optin:
+                        self?.pushOptIn?.verifyOptIn(verificationToken: verificationToken)
+                    case .verify:
+                        self?.completeVerification(gigyaAssertion: gigyaAssertion, verificationToken: verificationToken)
+                    case .cancel:
+                        break
                     }
-                } else {
-                    completeVerificationFlow()
                 }
             }
         }
+
+        if biometricService.isOptIn {
+            DispatchQueue.main.async { [weak self] in
+                self?.biometricService.unlockSession { (result) in
+                    switch result {
+                    case .success:
+                        completeVerificationFlow()
+                    case .failure:
+                        GigyaLogger.log(with: self, message: "can't unlock session")
+                    }
+                }
+            }
+        } else {
+            completeVerificationFlow()
+        }
+
     }
 
     private func completeVerification(gigyaAssertion: String, verificationToken: String) {
@@ -202,14 +202,6 @@ class PushNotificationsService: NSObject, PushNotificationsServiceProtocol {
             switch result {
             case .success:
                 GigyaLogger.log(with: self, message: "completeVerification - success")
-
-                let content = UNMutableNotificationContent()
-                content.title = NSLocalizedString("Verify push TFA", comment: "")
-                content.body = NSLocalizedString("Successfully authenticated login request", comment: "")
-
-                let request = UNNotificationRequest(identifier: "completeVerification", content: content, trigger: nil)
-
-                UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
 
                 GeneralUtils.showNotification(title: "Verify push TFA", body: "Successfully authenticated login request", id: "completeVerification")
 

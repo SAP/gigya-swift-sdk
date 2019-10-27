@@ -10,21 +10,22 @@ import XCTest
 @testable import Gigya
 
 class SocialManagerTests: XCTestCase {
-    let ioc = GigyaContainerUtils()
+    let ioc = GigyaContainerUtils.shared
     
-    var socialManager: IOCSocialProvidersManagerProtocol?
-    var sessionService: IOCSessionServiceProtocol?
+    var socialManager: SocialProvidersManagerProtocol?
+    var sessionService: SessionServiceProtocol?
     var config: GigyaConfig?
+    var persistenceService: PersistenceService?
 
     override func setUp() {
-        sessionService = ioc.container.resolve(IOCSessionServiceProtocol.self)!
+        sessionService = ioc.container.resolve(SessionServiceProtocol.self)!
         config = ioc.container.resolve(GigyaConfig.self)!
-
+        persistenceService = ioc.container.resolve(PersistenceService.self)
     }
 
     func testGetGoogleProvider() {
         do {
-            self.socialManager = SocialProvidersManager(sessionService: self.sessionService!, config: self.config!)
+            self.socialManager = SocialProvidersManager(sessionService: self.sessionService!, config: self.config!, persistenceService: persistenceService!)
             let _ = self.socialManager?.getProvider(with: .google, delegate: self)
             XCTAssert(true)
 
@@ -34,7 +35,7 @@ class SocialManagerTests: XCTestCase {
     // check provider not extend to ProviderWrapperProtocol and check provider sdk not install
     func testGetProvider() {
         do {
-            self.socialManager = SocialProvidersManager(sessionService: self.sessionService!, config: self.config!)
+            self.socialManager = SocialProvidersManager(sessionService: self.sessionService!, config: self.config!, persistenceService: persistenceService!)
 
             self.expectFatalError(expectedMessage: "[facebook] can't login with WebView, install related sdk.") {
                 let _ = self.socialManager?.getProvider(with: .facebook, delegate: self)
@@ -45,7 +46,7 @@ class SocialManagerTests: XCTestCase {
 
     func testGetWechatProvider() {
         do {
-            self.socialManager = SocialProvidersManager(sessionService: self.sessionService!, config: self.config!)
+            self.socialManager = SocialProvidersManager(sessionService: self.sessionService!, config: self.config!, persistenceService: persistenceService!)
 
             self.expectFatalError(expectedMessage: "[wechat] can't login with WebView, install related sdk.") {
                 let _ = self.socialManager?.getProvider(with: .wechat, delegate: self)
@@ -57,6 +58,7 @@ class SocialManagerTests: XCTestCase {
 }
 
 extension SocialManagerTests: BusinessApiDelegate {
+
     func callSetAccount<T>(dataType: T.Type, params: [String : Any], completion: @escaping (GigyaApiResult<T>) -> Void) where T : Decodable, T : Encodable {
         
     }
@@ -69,11 +71,11 @@ extension SocialManagerTests: BusinessApiDelegate {
         
     }
 
-    func sendApi(api: String, params: [String : String], completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void) {
+    func sendApi(api: String, params: [String: Any], completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void) {
 
     }
 
-    func sendApi<T>(dataType: T.Type, api: String, params: [String : String], completion: @escaping (GigyaApiResult<T>) -> Void) where T : Decodable, T : Encodable {
+    func sendApi<T>(dataType: T.Type, api: String, params: [String: Any], completion: @escaping (GigyaApiResult<T>) -> Void) where T : Decodable, T : Encodable {
 
     }
 

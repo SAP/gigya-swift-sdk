@@ -11,9 +11,9 @@ import UIKit
 
 public protocol BusinessApiDelegate: class {
     
-    func sendApi(api: String, params: [String: String], completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void )
+    func sendApi(api: String, params: [String: Any], completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void )
 
-    func sendApi<T: Codable>(dataType: T.Type, api: String, params: [String: String], completion: @escaping (GigyaApiResult<T>) -> Void)
+    func sendApi<T: Codable>(dataType: T.Type, api: String, params: [String: Any], completion: @escaping (GigyaApiResult<T>) -> Void)
 
     func callSetAccount<T: GigyaAccountProtocol>(dataType: T.Type, params: [String: Any], completion: @escaping (GigyaApiResult<T>) -> Void)
 
@@ -34,10 +34,10 @@ extension BusinessApiService: BusinessApiDelegate {
         self.setAccount(params: params, completion: completion)
     }
     
-    func sendApi<T: Codable>(dataType: T.Type, api: String, params: [String: String], completion: @escaping (GigyaApiResult<T>) -> Void) {
+    func sendApi<T: Codable>(dataType: T.Type, api: String, params: [String: Any], completion: @escaping (GigyaApiResult<T>) -> Void) {
         self.send(dataType: dataType, api: api, params: params, completion: completion)
     }
-    func sendApi(api: String, params: [String: String] = [:], completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void ) {
+    func sendApi(api: String, params: [String: Any] = [:], completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void ) {
         self.send(api: api, params: params, completion: completion)
     }
 

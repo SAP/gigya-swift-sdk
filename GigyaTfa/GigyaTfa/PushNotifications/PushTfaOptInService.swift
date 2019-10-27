@@ -20,7 +20,7 @@ protocol PushTfaOptInServiceProtocol {
 }
 
 class PushTfaOptInService: PushTfaOptInServiceProtocol {
-    let apiService: IOCApiServiceProtocol
+    let apiService: ApiServiceProtocol
 
     var gigyaAssertion: String?
 
@@ -30,7 +30,7 @@ class PushTfaOptInService: PushTfaOptInServiceProtocol {
 
     var completion: (GigyaApiResult<GigyaDictionary>) -> Void = { _ in }
 
-    init(apiService: IOCApiServiceProtocol, completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void) {
+    init(apiService: ApiServiceProtocol, completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void) {
         self.apiService = apiService
         self.completion = completion
     }
@@ -50,7 +50,6 @@ class PushTfaOptInService: PushTfaOptInServiceProtocol {
         apiService.send(model: model, responseType: InitTFAModel.self) { [weak self] result in
             switch result {
             case .success(let data):
-                print(data)
                 guard let gigyaAssertion = data.gigyaAssertion else {
                     self?.completion(.failure(.emptyResponse))
                     return
@@ -59,6 +58,7 @@ class PushTfaOptInService: PushTfaOptInServiceProtocol {
                 self?.gigyaAssertion = gigyaAssertion
 
                 self?.callOptIn()
+                
             case .failure(let error):
                 self?.completion(.failure(error))
             }

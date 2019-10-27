@@ -11,11 +11,11 @@ import XCTest
 
 class GigyaApiService: XCTestCase {
 
-    var ioc: GigyaContainerUtils?
+    var ioc = GigyaContainerUtils.shared
 
-    var apiService: IOCApiServiceProtocol?
+    var apiService: ApiServiceProtocol?
 
-    var businessApi: IOCBusinessApiServiceProtocol?
+    var businessApi: BusinessApiServiceProtocol?
 
     var resData: NSData = NSData()
 
@@ -23,8 +23,8 @@ class GigyaApiService: XCTestCase {
         // Put setup code here. This method is called before the invocation of each test method in the class.
         ioc = GigyaContainerUtils()
 
-        apiService =  ioc?.container.resolve(IOCApiServiceProtocol.self)
-        businessApi =  ioc?.container.resolve(IOCBusinessApiServiceProtocol.self)
+        apiService =  ioc.container.resolve(ApiServiceProtocol.self)
+        businessApi =  ioc.container.resolve(BusinessApiServiceProtocol.self)
 
         ResponseDataTest.resData = nil
         ResponseDataTest.error = nil
@@ -193,13 +193,6 @@ class GigyaApiService: XCTestCase {
             }
         }
 
-    }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
     }
 
 }

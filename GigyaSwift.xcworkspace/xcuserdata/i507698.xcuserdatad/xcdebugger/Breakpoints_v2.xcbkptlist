@@ -1,100 +1,226 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Bucket
+   uuid = "BF3AF872-82BF-41AA-A7E2-241838E603E2"
    type = "0"
    version = "2.0">
    <Breakpoints>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GigyaSwift/Global/Resolvers/InterruptionResolverFactory.swift"
-            timestampString = "583169688.13033"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "43"
-            endingLineNumber = "43"
-            landmarkName = "resolve(error:businessDelegate:completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
+            uuid = "A0981668-818F-4F27-8BC0-B4693E2B4FC2"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GigyaTfa/PushNotifications/PushTfaOptInService.swift"
-            timestampString = "583151606.502733"
+            filePath = "TestApp/UI/ViewController.swift"
+            timestampString = "586020535.026024"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "81"
-            endingLineNumber = "81"
-            landmarkName = "callOptIn()"
+            startingLineNumber = "310"
+            endingLineNumber = "310"
+            landmarkName = "ValidateLoginID()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            uuid = "AE78F2B7-CC49-4465-B9A7-2B4CE1A7BA22"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GigyaSwiftTests/TfaTests/TFAVerificationpPhoneResolverTests.swift"
-            timestampString = "583169688.1305389"
+            filePath = "TestApp/UI/ViewController.swift"
+            timestampString = "586020535.0261"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "46"
-            endingLineNumber = "46"
-            landmarkName = "runTfaVerificationPhoneResolver(with:callback:callback2:phone:errorCallback:)"
+            startingLineNumber = "307"
+            endingLineNumber = "307"
+            landmarkName = "ValidateLoginID()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
+            uuid = "464AFA45-261C-4AA4-A62D-597E84192669"
             shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GigyaSwiftTests/Services/ApiServiceMock.swift"
+            timestampString = "584872352.0536751"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
+            landmarkName = "send(model:responseType:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "BE4E4C10-90F8-43E8-94AA-F3FA125E509A"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GigyaSwift/Global/Api/BusinessApiService.swift"
-            timestampString = "584362181.753069"
+            timestampString = "586011859.9970289"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "132"
-            endingLineNumber = "132"
-            landmarkName = "register(email:password:params:dataType:completion:)"
+            startingLineNumber = "38"
+            endingLineNumber = "38"
+            landmarkName = "init(config:persistenceService:apiService:sessionService:accountService:providerFactory:interruptionsHandler:biometricService:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D0EB79BB-9628-49CF-9632-004EFC364E3A"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Pods/FirebaseMessaging/Firebase/Messaging/FIRMessagingRemoteNotificationsProxy.m"
+            timestampString = "585047901.754769"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "109"
+            endingLineNumber = "109"
+            landmarkName = "-unswizzleAllMethods"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "03B05B02-EF3D-44C4-B6F9-798F1C2234CB"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Pods/FirebaseMessaging/Firebase/Messaging/FIRMessaging.m"
+            timestampString = "585048911.534246"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "825"
+            endingLineNumber = "825"
+            landmarkName = "+createFIRMessagingMessageWithMessage:to:withID:timeToLive:delay:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "25DD34CA-7163-4ED1-BE08-748CD5FFAC60"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Pods/FirebaseMessaging/Firebase/Messaging/FIRMessagingRemoteNotificationsProxy.m"
+            timestampString = "585047901.755233"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "177"
+            endingLineNumber = "177"
+            landmarkName = "-unswizzleUserNotificationCenterDelegate:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5B344D4E-86DB-48B6-8B99-C3DE9C6EE47C"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Pods/FirebaseMessaging/Firebase/Messaging/FIRMessagingRemoteNotificationsProxy.m"
+            timestampString = "585047901.756024"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "156"
+            endingLineNumber = "156"
+            landmarkName = "-swizzleUserNotificationCenterDelegate:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A8FFBCEE-1DCB-4D9E-95A5-72E92E19A503"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Pods/FirebaseMessaging/Firebase/Messaging/FIRMessagingReceiver.m"
+            timestampString = "585049542.727546"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
+            landmarkName = "-didReceiveMessage:withIdentifier:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "66EE203E-A290-4CF5-AD00-D714F5BFD7BC"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Pods/FirebaseMessaging/Firebase/Messaging/FIRMessagingDataMessageManager.m"
+            timestampString = "585049563.40624"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "204"
+            endingLineNumber = "204"
+            landmarkName = "-didReceiveParsedMessage:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "46D3AD90-BBE7-4190-A534-EC0C4D0DA856"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GigyaSwift/Network/Request/ApiService.swift"
+            timestampString = "586019470.1525151"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "28"
+            endingLineNumber = "28"
+            landmarkName = "send(model:responseType:completion:)"
             landmarkType = "7">
             <Locations>
                <Location
-                  shouldBeEnabled = "Yes"
+                  uuid = "46D3AD90-BBE7-4190-A534-EC0C4D0DA856 - a04b7aed83d03b83"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "Gigya.BusinessApiService.register&lt;A where A: Gigya.GigyaAccountProtocol&gt;(email: Swift.String, password: Swift.String, params: Swift.Dictionary&lt;Swift.String, Any&gt;, dataType: A.Type, completion: (Gigya.GigyaLoginResult&lt;A&gt;) -&gt; ()) -&gt; ()"
+                  symbolName = "Gigya.ApiService.send&lt;A where A: Swift.Decodable, A: Swift.Encodable&gt;(model: Gigya.ApiRequestModel, responseType: A.Type, completion: (Gigya.GigyaApiResult&lt;A&gt;) -&gt; ()) -&gt; ()"
                   moduleName = "Gigya"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Global/Api/BusinessApiService.swift"
-                  timestampString = "584362182.6990449"
+                  urlString = "file:///Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Network/Request/ApiService.swift"
+                  timestampString = "585737346.642974"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "133"
-                  endingLineNumber = "133"
-                  offsetFromSymbolStart = "286">
+                  startingLineNumber = "28"
+                  endingLineNumber = "28"
+                  offsetFromSymbolStart = "335">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  uuid = "46D3AD90-BBE7-4190-A534-EC0C4D0DA856 - 717c62942d90c3e5"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Gigya.GigyaApiResult&lt;Swift.Dictionary&lt;Swift.String, Gigya.AnyCodable&gt;&gt;) -&gt; () in Gigya.BusinessApiService.register&lt;A where A: Gigya.GigyaAccountProtocol&gt;(email: Swift.String, password: Swift.String, params: Swift.Dictionary&lt;Swift.String, Any&gt;, dataType: A.Type, completion: (Gigya.GigyaLoginResult&lt;A&gt;) -&gt; ()) -&gt; ()"
+                  symbolName = "closure #1 (Swift.Optional&lt;__C.NSData&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Gigya.ApiService.send&lt;A where A: Swift.Decodable, A: Swift.Encodable&gt;(model: Gigya.ApiRequestModel, responseType: A.Type, completion: (Gigya.GigyaApiResult&lt;A&gt;) -&gt; ()) -&gt; ()"
                   moduleName = "Gigya"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Global/Api/BusinessApiService.swift"
-                  timestampString = "584362182.701748"
+                  urlString = "file:///Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Network/Request/ApiService.swift"
+                  timestampString = "585737346.64468"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "133"
-                  endingLineNumber = "133"
-                  offsetFromSymbolStart = "349">
+                  startingLineNumber = "28"
+                  endingLineNumber = "28"
+                  offsetFromSymbolStart = "355">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -102,96 +228,151 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            uuid = "F33D3BE7-EAF8-49C4-90B6-8D94D9ADB0D8"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GigyaSwift/Global/Api/BusinessApiService.swift"
-            timestampString = "584362181.753289"
+            filePath = "GigyaSwiftTests/TfaTests/TFAVerificationEmailResolverTests.swift"
+            timestampString = "585751366.414782"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "136"
-            endingLineNumber = "136"
-            landmarkName = "register(email:password:params:dataType:completion:)"
+            startingLineNumber = "61"
+            endingLineNumber = "61"
+            landmarkName = "runTfaVerificationEmailResolver(with:callback:callback2:email:errorCallback:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
+            uuid = "3B73DAD6-74E3-4B64-A7A4-C864240783C2"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GigyaSwift/Global/Api/BusinessApiService.swift"
-            timestampString = "584362181.753404"
+            filePath = "GigyaSwiftTests/TfaTests/TFAVerificationpTotpResolverTests.swift"
+            timestampString = "585751366.414829"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "142"
-            endingLineNumber = "142"
-            landmarkName = "register(email:password:params:dataType:completion:)"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
+            landmarkName = "runTfaVerificationTotpResolver(with:callback:callback2:phone:errorCallback:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
+            uuid = "E25398C4-F1ED-4C83-9611-83710BAE7D9B"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GigyaSwiftTests/Network/Mocks/NetworkAdapterMock.swift"
+            timestampString = "585751366.414871"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "19"
+            endingLineNumber = "19"
+            landmarkName = "send(model:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C6DA349B-7FEC-4F84-AB87-16C9E2F9CBA3"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GigyaSwift/Global/Utils/SignatureUtils.swift"
+            timestampString = "586011701.618125"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "17"
+            endingLineNumber = "17"
+            landmarkName = "prepareSignature(config:persistenceService:session:path:params:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "792ACD36-3FD7-45CD-8682-5AE37B126E5F"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TestApp/UI/ViewController.swift"
+            timestampString = "586020535.026481"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "238"
+            endingLineNumber = "238"
+            landmarkName = "loginWithProvider(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "DFE4E7F7-EDC0-41F1-A625-E2B78C7BDB24"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TestApp/UI/ViewController.swift"
-            timestampString = "584362181.7535321"
+            timestampString = "586020535.02653"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "289"
-            endingLineNumber = "289"
-            landmarkName = "OptiInBiometric(_:)"
+            startingLineNumber = "251"
+            endingLineNumber = "251"
+            landmarkName = "loginWithProviders(_:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "DFE4E7F7-EDC0-41F1-A625-E2B78C7BDB24 - 647e1e1b63a3343d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Gigya.GigyaLoginResult&lt;TestApp.UserHost&gt;) -&gt; () in TestApp.ViewController.loginWithProviders(Any) -&gt; ()"
+                  moduleName = "TestApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/i507698/SDKs/gigya-swift-sdk/TestApp/UI/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "251"
+                  endingLineNumber = "251"
+                  offsetFromSymbolStart = "10059">
+               </Location>
+               <Location
+                  uuid = "DFE4E7F7-EDC0-41F1-A625-E2B78C7BDB24 - 647e1e1b63a3343d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Gigya.GigyaLoginResult&lt;TestApp.UserHost&gt;) -&gt; () in TestApp.ViewController.loginWithProviders(Any) -&gt; ()"
+                  moduleName = "TestApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/i507698/SDKs/gigya-swift-sdk/TestApp/UI/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "251"
+                  endingLineNumber = "251"
+                  offsetFromSymbolStart = "10358">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            uuid = "47AAF5FE-181F-4222-8071-139555E28F0F"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "TestApp/UI/ViewController.swift"
-            timestampString = "584362181.75418"
+            filePath = "GigyaSwift/Network/Service/NetworkProvider.swift"
+            timestampString = "586012150.658895"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "286"
-            endingLineNumber = "286"
-            landmarkName = "OptiInBiometric(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GigyaSwift/Global/Biometric/BiometricService.swift"
-            timestampString = "584362181.754741"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "48"
-            endingLineNumber = "48"
-            landmarkName = "optIn(completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GigyaSwift/Global/Biometric/BiometricService.swift"
-            timestampString = "584362181.754899"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "50"
-            endingLineNumber = "50"
-            landmarkName = "optIn(completion:)"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
+            landmarkName = "dataRequest(gsession:path:params:method:completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

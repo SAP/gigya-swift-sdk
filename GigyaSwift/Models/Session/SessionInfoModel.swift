@@ -11,9 +11,11 @@ import Foundation
 public struct SessionInfoModel: Codable {
     let sessionToken: String?
     let sessionSecret: String?
+    let sessionExpiration: String?
 
     private enum CodingKeys: String, CodingKey {
         case sessionToken = "sessionToken"
         case sessionSecret = "sessionSecret"
+        case sessionExpiration = "expires_in"
     }
 }

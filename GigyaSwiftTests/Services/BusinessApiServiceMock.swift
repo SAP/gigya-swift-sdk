@@ -14,9 +14,13 @@ class BusinessApiServiceMock: BusinessApiService {
 
     var showError: Bool = false
 
-    required init(config: GigyaConfig ,apiService: IOCApiServiceProtocol, sessionService: IOCSessionServiceProtocol, accountService: IOCAccountServiceProtocol, providerFactory: IOCSocialProvidersManagerProtocol, interruptionsHandler: IOCInterruptionResolverFactory) {
-        super.init(config: config, apiService: apiService, sessionService: sessionService, accountService: accountService, providerFactory: providerFactory, interruptionsHandler: interruptionsHandler)
+    required init(config: GigyaConfig, persistenceService: PersistenceService, apiService: ApiServiceProtocol, sessionService: SessionServiceProtocol, accountService: AccountServiceProtocol, providerFactory: SocialProvidersManagerProtocol, interruptionsHandler: InterruptionResolverFactoryProtocol, biometricService: BiometricServiceInternalProtocol) {
+        super.init(config: config, persistenceService: persistenceService, apiService: apiService, sessionService: sessionService, accountService: accountService, providerFactory: providerFactory, interruptionsHandler: interruptionsHandler, biometricService: biometricService)
+
     }
+//    required init(config: GigyaConfig, persistenceService: PersistenceService ,apiService: ApiServiceProtocol, sessionService: SessionServiceProtocol, accountService: AccountServiceProtocol, providerFactory: SocialProvidersManagerProtocol, interruptionsHandler: InterruptionResolverFactory, biometricService: BiometricServiceInternalProtocol) {
+//        super.init(config: config, persistenceService: persistenceService, apiService: apiService, sessionService: sessionService, accountService: accountService, providerFactory: providerFactory, interruptionsHandler: interruptionsHandler, biometricService: biometricService)
+//    }
 //
 //    override func send(api: String, params: [String: String] = [:], completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void) {
 //        let requestMock = NetworkAdapterMock()

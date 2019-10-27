@@ -12,13 +12,15 @@ import XCTest
 class NetworkAdapterTests: XCTestCase {
 
     override func setUp() {
-        Gigya.sharedInstance().initFor(apiKey: "123")
+
     }
     
     func testRequest() {
         let config = GigyaConfig()
         let accountService = AccountService()
-        let adapter = NetworkAdapter(config: config, sessionService: SessionService(config: config, accountService: accountService))
+        config.apiKey = "123"
+    
+        let adapter = NetworkAdapter(config: config, persistenceService: PersistenceService(), sessionService: SessionService(config: config, persistenceService: PersistenceService(), accountService: accountService, keychainHelper: KeychainStorageFactory(plistFactory: PlistConfigFactory())))
 
         adapter.send(model: ApiRequestModel(method: "test")) { (data, error) in
             

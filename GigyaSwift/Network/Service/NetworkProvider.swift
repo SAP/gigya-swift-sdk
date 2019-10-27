@@ -13,9 +13,12 @@ class NetworkProvider {
 
     let config: GigyaConfig
 
-    init(url: String, config: GigyaConfig) {
+    let persistenceService: PersistenceService
+
+    init(url: String, config: GigyaConfig, persistenceService: PersistenceService) {
         self.url = url
         self.config = config
+        self.persistenceService = persistenceService
     }
 
     func dataRequest(gsession: GigyaSession?,
@@ -33,12 +36,13 @@ class NetworkProvider {
 
         dataURL.appendPathComponent(path)
 
-        let session = URLSession.shared
+        let session = URLSession.sharedInternal
+
         var request: URLRequest = URLRequest(url: dataURL)
 
         // Encode body request to params
         do {
-            let bodyData = try SignatureUtils.prepareSignature(config: config, session: gsession, path: path, params: newParams ?? [:])
+            let bodyData = try SignatureUtils.prepareSignature(config: config, persistenceService: persistenceService, session: gsession, path: path, params: newParams ?? [:])
             let bodyDataParmas = bodyData.mapValues { value -> String in
                 return "\(value)"
             }
@@ -47,7 +51,7 @@ class NetworkProvider {
 
             request.httpBody = bodyString.dropLast().data(using: String.Encoding.utf8)
 
-            GigyaLogger.log(with: self, message: "httpBody, jsonData: \(String(data: request.httpBody!, encoding: .utf8) ?? "no body data")")
+            GigyaLogger.log(with: self, message: "[Request]:httpBody, jsonData: \(bodyDataParmas)")
 
         } catch {
             GigyaLogger.log(with: self, message: "Error: \(NetworkError.createURLRequestFailed.localizedDescription)")
@@ -70,7 +74,7 @@ class NetworkProvider {
                 completion(nil, NetworkError.emptyResponse)
                 return
             }
-
+            
             // Decode json result to Struct
             completion(data as NSData, nil)
 

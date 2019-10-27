@@ -11,22 +11,21 @@ import XCTest
 
 class BusinessApiTest: XCTestCase {
 
-    var ioc: GigyaContainerUtils?
+    var ioc = GigyaContainerUtils.shared
 
-    var apiService: IOCApiServiceProtocol?
+    var apiService: ApiServiceProtocol?
 
-    var businessApi: IOCBusinessApiServiceProtocol?
+    var businessApi: BusinessApiServiceProtocol?
 
-    var accountService: IOCAccountServiceProtocol?
+    var accountService: AccountServiceProtocol?
 
     var resData: NSData = NSData()
 
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
-        ioc = GigyaContainerUtils()
 
-        businessApi =  ioc?.container.resolve(IOCBusinessApiServiceProtocol.self)
-        accountService =  ioc?.container.resolve(IOCAccountServiceProtocol.self)
+        businessApi =  ioc.container.resolve(BusinessApiServiceProtocol.self)
+        accountService =  ioc.container.resolve(AccountServiceProtocol.self)
 
         ResponseDataTest.resData = nil
         ResponseDataTest.error = nil
@@ -143,8 +142,12 @@ class BusinessApiTest: XCTestCase {
 
         let account = GigyaAccount(UID: "123", profile: nil, UIDSignature: "123", apiVersion: 1, created: nil, createdTimestamp: nil, isActive: nil, isRegistered: nil, isVerified: nil, lastLogin: nil, lastLoginTimestamp: nil, lastUpdated: nil, lastUpdatedTimestamp: nil, loginProvider: nil, oldestDataUpdated: nil, oldestDataUpdatedTimestamp: nil, registered: nil, registeredTimestamp: nil, signatureTimestamp: nil, socialProviders: nil, verified: nil, verifiedTimestamp: nil, data: nil)
 
+        let expectation = self.expectation(description: "testSetAccount")
+
         businessApi?.setAccount(obj: account, completion: { (result) in
             self.businessApi?.getAccount(clearAccount: true, dataType: GigyaAccount.self, completion: { (reult) in
+                expectation.fulfill()
+                
                 switch result {
                 case .success(let data):
                     XCTAssertEqual(data.UID, account.UID)
@@ -153,6 +156,8 @@ class BusinessApiTest: XCTestCase {
                 }
             })
         })
+        self.waitForExpectations(timeout: 5, handler: nil)
+
     }
 
     func testSetAccountFailInGetAccount() {

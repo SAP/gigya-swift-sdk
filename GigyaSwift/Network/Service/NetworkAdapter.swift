@@ -10,19 +10,22 @@ import Foundation
 
 public typealias GigyaResponseHandler = (NSData?, Error?) -> Void
 
-public protocol IOCNetworkAdapterProtocol {
+public protocol NetworkAdapterProtocol {
     func send(model: ApiRequestModel, completion: @escaping GigyaResponseHandler)
 }
 
-class NetworkAdapter: IOCNetworkAdapterProtocol {
+class NetworkAdapter: NetworkAdapterProtocol {
     let config: GigyaConfig
 
-    let sessionService: IOCSessionServiceProtocol
+    let persistenceService: PersistenceService
+
+    let sessionService: SessionServiceProtocol
 
     private let serial = DispatchQueue(label: "httpRequests")
 
-    init(config: GigyaConfig, sessionService: IOCSessionServiceProtocol) {
+    init(config: GigyaConfig, persistenceService: PersistenceService, sessionService: SessionServiceProtocol) {
         self.config = config
+        self.persistenceService = persistenceService
         self.sessionService = sessionService
     }
 
@@ -33,7 +36,7 @@ class NetworkAdapter: IOCNetworkAdapterProtocol {
                 return
             }
 
-            let networkService = NetworkProvider(url: self.config.apiDomain, config: self.config)
+            let networkService = NetworkProvider(url: self.config.apiDomain, config: self.config, persistenceService: self.persistenceService)
 
             networkService.dataRequest(gsession: self.sessionService.session, path: model.method, params: model.params, completion: { (data, error) in
                 completion(data, error)

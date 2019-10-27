@@ -8,7 +8,7 @@
 
 import Foundation
 
-class AccountService: IOCAccountServiceProtocol {
+class AccountService: AccountServiceProtocol {
     var account: Any? {
         didSet {
             self.accountInvalidationTimestamp = Int(Date().timeIntervalSince1970) + accountCacheTime.minToSec()

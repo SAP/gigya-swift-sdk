@@ -11,14 +11,16 @@ import XCTest
 @testable import GigyaTfa
 
 class TFAVerificationpEmailResolverTests: XCTestCase {
-    var ioc: GigyaContainerUtils?
+    var ioc = GigyaContainerUtils.shared
 
-    var businessApi: IOCBusinessApiServiceProtocol?
+    var businessApi: BusinessApiServiceProtocol?
+
+    var resolver: RegisteredEmailsResolver<RequestTestModel>?
 
     override func setUp() {
         ioc = GigyaContainerUtils()
 
-        businessApi =  ioc?.container.resolve(IOCBusinessApiServiceProtocol.self)
+        businessApi =  ioc.container.resolve(BusinessApiServiceProtocol.self)
 
         ResponseDataTest.resData = nil
         ResponseDataTest.error = nil
@@ -27,7 +29,7 @@ class TFAVerificationpEmailResolverTests: XCTestCase {
 
     }
 
-    func runTfaVerificationEmailResolver(with dic: [String: Any], callback: @escaping () -> () = {}, callback2: @escaping () -> () = {}, email: String? = "test@test.com", errorCallback: @escaping (String) -> () = { error in XCTFail(error) }) {
+    func runTfaVerificationEmailResolver(with dic: [String: Any], callback: @escaping () -> () = {}, callback2: @escaping () -> () = {}, email: String? = "test@test.com", errorCallback: @escaping (String) -> () = { _ in }) {
         // swiftlint:disable force_try
         let jsonData = try! JSONSerialization.data(withJSONObject: dic, options: .prettyPrinted)
         // swiftlint:enable force_try
@@ -64,13 +66,13 @@ class TFAVerificationpEmailResolverTests: XCTestCase {
                 // Evaluage interruption.
                 switch interruption {
                 case .pendingTwoFactorVerification(let interruption, let providers, let factory):
-                    let resolver = factory.getResolver(for: RegisteredEmailsResolver.self)
+                    self.resolver = factory.getResolver(for: RegisteredEmailsResolver.self)
                     // Reference inactive providers (registration).
                     callback()
-                    resolver.getRegisteredEmails(completion: { (result) in
+                    self.resolver?.getRegisteredEmails(completion: { (result) in
                         switch result {
                         case .registeredEmails(let emails):
-                            resolver.sendEmailCode(with: emails.last!, completion: { (result) in
+                            self.resolver?.sendEmailCode(with: emails.last!, completion: { (result) in
                                 switch result {
                                 case .emailVerificationCodeSent(let resolver):
                                     callback2()
@@ -102,6 +104,7 @@ class TFAVerificationpEmailResolverTests: XCTestCase {
                 }
             }
         })
+
     }
 
     func testTfaSuccess() {
@@ -121,9 +124,14 @@ class TFAVerificationpEmailResolverTests: XCTestCase {
 
         let dic: [String: Any] = ["errorCode": 0, "callId": "34324", "statusCode": 200, "gigyaAssertion": "123","phvToken": "123","providerAssertion": "123","regToken": "123","activeProviders": activeProviders, "inactiveProviders": inactiveProviders, "emails": emails]
 
+        let expectation = self.expectation(description: "emailTestTfaError")
+
         runTfaVerificationEmailResolver(with: dic, errorCallback: { error in
             XCTAssertNotNil(error)
+            expectation.fulfill()
         })
+        self.waitForExpectations(timeout: 5, handler: nil)
+
     }
 
     func testTfaiVerifyError() {
@@ -131,6 +139,8 @@ class TFAVerificationpEmailResolverTests: XCTestCase {
         let inactiveProviders = [["name": "livelink"]]
 
         let dic: [String: Any] = ["errorCode": 0, "callId": "34324", "statusCode": 200, "gigyaAssertion": "123","phvToken": "123","providerAssertion": "123","regToken": "123","activeProviders": activeProviders, "inactiveProviders": inactiveProviders]
+
+        let expectation = self.expectation(description: "emailTestTfaiVerifyError")
 
         runTfaVerificationEmailResolver(with: dic, callback2: {
             // swiftlint:disable force_try
@@ -144,7 +154,11 @@ class TFAVerificationpEmailResolverTests: XCTestCase {
             ResponseDataTest.error = nil
         }, errorCallback: { error in
             XCTAssertNotNil(error)
+            expectation.fulfill()
         })
+
+        self.waitForExpectations(timeout: 5, handler: nil)
+
     }
 
     func testTfaFinalizeError() {
@@ -152,6 +166,8 @@ class TFAVerificationpEmailResolverTests: XCTestCase {
         let inactiveProviders = [["name": "livelink"]]
 
         let dic: [String: Any] = ["errorCode": 0, "callId": "34324", "statusCode": 200, "gigyaAssertion": "123","phvToken": "123","providerAssertion": "123","regToken": "123","activeProviders": activeProviders, "inactiveProviders": inactiveProviders]
+
+        let expectation = self.expectation(description: "emailTestTfaFinalizeError")
 
         runTfaVerificationEmailResolver(with: dic, callback2: {
             ResponseDataTest.errorCalledCallBack = {
@@ -170,7 +186,11 @@ class TFAVerificationpEmailResolverTests: XCTestCase {
             }
         }, errorCallback: { error in
             XCTAssertNotNil(error)
+            expectation.fulfill()
         })
+
+        self.waitForExpectations(timeout: 5, handler: nil)
+
     }
 
     func testTfaSendEmailCodeNotFoundError() {
@@ -179,9 +199,15 @@ class TFAVerificationpEmailResolverTests: XCTestCase {
 
         let dic: [String: Any] = ["errorCode": 0, "callId": "34324", "statusCode": 200, "gigyaAssertion": "123","phvToken": "123","providerAssertion": "123","regToken": "123","activeProviders": activeProviders, "inactiveProviders": inactiveProviders]
 
+        let expectation = self.expectation(description: "emailTestTfaSendEmailCodeNotFoundError")
+
         runTfaVerificationEmailResolver(with: dic, email: "", errorCallback: { error in
             XCTAssertNotNil(error)
+            expectation.fulfill()
+
         })
+        self.waitForExpectations(timeout: 5, handler: nil)
+
     }
 
     func testTfaSendSmsError() {
@@ -189,6 +215,8 @@ class TFAVerificationpEmailResolverTests: XCTestCase {
         let inactiveProviders = [["name": "livelink"]]
 
         let dic: [String: Any] = ["errorCode": 0, "callId": "34324", "statusCode": 200, "gigyaAssertion": "123","phvToken": "123","providerAssertion": "123","regToken": "123","activeProviders": activeProviders, "inactiveProviders": inactiveProviders]
+
+        let expectation = self.expectation(description: "emailTestTfaSendSmsError")
 
         runTfaVerificationEmailResolver(with: dic, callback: {
             ResponseDataTest.errorCalledCallBack = {
@@ -207,21 +235,28 @@ class TFAVerificationpEmailResolverTests: XCTestCase {
             }
         }, errorCallback: { error in
             XCTAssertNotNil(error)
+            expectation.fulfill()
+
         })
+        self.waitForExpectations(timeout: 5, handler: nil)
+
     }
 
     func testTfaWithoutAssertion() {
         let activeProviders = [["name": "gigyaEmail"]]
         let dic: [String: Any] = ["errorCode": 0, "callId": "34324", "statusCode": 200,"regToken": "123","activeProviders": activeProviders]
 
+
         runTfaVerificationEmailResolver(with: dic, errorCallback: { error in
             XCTAssertNotNil(error)
         })
+
     }
 
     func testTfaWithoutGigyaAssertionAfterInit() {
         let activeProviders = [["name": "gigyaEmail"]]
         let dic: [String: Any] = ["errorCode": 0, "callId": "34324", "statusCode": 200,"gigyaAssertion": "123","phvToken": "123","providerAssertion": "123","regToken": "123","activeProviders": activeProviders]
+        let expectation = self.expectation(description: "emailTestTfaWithoutGigyaAssertionAfterInit")
 
         runTfaVerificationEmailResolver(with: dic, callback: {
             ResponseDataTest.errorCalledCallBack = {
@@ -234,12 +269,18 @@ class TFAVerificationpEmailResolverTests: XCTestCase {
 
                     ResponseDataTest.resData = jsonData
                     ResponseDataTest.error = nil
+                    ResponseDataTest.errorCalledCallBack = { }
                 }
             }
 
         }, errorCallback: { error in
+            expectation.fulfill()
+
             XCTAssertNotNil(error)
+
         })
+        self.waitForExpectations(timeout: 5, handler: nil)
+
     }
 
 }

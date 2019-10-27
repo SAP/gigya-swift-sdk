@@ -14,6 +14,9 @@ public struct ApiRequestModel {
 
     public init(method: String, params: [String: Any]? = nil) {
         self.method = method
-        self.params = params
+        
+        var newParams = params
+        newParams?["targetEnv"] = "mobile"
+        self.params = newParams
     }
 }
