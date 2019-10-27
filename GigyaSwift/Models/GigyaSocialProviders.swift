@@ -88,12 +88,12 @@ public enum GigyaSocialProviders {
         switch rawValue {
         case "facebook":
             self = .facebook
-        case "google":
+        case "google", "googleplus":
             self = .google
         case "yahoo":
             self = .yahoo
         case "twitter":
-            self = .yahoo
+            self = .twitter
         case "line":
             self = .line
         case "wechat":
