@@ -15,5 +15,4 @@ protocol GigyaConfigProtocol {
 public class GigyaConfig {
     public var apiKey: String?
     public var apiDomain: String = InternalConfig.General.sdkDomain
-    
 }

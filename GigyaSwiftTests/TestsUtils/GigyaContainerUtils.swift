@@ -29,6 +29,10 @@ class GigyaContainerUtils {
             return NetworkAdapterMock(config: config!, persistenceService: persistenceService!, sessionService: sessionService!)
         }
 
+        container.register(service: InterruptionResolverFactoryProtocol.self) { _ in
+            return InterruptionResolverFactory()
+        }
+        
         container.register(service: SocialProvidersManagerProtocol.self) { resolver in
             let sessionService = resolver.resolve(SessionServiceProtocol.self)
             return ProviderFactoryMock(sessionService: sessionService!, config: resolver.resolve(GigyaConfig.self)!)

@@ -295,6 +295,14 @@ class GigyaCoreTest: XCTestCase {
         }
     }
 
+    func testSetInterupptions() {
+        Gigya.sharedInstance().handleInterruptions(sdkHandles: true)
+
+
+        let interruption = ioc.container.resolve(InterruptionResolverFactoryProtocol.self)
+
+        XCTAssert(interruption!.isEnabled)
+    }
 //    func testShowComments() {
 //        let viewController = UIViewController()
 //

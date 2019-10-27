@@ -10,7 +10,23 @@ import Foundation
 import LineSDK
 import Gigya
 
-class LineWrapper: NSObject, ProviderWrapperProtocol {
+class LineWrapper: ProviderWrapperProtocol {
+    var clientID: String?
+
+    private lazy var lineLogin: LineInternalWrapper = {
+        return LineInternalWrapper()
+    }()
+
+    required init() {
+    }
+
+    func login(params: [String: Any]? = nil, viewController: UIViewController? = nil,
+               completion: @escaping (_ jsonData: [String: Any]?, _ error: String?) -> Void) {
+        lineLogin.login(params: params, viewController: viewController, completion: completion)
+    }
+}
+
+class LineInternalWrapper: NSObject {
 
     var clientID: String? = {
         let config = (Bundle.main.infoDictionary?["LineSDKConfig"] as? [String: String])
@@ -37,7 +53,7 @@ class LineWrapper: NSObject, ProviderWrapperProtocol {
     }
 }
 
-extension LineWrapper: LineSDKLoginDelegate {
+extension LineInternalWrapper: LineSDKLoginDelegate {
     func didLogin(_ login: LineSDKLogin, credential: LineSDKCredential?, profile: LineSDKProfile?, error: Error?) {
         guard error == nil else {
             completionHandler(nil, error?.localizedDescription)

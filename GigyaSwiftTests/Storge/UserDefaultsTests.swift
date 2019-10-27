@@ -51,5 +51,20 @@ class UserDefaultsTests: XCTestCase {
             XCTAssert(true)
         }
     }
+
+    func testExpirationSession() {
+        persistenceService?.setExpirationSession(to: 7)
+
+        XCTAssertEqual(persistenceService!.expirationSession, 7)
+    }
+
+    func testSaveGmid() {
+        let data = InitSdkIdsModel(ucid: "123", gmid: "123")
+        persistenceService?.save(ids: data)
+
+        XCTAssertEqual(persistenceService!.gmid, "123")
+        XCTAssertEqual(persistenceService!.ucid, "123")
+
+    }
     
 }

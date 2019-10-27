@@ -43,4 +43,10 @@ extension Provider {
         completion(.failure(.providerError(data: error)))
     }
 
+    func loginGigyaFailed<T: GigyaAccountProtocol>(error: NetworkError, completion: @escaping (GigyaApiResult<T>) -> Void) {
+        GigyaLogger.log(with: self, message: "[loginFailed] - error: \(error)")
+
+        completion(.failure(error))
+    }
+
 }

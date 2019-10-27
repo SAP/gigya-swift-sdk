@@ -66,11 +66,17 @@ class ApiService: ApiServiceProtocol {
             sessionService?.setSession(gigyaResponse.sessionInfo)
 
             if gigyaResponse.errorCode == 0 {
-                let typedResponse = try DecodeEncodeUtils.decode(fromType: responseType.self, data: data as Data)
+                do {
+                    let typedResponse = try DecodeEncodeUtils.decode(fromType: responseType.self, data: data as Data)
 
-                GigyaLogger.log(with: self, message: "[Response]: \(typedResponse)")
+                    GigyaLogger.log(with: self, message: "[Response]: \(typedResponse)")
 
-                main { completion(GigyaApiResult.success(data: typedResponse)) }
+                    main { completion(GigyaApiResult.success(data: typedResponse)) }
+                } catch let error {
+                    GigyaLogger.log(with: self, message: error.localizedDescription)
+                    main { completion(.failure(NetworkError.jsonParsingError(error: error))) }
+                }
+
             } else {    
                 GigyaLogger.log(with: self, message: "Failed: \(gigyaResponse)")
                 main { completion(.failure(.gigyaError(data: gigyaResponse))) }

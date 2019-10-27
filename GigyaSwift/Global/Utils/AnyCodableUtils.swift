@@ -21,7 +21,7 @@ extension AnyCodable: Codable {
         let container = try decoder.singleValueContainer()
 
         if container.decodeNil() {
-            self.init(())
+            self.init("null")
         } else if let bool = try? container.decode(Bool.self) {
             self.init(bool)
         } else if let int = try? container.decode(Int.self) {

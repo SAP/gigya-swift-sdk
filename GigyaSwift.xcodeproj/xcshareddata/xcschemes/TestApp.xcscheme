@@ -58,6 +58,16 @@
                ReferencedContainer = "container:GigyaSwift.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "E7A71CB1232F9FDC00993A61"
+               BuildableName = "TestAppUITests.xctest"
+               BlueprintName = "TestAppUITests"
+               ReferencedContainer = "container:GigyaSwift.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
