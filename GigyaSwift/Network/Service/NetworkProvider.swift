@@ -63,7 +63,10 @@ class NetworkProvider {
         // Set the request method type
         request.httpMethod = method.description
 
-        let task = session.dataTask(with: request, completionHandler: { data, _, error in
+        let task = session.dataTask(with: request, completionHandler: { [weak config] data, response, error in
+            if let headerResponse = response as? HTTPURLResponse, let date = headerResponse.allHeaderFields["Date"] as? String {
+                config?.offset = Date().timeIntervalSince1970 - date.stringToDate()!.timeIntervalSince1970
+            }
 
             guard error == nil else {
                 completion(nil, NetworkError.networkError(error: error!))
@@ -86,5 +89,9 @@ class NetworkProvider {
     private func makeUrl(with path: String) -> String {
         let url = "https://\(path.split(separator: ".")[0]).\(self.url)"
         return url
+    }
+
+    private func updateTimestampOffset(dateHeader: String) {
+
     }
 }

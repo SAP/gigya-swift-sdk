@@ -40,4 +40,12 @@ extension String {
         }
         return map
     }
+
+    func stringToDate() -> Date? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "EEE, dd MMM yyyy HH:mm:ss zzz"
+        let getDate = dateFormatter.date(from: self)
+
+        return getDate
+    }
 }

@@ -16,7 +16,7 @@ class SignatureUtils {
         var nonce: String?
 
         if session != nil {
-            timestamp = String(Int(Date().timeIntervalSince1970))
+            timestamp = String(Int(Date().timeIntervalSince1970 + config.offset))
             nonce = String(timestamp!) + "_" + String(describing: arc4random())
         }
 
