@@ -10,6 +10,10 @@ import Foundation
 
 public typealias PluginEventData = [String: Any]
 
+/**
+A class that represents available WebSDK exposed events.
+ */
+
 public enum GigyaPluginEvent<T: GigyaAccountProtocol> {
     case onBeforeValidation(event : PluginEventData)
     case onBeforeSubmit(event: PluginEventData)

@@ -36,12 +36,36 @@ public struct LoginApiError<T: GigyaAccountProtocol> {
  The `GigyaInterruptions` is an Enum representing account interruptions handling.
  */
 public enum GigyaInterruptions<T: GigyaAccountProtocol> {
+    /**
+    Pending Registration interruption.
+
+     - Parameter resolver: is a factory of `PendingRegistrationResolver`
+    */
+
     case pendingRegistration(resolver: PendingRegistrationResolver<T>)
+
+    /**
+    Pending Verification interruption.
+
+     - Parameter regToken: Registration token required for resolving the interruption.
+    */
 
     case pendingVerification(regToken: String)
 
+    /**
+    Pending Password Change interruption.
+
+     - Parameter regToken: Registration token required for resolving the interruption.
+    */
+
     case pendingPasswordChange(regToken: String)
 
+
+    /**
+    Confliting Account interruption.
+
+     - Parameter resolver: is a factory of `LinkAccountsResolver`
+    */
     case conflitingAccount(resolver: LinkAccountsResolver<T>)
 
     case pendingTwoFactorRegistration(response: GigyaResponseModel, inactiveProviders: [TFAProviderModel]?, factory: TFAResolverFactory<T>)

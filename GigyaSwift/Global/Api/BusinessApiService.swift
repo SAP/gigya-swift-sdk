@@ -58,9 +58,8 @@ class BusinessApiService: NSObject, BusinessApiServiceProtocol {
             case .success(let data):
                 self?.persistenceService.save(ids: data.ids)
                 self?.persistenceService.isInitSdk = true
-                print(data)
             case .failure(let error):
-                print(error)
+                GigyaLogger.log(with: self, message: error.localizedDescription)
                 break
             }
         }
