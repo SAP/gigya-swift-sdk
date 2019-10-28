@@ -7,7 +7,11 @@
 		<key>GigyaTfa-Universal.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
+<<<<<<< HEAD
 			<integer>20</integer>
+=======
+			<integer>21</integer>
+>>>>>>> 101976-login-with-google
 		</dict>
 		<key>GigyaTfa.xcscheme_^#shared#^_</key>
 		<dict>

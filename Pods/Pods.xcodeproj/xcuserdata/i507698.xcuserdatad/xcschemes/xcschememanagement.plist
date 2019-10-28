@@ -5,6 +5,14 @@
 	<key>SchemeUserState</key>
 	<dict>
 		<key>AppAuth.xcscheme</key>
+<<<<<<< HEAD
+=======
+		<dict>
+			<key>orderHint</key>
+			<integer>19</integer>
+		</dict>
+		<key>FBSDKCoreKit.xcscheme</key>
+>>>>>>> 101976-login-with-google
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -60,6 +68,7 @@
 			<key>orderHint</key>
 			<integer>10</integer>
 		</dict>
+<<<<<<< HEAD
 		<key>FirebaseMessaging.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -68,6 +77,14 @@
 			<integer>11</integer>
 		</dict>
 		<key>GTMAppAuth.xcscheme</key>
+=======
+		<key>GTMAppAuth.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>20</integer>
+		</dict>
+		<key>GTMSessionFetcher.xcscheme</key>
+>>>>>>> 101976-login-with-google
 		<dict>
 			<key>isShown</key>
 			<false/>
