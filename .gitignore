@@ -6,3 +6,9 @@ Pods/
 TestApp/facebook/
 
 Gigya.framework/
+
+build/GigyaSwift.build/
+
+docs/
+
+build/Release-iphoneos/Gigya.framework.dSYM/Contents/
