@@ -33,7 +33,12 @@ public class GigyaTfa {
         pushService.onRecivePush(userInfo: userInfo, completion: completion)
     }
 
-    // Foreground notification receive
+    /**
+     Foreground notification receive
+
+     - Parameter data:   dictionary of message from didReceive:remoteMessage.
+     */
+
     public func foregrundNotification(with data: [AnyHashable : Any]) {
         let title = data["title"] as? String ?? ""
         let body = data["body"] as? String ?? ""
@@ -53,9 +58,23 @@ public class GigyaTfa {
         pushService.savePushKey(key: key)
     }
 
+    /**
+     Request to Opt-In to push Two Factor Authentication.
+     This is the first of two stages of the Opt-In process.
+
+      - Parameter completion: Request response.
+      */
+
     public func OptiInPushTfa(completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void) {
         pushService.optInToPushTfa(completion: completion)
     }
+
+    /**
+     Request to Opt-In to push Two Factor Authentication.
+     This is the first of two stages of the Opt-In process.
+
+      - Parameter response: `UNNotificationResponse` from a tapped notification .
+      */
 
     public func verifyPushTfa(with response: UNNotificationResponse) {
         pushService.verifyPushTfa(response: response)

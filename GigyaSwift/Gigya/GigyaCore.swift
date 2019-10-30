@@ -9,7 +9,8 @@
 import UIKit
 
 /**
- The `GigyaCore` is the interface for the SDK instance.
+ The `GigyaCore` is the main interface for the SDK instance.
+ Provides all access to Gigya services.
 
  When you use `Gigya.sharedInstance()` it will return an instance of `GigyaCore`.
 
@@ -39,6 +40,8 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
 
     /**
      Biometric service (TouchID / FaceID).
+
+     - returns: `BiometricServiceProtocol` service
      */
     public let biometric: BiometricServiceProtocol
 
@@ -109,7 +112,7 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
     // MARK: - Session
 
     /**
-     * Check if a valid session.
+     * Check if the current session is valid which us adjacent to login status.
      */
     public func isLoggedIn() -> Bool {
         return sessionService.isValidSession()
@@ -136,7 +139,7 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
     }
 
     /**
-     Login with 3rd provider
+     Login with a 3rd party provider.
 
      - Parameter provider:          user identity.
      - Parameter params:            user password.
@@ -151,7 +154,7 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
     }
 
     /**
-     Register api
+     Register account using email and password combination
 
      - Parameter email:         user identity.
      - Parameter password:      user password.
@@ -162,7 +165,7 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
     }
 
     /**
-     Get account api
+     Request account info.
 
      - Parameter type:         Host data schema.
      - Parameter clearAccount: set true when you want to clear cache
@@ -271,6 +274,12 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
     public func handleInterruptions(sdkHandles: Bool) {
         interruptionResolver.setEnabled(sdkHandles)
     }
+
+    /**
+     Create an new instance of the GigyaWebBridge.
+
+     - returns: `GigyaWebBridge` instance.
+     */
 
     public func createWebBridge() -> GigyaWebBridge<T> {
         let webBridge = container.resolve(GigyaWebBridge<T>.self)
