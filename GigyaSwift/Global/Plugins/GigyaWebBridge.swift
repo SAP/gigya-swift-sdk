@@ -234,6 +234,8 @@ public class GigyaWebBridge<T: GigyaAccountProtocol>: NSObject, WKScriptMessageH
 
                         self.completion(.onLogin(account: dataEncoded))
                     } catch let error {
+                        self.invokeError(callbackId: "internal", error: .jsonParsingError(error: error))
+                        
                         GigyaLogger.log(with: self, message: "error with decode user object: \(error.localizedDescription)")
                     }
                 }
