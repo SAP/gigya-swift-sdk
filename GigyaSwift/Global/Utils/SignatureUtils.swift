@@ -14,14 +14,23 @@ class SignatureUtils {
     static func prepareSignature(config: GigyaConfig, persistenceService: PersistenceService, session: GigyaSession?, path: String, params: [String: Any] = [:]) throws -> [String: Any] {
         var timestamp: String?
         var nonce: String?
+        var session: GigyaSession? = session
+        var token: String? = session?.token
 
         if session != nil {
-            timestamp = String(Int(Date().timeIntervalSince1970 + config.offset))
+            timestamp = String(Int(Date().timeIntervalSince1970 + config.timestampOffset))
             nonce = String(timestamp!) + "_" + String(describing: arc4random())
         }
 
+        if path.contains(GigyaDefinitions.API.getSdkConfig) {
+            // clear data for getSdkConfig request
+            session = nil
+            token = nil
+            timestamp = nil
+            nonce = nil
+        }
         //swiftlint:disable:next line_length
-         let signatureModel = GigyaRequestSignature(oauthToken: session?.token, apikey: config.apiKey!, nonce: nonce, timestamp: timestamp, ucid: persistenceService.ucid, gmid: persistenceService.gmid)
+         let signatureModel = GigyaRequestSignature(oauthToken: token, apikey: config.apiKey!, nonce: nonce, timestamp: timestamp, ucid: persistenceService.ucid, gmid: persistenceService.gmid)
 
         let encoderPrepareData = try JSONEncoder().encode(signatureModel)
         let bodyPrepareData = try JSONSerialization.jsonObject(with: encoderPrepareData, options: .allowFragments) as! [String: Any]

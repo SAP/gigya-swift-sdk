@@ -15,5 +15,6 @@ protocol GigyaConfigProtocol {
 public class GigyaConfig {
     public var apiKey: String?
     public var apiDomain: String = InternalConfig.General.sdkDomain
-    internal var offset: Double = 0
+
+    internal var timestampOffset: Double = 0
 }

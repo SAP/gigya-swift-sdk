@@ -53,12 +53,12 @@ class BusinessApiService: NSObject, BusinessApiServiceProtocol {
         let params = ["include": "permissions,ids,appIds"]
         let model = ApiRequestModel(method: GigyaDefinitions.API.getSdkConfig, params: params)
 
-        apiService.send(model: model, responseType: InitSdkResponseModel.self) { [weak self] result in
+        apiService.sendBlocking(model: model, responseType: InitSdkResponseModel.self) { [weak self] result in
             switch result {
             case .success(let data):
                 self?.persistenceService.save(ids: data.ids)
                 self?.persistenceService.isInitSdk = true
-                print(data)
+                self?.apiService.networkAdapter?.release()
             case .failure(let error):
                 print(error)
                 break

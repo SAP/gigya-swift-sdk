@@ -11,11 +11,11 @@ import Foundation
 class NetworkProvider {
     let url: String
 
-    let config: GigyaConfig
+    weak var config: GigyaConfig?
 
     let persistenceService: PersistenceService
 
-    var session = URLSession.sharedInternal
+    weak var session = URLSession.sharedInternal
 
     init(url: String, config: GigyaConfig, persistenceService: PersistenceService) {
         self.url = url
@@ -42,7 +42,7 @@ class NetworkProvider {
 
         // Encode body request to params
         do {
-            let bodyData = try SignatureUtils.prepareSignature(config: config, persistenceService: persistenceService, session: gsession, path: path, params: newParams ?? [:])
+            let bodyData = try SignatureUtils.prepareSignature(config: config!, persistenceService: persistenceService, session: gsession, path: path, params: newParams ?? [:])
             let bodyDataParmas = bodyData.mapValues { value -> String in
                 return "\(value)"
             }
@@ -63,9 +63,9 @@ class NetworkProvider {
         // Set the request method type
         request.httpMethod = method.description
 
-        let task = session.dataTask(with: request, completionHandler: { [weak config] data, response, error in
+        let task = session?.dataTask(with: request, completionHandler: { [weak config] data, response, error in
             if let headerResponse = response as? HTTPURLResponse, let date = headerResponse.allHeaderFields["Date"] as? String {
-                config?.offset = Date().timeIntervalSince1970 - date.stringToDate()!.timeIntervalSince1970
+                config?.timestampOffset = date.stringToDate()!.timeIntervalSince1970 - Date().timeIntervalSince1970
             }
 
             guard error == nil else {
@@ -80,18 +80,14 @@ class NetworkProvider {
             
             // Decode json result to Struct
             completion(data as NSData, nil)
-
         })
+        task?.resume()
 
-        task.resume()
     }
 
     private func makeUrl(with path: String) -> String {
         let url = "https://\(path.split(separator: ".")[0]).\(self.url)"
         return url
     }
-
-    private func updateTimestampOffset(dateHeader: String) {
-
-    }
 }
+

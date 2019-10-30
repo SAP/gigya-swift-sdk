@@ -24,12 +24,17 @@ class GigyaIOCContainer<T: GigyaAccountProtocol>: GigyaContainerProtocol {
     private func registerDependencies() {
         container.register(service: GigyaConfig.self, isSingleton: true) { _ in GigyaConfig() }
 
-        container.register(service: NetworkAdapterProtocol.self) { resolver in
+        container.register(service: NetworkBlockingQueueUtils.self) { resolver in
+            return NetworkBlockingQueueUtils()
+        }
+
+        container.register(service: NetworkAdapterProtocol.self, isSingleton: true) { resolver in
             let config = resolver.resolve(GigyaConfig.self)
             let sessionService = resolver.resolve(SessionServiceProtocol.self)
             let persistenceService = resolver.resolve(PersistenceService.self)
+            let queueUtils = resolver.resolve(NetworkBlockingQueueUtils.self)
 
-            return NetworkAdapter(config: config!, persistenceService: persistenceService!, sessionService: sessionService!)
+            return NetworkAdapter(config: config!, persistenceService: persistenceService!, sessionService: sessionService!, queueHelper: queueUtils!)
         }
 
         container.register(service: ApiServiceProtocol.self) { resolver in
