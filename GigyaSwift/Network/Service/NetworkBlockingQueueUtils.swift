@@ -13,20 +13,24 @@ struct NetworkBlockingQueueUtils {
 
     private var blockingQueue: [BlockOperation] = []
 
-    var blockingState = false
+    private var blockingState = false
 
     mutating func add(block: BlockOperation) {
-        blockingQueue.append(block)
-    }
-
-    func runWith(block: BlockOperation) {
-        queue.addOperation(block)
+        if blockingState {
+            blockingQueue.append(block)
+        } else {
+            queue.addOperation(block)
+        }
     }
 
     mutating func release() {
         blockingState = false
         queue.addOperations(blockingQueue, waitUntilFinished: false)
         blockingQueue.removeAll()
+    }
+
+    mutating func lock() {
+        blockingState = true
     }
     
 }

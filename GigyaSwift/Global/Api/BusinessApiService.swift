@@ -58,7 +58,6 @@ class BusinessApiService: NSObject, BusinessApiServiceProtocol {
             case .success(let data):
                 self?.persistenceService.save(ids: data.ids)
                 self?.persistenceService.isInitSdk = true
-                self?.apiService.networkAdapter?.release()
             case .failure(let error):
                 print(error)
                 break

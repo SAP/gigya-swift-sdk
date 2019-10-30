@@ -12,46 +12,41 @@ public typealias GigyaResponseHandler = (NSData?, Error?) -> Void
 
 public protocol NetworkAdapterProtocol {
     func send(model: ApiRequestModel, blocking: Bool, completion: @escaping GigyaResponseHandler)
-
-    func release()
 }
 
 class NetworkAdapter: NetworkAdapterProtocol {
-    let config: GigyaConfig
 
-    let persistenceService: PersistenceService
-
-    let sessionService: SessionServiceProtocol
+    let networkProvider: NetworkProvider
 
     private var queueHelper: NetworkBlockingQueueUtils
 
-    init(config: GigyaConfig, persistenceService: PersistenceService, sessionService: SessionServiceProtocol, queueHelper: NetworkBlockingQueueUtils) {
-        self.config = config
-        self.persistenceService = persistenceService
-        self.sessionService = sessionService
+    // remove all dependencies and add 'NetworkProvider' to constructor
+    init(networkProvider: NetworkProvider, queueHelper: NetworkBlockingQueueUtils) {
+        self.networkProvider = networkProvider
         self.queueHelper = queueHelper
     }
 
     func send(model: ApiRequestModel, blocking: Bool = false, completion: @escaping GigyaResponseHandler) {
-        let opertaion = BlockOperation {
-            let networkService = NetworkProvider(url: self.config.apiDomain, config: self.config, persistenceService: self.persistenceService)
 
-            networkService.dataRequest(gsession: self.sessionService.session, path: model.method, params: model.params, completion: { (data, error) in
-                completion(data, error)
-            })
+        queueHelper.add(block:
+            BlockOperation {
+                // forword only model
+                self.networkProvider.dataRequest(model: model, completion: { (data, error) in
+                    completion(data, error)
+
+                    if blocking {
+                        self.release()
+                    }
+                })
+            }
+        )
+
+        if blocking {
+            queueHelper.lock()
         }
-
-        if queueHelper.blockingState {
-            queueHelper.add(block: opertaion)
-            return
-        }
-
-        queueHelper.runWith(block: opertaion)
-
-        queueHelper.blockingState = blocking
     }
 
-    func release() {
+    private func release() {
         queueHelper.release()
     }
 }

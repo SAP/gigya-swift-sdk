@@ -28,13 +28,19 @@ class GigyaIOCContainer<T: GigyaAccountProtocol>: GigyaContainerProtocol {
             return NetworkBlockingQueueUtils()
         }
 
-        container.register(service: NetworkAdapterProtocol.self, isSingleton: true) { resolver in
+        container.register(service: NetworkProvider.self) { resolver in
             let config = resolver.resolve(GigyaConfig.self)
             let sessionService = resolver.resolve(SessionServiceProtocol.self)
             let persistenceService = resolver.resolve(PersistenceService.self)
+
+            return NetworkProvider(config: config!, persistenceService: persistenceService!, sessionService: sessionService!)
+        }
+
+        container.register(service: NetworkAdapterProtocol.self, isSingleton: true) { resolver in
+            let networkProvider = resolver.resolve(NetworkProvider.self)
             let queueUtils = resolver.resolve(NetworkBlockingQueueUtils.self)
 
-            return NetworkAdapter(config: config!, persistenceService: persistenceService!, sessionService: sessionService!, queueHelper: queueUtils!)
+            return NetworkAdapter(networkProvider: networkProvider!, queueHelper: queueUtils!)
         }
 
         container.register(service: ApiServiceProtocol.self) { resolver in

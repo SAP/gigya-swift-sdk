@@ -9,23 +9,23 @@
 import Foundation
 
 class NetworkProvider {
-    let url: String
 
     weak var config: GigyaConfig?
 
     let persistenceService: PersistenceService
 
-    weak var session = URLSession.sharedInternal
+    let sessionService: SessionServiceProtocol
 
-    init(url: String, config: GigyaConfig, persistenceService: PersistenceService) {
-        self.url = url
+    weak var urlSession = URLSession.sharedInternal
+
+    init(config: GigyaConfig, persistenceService: PersistenceService, sessionService: SessionServiceProtocol) {
         self.config = config
         self.persistenceService = persistenceService
+        self.sessionService = sessionService
     }
 
-    func dataRequest(gsession: GigyaSession?,
-                                    path: String, params: [String: Any]?, method: NetworkMethod = .post, completion: @escaping GigyaResponseHandler) {
-        let url = makeUrl(with: path)
+    func dataRequest(model: ApiRequestModel, method: NetworkMethod = .post, completion: @escaping GigyaResponseHandler) {
+        let url = makeUrl(with: model.method)
 
         guard var dataURL = URL(string: url) else {
             DispatchQueue.main.async { completion(nil, NetworkError.createURLRequestFailed) }
@@ -34,15 +34,17 @@ class NetworkProvider {
 
         let urlAllowed = NSCharacterSet(charactersIn: "!*'();/:@&=+$,?%#[]{}\" ").inverted
 
-        let newParams = params
+        let newParams = model.params
 
-        dataURL.appendPathComponent(path)
+        dataURL.appendPathComponent(model.method)
 
         var request: URLRequest = URLRequest(url: dataURL)
 
         // Encode body request to params
         do {
-            let bodyData = try SignatureUtils.prepareSignature(config: config!, persistenceService: persistenceService, session: gsession, path: path, params: newParams ?? [:])
+           let bodyData: [String : Any] = try SignatureUtils.prepareSignature(config: config!, persistenceService: persistenceService, session: sessionService.session, path: model.method, params: newParams ?? [:])
+
+
             let bodyDataParmas = bodyData.mapValues { value -> String in
                 return "\(value)"
             }
@@ -63,7 +65,7 @@ class NetworkProvider {
         // Set the request method type
         request.httpMethod = method.description
 
-        let task = session?.dataTask(with: request, completionHandler: { [weak config] data, response, error in
+        let task = urlSession?.dataTask(with: request, completionHandler: { [weak config] data, response, error in
             if let headerResponse = response as? HTTPURLResponse, let date = headerResponse.allHeaderFields["Date"] as? String {
                 config?.timestampOffset = date.stringToDate()!.timeIntervalSince1970 - Date().timeIntervalSince1970
             }
@@ -86,7 +88,7 @@ class NetworkProvider {
     }
 
     private func makeUrl(with path: String) -> String {
-        let url = "https://\(path.split(separator: ".")[0]).\(self.url)"
+        let url = "https://\(path.split(separator: ".")[0]).\(self.config!.apiDomain)"
         return url
     }
 }

@@ -211,22 +211,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "83792FFD-D57B-48F8-9AC0-5B7FC56D3D82"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GigyaSwift/Network/Request/ApiService.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "86"
-            endingLineNumber = "86"
-            landmarkName = "validateResult(responseType:data:fromExpiring:completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "8FEEE90B-1360-4B9D-8A86-D7C60C1B6CE8"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -237,22 +221,6 @@
             startingLineNumber = "314"
             endingLineNumber = "314"
             landmarkName = "getAccount(_sender:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "A309F8E5-CAA9-4150-A20E-7E8DF15D1392"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GigyaSwift/Network/Service/NetworkProvider.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "68"
-            endingLineNumber = "68"
-            landmarkName = "dataRequest(gsession:path:params:method:completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
