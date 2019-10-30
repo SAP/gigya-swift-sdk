@@ -11,36 +11,42 @@ import Foundation
 public typealias GigyaResponseHandler = (NSData?, Error?) -> Void
 
 public protocol NetworkAdapterProtocol {
-    func send(model: ApiRequestModel, completion: @escaping GigyaResponseHandler)
+    func send(model: ApiRequestModel, blocking: Bool, completion: @escaping GigyaResponseHandler)
 }
 
 class NetworkAdapter: NetworkAdapterProtocol {
-    let config: GigyaConfig
 
-    let persistenceService: PersistenceService
+    let networkProvider: NetworkProvider
 
-    let sessionService: SessionServiceProtocol
+    private var queueHelper: NetworkBlockingQueueUtils
 
-    private let serial = DispatchQueue(label: "httpRequests")
-
-    init(config: GigyaConfig, persistenceService: PersistenceService, sessionService: SessionServiceProtocol) {
-        self.config = config
-        self.persistenceService = persistenceService
-        self.sessionService = sessionService
+    // remove all dependencies and add 'NetworkProvider' to constructor
+    init(networkProvider: NetworkProvider, queueHelper: NetworkBlockingQueueUtils) {
+        self.networkProvider = networkProvider
+        self.queueHelper = queueHelper
     }
 
-    func send(model: ApiRequestModel, completion: @escaping GigyaResponseHandler) {
-        serial.async { [weak self] in
-            guard let self = self else {
-                completion(nil, nil)
-                return
+    func send(model: ApiRequestModel, blocking: Bool = false, completion: @escaping GigyaResponseHandler) {
+
+        queueHelper.add(block:
+            BlockOperation {
+                // forword only model
+                self.networkProvider.dataRequest(model: model, completion: { (data, error) in
+                    completion(data, error)
+
+                    if blocking {
+                        self.release()
+                    }
+                })
             }
+        )
 
-            let networkService = NetworkProvider(url: self.config.apiDomain, config: self.config, persistenceService: self.persistenceService)
-
-            networkService.dataRequest(gsession: self.sessionService.session, path: model.method, params: model.params, completion: { (data, error) in
-                completion(data, error)
-            })
+        if blocking {
+            queueHelper.lock()
         }
+    }
+
+    private func release() {
+        queueHelper.release()
     }
 }

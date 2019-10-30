@@ -61,6 +61,7 @@ public struct GigyaDefinitions {
 
     public struct ErrorCode {
         public static let invalidJwt = 400006
+        public static let requestExpired = 403002
     }
 
 }

@@ -7,24 +7,12 @@
 		<key>GigyaTfa-Universal.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-<<<<<<< HEAD
 			<integer>20</integer>
-=======
-			<integer>21</integer>
->>>>>>> 101976-login-with-google
 		</dict>
 		<key>GigyaTfa.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>1</integer>
-		</dict>
-	</dict>
-	<key>SuppressBuildableAutocreation</key>
-	<dict>
-		<key>E7EEF32C22C8BB880004DF5D</key>
-		<dict>
-			<key>primary</key>
-			<true/>
 		</dict>
 	</dict>
 </dict>

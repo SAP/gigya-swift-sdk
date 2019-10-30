@@ -181,6 +181,7 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
+<<<<<<< HEAD
             filePath = "TestApp/UI/ViewController.swift"
             timestampString = "586020535.026481"
             startingColumnNumber = "9223372036854775807"
@@ -198,12 +199,19 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
+=======
+>>>>>>> 102204-device-clock-
             filePath = "TestApp/UI/ViewController.swift"
-            timestampString = "586020535.02653"
+            timestampString = "586020535.026481"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
+<<<<<<< HEAD
             startingLineNumber = "251"
             endingLineNumber = "251"
+=======
+            startingLineNumber = "238"
+            endingLineNumber = "238"
+>>>>>>> 102204-device-clock-
             landmarkName = "loginWithProvider(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -211,6 +219,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
+<<<<<<< HEAD
             uuid = "83792FFD-D57B-48F8-9AC0-5B7FC56D3D82"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -228,21 +237,32 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "8FEEE90B-1360-4B9D-8A86-D7C60C1B6CE8"
+=======
+            uuid = "DFE4E7F7-EDC0-41F1-A625-E2B78C7BDB24"
+>>>>>>> 102204-device-clock-
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TestApp/UI/ViewController.swift"
+            timestampString = "586020535.02653"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
+<<<<<<< HEAD
             startingLineNumber = "314"
             endingLineNumber = "314"
             landmarkName = "getAccount(_sender:)"
+=======
+            startingLineNumber = "251"
+            endingLineNumber = "251"
+            landmarkName = "loginWithProvider(_:)"
+>>>>>>> 102204-device-clock-
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
+<<<<<<< HEAD
             uuid = "A309F8E5-CAA9-4150-A20E-7E8DF15D1392"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -253,6 +273,18 @@
             startingLineNumber = "68"
             endingLineNumber = "68"
             landmarkName = "dataRequest(gsession:path:params:method:completion:)"
+=======
+            uuid = "8FEEE90B-1360-4B9D-8A86-D7C60C1B6CE8"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TestApp/UI/ViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "314"
+            endingLineNumber = "314"
+            landmarkName = "getAccount(_sender:)"
+>>>>>>> 102204-device-clock-
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
