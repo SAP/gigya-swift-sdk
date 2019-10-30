@@ -226,6 +226,20 @@ public class GigyaWebBridge<T: GigyaAccountProtocol>: NSObject, WKScriptMessageH
                 // Mapping AnyCodable values. Otherwise we will crash in the JSON dictionary conversion.
                 let mapped: [String: Any] = data.mapValues { value in return value.value }
 
+                // check if it login request
+                if (mapped["sessionInfo"] != nil) {
+                    do {
+                        let objData = try JSONSerialization.data(withJSONObject: mapped, options: .prettyPrinted)
+                        let dataEncoded = try DecodeEncodeUtils.decode(fromType: T.self, data: objData)
+
+                        self.completion(.onLogin(account: dataEncoded))
+                    } catch let error {
+                        self.invokeError(callbackId: "internal", error: .jsonParsingError(error: error))
+                        
+                        GigyaLogger.log(with: self, message: "error with decode user object: \(error.localizedDescription)")
+                    }
+                }
+
                 self.invokeCallback(callbackId: callbackId, and: mapped.asJson)
             case .failure(let error):
                 GigyaLogger.log(with: self, message: "sendRequest: error:\n\(error.localizedDescription)")
