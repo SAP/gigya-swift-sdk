@@ -80,7 +80,7 @@ class ViewController: UIViewController {
 
     @IBAction func login(_ sender: Any) {
         let alert = UIFactory.getLoginAlert { email, password in
-            self.gigya.login(loginId: email!, password: password!, params: ["sessionExpiration": "20"]) { [weak self] result in
+            self.gigya.login(loginId: email!, password: password!, params: ["sessionExpiration": "10000"]) { [weak self] result in
                 switch result {
                 case .success(let data):
                     self?.resultTextView?.text = data.toJson()
@@ -228,7 +228,7 @@ class ViewController: UIViewController {
     }
 
     @IBAction func loginWithProvider(_ sender: Any) {
-        gigya.login(with: .twitter, viewController: self, params: ["dataCenter": "ru1"]) { [weak self] (result) in
+        gigya.login(with: .apple, viewController: self, params: ["dataCenter": "ru1"]) { [weak self] (result) in
             switch result {
             case .success(let data):
                 print(data)
@@ -312,6 +312,7 @@ class ViewController: UIViewController {
                     }
                 })
             case .failure:
+                
                 break
             }
         }

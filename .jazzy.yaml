@@ -7,6 +7,9 @@ include:
   - "**/Models/User/GigyaAccount.swift"
   - "**/Global/Plugins/GigyaPluginEvent.swift"
   - "**/Global/Biometric/BiometricServiceProtocol.swift"
+  - "**/Global/Resolvers/PendingRegistrationResolver.swift"
+  - "**/Global/Resolvers/LinkAccountsResolver.swift"
+
 
 copyright: 'Gigya © 2019.'
 

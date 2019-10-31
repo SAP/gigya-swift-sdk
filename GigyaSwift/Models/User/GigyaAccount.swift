@@ -8,6 +8,10 @@
 
 import Foundation
 
+/**
+ Protocol used for applying a custom schema for your account model.
+ */
+
 public protocol GigyaAccountProtocol: Codable {
     var UID: String? { get set }
     var profile: GigyaProfile? { get set }

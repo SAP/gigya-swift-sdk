@@ -9,6 +9,12 @@ Gigya.framework/
 
 build/GigyaSwift.build/
 
+<<<<<<< HEAD
 docs/
 
 build/Release-iphoneos/Gigya.framework.dSYM/Contents/
+=======
+build/Release-iphoneos/Gigya.framework.dSYM/Contents/
+
+docs/
+>>>>>>> update-docs

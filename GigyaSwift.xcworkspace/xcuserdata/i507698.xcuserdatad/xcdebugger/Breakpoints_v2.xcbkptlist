@@ -126,6 +126,60 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
+<<<<<<< HEAD
+=======
+            uuid = "46D3AD90-BBE7-4190-A534-EC0C4D0DA856"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GigyaSwift/Network/Request/ApiService.swift"
+            timestampString = "586019470.1525151"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "28"
+            endingLineNumber = "28"
+            landmarkName = "send(model:responseType:completion:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "46D3AD90-BBE7-4190-A534-EC0C4D0DA856 - a04b7aed83d03b83"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Gigya.ApiService.send&lt;A where A: Swift.Decodable, A: Swift.Encodable&gt;(model: Gigya.ApiRequestModel, responseType: A.Type, completion: (Gigya.GigyaApiResult&lt;A&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Gigya"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Network/Request/ApiService.swift"
+                  timestampString = "585737346.642974"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "28"
+                  endingLineNumber = "28"
+                  offsetFromSymbolStart = "335">
+               </Location>
+               <Location
+                  uuid = "46D3AD90-BBE7-4190-A534-EC0C4D0DA856 - 717c62942d90c3e5"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;__C.NSData&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Gigya.ApiService.send&lt;A where A: Swift.Decodable, A: Swift.Encodable&gt;(model: Gigya.ApiRequestModel, responseType: A.Type, completion: (Gigya.GigyaApiResult&lt;A&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Gigya"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/i507698/SDKs/gigya-swift-sdk/GigyaSwift/Network/Request/ApiService.swift"
+                  timestampString = "585737346.64468"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "28"
+                  endingLineNumber = "28"
+                  offsetFromSymbolStart = "355">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+>>>>>>> update-docs
             uuid = "F33D3BE7-EAF8-49C4-90B6-8D94D9ADB0D8"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -181,6 +235,10 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> update-docs
             filePath = "TestApp/UI/ViewController.swift"
             timestampString = "586020535.026481"
             startingColumnNumber = "9223372036854775807"
@@ -198,12 +256,24 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
+=======
+>>>>>>> 102204-device-clock-
             filePath = "TestApp/UI/ViewController.swift"
-            timestampString = "586020535.02653"
+            timestampString = "586020535.026481"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
+<<<<<<< HEAD
+<<<<<<< HEAD
             startingLineNumber = "251"
             endingLineNumber = "251"
+=======
+            startingLineNumber = "238"
+            endingLineNumber = "238"
+>>>>>>> 102204-device-clock-
+=======
+            startingLineNumber = "251"
+            endingLineNumber = "251"
+>>>>>>> update-docs
             landmarkName = "loginWithProvider(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -211,6 +281,8 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
+<<<<<<< HEAD
+<<<<<<< HEAD
             uuid = "83792FFD-D57B-48F8-9AC0-5B7FC56D3D82"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -228,6 +300,62 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "8FEEE90B-1360-4B9D-8A86-D7C60C1B6CE8"
+=======
+            uuid = "DFE4E7F7-EDC0-41F1-A625-E2B78C7BDB24"
+>>>>>>> 102204-device-clock-
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TestApp/UI/ViewController.swift"
+            timestampString = "586020535.02653"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+<<<<<<< HEAD
+            startingLineNumber = "314"
+            endingLineNumber = "314"
+            landmarkName = "getAccount(_sender:)"
+=======
+            startingLineNumber = "251"
+            endingLineNumber = "251"
+            landmarkName = "loginWithProvider(_:)"
+>>>>>>> 102204-device-clock-
+=======
+            uuid = "66B0402E-EBE4-4EFF-A6EA-0DFE34885121"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GigyaSwift/Global/Utils/SignatureUtils.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "19"
+            endingLineNumber = "19"
+            landmarkName = "prepareSignature(config:persistenceService:session:path:params:)"
+>>>>>>> update-docs
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+<<<<<<< HEAD
+<<<<<<< HEAD
+            uuid = "A309F8E5-CAA9-4150-A20E-7E8DF15D1392"
+            shouldBeEnabled = "No"
+=======
+            uuid = "A01D170A-E6D7-4AAA-8ACD-B3B2FB8202C2"
+            shouldBeEnabled = "Yes"
+>>>>>>> update-docs
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GigyaSwift/Network/Service/NetworkProvider.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+<<<<<<< HEAD
+            startingLineNumber = "68"
+            endingLineNumber = "68"
+            landmarkName = "dataRequest(gsession:path:params:method:completion:)"
+=======
+            uuid = "8FEEE90B-1360-4B9D-8A86-D7C60C1B6CE8"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -237,14 +365,19 @@
             startingLineNumber = "314"
             endingLineNumber = "314"
             landmarkName = "getAccount(_sender:)"
+>>>>>>> 102204-device-clock-
+=======
+            startingLineNumber = "95"
+            endingLineNumber = "95"
+            landmarkName = "updateTimestampOffset(dateHeader:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "A309F8E5-CAA9-4150-A20E-7E8DF15D1392"
-            shouldBeEnabled = "No"
+            uuid = "5F72FD6B-5F0B-43BA-80CA-4826E5EF859C"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GigyaSwift/Network/Service/NetworkProvider.swift"
@@ -253,6 +386,7 @@
             startingLineNumber = "68"
             endingLineNumber = "68"
             landmarkName = "dataRequest(gsession:path:params:method:completion:)"
+>>>>>>> update-docs
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

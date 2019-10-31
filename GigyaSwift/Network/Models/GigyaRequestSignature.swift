@@ -12,19 +12,26 @@ struct GigyaRequestSignature: Codable {
     var apikey: String
     var format: String = "json"
     var gmid: String?
+    var ucid: String?
     var httpStatusCodes: String = "false"
-    var nonce: String?
     var oauthToken: String?
     var sdk: String = InternalConfig.General.version
     var targetEnv: String = "mobile"
+
+    var nonce: String?
     var timestamp: String?
-    var ucid: String?
 
     init(oauthToken: String?, apikey: String, nonce: String?, timestamp: String?, ucid: String?, gmid: String?) {
         self.oauthToken = oauthToken
         self.apikey = apikey
         self.nonce = nonce
         self.timestamp = timestamp
+        self.ucid = ucid
+        self.gmid = gmid
+    }
+
+    init(apikey: String, ucid: String?, gmid: String?) {
+        self.apikey = apikey
         self.ucid = ucid
         self.gmid = gmid
     }
