@@ -7,10 +7,11 @@
 //
 
 import SwiftUI
+import Combine
 import Gigya
 
 struct SocialLoginView: View {
-    let gigya = Gigya.sharedInstance()
+    @ObservedObject var viewModel: SocialLoginViewModel
 
     var body: some View {
         NavigationView {
@@ -18,7 +19,7 @@ struct SocialLoginView: View {
                 HStack {
                     ForEach(GigyaNativeSocialProviders.allCases, id: \.self) { (provider) in
                             ThemeUtils.socialButton(title: provider.rawValue) {
-
+                                self.viewModel.loginWith(provider.rawValue)
                             }
                         }
                 }
@@ -32,6 +33,6 @@ struct SocialLoginView: View {
 
 struct SocialLoginView_Previews: PreviewProvider {
     static var previews: some View {
-        SocialLoginView()
+        SocialLoginView(viewModel: SocialLoginViewModel())
     }
 }

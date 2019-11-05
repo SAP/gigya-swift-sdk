@@ -18,3 +18,7 @@ build/Release-iphoneos/Gigya.framework.dSYM/Contents/
 
 docs/
 >>>>>>> update-docs
+
+GigyaTfa/GigyaTfa.framework/_CodeSignature/CodeResources
+
+GigyaTfa/GigyaTfa.framework/

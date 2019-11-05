@@ -6,4 +6,17 @@
 //  Copyright © 2019 Gigya. All rights reserved.
 //
 
-import Foundation
+import SwiftUI
+import Combine
+
+class MainViewModel: ObservableObject {
+
+    @Published var socialLoginIsActive: Bool = false
+
+    var socialLoginView: SocialLoginView?
+
+    var gotoSocialLogin: () -> Void = {
+
+    }
+    
+}
