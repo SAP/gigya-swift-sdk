@@ -14,7 +14,7 @@ class NetworkProvider {
 
     let persistenceService: PersistenceService
 
-    let sessionService: SessionServiceProtocol
+    var sessionService: SessionServiceProtocol
 
     weak var urlSession = URLSession.sharedInternal
 
@@ -67,7 +67,10 @@ class NetworkProvider {
 
         let task = urlSession?.dataTask(with: request, completionHandler: { [weak config] data, response, error in
             if let headerResponse = response as? HTTPURLResponse, let date = headerResponse.allHeaderFields["Date"] as? String {
-                config?.timestampOffset = date.stringToDate()!.timeIntervalSince1970 - Date().timeIntervalSince1970
+
+                if let dateFromRequest = date.stringToDate() {
+                    config?.timestampOffset = dateFromRequest.timeIntervalSince1970 - Date().timeIntervalSince1970
+                }
             }
 
             guard error == nil else {

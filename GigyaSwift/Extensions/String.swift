@@ -43,6 +43,8 @@ extension String {
 
     func stringToDate() -> Date? {
         let dateFormatter = DateFormatter()
+        dateFormatter.isLenient = true
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         dateFormatter.dateFormat = "EEE, dd MMM yyyy HH:mm:ss zzz"
         let getDate = dateFormatter.date(from: self)
 

@@ -118,7 +118,7 @@ class AnyCodableTest: XCTestCase {
             let result = decode.first ?? nil
 
             XCTAssertNotNil(decode.description)
-            XCTAssertEqual(result, nil)
+            XCTAssertEqual(result, "null")
         } catch {
             XCTFail("failed")
         }

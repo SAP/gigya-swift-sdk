@@ -79,6 +79,7 @@
 		E733744722675CA000ADEDBB /* ApiServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E733744622675CA000ADEDBB /* ApiServiceMock.swift */; };
 		E73374622268B25B00ADEDBB /* SocialProvidersManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73374612268B25B00ADEDBB /* SocialProvidersManager.swift */; };
 		E7337467226C538300ADEDBB /* DecodeTestUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7337466226C538300ADEDBB /* DecodeTestUtils.swift */; };
+		E7350537237188B700C33212 /* NetworkError.swift in Headers */ = {isa = PBXBuildFile; fileRef = E7CBAFB9222D1840000B6C11 /* NetworkError.swift */; settings = {ATTRIBUTES = (Public, ); }; };
 		E735C2F822B7DBF7007A055E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E735C2F722B7DBF7007A055E /* GoogleService-Info.plist */; };
 		E73A930222F974120004F93E /* Notification.Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73A930122F974120004F93E /* Notification.Name.swift */; };
 		E756A2992275CB5C007FA801 /* SocialProviderLoginTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E756A2982275CB5C007FA801 /* SocialProviderLoginTests.swift */; };
@@ -127,6 +128,7 @@
 		E7ACF9AE226C843100900C65 /* SessionServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7ACF9AD226C843100900C65 /* SessionServiceProtocol.swift */; };
 		E7ACF9B0226C844A00900C65 /* AccountServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7ACF9AF226C844A00900C65 /* AccountServiceProtocol.swift */; };
 		E7ACF9CC226F2A4100900C65 /* ProviderWrapperProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7ACF9CB226F2A4100900C65 /* ProviderWrapperProtocol.swift */; };
+		E7AE9E482370179400059CD2 /* SocialLoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7AE9E472370179400059CD2 /* SocialLoginViewModel.swift */; };
 		E7BE36782224219200A108D9 /* GigyaSwift.h in Headers */ = {isa = PBXBuildFile; fileRef = E7BE36762224219200A108D9 /* GigyaSwift.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E7BE368B2224225100A108D9 /* Gigya.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BE368A2224225100A108D9 /* Gigya.swift */; };
 		E7BE369D2224260400A108D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BE369C2224260400A108D9 /* AppDelegate.swift */; };
@@ -140,6 +142,12 @@
 		E7BE5793229AB29100C17D93 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BE5792229AB29100C17D93 /* UIImage.swift */; };
 		E7BE57B922A40ED100C17D93 /* WebViewWrapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BE57B822A40ED100C17D93 /* WebViewWrapperTests.swift */; };
 		E7BE57BD22A41D0B00C17D93 /* FakeNavigationAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BE57BC22A41D0B00C17D93 /* FakeNavigationAction.swift */; };
+		E7C26CFC236EFF3F0041E25F /* ThemeUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C26CFB236EFF3F0041E25F /* ThemeUtils.swift */; };
+		E7C26CFF236EFF980041E25F /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C26CFE236EFF980041E25F /* MainCoordinator.swift */; };
+		E7C26D01236EFFAD0041E25F /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C26D00236EFFAD0041E25F /* Coordinator.swift */; };
+		E7C26D06236F00050041E25F /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C26D05236F00050041E25F /* AppCoordinator.swift */; };
+		E7C26D08236F06A60041E25F /* SocialLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C26D07236F06A60041E25F /* SocialLoginView.swift */; };
+		E7C26D0A236F0FB00041E25F /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C26D09236F0FB00041E25F /* MainViewModel.swift */; };
 		E7C859DB2289604F005C1FBE /* LinkAccountsResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C859DA2289604F005C1FBE /* LinkAccountsResolver.swift */; };
 		E7C859E02289B299005C1FBE /* InterruptionEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C859DF2289B299005C1FBE /* InterruptionEnum.swift */; };
 		E7C859E7228C52A0005C1FBE /* ConflictingAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C859E6228C52A0005C1FBE /* ConflictingAccount.swift */; };
@@ -406,6 +414,7 @@
 		E7ACF9AD226C843100900C65 /* SessionServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionServiceProtocol.swift; sourceTree = "<group>"; };
 		E7ACF9AF226C844A00900C65 /* AccountServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountServiceProtocol.swift; sourceTree = "<group>"; };
 		E7ACF9CB226F2A4100900C65 /* ProviderWrapperProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderWrapperProtocol.swift; sourceTree = "<group>"; };
+		E7AE9E472370179400059CD2 /* SocialLoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialLoginViewModel.swift; sourceTree = "<group>"; };
 		E7BE36732224219200A108D9 /* Gigya.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Gigya.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7BE36762224219200A108D9 /* GigyaSwift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GigyaSwift.h; sourceTree = "<group>"; };
 		E7BE36772224219200A108D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -424,6 +433,12 @@
 		E7BE5799229D284A00C17D93 /* TFAVerificationpTotpResolverTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TFAVerificationpTotpResolverTests.swift; sourceTree = "<group>"; };
 		E7BE57B822A40ED100C17D93 /* WebViewWrapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewWrapperTests.swift; sourceTree = "<group>"; };
 		E7BE57BC22A41D0B00C17D93 /* FakeNavigationAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeNavigationAction.swift; sourceTree = "<group>"; };
+		E7C26CFB236EFF3F0041E25F /* ThemeUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeUtils.swift; sourceTree = "<group>"; };
+		E7C26CFE236EFF980041E25F /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
+		E7C26D00236EFFAD0041E25F /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		E7C26D05236F00050041E25F /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		E7C26D07236F06A60041E25F /* SocialLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialLoginView.swift; sourceTree = "<group>"; };
+		E7C26D09236F0FB00041E25F /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		E7C859DA2289604F005C1FBE /* LinkAccountsResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkAccountsResolver.swift; sourceTree = "<group>"; };
 		E7C859DF2289B299005C1FBE /* InterruptionEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterruptionEnum.swift; sourceTree = "<group>"; };
 		E7C859E6228C52A0005C1FBE /* ConflictingAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConflictingAccount.swift; sourceTree = "<group>"; };
@@ -855,8 +870,10 @@
 			isa = PBXGroup;
 			children = (
 				E76F2E742345E72500056D19 /* AppDelegate.swift */,
+				E7C26CFA236EFF240041E25F /* Utils */,
 				E76F2E762345E72500056D19 /* SceneDelegate.swift */,
-				E76F2E782345E72500056D19 /* MainView.swift */,
+				E7C26D04236EFFF80041E25F /* Coordinators */,
+				E7C26CFD236EFF840041E25F /* MainCoordinator */,
 				E76F2E7A2345E72700056D19 /* Assets.xcassets */,
 				E76F2E7F2345E72700056D19 /* LaunchScreen.storyboard */,
 				E76F2E822345E72700056D19 /* Info.plist */,
@@ -946,6 +963,15 @@
 				E7A71CBF232FA30000993A61 /* GeneralUITestHelper.swift */,
 			);
 			path = TestAppUITests;
+			sourceTree = "<group>";
+		};
+		E7AE9E462370177500059CD2 /* SocialLogin */ = {
+			isa = PBXGroup;
+			children = (
+				E7C26D07236F06A60041E25F /* SocialLoginView.swift */,
+				E7AE9E472370179400059CD2 /* SocialLoginViewModel.swift */,
+			);
+			path = SocialLogin;
 			sourceTree = "<group>";
 		};
 		E7BE36692224219200A108D9 = {
@@ -1047,6 +1073,34 @@
 				E7BE57852296C04E00C17D93 /* StringTests.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		E7C26CFA236EFF240041E25F /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				E7C26CFB236EFF3F0041E25F /* ThemeUtils.swift */,
+				E7C26D00236EFFAD0041E25F /* Coordinator.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		E7C26CFD236EFF840041E25F /* MainCoordinator */ = {
+			isa = PBXGroup;
+			children = (
+				E7C26CFE236EFF980041E25F /* MainCoordinator.swift */,
+				E7C26D09236F0FB00041E25F /* MainViewModel.swift */,
+				E76F2E782345E72500056D19 /* MainView.swift */,
+				E7AE9E462370177500059CD2 /* SocialLogin */,
+			);
+			path = MainCoordinator;
+			sourceTree = "<group>";
+		};
+		E7C26D04236EFFF80041E25F /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				E7C26D05236F00050041E25F /* AppCoordinator.swift */,
+			);
+			path = Coordinators;
 			sourceTree = "<group>";
 		};
 		E7C859BF22819890005C1FBE /* SocialLogin */ = {
@@ -1324,6 +1378,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E7BE36782224219200A108D9 /* GigyaSwift.h in Headers */,
+				E7350537237188B700C33212 /* NetworkError.swift in Headers */,
 				E7BE36C82224306E00A108D9 /* Gigya.swift in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1656,9 +1711,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E7C26D08236F06A60041E25F /* SocialLoginView.swift in Sources */,
+				E7AE9E482370179400059CD2 /* SocialLoginViewModel.swift in Sources */,
 				E76F2E752345E72500056D19 /* AppDelegate.swift in Sources */,
 				E76F2E772345E72500056D19 /* SceneDelegate.swift in Sources */,
+				E7C26D01236EFFAD0041E25F /* Coordinator.swift in Sources */,
 				E76F2E792345E72500056D19 /* MainView.swift in Sources */,
+				E7C26CFF236EFF980041E25F /* MainCoordinator.swift in Sources */,
+				E7C26CFC236EFF3F0041E25F /* ThemeUtils.swift in Sources */,
+				E7C26D06236F00050041E25F /* AppCoordinator.swift in Sources */,
+				E7C26D0A236F0FB00041E25F /* MainViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2221,12 +2283,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E7818A6B222445F8008117AB /* Config.xcconfig */;
 			buildSettings = {
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 17;
+				CURRENT_PROJECT_VERSION = 22;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = T48CNFXFQH;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -2246,7 +2309,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.4;
+				MARKETING_VERSION = 1.0.5;
 				MODULEMAP_FILE = "";
 				MODULEMAP_PRIVATE_FILE = "";
 				ONLY_ACTIVE_ARCH = NO;
@@ -2254,6 +2317,7 @@
 					"$(OTHER_LDFLAGS)",
 					"-ObjC",
 				);
+				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = Gigya.GigyaSwift;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2271,12 +2335,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E7818A6B222445F8008117AB /* Config.xcconfig */;
 			buildSettings = {
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 17;
+				CURRENT_PROJECT_VERSION = 22;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = T48CNFXFQH;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -2296,13 +2361,14 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.4;
+				MARKETING_VERSION = 1.0.5;
 				MODULEMAP_FILE = "";
 				MODULEMAP_PRIVATE_FILE = "";
 				OTHER_LDFLAGS = (
 					"$(OTHER_LDFLAGS)",
 					"-ObjC",
 				);
+				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = Gigya.GigyaSwift;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

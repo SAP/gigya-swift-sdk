@@ -21,12 +21,23 @@ class GigyaContainerUtils {
     func registerDependencie<T: GigyaAccountProtocol>(_ type: T.Type) {
         container.register(service: GigyaConfig.self, isSingleton: true) { _ in GigyaConfig() }
 
-        container.register(service: NetworkAdapterProtocol.self) { resolver in
+        container.register(service: NetworkProvider.self) { resolver in
             let config = resolver.resolve(GigyaConfig.self)
             let sessionService = resolver.resolve(SessionServiceProtocol.self)
             let persistenceService = resolver.resolve(PersistenceService.self)
 
-            return NetworkAdapterMock(config: config!, persistenceService: persistenceService!, sessionService: sessionService!)
+            return NetworkProvider(config: config!, persistenceService: persistenceService!, sessionService: sessionService!)
+        }
+
+        container.register(service: NetworkBlockingQueueUtils.self) { resolver in
+            return NetworkBlockingQueueUtils()
+        }
+
+        container.register(service: NetworkAdapterProtocol.self) { resolver in
+            let queueUtils = resolver.resolve(NetworkBlockingQueueUtils.self)
+            let networkProvider = resolver.resolve(NetworkProvider.self)
+
+            return NetworkAdapterMock(networkProvider: networkProvider!, queueHelper: queueUtils!)
         }
 
         container.register(service: InterruptionResolverFactoryProtocol.self) { _ in

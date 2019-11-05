@@ -11,6 +11,7 @@ import Foundation
 
 class ApiServiceMock: ApiServiceProtocol {
 
+
     var resData: Any?
 
     var showError: Bool = false
@@ -29,5 +30,8 @@ class ApiServiceMock: ApiServiceProtocol {
         
     }
 
+    func sendBlocking<T>(model: ApiRequestModel, responseType: T.Type, completion: @escaping (GigyaApiResult<T>) -> Void) where T : Decodable, T : Encodable {
+
+    }
 
 }

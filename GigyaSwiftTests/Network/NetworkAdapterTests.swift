@@ -19,8 +19,10 @@ class NetworkAdapterTests: XCTestCase {
         let config = GigyaConfig()
         let accountService = AccountService()
         config.apiKey = "123"
-    
-        let adapter = NetworkAdapter(config: config, persistenceService: PersistenceService(), sessionService: SessionService(config: config, persistenceService: PersistenceService(), accountService: accountService, keychainHelper: KeychainStorageFactory(plistFactory: PlistConfigFactory())))
+
+        let networkProvider = NetworkProvider(config: config, persistenceService: PersistenceService(), sessionService: SessionService(config: config, persistenceService: PersistenceService(), accountService: accountService, keychainHelper: KeychainStorageFactory(plistFactory: PlistConfigFactory())))
+        
+        let adapter = NetworkAdapter(networkProvider: networkProvider, queueHelper: NetworkBlockingQueueUtils())
 
         adapter.send(model: ApiRequestModel(method: "test")) { (data, error) in
             
