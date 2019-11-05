@@ -16,6 +16,4 @@ public protocol ApiServiceProtocol {
 
     func send<T: Codable & Any>(model: ApiRequestModel, responseType: T.Type, completion: @escaping (GigyaApiResult<T>) -> Void)
 
-    func send<T: Codable & Any>(model: ApiRequestModel, fromRetry: Bool, responseType: T.Type, completion: @escaping (GigyaApiResult<T>) -> Void)
-
 }

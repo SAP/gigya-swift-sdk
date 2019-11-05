@@ -9,42 +9,39 @@
 import Foundation
 
 class NetworkRetryDispacher<T: Codable> {
-    weak var apiService: ApiService?
+
+    private let networkAdapter: NetworkAdapterProtocol?
 
     private var retrys = 0
     private let maxRetry = 2
 
     private let tmpModel: ApiRequestModel?
 
-    init(apiService: ApiService, tmpModel: ApiRequestModel) {
-        self.apiService = apiService
+    init(networkAdapter: NetworkAdapterProtocol?, tmpModel: ApiRequestModel) {
+        self.networkAdapter = networkAdapter
         self.tmpModel = tmpModel
     }
 
-    func startRetry(completion: @escaping (GigyaApiResult<T>) -> Void) {
+    func startRetry(completion: @escaping (NSData?) -> Void) {
 
         // retry when the error is request expired
         if retrys < maxRetry {
             retrys += 1
 
-            apiService?.send(model: tmpModel!, fromRetry: true, responseType: T.self, completion: { result in
-                switch result {
-                case .success:
-                    completion(result)
-                case .failure(let error):
-                    switch error {
-                    case .gigyaError(let data):
-                        if self.retrys == self.maxRetry {
-                            completion(result)
-                            return
-                        }
+            networkAdapter?.send(model: tmpModel!, blocking: false, completion: { (data, error) in
+                guard let data = data else { return }
 
-                        if data.errorCode == GigyaDefinitions.ErrorCode.requestExpired {
-                            self.startRetry(completion: completion)
-                        }
-                    default:
-                        completion(result)
-                    }
+                let objData = DecodeEncodeUtils.dataToDictionary(data: data as Data) as [String: Any]
+
+                if self.retrys == self.maxRetry {
+                    completion(data)
+                    return
+                }
+
+                if let errorCode = objData["errorCode"] as? Int, errorCode == GigyaDefinitions.ErrorCode.requestExpired {
+                    self.startRetry(completion: completion)
+                } else {
+                    completion(data)
                 }
             })
         }

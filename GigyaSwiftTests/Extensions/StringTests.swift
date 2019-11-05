@@ -62,14 +62,14 @@ class StringsTests: XCTestCase {
 //    }
 
 
-    func testSome() {
-        do {
-            let data = ["dasd": ["phones.number": Data()],"aaa": "bbb"] as [String : Any]
-            let jsonData: Data = try JSONSerialization.data(withJSONObject: data, options:[])
-            let result = String(data: jsonData, encoding: .utf8)
-        } catch {
-            GigyaLogger.log(with: self, message: error.localizedDescription)
-        }
-    }
+//    func testSome() {
+//        do {
+//            let data = ["dasd": ["phones.number": Data()],"aaa": "bbb"] as [String : Any]
+//            let jsonData: Data = try JSONSerialization.data(withJSONObject: data, options:[])
+//            let result = String(data: jsonData, encoding: .utf8)
+//        } catch {
+//            GigyaLogger.log(with: self, message: error.localizedDescription)
+//        }
+//    }
 }
 

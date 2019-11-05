@@ -26,27 +26,23 @@ class ApiService: ApiServiceProtocol {
 
     func send<T: Codable>(model: ApiRequestModel, responseType: T.Type,
                           completion: @escaping (GigyaApiResult<T>) -> Void) {
-        send(model: model, responseType: responseType, blocking: false, fromRetry: false, completion: completion)
-    }
-
-    func send<T: Codable>(model: ApiRequestModel, fromRetry: Bool, responseType: T.Type, completion: @escaping (GigyaApiResult<T>) -> Void) {
-        send(model: model, responseType: responseType, blocking: false, fromRetry: fromRetry, completion: completion)
+        send(model: model, responseType: responseType, blocking: false, completion: completion)
     }
 
     func sendBlocking<T: Codable>(model: ApiRequestModel, responseType: T.Type,
                           completion: @escaping (GigyaApiResult<T>) -> Void) {
-        send(model: model, responseType: responseType, blocking: true, fromRetry: false, completion: completion)
+        send(model: model, responseType: responseType, blocking: true, completion: completion)
     }
 
     // Send request to server
-    private func send<T: Codable>(model: ApiRequestModel, responseType: T.Type, blocking: Bool, fromRetry: Bool,
+    private func send<T: Codable>(model: ApiRequestModel, responseType: T.Type, blocking: Bool,
                           completion: @escaping (GigyaApiResult<T>) -> Void) {
         tmpModel = model
 
         networkAdapter?.send(model: model, blocking: blocking) { (data, error) in
             if error == nil {
                 main { [weak self] in
-                    self?.validateResult(responseType: responseType, data: data, fromRetry: fromRetry, completion: completion)
+                    self?.validateResult(responseType: responseType, data: data, completion: completion)
                 }
                 return
             }
@@ -71,7 +67,7 @@ class ApiService: ApiServiceProtocol {
     }
 
     // Validate and decode the result to GigyaApiResult
-    private func validateResult<T: Codable>(responseType: T.Type, data: NSData?, fromRetry: Bool,
+    private func validateResult<T: Codable>(responseType: T.Type, data: NSData?,
                                             completion: @escaping (GigyaApiResult<T>) -> Void) {
         guard let data = data else {
             GigyaLogger.log(with: self, message: "Error: data not found)")
@@ -86,9 +82,11 @@ class ApiService: ApiServiceProtocol {
             sessionService?.setSession(gigyaResponse.sessionInfo)
 
             // retry when the error is request expired
-            if isRetryNeeded(with: gigyaResponse.errorCode) && fromRetry == false {
-                let retryDispacer = NetworkRetryDispacher<T>(apiService: self, tmpModel: tmpModel!)
-                retryDispacer.startRetry(completion: completion)
+            if isRetryNeeded(with: gigyaResponse.errorCode) {
+                let retryDispacer = NetworkRetryDispacher<T>(networkAdapter: networkAdapter, tmpModel: tmpModel!)
+                retryDispacer.startRetry { [weak self] (data) in
+                    self?.validateResult(responseType: T.self, data: data, completion: completion)
+                }
                 return
             }
 

@@ -62,7 +62,7 @@ class PluginViewWrapper<T: GigyaAccountProtocol>: PluginViewWrapperProtocol {
         // make completionHandler to know when need to dismiss viewController
         let eventHandler: (GigyaPluginEvent<T>) -> Void = { result in
             switch result {
-            case .onHide(let event):
+            case .onHide:
                 pluginViewController?.dismiss(animated: true, completion: nil)
             default:
                 break

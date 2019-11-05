@@ -14,6 +14,7 @@ class NetworkProviderTests: XCTestCase {
     var config: GigyaConfig?
     var persistenceService: PersistenceService?
     var networkProvider: NetworkProvider?
+    var sessionService: SessionServiceProtocol?
 
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -21,8 +22,9 @@ class NetworkProviderTests: XCTestCase {
         config = ioc.container.resolve(GigyaConfig.self)!
         config?.apiKey = "test"
         persistenceService = ioc.container.resolve(PersistenceService.self)!
+        sessionService = ioc.container.resolve(SessionServiceProtocol.self)!
 
-        networkProvider = NetworkProvider(url: "", config: config!, persistenceService: persistenceService!)
+        networkProvider = NetworkProvider(config: config!, persistenceService: persistenceService!, sessionService: sessionService!)
 
         // now set up a configuration to use our mock
         let configx = URLSessionConfiguration.ephemeral
@@ -30,7 +32,7 @@ class NetworkProviderTests: XCTestCase {
 
         // and create the URLSession from that
         let session = URLSession(configuration: configx)
-        networkProvider?.session = session
+        networkProvider?.urlSession = session
 
     }
 
@@ -43,7 +45,10 @@ class NetworkProviderTests: XCTestCase {
         let gigyaSession = GigyaSession(sessionToken: "test", secret: "test")
         URLProtocolMock.testURLs = ["https:///tesy./tesy": Data("ok".utf8)]
 
-        networkProvider?.dataRequest(gsession: gigyaSession, path: "/tesy", params: [:]) { (data, error) in
+        let req = ApiRequestModel(method: "/tesy", params: [:], isAnonymous: false)
+        networkProvider?.sessionService.session = gigyaSession
+
+        networkProvider?.dataRequest(model: req) { (data, error) in
             let result = String(data: data! as Data, encoding: .utf8)
             XCTAssertEqual(result, "ok")
         }
@@ -52,8 +57,10 @@ class NetworkProviderTests: XCTestCase {
     func testRequestError() {
 
         let gigyaSession = GigyaSession(sessionToken: "", secret: "")
+        let req = ApiRequestModel(method: ".*,ֿ,,]", params: [:], isAnonymous: false)
 
-        networkProvider?.dataRequest(gsession: gigyaSession, path: ".*,ֿ,,]", params: [:]) { (result, error) in
+        networkProvider?.sessionService.session = gigyaSession
+        networkProvider?.dataRequest(model: req) { (result, error) in
             XCTAssertNotNil(error)
         }
     }
