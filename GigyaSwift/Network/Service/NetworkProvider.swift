@@ -94,5 +94,6 @@ class NetworkProvider {
         let url = "https://\(path.split(separator: ".")[0]).\(self.config!.apiDomain)"
         return url
     }
+
 }
 

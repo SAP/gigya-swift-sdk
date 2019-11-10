@@ -49,6 +49,8 @@
 		E719373A22D33F3700CD149E /* BiometricServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E719373922D33F3700CD149E /* BiometricServiceProtocol.swift */; };
 		E719374122D5CCCF00CD149E /* GigyaIOCContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E719374022D5CCCF00CD149E /* GigyaIOCContainer.swift */; };
 		E719374322D5E6C600CD149E /* PlistConfigFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E719374222D5E6C600CD149E /* PlistConfigFactory.swift */; };
+		E71CF43723780736004B150F /* GigyaTfa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7AA76CC2332727800D24D38 /* GigyaTfa.framework */; };
+		E71CF43823780736004B150F /* GigyaTfa.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E7AA76CC2332727800D24D38 /* GigyaTfa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E71D3C8C22BF7C2E00A413D7 /* Resolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71D3C8B22BF7C2E00A413D7 /* Resolver.swift */; };
 		E71D3C8E22BF8B6E00A413D7 /* TFAResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71D3C8D22BF8B6E00A413D7 /* TFAResolver.swift */; };
 		E71D3C9022BF8D3E00A413D7 /* TFAProviderResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71D3C8F22BF8D3E00A413D7 /* TFAProviderResolver.swift */; };
@@ -120,8 +122,6 @@
 		E7A71CB5232F9FDC00993A61 /* TestAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A71CB4232F9FDC00993A61 /* TestAppUITests.swift */; };
 		E7A71CBE232FA2AA00993A61 /* LoginTestsUi.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A71CBD232FA2AA00993A61 /* LoginTestsUi.swift */; };
 		E7A71CC0232FA30000993A61 /* GeneralUITestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A71CBF232FA30000993A61 /* GeneralUITestHelper.swift */; };
-		E7AA76E12332771000D24D38 /* GigyaTfa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7AA76DF2332770B00D24D38 /* GigyaTfa.framework */; };
-		E7AA76E22332771000D24D38 /* GigyaTfa.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E7AA76DF2332770B00D24D38 /* GigyaTfa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E7AA76E42332779200D24D38 /* GigyaTfa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7AA76E32332779200D24D38 /* GigyaTfa.framework */; };
 		E7ACF9A8226C83F200900C65 /* BusinessApiServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7ACF9A7226C83F200900C65 /* BusinessApiServiceProtocol.swift */; };
 		E7ACF9AC226C841300900C65 /* ApiServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7ACF9AB226C841300900C65 /* ApiServiceProtocol.swift */; };
@@ -282,7 +282,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				E7AA76E22332771000D24D38 /* GigyaTfa.framework in Embed Frameworks */,
+				E71CF43823780736004B150F /* GigyaTfa.framework in Embed Frameworks */,
 				E713E0CD2247773100181328 /* Gigya.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -583,7 +583,7 @@
 				E7DC2C6B228076E600A13426 /* libsqlite3.tbd in Frameworks */,
 				E73373F522633BDA00ADEDBB /* SafariServices.framework in Frameworks */,
 				E731B72D232A53AD0032E111 /* AuthenticationServices.framework in Frameworks */,
-				E7AA76E12332771000D24D38 /* GigyaTfa.framework in Frameworks */,
+				E71CF43723780736004B150F /* GigyaTfa.framework in Frameworks */,
 				E7DC2C5B2280550600A13426 /* LineSDK.framework in Frameworks */,
 				E73373F422633BD300ADEDBB /* SystemConfiguration.framework in Frameworks */,
 				E7A71CAD232F7F3000993A61 /* CoreTelephony.framework in Frameworks */,
@@ -2392,7 +2392,7 @@
 				CODE_SIGN_ENTITLEMENTS = TestApp/TestApp.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 9J35N2U9YY;
+				DEVELOPMENT_TEAM = T48CNFXFQH;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2418,7 +2418,7 @@
 					"$(inherited)",
 					"-ObjC",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.gigya.appleid;
+				PRODUCT_BUNDLE_IDENTIFIER = Gigya.TestGigyaApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "TestApp/TestApp-Bridging-Header.h";
@@ -2438,7 +2438,7 @@
 				CODE_SIGN_ENTITLEMENTS = TestApp/TestApp.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 9J35N2U9YY;
+				DEVELOPMENT_TEAM = T48CNFXFQH;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2463,7 +2463,7 @@
 					"$(inherited)",
 					"-ObjC",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.gigya.appleid;
+				PRODUCT_BUNDLE_IDENTIFIER = Gigya.TestGigyaApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "TestApp/TestApp-Bridging-Header.h";

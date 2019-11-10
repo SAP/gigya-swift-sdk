@@ -31,8 +31,14 @@ class WebLoginProvider: Provider {
     }
 
     func login<T: GigyaAccountProtocol>(type: T.Type, params: [String: Any], viewController: UIViewController? = nil, loginMode: String, completion: @escaping (GigyaApiResult<T>) -> Void) {
+        var newParams = params
+        if newParams["loginMode"] as? String == nil {
+            newParams["loginMode"] = loginMode
+        }
+        newParams["oauth_token"] = sessionService.session?.token
+        newParams["secret"] = sessionService.session?.secret
 
-        provider.login(params: params, viewController: viewController) { [weak self] jsonData, error in
+        provider.login(params: newParams, viewController: viewController) { [weak self] jsonData, error in
             guard error == nil else {
 
                 let errorDesc = error!["error_description"]
@@ -49,6 +55,13 @@ class WebLoginProvider: Provider {
                  self?.loginGigyaFailed(error: errorObject, completion: completion)
 
                 GigyaLogger.log(with: WebLoginProvider.self, message: errorObject.localizedDescription)
+                return
+            }
+
+            if let isValidSession = self?.sessionService.isValidSession(), isValidSession {
+                self?.delegate?.callGetAccount(completion: { (result) in
+                    completion(result)
+                })
                 return
             }
 
