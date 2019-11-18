@@ -57,6 +57,8 @@
 		E71D3CA022BF95FF00A413D7 /* TFAResolverFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71D3C9F22BF95FF00A413D7 /* TFAResolverFactory.swift */; };
 		E71D3CA222BFA81F00A413D7 /* InterruptionResolverFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71D3CA122BFA81F00A413D7 /* InterruptionResolverFactory.swift */; };
 		E71D3CA422BFA84000A413D7 /* InterruptionResolverFactoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71D3CA322BFA84000A413D7 /* InterruptionResolverFactoryProtocol.swift */; };
+		E720D34E2382D33900446EA4 /* PushNotificationsServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E720D34D2382D33900446EA4 /* PushNotificationsServiceProtocol.swift */; };
+		E720D3502382D49400446EA4 /* PushNotificationModes.swift in Sources */ = {isa = PBXBuildFile; fileRef = E720D34F2382D49400446EA4 /* PushNotificationModes.swift */; };
 		E7221D7922B8FC8700C296A9 /* PendingRegistrationResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7221D7822B8FC8700C296A9 /* PendingRegistrationResolver.swift */; };
 		E7221D7A22B903E500C296A9 /* GoogleWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7D59B1D227F34D3002FA864 /* GoogleWrapper.swift */; };
 		E7221D8022B90C0C00C296A9 /* UserHostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7221D7F22B90C0C00C296A9 /* UserHostModel.swift */; };
@@ -129,6 +131,7 @@
 		E7ACF9B0226C844A00900C65 /* AccountServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7ACF9AF226C844A00900C65 /* AccountServiceProtocol.swift */; };
 		E7ACF9CC226F2A4100900C65 /* ProviderWrapperProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7ACF9CB226F2A4100900C65 /* ProviderWrapperProtocol.swift */; };
 		E7AE9E482370179400059CD2 /* SocialLoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7AE9E472370179400059CD2 /* SocialLoginViewModel.swift */; };
+		E7B4D69C238329F50090E57D /* PushNotificationsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E720D34B2382D32300446EA4 /* PushNotificationsService.swift */; };
 		E7BE36782224219200A108D9 /* GigyaSwift.h in Headers */ = {isa = PBXBuildFile; fileRef = E7BE36762224219200A108D9 /* GigyaSwift.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E7BE368B2224225100A108D9 /* Gigya.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BE368A2224225100A108D9 /* Gigya.swift */; };
 		E7BE369D2224260400A108D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BE369C2224260400A108D9 /* AppDelegate.swift */; };
@@ -339,6 +342,9 @@
 		E71D4A2022817F83000892C2 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
 		E71D4A2122817F83000892C2 /* WechatAuthSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WechatAuthSDK.h; sourceTree = "<group>"; };
 		E71D4A2222817F83000892C2 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
+		E720D34B2382D32300446EA4 /* PushNotificationsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationsService.swift; sourceTree = "<group>"; };
+		E720D34D2382D33900446EA4 /* PushNotificationsServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationsServiceProtocol.swift; sourceTree = "<group>"; };
+		E720D34F2382D49400446EA4 /* PushNotificationModes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationModes.swift; sourceTree = "<group>"; };
 		E7221D7422B7E1EA00C296A9 /* TestApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TestApp.entitlements; sourceTree = "<group>"; };
 		E7221D7822B8FC8700C296A9 /* PendingRegistrationResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingRegistrationResolver.swift; sourceTree = "<group>"; };
 		E7221D7F22B90C0C00C296A9 /* UserHostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserHostModel.swift; sourceTree = "<group>"; };
@@ -770,6 +776,15 @@
 			path = WechatSDK;
 			sourceTree = "<group>";
 		};
+		E720D34A2382D2FC00446EA4 /* PushNotifications */ = {
+			isa = PBXGroup;
+			children = (
+				E720D34B2382D32300446EA4 /* PushNotificationsService.swift */,
+				E720D34D2382D33900446EA4 /* PushNotificationsServiceProtocol.swift */,
+			);
+			path = PushNotifications;
+			sourceTree = "<group>";
+		};
 		E7221D7E22B90C0000C296A9 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -1197,6 +1212,7 @@
 			isa = PBXGroup;
 			children = (
 				E7D412F322E8A38F0082A3E3 /* PersistenceService.swift */,
+				E720D34A2382D2FC00446EA4 /* PushNotifications */,
 				E719373422D32FA100CD149E /* Biometric */,
 				E73373DE2263312F00ADEDBB /* Providers */,
 				D52F88E422795793007DE20F /* Plugins */,
@@ -1226,6 +1242,7 @@
 			isa = PBXGroup;
 			children = (
 				E7CBB03C22356086000B6C11 /* GigyaInstanceProtocol.swift */,
+				E720D34F2382D49400446EA4 /* PushNotificationModes.swift */,
 				E7CBB0592237DD2C000B6C11 /* GigyaSocialProviders.swift */,
 				E719372222CA4F9F00CD149E /* Session */,
 				E719372122CA4F5A00CD149E /* Interruption */,
@@ -1821,9 +1838,11 @@
 				E77F71A0230AD95600E8738A /* GigyaWebBridge.swift in Sources */,
 				E7CBB041223561F4000B6C11 /* GigyaAccount.swift in Sources */,
 				E7E80DA0225203D400D3B663 /* ServiceMaker.swift in Sources */,
+				E7B4D69C238329F50090E57D /* PushNotificationsService.swift in Sources */,
 				E7E80D8A224BC17000D3B663 /* FatalErrorUtils.swift in Sources */,
 				E713E0FC2247C6E700181328 /* SignatureUtils.swift in Sources */,
 				E7CBB03D22356086000B6C11 /* GigyaInstanceProtocol.swift in Sources */,
+				E720D3502382D49400446EA4 /* PushNotificationModes.swift in Sources */,
 				E7C859DB2289604F005C1FBE /* LinkAccountsResolver.swift in Sources */,
 				E7CBB068223E595D000B6C11 /* GigyaPlistConfig.swift in Sources */,
 				E756A2AD22771B6F007FA801 /* Url.swift in Sources */,
@@ -1841,6 +1860,7 @@
 				E7A6E0AC224245D00063638F /* ApiResultModel.swift in Sources */,
 				E7D59B20227F3872002FA864 /* Bundle.swift in Sources */,
 				E71D3CA422BFA84000A413D7 /* InterruptionResolverFactoryProtocol.swift in Sources */,
+				E720D34E2382D33900446EA4 /* PushNotificationsServiceProtocol.swift in Sources */,
 				E7D412F422E8A38F0082A3E3 /* PersistenceService.swift in Sources */,
 				E71D3C9E22BF906300A413D7 /* TFAModels.swift in Sources */,
 				E7CBAFC0222D1F5B000B6C11 /* ApiService.swift in Sources */,
