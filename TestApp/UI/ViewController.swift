@@ -16,6 +16,8 @@ class ViewController: UIViewController {
     
     var isLoggedIn = false
 
+    @IBOutlet weak var resultTextView: UILabel!
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -34,7 +36,6 @@ class ViewController: UIViewController {
         UIFactory.showAlert(vc: self, msg: "Session is expire!")
     }
 
-    @IBOutlet weak var resultTextView: UITextView?
 
     @IBAction func changeSetttings(_ sender: Any) {
         let alert = UIFactory.getChangeSettingAlert(dc: gigya.config.apiDomain, api: gigya.config.apiKey!) { [weak self] dc, api in

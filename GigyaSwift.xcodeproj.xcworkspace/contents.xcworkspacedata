@@ -5,9 +5,6 @@
       location = "group:GigyaE2ETestsApp/GigyaE2ETestsApp.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:GigyaTfa/GigyaTfa.xcodeproj">
-   </FileRef>
-   <FileRef
       location = "group:GigyaSwift.xcodeproj">
    </FileRef>
    <FileRef

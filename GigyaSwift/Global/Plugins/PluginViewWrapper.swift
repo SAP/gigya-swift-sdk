@@ -123,7 +123,7 @@ class PluginViewWrapper<T: GigyaAccountProtocol>: PluginViewWrapperProtocol {
                 document.location.href = 'gsapi://on_js_load_error';
                 }, 10000);
             </script>
-            <script src='https://cdns.\(apiDomain)/JS/gigya.js?apikey=\(apiKey)' type='text/javascript' onLoad='onJSLoad();'>
+            <script src='https://cdns.\(apiDomain)/JS/gigya.js?apikey=\(apiKey)&dbg=1' type='text/javascript' onLoad='onJSLoad();'>
                 {
                     deviceType: 'mobile' // consoleLogLevel: 'error'
                 }

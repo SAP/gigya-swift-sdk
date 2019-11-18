@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="92V-yH-a3l">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="92V-yH-a3l">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,20 +16,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="249" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="owO-vP-SNV">
-                                <rect key="frame" x="16" y="60" width="343" height="240"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <accessibility key="accessibilityConfiguration" identifier="LogText">
-                                    <accessibilityTraits key="traits" notEnabled="YES"/>
-                                </accessibility>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="240" id="cAt-UN-FvK"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jkr-xe-GiC">
-                                <rect key="frame" x="170" y="432" width="48" height="30"/>
+                                <rect key="frame" x="170" y="374" width="48" height="30"/>
                                 <accessibility key="accessibilityConfiguration" identifier="Logout"/>
                                 <state key="normal" title="Logout"/>
                                 <connections>
@@ -37,7 +25,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9wC-xP-8OI">
-                                <rect key="frame" x="16" y="340" width="111" height="30"/>
+                                <rect key="frame" x="16" y="328" width="111" height="30"/>
                                 <accessibility key="accessibilityConfiguration" identifier="ShowScreenset"/>
                                 <state key="normal" title="Show Screenset"/>
                                 <connections>
@@ -45,7 +33,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fNt-XW-RSV">
-                                <rect key="frame" x="16" y="386" width="38" height="30"/>
+                                <rect key="frame" x="16" y="374" width="38" height="30"/>
                                 <accessibility key="accessibilityConfiguration" identifier="Login">
                                     <bool key="isElement" value="YES"/>
                                 </accessibility>
@@ -55,7 +43,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cq6-7s-6Kn">
-                                <rect key="frame" x="16" y="432" width="57" height="30"/>
+                                <rect key="frame" x="16" y="420" width="57" height="30"/>
                                 <accessibility key="accessibilityConfiguration" identifier="Register"/>
                                 <state key="normal" title="Register"/>
                                 <connections>
@@ -63,7 +51,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fyN-es-d2v">
-                                <rect key="frame" x="16" y="478" width="111" height="30"/>
+                                <rect key="frame" x="16" y="466" width="111" height="30"/>
                                 <accessibility key="accessibilityConfiguration" identifier="AddConnection"/>
                                 <state key="normal" title="Add Connection"/>
                                 <connections>
@@ -71,7 +59,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cu6-gD-2R1">
-                                <rect key="frame" x="16" y="524" width="138" height="30"/>
+                                <rect key="frame" x="16" y="512" width="138" height="30"/>
                                 <accessibility key="accessibilityConfiguration" identifier="RemoveConnection"/>
                                 <state key="normal" title="Remove Connection"/>
                                 <connections>
@@ -79,7 +67,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0fX-WN-aKg">
-                                <rect key="frame" x="16" y="570" width="86" height="30"/>
+                                <rect key="frame" x="16" y="558" width="86" height="30"/>
                                 <accessibility key="accessibilityConfiguration" identifier="GetAccount"/>
                                 <state key="normal" title="Get Account"/>
                                 <connections>
@@ -87,7 +75,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TiM-DB-mr3">
-                                <rect key="frame" x="16" y="616" width="131" height="30"/>
+                                <rect key="frame" x="16" y="604" width="131" height="30"/>
                                 <accessibility key="accessibilityConfiguration" identifier="Loginwithprovider"/>
                                 <state key="normal" title="Login with provider"/>
                                 <connections>
@@ -95,7 +83,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eoH-ob-HH3">
-                                <rect key="frame" x="170" y="386" width="139" height="30"/>
+                                <rect key="frame" x="170" y="328" width="139" height="30"/>
                                 <accessibility key="accessibilityConfiguration" identifier="Loginwithproviders"/>
                                 <state key="normal" title="Login with providers"/>
                                 <connections>
@@ -103,7 +91,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WvG-tz-Pye">
-                                <rect key="frame" x="170" y="340" width="42" height="30"/>
+                                <rect key="frame" x="170" y="282" width="42" height="30"/>
                                 <accessibility key="accessibilityConfiguration" identifier="pushOptIn"/>
                                 <state key="normal" title="Opt in"/>
                                 <connections>
@@ -111,7 +99,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NHW-O1-ecN">
-                                <rect key="frame" x="165" y="478" width="110" height="30"/>
+                                <rect key="frame" x="165" y="420" width="110" height="30"/>
                                 <accessibility key="accessibilityConfiguration" identifier="OptinBiometric"/>
                                 <state key="normal" title="Opt in biometric"/>
                                 <connections>
@@ -119,7 +107,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="20R-EK-hdL">
-                                <rect key="frame" x="165" y="524" width="121" height="30"/>
+                                <rect key="frame" x="165" y="466" width="121" height="30"/>
                                 <accessibility key="accessibilityConfiguration" identifier="OptoutBiometric"/>
                                 <state key="normal" title="Opt out biometric"/>
                                 <connections>
@@ -127,7 +115,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hhx-Bt-vKE">
-                                <rect key="frame" x="165" y="570" width="174" height="30"/>
+                                <rect key="frame" x="165" y="512" width="174" height="30"/>
                                 <accessibility key="accessibilityConfiguration" identifier="UnlockSession"/>
                                 <state key="normal" title="Unlock Session biometric"/>
                                 <connections>
@@ -135,7 +123,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8sE-Kg-WNH">
-                                <rect key="frame" x="165" y="616" width="159" height="30"/>
+                                <rect key="frame" x="165" y="558" width="159" height="30"/>
                                 <accessibility key="accessibilityConfiguration" identifier="LockSession"/>
                                 <state key="normal" title="Lock Session biometric"/>
                                 <connections>
@@ -143,34 +131,43 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f6E-bX-ckL">
-                                <rect key="frame" x="16" y="292" width="80" height="30"/>
+                                <rect key="frame" x="16" y="280" width="80" height="30"/>
                                 <accessibility key="accessibilityConfiguration" identifier="WebBridge"/>
                                 <state key="normal" title="Web Bridge"/>
                                 <connections>
                                     <segue destination="6dQ-xk-LHw" kind="show" id="pd6-GS-wad"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NmF-9K-jcJ">
+                                <rect key="frame" x="16" y="54" width="343" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="bXH-Fr-4FZ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="WvG-tz-Pye" firstAttribute="leading" secondItem="9wC-xP-8OI" secondAttribute="trailing" constant="43" id="0qk-QC-BPy"/>
-                            <constraint firstItem="owO-vP-SNV" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="16" id="2AI-Bd-Fzi"/>
                             <constraint firstItem="TiM-DB-mr3" firstAttribute="top" secondItem="0fX-WN-aKg" secondAttribute="bottom" constant="16" id="2YG-O4-hBB"/>
                             <constraint firstItem="0fX-WN-aKg" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="2p7-lC-fVD"/>
                             <constraint firstItem="Jkr-xe-GiC" firstAttribute="top" secondItem="eoH-ob-HH3" secondAttribute="bottom" constant="16" id="2xI-ch-at2"/>
                             <constraint firstItem="fyN-es-d2v" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="6iT-v0-QyB"/>
                             <constraint firstItem="hhx-Bt-vKE" firstAttribute="top" secondItem="20R-EK-hdL" secondAttribute="bottom" constant="16" id="AW2-3C-TEG"/>
+                            <constraint firstItem="f6E-bX-ckL" firstAttribute="top" secondItem="NmF-9K-jcJ" secondAttribute="bottom" constant="26" id="Agy-xl-2DE"/>
                             <constraint firstItem="Cu6-gD-2R1" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="DKn-Fw-vGx"/>
                             <constraint firstItem="cq6-7s-6Kn" firstAttribute="top" secondItem="fNt-XW-RSV" secondAttribute="bottom" constant="16" id="JdH-eC-2tw"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="owO-vP-SNV" secondAttribute="trailing" constant="16" id="KJ2-A9-xhx"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="NmF-9K-jcJ" secondAttribute="trailing" constant="16" id="Knp-4p-sXR"/>
+                            <constraint firstItem="NmF-9K-jcJ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="N1d-md-Bfy"/>
                             <constraint firstItem="9wC-xP-8OI" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="Nde-ba-g2z"/>
                             <constraint firstItem="NHW-O1-ecN" firstAttribute="top" secondItem="Jkr-xe-GiC" secondAttribute="bottom" constant="16" id="R45-Yl-OOX"/>
-                            <constraint firstItem="owO-vP-SNV" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="RMc-LD-XvY"/>
                             <constraint firstItem="Cu6-gD-2R1" firstAttribute="top" secondItem="fyN-es-d2v" secondAttribute="bottom" constant="16" id="U4r-Fs-aWR"/>
                             <constraint firstItem="Jkr-xe-GiC" firstAttribute="leading" secondItem="cq6-7s-6Kn" secondAttribute="trailing" constant="97" id="UfP-Kp-Jye"/>
+                            <constraint firstItem="WvG-tz-Pye" firstAttribute="top" secondItem="NmF-9K-jcJ" secondAttribute="bottom" constant="28" id="V3V-aA-NSZ"/>
                             <constraint firstItem="9wC-xP-8OI" firstAttribute="top" secondItem="f6E-bX-ckL" secondAttribute="bottom" constant="18" id="V7s-ph-sqS"/>
                             <constraint firstItem="TiM-DB-mr3" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="YjH-RD-fcU"/>
-                            <constraint firstItem="WvG-tz-Pye" firstAttribute="top" secondItem="owO-vP-SNV" secondAttribute="bottom" constant="40" id="Z3E-a7-GZJ"/>
                             <constraint firstItem="8sE-Kg-WNH" firstAttribute="top" secondItem="hhx-Bt-vKE" secondAttribute="bottom" constant="16" id="duC-hH-cOv"/>
                             <constraint firstItem="f6E-bX-ckL" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="e9e-XB-z7M"/>
                             <constraint firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="fZE-Zo-wdh"/>
@@ -184,15 +181,15 @@
                             <constraint firstItem="20R-EK-hdL" firstAttribute="top" secondItem="NHW-O1-ecN" secondAttribute="bottom" constant="16" id="rgP-rq-l7C"/>
                             <constraint firstItem="cq6-7s-6Kn" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="sbW-3R-EwQ"/>
                             <constraint firstItem="20R-EK-hdL" firstAttribute="leading" secondItem="Cu6-gD-2R1" secondAttribute="trailing" constant="11" id="sby-LG-uY9"/>
-                            <constraint firstItem="9wC-xP-8OI" firstAttribute="top" secondItem="owO-vP-SNV" secondAttribute="bottom" constant="40" id="uHF-J9-Mfc"/>
                             <constraint firstItem="0fX-WN-aKg" firstAttribute="top" secondItem="Cu6-gD-2R1" secondAttribute="bottom" constant="16" id="uiG-dv-EM9"/>
+                            <constraint firstItem="NmF-9K-jcJ" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="wZI-xj-tpI"/>
                             <constraint firstItem="NHW-O1-ecN" firstAttribute="leading" secondItem="fyN-es-d2v" secondAttribute="trailing" constant="38" id="wdi-LA-kRe"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="hwu-pJ-lM1"/>
                     <connections>
-                        <outlet property="resultTextView" destination="owO-vP-SNV" id="0w1-nl-yVn"/>
+                        <outlet property="resultTextView" destination="NmF-9K-jcJ" id="VYj-gg-YFO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

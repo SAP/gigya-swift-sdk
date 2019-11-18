@@ -8,7 +8,7 @@
 
 import WebKit
 
-public class GigyaWebBridge<T: GigyaAccountProtocol>: NSObject, WKScriptMessageHandler {
+public class GigyaWebBridge<T: GigyaAccountProtocol>: NSObject, WKScriptMessageHandler, WKUIDelegate {
 
     let config: GigyaConfig
 
@@ -43,6 +43,7 @@ public class GigyaWebBridge<T: GigyaAccountProtocol>: NSObject, WKScriptMessageH
         let contentController = webView.configuration.userContentController
 
         self.webView = webView
+        self.webView?.uiDelegate = self
         self.viewController = viewController
         self.completion = pluginEvent
 
@@ -344,6 +345,20 @@ public class GigyaWebBridge<T: GigyaAccountProtocol>: NSObject, WKScriptMessageH
                 }
             }
         }
+    }
+
+    public func webView(_ webView: WKWebView, runJavaScriptAlertPanelWithMessage message: String,
+                 initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping () -> Void) {
+
+        let alertController = UIAlertController(title: message,
+                                                message: nil,
+                                                preferredStyle: .alert)
+
+        alertController.addAction(UIAlertAction(title: "OK", style: .cancel) {
+            _ in completionHandler()}
+        )
+
+        viewController?.present(alertController, animated: true, completion: nil)
     }
 
 }
