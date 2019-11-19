@@ -12,6 +12,7 @@ extension UIAlertController {
     func show() {
         let win = UIWindow(frame: UIScreen.main.bounds)
         let vc = UIViewController()
+        
         vc.view.backgroundColor = .clear
         win.rootViewController = vc
         win.windowLevel = UIWindow.Level.alert + 1

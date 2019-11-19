@@ -34,6 +34,10 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
 
     private let interruptionResolver: InterruptionResolverFactoryProtocol
 
+    private lazy var pushService: PushNotificationsServiceProtocol = {
+        return self.container.resolve(PushNotificationsServiceProtocol.self)!
+    }()
+
     private let container: IOCContainer
 
     // MARK: - Biometric service
@@ -55,7 +59,7 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
         self.interruptionResolver = interruptionResolver
         self.biometric = biometric
         self.container = container
-
+        
         // load plist and make init
         let plistConfig = plistFactory.parsePlistConfig()
 
@@ -285,6 +289,52 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
         let webBridge = container.resolve(GigyaWebBridge<T>.self)
 
         return webBridge!
+    }
+
+    // MARK: Push integration - Available in iOS 10+
+
+    /**
+     Recive Push
+
+     - Parameter userInfo:   dictionary from didReceiveRemoteNotification.
+     - Parameter completion:  Completion from didReceiveRemoteNotification.
+     */
+
+    @available(iOS 10.0, *)
+    public func recivePush(userInfo: [AnyHashable : Any], completion: @escaping (UIBackgroundFetchResult) -> Void) {
+        pushService.onRecivePush(userInfo: userInfo, completion: completion)
+    }
+
+    /**
+     Foreground notification receive
+
+     - Parameter data:   dictionary of message from didReceive:remoteMessage.
+     */
+
+    public func foregrundNotification(with data: [AnyHashable : Any]) {
+        pushService.foregrundNotification(with: data)
+    }
+
+    /**
+     Save push token ( from FCM )
+
+     - Parameter key: FCM Key.
+     */
+
+    @available(iOS 10.0, *)
+    public func updatePushToken(key: String) {
+        pushService.savePushKey(key: key)
+    }
+
+    /**
+     Request to Opt-In to Authentication.
+     This is the first of two stages of the Opt-In process.
+
+      - Parameter response: `UNNotificationResponse` from a tapped notification .
+      */
+
+    public func verifyPush(with response: UNNotificationResponse) {
+        pushService.verifyPush(response: response)
     }
 
 }

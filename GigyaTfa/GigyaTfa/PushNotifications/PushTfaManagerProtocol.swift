@@ -9,11 +9,7 @@
 import UserNotifications
 import Gigya
 
-protocol PushNotificationsServiceProtocol {
-
-    func onRecivePush(userInfo: [AnyHashable : Any], completion: @escaping (UIBackgroundFetchResult) -> Void)
-
-    func savePushKey(key: String)
+protocol PushTfaManagerProtocol {
 
     func verifyPushTfa(response: UNNotificationResponse)
     

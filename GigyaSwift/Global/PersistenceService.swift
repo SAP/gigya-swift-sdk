@@ -49,6 +49,12 @@ class PersistenceService {
         }
     }
 
+    internal var pushKey: String? {
+        get {
+            return UserDefaults.standard.string(forKey: InternalConfig.Storage.pushKey)
+        }
+    }
+
     // save gmid, ucid to userDefaults
     internal func save(ids: InitSdkIdsModel) {
         UserDefaults.standard.setValue(ids.gmid, forKey: InternalConfig.Storage.GMID)
@@ -65,5 +71,9 @@ class PersistenceService {
 
     internal func setExpirationSession(to double: Double) {
         UserDefaults.standard.setValue(double, forKey: InternalConfig.Storage.expirationSession)
+    }
+
+    internal func setPushKey(to string: String) {
+        UserDefaults.standard.setValue(string, forKey: InternalConfig.Storage.pushKey)
     }
 }

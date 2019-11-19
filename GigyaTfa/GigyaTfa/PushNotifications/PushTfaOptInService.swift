@@ -22,6 +22,8 @@ protocol PushTfaOptInServiceProtocol {
 class PushTfaOptInService: PushTfaOptInServiceProtocol {
     let apiService: ApiServiceProtocol
 
+    let generalUtils: GeneralUtils
+
     var gigyaAssertion: String?
 
     var regToken: String?
@@ -30,9 +32,10 @@ class PushTfaOptInService: PushTfaOptInServiceProtocol {
 
     var completion: (GigyaApiResult<GigyaDictionary>) -> Void = { _ in }
 
-    init(apiService: ApiServiceProtocol, completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void) {
+    init(apiService: ApiServiceProtocol, generalUtils: GeneralUtils, completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void) {
         self.apiService = apiService
         self.completion = completion
+        self.generalUtils = generalUtils
     }
 
     func start() {
@@ -70,7 +73,7 @@ class PushTfaOptInService: PushTfaOptInServiceProtocol {
             return
         }
 
-        let deviceInfo = ["platform": "ios", "os": GeneralUtils.iosVersion(), "man": "apple", "pushToken": pushToken]
+        let deviceInfo = ["platform": "ios", "os": generalUtils.iosVersion(), "man": "apple", "pushToken": pushToken]
         let model = ApiRequestModel(method: GigyaDefinitions.API.pushOptinTFA, params: ["gigyaAssertion": gigyaAssertion ,"deviceInfo": deviceInfo])
 
         apiService.send(model: model, responseType: GigyaDictionary.self) { [weak self] result in
@@ -114,7 +117,7 @@ class PushTfaOptInService: PushTfaOptInServiceProtocol {
         apiService.send(model: model, responseType: GigyaDictionary.self) { [weak self] (result) in
             switch result {
             case .success(let data):
-                GeneralUtils.showNotification(title: "Opt-In for push TFA", body: "This device is now registered for push TFA", id: "verifyOptIn")
+                self?.generalUtils.showNotification(title: "Opt-In for push TFA", body: "This device is now registered for push TFA", id: "verifyOptIn")
                 
                 self?.completion(.success(data: data))
             case .failure(let error):

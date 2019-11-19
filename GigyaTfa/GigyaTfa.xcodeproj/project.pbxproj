@@ -24,13 +24,11 @@
 		E719373E22D4823400CD149E /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = E719373D22D4823400CD149E /* Dictionary.swift */; };
 		E7EEF33222C8BB880004DF5D /* GigyaTfa.h in Headers */ = {isa = PBXBuildFile; fileRef = E7EEF33022C8BB880004DF5D /* GigyaTfa.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E7EEF35722C8BBDB0004DF5D /* AlertControllerUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7EEF33922C8BBDB0004DF5D /* AlertControllerUtils.swift */; };
-		E7EEF35822C8BBDB0004DF5D /* GeneralUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7EEF33A22C8BBDB0004DF5D /* GeneralUtils.swift */; };
 		E7EEF35922C8BBDB0004DF5D /* UIAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7EEF33C22C8BBDB0004DF5D /* UIAlertController.swift */; };
-		E7EEF35A22C8BBDB0004DF5D /* PushNotificationModes.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7EEF33E22C8BBDB0004DF5D /* PushNotificationModes.swift */; };
 		E7EEF35B22C8BBDB0004DF5D /* GigyaTfa.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7EEF33F22C8BBDB0004DF5D /* GigyaTfa.swift */; };
-		E7EEF35D22C8BBDB0004DF5D /* PushNotificationsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7EEF34222C8BBDB0004DF5D /* PushNotificationsService.swift */; };
+		E7EEF35D22C8BBDB0004DF5D /* PushTfaManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7EEF34222C8BBDB0004DF5D /* PushTfaManager.swift */; };
 		E7EEF35E22C8BBDB0004DF5D /* PushTfaOptInService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7EEF34322C8BBDB0004DF5D /* PushTfaOptInService.swift */; };
-		E7EEF35F22C8BBDB0004DF5D /* PushNotificationsServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7EEF34422C8BBDB0004DF5D /* PushNotificationsServiceProtocol.swift */; };
+		E7EEF35F22C8BBDB0004DF5D /* PushTfaManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7EEF34422C8BBDB0004DF5D /* PushTfaManagerProtocol.swift */; };
 		E7EEF36122C8BBDB0004DF5D /* RegistredPhonesResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7EEF34822C8BBDB0004DF5D /* RegistredPhonesResolver.swift */; };
 		E7EEF36222C8BBDB0004DF5D /* RegisteredPhonesResolverProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7EEF34922C8BBDB0004DF5D /* RegisteredPhonesResolverProtocol.swift */; };
 		E7EEF36322C8BBDB0004DF5D /* RegisterPhoneResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7EEF34A22C8BBDB0004DF5D /* RegisterPhoneResolver.swift */; };
@@ -52,13 +50,11 @@
 		E7EEF33022C8BB880004DF5D /* GigyaTfa.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GigyaTfa.h; sourceTree = "<group>"; };
 		E7EEF33122C8BB880004DF5D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E7EEF33922C8BBDB0004DF5D /* AlertControllerUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertControllerUtils.swift; sourceTree = "<group>"; };
-		E7EEF33A22C8BBDB0004DF5D /* GeneralUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralUtils.swift; sourceTree = "<group>"; };
 		E7EEF33C22C8BBDB0004DF5D /* UIAlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIAlertController.swift; sourceTree = "<group>"; };
-		E7EEF33E22C8BBDB0004DF5D /* PushNotificationModes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushNotificationModes.swift; sourceTree = "<group>"; };
 		E7EEF33F22C8BBDB0004DF5D /* GigyaTfa.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GigyaTfa.swift; sourceTree = "<group>"; };
-		E7EEF34222C8BBDB0004DF5D /* PushNotificationsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushNotificationsService.swift; sourceTree = "<group>"; };
+		E7EEF34222C8BBDB0004DF5D /* PushTfaManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushTfaManager.swift; sourceTree = "<group>"; };
 		E7EEF34322C8BBDB0004DF5D /* PushTfaOptInService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushTfaOptInService.swift; sourceTree = "<group>"; };
-		E7EEF34422C8BBDB0004DF5D /* PushNotificationsServiceProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushNotificationsServiceProtocol.swift; sourceTree = "<group>"; };
+		E7EEF34422C8BBDB0004DF5D /* PushTfaManagerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushTfaManagerProtocol.swift; sourceTree = "<group>"; };
 		E7EEF34822C8BBDB0004DF5D /* RegistredPhonesResolver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistredPhonesResolver.swift; sourceTree = "<group>"; };
 		E7EEF34922C8BBDB0004DF5D /* RegisteredPhonesResolverProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisteredPhonesResolverProtocol.swift; sourceTree = "<group>"; };
 		E7EEF34A22C8BBDB0004DF5D /* RegisterPhoneResolver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterPhoneResolver.swift; sourceTree = "<group>"; };
@@ -125,7 +121,6 @@
 			isa = PBXGroup;
 			children = (
 				E7EEF33922C8BBDB0004DF5D /* AlertControllerUtils.swift */,
-				E7EEF33A22C8BBDB0004DF5D /* GeneralUtils.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -142,7 +137,6 @@
 		E7EEF33D22C8BBDB0004DF5D /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				E7EEF33E22C8BBDB0004DF5D /* PushNotificationModes.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -150,9 +144,9 @@
 		E7EEF34022C8BBDB0004DF5D /* PushNotifications */ = {
 			isa = PBXGroup;
 			children = (
-				E7EEF34222C8BBDB0004DF5D /* PushNotificationsService.swift */,
+				E7EEF34222C8BBDB0004DF5D /* PushTfaManager.swift */,
 				E7EEF34322C8BBDB0004DF5D /* PushTfaOptInService.swift */,
-				E7EEF34422C8BBDB0004DF5D /* PushNotificationsServiceProtocol.swift */,
+				E7EEF34422C8BBDB0004DF5D /* PushTfaManagerProtocol.swift */,
 			);
 			path = PushNotifications;
 			sourceTree = "<group>";
@@ -322,19 +316,17 @@
 			files = (
 				E7EEF36222C8BBDB0004DF5D /* RegisteredPhonesResolverProtocol.swift in Sources */,
 				E7EEF36A22C8BBDB0004DF5D /* RegisterTotpResolverProtocol.swift in Sources */,
-				E7EEF35822C8BBDB0004DF5D /* GeneralUtils.swift in Sources */,
 				E7EEF35B22C8BBDB0004DF5D /* GigyaTfa.swift in Sources */,
 				E7EEF36C22C8BBDB0004DF5D /* RegisteredEmailsResolverProtocol.swift in Sources */,
 				E7EEF36422C8BBDB0004DF5D /* RegisterPhonesResolverProtocol.swift in Sources */,
 				E7EEF35E22C8BBDB0004DF5D /* PushTfaOptInService.swift in Sources */,
-				E7EEF35A22C8BBDB0004DF5D /* PushNotificationModes.swift in Sources */,
 				E7EEF36122C8BBDB0004DF5D /* RegistredPhonesResolver.swift in Sources */,
 				E7EEF35922C8BBDB0004DF5D /* UIAlertController.swift in Sources */,
 				E7EEF36822C8BBDB0004DF5D /* VerifyTotpResolverProtocol.swift in Sources */,
 				E719373E22D4823400CD149E /* Dictionary.swift in Sources */,
-				E7EEF35D22C8BBDB0004DF5D /* PushNotificationsService.swift in Sources */,
+				E7EEF35D22C8BBDB0004DF5D /* PushTfaManager.swift in Sources */,
 				E7EEF36322C8BBDB0004DF5D /* RegisterPhoneResolver.swift in Sources */,
-				E7EEF35F22C8BBDB0004DF5D /* PushNotificationsServiceProtocol.swift in Sources */,
+				E7EEF35F22C8BBDB0004DF5D /* PushTfaManagerProtocol.swift in Sources */,
 				E7EEF36722C8BBDB0004DF5D /* VerifyTotpResolver.swift in Sources */,
 				E7EEF36522C8BBDB0004DF5D /* VerifyCodeResolver.swift in Sources */,
 				E7EEF36B22C8BBDB0004DF5D /* RegisteredEmailsResolver.swift in Sources */,

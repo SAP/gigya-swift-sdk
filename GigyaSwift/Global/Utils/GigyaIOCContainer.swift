@@ -24,6 +24,28 @@ class GigyaIOCContainer<T: GigyaAccountProtocol>: GigyaContainerProtocol {
     private func registerDependencies() {
         container.register(service: GigyaConfig.self, isSingleton: true) { _ in GigyaConfig() }
 
+        container.register(service: GeneralUtils.self) { resolver in
+            return GeneralUtils()
+        }
+
+        container.register(service: PushNotificationsServiceProtocol.self, isSingleton: true) { resolver in
+            let apiService = resolver.resolve(ApiServiceProtocol.self)
+            let sessionService = resolver.resolve(SessionServiceProtocol.self)
+            let generalUtils = resolver.resolve(GeneralUtils.self)
+            let biometricService = resolver.resolve(BiometricServiceProtocol.self)
+            let persistenceService = resolver.resolve(PersistenceService.self)
+
+            return PushNotificationsService(apiService: apiService!,
+                                            sessionService: sessionService!,
+                                            biometricService: biometricService!,
+                                            generalUtils: generalUtils!,
+                                            persistenceService: persistenceService!)
+        }
+
+        container.register(service: PushNotificationsServiceExternalProtocol.self) { resolver in
+            return resolver.resolve(PushNotificationsServiceProtocol.self) as! PushNotificationsServiceExternalProtocol
+        }
+
         container.register(service: NetworkBlockingQueueUtils.self) { resolver in
             return NetworkBlockingQueueUtils()
         }

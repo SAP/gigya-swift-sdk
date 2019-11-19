@@ -8,7 +8,7 @@
 import UIKit
 import UserNotifications
 
-class PushNotificationsService: PushNotificationsServiceProtocol {
+class PushNotificationsService: PushNotificationsServiceExternalProtocol, PushNotificationsServiceProtocol {
 
     let apiService: ApiServiceProtocol
 
@@ -16,19 +16,33 @@ class PushNotificationsService: PushNotificationsServiceProtocol {
 
     let biometricService: BiometricServiceProtocol
 
-    // User defaults params
-    let pushSaveKey = "com.gigya.GigyaTfa:pushKey"
+    let persistenceService: PersistenceService
 
-    init(apiService: ApiServiceProtocol, sessionService: SessionServiceProtocol, biometricService: BiometricServiceProtocol) {
+    let generalUtils: GeneralUtils
+
+    var registredClosures: [InstanceRegistred] = []
+
+    init(apiService: ApiServiceProtocol, sessionService: SessionServiceProtocol, biometricService: BiometricServiceProtocol, generalUtils: GeneralUtils, persistenceService: PersistenceService) {
         self.apiService = apiService
         self.sessionService = sessionService
         self.biometricService = biometricService
+        self.generalUtils = generalUtils
+        self.persistenceService = persistenceService
     }
 
     private var pushToken: String? {
         didSet {
             sendPushKeyIfNeeded()
         }
+    }
+
+    func getPushToken() -> String? {
+        return pushToken
+    }
+
+    // MARK:  Register Closure for verification push
+    func registerTo(_ closure: @escaping InstanceRegistred) {
+        registredClosures.append(closure)
     }
 
     // MARK: Register for push notification
@@ -65,6 +79,16 @@ class PushNotificationsService: PushNotificationsServiceProtocol {
 
             compilation(true)
         }
+    }
+
+    // MARK: Show foregrund notification
+
+    func foregrundNotification(with data: [AnyHashable : Any]) {
+        let title = data["title"] as? String ?? ""
+        let body = data["body"] as? String ?? ""
+        let gigyaAssertion = data["gigyaAssertion"] as? String ?? ""
+
+        generalUtils.showNotification(title: title, body: body, id: gigyaAssertion, userInfo: data)
     }
 
     // MARK: Delete push's
@@ -105,7 +129,7 @@ class PushNotificationsService: PushNotificationsServiceProtocol {
     }
 
     private func sendPushKeyIfNeeded() {
-        let key = UserDefaults.standard.object(forKey: pushSaveKey) as? String ?? ""
+        let key = persistenceService.pushKey ?? ""
 
         guard let pushToken = pushToken, sessionService.isValidSession() == true else { return } // TODO: add session validation
 
@@ -113,22 +137,23 @@ class PushNotificationsService: PushNotificationsServiceProtocol {
             return
         }
 
-        let model = ApiRequestModel(method: GigyaDefinitions.API.pushUpdateDeviceTFA, params: ["platform": "ios", "os": GeneralUtils.iosVersion(), "man": "apple", "pushToken": pushToken])
+        let model = ApiRequestModel(method: GigyaDefinitions.API.pushUpdateDeviceTFA, params: ["platform": "ios", "os": generalUtils.iosVersion(), "man": "apple", "pushToken": pushToken])
 
-        apiService.send(model: model, responseType: GigyaDictionary.self) { result in
+        apiService.send(model: model, responseType: GigyaDictionary.self) { [weak persistenceService] result in
             switch result {
             case .success:
-                UserDefaults.standard.set(pushToken, forKey: self.pushSaveKey)
+                persistenceService?.setPushKey(to: pushToken)
             case .failure(let error):
                 GigyaLogger.log(with: self, message: error.localizedDescription)
             }
         }
-
     }
 
     // MARK: Verification push
 
     func verifyPush(response: UNNotificationResponse) {
-
+        registredClosures.forEach { (closure) in
+            closure(response)
+        }
     }
 }

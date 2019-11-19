@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum PushNotificationModes: String {
+public enum PushNotificationModes: String {
     case optin
     case verify
     case cancel
