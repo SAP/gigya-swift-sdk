@@ -8,7 +8,7 @@
 
 import Foundation
 
-class NetworkProvider {
+final class NetworkProvider {
 
     weak var config: GigyaConfig?
 

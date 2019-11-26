@@ -9,14 +9,14 @@
 import UserNotifications
 import Gigya
 
-public class GigyaTfa {
+final public class GigyaTfa {
 
     public static let shared: GigyaTfa = GigyaTfa()
 
-    private let pushManager: PushTfaManager
+    private let pushTfaManager: PushTfaManager
 
     init() {
-        self.pushManager = PushTfaManager()
+        self.pushTfaManager = PushTfaManager()
     }
 
     // MARK: Push TFA - Available in iOS 10+
@@ -29,7 +29,7 @@ public class GigyaTfa {
       */
 
     public func OptiInPushTfa(completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void) {
-        pushManager.optInToPushTfa(completion: completion)
+        pushTfaManager.optInToPushTfa(completion: completion)
     }
 
 }

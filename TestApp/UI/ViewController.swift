@@ -9,6 +9,7 @@
 import UIKit
 import Gigya
 import GigyaTfa
+import GigyaAuth
 
 class ViewController: UIViewController {
 
@@ -293,8 +294,6 @@ class ViewController: UIViewController {
         }
     }
 
-
-
     @IBAction func getAccount(_sender: Any) {
         gigya.getAccount { [weak self] res in
             switch res {
@@ -331,15 +330,26 @@ class ViewController: UIViewController {
     }
 
     @IBAction func OptIn(_ sender: Any) {
-        GigyaTfa.shared.OptiInPushTfa { (result) in
+        GigyaAuth.shared.registerDeviceToPushLogin { result in
             switch result {
             case .success:
                 break
             case .failure(let error):
                 let alertController = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
                 alertController.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+                self.present(alertController, animated: true, completion: nil)
             }
         }
+
+//        GigyaTfa.shared.OptiInPushTfa { (result) in
+//            switch result {
+//            case .success:
+//                break
+//            case .failure(let error):
+//                let alertController = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
+//                alertController.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+//            }
+//        }
     }
 
     func presentTFAController(tfaProviders: [TFAProviderModel], mode: TFAMode, factoryResolver: TFAResolverFactory<UserHost>) {

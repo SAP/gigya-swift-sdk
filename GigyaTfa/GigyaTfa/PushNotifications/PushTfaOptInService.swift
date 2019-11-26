@@ -19,7 +19,7 @@ protocol PushTfaOptInServiceProtocol {
     func start()
 }
 
-class PushTfaOptInService: PushTfaOptInServiceProtocol {
+final class PushTfaOptInService: PushTfaOptInServiceProtocol {
     let apiService: ApiServiceProtocol
 
     let generalUtils: GeneralUtils

@@ -20,14 +20,17 @@ class PushNotificationsService: PushNotificationsServiceExternalProtocol, PushNo
 
     let generalUtils: GeneralUtils
 
+    let userNotificationCenter: UserNotificationCenterProtocol
+
     var registredClosures: [InstanceRegistred] = []
 
-    init(apiService: ApiServiceProtocol, sessionService: SessionServiceProtocol, biometricService: BiometricServiceProtocol, generalUtils: GeneralUtils, persistenceService: PersistenceService) {
+    init(apiService: ApiServiceProtocol, sessionService: SessionServiceProtocol, biometricService: BiometricServiceProtocol, generalUtils: GeneralUtils, persistenceService: PersistenceService, userNotificationCenter: UserNotificationCenterProtocol) {
         self.apiService = apiService
         self.sessionService = sessionService
         self.biometricService = biometricService
         self.generalUtils = generalUtils
         self.persistenceService = persistenceService
+        self.userNotificationCenter = userNotificationCenter
     }
 
     private var pushToken: String? {
@@ -41,14 +44,15 @@ class PushNotificationsService: PushNotificationsServiceExternalProtocol, PushNo
     }
 
     // MARK:  Register Closure for verification push
+
     func registerTo(_ closure: @escaping InstanceRegistred) {
         registredClosures.append(closure)
     }
 
     // MARK: Register for push notification
+
     func registerForPushNotifications(compilation: @escaping (_ success: Bool) -> ()) {
-        UNUserNotificationCenter.current()
-            .requestAuthorization(options: [.alert, .sound, .badge]) { [weak self] granted, error in
+        userNotificationCenter.requestAuthorization(options: [.alert, .sound, .badge]) { [weak self] granted, error in
                 guard let self = self else { return }
 
                 GigyaLogger.log(with: self, message: "Permission granted: \(granted)")
@@ -63,7 +67,7 @@ class PushNotificationsService: PushNotificationsServiceExternalProtocol, PushNo
     }
 
     private func getNotificationSettings(_ compilation: @escaping (_ success: Bool) -> ()) {
-        UNUserNotificationCenter.current().getNotificationSettings { settings in
+        userNotificationCenter.getNotificationSettings { settings in
             GigyaLogger.log(with: self, message: "Notification settings: \(settings)")
 
             guard settings.authorizationStatus == .authorized else {
@@ -94,7 +98,8 @@ class PushNotificationsService: PushNotificationsServiceExternalProtocol, PushNo
     // MARK: Delete push's
 
     func onRecivePush(userInfo: [AnyHashable : Any], completion: @escaping (UIBackgroundFetchResult) -> Void) {
-        UNUserNotificationCenter.current().getDeliveredNotifications(completionHandler: { deliveredNotifications -> () in
+        userNotificationCenter.getDeliveredNotifications(completionHandler: { [weak self] deliveredNotifications -> () in
+            guard let self = self else { return }
 
             GigyaLogger.log(with: self, message: "\(deliveredNotifications.count) Delivered notifications-------")
 
@@ -103,23 +108,38 @@ class PushNotificationsService: PushNotificationsServiceExternalProtocol, PushNo
 
             // delete push notification with cancel mode
             if mode == .cancel {
-            // remove push by gigyaAssertion
-                for notification in deliveredNotifications {
-                    if let gid = notification.request.content.userInfo["gigyaAssertion"] as? String,
-                        let idToDelete = userInfo["gigyaAssertion"] as? String,
-                        gid.contains(idToDelete)
+            // remove push by id
+                for (identifier, notification) in deliveredNotifications {
+                    if self.needToDeleted(userInfoFrom: notification, userInfoFromPush: userInfo)
                     {
-                        UNUserNotificationCenter.current().removeDeliveredNotifications(withIdentifiers: [notification.request.identifier])
+                        self.userNotificationCenter.removeDeliveredNotifications(withIdentifiers: [identifier])
                     }
 
-
-                    print(notification.request.identifier)
+                    print(identifier)
                 }
             }
 
             completion(.newData)
 
         })
+    }
+
+    private func needToDeleted(userInfoFrom: [AnyHashable : Any], userInfoFromPush: [AnyHashable : Any]) -> Bool{
+        if let gid = userInfoFrom["gigyaAssertion"] as? String,
+            let idToDelete = userInfoFromPush["gigyaAssertion"] as? String,
+            gid.contains(idToDelete)
+        {
+            return true
+        }
+
+        if let gid = userInfoFrom["vToken"] as? String,
+            let idToDelete = userInfoFromPush["vToken"] as? String,
+            gid.contains(idToDelete)
+        {
+            return true
+        }
+
+        return false
     }
 
     // MARK: Push key management
@@ -131,13 +151,11 @@ class PushNotificationsService: PushNotificationsServiceExternalProtocol, PushNo
     private func sendPushKeyIfNeeded() {
         let key = persistenceService.pushKey ?? ""
 
-        guard let pushToken = pushToken, sessionService.isValidSession() == true else { return } // TODO: add session validation
-
-        guard !pushToken.contains(key) else {
+        guard let pushToken = pushToken, sessionService.isValidSession() == true, !pushToken.contains(key) else {
             return
         }
 
-        let model = ApiRequestModel(method: GigyaDefinitions.API.pushUpdateDeviceTFA, params: ["platform": "ios", "os": generalUtils.iosVersion(), "man": "apple", "pushToken": pushToken])
+        let model = ApiRequestModel(method: GigyaDefinitions.API.pushUpdateDevice, params: ["platform": "ios", "os": generalUtils.iosVersion(), "man": "apple", "pushToken": pushToken])
 
         apiService.send(model: model, responseType: GigyaDictionary.self) { [weak persistenceService] result in
             switch result {
@@ -151,7 +169,7 @@ class PushNotificationsService: PushNotificationsServiceExternalProtocol, PushNo
 
     // MARK: Verification push
 
-    func verifyPush(response: UNNotificationResponse) {
+    func verifyPush(response: [AnyHashable : Any]) {
         registredClosures.forEach { (closure) in
             closure(response)
         }

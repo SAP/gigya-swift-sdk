@@ -138,7 +138,7 @@ class BusinessApiService: NSObject, BusinessApiServiceProtocol {
             switch result {
             case .success(let data):
                 let regToken = data["regToken"]?.value ?? ""
-                let makeParams: [String: Any] = ["email": email,"password": password, "regToken": regToken, "finalizeRegistration": "true"].merging(params) { $1 }
+                let makeParams: [String: Any] = ["email": email, "password": password, "regToken": regToken, "finalizeRegistration": "true"].merging(params) { $1 }
 
                 let model = ApiRequestModel(method: GigyaDefinitions.API.register, params: makeParams)
 

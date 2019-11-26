@@ -9,7 +9,7 @@
 import UIKit
 import UserNotifications
 
-public typealias InstanceRegistred = (UNNotificationResponse) -> ()
+public typealias InstanceRegistred = ([AnyHashable : Any]) -> ()
 
 protocol PushNotificationsServiceProtocol {
 
@@ -19,7 +19,7 @@ protocol PushNotificationsServiceProtocol {
     
     func onRecivePush(userInfo: [AnyHashable : Any], completion: @escaping (UIBackgroundFetchResult) -> Void)
 
-    func verifyPush(response: UNNotificationResponse)
+    func verifyPush(response: [AnyHashable : Any])
 }
 
 public protocol PushNotificationsServiceExternalProtocol {

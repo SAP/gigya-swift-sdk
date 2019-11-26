@@ -10,7 +10,7 @@ import UserNotifications
 import Gigya
 
 @available(iOS 10.0, *)
-class PushTfaManager: NSObject, PushTfaManagerProtocol {
+final class PushTfaManager: NSObject, PushTfaManagerProtocol {
 
     let container: IOCContainer
 
@@ -61,8 +61,8 @@ class PushTfaManager: NSObject, PushTfaManagerProtocol {
 
     // MARK: Verification push Tfa
 
-    func verifyPushTfa(response: UNNotificationResponse) {
-        let userInfo = response.notification.request.content.userInfo
+    func verifyPushTfa(response: [AnyHashable : Any]) {
+        let userInfo = response
 
         // allow to verify tfa only when have gigyaAssertion
         guard let gigyaAssertion = userInfo["gigyaAssertion"] as? String else {
@@ -84,7 +84,7 @@ class PushTfaManager: NSObject, PushTfaManagerProtocol {
                 return
 
             }
-            AlertControllerUtils.show(vc: topVireController, title: title, message: msg) { [weak self] isApproved in
+            self?.generalUtils.show(vc: topVireController, title: title, message: msg) { [weak self] isApproved in
                 if isApproved == true {
                     switch mode {
                     case .optin:

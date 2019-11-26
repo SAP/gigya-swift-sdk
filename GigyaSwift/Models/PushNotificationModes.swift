@@ -8,6 +8,7 @@
 
 import Foundation
 
+@frozen
 public enum PushNotificationModes: String {
     case optin
     case verify

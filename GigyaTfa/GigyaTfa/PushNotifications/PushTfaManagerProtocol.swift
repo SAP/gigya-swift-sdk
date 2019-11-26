@@ -11,7 +11,7 @@ import Gigya
 
 protocol PushTfaManagerProtocol {
 
-    func verifyPushTfa(response: UNNotificationResponse)
+    func verifyPushTfa(response: [AnyHashable : Any])
     
     func optInToPushTfa(completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void)
 }

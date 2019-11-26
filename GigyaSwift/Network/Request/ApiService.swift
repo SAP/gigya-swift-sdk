@@ -11,7 +11,7 @@ import Foundation
 //typealias GigyaResponse = GSResponse
 public typealias GigyaDictionary = [String: AnyCodable]
 
-class ApiService: ApiServiceProtocol {
+final class ApiService: ApiServiceProtocol {
 
     let sessionService: SessionServiceProtocol?
 

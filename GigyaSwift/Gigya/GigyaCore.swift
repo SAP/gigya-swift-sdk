@@ -334,7 +334,7 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
       */
 
     public func verifyPush(with response: UNNotificationResponse) {
-        pushService.verifyPush(response: response)
+        pushService.verifyPush(response: response.notification.request.content.userInfo)
     }
 
 }

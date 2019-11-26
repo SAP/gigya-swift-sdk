@@ -112,6 +112,15 @@
 		E774A54D2242A12800BC67D1 /* AnyCodableUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E774A54C2242A12800BC67D1 /* AnyCodableUtils.swift */; };
 		E774A5622243D7D300BC67D1 /* RequestTestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E774A5612243D7D300BC67D1 /* RequestTestModel.swift */; };
 		E774A5642243D88900BC67D1 /* RequestTestParseFailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E774A5632243D88900BC67D1 /* RequestTestParseFailModel.swift */; };
+		E7791A68238542D70075BAFD /* GigyaAlertUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7791A67238542D70075BAFD /* GigyaAlertUtils.swift */; };
+		E7791A6A2385623E0075BAFD /* GigyaAuth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7791A692385623E0075BAFD /* GigyaAuth.framework */; };
+		E7791A6B2385623E0075BAFD /* GigyaAuth.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E7791A692385623E0075BAFD /* GigyaAuth.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E7791A6E2386AB930075BAFD /* PushAuthenticationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7791A6D2386AB930075BAFD /* PushAuthenticationTests.swift */; };
+		E7791A712386BBC50075BAFD /* PushNotificationsServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7791A702386BBC50075BAFD /* PushNotificationsServiceMock.swift */; };
+		E7791A76238A9EB20075BAFD /* GeneralUtilsMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7791A75238A9EB20075BAFD /* GeneralUtilsMock.swift */; };
+		E7791A78238BC5880075BAFD /* BiometricServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7791A77238BC5880075BAFD /* BiometricServiceMock.swift */; };
+		E7791A7B238BD3800075BAFD /* PushServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7791A7A238BD3800075BAFD /* PushServiceTests.swift */; };
+		E7791A7D238BE1070075BAFD /* SessionServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7791A7C238BE1070075BAFD /* SessionServiceMock.swift */; };
 		E77F71A0230AD95600E8738A /* GigyaWebBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77F719F230AD95600E8738A /* GigyaWebBridge.swift */; };
 		E7818A6C222445F8008117AB /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = E7818A6B222445F8008117AB /* Config.xcconfig */; };
 		E7A6E0AA2240F8080063638F /* GigyaApiResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A6E0A92240F8080063638F /* GigyaApiResult.swift */; };
@@ -160,6 +169,8 @@
 		E7C8FA492295775000E69634 /* WebProviderLoginTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C8FA482295775000E69634 /* WebProviderLoginTests.swift */; };
 		E7C8FA4D229578A200E69634 /* WebProviderWrapperMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C8FA4C229578A200E69634 /* WebProviderWrapperMock.swift */; };
 		E7C8FA542296BBF600E69634 /* UserDefaultsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C8FA532296BBF600E69634 /* UserDefaultsTests.swift */; };
+		E7CAE1C9238C14DE0073440C /* UserNotificationCenterHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CAE1C8238C14DE0073440C /* UserNotificationCenterHelper.swift */; };
+		E7CAE1CB238C1BC80073440C /* UserNotificationCenterMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CAE1CA238C1BC80073440C /* UserNotificationCenterMock.swift */; };
 		E7CBAF9D22282BE3000B6C11 /* KeychainStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CBAF9C22282BE3000B6C11 /* KeychainStorage.swift */; };
 		E7CBAFA022282C56000B6C11 /* KeychainPasscode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CBAF9F22282C56000B6C11 /* KeychainPasscode.swift */; };
 		E7CBAFA4222BC881000B6C11 /* InternalConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CBAFA3222BC881000B6C11 /* InternalConfig.swift */; };
@@ -286,6 +297,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				E7791A6B2385623E0075BAFD /* GigyaAuth.framework in Embed Frameworks */,
 				E74E266C2383FC94002E361B /* GigyaTfa.framework in Embed Frameworks */,
 				E713E0CD2247773100181328 /* Gigya.framework in Embed Frameworks */,
 			);
@@ -394,6 +406,14 @@
 		E774A54C2242A12800BC67D1 /* AnyCodableUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyCodableUtils.swift; sourceTree = "<group>"; };
 		E774A5612243D7D300BC67D1 /* RequestTestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestTestModel.swift; sourceTree = "<group>"; };
 		E774A5632243D88900BC67D1 /* RequestTestParseFailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestTestParseFailModel.swift; sourceTree = "<group>"; };
+		E7791A67238542D70075BAFD /* GigyaAlertUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigyaAlertUtils.swift; sourceTree = "<group>"; };
+		E7791A692385623E0075BAFD /* GigyaAuth.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GigyaAuth.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E7791A6D2386AB930075BAFD /* PushAuthenticationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushAuthenticationTests.swift; sourceTree = "<group>"; };
+		E7791A702386BBC50075BAFD /* PushNotificationsServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationsServiceMock.swift; sourceTree = "<group>"; };
+		E7791A75238A9EB20075BAFD /* GeneralUtilsMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralUtilsMock.swift; sourceTree = "<group>"; };
+		E7791A77238BC5880075BAFD /* BiometricServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricServiceMock.swift; sourceTree = "<group>"; };
+		E7791A7A238BD3800075BAFD /* PushServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushServiceTests.swift; sourceTree = "<group>"; };
+		E7791A7C238BE1070075BAFD /* SessionServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionServiceMock.swift; sourceTree = "<group>"; };
 		E77F719F230AD95600E8738A /* GigyaWebBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigyaWebBridge.swift; sourceTree = "<group>"; };
 		E7818A6B222445F8008117AB /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		E7A6E0A92240F8080063638F /* GigyaApiResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigyaApiResult.swift; sourceTree = "<group>"; };
@@ -460,6 +480,8 @@
 		E7C8FA4E22957E8C00E69634 /* TFAVerificationpPhoneResolverTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TFAVerificationpPhoneResolverTests.swift; sourceTree = "<group>"; };
 		E7C8FA502296917C00E69634 /* TFAVerificationEmailResolverTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TFAVerificationEmailResolverTests.swift; sourceTree = "<group>"; };
 		E7C8FA532296BBF600E69634 /* UserDefaultsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsTests.swift; sourceTree = "<group>"; };
+		E7CAE1C8238C14DE0073440C /* UserNotificationCenterHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNotificationCenterHelper.swift; sourceTree = "<group>"; };
+		E7CAE1CA238C1BC80073440C /* UserNotificationCenterMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNotificationCenterMock.swift; sourceTree = "<group>"; };
 		E7CBAF9C22282BE3000B6C11 /* KeychainStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainStorage.swift; sourceTree = "<group>"; };
 		E7CBAF9F22282C56000B6C11 /* KeychainPasscode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainPasscode.swift; sourceTree = "<group>"; };
 		E7CBAFA3222BC881000B6C11 /* InternalConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternalConfig.swift; sourceTree = "<group>"; };
@@ -589,6 +611,7 @@
 			files = (
 				E7DC2C6D2280778000A13426 /* libc++.tbd in Frameworks */,
 				E7DC2C6C2280771700A13426 /* libz.tbd in Frameworks */,
+				E7791A6A2385623E0075BAFD /* GigyaAuth.framework in Frameworks */,
 				E7DC2C6B228076E600A13426 /* libsqlite3.tbd in Frameworks */,
 				E73373F522633BDA00ADEDBB /* SafariServices.framework in Frameworks */,
 				E731B72D232A53AD0032E111 /* AuthenticationServices.framework in Frameworks */,
@@ -782,6 +805,7 @@
 		E720D34A2382D2FC00446EA4 /* PushNotifications */ = {
 			isa = PBXGroup;
 			children = (
+				E7CAE1C8238C14DE0073440C /* UserNotificationCenterHelper.swift */,
 				E720D34B2382D32300446EA4 /* PushNotificationsService.swift */,
 				E720D34D2382D33900446EA4 /* PushNotificationsServiceProtocol.swift */,
 			);
@@ -926,12 +950,39 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		E7791A6C2386AB6F0075BAFD /* AuthTests */ = {
+			isa = PBXGroup;
+			children = (
+				E7791A6D2386AB930075BAFD /* PushAuthenticationTests.swift */,
+				E7791A6F2386BBB00075BAFD /* Mocks */,
+			);
+			path = AuthTests;
+			sourceTree = "<group>";
+		};
+		E7791A6F2386BBB00075BAFD /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				E7791A702386BBC50075BAFD /* PushNotificationsServiceMock.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
+		E7791A79238BD36D0075BAFD /* Push */ = {
+			isa = PBXGroup;
+			children = (
+				E7791A7A238BD3800075BAFD /* PushServiceTests.swift */,
+			);
+			path = Push;
+			sourceTree = "<group>";
+		};
 		E7A6E0B5224256390063638F /* GigyaSwiftTests */ = {
 			isa = PBXGroup;
 			children = (
 				E7A6E0B6224256390063638F /* GigyaSwiftTests.swift */,
 				E7C85A042292DA77005C1FBE /* GoogleWrapper.swift */,
 				E73373D4225E326100ADEDBB /* GigyaLoggerTest.swift */,
+				E7791A79238BD36D0075BAFD /* Push */,
+				E7791A6C2386AB6F0075BAFD /* AuthTests */,
 				E7C85A082292E2B3005C1FBE /* WebPluginTests */,
 				E7C859FB2292B129005C1FBE /* TfaTests */,
 				E756A2972275CB44007FA801 /* Providers */,
@@ -1039,6 +1090,7 @@
 		E7BE368C2224225900A108D9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E7791A692385623E0075BAFD /* GigyaAuth.framework */,
 				E74E266A2383FC94002E361B /* GigyaTfa.framework */,
 				E7AA76E32332779200D24D38 /* GigyaTfa.framework */,
 				E7AA76D82332760500D24D38 /* GigyaTfa.framework */,
@@ -1281,6 +1333,7 @@
 			children = (
 				E7CBB06A223E59EA000B6C11 /* Decode+EncodeUtils.swift */,
 				E7D3E22B22CA02F60033BAF1 /* RunnerMainThread.swift */,
+				E7791A67238542D70075BAFD /* GigyaAlertUtils.swift */,
 				E74E26682383E9B1002E361B /* GeneralUtils.swift */,
 				E719374222D5E6C600CD149E /* PlistConfigFactory.swift */,
 				E7E80D89224BC17000D3B663 /* FatalErrorUtils.swift */,
@@ -1359,6 +1412,7 @@
 			children = (
 				E7E80D92224D063C00D3B663 /* GigyaContainerUtils.swift */,
 				E7BE57BC22A41D0B00C17D93 /* FakeNavigationAction.swift */,
+				E7791A75238A9EB20075BAFD /* GeneralUtilsMock.swift */,
 				E712E90B22A664DB005397BA /* FakeUIViewController.swift */,
 				E7019AF32349D9D1005E05A4 /* MockURLSession.swift */,
 				E7F63B1822A7ED5E00ABA24F /* LogRecord.swift */,
@@ -1376,8 +1430,11 @@
 			children = (
 				E7E80D8E224D045000D3B663 /* BusinessApiServiceMock.swift */,
 				E733744622675CA000ADEDBB /* ApiServiceMock.swift */,
+				E7791A7C238BE1070075BAFD /* SessionServiceMock.swift */,
+				E7CAE1CA238C1BC80073440C /* UserNotificationCenterMock.swift */,
 				E7E80D90224D052000D3B663 /* GigyaSessionServiceMock.swift */,
 				E7E80D97224D15B600D3B663 /* GigyaWrapperMock.swift */,
+				E7791A77238BC5880075BAFD /* BiometricServiceMock.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -1771,6 +1828,7 @@
 				E756A2A02275D46D007FA801 /* SocialProviderMock.swift in Sources */,
 				E705014C22DDC8B900EBD579 /* KeychainMock.swift in Sources */,
 				E7019AFE234B37A8005E05A4 /* URLTests.swift in Sources */,
+				E7791A712386BBC50075BAFD /* PushNotificationsServiceMock.swift in Sources */,
 				E7019AF42349D9D1005E05A4 /* MockURLSession.swift in Sources */,
 				E7337445226754C400ADEDBB /* BusinessApiTest.swift in Sources */,
 				E73373D8225F222F00ADEDBB /* AnyCodableTest.swift in Sources */,
@@ -1793,14 +1851,18 @@
 				E756A29C2275CC13007FA801 /* ProviderFactoryMock.swift in Sources */,
 				E7BE578F229AA5B100C17D93 /* NetworkAdapterTests.swift in Sources */,
 				E73373DA225F7ED100ADEDBB /* GSRequestMock.swift in Sources */,
+				E7CAE1CB238C1BC80073440C /* UserNotificationCenterMock.swift in Sources */,
+				E7791A7D238BE1070075BAFD /* SessionServiceMock.swift in Sources */,
 				E7A6E0CA224258C80063638F /* GigyaRequstTest.swift in Sources */,
 				E705014922DDC04200EBD579 /* BiometricTests.swift in Sources */,
+				E7791A76238A9EB20075BAFD /* GeneralUtilsMock.swift in Sources */,
 				E774A5642243D88900BC67D1 /* RequestTestParseFailModel.swift in Sources */,
 				E7337467226C538300ADEDBB /* DecodeTestUtils.swift in Sources */,
 				E7E80D93224D063C00D3B663 /* GigyaContainerUtils.swift in Sources */,
 				E7019AF82349F22D005E05A4 /* KeyChainTests.swift in Sources */,
 				E7BE57B922A40ED100C17D93 /* WebViewWrapperTests.swift in Sources */,
 				E70519F722C2539B008ECB25 /* TfaRegistrationTotpResolverTests.swift in Sources */,
+				E7791A6E2386AB930075BAFD /* PushAuthenticationTests.swift in Sources */,
 				E7F63B1922A7ED5E00ABA24F /* LogRecord.swift in Sources */,
 				E7019AF62349DB47005E05A4 /* NetworkProviderTests.swift in Sources */,
 				E733744722675CA000ADEDBB /* ApiServiceMock.swift in Sources */,
@@ -1808,8 +1870,10 @@
 				E7E80D98224D15B600D3B663 /* GigyaWrapperMock.swift in Sources */,
 				E7E80D8D224CF55300D3B663 /* GigyaCoreTest.swift in Sources */,
 				E756A29E2275CC59007FA801 /* SocialProviderWrapperMock.swift in Sources */,
+				E7791A7B238BD3800075BAFD /* PushServiceTests.swift in Sources */,
 				E756A2992275CB5C007FA801 /* SocialProviderLoginTests.swift in Sources */,
 				E7BE57BD22A41D0B00C17D93 /* FakeNavigationAction.swift in Sources */,
+				E7791A78238BC5880075BAFD /* BiometricServiceMock.swift in Sources */,
 				E7BE5793229AB29100C17D93 /* UIImage.swift in Sources */,
 				E7BE57862296C04E00C17D93 /* StringTests.swift in Sources */,
 				E7E80D91224D052000D3B663 /* GigyaSessionServiceMock.swift in Sources */,
@@ -1884,6 +1948,7 @@
 				E71D3C9D22BF906300A413D7 /* TFAProvider.swift in Sources */,
 				E719374122D5CCCF00CD149E /* GigyaIOCContainer.swift in Sources */,
 				E73374622268B25B00ADEDBB /* SocialProvidersManager.swift in Sources */,
+				E7791A68238542D70075BAFD /* GigyaAlertUtils.swift in Sources */,
 				E713E0FE2248C83D00181328 /* GigyaConfig.swift in Sources */,
 				E760668C2278998E005E4CFD /* WebViewWrapper.swift in Sources */,
 				E7CBB04322356206000B6C11 /* GigyaProfile.swift in Sources */,
@@ -1897,6 +1962,7 @@
 				E7D412F022E87B140082A3E3 /* URLSession.swift in Sources */,
 				E7221D7922B8FC8700C296A9 /* PendingRegistrationResolver.swift in Sources */,
 				E7CBAFA4222BC881000B6C11 /* InternalConfig.swift in Sources */,
+				E7CAE1C9238C14DE0073440C /* UserNotificationCenterHelper.swift in Sources */,
 				E7ACF9A8226C83F200900C65 /* BusinessApiServiceProtocol.swift in Sources */,
 				E71D3CA022BF95FF00A413D7 /* TFAResolverFactory.swift in Sources */,
 				E7D3E22822CA01760033BAF1 /* SessionInfoModel.swift in Sources */,
@@ -2418,7 +2484,7 @@
 				CODE_SIGN_ENTITLEMENTS = TestApp/TestApp.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = T48CNFXFQH;
+				DEVELOPMENT_TEAM = 9J35N2U9YY;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2444,7 +2510,7 @@
 					"$(inherited)",
 					"-ObjC",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = Gigya.TestGigyaApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.gigya.appleid;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "TestApp/TestApp-Bridging-Header.h";
@@ -2464,7 +2530,7 @@
 				CODE_SIGN_ENTITLEMENTS = TestApp/TestApp.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = T48CNFXFQH;
+				DEVELOPMENT_TEAM = 9J35N2U9YY;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2489,7 +2555,7 @@
 					"$(inherited)",
 					"-ObjC",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = Gigya.TestGigyaApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.gigya.appleid;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "TestApp/TestApp-Bridging-Header.h";
