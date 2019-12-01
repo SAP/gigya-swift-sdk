@@ -10,6 +10,7 @@ import Foundation
 
 /**
  Protocol used for applying a custom schema for your account model.
+ To edit your site schema: https://developers.gigya.com/display/GD/Schema+Editor
  */
 
 public protocol GigyaAccountProtocol: Codable {
@@ -46,7 +47,8 @@ public protocol GigyaAccountProtocol: Codable {
 public struct GigyaDataDefault: Codable { }
 
 /**
-The `GigyaAccount` is an default of custom generic scheme type
+ The `GigyaAccount` is an default of custom generic schema type.
+ To edit your site schema: https://developers.gigya.com/display/GD/Schema+Editor
  */
 public struct GigyaAccount: GigyaAccountProtocol {
 

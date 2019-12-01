@@ -11,7 +11,9 @@ import Foundation
 public typealias PluginEventData = [String: Any]
 
 /**
-A class that represents available WebSDK exposed events.
+ A class that represents available WebSDK exposed events.
+
+ https://developers.gigya.com/display/GD/Events#Events-Screen-SetEvents
  */
 
 public enum GigyaPluginEvent<T: GigyaAccountProtocol> {
