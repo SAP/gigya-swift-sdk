@@ -10,7 +10,7 @@ import UserNotifications
 import Gigya
 
 @available(iOS 10.0, *)
-final class PushTfaManager: NSObject, PushTfaManagerProtocol {
+final class PushTfaManager: NSObject, PushTfaManagerProtocol, BasePushManagerProtocol {
 
     let container: IOCContainer
 
@@ -26,6 +26,8 @@ final class PushTfaManager: NSObject, PushTfaManagerProtocol {
 
     var pushOptIn: PushTfaOptInService?
 
+    let idintityKey: String = "vToken"
+
     required override init() {
         self.container = Gigya.getContainer()
         self.apiService = container.resolve(ApiServiceProtocol.self)!
@@ -35,12 +37,12 @@ final class PushTfaManager: NSObject, PushTfaManagerProtocol {
         self.generalUtils = container.resolve(GeneralUtils.self)!
 
         super.init()
-
+        
         registerToService()
     }
 
     private func registerToService() {
-        pushService.registerTo { [weak self] msg in
+        pushService.registerTo(key: idintityKey) { [weak self] msg in
             self?.verifyPushTfa(response: msg)
         }
     }

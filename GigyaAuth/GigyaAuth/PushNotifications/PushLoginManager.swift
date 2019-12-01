@@ -10,7 +10,7 @@ import UserNotifications
 import Gigya
 
 @available(iOS 10.0, *)
-final class PushLoginManager: NSObject {
+final class PushLoginManager: NSObject, BasePushManagerProtocol {
 
     let container: IOCContainer
 
@@ -23,6 +23,8 @@ final class PushLoginManager: NSObject {
     let biometricService: BiometricServiceProtocol
 
     let generalUtils: GeneralUtils
+
+    let idintityKey: String = "vToken"
 
     required init(container: IOCContainer) {
         self.container = container
@@ -38,7 +40,7 @@ final class PushLoginManager: NSObject {
     }
 
     private func registerToService() {
-        pushService.registerTo { [weak self] msg in
+        pushService.registerTo(key: idintityKey) { [weak self] msg in
             self?.verifyPushLogin(response: msg)
         }
     }

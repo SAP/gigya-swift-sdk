@@ -96,27 +96,29 @@ class SessionService: SessionServiceProtocol {
                 return
         }
 
-        if let sessionExpiration = Double(sessionInfo.sessionExpiration ?? "0"), sessionExpiration > 0 {
-            let sessionExpirationTimestamp = Date().timeIntervalSince1970 + sessionExpiration
-            gsession.sessionExpirationTimestamp = sessionExpirationTimestamp
-        }
+        removeFromKeychain { [weak self] in
+            if let sessionExpiration = Double(sessionInfo.sessionExpiration ?? "0"), sessionExpiration > 0 {
+                let sessionExpirationTimestamp = Date().timeIntervalSince1970 + sessionExpiration
+                gsession.sessionExpirationTimestamp = sessionExpirationTimestamp
+            }
 
-        let data = NSKeyedArchiver.archivedData(withRootObject: gsession)
+            let data = NSKeyedArchiver.archivedData(withRootObject: gsession)
 
-        keychainHelper.add(with: InternalConfig.Storage.keySession, data: data)  { [weak self] err in
-            GigyaLogger.log(with: self, message: "[setSession]: \(err)")
-        }
+            self?.keychainHelper.add(with: InternalConfig.Storage.keySession, data: data)  { [weak self] err in
+                GigyaLogger.log(with: self, message: "[setSession]: \(err)")
+            }
 
-        if self.session == nil {
-            persistenceService.setBiometricEnable(to: false)
-            persistenceService.setBiometricLocked(to: false)
-        }
+            if self?.session == nil {
+                self?.persistenceService.setBiometricEnable(to: false)
+                self?.persistenceService.setBiometricLocked(to: false)
+            }
 
-        self.session = gsession
+            self?.session = gsession
 
-        // Check session expiration.
-        if let sessionExpiration = self.session?.sessionExpirationTimestamp, sessionExpiration > 0 {
-            startSessionCountdownTimerIfNeeded()
+            // Check session expiration.
+            if let sessionExpiration = self?.session?.sessionExpirationTimestamp, sessionExpiration > 0 {
+                self?.startSessionCountdownTimerIfNeeded()
+            }
         }
     }
 

@@ -123,6 +123,17 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
     }
 
     /**
+     Set session.
+
+     - Parameter session:         GigyaSession object.
+     */
+
+    public func setSession(_ session: GigyaSession) {
+        let sessionInfo = SessionInfoModel(sessionToken: session.token, sessionSecret: session.secret, sessionExpiration: String(describing: session.sessionExpirationTimestamp))
+        sessionService.setSession(sessionInfo)
+    }
+
+    /**
      * Logout of Gigya services.
      */
     public func logout(completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void) {
@@ -245,18 +256,6 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
         let wrapper = PluginViewWrapper(config: config, persistenceService: persistenceService, sessionService: sessionService, businessApiService: businessApiService, webBridge: webBridge, plugin: "accounts.screenSet", params: params, completion: completion)
         wrapper.presentPluginController(viewController: viewController, dataType: T.self, screenSet: name)
     }
-
-    /**
-     Show comments (ScreenSet)
-
-     - Parameter params:   Comments ScreenSet parameters.
-     - Parameter completion:  Plugin completion.
-     */
-
-//    private func showComments(viewController: UIViewController, params: [String: Any] = [:], completion: @escaping (PluginEvent<T>) -> Void) {
-//        let wrapper = PluginViewWrapper(config: config, sessionService: sessionService, businessApiService: businessApiService, plugin: "comments.commentsUI", params: params, completion: completion)
-//        wrapper.presentPluginController(viewController: viewController, dataType: T.self, screenSet: "")
-//    }
 
     // MARK: - Interruptions
 

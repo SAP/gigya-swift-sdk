@@ -22,7 +22,9 @@ class PushNotificationsService: PushNotificationsServiceExternalProtocol, PushNo
 
     let userNotificationCenter: UserNotificationCenterProtocol
 
-    var registredClosures: [InstanceRegistred] = []
+    private var instanceKeysRegistry: [String] = []
+
+    private var closureRegistry: [RemoteMsgClosure] = []
 
     init(apiService: ApiServiceProtocol, sessionService: SessionServiceProtocol, biometricService: BiometricServiceProtocol, generalUtils: GeneralUtils, persistenceService: PersistenceService, userNotificationCenter: UserNotificationCenterProtocol) {
         self.apiService = apiService
@@ -45,8 +47,9 @@ class PushNotificationsService: PushNotificationsServiceExternalProtocol, PushNo
 
     // MARK:  Register Closure for verification push
 
-    func registerTo(_ closure: @escaping InstanceRegistred) {
-        registredClosures.append(closure)
+    func registerTo(key: String, closure: @escaping RemoteMsgClosure) {
+        closureRegistry.append(closure)
+        instanceKeysRegistry.append(key)
     }
 
     // MARK: Register for push notification
@@ -66,7 +69,7 @@ class PushNotificationsService: PushNotificationsServiceExternalProtocol, PushNo
         }
     }
 
-    private func getNotificationSettings(_ compilation: @escaping (_ success: Bool) -> ()) {
+    func getNotificationSettings(_ compilation: @escaping (_ success: Bool) -> ()) {
         userNotificationCenter.getNotificationSettings { settings in
             GigyaLogger.log(with: self, message: "Notification settings: \(settings)")
 
@@ -88,11 +91,21 @@ class PushNotificationsService: PushNotificationsServiceExternalProtocol, PushNo
     // MARK: Show foregrund notification
 
     func foregrundNotification(with data: [AnyHashable : Any]) {
+        guard sessionService.isValidSession() == true else {
+            return
+        }
+
         let title = data["title"] as? String ?? ""
         let body = data["body"] as? String ?? ""
-        let gigyaAssertion = data["gigyaAssertion"] as? String ?? ""
+        var id = ""
 
-        generalUtils.showNotification(title: title, body: body, id: gigyaAssertion, userInfo: data)
+        for remoteId in instanceKeysRegistry {
+            if let getId = data[remoteId] as? String {
+                id = getId
+            }
+        }
+
+        generalUtils.showNotification(title: title, body: body, id: id, userInfo: data)
     }
 
     // MARK: Delete push's
@@ -114,8 +127,16 @@ class PushNotificationsService: PushNotificationsServiceExternalProtocol, PushNo
                     {
                         self.userNotificationCenter.removeDeliveredNotifications(withIdentifiers: [identifier])
                     }
+                }
+            }
 
-                    print(identifier)
+            // remove the all nofitication when the session is not valid
+            if self.sessionService.isValidSession() == false {
+                for (identifier, notification) in deliveredNotifications {
+                    if self.needToDeleted(userInfoFrom: notification, userInfoFromPush: notification)
+                    {
+                        self.userNotificationCenter.removeDeliveredNotifications(withIdentifiers: [identifier])
+                    }
                 }
             }
 
@@ -125,18 +146,13 @@ class PushNotificationsService: PushNotificationsServiceExternalProtocol, PushNo
     }
 
     private func needToDeleted(userInfoFrom: [AnyHashable : Any], userInfoFromPush: [AnyHashable : Any]) -> Bool{
-        if let gid = userInfoFrom["gigyaAssertion"] as? String,
-            let idToDelete = userInfoFromPush["gigyaAssertion"] as? String,
-            gid.contains(idToDelete)
-        {
-            return true
-        }
-
-        if let gid = userInfoFrom["vToken"] as? String,
-            let idToDelete = userInfoFromPush["vToken"] as? String,
-            gid.contains(idToDelete)
-        {
-            return true
+        for remoteId in instanceKeysRegistry {
+            if let gid = userInfoFrom[remoteId] as? String,
+                let idToDelete = userInfoFromPush[remoteId] as? String,
+                gid.contains(idToDelete)
+            {
+                return true
+            }
         }
 
         return false
@@ -170,7 +186,7 @@ class PushNotificationsService: PushNotificationsServiceExternalProtocol, PushNo
     // MARK: Verification push
 
     func verifyPush(response: [AnyHashable : Any]) {
-        registredClosures.forEach { (closure) in
+        closureRegistry.forEach { (closure) in
             closure(response)
         }
     }

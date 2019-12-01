@@ -19,6 +19,19 @@ final public class GigyaAuth {
         self.pushLoginManager = PushLoginManager(container: Gigya.getContainer())
     }
 
+    /**
+     Check if the user is authorized to remote notifications
+     */
+    
+    public func registerForRemoteNotifications() {
+        pushLoginManager.pushService.getNotificationSettings { _ in }
+    }
+
+    /**
+     Request to register device to push authentication.
+
+      - Parameter completion: Request response.
+      */
     public func registerDeviceToPushLogin(completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void) {
         pushLoginManager.beforeRegisterDeviceToPushLogin(completion: completion)
     }

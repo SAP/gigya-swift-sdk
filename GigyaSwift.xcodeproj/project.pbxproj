@@ -171,6 +171,7 @@
 		E7C8FA542296BBF600E69634 /* UserDefaultsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C8FA532296BBF600E69634 /* UserDefaultsTests.swift */; };
 		E7CAE1C9238C14DE0073440C /* UserNotificationCenterHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CAE1C8238C14DE0073440C /* UserNotificationCenterHelper.swift */; };
 		E7CAE1CB238C1BC80073440C /* UserNotificationCenterMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CAE1CA238C1BC80073440C /* UserNotificationCenterMock.swift */; };
+		E7CAE1D2238D61D40073440C /* PushManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CAE1D1238D61D40073440C /* PushManagerProtocol.swift */; };
 		E7CBAF9D22282BE3000B6C11 /* KeychainStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CBAF9C22282BE3000B6C11 /* KeychainStorage.swift */; };
 		E7CBAFA022282C56000B6C11 /* KeychainPasscode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CBAF9F22282C56000B6C11 /* KeychainPasscode.swift */; };
 		E7CBAFA4222BC881000B6C11 /* InternalConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CBAFA3222BC881000B6C11 /* InternalConfig.swift */; };
@@ -482,6 +483,7 @@
 		E7C8FA532296BBF600E69634 /* UserDefaultsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsTests.swift; sourceTree = "<group>"; };
 		E7CAE1C8238C14DE0073440C /* UserNotificationCenterHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNotificationCenterHelper.swift; sourceTree = "<group>"; };
 		E7CAE1CA238C1BC80073440C /* UserNotificationCenterMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNotificationCenterMock.swift; sourceTree = "<group>"; };
+		E7CAE1D1238D61D40073440C /* PushManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushManagerProtocol.swift; sourceTree = "<group>"; };
 		E7CBAF9C22282BE3000B6C11 /* KeychainStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainStorage.swift; sourceTree = "<group>"; };
 		E7CBAF9F22282C56000B6C11 /* KeychainPasscode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainPasscode.swift; sourceTree = "<group>"; };
 		E7CBAFA3222BC881000B6C11 /* InternalConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternalConfig.swift; sourceTree = "<group>"; };
@@ -807,6 +809,7 @@
 			children = (
 				E7CAE1C8238C14DE0073440C /* UserNotificationCenterHelper.swift */,
 				E720D34B2382D32300446EA4 /* PushNotificationsService.swift */,
+				E7CAE1D1238D61D40073440C /* PushManagerProtocol.swift */,
 				E720D34D2382D33900446EA4 /* PushNotificationsServiceProtocol.swift */,
 			);
 			path = PushNotifications;
@@ -1970,6 +1973,7 @@
 				E7D9C5B02368398500714807 /* NetworkRetryDispacher.swift in Sources */,
 				D58EF4452279CB38003DB878 /* String.swift in Sources */,
 				E7CBAFBA222D1840000B6C11 /* NetworkError.swift in Sources */,
+				E7CAE1D2238D61D40073440C /* PushManagerProtocol.swift in Sources */,
 				E7CBB05A2237DD2C000B6C11 /* GigyaSocialProviders.swift in Sources */,
 				E7CBAF9D22282BE3000B6C11 /* KeychainStorage.swift in Sources */,
 				E7CBAFD2222EBD95000B6C11 /* SessionService.swift in Sources */,
@@ -2484,7 +2488,7 @@
 				CODE_SIGN_ENTITLEMENTS = TestApp/TestApp.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 9J35N2U9YY;
+				DEVELOPMENT_TEAM = T48CNFXFQH;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2510,7 +2514,7 @@
 					"$(inherited)",
 					"-ObjC",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.gigya.appleid;
+				PRODUCT_BUNDLE_IDENTIFIER = Gigya.TestAppnew;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "TestApp/TestApp-Bridging-Header.h";
@@ -2530,7 +2534,7 @@
 				CODE_SIGN_ENTITLEMENTS = TestApp/TestApp.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 9J35N2U9YY;
+				DEVELOPMENT_TEAM = T48CNFXFQH;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2555,7 +2559,7 @@
 					"$(inherited)",
 					"-ObjC",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.gigya.appleid;
+				PRODUCT_BUNDLE_IDENTIFIER = Gigya.TestAppnew;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "TestApp/TestApp-Bridging-Header.h";

@@ -9,7 +9,7 @@
 import UIKit
 import UserNotifications
 
-public typealias InstanceRegistred = ([AnyHashable : Any]) -> ()
+public typealias RemoteMsgClosure = ([AnyHashable : Any]) -> ()
 
 protocol PushNotificationsServiceProtocol {
 
@@ -25,7 +25,9 @@ protocol PushNotificationsServiceProtocol {
 public protocol PushNotificationsServiceExternalProtocol {
     func getPushToken() -> String?
     
-    func registerTo(_ clousre: @escaping InstanceRegistred)
+    func registerTo(key: String, closure: @escaping RemoteMsgClosure)
 
     func registerForPushNotifications(compilation: @escaping (_ success: Bool) -> ())
+
+    func getNotificationSettings(_ compilation: @escaping (_ success: Bool) -> ())
 }

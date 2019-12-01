@@ -12,6 +12,7 @@ import LineSDK
 import Firebase
 import GoogleUtilities
 import GigyaTfa
+import GigyaAuth
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
@@ -31,6 +32,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
         UNUserNotificationCenter.current().delegate = self
 
         Messaging.messaging().shouldEstablishDirectChannel = true
+
+        GigyaAuth.shared.registerForRemoteNotifications()
+        GigyaTfa.shared.registerForRemoteNotifications()
 
         return true
     }
