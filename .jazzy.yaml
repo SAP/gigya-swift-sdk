@@ -9,6 +9,7 @@ include:
   - "**/Global/Biometric/BiometricServiceProtocol.swift"
   - "**/Global/Resolvers/PendingRegistrationResolver.swift"
   - "**/Global/Resolvers/LinkAccountsResolver.swift"
+  - "**/Global/Plugins/GigyaWebBridge.swift"
 
 
 copyright: 'Gigya © 2019.'
@@ -18,3 +19,4 @@ copyright: 'Gigya © 2019.'
 theme: fullwidth
 undocumented_text: ""
 
+hide_documentation_coverage: true

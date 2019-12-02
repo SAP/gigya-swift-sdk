@@ -288,7 +288,6 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
      - returns: `GigyaWebBridge` instance.
      */
 
-    // TODO: GigyaWebBridge is missing
     public func createWebBridge() -> GigyaWebBridge<T> {
         let webBridge = container.resolve(GigyaWebBridge<T>.self)
 

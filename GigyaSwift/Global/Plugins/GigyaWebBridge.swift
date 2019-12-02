@@ -8,6 +8,10 @@
 
 import WebKit
 
+/**
+ The `GigyaWebBridge` acts as the optimal bridge between the Gigya webSdk and the iOS sdk. Supporting complex flows such as screensets, saml etc.
+ */
+
 public class GigyaWebBridge<T: GigyaAccountProtocol>: NSObject, WKScriptMessageHandler {
 
     let config: GigyaConfig
@@ -36,6 +40,15 @@ public class GigyaWebBridge<T: GigyaAccountProtocol>: NSObject, WKScriptMessageH
 
         super.init()
     }
+
+    /**
+     Attch `WKWebView` object to the webBridge instance.
+
+     - Parameter webView:   Your `WKWebView` object.
+     - Parameter viewController:  Shown view controller.
+     - Parameter pluginEvent:  Plugin completion `GigyaPluginEvent<T>`.
+
+     */
 
     public func attachTo(webView: WKWebView, viewController: UIViewController, pluginEvent: @escaping (GigyaPluginEvent<T>) -> Void) {
         guard let apikey = config.apiKey else { return }
