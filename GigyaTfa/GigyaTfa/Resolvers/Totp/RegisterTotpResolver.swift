@@ -9,7 +9,7 @@
 import Gigya
 public protocol TFAResolversProtocol { }
 
-public class RegisterTotpResolver<T: GigyaAccountProtocol>: TFAResolver<T>, RegisterTotpResolverProtocol, TFAResolversProtocol {
+final public class RegisterTotpResolver<T: GigyaAccountProtocol>: TFAResolver<T>, RegisterTotpResolverProtocol, TFAResolversProtocol {
 
     internal let businessApiDelegate: BusinessApiDelegate
     internal let interruption: GigyaResponseModel

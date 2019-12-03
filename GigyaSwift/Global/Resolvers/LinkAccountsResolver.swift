@@ -12,7 +12,7 @@ import UIKit
     @objc optional func start()
 }
 
-public class LinkAccountsResolver<T: GigyaAccountProtocol>: BaseResolver {
+final public class LinkAccountsResolver<T: GigyaAccountProtocol>: BaseResolver {
 
     let originalError: NetworkError
 

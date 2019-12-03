@@ -9,7 +9,7 @@
 import Foundation
 import WebKit
 
-class PluginViewController<T: GigyaAccountProtocol>: WebViewController {
+final class PluginViewController<T: GigyaAccountProtocol>: WebViewController {
 
     let contentController = WKUserContentController()
 

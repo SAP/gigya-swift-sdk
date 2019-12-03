@@ -12,7 +12,7 @@ protocol SocialProvidersManagerProtocol {
     func getProvider(with socialProvider: GigyaSocialProviders, delegate: BusinessApiDelegate) -> Provider
 }
 
-class SocialProvidersManager: SocialProvidersManagerProtocol {
+final class SocialProvidersManager: SocialProvidersManagerProtocol {
     let config: GigyaConfig
 
     let sessionService: SessionServiceProtocol

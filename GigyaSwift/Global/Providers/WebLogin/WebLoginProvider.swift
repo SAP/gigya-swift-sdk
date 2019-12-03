@@ -8,7 +8,7 @@
 
 import UIKit
 
-class WebLoginProvider: Provider {
+final class WebLoginProvider: Provider {
 
     weak var delegate: BusinessApiDelegate?
 

@@ -9,7 +9,7 @@
 import Foundation
 import Gigya
 
-class VerifyCodeResolver<T: GigyaAccountProtocol>: TFAResolver<T>, VerifyCodeResolverProtocol {
+final class VerifyCodeResolver<T: GigyaAccountProtocol>: TFAResolver<T>, VerifyCodeResolverProtocol {
     private var phvToken: String?
 
     internal let businessApiDelegate: BusinessApiDelegate

@@ -8,6 +8,7 @@
 
 import Foundation
 
+@frozen
 public enum GigyaResult<Response> {
     case success(data: Response) // success with data
     case failure(NetworkError) // failure with error

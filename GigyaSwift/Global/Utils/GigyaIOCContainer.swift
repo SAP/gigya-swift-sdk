@@ -12,7 +12,7 @@ protocol GigyaContainerProtocol {
     var container: IOCContainer { get set }
 }
 
-class GigyaIOCContainer<T: GigyaAccountProtocol>: GigyaContainerProtocol {
+final class GigyaIOCContainer<T: GigyaAccountProtocol>: GigyaContainerProtocol {
     var container: IOCContainer
 
     init() {
@@ -23,6 +23,35 @@ class GigyaIOCContainer<T: GigyaAccountProtocol>: GigyaContainerProtocol {
 
     private func registerDependencies() {
         container.register(service: GigyaConfig.self, isSingleton: true) { _ in GigyaConfig() }
+
+        container.register(service: GeneralUtils.self) { resolver in
+            return GeneralUtils()
+        }
+
+        container.register(service: UserNotificationCenterProtocol.self) { resolver in
+            return UserNotificationCenterHelper()
+        }
+
+        container.register(service: PushNotificationsServiceProtocol.self, isSingleton: true) { resolver in
+            let apiService = resolver.resolve(ApiServiceProtocol.self)
+            let sessionService = resolver.resolve(SessionServiceProtocol.self)
+            let generalUtils = resolver.resolve(GeneralUtils.self)
+            let biometricService = resolver.resolve(BiometricServiceProtocol.self)
+            let persistenceService = resolver.resolve(PersistenceService.self)
+            let userNotificationCenter = resolver.resolve(UserNotificationCenterProtocol.self)
+
+            return PushNotificationsService(apiService: apiService!,
+                                            sessionService: sessionService!,
+                                            biometricService: biometricService!,
+                                            generalUtils: generalUtils!,
+                                            persistenceService: persistenceService!,
+                                            userNotificationCenter: userNotificationCenter!
+            )
+        }
+
+        container.register(service: PushNotificationsServiceExternalProtocol.self) { resolver in
+            return resolver.resolve(PushNotificationsServiceProtocol.self) as! PushNotificationsServiceExternalProtocol
+        }
 
         container.register(service: NetworkBlockingQueueUtils.self) { resolver in
             return NetworkBlockingQueueUtils()

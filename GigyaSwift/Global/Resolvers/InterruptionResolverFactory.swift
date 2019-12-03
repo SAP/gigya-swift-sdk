@@ -8,7 +8,7 @@
 
 import Foundation
 
-class InterruptionResolverFactory: InterruptionResolverFactoryProtocol {
+final class InterruptionResolverFactory: InterruptionResolverFactoryProtocol {
     var resolver: BaseResolver?
 
     private var enabled: Bool = true

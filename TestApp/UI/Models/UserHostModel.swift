@@ -55,7 +55,7 @@ struct UserHost: GigyaAccountProtocol {
 
     var profile: GigyaProfile?
 
-    let data: [String: AnyCodable]?
+    var data: [String: AnyCodable]?
 
     func toJson() -> String {
         do {

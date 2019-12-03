@@ -8,7 +8,7 @@
 
 import Foundation
 
-class NetworkRetryDispacher<T: Codable> {
+final class NetworkRetryDispacher<T: Codable> {
 
     private let networkAdapter: NetworkAdapterProtocol?
 

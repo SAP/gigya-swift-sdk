@@ -9,7 +9,7 @@
 import Foundation
 
 class AlertControllerUtils {
-    static func show(title: String, message: String, result: @escaping (Bool) -> Void) {
+    static func show(vc: UIViewController, title: String, message: String, result: @escaping (Bool) -> Void) {
         DispatchQueue.main.async {
             // Create the alert controller
             let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
@@ -29,8 +29,7 @@ class AlertControllerUtils {
             alertController.addAction(cancelAction)
 
             // Present the controller
-
-            alertController.show()
+            vc.present(alertController, animated: true, completion: nil)
         }
     }
 }

@@ -39,7 +39,8 @@ class SignatureUtils {
 
         var newParams: [String: Any] = combinedData.mapValues { value -> String in
             if let isDictionary = value as? [String: Any] {
-                return isDictionary.asJson
+
+                return isDictionary.asJson.replacingOccurrences(of: "\\/", with: "/")
             } else {
                 return "\(value)"
             }

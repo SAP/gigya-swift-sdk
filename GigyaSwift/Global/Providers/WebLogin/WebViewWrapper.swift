@@ -9,7 +9,7 @@
 import Foundation
 import WebKit
 
-class WebLoginWrapper: NSObject, ProviderWrapperProtocol {
+final class WebLoginWrapper: NSObject, ProviderWrapperProtocol {
 
     var clientID: String?
 

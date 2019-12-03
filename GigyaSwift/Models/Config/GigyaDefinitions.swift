@@ -10,7 +10,7 @@ import Foundation
 
 public struct GigyaDefinitions {
     public struct API {
-        // ACCOUNT
+        // MARK:  ACCOUNT
         public static let getSdkConfig = "socialize.getSDKConfig"
         public static let login = "accounts.login"
         public static let logout = "accounts.logout"
@@ -31,7 +31,7 @@ public struct GigyaDefinitions {
         public static let addConnection = "socialize.addConnection"
         public static let accountsAddConnection = "accounts.addConnection"
 
-        // TFA
+        // MARK:  TFA
         public static let initTFA = "accounts.tfa.initTFA"
         public static let tfaGetProviders = "accounts.tfa.getProviders"
         public static let finalizeTFA = "accounts.tfa.finalizeTFA"
@@ -43,9 +43,13 @@ public struct GigyaDefinitions {
         public static let sendVerificationCodeTFA = "accounts.tfa.phone.sendVerificationCode"
         public static let totpRegisterTFA = "accounts.tfa.totp.register"
         public static let totpVerifyTFA = "accounts.tfa.totp.verify"
-        public static let pushUpdateDeviceTFA = "accounts.auth.push.updateDevice"
+        public static let pushUpdateDevice = "accounts.devices.update"
         public static let pushVerifyTFA = "accounts.tfa.push.verify"
         public static let pushOptinTFA = "accounts.tfa.push.optin"
+
+        // MARK: Passwordless
+        public static let pushOptinLogin = "accounts.devices.register"
+        public static let pushVerifyLogin = "accounts.auth.push.verify"
     }
 
     public struct Tfa {

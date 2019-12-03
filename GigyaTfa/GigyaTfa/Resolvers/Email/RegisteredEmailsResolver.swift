@@ -9,7 +9,7 @@
 import Foundation
 import Gigya
 
-public class RegisteredEmailsResolver<T: GigyaAccountProtocol>: TFAResolver<T>, RegisteredEmailsResolverProtocol, TFAResolversProtocol {
+final public class RegisteredEmailsResolver<T: GigyaAccountProtocol>: TFAResolver<T>, RegisteredEmailsResolverProtocol, TFAResolversProtocol {
 
     internal let businessApiDelegate: BusinessApiDelegate
     internal let interruption: GigyaResponseModel

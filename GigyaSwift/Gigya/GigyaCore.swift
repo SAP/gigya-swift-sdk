@@ -34,6 +34,10 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
 
     private let interruptionResolver: InterruptionResolverFactoryProtocol
 
+    private lazy var pushService: PushNotificationsServiceProtocol = {
+        return self.container.resolve(PushNotificationsServiceProtocol.self)!
+    }()
+
     private let container: IOCContainer
 
     // MARK: - Biometric service
@@ -55,7 +59,7 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
         self.interruptionResolver = interruptionResolver
         self.biometric = biometric
         self.container = container
-
+        
         // load plist and make init
         let plistConfig = plistFactory.parsePlistConfig()
 
@@ -116,6 +120,17 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
      */
     public func isLoggedIn() -> Bool {
         return sessionService.isValidSession()
+    }
+
+    /**
+     Set session.
+
+     - Parameter session:         GigyaSession object.
+     */
+
+    public func setSession(_ session: GigyaSession) {
+        let sessionInfo = SessionInfoModel(sessionToken: session.token, sessionSecret: session.secret, sessionExpiration: String(describing: session.sessionExpirationTimestamp))
+        sessionService.setSession(sessionInfo)
     }
 
     /**
@@ -242,18 +257,6 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
         wrapper.presentPluginController(viewController: viewController, dataType: T.self, screenSet: name)
     }
 
-    /**
-     Show comments (ScreenSet)
-
-     - Parameter params:   Comments ScreenSet parameters.
-     - Parameter completion:  Plugin completion.
-     */
-
-//    private func showComments(viewController: UIViewController, params: [String: Any] = [:], completion: @escaping (PluginEvent<T>) -> Void) {
-//        let wrapper = PluginViewWrapper(config: config, sessionService: sessionService, businessApiService: businessApiService, plugin: "comments.commentsUI", params: params, completion: completion)
-//        wrapper.presentPluginController(viewController: viewController, dataType: T.self, screenSet: "")
-//    }
-
     // MARK: - Interruptions
 
     /**
@@ -285,6 +288,52 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
         let webBridge = container.resolve(GigyaWebBridge<T>.self)
 
         return webBridge!
+    }
+
+    // MARK: Push integration - Available in iOS 10+
+
+    /**
+     Recive Push
+
+     - Parameter userInfo:   dictionary from didReceiveRemoteNotification.
+     - Parameter completion:  Completion from didReceiveRemoteNotification.
+     */
+
+    @available(iOS 10.0, *)
+    public func receivePush(userInfo: [AnyHashable : Any], completion: @escaping (UIBackgroundFetchResult) -> Void) {
+        pushService.onReceivePush(userInfo: userInfo, completion: completion)
+    }
+
+    /**
+     Foreground notification receive
+
+     - Parameter data:   dictionary of message from didReceive:remoteMessage.
+     */
+
+    public func foregroundNotification(with data: [AnyHashable : Any]) {
+        pushService.foregroundNotification(with: data)
+    }
+
+    /**
+     Save push token ( from FCM )
+
+     - Parameter key: FCM Key.
+     */
+
+    @available(iOS 10.0, *)
+    public func updatePushToken(key: String) {
+        pushService.savePushKey(key: key)
+    }
+
+    /**
+     Request to Opt-In to Authentication.
+     This is the first of two stages of the Opt-In process.
+
+      - Parameter response: `UNNotificationResponse` from a tapped notification .
+      */
+
+    public func verifyPush(with response: UNNotificationResponse) {
+        pushService.verifyPush(response: response.notification.request.content.userInfo)
     }
 
 }

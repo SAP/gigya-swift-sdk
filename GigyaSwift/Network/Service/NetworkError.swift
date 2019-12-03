@@ -8,6 +8,7 @@
 
 import Foundation
 
+@frozen
 public enum NetworkError: Error {
     case gigyaError(data: GigyaResponseModel)
     case providerError(data: String)

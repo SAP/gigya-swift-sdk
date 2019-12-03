@@ -21,6 +21,36 @@ class GigyaContainerUtils {
     func registerDependencie<T: GigyaAccountProtocol>(_ type: T.Type) {
         container.register(service: GigyaConfig.self, isSingleton: true) { _ in GigyaConfig() }
 
+        container.register(service: GeneralUtils.self, isSingleton: true) { resolver in
+            return GeneralUtilsMock()
+        }
+
+        container.register(service: UserNotificationCenterProtocol.self, isSingleton: true) { resolver in
+            return UserNotificationCenterMock()
+        }
+
+        container.register(service: PushNotificationsServiceProtocol.self) { resolver in
+            let apiService = resolver.resolve(ApiServiceProtocol.self)
+            let sessionService = resolver.resolve(SessionServiceProtocol.self)
+            let generalUtils = resolver.resolve(GeneralUtils.self)
+            let biometricService = resolver.resolve(BiometricServiceProtocol.self)
+            let persistenceService = resolver.resolve(PersistenceService.self)
+            let userNotificationCenter = resolver.resolve(UserNotificationCenterProtocol.self)
+
+            return PushNotificationsServiceMock(apiService: apiService!,
+                                            sessionService: sessionService!,
+                                            biometricService: biometricService!,
+                                            generalUtils: generalUtils!,
+                                            persistenceService: persistenceService!,
+                                            userNotificationCenter: userNotificationCenter!
+            )
+        }
+
+        container.register(service: PushNotificationsServiceExternalProtocol.self) { resolver in
+            return resolver.resolve(PushNotificationsServiceProtocol.self) as! PushNotificationsServiceExternalProtocol
+
+        }
+        
         container.register(service: NetworkProvider.self) { resolver in
             let config = resolver.resolve(GigyaConfig.self)
             let sessionService = resolver.resolve(SessionServiceProtocol.self)
@@ -76,6 +106,11 @@ class GigyaContainerUtils {
             let persistenceService = resolver.resolve(PersistenceService.self)
 
             return BiometricService(config: config!, persistenceService: persistenceService!, sessionService: sessionService!)
+        }
+
+        container.register(service: BiometricServiceMock.self, isSingleton: true) { resolver in
+
+            return BiometricServiceMock()
         }
 
         container.register(service: BiometricServiceInternalProtocol.self, isSingleton: true) { resolver in

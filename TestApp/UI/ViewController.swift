@@ -9,6 +9,7 @@
 import UIKit
 import Gigya
 import GigyaTfa
+import GigyaAuth
 
 class ViewController: UIViewController {
 
@@ -228,7 +229,7 @@ class ViewController: UIViewController {
     }
 
     @IBAction func loginWithProvider(_ sender: Any) {
-        gigya.login(with: .apple, viewController: self, params: ["dataCenter": "ru1"]) { [weak self] (result) in
+        gigya.login(with: .line, viewController: self, params: ["dataCenter": "ru1"]) { [weak self] (result) in
             switch result {
             case .success(let data):
                 print(data)
@@ -293,14 +294,24 @@ class ViewController: UIViewController {
         }
     }
 
-
-
     @IBAction func getAccount(_sender: Any) {
         gigya.getAccount { [weak self] res in
             switch res {
             case .success(let account):
                 var account = account
                 account.profile?.firstName = "test"
+                account.data?["phone"] = [["pref":"","type":"Mobile","number":"(360) 555-4515"],["type":"Work","number":"(360) 545-5467"],["type":"Home","number":"(360) 514-2548"]]
+
+                account.data?["address"] = [["street2":"test 9622121","state":"NY","street":"886365 Something Really Long Ave..","zip":"11012","city":"New York","type":"Mailing"]]
+                account.data?["genderIdentity"] = "Male"
+                account.data?["preferredMiddleName"] = "PreferredMid23"
+                account.data?["middleName"] = "John"
+                account.data?["administrativeGender"] = "F"
+                account.data?["preferredLastName"] = "PreferredLst23"
+                account.data?["preferredFirstName"] = "PreferredFirstName12"
+                account.data?["preferredLanguage"] = "English"
+                account.data?["preferredPronoun"] = "Her/She"
+
                 self?.gigya.setAccount(with: account, completion: { (result) in
                     switch result {
                     case .success:
@@ -331,15 +342,26 @@ class ViewController: UIViewController {
     }
 
     @IBAction func OptIn(_ sender: Any) {
-        GigyaTfa.shared.OptiInPushTfa { (result) in
+        GigyaAuth.shared.registerForAuthPush { result in
             switch result {
             case .success:
                 break
             case .failure(let error):
                 let alertController = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
                 alertController.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+                self.present(alertController, animated: true, completion: nil)
             }
         }
+
+//        GigyaTfa.shared.OptiInPushTfa { (result) in
+//            switch result {
+//            case .success:
+//                break
+//            case .failure(let error):
+//                let alertController = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
+//                alertController.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+//            }
+//        }
     }
 
     func presentTFAController(tfaProviders: [TFAProviderModel], mode: TFAMode, factoryResolver: TFAResolverFactory<UserHost>) {
