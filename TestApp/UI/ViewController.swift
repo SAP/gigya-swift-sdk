@@ -24,6 +24,7 @@ class ViewController: UIViewController {
 
     }
 
+    @IBOutlet weak var resultTextView: UILabel!
     override func viewDidAppear(_ animated: Bool) {
         checkLoginState()
     }
@@ -34,7 +35,6 @@ class ViewController: UIViewController {
         UIFactory.showAlert(vc: self, msg: "Session is expire!")
     }
 
-    @IBOutlet weak var resultTextView: UITextView?
 
     @IBAction func changeSetttings(_ sender: Any) {
         let alert = UIFactory.getChangeSettingAlert(dc: gigya.config.apiDomain, api: gigya.config.apiKey!) { [weak self] dc, api in
@@ -62,7 +62,7 @@ class ViewController: UIViewController {
 
 
         var currentScreen: String = ""
-        gigya.showScreenSet(with: "Default-RegistrationLogin", viewController: self) { [weak self] (result) in
+        gigya.showScreenSet(with: "Default-ProfileUpdate", viewController: self) { [weak self] (result) in
             switch result {
             case .onLogin(let account):
                 self?.resultTextView!.text = account.toJson()
