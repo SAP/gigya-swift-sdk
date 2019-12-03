@@ -26,7 +26,7 @@ final class PushTfaManager: NSObject, PushTfaManagerProtocol, BasePushManagerPro
 
     var pushOptIn: PushTfaOptInService?
 
-    let idintityKey: String = "vToken"
+    let idintityKey: String = "gigyaAssertion"
 
     required override init() {
         self.container = Gigya.getContainer()
@@ -129,6 +129,8 @@ final class PushTfaManager: NSObject, PushTfaManagerProtocol, BasePushManagerPro
 
             case .failure(let error):
                 GigyaLogger.log(with: self, message: error.localizedDescription)
+
+                self?.generalUtils.showNotification(title: "Verify push TFA", body: "Error authenticating login request", id: "completeVerification")
             }
         }
     }

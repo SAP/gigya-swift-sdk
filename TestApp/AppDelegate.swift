@@ -62,11 +62,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
     }
 
     func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage) {
-        gigya.foregrundNotification(with: remoteMessage.appData)
+        gigya.foregroundNotification(with: remoteMessage.appData)
     }
 
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        gigya.recivePush(userInfo: userInfo, completion: completionHandler)
+        gigya.receivePush(userInfo: userInfo, completion: completionHandler)
     }
 
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {

@@ -300,8 +300,8 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
      */
 
     @available(iOS 10.0, *)
-    public func recivePush(userInfo: [AnyHashable : Any], completion: @escaping (UIBackgroundFetchResult) -> Void) {
-        pushService.onRecivePush(userInfo: userInfo, completion: completion)
+    public func receivePush(userInfo: [AnyHashable : Any], completion: @escaping (UIBackgroundFetchResult) -> Void) {
+        pushService.onReceivePush(userInfo: userInfo, completion: completion)
     }
 
     /**
@@ -310,8 +310,8 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
      - Parameter data:   dictionary of message from didReceive:remoteMessage.
      */
 
-    public func foregrundNotification(with data: [AnyHashable : Any]) {
-        pushService.foregrundNotification(with: data)
+    public func foregroundNotification(with data: [AnyHashable : Any]) {
+        pushService.foregroundNotification(with: data)
     }
 
     /**

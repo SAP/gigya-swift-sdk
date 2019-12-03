@@ -32,7 +32,7 @@ final public class GigyaAuth {
 
       - Parameter completion: Request response.
       */
-    public func registerDeviceToPushLogin(completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void) {
+    public func registerForAuthPush(completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void) {
         pushLoginManager.beforeRegisterDeviceToPushLogin(completion: completion)
     }
 }

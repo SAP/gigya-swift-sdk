@@ -29,7 +29,7 @@ final class GigyaIOCContainer<T: GigyaAccountProtocol>: GigyaContainerProtocol {
         }
 
         container.register(service: UserNotificationCenterProtocol.self) { resolver in
-            return UserNotificationCenter()
+            return UserNotificationCenterHelper()
         }
 
         container.register(service: PushNotificationsServiceProtocol.self, isSingleton: true) { resolver in

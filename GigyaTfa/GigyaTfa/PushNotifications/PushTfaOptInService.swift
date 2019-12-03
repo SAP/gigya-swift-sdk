@@ -121,6 +121,8 @@ final class PushTfaOptInService: PushTfaOptInServiceProtocol {
                 
                 self?.completion(.success(data: data))
             case .failure(let error):
+                self?.generalUtils.showNotification(title: "Opt-In for push TFA", body: "Failed to register device for push TFA", id: "verifyOptInFail")
+
                 self?.completion(.failure(error))
             }
         }

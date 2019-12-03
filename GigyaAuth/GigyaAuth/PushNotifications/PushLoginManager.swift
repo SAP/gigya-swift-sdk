@@ -138,10 +138,13 @@ final class PushLoginManager: NSObject, BasePushManagerProtocol {
             case .success:
                 GigyaLogger.log(with: self, message: "completeVerification - success")
 
-                self?.generalUtils.showNotification(title: "Verify push Login", body: "Successfully authenticated login request", id: "completeVerification")
+                self?.generalUtils.showNotification(title: "Confirm to authenticate", body: "Successfully authenticated login request", id: "completeVerification")
 
             case .failure(let error):
                 GigyaLogger.log(with: self, message: error.localizedDescription)
+
+                self?.generalUtils.showNotification(title: "Confirm to authenticate", body: "Could not authenticate", id: "completeVerificationFail")
+
             }
         }
     }

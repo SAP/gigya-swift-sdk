@@ -342,7 +342,7 @@ class ViewController: UIViewController {
     }
 
     @IBAction func OptIn(_ sender: Any) {
-        GigyaAuth.shared.registerDeviceToPushLogin { result in
+        GigyaAuth.shared.registerForAuthPush { result in
             switch result {
             case .success:
                 break

@@ -22,9 +22,7 @@ class PushNotificationsService: PushNotificationsServiceExternalProtocol, PushNo
 
     let userNotificationCenter: UserNotificationCenterProtocol
 
-    private var instanceKeysRegistry: [String] = []
-
-    private var closureRegistry: [RemoteMsgClosure] = []
+    private var handlersRegistry: [String: RemoteMsgClosure] = [:]
 
     init(apiService: ApiServiceProtocol, sessionService: SessionServiceProtocol, biometricService: BiometricServiceProtocol, generalUtils: GeneralUtils, persistenceService: PersistenceService, userNotificationCenter: UserNotificationCenterProtocol) {
         self.apiService = apiService
@@ -48,8 +46,7 @@ class PushNotificationsService: PushNotificationsServiceExternalProtocol, PushNo
     // MARK:  Register Closure for verification push
 
     func registerTo(key: String, closure: @escaping RemoteMsgClosure) {
-        closureRegistry.append(closure)
-        instanceKeysRegistry.append(key)
+        handlersRegistry[key] = closure
     }
 
     // MARK: Register for push notification
@@ -90,27 +87,29 @@ class PushNotificationsService: PushNotificationsServiceExternalProtocol, PushNo
 
     // MARK: Show foregrund notification
 
-    func foregrundNotification(with data: [AnyHashable : Any]) {
+    func foregroundNotification(with data: [AnyHashable : Any]) {
         guard sessionService.isValidSession() == true else {
             return
         }
 
-        let title = data["title"] as? String ?? ""
-        let body = data["body"] as? String ?? ""
-        var id = ""
+        let title = data["title"] as? String
+        let body = data["body"] as? String
+        var id: String?
 
-        for remoteId in instanceKeysRegistry {
+        for remoteId in handlersRegistry.keys {
             if let getId = data[remoteId] as? String {
                 id = getId
             }
         }
 
-        generalUtils.showNotification(title: title, body: body, id: id, userInfo: data)
+        if let title = title, let body = body, let id = id {
+            generalUtils.showNotification(title: title, body: body, id: id, userInfo: data)
+        }
     }
 
     // MARK: Delete push's
 
-    func onRecivePush(userInfo: [AnyHashable : Any], completion: @escaping (UIBackgroundFetchResult) -> Void) {
+    func onReceivePush(userInfo: [AnyHashable : Any], completion: @escaping (UIBackgroundFetchResult) -> Void) {
         userNotificationCenter.getDeliveredNotifications(completionHandler: { [weak self] deliveredNotifications -> () in
             guard let self = self else { return }
 
@@ -123,17 +122,17 @@ class PushNotificationsService: PushNotificationsServiceExternalProtocol, PushNo
             if mode == .cancel {
             // remove push by id
                 for (identifier, notification) in deliveredNotifications {
-                    if self.needToDeleted(userInfoFrom: notification, userInfoFromPush: userInfo)
+                    if self.needToCancel(payloadToCompare: notification, payloadFromPush: userInfo)
                     {
                         self.userNotificationCenter.removeDeliveredNotifications(withIdentifiers: [identifier])
                     }
                 }
             }
 
-            // remove the all nofitication when the session is not valid
+            // remove all nofitication when the session is not valid
             if self.sessionService.isValidSession() == false {
                 for (identifier, notification) in deliveredNotifications {
-                    if self.needToDeleted(userInfoFrom: notification, userInfoFromPush: notification)
+                    if self.needToCancel(payloadToCompare: notification, payloadFromPush: notification)
                     {
                         self.userNotificationCenter.removeDeliveredNotifications(withIdentifiers: [identifier])
                     }
@@ -145,11 +144,11 @@ class PushNotificationsService: PushNotificationsServiceExternalProtocol, PushNo
         })
     }
 
-    private func needToDeleted(userInfoFrom: [AnyHashable : Any], userInfoFromPush: [AnyHashable : Any]) -> Bool{
-        for remoteId in instanceKeysRegistry {
-            if let gid = userInfoFrom[remoteId] as? String,
-                let idToDelete = userInfoFromPush[remoteId] as? String,
-                gid.contains(idToDelete)
+    private func needToCancel(payloadToCompare: [AnyHashable : Any], payloadFromPush: [AnyHashable : Any]) -> Bool{
+        for remoteId in handlersRegistry.keys {
+            if let gid = payloadToCompare[remoteId] as? String,
+                let idToDelete = payloadFromPush[remoteId] as? String,
+                gid == idToDelete
             {
                 return true
             }
@@ -167,7 +166,7 @@ class PushNotificationsService: PushNotificationsServiceExternalProtocol, PushNo
     private func sendPushKeyIfNeeded() {
         let key = persistenceService.pushKey ?? ""
 
-        guard let pushToken = pushToken, sessionService.isValidSession() == true, !pushToken.contains(key) else {
+        guard let pushToken = pushToken, sessionService.isValidSession() == true, pushToken != key else {
             return
         }
 
@@ -186,8 +185,10 @@ class PushNotificationsService: PushNotificationsServiceExternalProtocol, PushNo
     // MARK: Verification push
 
     func verifyPush(response: [AnyHashable : Any]) {
-        closureRegistry.forEach { (closure) in
-            closure(response)
+        handlersRegistry.forEach { (handler) in
+            if let key = response[handler.key] as? String, !key.isEmpty {
+                handler.value(response)
+            }
         }
     }
 }

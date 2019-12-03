@@ -15,9 +15,9 @@ protocol PushNotificationsServiceProtocol {
 
     func savePushKey(key: String)
 
-    func foregrundNotification(with data: [AnyHashable : Any])
+    func foregroundNotification(with data: [AnyHashable : Any])
     
-    func onRecivePush(userInfo: [AnyHashable : Any], completion: @escaping (UIBackgroundFetchResult) -> Void)
+    func onReceivePush(userInfo: [AnyHashable : Any], completion: @escaping (UIBackgroundFetchResult) -> Void)
 
     func verifyPush(response: [AnyHashable : Any])
 }
