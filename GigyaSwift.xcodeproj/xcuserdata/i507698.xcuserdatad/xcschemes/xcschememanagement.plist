@@ -17,7 +17,11 @@
 		<key>GigyaUITestsApp.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
+<<<<<<< HEAD
 			<integer>26</integer>
+=======
+			<integer>25</integer>
+>>>>>>> update-docs
 		</dict>
 		<key>TestApp.xcscheme_^#shared#^_</key>
 		<dict>

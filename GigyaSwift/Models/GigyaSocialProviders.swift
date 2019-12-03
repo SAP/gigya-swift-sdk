@@ -9,6 +9,8 @@
 import Foundation
 /**
  The `GigyaSocialProviders` it is list of supported providers.
+
+ https://developers.gigya.com/display/GD/Social+Login#SocialLogin-SupportedProviders
  */
 public enum GigyaSocialProviders {
 
