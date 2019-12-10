@@ -96,6 +96,8 @@ class SessionService: SessionServiceProtocol {
                 return
         }
 
+        session = gsession
+
         removeFromKeychain { [weak self] in
             if let sessionExpiration = Double(sessionInfo.sessionExpiration ?? "0"), sessionExpiration > 0 {
                 let sessionExpirationTimestamp = Date().timeIntervalSince1970 + sessionExpiration

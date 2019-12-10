@@ -173,10 +173,11 @@ extension WebLoginWrapper: WKNavigationDelegate {
 
                     let json = ["status": status, "accessToken": accessToken, "tokenSecret": tokenSecret, "sessionExpiration": sessionExpiration]
 
-                    // dismiss viewController
-                    navigationController?.dismiss(animated: true, completion: nil)
 
                     completionHandler?(json, nil)
+
+                    // dismiss viewController
+                    navigationController?.dismiss(animated: true, completion: nil)
                 } else if
                     let status = url["status"],
                     status == "ok",
@@ -184,15 +185,16 @@ extension WebLoginWrapper: WKNavigationDelegate {
 
                     let json = ["status": status, "idToken": idToken]
 
+                    completionHandler?(json, nil)
+
                     // dismiss viewController
                     navigationController?.dismiss(animated: true, completion: nil)
 
-                    completionHandler?(json, nil)
                 } else if let error = url["error_description"], !error.isEmpty {
 
-                    navigationController?.dismiss(animated: true, completion: nil)
-
                     completionHandler?(nil, url.absoluteString)
+
+                    navigationController?.dismiss(animated: true, completion: nil)
                 }
             }
         }
