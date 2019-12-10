@@ -18,3 +18,5 @@ build/Release-iphoneos/Gigya.framework.dSYM/Contents/
 
 docs/
 >>>>>>> update-docs
+
+.DS_Store
