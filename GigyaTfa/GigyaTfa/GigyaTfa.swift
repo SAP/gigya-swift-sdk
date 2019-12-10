@@ -9,55 +9,25 @@
 import UserNotifications
 import Gigya
 
-public class GigyaTfa {
+final public class GigyaTfa {
 
     public static let shared: GigyaTfa = GigyaTfa()
 
-    private let pushService: PushNotificationsServiceProtocol
+    private let pushTfaManager: PushTfaManager
 
     init() {
-        self.pushService = PushNotificationsService()
+        self.pushTfaManager = PushTfaManager()
     }
 
     // MARK: Push TFA - Available in iOS 10+
 
     /**
-     Recive Push
-
-     - Parameter userInfo:   dictionary from didReceiveRemoteNotification.
-     - Parameter completion:  Completion from didReceiveRemoteNotification.
+     Check if the user is authorized to remote notifications
      */
-
-    @available(iOS 10.0, *)
-    public func recivePush(userInfo: [AnyHashable : Any], completion: @escaping (UIBackgroundFetchResult) -> Void) {
-        pushService.onRecivePush(userInfo: userInfo, completion: completion)
+    public func registerForRemoteNotifications() {
+        pushTfaManager.pushService.getNotificationSettings { _ in }
     }
-
-    /**
-     Foreground notification receive
-
-     - Parameter data:   dictionary of message from didReceive:remoteMessage.
-     */
-
-    public func foregrundNotification(with data: [AnyHashable : Any]) {
-        let title = data["title"] as? String ?? ""
-        let body = data["body"] as? String ?? ""
-        let gigyaAssertion = data["gigyaAssertion"] as? String ?? ""
-
-        GeneralUtils.showNotification(title: title, body: body, id: gigyaAssertion, userInfo: data)
-    }
-
-    /**
-     Save push token ( from FCM )
-
-     - Parameter key: FCM Key.
-     */
-
-    @available(iOS 10.0, *)
-    public func updatePushToken(key: String) {
-        pushService.savePushKey(key: key)
-    }
-
+    
     /**
      Request to Opt-In to push Two Factor Authentication.
      This is the first of two stages of the Opt-In process.
@@ -66,17 +36,7 @@ public class GigyaTfa {
       */
 
     public func OptiInPushTfa(completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void) {
-        pushService.optInToPushTfa(completion: completion)
+        pushTfaManager.optInToPushTfa(completion: completion)
     }
 
-    /**
-     Request to Opt-In to push Two Factor Authentication.
-     This is the first of two stages of the Opt-In process.
-
-      - Parameter response: `UNNotificationResponse` from a tapped notification .
-      */
-
-    public func verifyPushTfa(with response: UNNotificationResponse) {
-        pushService.verifyPushTfa(response: response)
-    }
 }

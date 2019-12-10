@@ -12,11 +12,13 @@ import LineSDK
 import Firebase
 import GoogleUtilities
 import GigyaTfa
+import GigyaAuth
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
 
     var window: UIWindow?
+    let gigya = Gigya.sharedInstance(UserHost.self)
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -30,6 +32,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
         UNUserNotificationCenter.current().delegate = self
 
         Messaging.messaging().shouldEstablishDirectChannel = true
+
+        GigyaAuth.shared.registerForRemoteNotifications()
+        GigyaTfa.shared.registerForRemoteNotifications()
 
         return true
     }
@@ -52,16 +57,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
         print("Firebase registration token: \(fcmToken)")
         let dataDict:[String: String] = ["token": fcmToken]
 
-        GigyaTfa.shared.updatePushToken(key: fcmToken)
+        gigya.updatePushToken(key: fcmToken)
         NotificationCenter.default.post(name: Notification.Name("FCMToken"), object: nil, userInfo: dataDict)
     }
 
     func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage) {
-        GigyaTfa.shared.foregrundNotification(with: remoteMessage.appData)
+        gigya.foregroundNotification(with: remoteMessage.appData)
     }
 
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        GigyaTfa.shared.recivePush(userInfo: userInfo, completion: completionHandler)
+        gigya.receivePush(userInfo: userInfo, completion: completionHandler)
     }
 
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
@@ -96,7 +101,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
 extension AppDelegate: UNUserNotificationCenterDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         // tap on notification
-        GigyaTfa.shared.verifyPushTfa(with: response)
+        gigya.verifyPush(with: response)
+
+        completionHandler()
     }
 
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {

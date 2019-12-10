@@ -46,7 +46,7 @@ class PluginViewWrapper<T: GigyaAccountProtocol>: PluginViewWrapperProtocol {
      Present the PluginViewController with requested screenSet.
      
      - Parameter viewController: Current active view controller.
-     - Parameter dataType: Account scheme.
+     - Parameter dataType: Account schema.
      - Parameter screenSet: Requested screen set.
      */
     func presentPluginController<C: GigyaAccountProtocol>(viewController: UIViewController, dataType: C.Type, screenSet: String? = nil) {

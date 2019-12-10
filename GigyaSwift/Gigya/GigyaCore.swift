@@ -14,7 +14,7 @@ import UIKit
 
  When you use `Gigya.sharedInstance()` it will return an instance of `GigyaCore`.
 
- - warning: `GigyaCore` is designed to use a custom generic scheme type (Default: `GigyaAccount`). If you are instantiating the core using your own scheme (Example: `Gigya.sharedInstance(CustomSchema.self)`) it is required to add the specific schema every time you call to `Gigya.sharedInstance()`.
+ - warning: `GigyaCore` is designed to use a custom generic schema type (Default: `GigyaAccount`). If you are instantiating the core using your own schema (Example: `Gigya.sharedInstance(CustomSchema.self)`) it is required to add the specific schema every time you call to `Gigya.sharedInstance()`.
  */
 public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
 
@@ -33,6 +33,10 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
     private let sessionService: SessionServiceProtocol
 
     private let interruptionResolver: InterruptionResolverFactoryProtocol
+
+    private lazy var pushService: PushNotificationsServiceProtocol = {
+        return self.container.resolve(PushNotificationsServiceProtocol.self)!
+    }()
 
     private let container: IOCContainer
 
@@ -55,7 +59,7 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
         self.interruptionResolver = interruptionResolver
         self.biometric = biometric
         self.container = container
-
+        
         // load plist and make init
         let plistConfig = plistFactory.parsePlistConfig()
 
@@ -119,7 +123,20 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
     }
 
     /**
-     * Logout of Gigya services.
+     Set session.
+
+     - Parameter session:         GigyaSession object.
+     */
+
+    public func setSession(_ session: GigyaSession) {
+        let sessionInfo = SessionInfoModel(sessionToken: session.token, sessionSecret: session.secret, sessionExpiration: String(describing: session.sessionExpirationTimestamp))
+        sessionService.setSession(sessionInfo)
+    }
+
+    /**
+     Logout of Gigya services.
+
+     - Parameter completion:    Response `GigyaApiResult<GigyaDictionary>`.
      */
     public func logout(completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void) {
         businessApiService.logout(completion: completion)
@@ -130,9 +147,10 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
     /**
      Login api
 
-     - Parameter identity:      user identity.
-     - Parameter pass:          user password.
-     - Parameter completion:    Response `GigyaApiResult`.
+     - Parameter loginId:      user identity.
+     - Parameter password:     user password.
+     - Parameter params:       Request parameters.
+     - Parameter completion:   Response `GigyaLoginResult<T>`.
      */
     public func login(loginId: String, password: String, params: [String: Any] = [:], completion: @escaping (GigyaLoginResult<T>) -> Void) {
         businessApiService.login(dataType: T.self, loginId: loginId, password: password, params: params, completion: completion)
@@ -141,10 +159,10 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
     /**
      Login with a 3rd party provider.
 
-     - Parameter provider:          user identity.
-     - Parameter params:            user password.
+     - Parameter provider:          Social provider.
      - Parameter viewController:    Shown view controller.
-     - Parameter completion:        Response `GigyaApiResult`.
+     - Parameter params:            Request parameters.
+     - Parameter completion:        Response `GigyaLoginResult<T>`.
      */
     public func login(with provider: GigyaSocialProviders, viewController: UIViewController,
                       params: [String: Any] = [:], completion: @escaping (GigyaLoginResult<T>) -> Void) {
@@ -156,9 +174,10 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
     /**
      Register account using email and password combination
 
-     - Parameter email:         user identity.
+     - Parameter email:         user email.
      - Parameter password:      user password.
-     - Parameter completion:    Response `GigyaApiResult`.
+     - Parameter params:        Request parameters.
+     - Parameter completion:    Response `GigyaLoginResult<T>`.
      */
     public func register(email: String, password: String, params: [String: Any], completion: @escaping (GigyaLoginResult<T>) -> Void) {
         businessApiService.register(email: email, password: password, params: params, dataType: T.self, completion: completion)
@@ -167,8 +186,7 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
     /**
      Request account info.
 
-     - Parameter type:         Host data schema.
-     - Parameter clearAccount: set true when you want to clear cache
+     - Parameter clearAccount: set true when you want to clear cache.
      - Parameter completion:   Response `GigyaApiResult<T>`.
      */
     public func getAccount(_ clearAccount: Bool = false, completion: @escaping (GigyaApiResult<T>) -> Void) {
@@ -176,16 +194,16 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
     }
 
     /**
-     * Set account info.
+     Set account info.
 
-     - Parameter account:      Host data obj.
+     - Parameter account:      Schema type.
      - Parameter completion:   Response `GigyaApiResult<T>`.
     */
     public func setAccount(with account: T, completion: @escaping (GigyaApiResult<T>) -> Void) {
         businessApiService.setAccount(obj: account, completion: completion)
     }
 
-    // MARK: - Native login
+    // MARK: - Social Login
 
     /**
      Present social login selection list.
@@ -193,7 +211,7 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
      - Parameter providers: List of selected social providers (`GigyaSocielProviders`).
      - Parameter viewController: Shown view controller.
      - Parameter params:    Request parameters.
-     - Parameter completion:  Login response.
+     - Parameter completion:  Login response `GigyaLoginResult<T>`.
      */
 
     public func socialLoginWith(providers: [GigyaSocialProviders], viewController: UIViewController, params: [String: Any], completion: @escaping (GigyaLoginResult<T>) -> Void) {
@@ -206,7 +224,7 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
      - Parameter providers: selected social provider (GigyaSocielProviders).
      - Parameter viewController: Shown view controller.
      - Parameter params:    Request parameters.
-     - Parameter completion:  Login response.
+     - Parameter completion:  Login response `GigyaApiResult<T>`.
      */
     
     public func addConnection(provider: GigyaSocialProviders, viewController: UIViewController, params: [String: Any], completion: @escaping (GigyaApiResult<T>) -> Void) {
@@ -217,7 +235,7 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
      Remove a social connection from current account.
      
      - Parameter providers: selected social provider name.
-     - Parameter completion: Login response.
+     - Parameter completion: Login response `GigyaApiResult<GigyaDictionary>`.
      */
     
     public func removeConnection(provider: GigyaSocialProviders, completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void) {
@@ -229,10 +247,10 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
     /**
     Show ScreenSet
 
-    - Parameter name:        ScreenSet name.
+    - Parameter name:           ScreenSet name.
     - Parameter viewController: Shown view controller.
-    - Parameter params:      General ScreenSet parameters.
-    - Parameter completion:  Plugin completion.
+    - Parameter params:         General ScreenSet parameters.
+    - Parameter completion:     Plugin completion `GigyaPluginEvent<T>`.
     */
     
     public func showScreenSet(with name: String, viewController: UIViewController, params: [String: Any] = [:], completion: @escaping (GigyaPluginEvent<T>) -> Void) {
@@ -241,18 +259,6 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
         let wrapper = PluginViewWrapper(config: config, persistenceService: persistenceService, sessionService: sessionService, businessApiService: businessApiService, webBridge: webBridge, plugin: "accounts.screenSet", params: params, completion: completion)
         wrapper.presentPluginController(viewController: viewController, dataType: T.self, screenSet: name)
     }
-
-    /**
-     Show comments (ScreenSet)
-
-     - Parameter params:   Comments ScreenSet parameters.
-     - Parameter completion:  Plugin completion.
-     */
-
-//    private func showComments(viewController: UIViewController, params: [String: Any] = [:], completion: @escaping (PluginEvent<T>) -> Void) {
-//        let wrapper = PluginViewWrapper(config: config, sessionService: sessionService, businessApiService: businessApiService, plugin: "comments.commentsUI", params: params, completion: completion)
-//        wrapper.presentPluginController(viewController: viewController, dataType: T.self, screenSet: "")
-//    }
 
     // MARK: - Interruptions
 
@@ -275,6 +281,8 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
         interruptionResolver.setEnabled(sdkHandles)
     }
 
+    // MARK: - Web Bridge
+
     /**
      Create an new instance of the GigyaWebBridge.
 
@@ -285,6 +293,52 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
         let webBridge = container.resolve(GigyaWebBridge<T>.self)
 
         return webBridge!
+    }
+
+    // MARK: Push integration - Available in iOS 10+
+
+    /**
+     Recive Push
+
+     - Parameter userInfo:   dictionary from didReceiveRemoteNotification.
+     - Parameter completion:  Completion from didReceiveRemoteNotification.
+     */
+
+    @available(iOS 10.0, *)
+    public func receivePush(userInfo: [AnyHashable : Any], completion: @escaping (UIBackgroundFetchResult) -> Void) {
+        pushService.onReceivePush(userInfo: userInfo, completion: completion)
+    }
+
+    /**
+     Foreground notification receive
+
+     - Parameter data:   dictionary of message from didReceive:remoteMessage.
+     */
+
+    public func foregroundNotification(with data: [AnyHashable : Any]) {
+        pushService.foregroundNotification(with: data)
+    }
+
+    /**
+     Save push token ( from FCM )
+
+     - Parameter key: FCM Key.
+     */
+
+    @available(iOS 10.0, *)
+    public func updatePushToken(key: String) {
+        pushService.savePushKey(key: key)
+    }
+
+    /**
+     Request to Opt-In to Authentication.
+     This is the first of two stages of the Opt-In process.
+
+      - Parameter response: `UNNotificationResponse` from a tapped notification .
+      */
+
+    public func verifyPush(with response: UNNotificationResponse) {
+        pushService.verifyPush(response: response.notification.request.content.userInfo)
     }
 
 }

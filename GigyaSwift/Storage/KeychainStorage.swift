@@ -68,7 +68,7 @@ internal class KeychainStorageFactory {
         let query: [CFString: Any] = [ kSecClass: kSecClassGenericPassword,
                                       kSecAttrService: InternalConfig.Storage.serviceName,
                                       kSecAttrAccount: name,
-                                      kSecReturnData: true,
+                                      kSecReturnData: kCFBooleanTrue!,
                                       kSecUseOperationPrompt: plistConfig?.touchIDText ?? InternalConfig.Storage.defaultTouchIDMessage
                                       ]
 

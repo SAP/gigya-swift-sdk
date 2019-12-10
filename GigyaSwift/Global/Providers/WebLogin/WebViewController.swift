@@ -67,6 +67,12 @@ class WebViewController: UIViewController {
         webView.load(URLRequest(url: url))
     }
 
+    func loadhtml(_ data: String) {
+        main {
+            self.webView.loadHTMLString(data, baseURL: nil)
+        }
+    }
+
     @objc func dismissView() {
         self.dismiss(animated: true, completion: nil)
         userDidCancel()

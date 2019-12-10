@@ -9,11 +9,13 @@
 import Foundation
 import WebKit
 
-class WebLoginWrapper: NSObject, ProviderWrapperProtocol {
+final class WebLoginWrapper: NSObject, ProviderWrapperProtocol {
 
     var clientID: String?
 
     var webViewController: WebViewController?
+
+    private var networkAdapter: NetworkAdapterProtocol?
 
     private var config: GigyaConfig?
 
@@ -26,14 +28,15 @@ class WebLoginWrapper: NSObject, ProviderWrapperProtocol {
     private var completionHandler: ((_ jsonData: [String: Any]?, _ error: String?) -> Void)? = nil
 
     required override init() {
-        self.providerType = .google
+        self.providerType = .web(provider: "")
     }
 
-    init(config: GigyaConfig, persistenceService: PersistenceService, providerType: GigyaSocialProviders) {
+    init(config: GigyaConfig, persistenceService: PersistenceService, providerType: GigyaSocialProviders, networkAdapter: NetworkAdapterProtocol) {
         self.providerType = providerType
         self.config = config
         self.persistenceService = persistenceService
         self.webViewController = WebViewController()
+        self.networkAdapter = networkAdapter
 
         super.init()
 
@@ -41,11 +44,8 @@ class WebLoginWrapper: NSObject, ProviderWrapperProtocol {
     }
 
     func webViewConfig() {
-        guard let url = getUrl() else { return }
 
         webViewController?.setDelegate(delegate: self)
-
-        webViewController?.loadUrl(url: url)
 
         webViewController?.userDidCancel = { [weak self] in
             self?.completionHandler?(nil, "sign in cancelled")
@@ -55,6 +55,9 @@ class WebLoginWrapper: NSObject, ProviderWrapperProtocol {
 
     func login(params: [String: Any]?, viewController: UIViewController?,
                completion: @escaping (_ jsonData: [String: Any]?, _ error: String?) -> Void) {
+
+        locadProvider(params: params)
+
         completionHandler = completion
         
         navigationController = UINavigationController(rootViewController: webViewController!)
@@ -64,24 +67,95 @@ class WebLoginWrapper: NSObject, ProviderWrapperProtocol {
         }
     }
 
-    func getUrl() -> URL? {
-        var urlString = "https://socialize.\(config?.apiDomain ?? "")/socialize.login?"
-        urlString.append("redirect_uri=gsapi://login_result&")
-        urlString.append("response_type=token&")
-        urlString.append("client_id=\(config?.apiKey ?? "")&")
-        urlString.append("gmid=\(persistenceService?.gmid ?? "")&")
-        urlString.append("ucid=\(persistenceService?.ucid ?? "")&")
-        urlString.append("x_secret_type=oauth1&")
-        urlString.append("x_endPoint=socialize.login&")
-        urlString.append("x_sdk=\(InternalConfig.General.version)&")
-        urlString.append("x_provider=\(providerType.rawValue)")
-
-        guard let url = URL(string: urlString) else {
-            GigyaLogger.log(with: WebLoginWrapper.self, message: "Cna't make URL")
-            return nil
+    func locadProvider(params: [String: Any]?) {
+        var loginMode = "standard"
+        if let mode = params?["loginMode"] as? String {
+            loginMode = mode
         }
 
-        return url
+        var loginPath = "socialize.login"
+        if loginMode == "connect" {
+            loginPath = "socialize.addConnection"
+        }
+
+        let urlString = "https://socialize.\(config?.apiDomain ?? "")/\(loginPath)"
+
+        var serverParams: [String: Any] = [:]
+        serverParams["redirect_uri"] = "gsapi://login_result"
+        serverParams["response_type"] = "token"
+        serverParams["client_id"] = config?.apiKey ?? ""
+        serverParams["gmid"] = persistenceService?.gmid ?? ""
+        serverParams["ucid"] = persistenceService?.ucid ?? ""
+        serverParams["x_secret_type"] = "oauth1"
+        serverParams["x_sdk"] = InternalConfig.General.version
+        serverParams["x_provider"] = providerType.rawValue
+        serverParams["oauth_token"] = params?["oauth_token"] ?? ""
+
+
+        var bodyData: [String : Any] = [:]
+
+        do {
+            bodyData = try SignatureUtils.prepareSignature(config: config!, persistenceService: persistenceService!, session: GigyaSession(sessionToken: params?["oauth_token"] as? String ?? "", secret: params?["secret"] as? String ?? ""), path: loginPath, params: serverParams)
+
+        } catch let error {
+            GigyaLogger.log(with: self, message: "error to make signature in web social login - \(error.localizedDescription)")
+        }
+
+        let urlAllowed = NSCharacterSet(charactersIn: "!*'();/:@&=+$,?%#[]{}\" ").inverted
+
+        let bodyDataParmas = bodyData.mapValues { value -> String in
+            return "\(value)"
+        }
+
+        let bodyString: String = bodyDataParmas.sorted(by: <).reduce("") { "\($0)\($1.0)=\($1.1.addingPercentEncoding(withAllowedCharacters: urlAllowed) ?? "")&" }
+
+        let dataURL = URL(string: urlString)!
+
+        var request: URLRequest = URLRequest(url: dataURL)
+
+        request.httpMethod = "POST"
+        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")  // the request is JSON
+        request.httpBody = bodyString.dropLast().data(using: String.Encoding.utf8)
+
+        if #available(iOS 11, *) {
+            webViewController?.webView.load(request)
+        } else {
+
+            let html = """
+            <html>
+                <head>
+                    <script>
+                        function post() {
+                        //how to call： post('URL', {"key": "value"});
+                            var method = "post";
+                            var paramsx = "\(bodyString)";
+                            var params = new URLSearchParams(paramsx);
+
+                            var form = document.createElement("form");
+                            form.setAttribute("method", method);
+                            form.setAttribute("action", "\(urlString)");
+                            for (const [key, value] of params) {
+                                var hiddenField = document.createElement("input");
+                                hiddenField.setAttribute("type", "hidden");
+                                hiddenField.setAttribute("name", key);
+                                hiddenField.setAttribute("value", value.replace(" ","+"));
+                                form.appendChild(hiddenField);
+                            }
+
+                            document.body.appendChild(form);
+
+                            form.submit();
+                        }
+                    </script>
+                </head>
+                <body onload='post();'>
+                </body>
+            </html>
+
+            """
+            webViewController?.webView.loadHTMLString(html, baseURL: Bundle.main.bundleURL)
+
+        }
     }
 }
 
@@ -99,15 +173,28 @@ extension WebLoginWrapper: WKNavigationDelegate {
 
                     let json = ["status": status, "accessToken": accessToken, "tokenSecret": tokenSecret, "sessionExpiration": sessionExpiration]
 
+
+                    completionHandler?(json, nil)
+
+                    // dismiss viewController
+                    navigationController?.dismiss(animated: true, completion: nil)
+                } else if
+                    let status = url["status"],
+                    status == "ok",
+                    let idToken = url["id_token"] {
+
+                    let json = ["status": status, "idToken": idToken]
+
+                    completionHandler?(json, nil)
+
                     // dismiss viewController
                     navigationController?.dismiss(animated: true, completion: nil)
 
-                    completionHandler?(json, nil)
                 } else if let error = url["error_description"], !error.isEmpty {
 
-                    navigationController?.dismiss(animated: true, completion: nil)
-
                     completionHandler?(nil, url.absoluteString)
+
+                    navigationController?.dismiss(animated: true, completion: nil)
                 }
             }
         }

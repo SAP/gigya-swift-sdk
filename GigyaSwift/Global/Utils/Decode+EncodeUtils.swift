@@ -8,7 +8,7 @@
 
 import Foundation
 
-class DecodeEncodeUtils {
+final class DecodeEncodeUtils {
 
     static func decode<T>(fromType: T.Type, data: Data) throws -> T where T: Codable {
         do {

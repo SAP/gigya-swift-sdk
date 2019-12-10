@@ -8,7 +8,7 @@
 
 import Foundation
 
-class NetworkProvider {
+final class NetworkProvider {
 
     weak var config: GigyaConfig?
 
@@ -94,5 +94,6 @@ class NetworkProvider {
         let url = "https://\(path.split(separator: ".")[0]).\(self.config!.apiDomain)"
         return url
     }
+
 }
 

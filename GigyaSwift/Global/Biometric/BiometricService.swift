@@ -8,7 +8,7 @@
 
 import Foundation
 
-class BiometricService: BiometricServiceProtocol, BiometricServiceInternalProtocol {
+final class BiometricService: BiometricServiceProtocol, BiometricServiceInternalProtocol {
 
     let config: GigyaConfig
 

@@ -8,7 +8,7 @@
 
 import Foundation
 
-class PlistConfigFactory {
+final class PlistConfigFactory {
     func parsePlistConfig() -> PlistConfig? {
         guard let url = Bundle.main.url(forResource: "Info", withExtension: "plist") else { return nil }
 

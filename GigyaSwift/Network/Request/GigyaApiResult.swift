@@ -11,6 +11,7 @@ import Foundation
 /**
 The `GigyaApiResult` is an Enum representing a network response.
  */
+@frozen
 public enum GigyaApiResult<ResponseType> {
     case success(data: ResponseType)
 
@@ -20,6 +21,7 @@ public enum GigyaApiResult<ResponseType> {
 /**
  The `GigyaLoginResult` is an Enum representing a result from login api.
  */
+@frozen
 public enum GigyaLoginResult<ResponseType: GigyaAccountProtocol> {
     case success(data: ResponseType)
 
@@ -35,6 +37,7 @@ public struct LoginApiError<T: GigyaAccountProtocol> {
 /**
  The `GigyaInterruptions` is an Enum representing account interruptions handling.
  */
+@frozen
 public enum GigyaInterruptions<T: GigyaAccountProtocol> {
     /**
     Pending Registration interruption.
@@ -76,6 +79,7 @@ public enum GigyaInterruptions<T: GigyaAccountProtocol> {
 /**
  The `GigyaBiometricResult` is an Enum representing a biometric result.
  */
+@frozen
 public enum GigyaBiometricResult {
     case success
 

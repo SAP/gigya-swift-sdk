@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class PendingRegistrationResolver<T: GigyaAccountProtocol>: BaseResolver {
+final public class PendingRegistrationResolver<T: GigyaAccountProtocol>: BaseResolver {
 
     let originalError: NetworkError
 

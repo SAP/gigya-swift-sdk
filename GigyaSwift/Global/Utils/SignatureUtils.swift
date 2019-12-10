@@ -37,13 +37,15 @@ class SignatureUtils {
 
         let combinedData = bodyPrepareData.merging(params) { $1 }
 
-        var newParams = combinedData.mapValues { value -> String in
+        var newParams: [String: Any] = combinedData.mapValues { value -> String in
             if let isDictionary = value as? [String: Any] {
-                return isDictionary.asJson
+
+                return isDictionary.asJson.replacingOccurrences(of: "\\/", with: "/")
             } else {
                 return "\(value)"
             }
         }
+
 
         if let session = session {
             let sig = hmac(algorithm: .SHA1, url: oauth1SignatureBaseString(config.apiDomain ,path, newParams), secret: session.secret)
@@ -63,7 +65,7 @@ class SignatureUtils {
 
         let bodyString: String = params.sorted(by: <).reduce("") { "\($0)\($1.0)=\($1.1.addingPercentEncoding(withAllowedCharacters: urlAllowed) ?? "")&" }
 
-        let baseString = "\(method)&\(url.description.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!)&\(bodyString.dropLast().addingPercentEncoding(withAllowedCharacters: urlAllowed)!)"
+        let baseString = "\(method)&\(url.description.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!)&\(bodyString.dropLast().addingPercentEncoding(withAllowedCharacters: urlAllowed)!)".replacingOccurrences(of: ":", with: "%3A")
 
         return baseString
     }

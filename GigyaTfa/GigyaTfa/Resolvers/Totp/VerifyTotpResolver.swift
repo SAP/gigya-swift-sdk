@@ -8,7 +8,7 @@
 
 import Gigya
 
-public class VerifyTotpResolver<T: GigyaAccountProtocol>: TFAResolver<T>, VerifyTotpResolverProtocol, TFAResolversProtocol {
+final public class VerifyTotpResolver<T: GigyaAccountProtocol>: TFAResolver<T>, VerifyTotpResolverProtocol, TFAResolversProtocol {
     private var sctToken: String?
 
     internal let businessApiDelegate: BusinessApiDelegate

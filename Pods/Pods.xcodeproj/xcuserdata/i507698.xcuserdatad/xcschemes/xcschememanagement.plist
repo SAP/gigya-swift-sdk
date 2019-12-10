@@ -9,21 +9,21 @@
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
-			<integer>3</integer>
+			<integer>1</integer>
 		</dict>
 		<key>AppAuth-iOS13.2.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
-			<integer>4</integer>
+			<integer>3</integer>
 		</dict>
 		<key>FBSDKCoreKit-iOS10.0.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
-			<integer>5</integer>
+			<integer>4</integer>
 		</dict>
 		<key>FBSDKCoreKit-iOS13.2.xcscheme</key>
 		<dict>
@@ -53,32 +53,59 @@
 			<key>orderHint</key>
 			<integer>9</integer>
 		</dict>
+<<<<<<< HEAD
 		<key>FirebaseAnalytics.xcscheme</key>
+=======
+		<key>FirebaseCoreDiagnostics.xcscheme</key>
+>>>>>>> develop
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
 			<integer>10</integer>
 		</dict>
+<<<<<<< HEAD
 		<key>FirebaseAnalyticsInterop.xcscheme</key>
+=======
+		<key>FirebaseCoreDiagnosticsInterop.xcscheme</key>
+>>>>>>> develop
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
 			<integer>11</integer>
 		</dict>
+<<<<<<< HEAD
 		<key>FirebaseCore.xcscheme</key>
+=======
+		<key>FirebaseInstanceID.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>12</integer>
+		</dict>
+		<key>FirebaseMessaging.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>13</integer>
+		</dict>
+		<key>GTMAppAuth.xcscheme</key>
+>>>>>>> develop
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
+<<<<<<< HEAD
 			<integer>12</integer>
+=======
+			<integer>19</integer>
+>>>>>>> develop
 		</dict>
 		<key>FirebaseInstanceID.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
+<<<<<<< HEAD
 			<integer>13</integer>
 		</dict>
 		<key>FirebaseMessaging.xcscheme</key>
@@ -115,19 +142,37 @@
 			<false/>
 			<key>orderHint</key>
 			<integer>22</integer>
+=======
+			<integer>20</integer>
+>>>>>>> develop
 		</dict>
 		<key>GoogleAppMeasurement.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
+<<<<<<< HEAD
 			<integer>15</integer>
+=======
+			<integer>14</integer>
+		</dict>
+		<key>GoogleDataTransport.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>15</integer>
+		</dict>
+		<key>GoogleDataTransportCCTSupport.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>16</integer>
+>>>>>>> develop
 		</dict>
 		<key>GoogleSignIn-iOS10.0.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
+<<<<<<< HEAD
 			<integer>16</integer>
 		</dict>
 		<key>GoogleSignIn-iOS13.2.xcscheme</key>
@@ -135,6 +180,8 @@
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
+=======
+>>>>>>> develop
 			<integer>17</integer>
 		</dict>
 		<key>GoogleUtilities.xcscheme</key>
@@ -143,6 +190,7 @@
 			<false/>
 			<key>orderHint</key>
 			<integer>18</integer>
+<<<<<<< HEAD
 		</dict>
 		<key>Pods-GigyaE2ETestsApp.xcscheme</key>
 		<dict>
@@ -150,27 +198,41 @@
 			<false/>
 			<key>orderHint</key>
 			<integer>24</integer>
+=======
+>>>>>>> develop
 		</dict>
 		<key>Pods-TestApp.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
+<<<<<<< HEAD
 			<integer>25</integer>
+=======
+			<integer>22</integer>
+>>>>>>> develop
 		</dict>
 		<key>Protobuf.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
+<<<<<<< HEAD
 			<integer>26</integer>
+=======
+			<integer>23</integer>
+>>>>>>> develop
 		</dict>
 		<key>nanopb.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
+<<<<<<< HEAD
 			<integer>23</integer>
+=======
+			<integer>21</integer>
+>>>>>>> develop
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>

@@ -8,7 +8,11 @@
 
 import WebKit
 
-public class GigyaWebBridge<T: GigyaAccountProtocol>: NSObject, WKScriptMessageHandler, WKUIDelegate {
+/**
+ The `GigyaWebBridge` acts as the optimal bridge between the Gigya webSdk and the iOS sdk. Supporting complex flows such as screensets, saml etc.
+ */
+
+public class GigyaWebBridge<T: GigyaAccountProtocol>: NSObject, WKScriptMessageHandler {
 
     let config: GigyaConfig
 
@@ -36,6 +40,15 @@ public class GigyaWebBridge<T: GigyaAccountProtocol>: NSObject, WKScriptMessageH
 
         super.init()
     }
+
+    /**
+     Attch `WKWebView` object to the webBridge instance.
+
+     - Parameter webView:   Your `WKWebView` object.
+     - Parameter viewController:  Shown view controller.
+     - Parameter pluginEvent:  Plugin completion `GigyaPluginEvent<T>`.
+
+     */
 
     public func attachTo(webView: WKWebView, viewController: UIViewController, pluginEvent: @escaping (GigyaPluginEvent<T>) -> Void) {
         guard let apikey = config.apiKey else { return }
@@ -118,19 +131,13 @@ public class GigyaWebBridge<T: GigyaAccountProtocol>: NSObject, WKScriptMessageH
         case "is_session_valid":
             let isValid = sessionService.isValidSession()
             invokeCallback(callbackId: callbackId, and: "\(isValid)")
-        case "send_request":
+        case "send_request", "send_oauth_request":
             guard let apiMethod = messageMap["method"] as? String, let params = data["params"] else {
                 GigyaLogger.log(with: self, message: "WKScriptMessage: error - failed to parse api method & request parameters")
                 return
             }
             // Some API methods require different handling due to mobile relevant endpoint updates.
             mapSendRequest(callbackId: callbackId, apiMethod: apiMethod, params: params.asDictionary())
-        case "send_oauth_request":
-            guard let apiMethod = messageMap["method"] as? String, let params = data["params"] else {
-                GigyaLogger.log(with: self, message: "WKScriptMessage: error - failed to parse api method & request parameters")
-                return
-            }
-            sendOauthRequest(callbackId: callbackId, apiMethod: apiMethod, params: params.asDictionary())
         case "on_plugin_event":
             guard let params = data["params"]?.asDictionary() else { return }
             if let sourceContainerId = params["sourceContainerID"] {
@@ -284,13 +291,11 @@ public class GigyaWebBridge<T: GigyaAccountProtocol>: NSObject, WKScriptMessageH
             businessApiService.addConnection(provider: provider, viewController: viewController!, params: params, dataType: T.self) { [weak self] result in
                 guard let self = self else { return }
                 switch result {
-                case .success(let data):
+                case .success:
                     GigyaLogger.log(with: self, message: "sendOauthRequest success")
 
-                    let dataEncoded = try? DecodeEncodeUtils.encodeToDictionary(obj: data)
-                    self.invokeCallback(callbackId: callbackId, and: dataEncoded!.asJson)
-
                     self.completion(.onConnectionAdded)
+                    self.sendUserInfo(callbackId: callbackId)
                 case .failure(let error):
                     GigyaLogger.log(with: self, message: "sendOauthRequest: error:\n\(error.localizedDescription)")
                     self.invokeError(callbackId: callbackId, error: error)
@@ -318,6 +323,22 @@ public class GigyaWebBridge<T: GigyaAccountProtocol>: NSObject, WKScriptMessageH
                     GigyaLogger.log(with: self, message: "sendRemoveConnectionRequest: error:\n\(error.localizedDescription)")
                     self.invokeError(callbackId: callbackId, error: error)
                 }
+            }
+        }
+    }
+
+    /**
+     Send a userInfo request for resolved the addConnection status.
+     */
+    private func sendUserInfo(callbackId: String) {
+        businessApiService.send(api: "socialize.getUserInfo", params: [:]) { (result) in
+            switch result {
+            case .success(let data):
+                let mapped: [String: Any] = data.mapValues { value in return value.value }
+
+                self.invokeCallback(callbackId: callbackId, and: mapped.asJson)
+            case .failure(let error):
+                self.invokeError(callbackId: callbackId, error: error)
             }
         }
     }
