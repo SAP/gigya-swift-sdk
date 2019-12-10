@@ -29,5 +29,6 @@ target 'GigyaE2ETestsApp' do
   pod 'GoogleSignIn', :modular_headers => false
   pod 'FBSDKCoreKit'
   pod 'FBSDKLoginKit'
+  pod 'LineSDK', '~> 4.1.0'
 
 end

@@ -56,7 +56,6 @@ public class GigyaWebBridge<T: GigyaAccountProtocol>: NSObject, WKScriptMessageH
         let contentController = webView.configuration.userContentController
 
         self.webView = webView
-        self.webView?.uiDelegate = self
         self.viewController = viewController
         self.completion = pluginEvent
 

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="92V-yH-a3l">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14854.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="92V-yH-a3l">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14806.4"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,12 +16,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="249" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="owO-vP-SNV">
+                                <rect key="frame" x="16" y="60" width="343" height="240"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <accessibility key="accessibilityConfiguration" identifier="Result Text View">
+                                    <accessibilityTraits key="traits" notEnabled="YES"/>
+                                </accessibility>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="240" id="cAt-UN-FvK"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jkr-xe-GiC">
-<<<<<<< HEAD
-                                <rect key="frame" x="170" y="374" width="48" height="30"/>
-=======
-                                <rect key="frame" x="170" y="412" width="48" height="30"/>
->>>>>>> develop
+                                <rect key="frame" x="170" y="432" width="48" height="30"/>
                                 <accessibility key="accessibilityConfiguration" identifier="Logout"/>
                                 <state key="normal" title="Logout"/>
                                 <connections>
@@ -29,39 +37,23 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9wC-xP-8OI">
-<<<<<<< HEAD
-                                <rect key="frame" x="16" y="328" width="111" height="30"/>
-                                <accessibility key="accessibilityConfiguration" identifier="ShowScreenset"/>
-=======
-                                <rect key="frame" x="16" y="320" width="111" height="30"/>
+                                <rect key="frame" x="16" y="340" width="111" height="30"/>
                                 <accessibility key="accessibilityConfiguration" identifier="Show Screenset"/>
->>>>>>> develop
                                 <state key="normal" title="Show Screenset"/>
                                 <connections>
                                     <action selector="showScreenSet:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6jO-Dx-AyC"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fNt-XW-RSV">
-<<<<<<< HEAD
-                                <rect key="frame" x="16" y="374" width="38" height="30"/>
-                                <accessibility key="accessibilityConfiguration" identifier="Login">
-                                    <bool key="isElement" value="YES"/>
-                                </accessibility>
-=======
-                                <rect key="frame" x="16" y="366" width="38" height="30"/>
+                                <rect key="frame" x="16" y="386" width="38" height="30"/>
                                 <accessibility key="accessibilityConfiguration" identifier="Login"/>
->>>>>>> develop
                                 <state key="normal" title="Login"/>
                                 <connections>
                                     <action selector="login:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4qB-ug-GRz"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cq6-7s-6Kn">
-<<<<<<< HEAD
-                                <rect key="frame" x="16" y="420" width="57" height="30"/>
-=======
-                                <rect key="frame" x="16" y="412" width="57" height="30"/>
->>>>>>> develop
+                                <rect key="frame" x="16" y="432" width="57" height="30"/>
                                 <accessibility key="accessibilityConfiguration" identifier="Register"/>
                                 <state key="normal" title="Register"/>
                                 <connections>
@@ -69,223 +61,130 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fyN-es-d2v">
-<<<<<<< HEAD
-                                <rect key="frame" x="16" y="466" width="111" height="30"/>
-                                <accessibility key="accessibilityConfiguration" identifier="AddConnection"/>
-=======
-                                <rect key="frame" x="16" y="458" width="111" height="30"/>
+                                <rect key="frame" x="16" y="478" width="111" height="30"/>
                                 <accessibility key="accessibilityConfiguration" identifier="Add Connection"/>
->>>>>>> develop
                                 <state key="normal" title="Add Connection"/>
                                 <connections>
                                     <action selector="addConnection:" destination="BYZ-38-t0r" eventType="touchUpInside" id="EYy-0e-c83"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cu6-gD-2R1">
-<<<<<<< HEAD
-                                <rect key="frame" x="16" y="512" width="138" height="30"/>
-                                <accessibility key="accessibilityConfiguration" identifier="RemoveConnection"/>
-=======
-                                <rect key="frame" x="16" y="504" width="138" height="30"/>
+                                <rect key="frame" x="16" y="524" width="138" height="30"/>
                                 <accessibility key="accessibilityConfiguration" identifier="Remove Connection"/>
->>>>>>> develop
                                 <state key="normal" title="Remove Connection"/>
                                 <connections>
                                     <action selector="removeConnection:" destination="BYZ-38-t0r" eventType="touchUpInside" id="WIr-sA-s0a"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0fX-WN-aKg">
-<<<<<<< HEAD
-                                <rect key="frame" x="16" y="558" width="86" height="30"/>
-                                <accessibility key="accessibilityConfiguration" identifier="GetAccount"/>
-=======
-                                <rect key="frame" x="16" y="550" width="86" height="30"/>
+                                <rect key="frame" x="16" y="570" width="86" height="30"/>
                                 <accessibility key="accessibilityConfiguration" identifier="Get Account"/>
->>>>>>> develop
                                 <state key="normal" title="Get Account"/>
                                 <connections>
                                     <action selector="getAccountWith_sender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="wDr-Ak-IRv"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TiM-DB-mr3">
-<<<<<<< HEAD
-                                <rect key="frame" x="16" y="604" width="131" height="30"/>
-                                <accessibility key="accessibilityConfiguration" identifier="Loginwithprovider"/>
-                                <state key="normal" title="Login with provider"/>
-=======
-                                <rect key="frame" x="16" y="596" width="114" height="30"/>
+                                <rect key="frame" x="16" y="616" width="131" height="30"/>
                                 <accessibility key="accessibilityConfiguration" identifier="Login with provider"/>
-                                <state key="normal" title="Login with Apple"/>
->>>>>>> develop
+                                <state key="normal" title="Login with provider"/>
                                 <connections>
                                     <action selector="loginWithProvider:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ek2-rR-upU"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eoH-ob-HH3">
-<<<<<<< HEAD
-                                <rect key="frame" x="170" y="328" width="139" height="30"/>
-                                <accessibility key="accessibilityConfiguration" identifier="Loginwithproviders"/>
-=======
-                                <rect key="frame" x="170" y="366" width="139" height="30"/>
+                                <rect key="frame" x="170" y="386" width="139" height="30"/>
                                 <accessibility key="accessibilityConfiguration" identifier="Login with provider"/>
->>>>>>> develop
                                 <state key="normal" title="Login with providers"/>
                                 <connections>
                                     <action selector="loginWithProviders:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xIk-1R-89f"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WvG-tz-Pye">
-<<<<<<< HEAD
-                                <rect key="frame" x="170" y="282" width="42" height="30"/>
-                                <accessibility key="accessibilityConfiguration" identifier="pushOptIn"/>
-=======
-                                <rect key="frame" x="170" y="320" width="42" height="30"/>
->>>>>>> develop
+                                <rect key="frame" x="170" y="340" width="42" height="30"/>
                                 <state key="normal" title="Opt in"/>
                                 <connections>
                                     <action selector="OptIn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2tt-oi-mfb"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NHW-O1-ecN">
-<<<<<<< HEAD
-                                <rect key="frame" x="165" y="420" width="110" height="30"/>
-                                <accessibility key="accessibilityConfiguration" identifier="OptinBiometric"/>
-=======
-                                <rect key="frame" x="165" y="458" width="110" height="30"/>
->>>>>>> develop
+                                <rect key="frame" x="165" y="478" width="110" height="30"/>
                                 <state key="normal" title="Opt in biometric"/>
                                 <connections>
                                     <action selector="OptiInBiometric:" destination="BYZ-38-t0r" eventType="touchUpInside" id="oWm-SO-XfP"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="20R-EK-hdL">
-<<<<<<< HEAD
-                                <rect key="frame" x="165" y="466" width="121" height="30"/>
-                                <accessibility key="accessibilityConfiguration" identifier="OptoutBiometric"/>
-=======
-                                <rect key="frame" x="165" y="504" width="121" height="30"/>
->>>>>>> develop
+                                <rect key="frame" x="165" y="524" width="121" height="30"/>
                                 <state key="normal" title="Opt out biometric"/>
                                 <connections>
                                     <action selector="OptOutBiometric:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VhW-rg-dH6"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hhx-Bt-vKE">
-<<<<<<< HEAD
-                                <rect key="frame" x="165" y="512" width="174" height="30"/>
-                                <accessibility key="accessibilityConfiguration" identifier="UnlockSession"/>
-=======
-                                <rect key="frame" x="165" y="550" width="174" height="30"/>
->>>>>>> develop
+                                <rect key="frame" x="165" y="570" width="174" height="30"/>
                                 <state key="normal" title="Unlock Session biometric"/>
                                 <connections>
                                     <action selector="UnlockSessionBiometric:" destination="BYZ-38-t0r" eventType="touchUpInside" id="flW-OC-kck"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PbM-Ih-GRZ">
-                                <rect key="frame" x="16" y="55" width="343" height="250"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="250" id="8QR-9o-o65"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8sE-Kg-WNH">
-<<<<<<< HEAD
-                                <rect key="frame" x="165" y="558" width="159" height="30"/>
-                                <accessibility key="accessibilityConfiguration" identifier="LockSession"/>
-=======
-                                <rect key="frame" x="170" y="597" width="159" height="30"/>
->>>>>>> develop
+                                <rect key="frame" x="165" y="616" width="159" height="30"/>
                                 <state key="normal" title="Lock Session biometric"/>
                                 <connections>
                                     <action selector="LockSessionBiometric:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rnj-sz-f36"/>
                                 </connections>
                             </button>
-<<<<<<< HEAD
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f6E-bX-ckL">
-                                <rect key="frame" x="16" y="280" width="80" height="30"/>
-                                <accessibility key="accessibilityConfiguration" identifier="WebBridge"/>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f6E-bX-ckL">
+                                <rect key="frame" x="16" y="312" width="80" height="30"/>
                                 <state key="normal" title="Web Bridge"/>
                                 <connections>
                                     <segue destination="6dQ-xk-LHw" kind="show" id="pd6-GS-wad"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NmF-9K-jcJ">
-                                <rect key="frame" x="16" y="54" width="343" height="200"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="200" id="bXH-Fr-4FZ"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-=======
->>>>>>> develop
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="WvG-tz-Pye" firstAttribute="leading" secondItem="9wC-xP-8OI" secondAttribute="trailing" constant="43" id="0qk-QC-BPy"/>
-<<<<<<< HEAD
-=======
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="PbM-Ih-GRZ" secondAttribute="trailing" constant="16" id="1SB-DZ-5R8"/>
->>>>>>> develop
+                            <constraint firstItem="owO-vP-SNV" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="16" id="2AI-Bd-Fzi"/>
                             <constraint firstItem="TiM-DB-mr3" firstAttribute="top" secondItem="0fX-WN-aKg" secondAttribute="bottom" constant="16" id="2YG-O4-hBB"/>
                             <constraint firstItem="0fX-WN-aKg" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="2p7-lC-fVD"/>
                             <constraint firstItem="Jkr-xe-GiC" firstAttribute="top" secondItem="eoH-ob-HH3" secondAttribute="bottom" constant="16" id="2xI-ch-at2"/>
                             <constraint firstItem="fyN-es-d2v" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="6iT-v0-QyB"/>
                             <constraint firstItem="hhx-Bt-vKE" firstAttribute="top" secondItem="20R-EK-hdL" secondAttribute="bottom" constant="16" id="AW2-3C-TEG"/>
-                            <constraint firstItem="f6E-bX-ckL" firstAttribute="top" secondItem="NmF-9K-jcJ" secondAttribute="bottom" constant="26" id="Agy-xl-2DE"/>
                             <constraint firstItem="Cu6-gD-2R1" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="DKn-Fw-vGx"/>
                             <constraint firstItem="cq6-7s-6Kn" firstAttribute="top" secondItem="fNt-XW-RSV" secondAttribute="bottom" constant="16" id="JdH-eC-2tw"/>
-<<<<<<< HEAD
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="NmF-9K-jcJ" secondAttribute="trailing" constant="16" id="Knp-4p-sXR"/>
-                            <constraint firstItem="NmF-9K-jcJ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="N1d-md-Bfy"/>
-=======
-                            <constraint firstItem="PbM-Ih-GRZ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="K9F-J3-aCh"/>
->>>>>>> develop
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="owO-vP-SNV" secondAttribute="trailing" constant="16" id="KJ2-A9-xhx"/>
                             <constraint firstItem="9wC-xP-8OI" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="Nde-ba-g2z"/>
                             <constraint firstItem="NHW-O1-ecN" firstAttribute="top" secondItem="Jkr-xe-GiC" secondAttribute="bottom" constant="16" id="R45-Yl-OOX"/>
+                            <constraint firstItem="owO-vP-SNV" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="RMc-LD-XvY"/>
                             <constraint firstItem="Cu6-gD-2R1" firstAttribute="top" secondItem="fyN-es-d2v" secondAttribute="bottom" constant="16" id="U4r-Fs-aWR"/>
                             <constraint firstItem="Jkr-xe-GiC" firstAttribute="leading" secondItem="cq6-7s-6Kn" secondAttribute="trailing" constant="97" id="UfP-Kp-Jye"/>
-<<<<<<< HEAD
-                            <constraint firstItem="WvG-tz-Pye" firstAttribute="top" secondItem="NmF-9K-jcJ" secondAttribute="bottom" constant="28" id="V3V-aA-NSZ"/>
                             <constraint firstItem="9wC-xP-8OI" firstAttribute="top" secondItem="f6E-bX-ckL" secondAttribute="bottom" constant="18" id="V7s-ph-sqS"/>
                             <constraint firstItem="TiM-DB-mr3" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="YjH-RD-fcU"/>
+                            <constraint firstItem="WvG-tz-Pye" firstAttribute="top" secondItem="owO-vP-SNV" secondAttribute="bottom" constant="40" id="Z3E-a7-GZJ"/>
+                            <constraint firstItem="WvG-tz-Pye" firstAttribute="top" secondItem="B1q-mp-f3s" secondAttribute="bottom" constant="20" id="Zq8-CT-wa8"/>
                             <constraint firstItem="8sE-Kg-WNH" firstAttribute="top" secondItem="hhx-Bt-vKE" secondAttribute="bottom" constant="16" id="duC-hH-cOv"/>
-                            <constraint firstItem="f6E-bX-ckL" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="e9e-XB-z7M"/>
-                            <constraint firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="fZE-Zo-wdh"/>
-=======
-                            <constraint firstItem="WvG-tz-Pye" firstAttribute="top" secondItem="PbM-Ih-GRZ" secondAttribute="bottom" constant="15" id="Xl8-xY-RKq"/>
-                            <constraint firstItem="TiM-DB-mr3" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="YjH-RD-fcU"/>
-                            <constraint firstItem="8sE-Kg-WNH" firstAttribute="top" secondItem="hhx-Bt-vKE" secondAttribute="bottom" constant="17" id="duC-hH-cOv"/>
-                            <constraint firstItem="9wC-xP-8OI" firstAttribute="top" secondItem="PbM-Ih-GRZ" secondAttribute="bottom" constant="15" id="euB-MB-JTa"/>
->>>>>>> develop
+                            <constraint firstItem="B1q-mp-f3s" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="fZE-Zo-wdh"/>
                             <constraint firstItem="fNt-XW-RSV" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="faR-xz-gJk"/>
                             <constraint firstItem="hhx-Bt-vKE" firstAttribute="leading" secondItem="0fX-WN-aKg" secondAttribute="trailing" constant="63" id="fbf-co-naf"/>
                             <constraint firstItem="fNt-XW-RSV" firstAttribute="top" secondItem="9wC-xP-8OI" secondAttribute="bottom" constant="16" id="grl-cd-jq3"/>
                             <constraint firstItem="eoH-ob-HH3" firstAttribute="top" secondItem="WvG-tz-Pye" secondAttribute="bottom" constant="16" id="j1j-ii-8ZM"/>
-                            <constraint firstItem="8sE-Kg-WNH" firstAttribute="leading" secondItem="TiM-DB-mr3" secondAttribute="trailing" constant="40" id="jYj-MI-32s"/>
+                            <constraint firstItem="8sE-Kg-WNH" firstAttribute="leading" secondItem="TiM-DB-mr3" secondAttribute="trailing" constant="18" id="jYj-MI-32s"/>
                             <constraint firstItem="fyN-es-d2v" firstAttribute="top" secondItem="cq6-7s-6Kn" secondAttribute="bottom" constant="16" id="n3S-lC-AcB"/>
                             <constraint firstItem="eoH-ob-HH3" firstAttribute="leading" secondItem="fNt-XW-RSV" secondAttribute="trailing" constant="116" id="nud-H2-ahr"/>
                             <constraint firstItem="20R-EK-hdL" firstAttribute="top" secondItem="NHW-O1-ecN" secondAttribute="bottom" constant="16" id="rgP-rq-l7C"/>
-                            <constraint firstItem="PbM-Ih-GRZ" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="11" id="rj7-Zt-nQd"/>
                             <constraint firstItem="cq6-7s-6Kn" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="sbW-3R-EwQ"/>
                             <constraint firstItem="20R-EK-hdL" firstAttribute="leading" secondItem="Cu6-gD-2R1" secondAttribute="trailing" constant="11" id="sby-LG-uY9"/>
+                            <constraint firstItem="9wC-xP-8OI" firstAttribute="top" secondItem="owO-vP-SNV" secondAttribute="bottom" constant="40" id="uHF-J9-Mfc"/>
                             <constraint firstItem="0fX-WN-aKg" firstAttribute="top" secondItem="Cu6-gD-2R1" secondAttribute="bottom" constant="16" id="uiG-dv-EM9"/>
-                            <constraint firstItem="NmF-9K-jcJ" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="wZI-xj-tpI"/>
                             <constraint firstItem="NHW-O1-ecN" firstAttribute="leading" secondItem="fyN-es-d2v" secondAttribute="trailing" constant="38" id="wdi-LA-kRe"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="hwu-pJ-lM1"/>
                     <connections>
-<<<<<<< HEAD
-                        <outlet property="resultTextView" destination="NmF-9K-jcJ" id="VYj-gg-YFO"/>
-=======
-                        <outlet property="resultTextView" destination="PbM-Ih-GRZ" id="zyo-Al-hYl"/>
->>>>>>> develop
+                        <outlet property="resultTextView" destination="owO-vP-SNV" id="0w1-nl-yVn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -344,6 +243,7 @@
                                                 </pickerView>
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Phone number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ldY-Qp-Jnl">
                                                     <rect key="frame" x="20" y="104" width="335" height="29"/>
+                                                    <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
@@ -390,17 +290,15 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="114"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Submit authentication code:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="05G-s5-Emk" userLabel="Title Label">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Submit authentication code:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="05G-s5-Emk" userLabel="Title Label">
                                                     <rect key="frame" x="16" y="4" width="343" height="18"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="18" id="zY7-cD-w7t"/>
-                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Code..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BBz-8Y-6mI">
+                                                <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Code..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BBz-8Y-6mI">
                                                     <rect key="frame" x="20" y="30" width="335" height="30"/>
+                                                    <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
@@ -452,6 +350,7 @@
                                                 </imageView>
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Code..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yJx-xW-Tab">
                                                     <rect key="frame" x="133" y="34" width="222" height="34"/>
+                                                    <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
@@ -527,6 +426,7 @@
                                                 </button>
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Code..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ft3-jc-7UQ" userLabel="Code Text Field">
                                                     <rect key="frame" x="20" y="160" width="335" height="34"/>
+                                                    <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
@@ -601,6 +501,21 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A7T-dT-k97" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1864.8" y="133.13343328335833"/>
+        </scene>
+        <!--Web Bridge View Controller-->
+        <scene sceneID="KHy-jP-KTq">
+            <objects>
+                <viewController id="6dQ-xk-LHw" customClass="WebBridgeViewController" customModule="TestApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="U8d-vh-s2u">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="fFj-wS-0OH"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="69H-Jc-stS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1008.8" y="904.49775112443785"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Lgc-Vm-SmU">

@@ -13,7 +13,7 @@ private let reuseIdentifier = "Cell"
 
 class SocialLoginCollectionViewController: UICollectionViewController {
 
-    let providers = ["facebook", "googleplus", "twitter", "yahoo"]
+    let providers = ["facebook", "googleplus", "twitter", "yahoo", "line"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +24,8 @@ class SocialLoginCollectionViewController: UICollectionViewController {
         // Register cell classes
         self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         self.collectionView!.register(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "header")
+        self.collectionView!.register(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "footer")
+
 
         // Do any additional setup after loading the view.
     }
@@ -50,13 +52,52 @@ class SocialLoginCollectionViewController: UICollectionViewController {
             headerView.addSubview(label)
 
             return headerView
+        case UICollectionView.elementKindSectionFooter:
+            let footerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "footer", for: indexPath)
+
+            footerView.backgroundColor = UIColor.systemBlue
+
+            let label = UILabel()
+            label.text = "Force Pendding Registration:"
+            label.textColor = .white
+            label.textAlignment = .center
+
+            let switchButton = UISwitch()
+            switchButton.isEnabled = true
+            switchButton.addTarget(self, action: #selector(switchValueChanged(sender:)), for: .valueChanged)
+            switchButton.accessibilityIdentifier = "penddingRegSwitch"
+            let stackView = UIStackView(arrangedSubviews: [label, switchButton])
+            stackView.alignment = .center
+            stackView.distribution = .fillProportionally
+            stackView.axis = .horizontal
+            stackView.spacing = 10
+
+            footerView.addSubview(stackView)
+
+            stackView.translatesAutoresizingMaskIntoConstraints = false
+
+            stackView.widthAnchor.constraint(equalTo: footerView.widthAnchor).isActive = true
+            stackView.heightAnchor.constraint(equalTo: footerView.heightAnchor).isActive = true
+
+//            stackView.leadingAnchor.constraint(equalTo: footerView.leadingAnchor).isActive = true
+//            stackView.trailingAnchor.constraint(equalTo: footerView.trailingAnchor).isActive = true
+//            stackView.topAnchor.constraint(equalTo: footerView.topAnchor).isActive = true
+//            stackView.bottomAnchor.constraint(equalTo: footerView.bottomAnchor).isActive = true
+
+            return footerView
+
         default:
             assert(false, "Unexpected element kind")
         }
+
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-            return CGSize(width: collectionView.frame.width, height: 50.0)
+        return CGSize(width: collectionView.frame.width, height: 50.0)
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+        return CGSize(width: collectionView.frame.width, height: 50.0)
     }
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -111,6 +152,15 @@ class SocialLoginCollectionViewController: UICollectionViewController {
         }
     }
 
+    @objc func switchValueChanged(sender: UISwitch!) {
+        if sender.isOn {
+
+            Gigya.sharedInstance().initFor(apiKey: "3_5FIA8jNk1LTw_spOzIYLVU-GJVm93TAfJjqTjACQCnfxfRm0kZghGH1lx7zoNMbD")
+
+        } else {
+
+        }
+    }
 }
 
 // MARK: UICollectionViewDelegateFlowLayout

@@ -27,7 +27,6 @@ class ViewController: UIViewController {
 
     }
 
-    @IBOutlet weak var resultTextView: UILabel!
     override func viewDidAppear(_ animated: Bool) {
         checkLoginState()
     }

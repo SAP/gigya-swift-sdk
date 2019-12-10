@@ -7,7 +7,7 @@
 //
 
 import XCTest
-
+@testable import Gigya
 class SocialLoginTests: XCTestCase {
     var app: XCUIApplication = XCUIApplication()
 
@@ -32,8 +32,6 @@ class SocialLoginTests: XCTestCase {
 
     func testGoogle() {
         // UI tests must launch the application that they test.
-
-        app.buttons["sociallogin"].tap()
 
         app.buttons["googleplus"].tap()
 
@@ -63,17 +61,21 @@ class SocialLoginTests: XCTestCase {
         continueButton.tap()
 
         sleep(2)
-        let uid = app.staticTexts["uid"].exists
 
-        XCTAssertNotNil(uid)
+        let uid = app.staticTexts["uid"]
 
+        expectation(for: exists, evaluatedWith: uid, handler: nil)
+
+        waitForExpectations(timeout: 8, handler: nil)
+
+        XCTAssertTrue(uid.exists)
+
+        XCTAssertNotEqual(uid.label, "error")
     }
 
 
     func testFacebook() {
         // UI tests must launch the application that they test.
-
-        app.buttons["sociallogin"].tap()
 
         app.buttons["facebook"].tap()
 
@@ -103,11 +105,69 @@ class SocialLoginTests: XCTestCase {
         continueButton.tap()
 
         sleep(2)
-        let uid = app.staticTexts["uid"].exists
 
-        XCTAssertNotNil(uid)
+        let uid = app.staticTexts["uid"]
+
+        expectation(for: exists, evaluatedWith: uid, handler: nil)
+
+        waitForExpectations(timeout: 8, handler: nil)
+
+        XCTAssertTrue(uid.exists)
+
+        XCTAssertNotEqual(uid.label, "error")
 
     }
+
+    func testLine() {
+         // UI tests must launch the application that they test.
+
+        app.buttons["line"].tap()
+
+        let exists = NSPredicate(format: "exists == 1")
+
+        let email = app.textFields.element(boundBy: 0)
+
+        expectation(for: exists, evaluatedWith: email, handler: nil)
+
+        waitForExpectations(timeout: 8, handler: nil)
+
+        XCTAssertTrue(email.exists)
+
+        email.tap()
+        app.typeText("toolmarmel@gmail.com")
+
+        let pass = app.secureTextFields.element(boundBy: 0)
+
+        expectation(for: exists, evaluatedWith: pass, handler: nil)
+
+        waitForExpectations(timeout: 8, handler: nil)
+
+        XCTAssertTrue(pass.exists)
+
+        pass.tap()
+
+        app.typeText("jenssin123")
+
+        sleep(2)
+
+        app.buttons["Log in"].tap()
+
+        app.buttons["Allow"].tap()
+
+        sleep(3)
+
+        let uid = app.staticTexts["uid"]
+
+        expectation(for: exists, evaluatedWith: uid, handler: nil)
+
+        waitForExpectations(timeout: 8, handler: nil)
+
+        XCTAssertTrue(uid.exists)
+
+        XCTAssertNotEqual(uid.label, "error")
+
+
+     }
 
     func testYahoo() {
 
@@ -142,6 +202,7 @@ class SocialLoginTests: XCTestCase {
 
         app.typeText("yhmihr250#80")
 
+        sleep(1)
         app.toolbars.buttons["Done"].tap()
 
         app.buttons["Sign in"].tap()
@@ -162,4 +223,19 @@ class SocialLoginTests: XCTestCase {
         XCTAssertNotEqual(uid.label, "error")
 
     }
+
+    func testForecePendding() {
+        app.switches["penddingRegSwitch"].tap()
+        testFacebook()
+
+        sleep(5)
+
+    }
+
+//    func deleteUser() {
+//        let secret = "2YCRtiiXhjTrkHf9TeKTGDNtSHb6ADRwR/fvekQpAkU="
+//        Gigya.sharedInstance().send(api: "", params: [:]) { (result) in
+//
+//        }
+//    }
 }
