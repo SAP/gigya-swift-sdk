@@ -28,6 +28,8 @@ class SocialLoginTests: XCTestCase {
 
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
+
+        GeneralGigyaUtils.logout()
     }
 
     func testGoogle() {
@@ -205,8 +207,9 @@ class SocialLoginTests: XCTestCase {
         sleep(1)
         app.toolbars.buttons["Done"].tap()
 
-        app.buttons["Sign in"].tap()
+//        app.buttons["Sign in"].tap()
 
+        app.buttons["Next"].tap()
         let confirm = app.buttons["מסכים"]
 
         expectation(for: exists, evaluatedWith: confirm, handler: nil)
@@ -229,6 +232,19 @@ class SocialLoginTests: XCTestCase {
         testFacebook()
 
         sleep(5)
+
+        let uid = app.staticTexts["uid"]
+
+        let exists = NSPredicate(format: "exists == 1")
+
+        expectation(for: exists, evaluatedWith: uid, handler: nil)
+
+        waitForExpectations(timeout: 8, handler: nil)
+
+        XCTAssertTrue(uid.exists)
+
+        XCTAssertNotEqual(uid.label, "error")
+        XCTAssertNotEqual(uid.label, "pending registration start")
 
     }
 

@@ -7,12 +7,20 @@
 //
 
 import UIKit
+import Gigya
 
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        self.modalPresentationStyle = .formSheet
+    }
+
+    @IBAction func logout(_ sender: Any) {
+        Gigya.sharedInstance().logout { (result) in
+            
+        }
     }
 
 

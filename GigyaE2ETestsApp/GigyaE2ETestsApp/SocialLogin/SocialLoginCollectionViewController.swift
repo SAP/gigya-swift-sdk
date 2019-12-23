@@ -15,6 +15,8 @@ class SocialLoginCollectionViewController: UICollectionViewController {
 
     let providers = ["facebook", "googleplus", "twitter", "yahoo", "line"]
 
+    var initialViewController: ResultsViewController?
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -132,23 +134,35 @@ class SocialLoginCollectionViewController: UICollectionViewController {
 
         let provider = GigyaSocialProviders(rawValue: providers[sender.tag])
 
-        Gigya.sharedInstance().login(with: provider!, viewController: self) { (result) in
+        let storyboard = UIStoryboard(name: "Results", bundle: nil)
 
-            let storyboard = UIStoryboard(name: "Results", bundle: nil)
-
-            let initialViewController: ResultsViewController = storyboard.instantiateViewController(withIdentifier: "Results") as! ResultsViewController
-            self.navigationController?.present(initialViewController, animated: true, completion: {
+        initialViewController = storyboard.instantiateViewController(withIdentifier: "Results") as? ResultsViewController
+        
+        self.navigationController?.present(self.initialViewController!, animated: true) {
+                Gigya.sharedInstance().login(with: provider!, viewController: self.initialViewController!) { [weak self] (result) in
+                guard let self = self else { return }
+                    
                 switch result {
                 case .success(let data):
-                    initialViewController.status.text = "success"
-                    initialViewController.uid.text = data.UID ?? ""
-                case .failure(let error):
-                    initialViewController.status.text = error.error.localizedDescription
-                @unknown default:
-                    break
-                }
-            })
+                    self.initialViewController?.statusValue = "success"
+                    self.initialViewController?.uidValue = data.UID ?? ""
 
+
+                case .failure(let error):
+                    guard let interruption = error.interruption else {
+                        self.initialViewController?.statusValue = error.error.localizedDescription
+                        return
+                    }
+
+                    switch interruption {
+                    case .pendingRegistration(let resolver):
+                        self.initialViewController?.uidValue = "pending registration start"
+                        resolver.setAccount(params: ["profile":["zip": "121673"]])
+                    default:
+                        self.initialViewController?.statusValue = error.error.localizedDescription
+                    }
+                }
+            }
         }
     }
 

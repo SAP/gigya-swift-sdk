@@ -8,8 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		3EC9BA83BDCE13EF679BD9A5 /* Pods_GigyaE2ETestsApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16806C55330BDB95034AB742 /* Pods_GigyaE2ETestsApp.framework */; };
+		E71203FD23A2785700C99596 /* ScreensetsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71203FC23A2785700C99596 /* ScreensetsTests.swift */; };
 		E71DC4FA239F9DCA00C771F6 /* LineWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F2EFF423797D5900565388 /* LineWrapper.swift */; };
+		E72A860023A10EDC00C213BE /* GeneralGigyaUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72A85FF23A10EDC00C213BE /* GeneralGigyaUtils.swift */; };
 		E732A0C3237D7DCD00620668 /* SocialLoginTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E732A0C2237D7DCD00620668 /* SocialLoginTests.swift */; };
+		E76F8AB023A2703300FBF925 /* ScreenSetsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E76F8AAF23A2703300FBF925 /* ScreenSetsViewController.swift */; };
 		E7F2EFC22379524C00565388 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F2EFC12379524C00565388 /* AppDelegate.swift */; };
 		E7F2EFC62379524C00565388 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F2EFC52379524C00565388 /* ViewController.swift */; };
 		E7F2EFC92379524C00565388 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E7F2EFC72379524C00565388 /* Main.storyboard */; };
@@ -53,7 +56,10 @@
 		16806C55330BDB95034AB742 /* Pods_GigyaE2ETestsApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GigyaE2ETestsApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		89D3491B5EB841D5D6A25559 /* Pods-GigyaE2ETestsApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GigyaE2ETestsApp.debug.xcconfig"; path = "Target Support Files/Pods-GigyaE2ETestsApp/Pods-GigyaE2ETestsApp.debug.xcconfig"; sourceTree = "<group>"; };
 		B5539B64C6ECA21934889166 /* Pods-GigyaE2ETestsApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GigyaE2ETestsApp.release.xcconfig"; path = "Target Support Files/Pods-GigyaE2ETestsApp/Pods-GigyaE2ETestsApp.release.xcconfig"; sourceTree = "<group>"; };
+		E71203FC23A2785700C99596 /* ScreensetsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreensetsTests.swift; sourceTree = "<group>"; };
+		E72A85FF23A10EDC00C213BE /* GeneralGigyaUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralGigyaUtils.swift; sourceTree = "<group>"; };
 		E732A0C2237D7DCD00620668 /* SocialLoginTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialLoginTests.swift; sourceTree = "<group>"; };
+		E76F8AAF23A2703300FBF925 /* ScreenSetsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenSetsViewController.swift; sourceTree = "<group>"; };
 		E7F2EFBE2379524C00565388 /* GigyaE2ETestsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GigyaE2ETestsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7F2EFC12379524C00565388 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E7F2EFC52379524C00565388 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -105,6 +111,22 @@
 			path = ../Pods;
 			sourceTree = "<group>";
 		};
+		E72A85FE23A10EC500C213BE /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				E72A85FF23A10EDC00C213BE /* GeneralGigyaUtils.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		E76F8AAE23A25B5900FBF925 /* ScreenSets */ = {
+			isa = PBXGroup;
+			children = (
+				E76F8AAF23A2703300FBF925 /* ScreenSetsViewController.swift */,
+			);
+			path = ScreenSets;
+			sourceTree = "<group>";
+		};
 		E7F2EFB52379524C00565388 = {
 			isa = PBXGroup;
 			children = (
@@ -131,6 +153,7 @@
 				E7F2EFC12379524C00565388 /* AppDelegate.swift */,
 				E7F2EFF223797D5900565388 /* GigyaProviders */,
 				E7F2EFC52379524C00565388 /* ViewController.swift */,
+				E76F8AAE23A25B5900FBF925 /* ScreenSets */,
 				E7F2EFEF2379703E00565388 /* ResultsView */,
 				E7F2EFE823795C8900565388 /* SocialLogin */,
 				E7F2EFC72379524C00565388 /* Main.storyboard */,
@@ -144,8 +167,10 @@
 		E7F2EFD72379524F00565388 /* GigyaE2ETestsAppUITests */ = {
 			isa = PBXGroup;
 			children = (
+				E72A85FE23A10EC500C213BE /* Utils */,
 				E7F2EFD82379524F00565388 /* GigyaE2ETestsAppUITests.swift */,
 				E732A0C2237D7DCD00620668 /* SocialLoginTests.swift */,
+				E71203FC23A2785700C99596 /* ScreensetsTests.swift */,
 				E7F2EFDA2379524F00565388 /* Info.plist */,
 			);
 			path = GigyaE2ETestsAppUITests;
@@ -362,6 +387,7 @@
 				E71DC4FA239F9DCA00C771F6 /* LineWrapper.swift in Sources */,
 				E7F2EFF12379705800565388 /* ResultsViewController.swift in Sources */,
 				E7F2EFEC23795D6900565388 /* SocialLoginCollectionViewController.swift in Sources */,
+				E76F8AB023A2703300FBF925 /* ScreenSetsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -371,6 +397,8 @@
 			files = (
 				E732A0C3237D7DCD00620668 /* SocialLoginTests.swift in Sources */,
 				E7F2EFD92379524F00565388 /* GigyaE2ETestsAppUITests.swift in Sources */,
+				E71203FD23A2785700C99596 /* ScreensetsTests.swift in Sources */,
+				E72A860023A10EDC00C213BE /* GeneralGigyaUtils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -526,6 +554,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = T48CNFXFQH;
 				INFOPLIST_FILE = GigyaE2ETestsApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -545,6 +574,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = T48CNFXFQH;
 				INFOPLIST_FILE = GigyaE2ETestsApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -563,6 +593,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = T48CNFXFQH;
 				INFOPLIST_FILE = GigyaE2ETestsAppUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -583,6 +614,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = T48CNFXFQH;
 				INFOPLIST_FILE = GigyaE2ETestsAppUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

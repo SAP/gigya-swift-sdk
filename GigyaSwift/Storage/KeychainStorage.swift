@@ -37,12 +37,13 @@ internal class KeychainStorageFactory {
                                                                     return
         }
 
-        let attributes: [CFString: Any] = [kSecClass: kSecClassGenericPassword,
-                                            kSecAttrService: InternalConfig.Storage.serviceName,
-                                            kSecAttrAccount: name,
-                                            kSecValueData: data,
-                                            kSecUseAuthenticationUI: true,
-                                            kSecAttrAccessControl: accessControl]
+        var attributes: [CFString: Any] =  [:]
+        attributes = [kSecClass: kSecClassGenericPassword,
+                                               kSecAttrService: InternalConfig.Storage.serviceName,
+                                               kSecAttrAccount: name,
+                                               kSecValueData: data,
+                                               kSecAttrAccessControl: accessControl]
+
 
         DispatchQueue.global(qos: .utility).async {
             let status = SecItemAdd(attributes as CFDictionary, nil)

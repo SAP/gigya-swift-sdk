@@ -10,6 +10,18 @@ import UIKit
 
 class ResultsViewController: UIViewController {
 
+    var statusValue: String = "" {
+        didSet {
+            status?.text = statusValue
+        }
+    }
+
+    var uidValue: String = "" {
+        didSet {
+            uid?.text = uidValue
+        }
+    }
+
     @IBOutlet weak var status: UILabel!
 
     @IBOutlet weak var uid: UILabel!
@@ -18,6 +30,8 @@ class ResultsViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        status.text = statusValue
+        uid.text = uidValue
     }
     
 

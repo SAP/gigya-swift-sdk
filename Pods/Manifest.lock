@@ -4,15 +4,13 @@ PODS:
     - AppAuth/ExternalUserAgent (= 1.3.0)
   - AppAuth/Core (1.3.0)
   - AppAuth/ExternalUserAgent (1.3.0)
-  - FBSDKCoreKit (5.11.1):
-    - FBSDKCoreKit/Basics (= 5.11.1)
-    - FBSDKCoreKit/Core (= 5.11.1)
-  - FBSDKCoreKit/Basics (5.11.1)
-  - FBSDKCoreKit/Core (5.11.1):
+  - FBSDKCoreKit (5.4.0):
+    - FBSDKCoreKit/Basics (= 5.4.0)
+    - FBSDKCoreKit/Core (= 5.4.0)
+  - FBSDKCoreKit/Basics (5.4.0)
+  - FBSDKCoreKit/Core (5.4.0):
     - FBSDKCoreKit/Basics
-  - FBSDKLoginKit (5.11.1):
-    - FBSDKLoginKit/Login (= 5.11.1)
-  - FBSDKLoginKit/Login (5.11.1):
+  - FBSDKLoginKit (5.4.0):
     - FBSDKCoreKit (~> 5.0)
   - Firebase/Analytics (6.13.0):
     - Firebase/Core
@@ -109,7 +107,9 @@ PODS:
 
 DEPENDENCIES:
   - FBSDKCoreKit
+  - FBSDKCoreKit (= 5.4.0)
   - FBSDKLoginKit
+  - FBSDKLoginKit (= 5.4.0)
   - Firebase/Analytics
   - Firebase/Messaging
   - GoogleSignIn
@@ -119,8 +119,6 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - AppAuth
-    - FBSDKCoreKit
-    - FBSDKLoginKit
     - Firebase
     - FirebaseAnalytics
     - FirebaseAnalyticsInterop
@@ -139,12 +137,14 @@ SPEC REPOS:
     - nanopb
     - Protobuf
   trunk:
+    - FBSDKCoreKit
+    - FBSDKLoginKit
     - LineSDK
 
 SPEC CHECKSUMS:
   AppAuth: 73574f3013a1e65b9601a3ddc8b3158cce68c09d
-  FBSDKCoreKit: 5aada61a229054694810f3cee231f986004b3c49
-  FBSDKLoginKit: 0e4572e0279e477103b57978e3ea05fac1dd673d
+  FBSDKCoreKit: 026e56cf2c2cebc656cf2aec5c6898b8c4f33930
+  FBSDKLoginKit: f5064bb8f20c065ee1ea5987cbe0475b713edf9b
   Firebase: 458d109512200d1aca2e1b9b6cf7d68a869a4a46
   FirebaseAnalytics: 45f36d9c429fc91d206283900ab75390cd05ee8a
   FirebaseAnalyticsInterop: d48b6ab67bcf016a05e55b71fc39c61c0cb6b7f3
@@ -164,6 +164,6 @@ SPEC CHECKSUMS:
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
   Protobuf: 394b2bf29ec303f4325e3ee4892c09e675647152
 
-PODFILE CHECKSUM: 489faa1e39e0744232f27a8ad01de7d4be9fc6c0
+PODFILE CHECKSUM: 0f537aa06165ea6710e6473942a1a0c48a7a1d70
 
 COCOAPODS: 1.8.4

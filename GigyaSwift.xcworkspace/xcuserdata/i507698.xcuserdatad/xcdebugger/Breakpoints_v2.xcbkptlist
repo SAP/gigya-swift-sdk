@@ -7,32 +7,32 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "51E8A46C-C2BF-490E-AE9E-1357A4264C7E"
-            shouldBeEnabled = "Yes"
+            uuid = "31F96FCD-871D-48D0-80E6-A1F0D719909D"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GigyaE2ETestsApp/GigyaE2ETestsAppUITests/SocialLoginTests.swift"
+            filePath = "GigyaE2ETestsApp/GigyaE2ETestsApp/ResultsView/ResultsViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "222"
-            endingLineNumber = "222"
-            landmarkName = "testYahoo()"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
+            landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "685041AA-53EE-45DC-AC34-43C2B469EC84"
+            uuid = "ADA1C6B7-5C17-470F-8A20-1C5DAF4D8460"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GigyaE2ETestsApp/GigyaE2ETestsAppUITests/SocialLoginTests.swift"
+            filePath = "TestApp/GigyaProviders/FacebookWrapper.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "166"
-            endingLineNumber = "166"
-            landmarkName = "testLine()"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
+            landmarkName = "init()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
