@@ -18,6 +18,7 @@ public typealias PluginEventData = [String: Any]
 
 public enum GigyaPluginEvent<T: GigyaAccountProtocol> {
     case onBeforeValidation(event : PluginEventData)
+    case onAfterValidation(event : PluginEventData)
     case onBeforeSubmit(event: PluginEventData)
     case onSubmit(event: PluginEventData)
     case onAfterSubmit(event: PluginEventData)
