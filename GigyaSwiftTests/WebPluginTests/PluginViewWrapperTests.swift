@@ -211,7 +211,7 @@ class PluginViewWrapperTests: XCTestCase {
         let complete: (GigyaPluginEvent<GigyaAccount>) -> Void = { result in
             switch result {
             case .onLogout:
-                XCTAssert(true)
+                XCTAssertFalse(self.sessionService.isValidSession())
             default:
                 XCTFail()
             }
