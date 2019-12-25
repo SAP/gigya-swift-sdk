@@ -214,6 +214,31 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
         businessApiService.setAccount(params: params, completion: completion)
     }
 
+    /**
+     Send a reset email password to verified email attached to the users loginId.
+
+     - Parameter loginId:    User login id.
+     - Parameter completion:   Response `GigyaApiResult<GigyaDictionary>`.
+    */
+
+    public func forgotPassword(loginId: String, completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void) {
+        var loginParams: [String: Any] = [:]
+        loginParams["loginID"] = loginId
+
+        businessApiService.forgotPassword(params: loginParams, completion: completion)
+    }
+
+    /**
+     Send a reset email password to verified email attached to the users loginId.
+
+     - Parameter params:        Request parameters, see [accounts.resetPassword REST](https://developers.gigya.com/display/GD/accounts.resetPassword+REST) for available parameters
+     - Parameter completion:   Response `GigyaApiResult<GigyaDictionary>`.
+    */
+
+    public func forgotPassword(params: [String: Any], completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void) {
+        businessApiService.forgotPassword(params: params, completion: completion)
+    }
+
     // MARK: - Social Login
 
     /**
