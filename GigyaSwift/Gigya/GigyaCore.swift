@@ -239,6 +239,15 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
         businessApiService.forgotPassword(params: params, completion: completion)
     }
 
+    /**
+     Login to with social provider when the provider session is available (obtained via specific provider login process).
+
+     - Parameter params:       Request parameters.
+     - Parameter completion:   Response `GigyaApiResult<T>`.
+    */
+    public func notifySocialLogin(params: [String: Any], completion: @escaping (GigyaApiResult<T>) -> Void) {
+        businessApiService.nativeSocialLogin(params: params, completion: completion)
+    }
     // MARK: - Social Login
 
     /**
