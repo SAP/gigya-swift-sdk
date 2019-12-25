@@ -203,6 +203,17 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
         businessApiService.setAccount(obj: account, completion: completion)
     }
 
+
+    /**
+     Set account info given update parameters.
+
+     - Parameter params:    Updated account parameters.
+     - Parameter completion:   Response `GigyaApiResult<T>`.
+    */
+    public func setAccount(with params: [String: Any], completion: @escaping (GigyaApiResult<T>) -> Void) {
+        businessApiService.setAccount(params: params, completion: completion)
+    }
+
     // MARK: - Social Login
 
     /**
