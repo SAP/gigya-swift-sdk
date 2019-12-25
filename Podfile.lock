@@ -114,7 +114,7 @@ DEPENDENCIES:
   - GoogleSignIn (= 5.0.1)
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  https://github.com/CocoaPods/Specs.git:
     - AppAuth
     - FBSDKCoreKit
     - FBSDKLoginKit
@@ -160,4 +160,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 9b99b0b5a5eb3d0098aacaf0f7c49dc8ab5d48a9
 
-COCOAPODS: 1.7.5
+COCOAPODS: 1.8.4

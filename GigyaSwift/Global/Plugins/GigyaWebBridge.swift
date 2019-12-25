@@ -188,6 +188,8 @@ public class GigyaWebBridge<T: GigyaAccountProtocol>: NSObject, WKScriptMessageH
             sendAddConnectionRequest(callbackId: callbackId, params: params)
         case GigyaDefinitions.API.removeConnection:
             sendRemoveConnectionRequest(callbackId: callbackId, params: params)
+        case GigyaDefinitions.API.logout:
+            logout(callbackId: callbackId)
         default:
             sendRequest(callbackId: callbackId, apiMethod: apiMethod, params: params)
         }
@@ -364,6 +366,12 @@ public class GigyaWebBridge<T: GigyaAccountProtocol>: NSObject, WKScriptMessageH
                     self.invokeError(callbackId: callbackId, error: data.error)
                 }
             }
+        }
+    }
+
+    private func logout(callbackId: String) {
+        sessionService.clear {
+            self.completion(.onLogout)
         }
     }
 
