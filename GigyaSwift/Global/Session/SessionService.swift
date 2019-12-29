@@ -27,6 +27,8 @@ class SessionService: SessionServiceProtocol {
 
     private var sessionLifeCountdownTimer: Timer?
 
+    var handlersAfterSetSession: InterceptorsUtils = InterceptorsUtils()
+
     init(config: GigyaConfig, persistenceService: PersistenceService, accountService: AccountServiceProtocol, keychainHelper: KeychainStorageFactory) {
         self.accountService = accountService
         self.keychainHelper = keychainHelper
@@ -97,6 +99,8 @@ class SessionService: SessionServiceProtocol {
         }
 
         session = gsession
+
+        handlersAfterSetSession.runAll()
 
         removeFromKeychain { [weak self] in
             if let sessionExpiration = Double(sessionInfo.sessionExpiration ?? "0"), sessionExpiration > 0 {

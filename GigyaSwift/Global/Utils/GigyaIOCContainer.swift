@@ -32,6 +32,16 @@ final class GigyaIOCContainer<T: GigyaAccountProtocol>: GigyaContainerProtocol {
             return UserNotificationCenterHelper()
         }
 
+        container.register(service: SessionVerificationServiceProtocol.self) { resolver in
+            let config = resolver.resolve(GigyaConfig.self)
+            let sessionService = resolver.resolve(SessionServiceProtocol.self)
+            let apiService = resolver.resolve(ApiServiceProtocol.self)
+
+            return SessionVerificationService(config: config!,
+                                              apiService: apiService!,
+                                              sessionService: sessionService!)
+        }
+
         container.register(service: PushNotificationsServiceProtocol.self, isSingleton: true) { resolver in
             let apiService = resolver.resolve(ApiServiceProtocol.self)
             let sessionService = resolver.resolve(SessionServiceProtocol.self)
@@ -170,6 +180,7 @@ final class GigyaIOCContainer<T: GigyaAccountProtocol>: GigyaContainerProtocol {
             let plistFactory = resolver.resolve(PlistConfigFactory.self)
             let persistenceService = resolver.resolve(PersistenceService.self)
             let container = resolver.resolve(IOCContainer.self)
+            let sessionVerificationService = resolver.resolve(SessionVerificationServiceProtocol.self)
 
             return GigyaCore(config: config!,
                              persistenceService: persistenceService!,
@@ -178,6 +189,7 @@ final class GigyaIOCContainer<T: GigyaAccountProtocol>: GigyaContainerProtocol {
                              interruptionResolver: interruptionResolver!,
                              biometric: biometricService!,
                              plistFactory: plistFactory!,
+                             sessionVerificationService: sessionVerificationService!,
                              container: container!)
         }
 
