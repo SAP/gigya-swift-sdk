@@ -29,6 +29,8 @@ class SessionService: SessionServiceProtocol {
 
     var handlersAfterSetSession: InterceptorsUtils = InterceptorsUtils()
 
+    private var registerAppState: Bool = false
+
     init(config: GigyaConfig, persistenceService: PersistenceService, accountService: AccountServiceProtocol, keychainHelper: KeychainStorageFactory) {
         self.accountService = accountService
         self.keychainHelper = keychainHelper
@@ -45,13 +47,17 @@ class SessionService: SessionServiceProtocol {
     }
 
     private func registerAppStateEvents() {
-        NotificationCenter.default.addObserver(self, selector: #selector(appMovedToBackground), name: UIApplication.willResignActiveNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(appReturnToForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
+        if registerAppState == false {
+            NotificationCenter.default.addObserver(self, selector: #selector(appMovedToBackground), name: UIApplication.willResignActiveNotification, object: nil)
+            NotificationCenter.default.addObserver(self, selector: #selector(appReturnToForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
+            registerAppState = true
+        }
     }
 
     private func unregisterAppStateEvents() {
         NotificationCenter.default.removeObserver(self, name: UIApplication.willResignActiveNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIApplication.willEnterForegroundNotification, object: nil)
+        registerAppState = false
     }
 
     @objc func appMovedToBackground() {

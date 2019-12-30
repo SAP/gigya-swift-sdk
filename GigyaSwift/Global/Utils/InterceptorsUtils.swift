@@ -17,7 +17,7 @@ public class InterceptorsUtils {
 
     func runAll() {
         handlers.forEach { (handler) in
-            handler.value(nil)
+            handler.value()
         }
     }
 }

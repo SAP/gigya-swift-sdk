@@ -48,6 +48,8 @@ class SessionVerificationService: SessionVerificationServiceProtocol {
 
     @objc func appMovedToBackground() {
         stop()
+
+        GigyaLogger.log(with: self, message: "stop: app going to backgroud")
     }
 
     @objc func appReturnToForeground() {
