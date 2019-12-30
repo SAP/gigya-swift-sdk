@@ -370,9 +370,13 @@ public class GigyaWebBridge<T: GigyaAccountProtocol>: NSObject, WKScriptMessageH
     }
 
     private func logout(callbackId: String) {
-        sessionService.clear {
-            self.completion(.onLogout)
+        businessApiService.logout { (result) in
+            switch result {
+            case .success:
+                self.completion(.onLogout)
+            case .failure(let error):
+                self.invokeError(callbackId: callbackId, error: error)
+            }
         }
     }
-
 }
