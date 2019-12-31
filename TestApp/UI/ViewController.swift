@@ -66,6 +66,8 @@ class ViewController: UIViewController {
 //                         "startScreen": "gigya-view-profile-screen"]
 
 
+        //Default-ProfileUpdate
+
 
         var currentScreen: String = ""
         gigya.showScreenSet(with: "Default-RegistrationLogin", viewController: self) { [weak self] (result) in
@@ -78,6 +80,8 @@ class ViewController: UIViewController {
                 print(event)
             case .onHide(let event):
                 print(event)
+            case .onLogout:
+                break
             default:
                 break
             }

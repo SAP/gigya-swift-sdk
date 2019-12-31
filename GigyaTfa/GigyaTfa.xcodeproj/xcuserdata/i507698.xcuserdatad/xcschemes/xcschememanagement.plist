@@ -8,19 +8,27 @@
 		<dict>
 			<key>orderHint</key>
 <<<<<<< HEAD
+<<<<<<< HEAD
 			<integer>34</integer>
 =======
 			<integer>2</integer>
 >>>>>>> 104644-verify-login
+=======
+			<integer>25</integer>
+>>>>>>> 105567-onLogout-event-should-make-logout
 		</dict>
 		<key>GigyaTfa.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 <<<<<<< HEAD
+<<<<<<< HEAD
 			<integer>1</integer>
 =======
 			<integer>0</integer>
 >>>>>>> 104644-verify-login
+=======
+			<integer>1</integer>
+>>>>>>> 105567-onLogout-event-should-make-logout
 		</dict>
 	</dict>
 </dict>

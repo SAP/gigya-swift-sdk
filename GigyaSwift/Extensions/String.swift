@@ -29,6 +29,10 @@ extension String {
     
     func asDictionary() -> [String: String] {
         var map = [String:String]()
+        if self.isEmpty {
+            return map
+        }
+        
         let decoded = self.removingPercentEncoding ?? ""
         for pair in decoded.components(separatedBy: "&") {
             let key = pair.components(separatedBy: "=")[0]

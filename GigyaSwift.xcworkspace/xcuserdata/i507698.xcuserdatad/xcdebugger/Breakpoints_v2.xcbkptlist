@@ -3,6 +3,7 @@
    uuid = "BF3AF872-82BF-41AA-A7E2-241838E603E2"
    type = "0"
    version = "2.0">
+<<<<<<< HEAD
    <Breakpoints>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
@@ -63,4 +64,6 @@
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
+=======
+>>>>>>> 105567-onLogout-event-should-make-logout
 </Bucket>

@@ -55,7 +55,7 @@ class PluginViewWrapper<T: GigyaAccountProtocol>: PluginViewWrapperProtocol {
         }
         
         let html = getHtml(self.plugin)
-//        GigyaLogger.log(with: self, message: "Initial HTML:\n\(html)")
+        GigyaLogger.log(with: self, message: "Initial HTML:\n\(html)")
 
         var pluginViewController: PluginViewController<T>?
 
