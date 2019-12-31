@@ -9,6 +9,8 @@
 import Foundation
 import FBSDKCoreKit
 import FBSDKLoginKit
+import FBSDKShareKit
+
 import Gigya
 
 class FacebookWrapper: ProviderWrapperProtocol {
@@ -30,7 +32,7 @@ class FacebookWrapper: ProviderWrapperProtocol {
     func login(params: [String: Any]?, viewController: UIViewController?,
                completion: @escaping (_ jsonData: [String: Any]?, _ error: String?) -> Void) {
         completionHandler = completion
-
+        
         fbLogin.logIn(permissions: defaultReadPermissions, from: viewController) { (result, error) in
             if result?.isCancelled != false {
                 completion(nil, "sign in cancelled")

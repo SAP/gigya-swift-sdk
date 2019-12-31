@@ -19,4 +19,10 @@ build/Release-iphoneos/Gigya.framework.dSYM/Contents/
 docs/
 >>>>>>> update-docs
 
+<<<<<<< HEAD
+GigyaTfa/GigyaTfa.framework/_CodeSignature/CodeResources
+
+GigyaTfa/GigyaTfa.framework/
+=======
 .DS_Store
+>>>>>>> develop

@@ -17,6 +17,8 @@ class ViewController: UIViewController {
     
     var isLoggedIn = false
 
+    @IBOutlet weak var resultTextView: UILabel!
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -25,7 +27,6 @@ class ViewController: UIViewController {
 
     }
 
-    @IBOutlet weak var resultTextView: UILabel!
     override func viewDidAppear(_ animated: Bool) {
         checkLoginState()
     }
@@ -51,6 +52,8 @@ class ViewController: UIViewController {
     }
 
     @IBAction func showScreenSet(_ sender: Any) {
+        
+
 //        let container = Gigya.getContainer()
 //        let sessionService = container.resolve(SessionServiceProtocol.self)
 //        let session = sessionService?.session=
@@ -63,7 +66,7 @@ class ViewController: UIViewController {
 
 
         var currentScreen: String = ""
-        gigya.showScreenSet(with: "Default-ProfileUpdate", viewController: self) { [weak self] (result) in
+        gigya.showScreenSet(with: "Default-RegistrationLogin", viewController: self) { [weak self] (result) in
             switch result {
             case .onLogin(let account):
                 self?.resultTextView!.text = account.toJson()

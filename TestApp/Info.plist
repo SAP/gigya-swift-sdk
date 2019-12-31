@@ -32,7 +32,7 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>Gigya.TestGigyaApp</string>
+			<string></string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>fb2497684063594329</string>
@@ -61,18 +61,24 @@
 		<dict>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string></string>
 			<key>CFBundleURLSchemes</key>
-			<array/>
+			<array>
+				<string>Gigya.TestGigyaApp</string>
+			</array>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>FacebookAppID</key>
 	<string>2497684063594329</string>
+	<key>FacebookDisplayName</key>
+	<string>GigyaTestApp</string>
 	<key>GigyaApiDomain</key>
 	<string>us1-st1.gigya.com</string>
 	<key>GigyaApiKey</key>
-	<string>3_fkRaJs5vQuVjkb9Z1He22lHMUcJAwfZMUDvIRQ08Jhnk82yAWR5ZapM44N332hy9</string>
+	<string>3_KF6Dwf0BoTktLiX54s_rSWRiklW69xCLG8pZa413Z6pkuBGBwQeSK9k19grZfCDe</string>
 	<key>GoogleClientID</key>
 	<string>444662304199-camlom5iaqmrs7i1ernfv7eudr1ejkvm.apps.googleusercontent.com</string>
 	<key>GoogleServerClientID</key>
@@ -98,6 +104,8 @@
 		<string>wechat</string>
 		<string>weixin</string>
 		<string>weixinULAPI</string>
+		<string>fb-messenger-share-api</string>
+		<string>fbshareextension</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>

@@ -367,4 +367,18 @@ public class GigyaWebBridge<T: GigyaAccountProtocol>: NSObject, WKScriptMessageH
         }
     }
 
+    public func webView(_ webView: WKWebView, runJavaScriptAlertPanelWithMessage message: String,
+                 initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping () -> Void) {
+
+        let alertController = UIAlertController(title: message,
+                                                message: nil,
+                                                preferredStyle: .alert)
+
+        alertController.addAction(UIAlertAction(title: "OK", style: .cancel) {
+            _ in completionHandler()}
+        )
+
+        viewController?.present(alertController, animated: true, completion: nil)
+    }
+
 }

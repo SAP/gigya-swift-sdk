@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Results View Controller-->
+        <scene sceneID="xLi-t0-Ahh">
+            <objects>
+                <viewController storyboardIdentifier="Results" useStoryboardIdentifierAsRestorationIdentifier="YES" id="3cD-Xe-Tjk" customClass="ResultsViewController" customModule="GigyaE2ETestsApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" restorationIdentifier="Results" id="r3b-dj-H9z">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Result:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A2y-we-ue0">
+                                <rect key="frame" x="0.0" y="94" width="414" height="20.5"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="error" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="thO-eO-VOW">
+                                <rect key="frame" x="0.0" y="124.5" width="414" height="20.5"/>
+                                <accessibility key="accessibilityConfiguration" identifier="errorlabel"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UID:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OVF-DR-FQi">
+                                <rect key="frame" x="0.0" y="155" width="414" height="21"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="error" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="24r-x9-SwU">
+                                <rect key="frame" x="0.0" y="186" width="414" height="20.5"/>
+                                <accessibility key="accessibilityConfiguration" identifier="uid"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="A2y-we-ue0" firstAttribute="top" secondItem="vDI-eW-Axj" secondAttribute="top" constant="50" id="0dW-2i-gMA"/>
+                            <constraint firstItem="vDI-eW-Axj" firstAttribute="trailing" secondItem="OVF-DR-FQi" secondAttribute="trailing" id="4pC-OA-RKq"/>
+                            <constraint firstItem="A2y-we-ue0" firstAttribute="leading" secondItem="vDI-eW-Axj" secondAttribute="leading" id="6QA-EL-A47"/>
+                            <constraint firstItem="OVF-DR-FQi" firstAttribute="leading" secondItem="vDI-eW-Axj" secondAttribute="leading" id="AR6-XG-AYf"/>
+                            <constraint firstItem="24r-x9-SwU" firstAttribute="leading" secondItem="vDI-eW-Axj" secondAttribute="leading" id="DDm-bG-X2S"/>
+                            <constraint firstItem="OVF-DR-FQi" firstAttribute="top" secondItem="thO-eO-VOW" secondAttribute="bottom" constant="10" id="Mhz-8h-gnY"/>
+                            <constraint firstItem="thO-eO-VOW" firstAttribute="leading" secondItem="vDI-eW-Axj" secondAttribute="leading" id="PDM-0c-OVZ"/>
+                            <constraint firstItem="vDI-eW-Axj" firstAttribute="trailing" secondItem="A2y-we-ue0" secondAttribute="trailing" id="UXD-f4-yx1"/>
+                            <constraint firstItem="vDI-eW-Axj" firstAttribute="trailing" secondItem="24r-x9-SwU" secondAttribute="trailing" id="YAG-Bv-h6L"/>
+                            <constraint firstItem="24r-x9-SwU" firstAttribute="top" secondItem="OVF-DR-FQi" secondAttribute="bottom" constant="10" id="ecy-Bd-U0L"/>
+                            <constraint firstItem="vDI-eW-Axj" firstAttribute="trailing" secondItem="thO-eO-VOW" secondAttribute="trailing" id="hGy-8P-TDK"/>
+                            <constraint firstItem="thO-eO-VOW" firstAttribute="top" secondItem="A2y-we-ue0" secondAttribute="bottom" constant="10" id="tfi-4N-SFy"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="vDI-eW-Axj"/>
+                    </view>
+                    <connections>
+                        <outlet property="status" destination="thO-eO-VOW" id="K6F-Ex-Dbw"/>
+                        <outlet property="uid" destination="24r-x9-SwU" id="gFQ-LV-j6h"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="W6E-z4-1lr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="157.97101449275362" y="-50.223214285714285"/>
+        </scene>
+    </scenes>
+</document>

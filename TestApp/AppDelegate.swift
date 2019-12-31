@@ -13,6 +13,8 @@ import Firebase
 import GoogleUtilities
 import GigyaTfa
 import GigyaAuth
+import FBSDKCoreKit
+import FBSDKShareKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
@@ -35,6 +37,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
 
         GigyaAuth.shared.registerForRemoteNotifications()
         GigyaTfa.shared.registerForRemoteNotifications()
+
+        ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
+
+
 
         return true
     }
@@ -71,8 +77,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
 
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
         let _ = LineSDKLogin.sharedInstance().handleOpen(url)
+        let _ = WXApi.handleOpen(url, delegate: self)
 
-        return WXApi.handleOpen(url, delegate: self)
+        let handled = ApplicationDelegate.shared.application(
+            app,
+            open: url,
+            sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String,
+            annotation: options[UIApplication.OpenURLOptionsKey.annotation])
+
+        return handled
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

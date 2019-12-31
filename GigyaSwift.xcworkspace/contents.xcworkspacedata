@@ -5,6 +5,9 @@
       location = "group:GigyaAuth/GigyaAuth.xcodeproj">
    </FileRef>
    <FileRef
+      location = "group:GigyaE2ETestsApp/GigyaE2ETestsApp.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:GigyaTfa/GigyaTfa.xcodeproj">
    </FileRef>
    <FileRef

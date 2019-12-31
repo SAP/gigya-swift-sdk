@@ -1,0 +1,664 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3EC9BA83BDCE13EF679BD9A5 /* Pods_GigyaE2ETestsApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16806C55330BDB95034AB742 /* Pods_GigyaE2ETestsApp.framework */; };
+		E71203FD23A2785700C99596 /* ScreensetsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71203FC23A2785700C99596 /* ScreensetsTests.swift */; };
+		E71DC4FA239F9DCA00C771F6 /* LineWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F2EFF423797D5900565388 /* LineWrapper.swift */; };
+		E72A860023A10EDC00C213BE /* GeneralGigyaUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72A85FF23A10EDC00C213BE /* GeneralGigyaUtils.swift */; };
+		E732A0C3237D7DCD00620668 /* SocialLoginTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E732A0C2237D7DCD00620668 /* SocialLoginTests.swift */; };
+		E76F8AB023A2703300FBF925 /* ScreenSetsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E76F8AAF23A2703300FBF925 /* ScreenSetsViewController.swift */; };
+		E7F2EFC22379524C00565388 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F2EFC12379524C00565388 /* AppDelegate.swift */; };
+		E7F2EFC62379524C00565388 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F2EFC52379524C00565388 /* ViewController.swift */; };
+		E7F2EFC92379524C00565388 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E7F2EFC72379524C00565388 /* Main.storyboard */; };
+		E7F2EFCB2379524F00565388 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E7F2EFCA2379524F00565388 /* Assets.xcassets */; };
+		E7F2EFCE2379524F00565388 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E7F2EFCC2379524F00565388 /* LaunchScreen.storyboard */; };
+		E7F2EFD92379524F00565388 /* GigyaE2ETestsAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F2EFD82379524F00565388 /* GigyaE2ETestsAppUITests.swift */; };
+		E7F2EFE52379528D00565388 /* Gigya.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7F2EFE42379528D00565388 /* Gigya.framework */; };
+		E7F2EFE62379528D00565388 /* Gigya.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E7F2EFE42379528D00565388 /* Gigya.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E7F2EFEC23795D6900565388 /* SocialLoginCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F2EFEB23795D6900565388 /* SocialLoginCollectionViewController.swift */; };
+		E7F2EFEE23796E8200565388 /* Results.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E7F2EFED23796E8200565388 /* Results.storyboard */; };
+		E7F2EFF12379705800565388 /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F2EFF02379705800565388 /* ResultsViewController.swift */; };
+		E7F2EFFB23797D5900565388 /* FacebookWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F2EFF623797D5900565388 /* FacebookWrapper.swift */; };
+		E7F2EFFD23797D6600565388 /* GoogleWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F2EFF323797D5900565388 /* GoogleWrapper.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		E7F2EFD52379524F00565388 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E7F2EFB62379524C00565388 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E7F2EFBD2379524C00565388;
+			remoteInfo = GigyaE2ETestsApp;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		E7F2EFE72379528D00565388 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				E7F2EFE62379528D00565388 /* Gigya.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		16806C55330BDB95034AB742 /* Pods_GigyaE2ETestsApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GigyaE2ETestsApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		89D3491B5EB841D5D6A25559 /* Pods-GigyaE2ETestsApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GigyaE2ETestsApp.debug.xcconfig"; path = "Target Support Files/Pods-GigyaE2ETestsApp/Pods-GigyaE2ETestsApp.debug.xcconfig"; sourceTree = "<group>"; };
+		B5539B64C6ECA21934889166 /* Pods-GigyaE2ETestsApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GigyaE2ETestsApp.release.xcconfig"; path = "Target Support Files/Pods-GigyaE2ETestsApp/Pods-GigyaE2ETestsApp.release.xcconfig"; sourceTree = "<group>"; };
+		E71203FC23A2785700C99596 /* ScreensetsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreensetsTests.swift; sourceTree = "<group>"; };
+		E72A85FF23A10EDC00C213BE /* GeneralGigyaUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralGigyaUtils.swift; sourceTree = "<group>"; };
+		E732A0C2237D7DCD00620668 /* SocialLoginTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialLoginTests.swift; sourceTree = "<group>"; };
+		E76F8AAF23A2703300FBF925 /* ScreenSetsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenSetsViewController.swift; sourceTree = "<group>"; };
+		E7F2EFBE2379524C00565388 /* GigyaE2ETestsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GigyaE2ETestsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E7F2EFC12379524C00565388 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		E7F2EFC52379524C00565388 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		E7F2EFC82379524C00565388 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		E7F2EFCA2379524F00565388 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E7F2EFCD2379524F00565388 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		E7F2EFCF2379524F00565388 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E7F2EFD42379524F00565388 /* GigyaE2ETestsAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GigyaE2ETestsAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E7F2EFD82379524F00565388 /* GigyaE2ETestsAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigyaE2ETestsAppUITests.swift; sourceTree = "<group>"; };
+		E7F2EFDA2379524F00565388 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E7F2EFE42379528D00565388 /* Gigya.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Gigya.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E7F2EFEB23795D6900565388 /* SocialLoginCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialLoginCollectionViewController.swift; sourceTree = "<group>"; };
+		E7F2EFED23796E8200565388 /* Results.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Results.storyboard; sourceTree = "<group>"; };
+		E7F2EFF02379705800565388 /* ResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
+		E7F2EFF323797D5900565388 /* GoogleWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleWrapper.swift; sourceTree = "<group>"; };
+		E7F2EFF423797D5900565388 /* LineWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineWrapper.swift; sourceTree = "<group>"; };
+		E7F2EFF523797D5900565388 /* AppleSignInWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppleSignInWrapper.swift; sourceTree = "<group>"; };
+		E7F2EFF623797D5900565388 /* FacebookWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookWrapper.swift; sourceTree = "<group>"; };
+		E7F2EFF723797D5900565388 /* WeChatWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeChatWrapper.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E7F2EFBB2379524C00565388 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E7F2EFE52379528D00565388 /* Gigya.framework in Frameworks */,
+				3EC9BA83BDCE13EF679BD9A5 /* Pods_GigyaE2ETestsApp.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E7F2EFD12379524F00565388 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		21E57CC3F9190F2B3CE304CB /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				89D3491B5EB841D5D6A25559 /* Pods-GigyaE2ETestsApp.debug.xcconfig */,
+				B5539B64C6ECA21934889166 /* Pods-GigyaE2ETestsApp.release.xcconfig */,
+			);
+			name = Pods;
+			path = ../Pods;
+			sourceTree = "<group>";
+		};
+		E72A85FE23A10EC500C213BE /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				E72A85FF23A10EDC00C213BE /* GeneralGigyaUtils.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		E76F8AAE23A25B5900FBF925 /* ScreenSets */ = {
+			isa = PBXGroup;
+			children = (
+				E76F8AAF23A2703300FBF925 /* ScreenSetsViewController.swift */,
+			);
+			path = ScreenSets;
+			sourceTree = "<group>";
+		};
+		E7F2EFB52379524C00565388 = {
+			isa = PBXGroup;
+			children = (
+				E7F2EFC02379524C00565388 /* GigyaE2ETestsApp */,
+				E7F2EFD72379524F00565388 /* GigyaE2ETestsAppUITests */,
+				E7F2EFBF2379524C00565388 /* Products */,
+				E7F2EFE32379528D00565388 /* Frameworks */,
+				21E57CC3F9190F2B3CE304CB /* Pods */,
+			);
+			sourceTree = "<group>";
+		};
+		E7F2EFBF2379524C00565388 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E7F2EFBE2379524C00565388 /* GigyaE2ETestsApp.app */,
+				E7F2EFD42379524F00565388 /* GigyaE2ETestsAppUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E7F2EFC02379524C00565388 /* GigyaE2ETestsApp */ = {
+			isa = PBXGroup;
+			children = (
+				E7F2EFC12379524C00565388 /* AppDelegate.swift */,
+				E7F2EFF223797D5900565388 /* GigyaProviders */,
+				E7F2EFC52379524C00565388 /* ViewController.swift */,
+				E76F8AAE23A25B5900FBF925 /* ScreenSets */,
+				E7F2EFEF2379703E00565388 /* ResultsView */,
+				E7F2EFE823795C8900565388 /* SocialLogin */,
+				E7F2EFC72379524C00565388 /* Main.storyboard */,
+				E7F2EFCA2379524F00565388 /* Assets.xcassets */,
+				E7F2EFCC2379524F00565388 /* LaunchScreen.storyboard */,
+				E7F2EFCF2379524F00565388 /* Info.plist */,
+			);
+			path = GigyaE2ETestsApp;
+			sourceTree = "<group>";
+		};
+		E7F2EFD72379524F00565388 /* GigyaE2ETestsAppUITests */ = {
+			isa = PBXGroup;
+			children = (
+				E72A85FE23A10EC500C213BE /* Utils */,
+				E7F2EFD82379524F00565388 /* GigyaE2ETestsAppUITests.swift */,
+				E732A0C2237D7DCD00620668 /* SocialLoginTests.swift */,
+				E71203FC23A2785700C99596 /* ScreensetsTests.swift */,
+				E7F2EFDA2379524F00565388 /* Info.plist */,
+			);
+			path = GigyaE2ETestsAppUITests;
+			sourceTree = "<group>";
+		};
+		E7F2EFE32379528D00565388 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E7F2EFE42379528D00565388 /* Gigya.framework */,
+				16806C55330BDB95034AB742 /* Pods_GigyaE2ETestsApp.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E7F2EFE823795C8900565388 /* SocialLogin */ = {
+			isa = PBXGroup;
+			children = (
+				E7F2EFEB23795D6900565388 /* SocialLoginCollectionViewController.swift */,
+			);
+			path = SocialLogin;
+			sourceTree = "<group>";
+		};
+		E7F2EFEF2379703E00565388 /* ResultsView */ = {
+			isa = PBXGroup;
+			children = (
+				E7F2EFED23796E8200565388 /* Results.storyboard */,
+				E7F2EFF02379705800565388 /* ResultsViewController.swift */,
+			);
+			path = ResultsView;
+			sourceTree = "<group>";
+		};
+		E7F2EFF223797D5900565388 /* GigyaProviders */ = {
+			isa = PBXGroup;
+			children = (
+				E7F2EFF323797D5900565388 /* GoogleWrapper.swift */,
+				E7F2EFF423797D5900565388 /* LineWrapper.swift */,
+				E7F2EFF523797D5900565388 /* AppleSignInWrapper.swift */,
+				E7F2EFF623797D5900565388 /* FacebookWrapper.swift */,
+				E7F2EFF723797D5900565388 /* WeChatWrapper.swift */,
+			);
+			name = GigyaProviders;
+			path = ../../TestApp/GigyaProviders;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E7F2EFBD2379524C00565388 /* GigyaE2ETestsApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E7F2EFDD2379524F00565388 /* Build configuration list for PBXNativeTarget "GigyaE2ETestsApp" */;
+			buildPhases = (
+				F0F375F8C773B67EA3321DCF /* [CP] Check Pods Manifest.lock */,
+				E7F2EFBA2379524C00565388 /* Sources */,
+				E7F2EFBB2379524C00565388 /* Frameworks */,
+				E7F2EFBC2379524C00565388 /* Resources */,
+				E7F2EFE72379528D00565388 /* Embed Frameworks */,
+				374A15AFFBAB0FEA2F8223A5 /* [CP] Embed Pods Frameworks */,
+				46DEAED82D1D15B8CA191D9F /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GigyaE2ETestsApp;
+			productName = GigyaE2ETestsApp;
+			productReference = E7F2EFBE2379524C00565388 /* GigyaE2ETestsApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E7F2EFD32379524F00565388 /* GigyaE2ETestsAppUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E7F2EFE02379524F00565388 /* Build configuration list for PBXNativeTarget "GigyaE2ETestsAppUITests" */;
+			buildPhases = (
+				E7F2EFD02379524F00565388 /* Sources */,
+				E7F2EFD12379524F00565388 /* Frameworks */,
+				E7F2EFD22379524F00565388 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E7F2EFD62379524F00565388 /* PBXTargetDependency */,
+			);
+			name = GigyaE2ETestsAppUITests;
+			productName = GigyaE2ETestsAppUITests;
+			productReference = E7F2EFD42379524F00565388 /* GigyaE2ETestsAppUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E7F2EFB62379524C00565388 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1120;
+				LastUpgradeCheck = 1120;
+				ORGANIZATIONNAME = Gigya;
+				TargetAttributes = {
+					E7F2EFBD2379524C00565388 = {
+						CreatedOnToolsVersion = 11.2;
+					};
+					E7F2EFD32379524F00565388 = {
+						CreatedOnToolsVersion = 11.2;
+						TestTargetID = E7F2EFBD2379524C00565388;
+					};
+				};
+			};
+			buildConfigurationList = E7F2EFB92379524C00565388 /* Build configuration list for PBXProject "GigyaE2ETestsApp" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = E7F2EFB52379524C00565388;
+			productRefGroup = E7F2EFBF2379524C00565388 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E7F2EFBD2379524C00565388 /* GigyaE2ETestsApp */,
+				E7F2EFD32379524F00565388 /* GigyaE2ETestsAppUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E7F2EFBC2379524C00565388 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E7F2EFCE2379524F00565388 /* LaunchScreen.storyboard in Resources */,
+				E7F2EFCB2379524F00565388 /* Assets.xcassets in Resources */,
+				E7F2EFC92379524C00565388 /* Main.storyboard in Resources */,
+				E7F2EFEE23796E8200565388 /* Results.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E7F2EFD22379524F00565388 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		374A15AFFBAB0FEA2F8223A5 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GigyaE2ETestsApp/Pods-GigyaE2ETestsApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GigyaE2ETestsApp/Pods-GigyaE2ETestsApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GigyaE2ETestsApp/Pods-GigyaE2ETestsApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		46DEAED82D1D15B8CA191D9F /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GigyaE2ETestsApp/Pods-GigyaE2ETestsApp-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GigyaE2ETestsApp/Pods-GigyaE2ETestsApp-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GigyaE2ETestsApp/Pods-GigyaE2ETestsApp-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F0F375F8C773B67EA3321DCF /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-GigyaE2ETestsApp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E7F2EFBA2379524C00565388 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E7F2EFC62379524C00565388 /* ViewController.swift in Sources */,
+				E7F2EFC22379524C00565388 /* AppDelegate.swift in Sources */,
+				E7F2EFFB23797D5900565388 /* FacebookWrapper.swift in Sources */,
+				E7F2EFFD23797D6600565388 /* GoogleWrapper.swift in Sources */,
+				E71DC4FA239F9DCA00C771F6 /* LineWrapper.swift in Sources */,
+				E7F2EFF12379705800565388 /* ResultsViewController.swift in Sources */,
+				E7F2EFEC23795D6900565388 /* SocialLoginCollectionViewController.swift in Sources */,
+				E76F8AB023A2703300FBF925 /* ScreenSetsViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E7F2EFD02379524F00565388 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E732A0C3237D7DCD00620668 /* SocialLoginTests.swift in Sources */,
+				E7F2EFD92379524F00565388 /* GigyaE2ETestsAppUITests.swift in Sources */,
+				E71203FD23A2785700C99596 /* ScreensetsTests.swift in Sources */,
+				E72A860023A10EDC00C213BE /* GeneralGigyaUtils.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E7F2EFD62379524F00565388 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E7F2EFBD2379524C00565388 /* GigyaE2ETestsApp */;
+			targetProxy = E7F2EFD52379524F00565388 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		E7F2EFC72379524C00565388 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E7F2EFC82379524C00565388 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		E7F2EFCC2379524F00565388 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E7F2EFCD2379524F00565388 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		E7F2EFDB2379524F00565388 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		E7F2EFDC2379524F00565388 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		E7F2EFDE2379524F00565388 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 89D3491B5EB841D5D6A25559 /* Pods-GigyaE2ETestsApp.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = T48CNFXFQH;
+				INFOPLIST_FILE = GigyaE2ETestsApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = Gigya.TestGigyaApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		E7F2EFDF2379524F00565388 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B5539B64C6ECA21934889166 /* Pods-GigyaE2ETestsApp.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = T48CNFXFQH;
+				INFOPLIST_FILE = GigyaE2ETestsApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = Gigya.TestGigyaApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		E7F2EFE12379524F00565388 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = T48CNFXFQH;
+				INFOPLIST_FILE = GigyaE2ETestsAppUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = Gigya.GigyaE2ETestsAppUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = GigyaE2ETestsApp;
+			};
+			name = Debug;
+		};
+		E7F2EFE22379524F00565388 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = T48CNFXFQH;
+				INFOPLIST_FILE = GigyaE2ETestsAppUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = Gigya.GigyaE2ETestsAppUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = GigyaE2ETestsApp;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E7F2EFB92379524C00565388 /* Build configuration list for PBXProject "GigyaE2ETestsApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E7F2EFDB2379524F00565388 /* Debug */,
+				E7F2EFDC2379524F00565388 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E7F2EFDD2379524F00565388 /* Build configuration list for PBXNativeTarget "GigyaE2ETestsApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E7F2EFDE2379524F00565388 /* Debug */,
+				E7F2EFDF2379524F00565388 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E7F2EFE02379524F00565388 /* Build configuration list for PBXNativeTarget "GigyaE2ETestsAppUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E7F2EFE12379524F00565388 /* Debug */,
+				E7F2EFE22379524F00565388 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E7F2EFB62379524C00565388 /* Project object */;
+}
