@@ -34,6 +34,8 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
 
     private let interruptionResolver: InterruptionResolverFactoryProtocol
 
+    private let sessionVerificationService: SessionVerificationServiceProtocol
+
     private lazy var pushService: PushNotificationsServiceProtocol = {
         return self.container.resolve(PushNotificationsServiceProtocol.self)!
     }()
@@ -51,7 +53,7 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
 
     // MARK: - Initialize
 
-    internal init(config: GigyaConfig, persistenceService: PersistenceService, businessApiService: BusinessApiServiceProtocol, sessionService: SessionServiceProtocol, interruptionResolver: InterruptionResolverFactoryProtocol, biometric: BiometricServiceProtocol, plistFactory: PlistConfigFactory, container: IOCContainer) {
+    internal init(config: GigyaConfig, persistenceService: PersistenceService, businessApiService: BusinessApiServiceProtocol, sessionService: SessionServiceProtocol, interruptionResolver: InterruptionResolverFactoryProtocol, biometric: BiometricServiceProtocol, plistFactory: PlistConfigFactory, sessionVerificationService: SessionVerificationServiceProtocol, container: IOCContainer) {
         self.config = config
         self.persistenceService = persistenceService
         self.businessApiService = businessApiService
@@ -59,6 +61,7 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
         self.interruptionResolver = interruptionResolver
         self.biometric = biometric
         self.container = container
+        self.sessionVerificationService = sessionVerificationService
         
         // load plist and make init
         let plistConfig = plistFactory.parsePlistConfig()
@@ -66,6 +69,10 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
         if let apiKey = plistConfig?.apiKey, !apiKey.isEmpty {
             initFor(apiKey: apiKey, apiDomain: plistConfig?.apiDomain)
         }
+
+        // Must be registered following the init call
+        config.sessionVerificationInterval = plistConfig?.sessionVerificationInterval
+        sessionVerificationService.registerAppStateEvents()
     }
 
     /**
@@ -140,6 +147,7 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
      */
     public func logout(completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void) {
         businessApiService.logout(completion: completion)
+        sessionVerificationService.stop()
     }
 
     // MARK: - Business Api׳s

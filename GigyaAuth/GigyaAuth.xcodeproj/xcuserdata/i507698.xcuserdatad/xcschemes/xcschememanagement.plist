@@ -7,7 +7,11 @@
 		<key>GigyaAuth.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
+<<<<<<< HEAD
 			<integer>32</integer>
+=======
+			<integer>1</integer>
+>>>>>>> 104644-verify-login
 		</dict>
 	</dict>
 </dict>

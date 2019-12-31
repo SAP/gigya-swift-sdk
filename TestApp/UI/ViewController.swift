@@ -25,6 +25,8 @@ class ViewController: UIViewController {
         let not = NotificationCenter.default
         not.addObserver(self, selector: #selector(gigyaSessionExpire(_:)), name: Notification.Name("didGigyaSessionExpire"), object: nil)
 
+        not.addObserver(self, selector: #selector(gigyaSessionExpire(_:)), name: Notification.Name("didInvalidateSession"), object: nil)
+
     }
 
     override func viewDidAppear(_ animated: Bool) {

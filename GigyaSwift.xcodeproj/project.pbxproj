@@ -63,6 +63,8 @@
 		E7221D7A22B903E500C296A9 /* GoogleWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7D59B1D227F34D3002FA864 /* GoogleWrapper.swift */; };
 		E7221D8022B90C0C00C296A9 /* UserHostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7221D7F22B90C0C00C296A9 /* UserHostModel.swift */; };
 		E7221D8222B90C2A00C296A9 /* ValidateLoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7221D8122B90C2A00C296A9 /* ValidateLoginModel.swift */; };
+		E7257C5F23B4BBC300692528 /* SessionVerificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7257C5E23B4BBC300692528 /* SessionVerificationService.swift */; };
+		E7257C6123B8C3F500692528 /* InterceptorsUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7257C6023B8C3F500692528 /* InterceptorsUtils.swift */; };
 		E72FEC53234F19850028EF28 /* Lang.strings in Resources */ = {isa = PBXBuildFile; fileRef = E72FEC55234F19850028EF28 /* Lang.strings */; };
 		E731B72D232A53AD0032E111 /* AuthenticationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E731B72C232A53AD0032E111 /* AuthenticationServices.framework */; };
 		E731B72F232A53E70032E111 /* AppleSignInWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E731B72E232A53E70032E111 /* AppleSignInWrapper.swift */; };
@@ -364,6 +366,8 @@
 		E7221D7822B8FC8700C296A9 /* PendingRegistrationResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingRegistrationResolver.swift; sourceTree = "<group>"; };
 		E7221D7F22B90C0C00C296A9 /* UserHostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserHostModel.swift; sourceTree = "<group>"; };
 		E7221D8122B90C2A00C296A9 /* ValidateLoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateLoginModel.swift; sourceTree = "<group>"; };
+		E7257C5E23B4BBC300692528 /* SessionVerificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionVerificationService.swift; sourceTree = "<group>"; };
+		E7257C6023B8C3F500692528 /* InterceptorsUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterceptorsUtils.swift; sourceTree = "<group>"; };
 		E72FEC54234F19850028EF28 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Lang.strings; sourceTree = "<group>"; };
 		E72FEC56234F19A50028EF28 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Lang.strings; sourceTree = "<group>"; };
 		E731B72C232A53AD0032E111 /* AuthenticationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AuthenticationServices.framework; path = System/Library/Frameworks/AuthenticationServices.framework; sourceTree = SDKROOT; };
@@ -880,6 +884,7 @@
 			isa = PBXGroup;
 			children = (
 				E7CBAFD1222EBD95000B6C11 /* SessionService.swift */,
+				E7257C5E23B4BBC300692528 /* SessionVerificationService.swift */,
 				E7CBAFCD222EA268000B6C11 /* GigyaSession.swift */,
 				E7ACF9AD226C843100900C65 /* SessionServiceProtocol.swift */,
 			);
@@ -1344,6 +1349,7 @@
 			children = (
 				E7CBB06A223E59EA000B6C11 /* Decode+EncodeUtils.swift */,
 				E7D3E22B22CA02F60033BAF1 /* RunnerMainThread.swift */,
+				E7257C6023B8C3F500692528 /* InterceptorsUtils.swift */,
 				E7791A67238542D70075BAFD /* GigyaAlertUtils.swift */,
 				E74E26682383E9B1002E361B /* GeneralUtils.swift */,
 				E719374222D5E6C600CD149E /* PlistConfigFactory.swift */,
@@ -1940,6 +1946,7 @@
 				E720D3502382D49400446EA4 /* PushNotificationModes.swift in Sources */,
 				E7C859DB2289604F005C1FBE /* LinkAccountsResolver.swift in Sources */,
 				E7CBB068223E595D000B6C11 /* GigyaPlistConfig.swift in Sources */,
+				E7257C6123B8C3F500692528 /* InterceptorsUtils.swift in Sources */,
 				E756A2AD22771B6F007FA801 /* Url.swift in Sources */,
 				E719374322D5E6C600CD149E /* PlistConfigFactory.swift in Sources */,
 				E7CBAFC5222E7314000B6C11 /* GigyaResult.swift in Sources */,
@@ -1978,6 +1985,7 @@
 				E760668C2278998E005E4CFD /* WebViewWrapper.swift in Sources */,
 				E7CBB04322356206000B6C11 /* GigyaProfile.swift in Sources */,
 				E7B5408A23952E2200C0C8D8 /* UserNotificationCenterProtocol.swift in Sources */,
+				E7257C5F23B4BBC300692528 /* SessionVerificationService.swift in Sources */,
 				E71D3CA222BFA81F00A413D7 /* InterruptionResolverFactory.swift in Sources */,
 				E733743D22671FDD00ADEDBB /* BusinessApiDelegate.swift in Sources */,
 				E7BE368B2224225100A108D9 /* Gigya.swift in Sources */,

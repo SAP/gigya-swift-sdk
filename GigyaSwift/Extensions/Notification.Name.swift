@@ -10,4 +10,6 @@ import NotificationCenter
 
 extension Notification.Name {
     static var didGigyaSessionExpire = Notification.Name(rawValue: "didGigyaSessionExpire")
+
+    static var didInvalidateSession = Notification.Name(rawValue: "didInvalidateSession")
 }

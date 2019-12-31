@@ -20,6 +20,8 @@ public protocol SessionServiceProtocol {
 
     func setSessionAs(biometric: Bool, completion: @escaping (GigyaBiometricResult) -> Void)
 
+    var handlersAfterSetSession: InterceptorsUtils { get }
+
     func clear()
 
     func clear(completion: @escaping () -> Void)
