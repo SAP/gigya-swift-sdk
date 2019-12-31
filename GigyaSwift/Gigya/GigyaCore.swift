@@ -203,6 +203,51 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
         businessApiService.setAccount(obj: account, completion: completion)
     }
 
+
+    /**
+     Set account info given update parameters.
+
+     - Parameter params:    Updated account parameters.
+     - Parameter completion:   Response `GigyaApiResult<T>`.
+    */
+    public func setAccount(with params: [String: Any], completion: @escaping (GigyaApiResult<T>) -> Void) {
+        businessApiService.setAccount(params: params, completion: completion)
+    }
+
+    /**
+     Send a reset email password to verified email attached to the users loginId.
+
+     - Parameter loginId:    User login id.
+     - Parameter completion:   Response `GigyaApiResult<GigyaDictionary>`.
+    */
+
+    public func forgotPassword(loginId: String, completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void) {
+        var loginParams: [String: Any] = [:]
+        loginParams["loginID"] = loginId
+
+        businessApiService.forgotPassword(params: loginParams, completion: completion)
+    }
+
+    /**
+     Send a reset email password to verified email attached to the users loginId.
+
+     - Parameter params:        Request parameters, see [accounts.resetPassword REST](https://developers.gigya.com/display/GD/accounts.resetPassword+REST) for available parameters
+     - Parameter completion:   Response `GigyaApiResult<GigyaDictionary>`.
+    */
+
+    public func forgotPassword(params: [String: Any], completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void) {
+        businessApiService.forgotPassword(params: params, completion: completion)
+    }
+
+    /**
+     Login to with social provider when the provider session is available (obtained via specific provider login process).
+
+     - Parameter params:       Request parameters.
+     - Parameter completion:   Response `GigyaApiResult<T>`.
+    */
+    public func notifySocialLogin(params: [String: Any], completion: @escaping (GigyaApiResult<T>) -> Void) {
+        businessApiService.nativeSocialLogin(params: params, completion: completion)
+    }
     // MARK: - Social Login
 
     /**

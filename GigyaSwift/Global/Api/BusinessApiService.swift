@@ -164,8 +164,16 @@ class BusinessApiService: NSObject, BusinessApiServiceProtocol {
         var loginParams = params
         loginParams["loginID"] = loginId
         loginParams["password"] = password
-        
-        let model = ApiRequestModel(method: GigyaDefinitions.API.login, params: loginParams)
+
+        login(params: loginParams, completion: completion)
+    }
+
+    func login<T: GigyaAccountProtocol>(dataType: T.Type, params: [String: Any], completion: @escaping (GigyaLoginResult<T>) -> Void) {
+        login(params: params, completion: completion)
+    }
+
+    private func login<T: GigyaAccountProtocol>(params: [String: Any], completion: @escaping (GigyaLoginResult<T>) -> Void) {
+        let model = ApiRequestModel(method: GigyaDefinitions.API.login, params: params)
 
         apiService.send(model: model, responseType: T.self) { [weak self] result in
             switch result {
@@ -302,6 +310,13 @@ class BusinessApiService: NSObject, BusinessApiServiceProtocol {
             }
         }
     }
+
+    func forgotPassword(params: [String: Any], completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void) {
+        let model = ApiRequestModel(method: GigyaDefinitions.API.resetPassword, params: params)
+        apiService.send(model: model, responseType: GigyaDictionary.self, completion: completion)
+    }
+
+    // MARK: - Internal methods
 
     private func interruptionResolver<T: GigyaAccountProtocol>(error: NetworkError, completion: @escaping (GigyaLoginResult<T>) -> Void) {
         interruptionsHandler.resolve(error: error, businessDelegate: self, completion: completion)

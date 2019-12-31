@@ -54,5 +54,8 @@ protocol BusinessApiServiceProtocol {
     func removeConnection(providerName: GigyaSocialProviders, completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void)
     
     func logout(completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void)
-    
+
+    func nativeSocialLogin<T: GigyaAccountProtocol>(params: [String: Any], completion: @escaping (GigyaApiResult<T>) -> Void)
+
+    func forgotPassword(params: [String: Any], completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void)
 }
