@@ -13,6 +13,7 @@
 		E72A860023A10EDC00C213BE /* GeneralGigyaUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72A85FF23A10EDC00C213BE /* GeneralGigyaUtils.swift */; };
 		E732A0C3237D7DCD00620668 /* SocialLoginTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E732A0C2237D7DCD00620668 /* SocialLoginTests.swift */; };
 		E76F8AB023A2703300FBF925 /* ScreenSetsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E76F8AAF23A2703300FBF925 /* ScreenSetsViewController.swift */; };
+		E775E7FC23BB585F0059151D /* XCUIElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = E775E7FB23BB585F0059151D /* XCUIElement.swift */; };
 		E7F2EFC22379524C00565388 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F2EFC12379524C00565388 /* AppDelegate.swift */; };
 		E7F2EFC62379524C00565388 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F2EFC52379524C00565388 /* ViewController.swift */; };
 		E7F2EFC92379524C00565388 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E7F2EFC72379524C00565388 /* Main.storyboard */; };
@@ -60,6 +61,7 @@
 		E72A85FF23A10EDC00C213BE /* GeneralGigyaUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralGigyaUtils.swift; sourceTree = "<group>"; };
 		E732A0C2237D7DCD00620668 /* SocialLoginTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialLoginTests.swift; sourceTree = "<group>"; };
 		E76F8AAF23A2703300FBF925 /* ScreenSetsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenSetsViewController.swift; sourceTree = "<group>"; };
+		E775E7FB23BB585F0059151D /* XCUIElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCUIElement.swift; sourceTree = "<group>"; };
 		E7F2EFBE2379524C00565388 /* GigyaE2ETestsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GigyaE2ETestsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7F2EFC12379524C00565388 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E7F2EFC52379524C00565388 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 			isa = PBXGroup;
 			children = (
 				E72A85FF23A10EDC00C213BE /* GeneralGigyaUtils.swift */,
+				E775E7FB23BB585F0059151D /* XCUIElement.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -246,6 +249,7 @@
 				E7F2EFD02379524F00565388 /* Sources */,
 				E7F2EFD12379524F00565388 /* Frameworks */,
 				E7F2EFD22379524F00565388 /* Resources */,
+				E775E7FD23BB6ADC0059151D /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -351,6 +355,23 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GigyaE2ETestsApp/Pods-GigyaE2ETestsApp-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		E775E7FD23BB6ADC0059151D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nxcrun simctl shutdown all\nxcrun simctl erase all\n";
+		};
 		F0F375F8C773B67EA3321DCF /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -397,6 +418,7 @@
 			files = (
 				E732A0C3237D7DCD00620668 /* SocialLoginTests.swift in Sources */,
 				E7F2EFD92379524F00565388 /* GigyaE2ETestsAppUITests.swift in Sources */,
+				E775E7FC23BB585F0059151D /* XCUIElement.swift in Sources */,
 				E71203FD23A2785700C99596 /* ScreensetsTests.swift in Sources */,
 				E72A860023A10EDC00C213BE /* GeneralGigyaUtils.swift in Sources */,
 			);

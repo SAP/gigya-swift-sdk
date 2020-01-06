@@ -7,40 +7,17 @@
 		<key>Gigya.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-<<<<<<< HEAD
 			<integer>0</integer>
-<<<<<<< HEAD
-=======
-			<integer>14</integer>
->>>>>>> 104644-verify-login
-=======
->>>>>>> 105567-onLogout-event-should-make-logout
 		</dict>
 		<key>GigyaUITestsApp.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-<<<<<<< HEAD
-<<<<<<< HEAD
 			<integer>35</integer>
-=======
-			<integer>26</integer>
->>>>>>> 104644-verify-login
-=======
-			<integer>26</integer>
->>>>>>> 105567-onLogout-event-should-make-logout
 		</dict>
 		<key>TestApp.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-<<<<<<< HEAD
-<<<<<<< HEAD
 			<integer>2</integer>
-=======
-			<integer>25</integer>
->>>>>>> 104644-verify-login
-=======
-			<integer>2</integer>
->>>>>>> 105567-onLogout-event-should-make-logout
 		</dict>
 	</dict>
 </dict>

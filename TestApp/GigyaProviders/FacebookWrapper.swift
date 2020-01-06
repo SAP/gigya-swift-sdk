@@ -9,8 +9,6 @@
 import Foundation
 import FBSDKCoreKit
 import FBSDKLoginKit
-import FBSDKShareKit
-
 import Gigya
 
 class FacebookWrapper: ProviderWrapperProtocol {

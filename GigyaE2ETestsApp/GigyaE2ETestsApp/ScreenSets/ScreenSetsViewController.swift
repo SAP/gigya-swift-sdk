@@ -44,6 +44,38 @@ class ScreenSetsViewController: UIViewController {
     @IBAction func showRegisterScreen(_ sender: Any) {
         showLoginScreen(sender)
     }
+
+
+    @IBAction func showUpdateProfile(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Results", bundle: nil)
+
+         initialViewController = storyboard.instantiateViewController(withIdentifier: "Results") as? ResultsViewController
+         self.navigationController?.present(self.initialViewController!, animated: true) {
+
+             Gigya.sharedInstance().showScreenSet(with: "Default-ProfileUpdate", viewController: self.initialViewController!) { [weak self] (result) in
+                 guard let self = self else { return }
+
+                 switch result {
+                 case .onHide:
+                    Gigya.sharedInstance().getAccount { (result) in
+                        switch result {
+                        case .success(let account):
+                            self.initialViewController?.statusValue = "success"
+                            self.initialViewController?.uidValue = account.profile?.firstName ?? ""
+                        case .failure(let error):
+                            self.initialViewController?.statusValue = error.localizedDescription
+                        }
+                    }
+
+                    break
+                 case .error(let event):
+                     self.initialViewController?.statusValue = event.debugDescription
+                 default:
+                     break
+                 }
+             }
+         }
+    }
     /*
     // MARK: - Navigation
 

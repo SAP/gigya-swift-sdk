@@ -3,23 +3,10 @@
    uuid = "BF3AF872-82BF-41AA-A7E2-241838E603E2"
    type = "0"
    version = "2.0">
-<<<<<<< HEAD
    <Breakpoints>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-<<<<<<< HEAD
-            uuid = "31F96FCD-871D-48D0-80E6-A1F0D719909D"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GigyaE2ETestsApp/GigyaE2ETestsApp/ResultsView/ResultsViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "34"
-            endingLineNumber = "34"
-            landmarkName = "viewDidLoad()"
-=======
             uuid = "78614D30-60B7-4130-B2F5-EC34B5BFB274"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -30,27 +17,14 @@
             startingLineNumber = "103"
             endingLineNumber = "103"
             landmarkName = "setSession(_:)"
->>>>>>> 104644-verify-login
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-<<<<<<< HEAD
-            uuid = "ADA1C6B7-5C17-470F-8A20-1C5DAF4D8460"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "TestApp/GigyaProviders/FacebookWrapper.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "29"
-            endingLineNumber = "29"
-            landmarkName = "init()"
-=======
             uuid = "78581A5F-08D8-41A5-8BB4-08378FC35E0C"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GigyaSwift/Global/Session/SessionService.swift"
@@ -58,12 +32,9 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "62"
             endingLineNumber = "62"
-            landmarkName = "appReturnToForeground()"
->>>>>>> 104644-verify-login
-            landmarkType = "7">
+            landmarkName = "SessionService"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
-=======
->>>>>>> 105567-onLogout-event-should-make-logout
 </Bucket>

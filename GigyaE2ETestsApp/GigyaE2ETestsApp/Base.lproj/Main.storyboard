@@ -157,10 +157,32 @@
                                     <action selector="showRegisterScreen:" destination="i2w-rr-app" eventType="touchUpInside" id="yLC-3y-FPn"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hCn-QR-I5u">
+                                <rect key="frame" x="16" y="178" width="186" height="40"/>
+                                <color key="backgroundColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <accessibility key="accessibilityConfiguration" identifier="updateProfile"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="pJP-iJ-A81"/>
+                                </constraints>
+                                <state key="normal" title="Update profile">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="15"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="showUpdateProfile:" destination="i2w-rr-app" eventType="touchUpInside" id="EZj-dm-wil"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="hCn-QR-I5u" firstAttribute="top" secondItem="XFW-ys-bVc" secondAttribute="bottom" constant="20" id="8dj-yF-OT4"/>
                             <constraint firstItem="XFW-ys-bVc" firstAttribute="top" secondItem="rlM-06-bSQ" secondAttribute="top" constant="30" id="BVn-UB-nAp"/>
+                            <constraint firstItem="hCn-QR-I5u" firstAttribute="leading" secondItem="rlM-06-bSQ" secondAttribute="leading" constant="16" id="DAq-e4-3AT"/>
+                            <constraint firstItem="hCn-QR-I5u" firstAttribute="width" secondItem="XFW-ys-bVc" secondAttribute="width" id="FM8-Wh-T7U"/>
                             <constraint firstItem="XFW-ys-bVc" firstAttribute="leading" secondItem="rlM-06-bSQ" secondAttribute="leading" constant="16" id="Ngf-jg-Q8Z"/>
                             <constraint firstItem="ODj-vy-ele" firstAttribute="top" secondItem="rlM-06-bSQ" secondAttribute="top" constant="30" id="f4P-eN-uFQ"/>
                             <constraint firstItem="ODj-vy-ele" firstAttribute="width" secondItem="XFW-ys-bVc" secondAttribute="width" id="pdS-CS-0b4"/>

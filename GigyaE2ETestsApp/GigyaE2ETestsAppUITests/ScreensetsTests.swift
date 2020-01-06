@@ -116,4 +116,40 @@ class ScreensetsTests: XCTestCase {
 
         app.buttons["Submit"].tap()
     }
+
+    func testUpdateProfile() {
+        testLogin()
+
+        sleep(1)
+
+        app.buttons["done"].tap()
+
+        app.buttons["updateProfile"].tap()
+
+        let exists = NSPredicate(format: "exists == 1")
+
+        let firstName = app.textFields.element(boundBy: 0)
+
+        expectation(for: exists, evaluatedWith: firstName, handler: nil)
+
+        waitForExpectations(timeout: 15, handler: nil)
+
+        XCTAssertTrue(firstName.exists)
+
+        firstName.tap()
+
+        firstName.clearText()
+
+        let randomInt = Int.random(in: 500...5000)
+        let randomString = "\(randomInt)"
+        app.typeText(randomString)
+
+        app.toolbars.buttons["Done"].tap()
+
+        app.buttons["Save"].tap()
+
+        let result = app.staticTexts["uid"]
+
+        XCTAssertEqual(result.label, randomString)
+    }
 }

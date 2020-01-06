@@ -19,6 +19,7 @@ class SocialLoginTests: XCTestCase {
 
         // UI tests must launch the application that they test. Doing this in setup will make sure it happens for each test method.
 
+        app.launchArguments = ["--Reset"]
         app.launch()
 
         app.buttons["sociallogin"].tap()
@@ -50,17 +51,37 @@ class SocialLoginTests: XCTestCase {
 
         app.tap()
 
+        sleep(2)
+
         let exists = NSPredicate(format: "exists == 1")
 
-        let continueButton = app.staticTexts["sagishm@gmail.com"]
+        let email = app.textFields.element(boundBy: 0)
 
-        expectation(for: exists, evaluatedWith: continueButton, handler: nil)
+        expectation(for: exists, evaluatedWith: email, handler: nil)
 
-        waitForExpectations(timeout: 5, handler: nil)
+        waitForExpectations(timeout: 8, handler: nil)
 
-        XCTAssertTrue(continueButton.exists)
+        email.tap()
 
-        continueButton.tap()
+        app.typeText("bugbuster121@gmail.com")
+
+        app.toolbars.buttons["Done"].tap()
+
+        app.buttons["הבא"].tap()
+
+        let pass = app.secureTextFields.element(boundBy: 0)
+
+        expectation(for: exists, evaluatedWith: pass, handler: nil)
+
+        waitForExpectations(timeout: 8, handler: nil)
+
+        pass.tap()
+
+        app.typeText("Aqwe123 #")
+
+        app.toolbars.buttons["Done"].tap()
+
+        app.buttons["הבא"].tap()
 
         sleep(2)
 
@@ -91,12 +112,40 @@ class SocialLoginTests: XCTestCase {
             return false
         }
 
-
         app.tap()
 
         let exists = NSPredicate(format: "exists == 1")
 
+        sleep(3)
+
         let continueButton = app.buttons["Continue"]
+
+        if !continueButton.exists {
+
+            let email = app.textFields.element(boundBy: 0)
+
+            expectation(for: exists, evaluatedWith: email, handler: nil)
+
+            waitForExpectations(timeout: 8, handler: nil)
+
+            email.tap()
+
+            app.typeText("tskawjkmuh_1549533638@tfbnw.net")
+
+            app.toolbars.buttons["Done"].tap()
+
+            let pass = app.secureTextFields.element(boundBy: 0)
+
+            expectation(for: exists, evaluatedWith: pass, handler: nil)
+
+            waitForExpectations(timeout: 8, handler: nil)
+
+            pass.tap()
+
+            app.typeText("Sa151515")
+
+            app.buttons["Log In"].tap()
+        }
 
         expectation(for: exists, evaluatedWith: continueButton, handler: nil)
 
@@ -154,6 +203,8 @@ class SocialLoginTests: XCTestCase {
 
         app.buttons["Log in"].tap()
 
+        sleep(1)
+
         app.buttons["Allow"].tap()
 
         sleep(3)
@@ -183,6 +234,8 @@ class SocialLoginTests: XCTestCase {
         waitForExpectations(timeout: 8, handler: nil)
 
         XCTAssertTrue(email.exists)
+
+        sleep(1)
 
         email.tap()
         app.typeText("toolmarmel@yahoo.com")

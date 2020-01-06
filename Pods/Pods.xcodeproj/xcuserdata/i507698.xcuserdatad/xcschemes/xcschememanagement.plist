@@ -86,18 +86,13 @@
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
-<<<<<<< HEAD
 			<integer>14</integer>
-=======
-			<integer>20</integer>
->>>>>>> 104644-verify-login
 		</dict>
 		<key>FirebaseInstanceID.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
-<<<<<<< HEAD
 			<integer>15</integer>
 		</dict>
 		<key>FirebaseMessaging.xcscheme</key>
@@ -134,49 +129,33 @@
 			<false/>
 			<key>orderHint</key>
 			<integer>26</integer>
-=======
-			<integer>21</integer>
->>>>>>> 104644-verify-login
 		</dict>
 		<key>GoogleAppMeasurement.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
-<<<<<<< HEAD
 			<integer>17</integer>
-=======
-			<integer>15</integer>
->>>>>>> 104644-verify-login
 		</dict>
 		<key>GoogleDataTransport.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
-<<<<<<< HEAD
 			<integer>18</integer>
-=======
-			<integer>16</integer>
->>>>>>> 104644-verify-login
 		</dict>
 		<key>GoogleDataTransportCCTSupport.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
-<<<<<<< HEAD
 			<integer>19</integer>
-=======
-			<integer>17</integer>
->>>>>>> 104644-verify-login
 		</dict>
 		<key>GoogleSignIn-iOS10.0.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
-<<<<<<< HEAD
 			<integer>20</integer>
 		</dict>
 		<key>GoogleSignIn-iOS12.0.xcscheme</key>
@@ -185,16 +164,12 @@
 			<false/>
 			<key>orderHint</key>
 			<integer>21</integer>
-=======
-			<integer>18</integer>
->>>>>>> 104644-verify-login
 		</dict>
 		<key>GoogleUtilities.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
-<<<<<<< HEAD
 			<integer>22</integer>
 		</dict>
 		<key>LineSDK.xcscheme</key>
@@ -210,42 +185,27 @@
 			<false/>
 			<key>orderHint</key>
 			<integer>29</integer>
-=======
-			<integer>19</integer>
->>>>>>> 104644-verify-login
 		</dict>
 		<key>Pods-TestApp.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
-<<<<<<< HEAD
 			<integer>30</integer>
-=======
-			<integer>23</integer>
->>>>>>> 104644-verify-login
 		</dict>
 		<key>Protobuf.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
-<<<<<<< HEAD
 			<integer>31</integer>
-=======
-			<integer>24</integer>
->>>>>>> 104644-verify-login
 		</dict>
 		<key>nanopb.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
-<<<<<<< HEAD
 			<integer>28</integer>
-=======
-			<integer>22</integer>
->>>>>>> 104644-verify-login
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
