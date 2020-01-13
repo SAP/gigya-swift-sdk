@@ -4,20 +4,30 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>GigyaTfa-Universal.xcscheme_^#shared#^_</key>
+		<key>GigyaNssEngine-Universal-Debug.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>34</integer>
+			<integer>41</integer>
 		</dict>
-		<key>GigyaTfa.xcscheme_^#shared#^_</key>
+		<key>GigyaNssEngine-Universal-Release.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>1</integer>
+			<integer>36</integer>
+		</dict>
+		<key>GigyaNssEngine.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>35</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>E7EEF3AD22C8D42F0004DF5D</key>
+		<key>E7F8E2D723C73F00002A2A92</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E7F8E2E323C73F18002A2A92</key>
 		<dict>
 			<key>primary</key>
 			<true/>

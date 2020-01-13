@@ -2,6 +2,12 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:GigyaNssEngine/GigyaNssEngine.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:GigyaNss/GigyaNss.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:GigyaAuth/GigyaAuth.xcodeproj">
    </FileRef>
    <FileRef

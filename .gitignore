@@ -23,6 +23,17 @@ docs/
 GigyaTfa/GigyaTfa.framework/_CodeSignature/CodeResources
 
 GigyaTfa/GigyaTfa.framework/
+GigyaTfa/build/
 =======
 .DS_Store
 >>>>>>> develop
+
+GigyaNss/build/
+GigyaNss/Debug/
+GigyaNss/Release/
+GigyaNss/Flutter/
+GigyaNssEngine/build/
+GigyaNssEngine/Debug/
+GigyaNssEngine/Release/
+
+GigyaNss/gigya-native-screensets-engine/

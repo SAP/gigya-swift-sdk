@@ -10,6 +10,9 @@ import UIKit
 import Gigya
 import GigyaTfa
 import GigyaAuth
+import GigyaNss
+
+//import Flutter
 
 class ViewController: UIViewController {
 
@@ -54,8 +57,8 @@ class ViewController: UIViewController {
     }
 
     @IBAction func showScreenSet(_ sender: Any) {
+        GigyaNss.shared.showScreenSet(with: "bla", viewController: self)
         
-
 //        let container = Gigya.getContainer()
 //        let sessionService = container.resolve(SessionServiceProtocol.self)
 //        let session = sessionService?.session=
@@ -68,24 +71,24 @@ class ViewController: UIViewController {
 
         //Default-ProfileUpdate
 
-
-        var currentScreen: String = ""
-        gigya.showScreenSet(with: "Default-RegistrationLogin", viewController: self) { [weak self] (result) in
-            switch result {
-            case .onLogin(let account):
-                self?.resultTextView!.text = account.toJson()
-            case .onAfterScreenLoad(let event):
-                currentScreen = event["currentScreen"] as? String ?? ""
-            case .error(let event):
-                print(event)
-            case .onHide(let event):
-                print(event)
-            case .onLogout:
-                break
-            default:
-                break
-            }
-        }
+//
+//        var currentScreen: String = ""
+//        gigya.showScreenSet(with: "Default-RegistrationLogin", viewController: self) { [weak self] (result) in
+//            switch result {
+//            case .onLogin(let account):
+//                self?.resultTextView!.text = account.toJson()
+//            case .onAfterScreenLoad(let event):
+//                currentScreen = event["currentScreen"] as? String ?? ""
+//            case .error(let event):
+//                print(event)
+//            case .onHide(let event):
+//                print(event)
+//            case .onLogout:
+//                break
+//            default:
+//                break
+//            }
+//        }
     }
 
     @IBAction func login(_ sender: Any) {
@@ -238,7 +241,7 @@ class ViewController: UIViewController {
     }
 
     @IBAction func loginWithProvider(_ sender: Any) {
-        gigya.login(with: .line, viewController: self, params: ["dataCenter": "ru1"]) { [weak self] (result) in
+        gigya.login(with: .google, viewController: self, params: ["sessionExpiration": "10000"]) { [weak self] (result) in
             switch result {
             case .success(let data):
                 print(data)
