@@ -12,11 +12,14 @@ import Flutter
 class NativeScreenSetsViewController: FlutterViewController {
     var flutterMainChannel: MainPlatformChannelHandler?
 
+    let engineBundle = "Gigya.GigyaNssEngine"
+    let engineId = "io.flutter"
+
     init() {
-        let bundle = Bundle(identifier: "Gigya.GigyaNssEngine")
+        let bundle = Bundle(identifier: engineBundle)
         let project = FlutterDartProject(precompiledDartBundle: bundle)
 
-        let engine = FlutterEngine(name: "io.flutter", project: project)
+        let engine = FlutterEngine(name: engineId, project: project)
         engine.run()
         
         super.init(engine: engine, nibName: nil, bundle: nil)

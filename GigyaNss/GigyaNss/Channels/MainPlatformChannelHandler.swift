@@ -13,14 +13,14 @@ class MainPlatformChannelHandler {
     let flutterMethodChannel: FlutterMethodChannel
 
     init(engine: FlutterEngine) {
-        flutterMethodChannel = FlutterMethodChannel(name: "gigya_nss_engine/method/platform", binaryMessenger: engine.binaryMessenger)
+        flutterMethodChannel = FlutterMethodChannel(name: GigyaNss.mainChannel, binaryMessenger: engine.binaryMessenger)
 
         activateHandler()
     }
 
     func activateHandler() {
         flutterMethodChannel.setMethodCallHandler { (call, result) in
-            let method = MethodsChannel(rawValue: call.method)
+            let method = MainMethodsChannelEvents(rawValue: call.method)
 
             switch method {
             case .engineInit:
@@ -32,6 +32,6 @@ class MainPlatformChannelHandler {
     }
 }
 
-enum MethodsChannel: String {
+enum MainMethodsChannelEvents: String {
     case engineInit
 }

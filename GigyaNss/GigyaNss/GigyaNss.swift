@@ -12,16 +12,18 @@ import Flutter
 public class GigyaNss {
     public static var shared = GigyaNss()
 
-    // initalizeing the flutter engine
+    // main channel id
+    static var mainChannel = "gigya_nss_engine/method/platform"
+
+    /**
+    Show ScreenSet
+
+    - Parameter name:           ScreenSet name.
+    - Parameter viewController: Shown view controller.
+    */
 
     public func showScreenSet(with name: String, viewController: UIViewController) {
-
-        let flutterViewController = NativeScreenSetsViewController()
-        viewController.present(flutterViewController, animated: true, completion: nil)
-
-    }
-
-    public func test() {
-
+        let screenSetViewController = NativeScreenSetsViewController()
+        viewController.present(screenSetViewController, animated: true, completion: nil)
     }
 }

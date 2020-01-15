@@ -97,6 +97,7 @@
 		E722573723CCBEE3000DDB24 /* Channels */ = {
 			isa = PBXGroup;
 			children = (
+				E722573523CCBB31000DDB24 /* MainPlatformChannelHandler.swift */,
 			);
 			path = Channels;
 			sourceTree = "<group>";
@@ -124,8 +125,8 @@
 			isa = PBXGroup;
 			children = (
 				E775E80B23C5D1710059151D /* GigyaNss.h */,
-				E722573723CCBEE3000DDB24 /* Channels */,
 				E722572723CC9EDB000DDB24 /* Scripts */,
+				E722573723CCBEE3000DDB24 /* Channels */,
 				E775E83423C5E4030059151D /* ViewControllers */,
 				E775E82523C5D1AD0059151D /* GigyaNss.swift */,
 				E775E80C23C5D1710059151D /* Info.plist */,
@@ -154,7 +155,6 @@
 			isa = PBXGroup;
 			children = (
 				E722573323CCB1CE000DDB24 /* NativeScreenSetsViewController.swift */,
-				E722573523CCBB31000DDB24 /* MainPlatformChannelHandler.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
