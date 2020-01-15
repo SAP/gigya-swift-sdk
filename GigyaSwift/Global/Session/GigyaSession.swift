@@ -20,7 +20,7 @@ public class GigyaSession: NSObject, NSSecureCoding {
 
     var lastLoginProvider = ""
 
-    init?(sessionToken token: String, secret: String) {
+    public init?(sessionToken token: String, secret: String) {
         self.token = token
         self.secret = secret
     }
