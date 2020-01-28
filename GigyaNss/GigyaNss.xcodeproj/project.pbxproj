@@ -35,10 +35,15 @@
 		E722572923CC9F22000DDB24 /* engine.sh in Resources */ = {isa = PBXBuildFile; fileRef = E722572823CC9F22000DDB24 /* engine.sh */; };
 		E722573423CCB1CE000DDB24 /* NativeScreenSetsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E722573323CCB1CE000DDB24 /* NativeScreenSetsViewController.swift */; };
 		E722573623CCBB31000DDB24 /* MainPlatformChannelHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E722573523CCBB31000DDB24 /* MainPlatformChannelHandler.swift */; };
+		E740A3D723DF4B07000FD651 /* Gigya.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E740A3D623DF4B07000FD651 /* Gigya.framework */; };
+		E740A3D823DF4B07000FD651 /* Gigya.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E740A3D623DF4B07000FD651 /* Gigya.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E775E81223C5D1710059151D /* GigyaNss.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E775E80823C5D1710059151D /* GigyaNss.framework */; };
 		E775E81723C5D1710059151D /* GigyaNssTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E775E81623C5D1710059151D /* GigyaNssTests.swift */; };
 		E775E81923C5D1710059151D /* GigyaNss.h in Headers */ = {isa = PBXBuildFile; fileRef = E775E80B23C5D1710059151D /* GigyaNss.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E775E82623C5D1AD0059151D /* GigyaNss.swift in Sources */ = {isa = PBXBuildFile; fileRef = E775E82523C5D1AD0059151D /* GigyaNss.swift */; };
+		E7772A0323D5D8A500DE9DDD /* ScreenSetsBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7772A0223D5D8A400DE9DDD /* ScreenSetsBuilder.swift */; };
+		E7772A0623D5DC0400DE9DDD /* LoaderFilesHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7772A0523D5DC0400DE9DDD /* LoaderFilesHelper.swift */; };
+		E7772A0923D5EAA000DE9DDD /* BuilderOptionsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7772A0823D5EAA000DE9DDD /* BuilderOptionsProtocol.swift */; };
 		E7F8E33923C777D7002A2A92 /* Flutter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7F8E33823C777D7002A2A92 /* Flutter.framework */; };
 /* End PBXBuildFile section */
 
@@ -52,10 +57,25 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		E740A3D923DF4B07000FD651 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				E740A3D823DF4B07000FD651 /* Gigya.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		E722572823CC9F22000DDB24 /* engine.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = engine.sh; sourceTree = "<group>"; };
 		E722573323CCB1CE000DDB24 /* NativeScreenSetsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeScreenSetsViewController.swift; sourceTree = "<group>"; };
 		E722573523CCBB31000DDB24 /* MainPlatformChannelHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPlatformChannelHandler.swift; sourceTree = "<group>"; };
+		E740A3D623DF4B07000FD651 /* Gigya.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Gigya.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E775E80823C5D1710059151D /* GigyaNss.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GigyaNss.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E775E80B23C5D1710059151D /* GigyaNss.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GigyaNss.h; sourceTree = "<group>"; };
 		E775E80C23C5D1710059151D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -63,6 +83,9 @@
 		E775E81623C5D1710059151D /* GigyaNssTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigyaNssTests.swift; sourceTree = "<group>"; };
 		E775E81823C5D1710059151D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E775E82523C5D1AD0059151D /* GigyaNss.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigyaNss.swift; sourceTree = "<group>"; };
+		E7772A0223D5D8A400DE9DDD /* ScreenSetsBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenSetsBuilder.swift; sourceTree = "<group>"; };
+		E7772A0523D5DC0400DE9DDD /* LoaderFilesHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderFilesHelper.swift; sourceTree = "<group>"; };
+		E7772A0823D5EAA000DE9DDD /* BuilderOptionsProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuilderOptionsProtocol.swift; sourceTree = "<group>"; };
 		E7F8E33823C777D7002A2A92 /* Flutter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Flutter.framework; path = "Flutter/$(CONFIGURATION)/Flutter.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -71,6 +94,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E740A3D723DF4B07000FD651 /* Gigya.framework in Frameworks */,
 				E7F8E33923C777D7002A2A92 /* Flutter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -125,6 +149,8 @@
 			isa = PBXGroup;
 			children = (
 				E775E80B23C5D1710059151D /* GigyaNss.h */,
+				E7772A0723D5EA3D00DE9DDD /* Helpers */,
+				E7772A0423D5DBBD00DE9DDD /* Builders */,
 				E722572723CC9EDB000DDB24 /* Scripts */,
 				E722573723CCBEE3000DDB24 /* Channels */,
 				E775E83423C5E4030059151D /* ViewControllers */,
@@ -146,6 +172,7 @@
 		E775E82A23C5E3600059151D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E740A3D623DF4B07000FD651 /* Gigya.framework */,
 				E7F8E33823C777D7002A2A92 /* Flutter.framework */,
 			);
 			name = Frameworks;
@@ -157,6 +184,23 @@
 				E722573323CCB1CE000DDB24 /* NativeScreenSetsViewController.swift */,
 			);
 			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		E7772A0423D5DBBD00DE9DDD /* Builders */ = {
+			isa = PBXGroup;
+			children = (
+				E7772A0223D5D8A400DE9DDD /* ScreenSetsBuilder.swift */,
+				E7772A0823D5EAA000DE9DDD /* BuilderOptionsProtocol.swift */,
+			);
+			path = Builders;
+			sourceTree = "<group>";
+		};
+		E7772A0723D5EA3D00DE9DDD /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				E7772A0523D5DC0400DE9DDD /* LoaderFilesHelper.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -182,6 +226,7 @@
 				E775E80423C5D1710059151D /* Sources */,
 				E775E80623C5D1710059151D /* Resources */,
 				E775E80523C5D1710059151D /* Frameworks */,
+				E740A3D923DF4B07000FD651 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -333,8 +378,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E7772A0323D5D8A500DE9DDD /* ScreenSetsBuilder.swift in Sources */,
+				E7772A0623D5DC0400DE9DDD /* LoaderFilesHelper.swift in Sources */,
 				E722573623CCBB31000DDB24 /* MainPlatformChannelHandler.swift in Sources */,
 				E722573423CCB1CE000DDB24 /* NativeScreenSetsViewController.swift in Sources */,
+				E7772A0923D5EAA000DE9DDD /* BuilderOptionsProtocol.swift in Sources */,
 				E775E82623C5D1AD0059151D /* GigyaNss.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

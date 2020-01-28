@@ -23,15 +23,35 @@ class MainPlatformChannelHandler {
             let method = MainMethodsChannelEvents(rawValue: call.method)
 
             switch method {
-            case .engineInit:
-                result(["responseId": "engineInit"])
+            case .initialize:
+                let json = self.loadJson()
+
+                result(json)
             default:
                 break
             }
         }
     }
+
+    func loadJson() -> [String: Any] {
+        if let filePath = Bundle.main.url(forResource: "init", withExtension: "json") {
+            do {
+                let data = try Data(contentsOf: filePath, options: .mappedIfSafe)
+                  let jsonResult = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
+                  if let jsonResult = jsonResult as? Dictionary<String, AnyObject> {
+                            // do stuff
+                    return jsonResult
+                  }
+              } catch {
+                   // handle error
+                return [:]
+              }
+        }
+
+         return [:]
+    }
 }
 
 enum MainMethodsChannelEvents: String {
-    case engineInit
+    case initialize
 }

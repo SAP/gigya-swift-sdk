@@ -30,7 +30,10 @@ class ViewController: UIViewController {
 
         not.addObserver(self, selector: #selector(gigyaSessionExpire(_:)), name: Notification.Name("didInvalidateSession"), object: nil)
 
-        
+        let session = GigyaSession(sessionToken: "st2.s.AcbHVG_mXw.e0xYJpFpyl3yPdKo7pZLugyv4uVKgvOpGPhMpUud3K2_jiRGWiIyUJUxzqTlNhCLO0c0XWQFJsujk6GwgOthmGbGgc-kkLfD1X3udCY99Is._k1V8pczYgN3KvSR8xye1kOfBzRDpwAVsb9yWiSFfOJ9tbfEbtxeWNq1MUlPeadsuoim0HxSadOso17OkOzRKw.sc3", secret: "lfc1pyyqVUsMFv1qFek+NZjm590=")
+        session?.sessionExpirationTimestamp = 15
+
+        gigya.setSession(session!)
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -58,7 +61,12 @@ class ViewController: UIViewController {
     }
 
     @IBAction func showScreenSet(_ sender: Any) {
-        GigyaNss.shared.showScreenSet(with: "bla", viewController: self)
+//        GigyaNss.shared.showScreenSet(with: "test", viewController: self)
+
+        GigyaNss.shared
+            .load(withAsset: "init")
+            .setScreen(name: "dsad")
+            .show(viewController: self)
         
 //        let container = Gigya.getContainer()
 //        let sessionService = container.resolve(SessionServiceProtocol.self)
@@ -94,7 +102,7 @@ class ViewController: UIViewController {
 
     @IBAction func login(_ sender: Any) {
         let alert = UIFactory.getLoginAlert { email, password in
-            self.gigya.login(loginId: email!, password: password!, params: ["sessionExpiration": "10000"]) { [weak self] result in
+            self.gigya.login(loginId: email!, password: password!, params: ["sessionExpiration": "1000"]) { [weak self] result in
                 switch result {
                 case .success(let data):
                     self?.resultTextView?.text = data.toJson()
@@ -242,7 +250,7 @@ class ViewController: UIViewController {
     }
 
     @IBAction func loginWithProvider(_ sender: Any) {
-        gigya.login(with: .google, viewController: self, params: ["sessionExpiration": "10000"]) { [weak self] (result) in
+        gigya.login(with: .google, viewController: self, params: ["sessionExpiration": "1000"]) { [weak self] (result) in
             switch result {
             case .success(let data):
                 print(data)

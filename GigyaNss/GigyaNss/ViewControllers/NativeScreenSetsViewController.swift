@@ -21,7 +21,6 @@ class NativeScreenSetsViewController: FlutterViewController {
 
         let engine = FlutterEngine(name: engineId, project: project)
         engine.run()
-        
         super.init(engine: engine, nibName: nil, bundle: nil)
 
         configureFlutterEngine()
@@ -37,6 +36,7 @@ class NativeScreenSetsViewController: FlutterViewController {
         }
 
         flutterMainChannel = MainPlatformChannelHandler(engine: engine)
+//        engine.run(withEntrypoint: "lunch")
     }
 
     override func viewDidLoad() {

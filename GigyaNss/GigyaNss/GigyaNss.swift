@@ -9,11 +9,11 @@
 import UIKit
 import Flutter
 
-public class GigyaNss {
+final public class GigyaNss {
     public static var shared = GigyaNss()
 
     // main channel id
-    static var mainChannel = "gigya_nss_engine/method/platform"
+    static var mainChannel = "gigya_nss_engine/method/main"
 
     /**
     Show ScreenSet
@@ -24,6 +24,14 @@ public class GigyaNss {
 
     public func showScreenSet(with name: String, viewController: UIViewController) {
         let screenSetViewController = NativeScreenSetsViewController()
-        viewController.present(screenSetViewController, animated: true, completion: nil)
+        let nav = UINavigationController(rootViewController: screenSetViewController)
+        
+        viewController.present(nav, animated: true, completion: nil)
+    }
+
+    @discardableResult
+    public func load(withAsset asset: String) -> BuilderOptions {
+        let builder = ScreenSetsBuilder()
+        return builder.load(withAsset: asset)
     }
 }

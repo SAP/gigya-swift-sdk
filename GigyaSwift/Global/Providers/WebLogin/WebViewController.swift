@@ -16,7 +16,6 @@ class WebViewController: UIViewController {
 
     init(configuration: WKWebViewConfiguration = WKWebViewConfiguration()) {
         webView = WKWebView(frame: .zero, configuration: configuration)
-
         super.init(nibName: nil, bundle: nil)
 
         self.view.backgroundColor = .white

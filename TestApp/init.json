@@ -1,0 +1,57 @@
+{
+  "platformAware": false,
+  "markup": {
+    "screens": {
+      "login": {
+        "id": "login",
+        "appBar": {
+          "textKey": "login"
+        },
+        "stack": "vertical",
+        "children": [
+          {
+            "type": "label",
+            "textKey": "login with site creds:"
+          },
+          {
+            "type": "email",
+            "textKey": "Email"
+          },
+          {
+            "type": "password",
+            "textKey": "Password"
+          },
+          {
+            "type": "submit",
+            "textKey": "Submit"
+          }
+        ]
+      },
+      "register": {
+        "id": "register",
+        "appBar": {
+          "textKey": "register"
+        },
+        "stack": "vertical",
+        "children": [
+          {
+            "type": "label",
+            "textKey": "Register with site creds:"
+          },
+          {
+            "type": "email",
+            "textKey": "Email"
+          },
+          {
+            "type": "password",
+            "textKey": "Password"
+          },
+          {
+            "type": "submit",
+            "textKey": "Submit"
+          }
+        ]
+      }
+    }
+  }
+}
