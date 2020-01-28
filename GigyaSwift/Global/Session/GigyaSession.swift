@@ -16,7 +16,7 @@ public class GigyaSession: NSObject, NSSecureCoding {
 
     var secret: String = ""
 
-    var sessionExpirationTimestamp: Double?
+    public var sessionExpirationTimestamp: Double?
 
     var lastLoginProvider = ""
 

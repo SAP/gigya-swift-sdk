@@ -206,8 +206,11 @@ class SessionService: SessionServiceProtocol {
     // MARK: - SESSION EXPIRATION
 
     private func expireSession() {
-        NotificationCenter.default.post(name: .didGigyaSessionExpire, object: nil)
+        print(sessionLoad)
         clear()
+
+        print("expired")
+        NotificationCenter.default.post(name: .didGigyaSessionExpire, object: nil)
     }
 
     func startSessionCountdownTimerIfNeeded() {
@@ -242,26 +245,28 @@ class SessionService: SessionServiceProtocol {
     private func startSessionCountdown(futureTime: Double) {
         GigyaLogger.log(with: self, message: "[startSessionCountdown] - Timer start")
 
-        sessionLifeCountdownTimer = Timer.scheduledTimer(withTimeInterval: futureTime, repeats: false, block: { [weak self] (timer) in
-            // cancel timer
-            timer.invalidate()
 
-            // clear timer from memory
-            self?.sessionLifeCountdownTimer = nil
+        DispatchQueue.main.async { [weak self] in
+            self?.sessionLifeCountdownTimer = Timer.scheduledTimer(withTimeInterval: futureTime, repeats: false, block: { [weak self] (timer) in
+                // cancel timer
+                timer.invalidate()
 
-            // unregister events (foreground / background)
-            self?.persistenceService.setExpirationSession(to: 0)
-            self?.unregisterAppStateEvents()
+                // clear timer from memory
+                self?.sessionLifeCountdownTimer = nil
 
-            // call to check session expirtation (remove session and send broadcast)
-            if let session = self?.session, !session.isValid() {
-                self?.expireSession()
-            }
+                // unregister events (foreground / background)
+                self?.persistenceService.setExpirationSession(to: 0)
+                self?.unregisterAppStateEvents()
 
-            GigyaLogger.log(with: self, message: "[startSessionCountdown] - Timer finish")
+                // call to check session expirtation (remove session and send broadcast)
+                if let session = self?.session, !session.isValid() {
+                    self?.expireSession()
+                }
 
-        })
+                GigyaLogger.log(with: self, message: "[startSessionCountdown] - Timer finish")
 
+            })
+        }
     }
 
     func clear() {
