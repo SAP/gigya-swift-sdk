@@ -136,7 +136,7 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
      */
 
     public func setSession(_ session: GigyaSession) {
-        let sessionInfo = SessionInfoModel(sessionToken: session.token, sessionSecret: session.secret, sessionExpiration: String(describing: session.sessionExpirationTimestamp))
+        let sessionInfo = SessionInfoModel(sessionToken: session.token, sessionSecret: session.secret, sessionExpiration: String(session.sessionExpirationTimestamp ?? 0))
         sessionService.setSession(sessionInfo)
     }
 

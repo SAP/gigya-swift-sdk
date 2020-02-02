@@ -11,6 +11,7 @@ import Foundation
 typealias GSKeychainCompletionHandler = (KeychainResult) -> Void
 
 internal class KeychainStorageFactory {
+
     let plistConfig: PlistConfig?
 
     init(plistFactory: PlistConfigFactory) {
