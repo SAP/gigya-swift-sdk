@@ -27,6 +27,10 @@ class ViewController: UIViewController {
 
         not.addObserver(self, selector: #selector(gigyaSessionExpire(_:)), name: Notification.Name("didInvalidateSession"), object: nil)
 
+        let session = GigyaSession(sessionToken: "", secret: "")
+
+
+
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -90,7 +94,7 @@ class ViewController: UIViewController {
 
     @IBAction func login(_ sender: Any) {
         let alert = UIFactory.getLoginAlert { email, password in
-            self.gigya.login(loginId: email!, password: password!, params: ["sessionExpiration": "10000"]) { [weak self] result in
+            self.gigya.login(loginId: email!, password: password!, params: ["sessionExpiration": "50"]) { [weak self] result in
                 switch result {
                 case .success(let data):
                     self?.resultTextView?.text = data.toJson()
@@ -222,6 +226,7 @@ class ViewController: UIViewController {
         } else {
 
             isLoggedIn = gigya.isLoggedIn()
+            print("session is valid?: \(isLoggedIn)")
             if (isLoggedIn) {
                 gigya.getAccount() { [weak self] result in
                     switch result {

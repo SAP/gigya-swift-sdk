@@ -62,6 +62,8 @@ class SessionService: SessionServiceProtocol {
 
     @objc func appMovedToBackground() {
         sessionLifeCountdownTimer?.invalidate()
+
+        GigyaLogger.log(with: self, message: "stop: app going to backgroud")
     }
 
     @objc func appReturnToForeground() {
@@ -247,7 +249,9 @@ class SessionService: SessionServiceProtocol {
 
 
         DispatchQueue.main.async { [weak self] in
-            self?.sessionLifeCountdownTimer = Timer.scheduledTimer(withTimeInterval: futureTime, repeats: false, block: { [weak self] (timer) in
+            self?.sessionLifeCountdownTimer = Timer.scheduledTimer(withTimeInterval: futureTime,
+                                                                   repeats: false,
+                                                                   block: { [weak self] (timer) in
                 // cancel timer
                 timer.invalidate()
 
