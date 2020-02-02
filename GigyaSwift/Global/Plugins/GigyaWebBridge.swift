@@ -139,10 +139,8 @@ public class GigyaWebBridge<T: GigyaAccountProtocol>: NSObject, WKScriptMessageH
             mapSendRequest(callbackId: callbackId, apiMethod: apiMethod, params: params.asDictionary())
         case "on_plugin_event":
             guard let params = data["params"]?.asDictionary() else { return }
-            if let sourceContainerId = params["sourceContainerID"] {
-                if (sourceContainerId == "pluginContainer") {
-                    onPluginEvent(type: T.self, params: params)
-                }
+            if let sourceContainerId = params["sourceContainerID"], !sourceContainerId.isEmpty {
+                onPluginEvent(type: T.self, params: params)
             }
         default:
             break
@@ -215,6 +213,12 @@ public class GigyaWebBridge<T: GigyaAccountProtocol>: NSObject, WKScriptMessageH
                 completion(.onHide(event: params))
             case "error":
                 completion(.error(event: params))
+            case "fieldChanged":
+                completion(.onFieldChanged(event: params))
+            case "beforeValidation":
+                completion(.onBeforeValidation(event: params))
+            case "afterValidation":
+                completion(.onAfterValidation(event: params))
             default:
                 break
             }
