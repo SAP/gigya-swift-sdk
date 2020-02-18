@@ -208,7 +208,6 @@ class SessionService: SessionServiceProtocol {
     // MARK: - SESSION EXPIRATION
 
     private func expireSession() {
-        print(sessionLoad)
         clear()
 
         print("expired")

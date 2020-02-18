@@ -68,6 +68,8 @@ class WebProviderLoginTests: XCTestCase {
         ResponseDataTest.clientID = "123"
         ResponseDataTest.resData = jsonData
 
+        Gigya.sharedInstance().logout { _ in
+
         Gigya.sharedInstance().login(with: .yahoo, viewController: viewController) { (result) in
             switch result {
             case .success:
@@ -77,6 +79,7 @@ class WebProviderLoginTests: XCTestCase {
                     XCTAssertEqual(data, "token no available")
                 }
             }
+        }
         }
     }
 

@@ -71,7 +71,7 @@ class PushServiceTests: XCTestCase {
             XCTAssertEqual(body, "testForegroundPush")
         }
 
-        pushService?.foregrundNotification(with: notification)
+        pushService?.foregroundNotification(with: notification)
 
     }
 
@@ -85,9 +85,10 @@ class PushServiceTests: XCTestCase {
             XCTAssertEqual(id, "123")
         }
 
-        pushService?.onRecivePush(userInfo: notification, completion: { _ in
+        pushService?.onReceivePush(userInfo: notification, completion: { (_ in) in
 
         })
+
 
     }
 
@@ -103,10 +104,9 @@ class PushServiceTests: XCTestCase {
             XCTAssertNotNil(notifications[id])
         }
 
-        pushService?.onRecivePush(userInfo: notification, completion: { _ in
+        pushService?.onReceivePush(userInfo: notification, completion: { (_) in
 
         })
-
 
     }
 }

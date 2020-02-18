@@ -153,6 +153,16 @@ class GigyaContainerUtils {
             return PlistConfigFactory()
         }
 
+        container.register(service: SessionVerificationServiceProtocol.self) { resolver in
+            let config = resolver.resolve(GigyaConfig.self)
+            let sessionService = resolver.resolve(SessionServiceProtocol.self)
+            let apiService = resolver.resolve(ApiServiceProtocol.self)
+
+            return SessionVerificationService(config: config!,
+                                              apiService: apiService!,
+                                              sessionService: sessionService!)
+        }
+        
         container.register(service: GigyaCore<T>.self) { resolver in
             let config = resolver.resolve(GigyaConfig.self)
             let sessionService = resolver.resolve(SessionServiceProtocol.self)
@@ -162,6 +172,8 @@ class GigyaContainerUtils {
             let plistFactory = resolver.resolve(PlistConfigFactory.self)
             let persistenceService = resolver.resolve(PersistenceService.self)
             let container = resolver.resolve(IOCContainer.self)
+            let sessionVerificationService = resolver.resolve(SessionVerificationServiceProtocol.self)
+
 
             return GigyaCore(config: config!,
                              persistenceService: persistenceService!,
@@ -169,7 +181,9 @@ class GigyaContainerUtils {
                              sessionService: sessionService!,
                              interruptionResolver: interruptionResolver!,
                              biometric: biometricService!,
-                             plistFactory: plistFactory!, container: container!)
+                             plistFactory: plistFactory!,
+                             sessionVerificationService: sessionVerificationService!,
+                             container: container!)
         }
 
         container.register(service: GigyaWebBridge<T>.self) { resolver in

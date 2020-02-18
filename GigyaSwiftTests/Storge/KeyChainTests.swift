@@ -8,6 +8,8 @@
 
 import XCTest
 @testable import Gigya
+
+@available(iOS 11.0, *)
 class KeyChainTests: XCTestCase {
     let ioc = GigyaContainerUtils.shared
     var keychainFactory: KeychainStorageFactory?

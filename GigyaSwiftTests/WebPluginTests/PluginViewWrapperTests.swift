@@ -32,16 +32,17 @@ class PluginViewWrapperTests: XCTestCase {
 
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
+
         ResponseDataTest.resData = nil
         ResponseDataTest.error = nil
 
         config.apiKey = "123"
 
-        Gigya.gigyaContainer = GigyaIOCContainer<GigyaAccount>()
-        Gigya.gigyaContainer?.container = ioc.container
-
-        
-        Gigya.sharedInstance(UserDataModel.self).initFor(apiKey: "123")
+//        Gigya.gigyaContainer = GigyaIOCContainer<GigyaAccount>()
+//        Gigya.gigyaContainer?.container = ioc.container
+//
+//
+//        Gigya.sharedInstance(UserDataModel.self).initFor(apiKey: "123")
 
         ResponseDataTest.clientID = nil
         ResponseDataTest.resData = nil
@@ -193,6 +194,7 @@ class PluginViewWrapperTests: XCTestCase {
 
 
     func testPluginEventOnLogoutTest() {
+
         sessionService.setSession(SessionInfoModel(sessionToken: "test-logout", sessionSecret: "test-logout", sessionExpiration: ""))
 
         print(sessionService.isValidSession())
@@ -208,9 +210,14 @@ class PluginViewWrapperTests: XCTestCase {
 
         let plugin = "accounts.screenSet"
 
+        let expectation = self.expectation(description: "checkUpdatePush111")
+
+
         let complete: (GigyaPluginEvent<GigyaAccount>) -> Void = { result in
+
             switch result {
             case .onLogout:
+                expectation.fulfill()
                 XCTAssertFalse(self.sessionService.isValidSession())
             default:
                 XCTFail()
@@ -225,7 +232,7 @@ class PluginViewWrapperTests: XCTestCase {
 
         webBridge.userContentController(webBridge.contentController, didReceive: OnLogoutCustomWKScriptMessage())
 
-
+        waitForExpectations(timeout: 5, handler: nil)
     }
 
 }

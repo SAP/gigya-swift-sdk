@@ -36,6 +36,7 @@ final class WebLoginWrapper: NSObject, ProviderWrapperProtocol {
         self.config = config
         self.persistenceService = persistenceService
         self.webViewController = WebViewController()
+
         self.networkAdapter = networkAdapter
 
         super.init()
@@ -109,7 +110,7 @@ final class WebLoginWrapper: NSObject, ProviderWrapperProtocol {
 
         let bodyString: String = bodyDataParmas.sorted(by: <).reduce("") { "\($0)\($1.0)=\($1.1.addingPercentEncoding(withAllowedCharacters: urlAllowed) ?? "")&" }
 
-        let dataURL = URL(string: urlString)!
+        let dataURL = URL(string: urlString)!   
 
         var request: URLRequest = URLRequest(url: dataURL)
 
