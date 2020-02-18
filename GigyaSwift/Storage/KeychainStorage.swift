@@ -30,21 +30,25 @@ internal class KeychainStorageFactory {
             return
         }
 
-        guard let accessControl = SecAccessControlCreateWithFlags(kCFAllocatorDefault,
-                                                                  state.attributeAccess(),
-                                                                  state.flag(),
-                                                                  nil) else {
-                                                                                   completionHandler?(.error(error: .getAttributeFailed)) // "Can not require passcode on current version of iOS"
-                                                                    return
-        }
-
         var attributes: [CFString: Any] =  [:]
         attributes = [kSecClass: kSecClassGenericPassword,
                                                kSecAttrService: InternalConfig.Storage.serviceName,
                                                kSecAttrAccount: name,
-                                               kSecValueData: data,
-                                               kSecAttrAccessControl: accessControl]
+                                               kSecValueData: data]
 
+        if state == .biometric {
+            guard let accessControl = SecAccessControlCreateWithFlags(kCFAllocatorDefault,
+                                                                      state.attributeAccess(),
+                                                                      state.flag(),
+                                                                      nil) else {
+                                                                                       completionHandler?(.error(error: .getAttributeFailed)) // "Can not require passcode on current version of iOS"
+                                                                        return
+            }
+
+            attributes[kSecAttrAccessControl] = accessControl
+        } else {
+            attributes[kSecAttrAccessible] = state.attributeAccess()
+        }
 
         DispatchQueue.global(qos: .utility).async {
             let status = SecItemAdd(attributes as CFDictionary, nil)
