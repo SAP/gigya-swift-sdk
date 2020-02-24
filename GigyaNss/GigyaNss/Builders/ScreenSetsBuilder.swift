@@ -11,7 +11,7 @@ import Gigya
 
 // MARK: - Main builder options
 
-class ScreenSetsBuilder: ScreenSetsMainBuilderProtocol {
+class ScreenSetsBuilder<T: GigyaAccountProtocol>: ScreenSetsMainBuilderProtocol {
 
     let loaderHelper: LoaderFileHelper = LoaderFileHelper()
 
@@ -39,9 +39,13 @@ extension ScreenSetsBuilder: ScreenSetsActionsBuilderProtocol {
         guard let screenSetName = screenSetName, !screenSetName.isEmpty else {
             GigyaLogger.error(with: ScreenSetsBuilder.self, message: "screenSetName is empty, please use `setScreen(name: String)` before using `show()`.")
         }
+        
         // TODO: How to check if the screenSetId is exists? Maybe need to check it in the flutter engine?
+        guard let viewModel = GigyaNss.dependenciesContainer.resolve(NativeScreenSetsViewModel<T>.self) else {
+            GigyaLogger.error(with: GigyaNss.self, message: "`NativeScreenSetsViewModel` dependency not found.")
+        }
 
-        let screenSetViewController = NativeScreenSetsViewController()
+        let screenSetViewController = NativeScreenSetsViewController(viewModel: viewModel)
         viewController.present(screenSetViewController, animated: true, completion: nil)
     }
 }

@@ -9,6 +9,6 @@
 import Foundation
 
 // TODO: how to make protocol with generic
-protocol ResolverProtocol {
+public protocol ResolverProtocol {
     func resolve<Service>(_ serviceType: Service.Type) -> Service?
 }

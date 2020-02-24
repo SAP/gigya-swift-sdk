@@ -30,10 +30,6 @@ class ViewController: UIViewController {
 
         not.addObserver(self, selector: #selector(gigyaSessionExpire(_:)), name: Notification.Name("didInvalidateSession"), object: nil)
 
-        let session = GigyaSession(sessionToken: "st2.s.AcbHVG_mXw.e0xYJpFpyl3yPdKo7pZLugyv4uVKgvOpGPhMpUud3K2_jiRGWiIyUJUxzqTlNhCLO0c0XWQFJsujk6GwgOthmGbGgc-kkLfD1X3udCY99Is._k1V8pczYgN3KvSR8xye1kOfBzRDpwAVsb9yWiSFfOJ9tbfEbtxeWNq1MUlPeadsuoim0HxSadOso17OkOzRKw.sc3", secret: "lfc1pyyqVUsMFv1qFek+NZjm590=")
-        session?.sessionExpirationTimestamp = 15
-
-        gigya.setSession(session!)
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -148,7 +144,7 @@ class ViewController: UIViewController {
 
                     switch error.error {
                     case .gigyaError(let data):
-                        print(data)
+                        let fullError = data.toDictionary()
                     default:
                         break
                     }

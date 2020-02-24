@@ -20,7 +20,16 @@ import FBSDKShareKit
 class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
 
     var window: UIWindow?
-    let gigya = Gigya.sharedInstance(UserHost.self)
+    lazy var gigya: GigyaCore<UserHost> = {
+        let gmid = UserDefaults.standard.object(forKey: "com.gigya.GigyaSDK:gmid")
+        let hasRunBefore = UserDefaults.standard.bool(forKey: "com.gigya.GigyaSDK:hasRunBefore")
+
+        if let _ = gmid, hasRunBefore == false {
+            UserDefaults.standard.setValue(true, forKey: "com.gigya.GigyaSDK:hasRunBefore")
+        }
+
+        return Gigya.sharedInstance(UserHost.self)
+    }()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -39,7 +48,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
         GigyaTfa.shared.registerForRemoteNotifications()
 
         ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
-
 
 
         return true

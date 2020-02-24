@@ -1,6 +1,7 @@
 {
   "platformAware": false,
   "markup": {
+    "initialRoute": "register",
     "screens": {
       "login": {
         "id": "login",
@@ -14,23 +15,26 @@
             "textKey": "login with site creds:"
           },
           {
+            "id": "loginID",
             "type": "email",
             "textKey": "Email"
           },
           {
+            "id": "password",
             "type": "password",
             "textKey": "Password"
           },
           {
             "type": "submit",
-            "textKey": "Submit"
+            "textKey": "Submit",
+            "api": "accounts.login"
           }
         ]
       },
       "register": {
         "id": "register",
         "appBar": {
-          "textKey": "register"
+          "textKey": "Register"
         },
         "stack": "vertical",
         "children": [
@@ -39,16 +43,19 @@
             "textKey": "Register with site creds:"
           },
           {
+            "id": "email",
             "type": "email",
             "textKey": "Email"
           },
           {
+            "id": "password",
             "type": "password",
             "textKey": "Password"
           },
           {
             "type": "submit",
-            "textKey": "Submit"
+            "textKey": "Submit",
+            "api": "accounts.register"
           }
         ]
       }

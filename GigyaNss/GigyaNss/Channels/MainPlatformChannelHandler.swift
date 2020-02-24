@@ -7,51 +7,34 @@
 //
 
 import Flutter
+import Gigya
 
-class MainPlatformChannelHandler {
+protocol BaseChannel {
+    var flutterMethodChannel: FlutterMethodChannel { get set }
 
-    let flutterMethodChannel: FlutterMethodChannel
+    init(engine: FlutterEngine)
+}
 
-    init(engine: FlutterEngine) {
-        flutterMethodChannel = FlutterMethodChannel(name: GigyaNss.mainChannel, binaryMessenger: engine.binaryMessenger)
-
-        activateHandler()
-    }
-
-    func activateHandler() {
+extension BaseChannel {
+    func methodHandler<T: RawRepresentable>(scheme: T.Type, _ handler: @escaping (T?, Any?, FlutterResult) -> Void) where T.RawValue == String {
         flutterMethodChannel.setMethodCallHandler { (call, result) in
-            let method = MainMethodsChannelEvents(rawValue: call.method)
+            let method = T(rawValue: call.method)
 
-            switch method {
-            case .initialize:
-                let json = self.loadJson()
-
-                result(json)
-            default:
-                break
-            }
+            handler(method, call.arguments, result)
         }
     }
+}
 
-    func loadJson() -> [String: Any] {
-        if let filePath = Bundle.main.url(forResource: "init", withExtension: "json") {
-            do {
-                let data = try Data(contentsOf: filePath, options: .mappedIfSafe)
-                  let jsonResult = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
-                  if let jsonResult = jsonResult as? Dictionary<String, AnyObject> {
-                            // do stuff
-                    return jsonResult
-                  }
-              } catch {
-                   // handle error
-                return [:]
-              }
-        }
+class MainPlatformChannelHandler: BaseChannel {
 
-         return [:]
+    var flutterMethodChannel: FlutterMethodChannel
+
+    required init(engine: FlutterEngine) {
+        flutterMethodChannel = FlutterMethodChannel(name: GigyaNss.mainChannel, binaryMessenger: engine.binaryMessenger)
     }
 }
 
 enum MainMethodsChannelEvents: String {
     case initialize
+    case flow
 }

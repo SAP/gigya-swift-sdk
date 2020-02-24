@@ -8,14 +8,19 @@
 
 import UIKit
 import Flutter
+import Gigya
 
-class NativeScreenSetsViewController: FlutterViewController {
+class NativeScreenSetsViewController<T: GigyaAccountProtocol>: FlutterViewController {
     var flutterMainChannel: MainPlatformChannelHandler?
+
+    var viewModel: NativeScreenSetsViewModel<T>
 
     let engineBundle = "Gigya.GigyaNssEngine"
     let engineId = "io.flutter"
 
-    init() {
+    init(viewModel: NativeScreenSetsViewModel<T>) {
+        self.viewModel = viewModel
+        
         let bundle = Bundle(identifier: engineBundle)
         let project = FlutterDartProject(precompiledDartBundle: bundle)
 
