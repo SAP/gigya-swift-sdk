@@ -13,21 +13,19 @@ import Gigya
 
 class ScreenSetsBuilder<T: GigyaAccountProtocol>: ScreenSetsMainBuilderProtocol {
 
-    let loaderHelper: LoaderFileHelper = LoaderFileHelper()
-
-    var dataDictionary: [String: Any] = [:]
-    var screenSetName: String?
+    var assetName: String?
+    var screenName: String?
 
     @discardableResult
     func load(withAsset asset: String) -> BuilderOptions {
-        dataDictionary = loaderHelper.fileToDic(name: asset)
+        assetName = asset
         return self
     }
 }
 
 extension ScreenSetsBuilder: ScreenSetsExternalBuilderProtocol {
     func setScreen(name: String) -> BuilderOptions {
-        screenSetName = name
+        screenName = name
         return self
     }
 }
@@ -36,16 +34,21 @@ extension ScreenSetsBuilder: ScreenSetsExternalBuilderProtocol {
 
 extension ScreenSetsBuilder: ScreenSetsActionsBuilderProtocol {
     func show(viewController: UIViewController) {
-        guard let screenSetName = screenSetName, !screenSetName.isEmpty else {
+        guard let assetName = assetName, !assetName.isEmpty else {
             GigyaLogger.error(with: ScreenSetsBuilder.self, message: "screenSetName is empty, please use `setScreen(name: String)` before using `show()`.")
         }
         
         // TODO: How to check if the screenSetId is exists? Maybe need to check it in the flutter engine?
-        guard let viewModel = GigyaNss.dependenciesContainer.resolve(NativeScreenSetsViewModel<T>.self) else {
-            GigyaLogger.error(with: GigyaNss.self, message: "`NativeScreenSetsViewModel` dependency not found.")
+
+        guard let screenSetViewController = GigyaNss.dependenciesContainer.resolve(NativeScreenSetsViewController<T>.self) else {
+            GigyaLogger.error(with: GigyaNss.self, message: "`NativeScreenSetsViewController` dependency not found.")
         }
 
-        let screenSetViewController = NativeScreenSetsViewController(viewModel: viewModel)
+        // build the screen with the asset
+        screenSetViewController.build(asset: assetName)
+
         viewController.present(screenSetViewController, animated: true, completion: nil)
+        
+
     }
 }

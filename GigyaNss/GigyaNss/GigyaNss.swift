@@ -34,7 +34,7 @@ final public class GigyaNss {
 //    }
 
     @discardableResult
-    public func load<T: GigyaAccountProtocol>(asset: String, scheme: T) -> BuilderOptions {
+    public func load<T: GigyaAccountProtocol>(asset: String, scheme: T.Type) -> BuilderOptions {
         guard let builder = GigyaNss.dependenciesContainer.resolve(ScreenSetsBuilder<T>.self) else {
             GigyaLogger.error(with: GigyaNss.self, message: "`ScreenSetsBuilder` dependency not found.")
         }
@@ -42,13 +42,25 @@ final public class GigyaNss {
         return builder.load(withAsset: asset)
     }
 
-    func register<T: GigyaAccountProtocol>(scheme: T) {
+    public func register<T: GigyaAccountProtocol>(scheme: T.Type) {
         GigyaNss.dependenciesContainer.register(service: ScreenSetsBuilder<T>.self) { _ in
             return ScreenSetsBuilder()
         }
 
         GigyaNss.dependenciesContainer.register(service: NativeScreenSetsViewModel<T>.self) { resolver in
-            return NativeScreenSetsViewModel()
+            let loaderHelper = resolver.resolve(LoaderFileHelper.self)
+
+            return NativeScreenSetsViewModel(loaderHelper: loaderHelper!)
+        }
+
+        GigyaNss.dependenciesContainer.register(service: NativeScreenSetsViewController<T>.self) { resolver in
+            let viewModel = resolver.resolve(NativeScreenSetsViewModel<T>.self)
+
+            return NativeScreenSetsViewController(viewModel: viewModel!)
+        }
+
+        GigyaNss.dependenciesContainer.register(service: LoaderFileHelper.self) { _ in
+            return LoaderFileHelper()
         }
     }
 }

@@ -11,32 +11,53 @@ import Gigya
 
 class NativeScreenSetsViewModel<T: GigyaAccountProtocol>: CordinatorContainer<T> {
 
+    var dismissClosure: () -> Void = {}
+
     var mainChannel: MainPlatformChannelHandler?
     var apiChannel: ApiChannelHandler?
 
-    func loadChannels(with engine: FlutterEngine) {
+    let loaderHelper: LoaderFileHelper
+
+    let engineBundle = "Gigya.GigyaNssEngine"
+    let engineId = "io.flutter"
+
+    init(loaderHelper: LoaderFileHelper) {
+        self.loaderHelper = loaderHelper
+    }
+
+    func createEngine() -> FlutterEngine {
+        let bundle = Bundle(identifier: engineBundle)
+        let project = FlutterDartProject(precompiledDartBundle: bundle)
+
+        let engine = FlutterEngine(name: engineId, project: project)
+        engine.run()
+
+        return engine
+    }
+    
+    func loadChannels(with engine: FlutterEngine, asset: String) {
         mainChannel = MainPlatformChannelHandler(engine: engine)
         apiChannel = ApiChannelHandler(engine: engine)
 
         mainChannel?.methodHandler(scheme: MainMethodsChannelEvents.self) { (method, data, response ) in
-            guard let method = method else {
-                assertionFailure("Runtime error")
-                return
-            }
-
+            print("method: \(method)")
             switch method {
-            case .initialize:
-                response(self.loadJson())
+            case .ignition:
+                let loadAsset = self.loaderHelper.fileToDic(name: asset)
+                response(loadAsset)
             case .flow:
+                break
+            case .dismiss:
+                self.dismissClosure()
+            case .none:
                 break
             }
 
         }
     }
 
-
-    func loadJson() -> [String: Any] {
-        if let filePath = Bundle.main.url(forResource: "init", withExtension: "json") {
+    func loadJson(asset: String) -> [String: Any] {
+        if let filePath = Bundle.main.url(forResource: asset, withExtension: "json") {
             do {
                 let data = try Data(contentsOf: filePath, options: .mappedIfSafe)
                   let jsonResult = try JSONSerialization.jsonObject(with: data, options: .allowFragments)

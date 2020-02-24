@@ -60,7 +60,7 @@ class ViewController: UIViewController {
 //        GigyaNss.shared.showScreenSet(with: "test", viewController: self)
 
         GigyaNss.shared
-            .load(withAsset: "init")
+            .load(asset: "init", scheme: UserHost.self)
             .setScreen(name: "dsad")
             .show(viewController: self)
         
@@ -75,10 +75,9 @@ class ViewController: UIViewController {
 
 
         //Default-ProfileUpdate
-
-//
+////
 //        var currentScreen: String = ""
-//        gigya.showScreenSet(with: "Default-RegistrationLogin", viewController: self) { [weak self] (result) in
+//        gigya.showScreenSet(with: "RBL_APP-RegistrationLogin", viewController: self) { [weak self] (result) in
 //            switch result {
 //            case .onLogin(let account):
 //                self?.resultTextView!.text = account.toJson()

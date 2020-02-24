@@ -11,37 +11,34 @@ import Flutter
 import Gigya
 
 class NativeScreenSetsViewController<T: GigyaAccountProtocol>: FlutterViewController {
-    var flutterMainChannel: MainPlatformChannelHandler?
-
     var viewModel: NativeScreenSetsViewModel<T>
-
-    let engineBundle = "Gigya.GigyaNssEngine"
-    let engineId = "io.flutter"
 
     init(viewModel: NativeScreenSetsViewModel<T>) {
         self.viewModel = viewModel
-        
-        let bundle = Bundle(identifier: engineBundle)
-        let project = FlutterDartProject(precompiledDartBundle: bundle)
 
-        let engine = FlutterEngine(name: engineId, project: project)
-        engine.run()
+        let engine = viewModel.createEngine()
+
         super.init(engine: engine, nibName: nil, bundle: nil)
 
-        configureFlutterEngine()
+        viewModelHandlers()
     }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func configureFlutterEngine() {
+    func build(asset: String) {
         guard let engine = engine else {
-            return
+            GigyaLogger.error(with: NativeScreenSetsViewController.self, message: "engine not exists.")
         }
 
-        flutterMainChannel = MainPlatformChannelHandler(engine: engine)
-//        engine.run(withEntrypoint: "lunch")
+        viewModel.loadChannels(with: engine, asset: asset)
+    }
+
+    func viewModelHandlers() {
+        viewModel.dismissClosure = { [weak self] in
+            self?.navigationController?.popViewController(animated: true)
+        }
     }
 
     override func viewDidLoad() {

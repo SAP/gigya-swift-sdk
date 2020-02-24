@@ -15,6 +15,7 @@ import GigyaTfa
 import GigyaAuth
 import FBSDKCoreKit
 import FBSDKShareKit
+import GigyaNss
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
@@ -46,6 +47,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
 
         GigyaAuth.shared.registerForRemoteNotifications()
         GigyaTfa.shared.registerForRemoteNotifications()
+        GigyaNss.shared.register(scheme: UserHost.self)
 
         ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
 

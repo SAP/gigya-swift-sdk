@@ -35,6 +35,7 @@
 		E70F8BBC23FD742C00D52208 /* NssFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70F8BBB23FD742C00D52208 /* NssFlow.swift */; };
 		E70F8BBF23FD748F00D52208 /* CordinatorContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70F8BBE23FD748F00D52208 /* CordinatorContainer.swift */; };
 		E70F8BC123FD786E00D52208 /* OrderedDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70F8BC023FD786E00D52208 /* OrderedDictionary.swift */; };
+		E70F8BCB2404095600D52208 /* BaseChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70F8BCA2404095600D52208 /* BaseChannel.swift */; };
 		E722572923CC9F22000DDB24 /* engine.sh in Resources */ = {isa = PBXBuildFile; fileRef = E722572823CC9F22000DDB24 /* engine.sh */; };
 		E722573423CCB1CE000DDB24 /* NativeScreenSetsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E722573323CCB1CE000DDB24 /* NativeScreenSetsViewController.swift */; };
 		E722573623CCBB31000DDB24 /* MainPlatformChannelHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E722573523CCBB31000DDB24 /* MainPlatformChannelHandler.swift */; };
@@ -80,6 +81,7 @@
 		E70F8BBB23FD742C00D52208 /* NssFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NssFlow.swift; sourceTree = "<group>"; };
 		E70F8BBE23FD748F00D52208 /* CordinatorContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CordinatorContainer.swift; sourceTree = "<group>"; };
 		E70F8BC023FD786E00D52208 /* OrderedDictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderedDictionary.swift; sourceTree = "<group>"; };
+		E70F8BCA2404095600D52208 /* BaseChannel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseChannel.swift; sourceTree = "<group>"; };
 		E722572823CC9F22000DDB24 /* engine.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = engine.sh; sourceTree = "<group>"; };
 		E722573323CCB1CE000DDB24 /* NativeScreenSetsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeScreenSetsViewController.swift; sourceTree = "<group>"; };
 		E722573523CCBB31000DDB24 /* MainPlatformChannelHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPlatformChannelHandler.swift; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 		E722573723CCBEE3000DDB24 /* Channels */ = {
 			isa = PBXGroup;
 			children = (
+				E70F8BCA2404095600D52208 /* BaseChannel.swift */,
 				E722573523CCBB31000DDB24 /* MainPlatformChannelHandler.swift */,
 				E78B8A5F23FC399C00E29651 /* ApiChannelHandler.swift */,
 			);
@@ -413,6 +416,7 @@
 				E7772A0623D5DC0400DE9DDD /* LoaderFilesHelper.swift in Sources */,
 				E70F8BBF23FD748F00D52208 /* CordinatorContainer.swift in Sources */,
 				E78B8A5E23FC375700E29651 /* NativeScreenSetsViewModel.swift in Sources */,
+				E70F8BCB2404095600D52208 /* BaseChannel.swift in Sources */,
 				E78B8A6023FC399C00E29651 /* ApiChannelHandler.swift in Sources */,
 				E722573623CCBB31000DDB24 /* MainPlatformChannelHandler.swift in Sources */,
 				E722573423CCB1CE000DDB24 /* NativeScreenSetsViewController.swift in Sources */,

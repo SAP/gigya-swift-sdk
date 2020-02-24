@@ -11,7 +11,6 @@ import Flutter
 class ApiChannelHandler: BaseChannel {
     var flutterMethodChannel: FlutterMethodChannel
 
-
     required init(engine: FlutterEngine) {
         flutterMethodChannel = FlutterMethodChannel(name: GigyaNss.apiChannel, binaryMessenger: engine.binaryMessenger)
     }
