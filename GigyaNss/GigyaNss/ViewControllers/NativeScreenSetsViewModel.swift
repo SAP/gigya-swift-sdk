@@ -9,69 +9,71 @@
 import Flutter
 import Gigya
 
-class NativeScreenSetsViewModel<T: GigyaAccountProtocol>: CordinatorContainer<T> {
-
-    var dismissClosure: () -> Void = {}
-
-    var mainChannel: MainPlatformChannelHandler?
-    var apiChannel: ApiChannelHandler?
-
-    let loaderHelper: LoaderFileHelper
-
-    let engineBundle = "Gigya.GigyaNssEngine"
-    let engineId = "io.flutter"
-
-    init(loaderHelper: LoaderFileHelper) {
-        self.loaderHelper = loaderHelper
-    }
-
-    func createEngine() -> FlutterEngine {
-        let bundle = Bundle(identifier: engineBundle)
-        let project = FlutterDartProject(precompiledDartBundle: bundle)
-
-        let engine = FlutterEngine(name: engineId, project: project)
-        engine.run()
-
-        return engine
-    }
+class NativeScreenSetsViewModel<T: GigyaAccountProtocol>: CordinatorContainer<T>, UIAdaptivePresentationControllerDelegate {
     
-    func loadChannels(with engine: FlutterEngine, asset: String) {
-        mainChannel = MainPlatformChannelHandler(engine: engine)
-        apiChannel = ApiChannelHandler(engine: engine)
+    var dismissClosure: () -> Void = {}
+    var closeClosure: () -> Void = {}
 
-        mainChannel?.methodHandler(scheme: MainMethodsChannelEvents.self) { (method, data, response ) in
-            print("method: \(method)")
-            switch method {
-            case .ignition:
-                let loadAsset = self.loaderHelper.fileToDic(name: asset)
-                response(loadAsset)
-            case .flow:
-                break
-            case .dismiss:
-                self.dismissClosure()
-            case .none:
-                break
+    var screenChannel: ScreenChannel?
+    var apiChannel: ApiChannel?
+
+    let flowFactory: FlowFactory<T>
+
+    var engine: FlutterEngine?
+
+    init(mainChannel: ScreenChannel, apiChannel: ApiChannel, flowFactory: FlowFactory<T>) {
+        self.screenChannel = mainChannel
+        self.apiChannel = apiChannel
+        self.flowFactory = flowFactory
+    }
+
+    func loadChannels(with engine: FlutterEngine) {
+        screenChannel?.initChannel(engine: engine)
+        apiChannel?.initChannel(engine: engine)
+
+        screenChannel?.methodHandler(scheme: ScreenChannelEvent.self) { [weak self] method, data, response in
+            guard let self = self, let method = method else {
+                return
             }
 
+            switch method {
+//            case .ignition:
+//                let loadAsset = self.loaderHelper.fileToDic(name: asset)
+//                response(loadAsset)
+            case .flow:
+                guard
+                    let flowId = data?["flowId"] as? String,
+                    let flow = Flow(rawValue: flowId) else {
+                    return
+                }
+
+                let generateFlow = self.flowFactory.create(identifier: flow)
+
+                self.add(id: flow, flow: generateFlow)
+            case .dismiss:
+                self.dismissClosure()
+                self.removeAll()
+            }
+        }
+
+        apiChannel?.methodHandler(scheme: ApiChannelEvent.self) { [weak self] method, data, response in
+            guard let self = self, let method = method?.rawValue else {
+                return
+            }
+
+            self.currentFlow?.next(method: method, params: data, response: response)
         }
     }
 
-    func loadJson(asset: String) -> [String: Any] {
-        if let filePath = Bundle.main.url(forResource: asset, withExtension: "json") {
-            do {
-                let data = try Data(contentsOf: filePath, options: .mappedIfSafe)
-                  let jsonResult = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
-                  if let jsonResult = jsonResult as? Dictionary<String, AnyObject> {
-                            // do stuff
-                    return jsonResult
-                  }
-              } catch {
-                   // handle error
-                return [:]
-              }
-        }
 
-         return [:]
+    func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
+        closeClosure()
     }
-    
+
+    deinit {
+        GigyaLogger.log(with: self, message: "deinit")
+    }
 }
+
+
+

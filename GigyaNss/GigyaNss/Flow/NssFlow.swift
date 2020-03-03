@@ -6,9 +6,9 @@
 //  Copyright © 2020 Gigya. All rights reserved.
 //
 
-import Foundation
+import Flutter
 import Gigya
 
-class NssFlow<T: GigyaAccountProtocol> {
-
+protocol NssFlow {
+    func next(method: String, params: [String: Any]?, response: @escaping FlutterResult)
 }

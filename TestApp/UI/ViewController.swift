@@ -61,7 +61,7 @@ class ViewController: UIViewController {
 
         GigyaNss.shared
             .load(asset: "init", scheme: UserHost.self)
-            .setScreen(name: "dsad")
+            .setScreen(name: "login")
             .show(viewController: self)
         
 //        let container = Gigya.getContainer()
@@ -96,39 +96,44 @@ class ViewController: UIViewController {
     }
 
     @IBAction func login(_ sender: Any) {
-        let alert = UIFactory.getLoginAlert { email, password in
-            self.gigya.login(loginId: email!, password: password!, params: ["sessionExpiration": "1000"]) { [weak self] result in
-                switch result {
-                case .success(let data):
-                    self?.resultTextView?.text = data.toJson()
-                case .failure(let error):
-                    
-                    switch error.error {
-                    case .gigyaError(let data):
-                        let errorData = data.toDictionary()
-                    default:
-                        break
-                    }
-
-
-                    guard let interruption = error.interruption else { return }
-                    // Evaluage interruption.
-                    switch interruption {
-                    case .conflitingAccount(let resolver):
-                        resolver.linkToSite(loginId: resolver.conflictingAccount?.loginID ?? "", password: "123123")
-                    case .pendingTwoFactorVerification(let interruption, let activeProviders, let factory):
-                        self?.presentTFAController(tfaProviders: activeProviders!, mode: .verification, factoryResolver: factory)
-
-                    case .pendingTwoFactorRegistration(let interruption, let inactiveProviders, let factory):
-                        self?.presentTFAController(tfaProviders: inactiveProviders!, mode: .registration, factoryResolver: factory)
-                    default:
-                        break
-                    }
-                }
-            }
-        }
-
-        self.present(alert, animated: true, completion: nil)
+        GigyaNss.shared
+            .load(asset: "init", scheme: UserHost.self)
+            .setScreen(name: "register")
+            .show(viewController: self)
+//
+//        let alert = UIFactory.getLoginAlert { email, password in
+//            self.gigya.login(loginId: email!, password: password!, params: ["sessionExpiration": "1000"]) { [weak self] result in
+//                switch result {
+//                case .success(let data):
+//                    self?.resultTextView?.text = data.toJson()
+//                case .failure(let error):
+//                    
+//                    switch error.error {
+//                    case .gigyaError(let data):
+//                        let errorData = data.toDictionary()
+//                    default:
+//                        break
+//                    }
+//
+//
+//                    guard let interruption = error.interruption else { return }
+//                    // Evaluage interruption.
+//                    switch interruption {
+//                    case .conflitingAccount(let resolver):
+//                        resolver.linkToSite(loginId: resolver.conflictingAccount?.loginID ?? "", password: "123123")
+//                    case .pendingTwoFactorVerification(let interruption, let activeProviders, let factory):
+//                        self?.presentTFAController(tfaProviders: activeProviders!, mode: .verification, factoryResolver: factory)
+//
+//                    case .pendingTwoFactorRegistration(let interruption, let inactiveProviders, let factory):
+//                        self?.presentTFAController(tfaProviders: inactiveProviders!, mode: .registration, factoryResolver: factory)
+//                    default:
+//                        break
+//                    }
+//                }
+//            }
+//        }
+//
+//        self.present(alert, animated: true, completion: nil)
     }
     
     @IBAction func register(_ sender: Any) {

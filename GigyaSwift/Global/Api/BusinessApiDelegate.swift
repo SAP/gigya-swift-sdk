@@ -27,6 +27,9 @@ public protocol BusinessApiDelegate: class {
     func callLogin<T: GigyaAccountProtocol>(dataType: T.Type, loginId: String, password: String, params: [String:Any], completion: @escaping (GigyaLoginResult<T>) -> Void)
     
     func callfinalizeRegistration<T: GigyaAccountProtocol>(regToken: String, completion: @escaping (GigyaLoginResult<T>) -> Void)
+
+    func callRegister<T: GigyaAccountProtocol>(dataType: T.Type, email: String, password: String, params: [String:Any], completion: @escaping (GigyaLoginResult<T>) -> Void)
+
 }
 
 extension BusinessApiService: BusinessApiDelegate {
@@ -59,5 +62,9 @@ extension BusinessApiService: BusinessApiDelegate {
     
     func callfinalizeRegistration<T>(regToken: String, completion: @escaping (GigyaLoginResult<T>) -> Void) where T : Decodable, T : Encodable {
         self.finalizeRegistration(regToken: regToken, completion: completion)
+    }
+
+    func callRegister<T: GigyaAccountProtocol>(dataType: T.Type, email: String, password: String, params: [String:Any], completion: @escaping (GigyaLoginResult<T>) -> Void) {
+        self.register(email: email, password: password, params: params, dataType: dataType, completion: completion)
     }
 }

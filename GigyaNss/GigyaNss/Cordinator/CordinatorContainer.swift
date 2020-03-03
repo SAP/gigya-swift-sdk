@@ -9,25 +9,34 @@
 import Foundation
 import Gigya
 
-class CordinatorContainer<T: GigyaAccountProtocol> {
-    private var flows = OrderedDictionary<String, NssFlow<T>>()
+class CordinatorContainer<T: GigyaAccountProtocol>: NSObject {
+    private var flows = OrderedDictionary<Flow, NssFlow>()
 
-    private var _currentFlow: String?
+    private var _currentFlow: Flow?
 
-    var currentFlow: String? {
-        return _currentFlow
+    var currentFlow: NssFlow? {
+        guard let currentFlow = _currentFlow, let flow = flows[currentFlow] else {
+            return nil
+        }
+
+        return flow
     }
 
-    func add(id: String, flow: NssFlow<T>) {
+    func add(id: Flow, flow: NssFlow) {
         flows[id] = flow
 
         _currentFlow = id
     }
 
-    func remove(id: String) {
+    func remove(id: Flow) {
         flows.removeValueForKey(key: id)
 
         _currentFlow = flows.keys.last
+    }
+
+    func removeAll() {
+        flows.removeAll(keepCapacity: 0)
+        _currentFlow = nil
     }
 
 

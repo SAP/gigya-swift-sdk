@@ -10,17 +10,17 @@ import Flutter
 import Gigya
 
 protocol BaseChannel {
-    var flutterMethodChannel: FlutterMethodChannel { get set }
+    var flutterMethodChannel: FlutterMethodChannel? { get set }
 
-    init(engine: FlutterEngine)
+    func initChannel(engine: FlutterEngine)
 }
 
 extension BaseChannel {
-    func methodHandler<T: RawRepresentable>(scheme: T.Type, _ handler: @escaping (T?, Any?, FlutterResult) -> Void) where T.RawValue == String {
-        flutterMethodChannel.setMethodCallHandler { (call, result) in
+    func methodHandler<T: RawRepresentable>(scheme: T.Type, _ handler: @escaping (T?, [String: Any]?, @escaping FlutterResult) -> Void) where T.RawValue == String {
+        flutterMethodChannel?.setMethodCallHandler { (call, result) in
             let method = T(rawValue: call.method)
-            print("method: \(call.method)")
-            handler(method, call.arguments, result)
+            GigyaLogger.log(with: self, message: "method: \(call.method)")
+            handler(method, call.arguments as? [String: Any] , result)
         }
     }
 }

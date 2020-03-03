@@ -13,11 +13,16 @@ import Gigya
 final public class GigyaNss {
     public static var shared = GigyaNss()
 
-    static var dependenciesContainer = Gigya.getContainer()
+    var dependenciesContainer = Gigya.getContainer()
 
     // Channels id's
-    static var mainChannel = "gigya_nss_engine/method/main"
+    static var ignitionChannel = "gigya_nss_engine/method/ignition"
+    static var screenChannel = "gigya_nss_engine/method/screen"
     static var apiChannel = "gigya_nss_engine/method/api"
+
+    // Engine configuration
+    static let engineBundle = "Gigya.GigyaNssEngine"
+    static let engineId = "io.flutter"
 
     /**
     Show ScreenSet
@@ -35,7 +40,7 @@ final public class GigyaNss {
 
     @discardableResult
     public func load<T: GigyaAccountProtocol>(asset: String, scheme: T.Type) -> BuilderOptions {
-        guard let builder = GigyaNss.dependenciesContainer.resolve(ScreenSetsBuilder<T>.self) else {
+        guard let builder = GigyaNss.shared.dependenciesContainer.resolve(ScreenSetsBuilder<T>.self) else {
             GigyaLogger.error(with: GigyaNss.self, message: "`ScreenSetsBuilder` dependency not found.")
         }
 
@@ -43,24 +48,72 @@ final public class GigyaNss {
     }
 
     public func register<T: GigyaAccountProtocol>(scheme: T.Type) {
-        GigyaNss.dependenciesContainer.register(service: ScreenSetsBuilder<T>.self) { _ in
-            return ScreenSetsBuilder()
+
+        dependenciesContainer.register(service: ScreenSetsBuilder<T>.self) { resolver in
+            let engineLifeCycle = resolver.resolve(EngineLifeCycle.self)!
+
+            return ScreenSetsBuilder(engineLifeCycle: engineLifeCycle)
         }
 
-        GigyaNss.dependenciesContainer.register(service: NativeScreenSetsViewModel<T>.self) { resolver in
-            let loaderHelper = resolver.resolve(LoaderFileHelper.self)
+        dependenciesContainer.register(service: NativeScreenSetsViewModel<T>.self) { resolver in
+            let mainChannel = resolver.resolve(ScreenChannel.self)
+            let apiChannel = resolver.resolve(ApiChannel.self)
+            let flowFactory = resolver.resolve(FlowFactory<T>.self)
 
-            return NativeScreenSetsViewModel(loaderHelper: loaderHelper!)
+            return NativeScreenSetsViewModel(mainChannel: mainChannel!,
+                                             apiChannel: apiChannel!,
+                                             flowFactory: flowFactory!
+            )
         }
 
-        GigyaNss.dependenciesContainer.register(service: NativeScreenSetsViewController<T>.self) { resolver in
+        dependenciesContainer.register(service: NativeScreenSetsViewController<T>.self) { resolver in
             let viewModel = resolver.resolve(NativeScreenSetsViewModel<T>.self)
+            let createEngineFactory = resolver.resolve(CreateEngineFactory.self)
 
-            return NativeScreenSetsViewController(viewModel: viewModel!)
+            return NativeScreenSetsViewController(viewModel: viewModel!, createEngineFactory: createEngineFactory!)
         }
 
-        GigyaNss.dependenciesContainer.register(service: LoaderFileHelper.self) { _ in
+        dependenciesContainer.register(service: EngineLifeCycle.self) { resolver in
+            let ignitionChannel = resolver.resolve(IgnitionChannel.self)!
+            let loaderHelper = resolver.resolve(LoaderFileHelper.self)!
+
+            return EngineLifeCycle(ignitionChannel: ignitionChannel, loaderHelper: loaderHelper)
+        }
+
+        dependenciesContainer.register(service: LoaderFileHelper.self) { _ in
             return LoaderFileHelper()
+        }
+
+        dependenciesContainer.register(service: ScreenChannel.self) {  _ in
+            return ScreenChannel()
+        }
+
+        dependenciesContainer.register(service: IgnitionChannel.self) {  _ in
+            return IgnitionChannel()
+        }
+
+        dependenciesContainer.register(service: ApiChannel.self) {  _ in
+            return ApiChannel()
+        }
+
+        dependenciesContainer.register(service: FlowFactory<T>.self) { _ in
+            return FlowFactory()
+        }
+
+        dependenciesContainer.register(service: RegisterFlow<T>.self) { resolver in
+            let busnessApi = resolver.resolve(BusinessApiDelegate.self)
+            
+            return RegisterFlow(busnessApi: busnessApi!)
+        }
+
+        dependenciesContainer.register(service: LoginFlow<T>.self) { resolver in
+            let busnessApi = resolver.resolve(BusinessApiDelegate.self)
+
+            return LoginFlow(busnessApi: busnessApi!)
+        }
+
+        dependenciesContainer.register(service: CreateEngineFactory.self) { _ in
+            return CreateEngineFactory()
         }
     }
 }

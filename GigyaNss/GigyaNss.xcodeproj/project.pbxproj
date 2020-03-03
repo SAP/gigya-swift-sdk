@@ -36,11 +36,13 @@
 		E70F8BBF23FD748F00D52208 /* CordinatorContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70F8BBE23FD748F00D52208 /* CordinatorContainer.swift */; };
 		E70F8BC123FD786E00D52208 /* OrderedDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70F8BC023FD786E00D52208 /* OrderedDictionary.swift */; };
 		E70F8BCB2404095600D52208 /* BaseChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70F8BCA2404095600D52208 /* BaseChannel.swift */; };
+		E70F8BED2405215C00D52208 /* FlowFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70F8BEC2405215C00D52208 /* FlowFactory.swift */; };
+		E70F8BEF24053ABA00D52208 /* RegisterFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70F8BEE24053AB900D52208 /* RegisterFlow.swift */; };
+		E70F8BF124053B5800D52208 /* LoginFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70F8BF024053B5800D52208 /* LoginFlow.swift */; };
 		E722572923CC9F22000DDB24 /* engine.sh in Resources */ = {isa = PBXBuildFile; fileRef = E722572823CC9F22000DDB24 /* engine.sh */; };
 		E722573423CCB1CE000DDB24 /* NativeScreenSetsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E722573323CCB1CE000DDB24 /* NativeScreenSetsViewController.swift */; };
-		E722573623CCBB31000DDB24 /* MainPlatformChannelHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E722573523CCBB31000DDB24 /* MainPlatformChannelHandler.swift */; };
+		E722573623CCBB31000DDB24 /* ScreenChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E722573523CCBB31000DDB24 /* ScreenChannel.swift */; };
 		E740A3D723DF4B07000FD651 /* Gigya.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E740A3D623DF4B07000FD651 /* Gigya.framework */; };
-		E740A3D823DF4B07000FD651 /* Gigya.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E740A3D623DF4B07000FD651 /* Gigya.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E775E81223C5D1710059151D /* GigyaNss.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E775E80823C5D1710059151D /* GigyaNss.framework */; };
 		E775E81723C5D1710059151D /* GigyaNssTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E775E81623C5D1710059151D /* GigyaNssTests.swift */; };
 		E775E81923C5D1710059151D /* GigyaNss.h in Headers */ = {isa = PBXBuildFile; fileRef = E775E80B23C5D1710059151D /* GigyaNss.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -48,8 +50,11 @@
 		E7772A0323D5D8A500DE9DDD /* ScreenSetsBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7772A0223D5D8A400DE9DDD /* ScreenSetsBuilder.swift */; };
 		E7772A0623D5DC0400DE9DDD /* LoaderFilesHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7772A0523D5DC0400DE9DDD /* LoaderFilesHelper.swift */; };
 		E7772A0923D5EAA000DE9DDD /* BuilderOptionsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7772A0823D5EAA000DE9DDD /* BuilderOptionsProtocol.swift */; };
+		E77F7A2D2407BF5100FF90FB /* CreateEngineFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77F7A2C2407BF5100FF90FB /* CreateEngineFactory.swift */; };
 		E78B8A5E23FC375700E29651 /* NativeScreenSetsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78B8A5D23FC375700E29651 /* NativeScreenSetsViewModel.swift */; };
-		E78B8A6023FC399C00E29651 /* ApiChannelHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78B8A5F23FC399C00E29651 /* ApiChannelHandler.swift */; };
+		E78B8A6023FC399C00E29651 /* ApiChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78B8A5F23FC399C00E29651 /* ApiChannel.swift */; };
+		E7D1F70C240BD92B00394185 /* IgnitionChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7D1F70B240BD92B00394185 /* IgnitionChannel.swift */; };
+		E7D1F70E240E5F0700394185 /* EngineLifeCycle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7D1F70D240E5F0700394185 /* EngineLifeCycle.swift */; };
 		E7F8E33923C777D7002A2A92 /* Flutter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7F8E33823C777D7002A2A92 /* Flutter.framework */; };
 /* End PBXBuildFile section */
 
@@ -63,28 +68,17 @@
 		};
 /* End PBXContainerItemProxy section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		E740A3D923DF4B07000FD651 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				E740A3D823DF4B07000FD651 /* Gigya.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
 		E70F8BBB23FD742C00D52208 /* NssFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NssFlow.swift; sourceTree = "<group>"; };
 		E70F8BBE23FD748F00D52208 /* CordinatorContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CordinatorContainer.swift; sourceTree = "<group>"; };
 		E70F8BC023FD786E00D52208 /* OrderedDictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderedDictionary.swift; sourceTree = "<group>"; };
 		E70F8BCA2404095600D52208 /* BaseChannel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseChannel.swift; sourceTree = "<group>"; };
+		E70F8BEC2405215C00D52208 /* FlowFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowFactory.swift; sourceTree = "<group>"; };
+		E70F8BEE24053AB900D52208 /* RegisterFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterFlow.swift; sourceTree = "<group>"; };
+		E70F8BF024053B5800D52208 /* LoginFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFlow.swift; sourceTree = "<group>"; };
 		E722572823CC9F22000DDB24 /* engine.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = engine.sh; sourceTree = "<group>"; };
 		E722573323CCB1CE000DDB24 /* NativeScreenSetsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeScreenSetsViewController.swift; sourceTree = "<group>"; };
-		E722573523CCBB31000DDB24 /* MainPlatformChannelHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPlatformChannelHandler.swift; sourceTree = "<group>"; };
+		E722573523CCBB31000DDB24 /* ScreenChannel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenChannel.swift; sourceTree = "<group>"; };
 		E740A3D623DF4B07000FD651 /* Gigya.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Gigya.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E775E80823C5D1710059151D /* GigyaNss.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GigyaNss.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E775E80B23C5D1710059151D /* GigyaNss.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GigyaNss.h; sourceTree = "<group>"; };
@@ -96,8 +90,11 @@
 		E7772A0223D5D8A400DE9DDD /* ScreenSetsBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenSetsBuilder.swift; sourceTree = "<group>"; };
 		E7772A0523D5DC0400DE9DDD /* LoaderFilesHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderFilesHelper.swift; sourceTree = "<group>"; };
 		E7772A0823D5EAA000DE9DDD /* BuilderOptionsProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuilderOptionsProtocol.swift; sourceTree = "<group>"; };
+		E77F7A2C2407BF5100FF90FB /* CreateEngineFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEngineFactory.swift; sourceTree = "<group>"; };
 		E78B8A5D23FC375700E29651 /* NativeScreenSetsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeScreenSetsViewModel.swift; sourceTree = "<group>"; };
-		E78B8A5F23FC399C00E29651 /* ApiChannelHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiChannelHandler.swift; sourceTree = "<group>"; };
+		E78B8A5F23FC399C00E29651 /* ApiChannel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiChannel.swift; sourceTree = "<group>"; };
+		E7D1F70B240BD92B00394185 /* IgnitionChannel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IgnitionChannel.swift; sourceTree = "<group>"; };
+		E7D1F70D240E5F0700394185 /* EngineLifeCycle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EngineLifeCycle.swift; sourceTree = "<group>"; };
 		E7F8E33823C777D7002A2A92 /* Flutter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Flutter.framework; path = "Flutter/$(CONFIGURATION)/Flutter.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -126,6 +123,9 @@
 			isa = PBXGroup;
 			children = (
 				E70F8BBB23FD742C00D52208 /* NssFlow.swift */,
+				E70F8BEC2405215C00D52208 /* FlowFactory.swift */,
+				E70F8BF024053B5800D52208 /* LoginFlow.swift */,
+				E70F8BEE24053AB900D52208 /* RegisterFlow.swift */,
 			);
 			path = Flow;
 			sourceTree = "<group>";
@@ -150,8 +150,9 @@
 			isa = PBXGroup;
 			children = (
 				E70F8BCA2404095600D52208 /* BaseChannel.swift */,
-				E722573523CCBB31000DDB24 /* MainPlatformChannelHandler.swift */,
-				E78B8A5F23FC399C00E29651 /* ApiChannelHandler.swift */,
+				E722573523CCBB31000DDB24 /* ScreenChannel.swift */,
+				E7D1F70B240BD92B00394185 /* IgnitionChannel.swift */,
+				E78B8A5F23FC399C00E29651 /* ApiChannel.swift */,
 			);
 			path = Channels;
 			sourceTree = "<group>";
@@ -232,6 +233,8 @@
 			isa = PBXGroup;
 			children = (
 				E7772A0523D5DC0400DE9DDD /* LoaderFilesHelper.swift */,
+				E7D1F70D240E5F0700394185 /* EngineLifeCycle.swift */,
+				E77F7A2C2407BF5100FF90FB /* CreateEngineFactory.swift */,
 				E70F8BC023FD786E00D52208 /* OrderedDictionary.swift */,
 			);
 			path = Helpers;
@@ -260,7 +263,6 @@
 				E775E80423C5D1710059151D /* Sources */,
 				E775E80623C5D1710059151D /* Resources */,
 				E775E80523C5D1710059151D /* Frameworks */,
-				E740A3D923DF4B07000FD651 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -413,12 +415,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				E7772A0323D5D8A500DE9DDD /* ScreenSetsBuilder.swift in Sources */,
+				E7D1F70C240BD92B00394185 /* IgnitionChannel.swift in Sources */,
 				E7772A0623D5DC0400DE9DDD /* LoaderFilesHelper.swift in Sources */,
+				E70F8BEF24053ABA00D52208 /* RegisterFlow.swift in Sources */,
 				E70F8BBF23FD748F00D52208 /* CordinatorContainer.swift in Sources */,
 				E78B8A5E23FC375700E29651 /* NativeScreenSetsViewModel.swift in Sources */,
+				E70F8BF124053B5800D52208 /* LoginFlow.swift in Sources */,
+				E77F7A2D2407BF5100FF90FB /* CreateEngineFactory.swift in Sources */,
 				E70F8BCB2404095600D52208 /* BaseChannel.swift in Sources */,
-				E78B8A6023FC399C00E29651 /* ApiChannelHandler.swift in Sources */,
-				E722573623CCBB31000DDB24 /* MainPlatformChannelHandler.swift in Sources */,
+				E78B8A6023FC399C00E29651 /* ApiChannel.swift in Sources */,
+				E7D1F70E240E5F0700394185 /* EngineLifeCycle.swift in Sources */,
+				E722573623CCBB31000DDB24 /* ScreenChannel.swift in Sources */,
+				E70F8BED2405215C00D52208 /* FlowFactory.swift in Sources */,
 				E722573423CCB1CE000DDB24 /* NativeScreenSetsViewController.swift in Sources */,
 				E70F8BBC23FD742C00D52208 /* NssFlow.swift in Sources */,
 				E7772A0923D5EAA000DE9DDD /* BuilderOptionsProtocol.swift in Sources */,
