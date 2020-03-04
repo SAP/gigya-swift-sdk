@@ -2,20 +2,14 @@
   "platformAware": false,
   "markup": {
     "initialRoute" : "login",
-    "routing": {
-      "login": {
-        "routes": {
-          "success": "dismiss"
-        }
-      },
-      "register": {
-        "routes" : {
-          "success": "dismiss"
-        }
-      }
+    "defaultRouting": {
+      "success" : "dismiss"
     },
     "screens": {
       "login": {
+        "routing" : {
+          "success": "dismiss"
+        },
         "flow": "login",
         "appBar": {
           "textKey": "login"
@@ -32,10 +26,6 @@
             "textKey": "Email"
           },
           {
-            "type": "label",
-            "textKey": "Tal have a new knock knock jokes:"
-          },
-          {
             "id": "password",
             "type": "password",
             "textKey": "Password"
@@ -48,7 +38,10 @@
         ]
       },
       "register": {
-        "flow": "registration",
+        "routing" : {
+          "success": "dismiss"
+        },
+        "flow": "register",
         "appBar": {
           "textKey": "Register"
         },
@@ -65,11 +58,6 @@
           },
           {
             "id": "password",
-            "type": "password",
-            "textKey": "Password"
-          },
-          {
-            "id": "passwordRetype",
             "type": "password",
             "textKey": "Password"
           },

@@ -35,7 +35,7 @@ class SocialLoginTests: XCTestCase {
 
     func testGoogle() {
         // UI tests must launch the application that they test.
-
+        
         app.buttons["googleplus"].tap()
 
         sleep(2)

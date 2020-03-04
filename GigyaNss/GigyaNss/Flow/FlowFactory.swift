@@ -11,7 +11,7 @@ import Gigya
 class FlowFactory<T: GigyaAccountProtocol> {
     func create(identifier: Flow) -> NssFlow {
         switch identifier {
-        case .registration:
+        case .register:
             return GigyaNss.shared.dependenciesContainer.resolve(RegisterFlow<T>.self)!
         case .login:
             return GigyaNss.shared.dependenciesContainer.resolve(LoginFlow<T>.self)!
@@ -20,6 +20,6 @@ class FlowFactory<T: GigyaAccountProtocol> {
 }
 
 enum Flow: String {
-    case registration
+    case register
     case login
 }

@@ -78,7 +78,8 @@
 	<key>GigyaApiDomain</key>
 	<string>us1.gigya.com</string>
 	<key>GigyaApiKey</key>
-	<string>3_KF6Dwf0BoTktLiX54s_rSWRiklW69xCLG8pZa413Z6pkuBGBwQeSK9k19grZfCDe</string>
+	<string>3_KF6Dwf0BoTktLiX54s_rSWRiklW69xCLG8pZa413Z6pkuBGBwQeSK9k19grZfCDe
+</string>
 	<key>GigyaSessionVerificationInterval</key>
 	<integer>9999</integer>
 	<key>GoogleClientID</key>

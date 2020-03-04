@@ -63,7 +63,7 @@ class ViewController: UIViewController {
             .load(asset: "init", scheme: UserHost.self)
             .setScreen(name: "login")
             .show(viewController: self)
-        
+//
 //        let container = Gigya.getContainer()
 //        let sessionService = container.resolve(SessionServiceProtocol.self)
 //        let session = sessionService?.session=
@@ -77,7 +77,7 @@ class ViewController: UIViewController {
         //Default-ProfileUpdate
 ////
 //        var currentScreen: String = ""
-//        gigya.showScreenSet(with: "RBL_APP-RegistrationLogin", viewController: self) { [weak self] (result) in
+//        gigya.showScreenSet(with: "Default-RegistrationLogin", viewController: self) { [weak self] (result) in
 //            switch result {
 //            case .onLogin(let account):
 //                self?.resultTextView!.text = account.toJson()
@@ -96,44 +96,44 @@ class ViewController: UIViewController {
     }
 
     @IBAction func login(_ sender: Any) {
-        GigyaNss.shared
-            .load(asset: "init", scheme: UserHost.self)
-            .setScreen(name: "register")
-            .show(viewController: self)
+//        GigyaNss.shared
+//            .load(asset: "init", scheme: UserHost.self)
+//            .setScreen(name: "register")
+//            .show(viewController: self)
 //
-//        let alert = UIFactory.getLoginAlert { email, password in
-//            self.gigya.login(loginId: email!, password: password!, params: ["sessionExpiration": "1000"]) { [weak self] result in
-//                switch result {
-//                case .success(let data):
-//                    self?.resultTextView?.text = data.toJson()
-//                case .failure(let error):
-//                    
-//                    switch error.error {
-//                    case .gigyaError(let data):
-//                        let errorData = data.toDictionary()
-//                    default:
-//                        break
-//                    }
-//
-//
-//                    guard let interruption = error.interruption else { return }
-//                    // Evaluage interruption.
-//                    switch interruption {
-//                    case .conflitingAccount(let resolver):
-//                        resolver.linkToSite(loginId: resolver.conflictingAccount?.loginID ?? "", password: "123123")
-//                    case .pendingTwoFactorVerification(let interruption, let activeProviders, let factory):
-//                        self?.presentTFAController(tfaProviders: activeProviders!, mode: .verification, factoryResolver: factory)
-//
-//                    case .pendingTwoFactorRegistration(let interruption, let inactiveProviders, let factory):
-//                        self?.presentTFAController(tfaProviders: inactiveProviders!, mode: .registration, factoryResolver: factory)
-//                    default:
-//                        break
-//                    }
-//                }
-//            }
-//        }
-//
-//        self.present(alert, animated: true, completion: nil)
+        let alert = UIFactory.getLoginAlert { email, password in
+            self.gigya.login(loginId: email!, password: password!, params: [:]) { [weak self] result in
+                switch result {
+                case .success(let data):
+                    self?.resultTextView?.text = data.toJson()
+                case .failure(let error):
+
+                    switch error.error {
+                    case .gigyaError(let data):
+                        let errorData = data.toDictionary()
+                    default:
+                        break
+                    }
+
+
+                    guard let interruption = error.interruption else { return }
+                    // Evaluage interruption.
+                    switch interruption {
+                    case .conflitingAccount(let resolver):
+                        resolver.linkToSite(loginId: resolver.conflictingAccount?.loginID ?? "", password: "123123")
+                    case .pendingTwoFactorVerification(let interruption, let activeProviders, let factory):
+                        self?.presentTFAController(tfaProviders: activeProviders!, mode: .verification, factoryResolver: factory)
+
+                    case .pendingTwoFactorRegistration(let interruption, let inactiveProviders, let factory):
+                        self?.presentTFAController(tfaProviders: inactiveProviders!, mode: .registration, factoryResolver: factory)
+                    default:
+                        break
+                    }
+                }
+            }
+        }
+
+        self.present(alert, animated: true, completion: nil)
     }
     
     @IBAction func register(_ sender: Any) {

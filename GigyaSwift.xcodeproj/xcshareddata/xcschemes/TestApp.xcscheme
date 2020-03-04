@@ -20,6 +20,20 @@
                ReferencedContainer = "container:GigyaSwift.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "NO"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "E7A6E0B3224256390063638F"
+               BuildableName = "GigyaSwiftTests.xctest"
+               BlueprintName = "GigyaSwiftTests"
+               ReferencedContainer = "container:GigyaSwift.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -57,16 +71,6 @@
       <Testables>
          <TestableReference
             skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E7A6E0B3224256390063638F"
-               BuildableName = "GigyaSwiftTests.xctest"
-               BlueprintName = "GigyaSwiftTests"
-               ReferencedContainer = "container:GigyaSwift.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "E7A71CB1232F9FDC00993A61"

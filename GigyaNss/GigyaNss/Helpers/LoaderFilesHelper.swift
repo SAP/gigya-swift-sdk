@@ -10,18 +10,20 @@ import Foundation
 import Gigya
 
 class LoaderFileHelper {
-    func fileToDic(name: String) -> String {
+    func fileToDic(name: String) -> [String: Any] {
         guard let filePath = Bundle.main.url(forResource: name, withExtension: "json") else {
             GigyaLogger.error(with: LoaderFileHelper.self, message: "json file not found.")
         }
 
         do {
             let data = try Data(contentsOf: filePath, options: .mappedIfSafe)
-            return String(data: data, encoding: .utf8)!
+            let decodedObject = try JSONSerialization.jsonObject(with: data) as? [String: AnyObject] ?? [:]
+
+            return decodedObject
         } catch {
             // handle error
         }
 
-        return ""
+        return [:]
     }
 }
