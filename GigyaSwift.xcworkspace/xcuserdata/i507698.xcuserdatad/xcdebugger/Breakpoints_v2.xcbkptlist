@@ -46,8 +46,8 @@
             filePath = "TestApp/UI/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "156"
-            endingLineNumber = "156"
+            startingLineNumber = "155"
+            endingLineNumber = "155"
             landmarkName = "register(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -55,239 +55,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "590D4144-19CC-4746-88DF-7E02CA16ED8C"
+            uuid = "13AB75A4-31C4-473D-8A06-D35FC4F89289"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "TestApp/UI/ViewController.swift"
+            filePath = "GigyaSwift/Global/Utils/SignatureUtils.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "141"
-            endingLineNumber = "141"
-            landmarkName = "register(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "0625640F-A59B-4923-9C9E-E3F628DB669B"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GigyaSwift/Global/Session/GigyaSession.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "29"
-            endingLineNumber = "29"
-            landmarkName = "encode(with:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "C0302BE1-0F11-4EB9-8903-5849D8F1D3E3"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GigyaNss/GigyaNss/Flow/LoginFlow.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "19"
-            endingLineNumber = "19"
-            landmarkName = "next(method:params:response:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "C0302BE1-0F11-4EB9-8903-5849D8F1D3E3 - 3d8ff69c950b8d5e"
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "GigyaNss.LoginFlow.next(method: Swift.String, params: Swift.Optional&lt;Swift.Dictionary&lt;Swift.String, Any&gt;&gt;, response: (Swift.Optional&lt;Any&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "GigyaNss"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/i507698/SDKs/gigya-swift-sdk/GigyaNss/GigyaNss/Flow/LoginFlow.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "19"
-                  endingLineNumber = "19"
-                  offsetFromSymbolStart = "330">
-               </Location>
-               <Location
-                  uuid = "C0302BE1-0F11-4EB9-8903-5849D8F1D3E3 - 3d8ff69c950b8d5e"
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "GigyaNss.LoginFlow.next(method: Swift.String, params: Swift.Optional&lt;Swift.Dictionary&lt;Swift.String, Any&gt;&gt;, response: (Swift.Optional&lt;Any&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "GigyaNss"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/i507698/SDKs/gigya-swift-sdk/GigyaNss/GigyaNss/Flow/LoginFlow.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "19"
-                  endingLineNumber = "19"
-                  offsetFromSymbolStart = "348">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "4FC5AA62-4403-4F85-BD05-79849043ED02"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "TestApp/UI/ViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "81"
-            endingLineNumber = "81"
-            landmarkName = "showScreenSet(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "32379363-E6A3-4EE9-9D49-2545E2D5983E"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GigyaSwift/Global/Providers/WebLogin/WebViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "25"
-            endingLineNumber = "25"
-            landmarkName = "init(nibName:bundle:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "415BC283-F162-41DF-A03C-A5FE0504C0E8"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GigyaSwift/Global/Providers/WebLogin/WebViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "18"
-            endingLineNumber = "18"
-            landmarkName = "init(configuration:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "3CAAF93B-481C-4B92-97B7-78E79EA6140E"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GigyaNss/GigyaNss/Helpers/EngineLifeCycle.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "36"
-            endingLineNumber = "36"
-            landmarkName = "regToIgnitionChannel(asset:presentFrom:to:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "E9F03E0E-347B-45EA-80BA-298D258E57E1"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GigyaNss/GigyaNss/Helpers/EngineLifeCycle.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "45"
-            endingLineNumber = "45"
-            landmarkName = "regToLifeCircleOf(vc:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "E9F03E0E-347B-45EA-80BA-298D258E57E1 - 6578be00ef01c7cb"
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; () in GigyaNss.EngineLifeCycle.regToLifeCircleOf&lt;A where A: Gigya.GigyaAccountProtocol&gt;(vc: GigyaNss.NativeScreenSetsViewController&lt;A&gt;) -&gt; ()"
-                  moduleName = "GigyaNss"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/i507698/SDKs/gigya-swift-sdk/GigyaNss/GigyaNss/Helpers/EngineLifeCycle.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "45"
-                  endingLineNumber = "45"
-                  offsetFromSymbolStart = "88">
-               </Location>
-               <Location
-                  uuid = "E9F03E0E-347B-45EA-80BA-298D258E57E1 - 6578be00ef01c7cb"
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; () in GigyaNss.EngineLifeCycle.regToLifeCircleOf&lt;A where A: Gigya.GigyaAccountProtocol&gt;(vc: GigyaNss.NativeScreenSetsViewController&lt;A&gt;) -&gt; ()"
-                  moduleName = "GigyaNss"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/i507698/SDKs/gigya-swift-sdk/GigyaNss/GigyaNss/Helpers/EngineLifeCycle.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "45"
-                  endingLineNumber = "45"
-                  offsetFromSymbolStart = "309">
-               </Location>
-               <Location
-                  uuid = "E9F03E0E-347B-45EA-80BA-298D258E57E1 - 427f6c33db47f5b6"
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; () in closure #1 () -&gt; () in GigyaNss.EngineLifeCycle.regToLifeCircleOf&lt;A where A: Gigya.GigyaAccountProtocol&gt;(vc: GigyaNss.NativeScreenSetsViewController&lt;A&gt;) -&gt; ()"
-                  moduleName = "GigyaNss"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/i507698/SDKs/gigya-swift-sdk/GigyaNss/GigyaNss/Helpers/EngineLifeCycle.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "45"
-                  endingLineNumber = "45"
-                  offsetFromSymbolStart = "62">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "FE6FC508-4765-4D7D-BBAF-8194CB353F86"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GigyaNss/GigyaNss/ViewControllers/NativeScreenSetsViewModel.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "54"
-            endingLineNumber = "54"
-            landmarkName = "loadChannels(with:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "A2144C88-9DE0-4D39-AAD3-7FFDD02993B8"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GigyaNss/GigyaNss/ViewControllers/NativeScreenSetsViewModel.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "35"
-            endingLineNumber = "35"
-            landmarkName = "loadChannels(with:)"
+            startingLineNumber = "32"
+            endingLineNumber = "32"
+            landmarkName = "prepareSignature(config:persistenceService:session:path:params:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -13,12 +13,17 @@ class EngineLifeCycle {
 
     private let loaderHelper: LoaderFileHelper
 
+    private var isDisplay = false
+
     init(ignitionChannel: IgnitionChannel, loaderHelper: LoaderFileHelper) {
         self.ignitionChannel = ignitionChannel
         self.loaderHelper = loaderHelper
     }
 
-    func regToIgnitionChannel<T: GigyaAccountProtocol>(asset: String?, presentFrom vc: UIViewController, to screen: NativeScreenSetsViewController<T>) {
+    func regToIgnitionChannel<T: GigyaAccountProtocol>(asset: String?,
+                                                       initialRoute: String?,
+                                                       presentFrom vc: UIViewController,
+                                                       to screen: NativeScreenSetsViewController<T>) {
         guard let assetName = asset, !assetName.isEmpty else {
             GigyaLogger.error(with: EngineLifeCycle.self, message: "asset is empty.")
         }
@@ -32,9 +37,20 @@ class EngineLifeCycle {
 
             switch method {
             case .ignition:
-                let loadAsset = self.loaderHelper.fileToDic(name: assetName)
+                var loadAsset = self.loaderHelper.fileToDic(name: assetName)
+                if let initialRoute = initialRoute {
+                    var markup = loadAsset["markup"] as! [String: Any]
+                    markup["initialRoute"] = initialRoute
+                    loadAsset["markup"] = markup
+                }
+
                 response(loadAsset)
             case .readyForDisplay:
+                if self.isDisplay {
+                    return
+                }
+
+                self.isDisplay = true
                 vc.present(screen, animated: true, completion: nil)
             }
         }

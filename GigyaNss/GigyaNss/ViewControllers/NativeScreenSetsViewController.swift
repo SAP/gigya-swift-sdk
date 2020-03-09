@@ -28,7 +28,7 @@ class NativeScreenSetsViewController<T: GigyaAccountProtocol>: FlutterViewContro
         fatalError("init(coder:) has not been implemented")
     }
 
-    func build(initialRoute: String) {
+    func build() {
         guard let engine = engine else {
             GigyaLogger.error(with: NativeScreenSetsViewController.self, message: "engine not exists.")
         }

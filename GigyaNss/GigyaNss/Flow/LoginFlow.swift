@@ -31,7 +31,7 @@ class LoginFlow<T: GigyaAccountProtocol>: NssFlow {
                 case .failure(let error):
                     switch error.error {
                     case .gigyaError(let data):
-                        response(FlutterError(code: "\(data.errorCode)", message: data.errorMessage, details: data.toDictionary()))
+                        response(FlutterError(code: "\(data.errorCode)", message: data.errorMessage, details: data.toDictionary().asJson))
                     default:
                         response(FlutterError(code: "500", message: "", details: nil))
                     }

@@ -55,10 +55,10 @@ extension ScreenSetsBuilder: ScreenSetsActionsBuilderProtocol {
         }
 
         // build the screen with the asset
-        screenSetViewController.build(initialRoute: screenName)
+        screenSetViewController.build()
         screenSetViewController.presentationController?.delegate = screenSetViewController.viewModel
 
-        engineLifeCycle.regToIgnitionChannel(asset: assetName, presentFrom: viewController, to: screenSetViewController)
+        engineLifeCycle.regToIgnitionChannel(asset: assetName, initialRoute: screenName, presentFrom: viewController, to: screenSetViewController)
 
         engineLifeCycle.regToLifeCircleOf(vc: screenSetViewController)
     }
