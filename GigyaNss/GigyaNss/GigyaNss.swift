@@ -24,6 +24,8 @@ final public class GigyaNss {
     static let engineBundle = "Gigya.GigyaNssEngine"
     static let engineId = "io.flutter"
 
+    var builder: ScreenSetsMainBuilderProtocol?
+
     /**
     Show ScreenSet
 
@@ -39,12 +41,8 @@ final public class GigyaNss {
 //    }
 
     @discardableResult
-    public func load<T: GigyaAccountProtocol>(asset: String, scheme: T.Type) -> BuilderOptions {
-        guard let builder = GigyaNss.shared.dependenciesContainer.resolve(ScreenSetsBuilder<T>.self) else {
-            GigyaLogger.error(with: GigyaNss.self, message: "`ScreenSetsBuilder` dependency not found.")
-        }
-
-        return builder.load(withAsset: asset)
+    public func load(asset: String) -> BuilderOptions {
+        return builder!.load(withAsset: asset)
     }
 
     public func register<T: GigyaAccountProtocol>(scheme: T.Type) {
@@ -115,5 +113,11 @@ final public class GigyaNss {
         dependenciesContainer.register(service: CreateEngineFactory.self) { _ in
             return CreateEngineFactory()
         }
+
+        guard let builder = GigyaNss.shared.dependenciesContainer.resolve(ScreenSetsBuilder<T>.self) else {
+            GigyaLogger.error(with: GigyaNss.self, message: "`ScreenSetsBuilder` dependency not found.")
+        }
+
+        self.builder = builder
     }
 }

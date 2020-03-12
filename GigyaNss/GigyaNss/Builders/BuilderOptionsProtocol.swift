@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Gigya
 
 public typealias BuilderOptions = ScreenSetsExternalBuilderProtocol & ScreenSetsActionsBuilderProtocol
 

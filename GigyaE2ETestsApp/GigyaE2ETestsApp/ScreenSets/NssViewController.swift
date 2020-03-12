@@ -28,7 +28,7 @@ class NssViewController: UIViewController {
         self.navigationController?.present(self.initialViewController!, animated: true) {
 
             GigyaNss.shared
-                .load(asset: "init", scheme: GigyaAccount.self)
+                .load(asset: "init")
                 .setScreen(name: "login")
                 .show(viewController: self.initialViewController!)
 
@@ -43,7 +43,7 @@ class NssViewController: UIViewController {
         self.navigationController?.present(self.initialViewController!, animated: true) {
 
             GigyaNss.shared
-                .load(asset: "init", scheme: GigyaAccount.self)
+                .load(asset: "init")
                 .setScreen(name: "register")
                 .show(viewController: self.initialViewController!)
 

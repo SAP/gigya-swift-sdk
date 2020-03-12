@@ -13,11 +13,13 @@ import Flutter
 // MARK: - Main builder options
 
 class ScreenSetsBuilder<T: GigyaAccountProtocol>: ScreenSetsMainBuilderProtocol {
+
     let engineLifeCycle: EngineLifeCycle
 
     var assetName: String?
     var screenName: String?
 
+    var handler: BuilderEventHandler<T>?
 
     init(engineLifeCycle: EngineLifeCycle) {
         self.engineLifeCycle = engineLifeCycle
@@ -35,6 +37,7 @@ class ScreenSetsBuilder<T: GigyaAccountProtocol>: ScreenSetsMainBuilderProtocol 
 }
 
 extension ScreenSetsBuilder: ScreenSetsExternalBuilderProtocol {
+
     func setScreen(name: String) -> BuilderOptions {
         screenName = name
         return self
@@ -62,4 +65,8 @@ extension ScreenSetsBuilder: ScreenSetsActionsBuilderProtocol {
         )
 
     }
+}
+
+struct BuilderEventHandler<T: GigyaAccountProtocol> {
+    var handler: (GigyaLoginResult<T>) -> Void = { _ in }
 }
