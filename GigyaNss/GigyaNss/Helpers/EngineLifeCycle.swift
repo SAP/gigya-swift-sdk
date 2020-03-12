@@ -20,13 +20,15 @@ class EngineLifeCycle {
         self.loaderHelper = loaderHelper
     }
 
-    func regToIgnitionChannel<T: GigyaAccountProtocol>(asset: String?,
+    func register<T: GigyaAccountProtocol>(asset: String?,
                                                        initialRoute: String?,
                                                        presentFrom vc: UIViewController,
                                                        to screen: NativeScreenSetsViewController<T>) {
         guard let assetName = asset, !assetName.isEmpty else {
             GigyaLogger.error(with: EngineLifeCycle.self, message: "asset is empty.")
         }
+
+        regToLifeCircleOf(vc: screen)
 
         ignitionChannel.initChannel(engine: screen.engine!)
 

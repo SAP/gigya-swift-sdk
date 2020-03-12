@@ -8,6 +8,7 @@
 
 import XCTest
 @testable import Gigya
+
 class SocialLoginTests: XCTestCase {
     var app: XCUIApplication = XCUIApplication()
 

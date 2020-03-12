@@ -45,9 +45,6 @@ extension ScreenSetsBuilder: ScreenSetsExternalBuilderProtocol {
 
 extension ScreenSetsBuilder: ScreenSetsActionsBuilderProtocol {
     func show(viewController: UIViewController) {
-        guard let screenName = screenName else {
-            GigyaLogger.error(with: ScreenSetsBuilder.self, message: "screenSetName is empty, please use `setScreen(name: String)` before using `show()`.")
-        }
         
         // TODO: How to check if the screenSetId is exists? Maybe need to check it in the flutter engine?
         guard let screenSetViewController = GigyaNss.shared.dependenciesContainer.resolve(NativeScreenSetsViewController<T>.self) else {
@@ -58,8 +55,11 @@ extension ScreenSetsBuilder: ScreenSetsActionsBuilderProtocol {
         screenSetViewController.build()
         screenSetViewController.presentationController?.delegate = screenSetViewController.viewModel
 
-        engineLifeCycle.regToIgnitionChannel(asset: assetName, initialRoute: screenName, presentFrom: viewController, to: screenSetViewController)
+        engineLifeCycle.register(asset: assetName,
+                                 initialRoute: screenName,
+                                 presentFrom: viewController,
+                                 to: screenSetViewController
+        )
 
-        engineLifeCycle.regToLifeCircleOf(vc: screenSetViewController)
     }
 }

@@ -8,6 +8,8 @@
 
 import UIKit
 import LineSDK
+import Gigya
+import GigyaNss
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,6 +18,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        let _ = Gigya.sharedInstance()
+
+        GigyaNss.shared.register(scheme: GigyaAccount.self)
         return true
     }
 
