@@ -32,7 +32,7 @@ final class NetworkProvider {
             return
         }
 
-        let urlAllowed = NSCharacterSet(charactersIn: "!*'();/:@&=+$,?%#[]{}\" ").inverted
+        let urlAllowed = NSCharacterSet(charactersIn: SignatureUtils.charactersAllowed).inverted
 
         let newParams = model.params
 

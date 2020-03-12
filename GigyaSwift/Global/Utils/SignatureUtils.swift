@@ -10,6 +10,7 @@ import Foundation
 import CommonCrypto
 
 class SignatureUtils {
+    public static let charactersAllowed = "!*'|();/:@&=+$,?%#[]{}\" "
 
     static func prepareSignature(config: GigyaConfig, persistenceService: PersistenceService, session: GigyaSession?, path: String, params: [String: Any] = [:]) throws -> [String: Any] {
         var timestamp: String?
@@ -59,7 +60,7 @@ class SignatureUtils {
     private static func oauth1SignatureBaseString(_ domain: String ,_ sMethod: String, _ paramsToSend: [String: Any]) -> String {
         let method = "POST"
         let url =  URL(string: "https://\(sMethod.components(separatedBy: ".").first!).\(domain)/\(sMethod)")!
-        let urlAllowed = NSCharacterSet(charactersIn: "!*'();/:@&=+$,?%#[]{}\" ").inverted
+        let urlAllowed = NSCharacterSet(charactersIn: charactersAllowed).inverted
 
         let params = paramsToSend.mapValues { value in return "\(value)" }
 
