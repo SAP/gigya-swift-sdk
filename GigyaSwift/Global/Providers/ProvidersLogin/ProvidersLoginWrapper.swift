@@ -10,7 +10,7 @@ import WebKit
 
 class ProvidersLoginWrapper: NSObject {
 
-    var webViewController: WebViewController?
+    var webViewController: GigyaWebViewController?
 
     private var config: GigyaConfig?
 
@@ -26,7 +26,7 @@ class ProvidersLoginWrapper: NSObject {
         self.providers = providers
         self.config = config
         self.persistenceService = persistenceService
-        self.webViewController = WebViewController()
+        self.webViewController = GigyaWebViewController()
 
         super.init()
 

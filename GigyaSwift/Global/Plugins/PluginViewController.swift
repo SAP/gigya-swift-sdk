@@ -9,27 +9,42 @@
 import Foundation
 import WebKit
 
-final class PluginViewController<T: GigyaAccountProtocol>: WebViewController {
+final class PluginViewController<T: GigyaAccountProtocol>: GigyaWebViewController, WKNavigationDelegate {
 
     let contentController = WKUserContentController()
 
     var webBridge: GigyaWebBridge<T>
-    
+
     init(webBridge: GigyaWebBridge<T>, pluginEvent: @escaping (GigyaPluginEvent<T>) -> Void) {
         self.webBridge = webBridge
 
         let webViewConfiguration = WKWebViewConfiguration()
         webViewConfiguration.userContentController = contentController
-        
+
         super.init(configuration: webViewConfiguration)
 
         self.webBridge.attachTo(webView: self.webView, viewController: self, pluginEvent: pluginEvent)
 
         self.webBridge.viewController = self
+        self.webView.navigationDelegate = self
+
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
+    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+         if navigationAction.navigationType == WKNavigationType.linkActivated {
+            guard let url = navigationAction.request.url else {
+                decisionHandler(.cancel)
+                return
+            }
+
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            decisionHandler(.cancel)
+            return
+         }
+         decisionHandler(.allow)
+    }
 }
