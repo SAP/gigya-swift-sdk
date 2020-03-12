@@ -197,8 +197,8 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
      - Parameter clearAccount: set true when you want to clear cache.
      - Parameter completion:   Response `GigyaApiResult<T>`.
      */
-    public func getAccount(_ clearAccount: Bool = false, completion: @escaping (GigyaApiResult<T>) -> Void) {
-        businessApiService.getAccount(clearAccount: clearAccount, dataType: T.self, completion: completion)
+    public func getAccount(_ clearAccount: Bool = false, params: [String: Any] = [:], completion: @escaping (GigyaApiResult<T>) -> Void) {
+        businessApiService.getAccount(params: params, clearAccount: clearAccount, dataType: T.self, completion: completion)
     }
 
     /**

@@ -9,7 +9,7 @@
 import Foundation
 import WebKit
 
-class WebViewController: UIViewController {
+class GigyaWebViewController: UIViewController {
     let webView: WKWebView
 
     var userDidCancel: () -> Void = { }

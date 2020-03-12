@@ -79,7 +79,7 @@ class BusinessApiService: NSObject, BusinessApiServiceProtocol {
         apiService.send(model: model, responseType: T.self, completion: completion)
     }
 
-    func getAccount<T: Codable>(clearAccount: Bool = false, dataType: T.Type, completion: @escaping (GigyaApiResult<T>) -> Void) {
+    func getAccount<T: Codable>(params: [String: Any] = [:], clearAccount: Bool = false, dataType: T.Type, completion: @escaping (GigyaApiResult<T>) -> Void) {
         if clearAccount == true {
             accountService.clear()
         }
@@ -87,7 +87,7 @@ class BusinessApiService: NSObject, BusinessApiServiceProtocol {
         if accountService.isCachedAccount() {
             completion(.success(data: accountService.getAccount()))
         } else {
-            let model = ApiRequestModel(method: GigyaDefinitions.API.getAccountInfo)
+            let model = ApiRequestModel(method: GigyaDefinitions.API.getAccountInfo, params: params)
             
             apiService.send(model: model, responseType: T.self) { [weak accountService] result in
                 switch result {

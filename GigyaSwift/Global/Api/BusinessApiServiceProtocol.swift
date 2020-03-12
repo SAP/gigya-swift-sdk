@@ -35,7 +35,7 @@ protocol BusinessApiServiceProtocol {
 
     func send<T: Codable>(dataType: T.Type, api: String, params: [String: Any], completion: @escaping (GigyaApiResult<T>) -> Void)
 
-    func getAccount<T: GigyaAccountProtocol>(clearAccount: Bool, dataType: T.Type, completion: @escaping (GigyaApiResult<T>) -> Void)
+    func getAccount<T: GigyaAccountProtocol>(params: [String: Any], clearAccount: Bool, dataType: T.Type, completion: @escaping (GigyaApiResult<T>) -> Void)
 
     func setAccount<T: GigyaAccountProtocol>(obj: T, completion: @escaping (GigyaApiResult<T>) -> Void)
 
