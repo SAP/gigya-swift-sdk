@@ -83,7 +83,7 @@ class BusinessApiTest: XCTestCase {
         // swiftlint:enable force_try
         ResponseDataTest.resData = jsonData
 
-        businessApi?.getAccount(clearAccount: true, dataType: RequestTestModel.self, completion: { (result) in
+        businessApi?.getAccount(params: [:], clearAccount: true, dataType: RequestTestModel.self, completion: { (result) in
             switch result {
             case .success(let data):
                 XCTAssertNotNil(data.callId)
@@ -120,7 +120,7 @@ class BusinessApiTest: XCTestCase {
 
         ResponseDataTest.resData = nil
 
-        businessApi?.getAccount(clearAccount: true, dataType: RequestTestModel.self, completion: { (result) in
+        businessApi?.getAccount(params: [:], clearAccount: true, dataType: RequestTestModel.self, completion: { (result) in
             switch result {
             case .success:
                 XCTFail("Fail")
@@ -145,7 +145,7 @@ class BusinessApiTest: XCTestCase {
         let expectation = self.expectation(description: "testSetAccount")
 
         businessApi?.setAccount(obj: account, completion: { (result) in
-            self.businessApi?.getAccount(clearAccount: true, dataType: GigyaAccount.self, completion: { (reult) in
+            self.businessApi?.getAccount(params: [:], clearAccount: true, dataType: GigyaAccount.self, completion: { (reult) in
                 expectation.fulfill()
                 
                 switch result {
@@ -172,7 +172,7 @@ class BusinessApiTest: XCTestCase {
         let account = GigyaAccount(UID: "123", profile: nil, UIDSignature: "123", apiVersion: 1, created: nil, createdTimestamp: nil, isActive: nil, isRegistered: nil, isVerified: nil, lastLogin: nil, lastLoginTimestamp: nil, lastUpdated: nil, lastUpdatedTimestamp: nil, loginProvider: nil, oldestDataUpdated: nil, oldestDataUpdatedTimestamp: nil, registered: nil, registeredTimestamp: nil, signatureTimestamp: nil, socialProviders: nil, verified: nil, verifiedTimestamp: nil, data: nil)
 
         businessApi?.setAccount(obj: account, completion: { (result) in
-            self.businessApi?.getAccount(clearAccount: true, dataType: GigyaAccount.self, completion: { (reult) in
+            self.businessApi?.getAccount(params: [:], clearAccount: true, dataType: GigyaAccount.self, completion: { (reult) in
                 switch result {
                 case .success:
                     XCTFail()
@@ -195,7 +195,7 @@ class BusinessApiTest: XCTestCase {
         let account = GigyaAccount(UID: "123", profile: nil, UIDSignature: "123", apiVersion: 1, created: nil, createdTimestamp: nil, isActive: nil, isRegistered: nil, isVerified: nil, lastLogin: nil, lastLoginTimestamp: nil, lastUpdated: nil, lastUpdatedTimestamp: nil, loginProvider: nil, oldestDataUpdated: nil, oldestDataUpdatedTimestamp: nil, registered: nil, registeredTimestamp: nil, signatureTimestamp: nil, socialProviders: nil, verified: nil, verifiedTimestamp: nil, data: nil)
 
         businessApi?.setAccount(obj: account, completion: { (result) in
-            self.businessApi?.getAccount(clearAccount: true, dataType: GigyaAccount.self, completion: { (reult) in
+            self.businessApi?.getAccount(params: [:], clearAccount: true, dataType: GigyaAccount.self, completion: { (reult) in
                 switch result {
                 case .success:
                     XCTFail()

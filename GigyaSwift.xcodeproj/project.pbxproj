@@ -96,7 +96,7 @@
 		E7584EEB22E0BC22007229FE /* View.xib in Resources */ = {isa = PBXBuildFile; fileRef = E7584EEA22E0BC22007229FE /* View.xib */; };
 		E760668B2278998E005E4CFD /* WebLoginProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E76066882278998E005E4CFD /* WebLoginProvider.swift */; };
 		E760668C2278998E005E4CFD /* WebViewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E76066892278998E005E4CFD /* WebViewWrapper.swift */; };
-		E760668D2278998E005E4CFD /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E760668A2278998E005E4CFD /* WebViewController.swift */; };
+		E760668D2278998E005E4CFD /* GigyaWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E760668A2278998E005E4CFD /* GigyaWebViewController.swift */; };
 		E76F2E752345E72500056D19 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E76F2E742345E72500056D19 /* AppDelegate.swift */; };
 		E76F2E772345E72500056D19 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E76F2E762345E72500056D19 /* SceneDelegate.swift */; };
 		E76F2E792345E72500056D19 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E76F2E782345E72500056D19 /* MainView.swift */; };
@@ -394,7 +394,7 @@
 		E7584EEA22E0BC22007229FE /* View.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = View.xib; sourceTree = "<group>"; };
 		E76066882278998E005E4CFD /* WebLoginProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebLoginProvider.swift; sourceTree = "<group>"; };
 		E76066892278998E005E4CFD /* WebViewWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewWrapper.swift; sourceTree = "<group>"; };
-		E760668A2278998E005E4CFD /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		E760668A2278998E005E4CFD /* GigyaWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GigyaWebViewController.swift; sourceTree = "<group>"; };
 		E76F2E722345E72500056D19 /* GigyaUITestsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GigyaUITestsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E76F2E742345E72500056D19 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E76F2E762345E72500056D19 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -917,7 +917,7 @@
 			children = (
 				E76066882278998E005E4CFD /* WebLoginProvider.swift */,
 				E76066892278998E005E4CFD /* WebViewWrapper.swift */,
-				E760668A2278998E005E4CFD /* WebViewController.swift */,
+				E760668A2278998E005E4CFD /* GigyaWebViewController.swift */,
 			);
 			path = WebLogin;
 			sourceTree = "<group>";
@@ -1924,7 +1924,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E7CBAFBE222D18A6000B6C11 /* NetworkMethod.swift in Sources */,
-				E760668D2278998E005E4CFD /* WebViewController.swift in Sources */,
+				E760668D2278998E005E4CFD /* GigyaWebViewController.swift in Sources */,
 				E74E26692383E9B1002E361B /* GeneralUtils.swift in Sources */,
 				E7E80DA22252041D00D3B663 /* ResolverProtocol.swift in Sources */,
 				E73A930222F974120004F93E /* Notification.Name.swift in Sources */,
@@ -2414,7 +2414,7 @@
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 46;
+				CURRENT_PROJECT_VERSION = 55;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = T48CNFXFQH;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -2434,7 +2434,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.9;
+				MARKETING_VERSION = 1.0.10;
 				MODULEMAP_FILE = "";
 				MODULEMAP_PRIVATE_FILE = "";
 				ONLY_ACTIVE_ARCH = NO;
@@ -2466,7 +2466,7 @@
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 46;
+				CURRENT_PROJECT_VERSION = 55;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = T48CNFXFQH;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -2486,7 +2486,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.9;
+				MARKETING_VERSION = 1.0.10;
 				MODULEMAP_FILE = "";
 				MODULEMAP_PRIVATE_FILE = "";
 				OTHER_LDFLAGS = (

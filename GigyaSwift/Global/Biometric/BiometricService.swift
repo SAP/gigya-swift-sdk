@@ -52,9 +52,9 @@ final class BiometricService: BiometricServiceProtocol, BiometricServiceInternal
             case .success:
                 self?.persistenceService.setBiometricEnable(to: true)
 
-                completion(.success)
+                main { completion(.success) }
             case .failure:
-                completion(.failure)
+                main {  completion(.failure) }
             }
         }
     }
@@ -70,10 +70,11 @@ final class BiometricService: BiometricServiceProtocol, BiometricServiceInternal
             switch result {
             case .success:
                 self?.persistenceService.setBiometricEnable(to: false)
+                self?.persistenceService.setBiometricLocked(to: false)
 
-                completion(.success)
+                main { completion(.success) }
             case .failure:
-                completion(.failure)
+                main { completion(.failure) }
             }
         }
     }
@@ -87,15 +88,15 @@ final class BiometricService: BiometricServiceProtocol, BiometricServiceInternal
     public func unlockSession(completion: @escaping (GigyaBiometricResult) -> Void) {
         guard persistenceService.biometricAllow == true else {
             GigyaLogger.log(with: "biometric", message: "can't load session because user don't opt in")
-            completion(.failure)
+            main { completion(.failure) }
             return
         }
 
         sessionService.getSession() { (success) in
             if success == true {
-                completion(.success)
+                main { completion(.success) }
             } else {
-                completion(.failure)
+                main { completion(.failure) }
             }
         }
     }
@@ -110,11 +111,11 @@ final class BiometricService: BiometricServiceProtocol, BiometricServiceInternal
         if isOptIn {
             sessionService.clearSession()
             persistenceService.setBiometricLocked(to: true)
-            completion(.success)
+            main { completion(.success) }
         } else {
             GigyaLogger.log(with: "biometric", message: "can't lock session because user don't opt in")
 
-            completion(.failure)
+            main { completion(.failure) }
         }
     }
 

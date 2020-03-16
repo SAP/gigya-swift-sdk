@@ -13,7 +13,7 @@ final class WebLoginWrapper: NSObject, ProviderWrapperProtocol {
 
     var clientID: String?
 
-    var webViewController: WebViewController?
+    var webViewController: GigyaWebViewController?
 
     private var networkAdapter: NetworkAdapterProtocol?
 
@@ -35,7 +35,7 @@ final class WebLoginWrapper: NSObject, ProviderWrapperProtocol {
         self.providerType = providerType
         self.config = config
         self.persistenceService = persistenceService
-        self.webViewController = WebViewController()
+        self.webViewController = GigyaWebViewController()
 
         self.networkAdapter = networkAdapter
 
@@ -102,7 +102,7 @@ final class WebLoginWrapper: NSObject, ProviderWrapperProtocol {
             GigyaLogger.log(with: self, message: "error to make signature in web social login - \(error.localizedDescription)")
         }
 
-        let urlAllowed = NSCharacterSet(charactersIn: "!*'();/:@&=+$,?%#[]{}\" ").inverted
+        let urlAllowed = NSCharacterSet(charactersIn: GigyaDefinitions.charactersAllowed).inverted
 
         let bodyDataParmas = bodyData.mapValues { value -> String in
             return "\(value)"
