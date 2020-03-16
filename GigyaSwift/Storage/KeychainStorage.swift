@@ -26,7 +26,7 @@ internal class KeychainStorageFactory {
 
     func add(with name: String, data: Data?, state: KeychainMode = .regular, completionHandler: GSKeychainCompletionHandler?) {
         guard let data = data else {
-            assertionFailure("There is not have data")
+            assertionFailure("Keychain data not found.")
             return
         }
 
