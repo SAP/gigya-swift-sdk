@@ -39,6 +39,8 @@
 		E70F8BED2405215C00D52208 /* FlowFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70F8BEC2405215C00D52208 /* FlowFactory.swift */; };
 		E70F8BEF24053ABA00D52208 /* RegisterFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70F8BEE24053AB900D52208 /* RegisterFlow.swift */; };
 		E70F8BF124053B5800D52208 /* LoginFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70F8BF024053B5800D52208 /* LoginFlow.swift */; };
+		E719C6AF24225216002F8C36 /* LogChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E719C6AE24225216002F8C36 /* LogChannel.swift */; };
+		E719C6B124226139002F8C36 /* AccountFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E719C6B024226139002F8C36 /* AccountFlow.swift */; };
 		E722572923CC9F22000DDB24 /* engine.sh in Resources */ = {isa = PBXBuildFile; fileRef = E722572823CC9F22000DDB24 /* engine.sh */; };
 		E722573423CCB1CE000DDB24 /* NativeScreenSetsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E722573323CCB1CE000DDB24 /* NativeScreenSetsViewController.swift */; };
 		E722573623CCBB31000DDB24 /* ScreenChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E722573523CCBB31000DDB24 /* ScreenChannel.swift */; };
@@ -77,6 +79,8 @@
 		E70F8BEC2405215C00D52208 /* FlowFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowFactory.swift; sourceTree = "<group>"; };
 		E70F8BEE24053AB900D52208 /* RegisterFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterFlow.swift; sourceTree = "<group>"; };
 		E70F8BF024053B5800D52208 /* LoginFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFlow.swift; sourceTree = "<group>"; };
+		E719C6AE24225216002F8C36 /* LogChannel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogChannel.swift; sourceTree = "<group>"; };
+		E719C6B024226139002F8C36 /* AccountFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountFlow.swift; sourceTree = "<group>"; };
 		E722572823CC9F22000DDB24 /* engine.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = engine.sh; sourceTree = "<group>"; };
 		E722573323CCB1CE000DDB24 /* NativeScreenSetsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeScreenSetsViewController.swift; sourceTree = "<group>"; };
 		E722573523CCBB31000DDB24 /* ScreenChannel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenChannel.swift; sourceTree = "<group>"; };
@@ -127,6 +131,7 @@
 				E70F8BBB23FD742C00D52208 /* NssFlow.swift */,
 				E70F8BEC2405215C00D52208 /* FlowFactory.swift */,
 				E70F8BF024053B5800D52208 /* LoginFlow.swift */,
+				E719C6B024226139002F8C36 /* AccountFlow.swift */,
 				E70F8BEE24053AB900D52208 /* RegisterFlow.swift */,
 			);
 			path = Flow;
@@ -154,6 +159,7 @@
 				E70F8BCA2404095600D52208 /* BaseChannel.swift */,
 				E722573523CCBB31000DDB24 /* ScreenChannel.swift */,
 				E7D1F70B240BD92B00394185 /* IgnitionChannel.swift */,
+				E719C6AE24225216002F8C36 /* LogChannel.swift */,
 				E78B8A5F23FC399C00E29651 /* ApiChannel.swift */,
 			);
 			path = Channels;
@@ -423,11 +429,13 @@
 				E70F8BEF24053ABA00D52208 /* RegisterFlow.swift in Sources */,
 				E70F8BBF23FD748F00D52208 /* CordinatorContainer.swift in Sources */,
 				E78B8A5E23FC375700E29651 /* NativeScreenSetsViewModel.swift in Sources */,
+				E719C6AF24225216002F8C36 /* LogChannel.swift in Sources */,
 				E70F8BF124053B5800D52208 /* LoginFlow.swift in Sources */,
 				E77F7A2D2407BF5100FF90FB /* CreateEngineFactory.swift in Sources */,
 				E7D1F71124152D5000394185 /* Dictionary.swift in Sources */,
 				E70F8BCB2404095600D52208 /* BaseChannel.swift in Sources */,
 				E78B8A6023FC399C00E29651 /* ApiChannel.swift in Sources */,
+				E719C6B124226139002F8C36 /* AccountFlow.swift in Sources */,
 				E7D1F70E240E5F0700394185 /* EngineLifeCycle.swift in Sources */,
 				E722573623CCBB31000DDB24 /* ScreenChannel.swift in Sources */,
 				E70F8BED2405215C00D52208 /* FlowFactory.swift in Sources */,

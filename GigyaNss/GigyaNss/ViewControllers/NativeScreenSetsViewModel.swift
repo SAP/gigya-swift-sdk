@@ -16,15 +16,17 @@ class NativeScreenSetsViewModel<T: GigyaAccountProtocol>: CordinatorContainer<T>
 
     var screenChannel: ScreenChannel?
     var apiChannel: ApiChannel?
+    var logChannel: LogChannel?
 
     let flowFactory: FlowFactory<T>
 
     var engine: FlutterEngine?
 
-    init(mainChannel: ScreenChannel, apiChannel: ApiChannel, flowFactory: FlowFactory<T>) {
+    init(mainChannel: ScreenChannel, apiChannel: ApiChannel, logChannel: LogChannel, flowFactory: FlowFactory<T>) {
         self.screenChannel = mainChannel
         self.apiChannel = apiChannel
         self.flowFactory = flowFactory
+        self.logChannel = logChannel
     }
 
     func loadChannels(with engine: FlutterEngine) {
@@ -37,9 +39,6 @@ class NativeScreenSetsViewModel<T: GigyaAccountProtocol>: CordinatorContainer<T>
             }
 
             switch method {
-//            case .ignition:
-//                let loadAsset = self.loaderHelper.fileToDic(name: asset)
-//                response(loadAsset)
             case .flow:
                 guard
                     let flowId = data?["flowId"] as? String,
@@ -50,6 +49,8 @@ class NativeScreenSetsViewModel<T: GigyaAccountProtocol>: CordinatorContainer<T>
                 let generateFlow = self.flowFactory.create(identifier: flow)
 
                 self.add(id: flow, flow: generateFlow)
+
+                generateFlow.initialize(response: response)
             case .dismiss:
                 self.dismissClosure()
                 self.removeAll()
@@ -57,12 +58,25 @@ class NativeScreenSetsViewModel<T: GigyaAccountProtocol>: CordinatorContainer<T>
         }
 
         apiChannel?.methodHandler(scheme: ApiChannelEvent.self) { [weak self] method, data, response in
-            guard let self = self, let method = method?.rawValue else {
+            guard let self = self, let method = method else {
+                return
+            }
+    
+            self.currentFlow?.next(method: method, params: data, response: response)
+        }
+
+        logChannel?.methodHandler(scheme: LogChannelEvent.self, { [weak self] (method, data, response) in
+            guard let self = self, let method = method else {
                 return
             }
 
-            self.currentFlow?.next(method: method, params: data, response: response)
-        }
+            switch method {
+            case .debug:
+                GigyaLogger.log(with: self, message: data?["message"] as? String ?? "")
+            case .error:
+                GigyaLogger.error(with: GigyaNss.self, message: data?["message"] as? String ?? "")
+            }
+        })
     }
 
 

@@ -16,9 +16,9 @@ class RegisterFlow<T: GigyaAccountProtocol>: NssFlow {
         self.busnessApi = busnessApi
     }
 
-    func next(method: String, params: [String: Any]?, response: @escaping FlutterResult) {
+    override func next(method: ApiChannelEvent, params: [String: Any]?, response: @escaping FlutterResult) {
         switch method {
-        case "accounts.register":
+        case .submit:
             let email = params?["email"] as? String ?? ""
             let password = params?["password"] as? String ?? ""
             let params = params?["params"] as? [String: Any] ?? [:]

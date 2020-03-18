@@ -19,6 +19,7 @@ final public class GigyaNss {
     static var ignitionChannel = "gigya_nss_engine/method/ignition"
     static var screenChannel = "gigya_nss_engine/method/screen"
     static var apiChannel = "gigya_nss_engine/method/api"
+    static var logChannel = "gigya_nss_engine/method/log"
 
     // Engine configuration
     static let engineBundle = "Gigya.GigyaNssEngine"
@@ -56,10 +57,12 @@ final public class GigyaNss {
         dependenciesContainer.register(service: NativeScreenSetsViewModel<T>.self) { resolver in
             let mainChannel = resolver.resolve(ScreenChannel.self)
             let apiChannel = resolver.resolve(ApiChannel.self)
+            let logChannel = resolver.resolve(LogChannel.self)
             let flowFactory = resolver.resolve(FlowFactory<T>.self)
 
             return NativeScreenSetsViewModel(mainChannel: mainChannel!,
                                              apiChannel: apiChannel!,
+                                             logChannel: logChannel!,
                                              flowFactory: flowFactory!
             )
         }
@@ -92,6 +95,10 @@ final public class GigyaNss {
 
         dependenciesContainer.register(service: ApiChannel.self) {  _ in
             return ApiChannel()
+        }
+
+        dependenciesContainer.register(service: LogChannel.self) {  _ in
+              return LogChannel()
         }
 
         dependenciesContainer.register(service: FlowFactory<T>.self) { _ in

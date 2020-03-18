@@ -21,10 +21,14 @@ class ApiChannel: BaseChannel {
     }
 }
 
-struct ApiChannelEvent: RawRepresentable {
-    var rawValue: String
-
-    init(rawValue: String) {
-        self.rawValue = rawValue
-    }
+enum ApiChannelEvent: String {
+    case submit
+    case api
 }
+//struct ApiChannelEvent: RawRepresentable {
+//    var rawValue: String
+//
+//    init(rawValue: String) {
+//        self.rawValue = rawValue
+//    }
+//}

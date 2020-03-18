@@ -64,10 +64,12 @@ extension AppleSignInInternalWrapper: ASAuthorizationControllerDelegate {
 
                 var jsonData: [String: Any] = ["code": authorizationCodeEncoded, "accessToken": identityTokenEncoded]
 
+                jsonData["firstName"] = "."
                 if let firstName = appleIDCredential.fullName?.givenName {
                     jsonData["firstName"] = firstName
                 }
 
+                jsonData["lastName"] = "."
                 if let lastName = appleIDCredential.fullName?.familyName {
                     jsonData["lastName"] = lastName
                 }

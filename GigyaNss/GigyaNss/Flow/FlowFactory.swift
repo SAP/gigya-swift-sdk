@@ -7,6 +7,7 @@
 //
 
 import Gigya
+import Flutter
 
 class FlowFactory<T: GigyaAccountProtocol> {
     func create(identifier: Flow) -> NssFlow {

@@ -9,6 +9,16 @@
 import Flutter
 import Gigya
 
-protocol NssFlow {
-    func next(method: String, params: [String: Any]?, response: @escaping FlutterResult)
+protocol NssFlowProtocol {
+    func initialize(response: @escaping FlutterResult)
+
+    func next(method: ApiChannelEvent, params: [String: Any]?, response: @escaping FlutterResult)
+}
+
+class NssFlow: NssFlowProtocol {
+    func initialize(response: @escaping FlutterResult) {
+        response([:])
+    }
+
+    func next(method: ApiChannelEvent, params: [String : Any]?, response: @escaping FlutterResult) {}
 }
