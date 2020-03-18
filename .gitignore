@@ -1,4 +1,4 @@
-
+.idea/
 Pods/Target Support Files/Pods-TestApp/
 
 Pods/
@@ -28,6 +28,7 @@ GigyaTfa/build/
 .DS_Store
 >>>>>>> develop
 
+<<<<<<< HEAD
 GigyaNss/build/
 GigyaNss/Debug/
 GigyaNss/Release/
@@ -37,3 +38,8 @@ GigyaNssEngine/Debug/
 GigyaNssEngine/Release/
 
 GigyaNss/gigya-native-screensets-engine/
+=======
+GigyaNss/gigya-native-screensets-engine/
+
+GigyaNss/Flutter/
+>>>>>>> develop

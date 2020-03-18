@@ -136,7 +136,7 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
      */
 
     public func setSession(_ session: GigyaSession) {
-        let sessionInfo = SessionInfoModel(sessionToken: session.token, sessionSecret: session.secret, sessionExpiration: String(describing: session.sessionExpirationTimestamp))
+        let sessionInfo = SessionInfoModel(sessionToken: session.token, sessionSecret: session.secret, sessionExpiration: String(session.sessionExpirationTimestamp ?? 0))
         sessionService.setSession(sessionInfo)
     }
 
@@ -197,8 +197,8 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
      - Parameter clearAccount: set true when you want to clear cache.
      - Parameter completion:   Response `GigyaApiResult<T>`.
      */
-    public func getAccount(_ clearAccount: Bool = false, completion: @escaping (GigyaApiResult<T>) -> Void) {
-        businessApiService.getAccount(clearAccount: clearAccount, dataType: T.self, completion: completion)
+    public func getAccount(_ clearAccount: Bool = false, params: [String: Any] = [:], completion: @escaping (GigyaApiResult<T>) -> Void) {
+        businessApiService.getAccount(params: params, clearAccount: clearAccount, dataType: T.self, completion: completion)
     }
 
     /**

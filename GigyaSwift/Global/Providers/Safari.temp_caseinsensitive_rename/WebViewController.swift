@@ -9,10 +9,8 @@
 import Foundation
 import WebKit
 
-class GigyaWebViewController: UIViewController {
+class WebViewController: UIViewController {
     let webView: WKWebView
-
-    var userDidCancel: () -> Void = { }
 
     init(configuration: WKWebViewConfiguration = WKWebViewConfiguration()) {
         webView = WKWebView(frame: .zero, configuration: configuration)
@@ -26,11 +24,10 @@ class GigyaWebViewController: UIViewController {
         buildUI()
 
         setWebViewLayout()
+
     }
 
     private func buildUI() {
-        self.view.backgroundColor = .white
-
         self.view.addSubview(webView)
 
         webView.translatesAutoresizingMaskIntoConstraints = false
@@ -67,14 +64,7 @@ class GigyaWebViewController: UIViewController {
         webView.load(URLRequest(url: url))
     }
 
-    func loadhtml(_ data: String) {
-        main {
-            self.webView.loadHTMLString(data, baseURL: nil)
-        }
-    }
-
-    @objc func dismissView() {
+    @objc private func dismissView() {
         self.dismiss(animated: true, completion: nil)
-        userDidCancel()
     }
 }

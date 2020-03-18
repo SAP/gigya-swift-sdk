@@ -80,7 +80,11 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "137"
             endingLineNumber = "137"
+<<<<<<< HEAD
             landmarkName = "login(_:)"
+=======
+            landmarkName = "register(_:)"
+>>>>>>> develop
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -88,7 +92,11 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "2708C190-F40D-46DA-A517-9D3D5BC618B7"
+<<<<<<< HEAD
             shouldBeEnabled = "No"
+=======
+            shouldBeEnabled = "Yes"
+>>>>>>> develop
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TestApp/UI/ViewController.swift"
@@ -96,7 +104,11 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "249"
             endingLineNumber = "249"
+<<<<<<< HEAD
             landmarkName = "checkLoginState()"
+=======
+            landmarkName = "loginWithProvider(_:)"
+>>>>>>> develop
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

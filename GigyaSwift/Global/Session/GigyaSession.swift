@@ -20,9 +20,18 @@ public class GigyaSession: NSObject, NSSecureCoding {
 
     var lastLoginProvider = ""
 
-    init?(sessionToken token: String, secret: String) {
+    /**
+     Constructor of GigyaSession.
+
+     - Parameter token:       User Token.
+     - Parameter secret:      User secret.
+     - Parameter expiration:  Time to expiration in seconds.
+     */
+
+    public init?(sessionToken token: String, secret: String, expiration: Double? = nil) {
         self.token = token
         self.secret = secret
+        self.sessionExpirationTimestamp = expiration
     }
 
     public func encode(with aCoder: NSCoder) {

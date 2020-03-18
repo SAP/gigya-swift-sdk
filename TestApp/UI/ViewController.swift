@@ -30,6 +30,10 @@ class ViewController: UIViewController {
 
         not.addObserver(self, selector: #selector(gigyaSessionExpire(_:)), name: Notification.Name("didInvalidateSession"), object: nil)
 
+        let session = GigyaSession(sessionToken: "", secret: "")
+
+
+
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -102,7 +106,7 @@ class ViewController: UIViewController {
 //            .show(viewController: self)
 //
         let alert = UIFactory.getLoginAlert { email, password in
-            self.gigya.login(loginId: email!, password: password!, params: [:]) { [weak self] result in
+            self.gigya.login(loginId: email!, password: password!, params: ["sessionExpiration": "9000000"]) { [weak self] result in
                 switch result {
                 case .success(let data):
                     self?.resultTextView?.text = data.toJson()
@@ -160,7 +164,7 @@ class ViewController: UIViewController {
                         resolver.setAccount(params: params)
 
                     case .conflitingAccount(let resolver):
-                        resolver.linkToSite(loginId: resolver.conflictingAccount?.loginID ?? "", password: "123123")
+                        resolver.linkToSite(loginId: resolver.conflictingAccount?.loginID ?? "", password: "151515")
                     case .pendingTwoFactorVerification(let interruption, let activeProviders, let factory):
                         self?.presentTFAController(tfaProviders: activeProviders!, mode: .verification, factoryResolver: factory)
 
@@ -234,6 +238,7 @@ class ViewController: UIViewController {
         } else {
 
             isLoggedIn = gigya.isLoggedIn()
+            print("session is valid?: \(isLoggedIn)")
             if (isLoggedIn) {
                 gigya.getAccount() { [weak self] result in
                     switch result {
@@ -250,7 +255,7 @@ class ViewController: UIViewController {
     }
 
     @IBAction func loginWithProvider(_ sender: Any) {
-        gigya.login(with: .apple, viewController: self, params: ["sessionExpiration": "1000"]) { [weak self] (result) in
+        gigya.login(with: .facebook, viewController: self, params: ["dataCenter": "ru1"]) { [weak self] (result) in
             switch result {
             case .success(let data):
                 print(data)
@@ -268,7 +273,7 @@ class ViewController: UIViewController {
                 case .pendingVerification(let resolver):
                     print("regToken: \(resolver)")
                 case .conflitingAccount(let resolver):
-                    resolver.linkToSite(loginId: resolver.conflictingAccount?.loginID ?? "", password: "123123")
+                    resolver.linkToSite(loginId: resolver.conflictingAccount?.loginID ?? "", password: "151515")
                 default:
                     break
                 }

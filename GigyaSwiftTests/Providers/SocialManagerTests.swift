@@ -16,16 +16,18 @@ class SocialManagerTests: XCTestCase {
     var sessionService: SessionServiceProtocol?
     var config: GigyaConfig?
     var persistenceService: PersistenceService?
+    var networkAdapter: NetworkAdapterProtocol?
 
     override func setUp() {
         sessionService = ioc.container.resolve(SessionServiceProtocol.self)!
         config = ioc.container.resolve(GigyaConfig.self)!
         persistenceService = ioc.container.resolve(PersistenceService.self)
+        networkAdapter = ioc.container.resolve(NetworkAdapterProtocol.self)
     }
 
     func testGetGoogleProvider() {
         do {
-            self.socialManager = SocialProvidersManager(sessionService: self.sessionService!, config: self.config!, persistenceService: persistenceService!)
+            self.socialManager = SocialProvidersManager(sessionService: self.sessionService!, config: self.config!, persistenceService: persistenceService!, networkAdapter: self.networkAdapter!)
             let _ = self.socialManager?.getProvider(with: .google, delegate: self)
             XCTAssert(true)
 
@@ -35,7 +37,7 @@ class SocialManagerTests: XCTestCase {
     // check provider not extend to ProviderWrapperProtocol and check provider sdk not install
     func testGetProvider() {
         do {
-            self.socialManager = SocialProvidersManager(sessionService: self.sessionService!, config: self.config!, persistenceService: persistenceService!)
+            self.socialManager = SocialProvidersManager(sessionService: self.sessionService!, config: self.config!, persistenceService: persistenceService!, networkAdapter: self.networkAdapter!)
 
             self.expectFatalError(expectedMessage: "[facebook] can't login with WebView, install related sdk.") {
                 let _ = self.socialManager?.getProvider(with: .facebook, delegate: self)
@@ -46,7 +48,7 @@ class SocialManagerTests: XCTestCase {
 
     func testGetWechatProvider() {
         do {
-            self.socialManager = SocialProvidersManager(sessionService: self.sessionService!, config: self.config!, persistenceService: persistenceService!)
+            self.socialManager = SocialProvidersManager(sessionService: self.sessionService!, config: self.config!, persistenceService: persistenceService!, networkAdapter: self.networkAdapter!)
 
             self.expectFatalError(expectedMessage: "[wechat] can't login with WebView, install related sdk.") {
                 let _ = self.socialManager?.getProvider(with: .wechat, delegate: self)

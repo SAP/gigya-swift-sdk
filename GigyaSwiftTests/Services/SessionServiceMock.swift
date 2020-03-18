@@ -10,6 +10,9 @@ import Foundation
 @testable import Gigya
 
 class SessionServiceMock: SessionServiceProtocol {
+
+    var handlersAfterSetSession: InterceptorsUtils = InterceptorsUtils()
+
     var session: GigyaSession?
 
     func isValidSession() -> Bool {

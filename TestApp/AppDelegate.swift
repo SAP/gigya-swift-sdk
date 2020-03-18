@@ -52,7 +52,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
 
         ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
 
-
         return true
     }
 
