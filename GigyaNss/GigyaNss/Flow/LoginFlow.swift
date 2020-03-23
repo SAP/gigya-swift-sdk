@@ -20,11 +20,15 @@ class LoginFlow<T: GigyaAccountProtocol>: NssFlow {
         
         switch method {
         case .submit:
-            let loginId = params?["loginID"] as? String ?? ""
-            let password = params?["password"] as? String ?? ""
-            let params = params?["params"] as? [String: Any] ?? [:]
+            guard let params = params?["params"] as? [String: Any] else {
+                return
+            }
 
-            busnessApi.callLogin(dataType: T.self, loginId: loginId, password: password, params: params) { (result) in
+            let loginId = params["loginID"] as? String ?? ""
+            let password = params["password"] as? String ?? ""
+            let paramss = params["params"] as? [String: Any] ?? [:]
+
+            busnessApi.callLogin(dataType: T.self, loginId: loginId, password: password, params: paramss) { (result) in
                 switch result {
                 case .success(let data):
                     let resultData = ["errorCode": 0, "errorMessage": "", "callId": "", "statusCode": 200] as [String : Any]

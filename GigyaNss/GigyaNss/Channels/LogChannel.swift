@@ -14,7 +14,7 @@ class LogChannel: BaseChannel {
     var flutterMethodChannel: FlutterMethodChannel?
 
     func initChannel(engine: FlutterEngine) {
-        flutterMethodChannel = FlutterMethodChannel(name: GigyaNss.ignitionChannel, binaryMessenger: engine.binaryMessenger)
+        flutterMethodChannel = FlutterMethodChannel(name: GigyaNss.logChannel, binaryMessenger: engine.binaryMessenger)
     }
 
     deinit {

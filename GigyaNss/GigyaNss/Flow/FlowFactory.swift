@@ -16,6 +16,9 @@ class FlowFactory<T: GigyaAccountProtocol> {
             return GigyaNss.shared.dependenciesContainer.resolve(RegisterFlow<T>.self)!
         case .login:
             return GigyaNss.shared.dependenciesContainer.resolve(LoginFlow<T>.self)!
+        case .account:
+            return GigyaNss.shared.dependenciesContainer.resolve(AccountFlow<T>.self)!
+
         }
     }
 }
@@ -23,4 +26,5 @@ class FlowFactory<T: GigyaAccountProtocol> {
 enum Flow: String {
     case register
     case login
+    case account
 }

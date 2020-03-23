@@ -31,7 +31,7 @@ class ViewController: UIViewController {
         not.addObserver(self, selector: #selector(gigyaSessionExpire(_:)), name: Notification.Name("didInvalidateSession"), object: nil)
 
         let session = GigyaSession(sessionToken: "", secret: "")
-
+        self.navigationController?.modalPresentationStyle = .fullScreen
 
 
     }
@@ -63,10 +63,10 @@ class ViewController: UIViewController {
     @IBAction func showScreenSet(_ sender: Any) {
 //        GigyaNss.shared.showScreenSet(with: "test", viewController: self)
 
-        GigyaNss.shared
-            .load(asset: "init")
-            .setScreen(name: "login")
-            .show(viewController: self)
+//        GigyaNss.shared
+//            .load(asset: "init")
+//            .setScreen(name: "login")
+//            .show(viewController: self)
 //
 //        let container = Gigya.getContainer()
 //        let sessionService = container.resolve(SessionServiceProtocol.self)
@@ -80,23 +80,23 @@ class ViewController: UIViewController {
 
         //Default-ProfileUpdate
 ////
-//        var currentScreen: String = ""
-//        gigya.showScreenSet(with: "Default-RegistrationLogin", viewController: self) { [weak self] (result) in
-//            switch result {
-//            case .onLogin(let account):
-//                self?.resultTextView!.text = account.toJson()
-//            case .onAfterScreenLoad(let event):
-//                currentScreen = event["currentScreen"] as? String ?? ""
-//            case .error(let event):
-//                print(event)
-//            case .onHide(let event):
-//                print(event)
-//            case .onLogout:
-//                break
-//            default:
-//                break
-//            }
-//        }
+        var currentScreen: String = ""
+        gigya.showScreenSet(with: "Default-RegistrationLogin", viewController: self) { [weak self] (result) in
+            switch result {
+            case .onLogin(let account):
+                self?.resultTextView!.text = account.toJson()
+            case .onAfterScreenLoad(let event):
+                currentScreen = event["currentScreen"] as? String ?? ""
+            case .error(let event):
+                print(event)
+            case .onHide(let event):
+                print(event)
+            case .onLogout:
+                break
+            default:
+                break
+            }
+        }
     }
 
     @IBAction func login(_ sender: Any) {

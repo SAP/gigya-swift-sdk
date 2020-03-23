@@ -32,6 +32,7 @@ class NativeScreenSetsViewModel<T: GigyaAccountProtocol>: CordinatorContainer<T>
     func loadChannels(with engine: FlutterEngine) {
         screenChannel?.initChannel(engine: engine)
         apiChannel?.initChannel(engine: engine)
+        logChannel?.initChannel(engine: engine)
 
         screenChannel?.methodHandler(scheme: ScreenChannelEvent.self) { [weak self] method, data, response in
             guard let self = self, let method = method else {
@@ -40,6 +41,7 @@ class NativeScreenSetsViewModel<T: GigyaAccountProtocol>: CordinatorContainer<T>
 
             switch method {
             case .flow:
+                print(data)
                 guard
                     let flowId = data?["flowId"] as? String,
                     let flow = Flow(rawValue: flowId) else {

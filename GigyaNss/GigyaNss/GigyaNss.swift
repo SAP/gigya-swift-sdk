@@ -117,6 +117,12 @@ final public class GigyaNss {
             return LoginFlow(busnessApi: busnessApi!)
         }
 
+        dependenciesContainer.register(service: AccountFlow<T>.self) { resolver in
+            let busnessApi = resolver.resolve(BusinessApiDelegate.self)
+
+            return AccountFlow(busnessApi: busnessApi!)
+        }
+
         dependenciesContainer.register(service: CreateEngineFactory.self) { _ in
             return CreateEngineFactory()
         }

@@ -46,6 +46,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
 
         Messaging.messaging().shouldEstablishDirectChannel = true
 
+        GigyaLogger.setDebugMode(to: true)
         GigyaAuth.shared.registerForRemoteNotifications()
         GigyaTfa.shared.registerForRemoteNotifications()
         GigyaNss.shared.register(scheme: UserHost.self)

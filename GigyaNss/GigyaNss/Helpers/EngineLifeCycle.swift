@@ -60,16 +60,18 @@ class EngineLifeCycle {
 
     func regToLifeCircleOf<T: GigyaAccountProtocol>(vc: NativeScreenSetsViewController<T>) {
         vc.viewModel?.dismissClosure = { [weak vc] in
-            vc?.dismiss(animated: true, completion: { [weak vc] in
+            vc?.dismiss(animated: true, completion: { [weak vc, weak self] in
                 vc?.engine?.destroyContext()
                 vc?.viewModel = nil
+                self?.isDisplay = false
             })
         }
 
         // Close by swipe down event ( for iOS 13+ )
-        vc.viewModel?.closeClosure = { [weak vc] in
+        vc.viewModel?.closeClosure = { [weak vc, weak self] in
             vc?.engine?.destroyContext()
             vc?.viewModel = nil
+            self?.isDisplay = false
         }
     }
 

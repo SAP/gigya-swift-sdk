@@ -1,16 +1,16 @@
 {
   "platformAware": false,
   "markup": {
-    "initialRoute" : "login",
+    "initialRoute": "register",
     "defaultRouting": {
-      "success" : "dismiss"
+      "success": "dismiss"
     },
     "screens": {
       "login": {
-        "routing" : {
-          "success": "dismiss"
+        "routing": {
+          "success": "accountUpdate"
         },
-        "flow": "login",
+        "action": "login",
         "appBar": {
           "textKey": "login"
         },
@@ -21,27 +21,26 @@
             "textKey": "login with site credentials:"
           },
           {
-            "id": "loginID",
+            "bind": "loginID",
             "type": "email",
             "textKey": "Email"
           },
           {
-            "id": "password",
+            "bind": "password",
             "type": "password",
             "textKey": "Password"
           },
           {
             "type": "submit",
-            "textKey": "Submit",
-            "api": "accounts.login"
+            "textKey": "Submit"
           }
         ]
       },
       "register": {
-        "routing" : {
+        "routing": {
           "success": "dismiss"
         },
-        "flow": "register",
+        "action": "register",
         "appBar": {
           "textKey": "Register"
         },
@@ -52,29 +51,43 @@
             "textKey": "Register with site credentials:"
           },
           {
-            "id": "email",
+            "bind": "email",
             "type": "email",
             "textKey": "Email"
           },
           {
-            "id": "password",
+            "bind": "password",
             "type": "password",
             "textKey": "Password"
           },
           {
             "type": "submit",
-            "textKey": "Submit",
-            "api": "accounts.register"
+            "textKey": "Submit"
           }
         ]
       },
-      "test": {
-        "flow": "test",
+      "accountUpdate" : {
+        "routing": {
+          "success": "dismiss"
+        },
+        "action": "account",
+        "appBar": {
+          "textKey": "Account Information"
+        },
         "stack": "vertical",
         "children": [
           {
-            "type": "label",
-            "textKey": "Test routing widget"
+            "bind": "profile.firstName",
+            "type": "label"
+          },
+          {
+            "bind": "profile.lastName",
+            "type": "input",
+            "textKey": "Last name"
+          },
+          {
+            "type": "submit",
+            "textKey": "Submit"
           }
         ]
       }
