@@ -74,7 +74,10 @@ class GigyaWebViewController: UIViewController {
     }
 
     @objc func dismissView() {
-        self.dismiss(animated: true, completion: nil)
         userDidCancel()
+    }
+
+    deinit {
+        GigyaLogger.log(with: self, message: "deinit")
     }
 }

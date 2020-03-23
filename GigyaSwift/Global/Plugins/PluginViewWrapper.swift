@@ -29,7 +29,7 @@ class PluginViewWrapper<T: GigyaAccountProtocol>: PluginViewWrapperProtocol {
     var plugin: String
     
     var params: [String:Any]
-    
+
     init(config: GigyaConfig, persistenceService: PersistenceService, sessionService: SessionServiceProtocol, businessApiService: BusinessApiServiceProtocol, webBridge: GigyaWebBridge<T>,
          plugin: String, params: [String: Any], completion: @escaping (GigyaPluginEvent<T>) -> Void) {
         self.config = config
@@ -74,6 +74,7 @@ class PluginViewWrapper<T: GigyaAccountProtocol>: PluginViewWrapperProtocol {
         // Present plugin view controller.
 
         pluginViewController = PluginViewController(webBridge: webBridge, pluginEvent: eventHandler)
+
         let navigationController = UINavigationController(rootViewController: pluginViewController!)
         viewController.present(navigationController, animated: true) {
             self.webBridge.load(html: html)

@@ -28,6 +28,9 @@ final class PluginViewController<T: GigyaAccountProtocol>: GigyaWebViewControlle
         self.webBridge.viewController = self
         self.webView.navigationDelegate = self
 
+        userDidCancel = {
+            pluginEvent(.onHide(event: ["event": "screenSet cancelled"]))
+        }
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -46,5 +49,9 @@ final class PluginViewController<T: GigyaAccountProtocol>: GigyaWebViewControlle
             return
          }
          decisionHandler(.allow)
+    }
+
+    deinit {
+        GigyaLogger.log(with: self, message: "deinit")
     }
 }
