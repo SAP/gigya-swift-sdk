@@ -10,6 +10,8 @@ import Foundation
 
 protocol SocialProvidersManagerProtocol {
     func getProvider(with socialProvider: GigyaSocialProviders, delegate: BusinessApiDelegate) -> Provider
+
+    func registerProvider(by provider: GigyaNativeSocialProviders, factory: ProviderWrapperProtocol)
 }
 
 final class SocialProvidersManager: SocialProvidersManagerProtocol {
@@ -65,5 +67,9 @@ final class SocialProvidersManager: SocialProvidersManagerProtocol {
         GigyaLogger.log(with: self, message: "[\(socialProvider.rawValue)] - use webview")
 
         return WebLoginProvider(sessionService: sessionService, provider: WebLoginWrapper(config: config, persistenceService: persistenceService, providerType: socialProvider, networkAdapter: networkAdapter), delegate: delegate)
+    }
+
+    func registerProvider(by provider: GigyaNativeSocialProviders, factory: ProviderWrapperProtocol) {
+        providersContainer[provider] = factory
     }
 }

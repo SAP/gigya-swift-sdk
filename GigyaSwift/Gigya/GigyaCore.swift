@@ -395,4 +395,7 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
         pushService.verifyPush(response: response.notification.request.content.userInfo)
     }
 
+    public func registerSocialProvider(by provider: GigyaNativeSocialProviders, factory: ProviderWrapperProtocol) {
+        businessApiService.socialProviderFactory.registerProvider(by: provider, factory: factory)
+    }
 }
