@@ -66,7 +66,7 @@
 		E7257C6123B8C3F500692528 /* InterceptorsUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7257C6023B8C3F500692528 /* InterceptorsUtils.swift */; };
 		E72FEC53234F19850028EF28 /* Lang.strings in Resources */ = {isa = PBXBuildFile; fileRef = E72FEC55234F19850028EF28 /* Lang.strings */; };
 		E731B72D232A53AD0032E111 /* AuthenticationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E731B72C232A53AD0032E111 /* AuthenticationServices.framework */; };
-		E731B72F232A53E70032E111 /* AppleSignInWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E731B72E232A53E70032E111 /* AppleSignInWrapper.swift */; };
+		E731B72F232A53E70032E111 /* AppleSignInWrappera.swift in Sources */ = {isa = PBXBuildFile; fileRef = E731B72E232A53E70032E111 /* AppleSignInWrappera.swift */; };
 		E73373AC2254D79200ADEDBB /* GigyaDefinitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73373AB2254D79200ADEDBB /* GigyaDefinitions.swift */; };
 		E73373B02254FD4800ADEDBB /* Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73373AF2254FD4800ADEDBB /* Int.swift */; };
 		E73373D5225E326100ADEDBB /* GigyaLoggerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73373D4225E326100ADEDBB /* GigyaLoggerTest.swift */; };
@@ -369,7 +369,7 @@
 		E72FEC54234F19850028EF28 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Lang.strings; sourceTree = "<group>"; };
 		E72FEC56234F19A50028EF28 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Lang.strings; sourceTree = "<group>"; };
 		E731B72C232A53AD0032E111 /* AuthenticationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AuthenticationServices.framework; path = System/Library/Frameworks/AuthenticationServices.framework; sourceTree = SDKROOT; };
-		E731B72E232A53E70032E111 /* AppleSignInWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppleSignInWrapper.swift; sourceTree = "<group>"; };
+		E731B72E232A53E70032E111 /* AppleSignInWrappera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppleSignInWrappera.swift; sourceTree = "<group>"; };
 		E73373AB2254D79200ADEDBB /* GigyaDefinitions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigyaDefinitions.swift; sourceTree = "<group>"; };
 		E73373AF2254FD4800ADEDBB /* Int.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Int.swift; sourceTree = "<group>"; };
 		E73373D4225E326100ADEDBB /* GigyaLoggerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigyaLoggerTest.swift; sourceTree = "<group>"; };
@@ -1397,7 +1397,7 @@
 			isa = PBXGroup;
 			children = (
 				E7DC2C5F228055CA00A13426 /* LineWrapper.swift */,
-				E731B72E232A53E70032E111 /* AppleSignInWrapper.swift */,
+				E731B72E232A53E70032E111 /* AppleSignInWrappera.swift */,
 				E7584EE822E0524D007229FE /* FacebookWrapper.swift */,
 				E7DC2C6E2280779A00A13426 /* WeChatWrapper.swift */,
 				E7D59B1D227F34D3002FA864 /* GoogleWrapper.swift */,
@@ -2022,7 +2022,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E731B72F232A53E70032E111 /* AppleSignInWrapper.swift in Sources */,
+				E731B72F232A53E70032E111 /* AppleSignInWrappera.swift in Sources */,
 				E7FFF8F6232003AD002EC944 /* WebBridgeViewController.swift in Sources */,
 				D584D342228D6089004CA28F /* UIFactory.swift in Sources */,
 				E7FFD59322FB0A8A00DBE663 /* (null) in Sources */,

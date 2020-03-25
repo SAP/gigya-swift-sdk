@@ -9,7 +9,7 @@
 import Foundation
 import WebKit
 
-class GigyaWebViewController: UIViewController {
+class GigyaWebViewController: UIViewController, UIAdaptivePresentationControllerDelegate {
     let webView: WKWebView
 
     var userDidCancel: () -> Void = { }
@@ -20,12 +20,17 @@ class GigyaWebViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
 
         self.view.backgroundColor = .white
+
     }
 
     override func viewDidLoad() {
         buildUI()
 
         setWebViewLayout()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        self.navigationController?.presentationController?.delegate = self
     }
 
     private func buildUI() {
@@ -36,6 +41,8 @@ class GigyaWebViewController: UIViewController {
         webView.translatesAutoresizingMaskIntoConstraints = false
 
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(dismissView))
+
+        navigationController?.presentationController?.delegate = self
 
     }
 
@@ -74,6 +81,10 @@ class GigyaWebViewController: UIViewController {
     }
 
     @objc func dismissView() {
+        userDidCancel()
+    }
+
+    func presentationControllerWillDismiss(_ presentationController: UIPresentationController) {
         userDidCancel()
     }
 

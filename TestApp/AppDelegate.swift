@@ -35,11 +35,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
 
         Messaging.messaging().shouldEstablishDirectChannel = true
 
+        GigyaLogger.setDebugMode(to: true)
         GigyaAuth.shared.registerForRemoteNotifications()
         GigyaTfa.shared.registerForRemoteNotifications()
 
         ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
 
+        if #available(iOS 13.0, *) {
+            gigya.registerSocialProvider(by: .apple, factory: AppleSignInWrappera())
+        } else {
+            // Fallback on earlier versions
+        }
         return true
     }
 

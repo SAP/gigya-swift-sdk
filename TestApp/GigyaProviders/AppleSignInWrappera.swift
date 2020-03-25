@@ -11,11 +11,11 @@ import Gigya
 import AuthenticationServices
 
 @available(iOS 13.0, *)
-class AppleSignInWrapper: NSObject, ProviderWrapperProtocol {
+class AppleSignInWrappera: NSObject, ProviderWrapperProtocol {
     var clientID: String?
 
-    private lazy var appleLogin: AppleSignInInternalWrapper = {
-        return AppleSignInInternalWrapper()
+    private lazy var appleLogin: AppleSignInInternalWrappera = {
+        return AppleSignInInternalWrappera()
     }()
 
     required override init() {
@@ -28,7 +28,7 @@ class AppleSignInWrapper: NSObject, ProviderWrapperProtocol {
 }
 
 @available(iOS 13.0, *)
-private class AppleSignInInternalWrapper: NSObject {
+private class AppleSignInInternalWrappera: NSObject {
     lazy var appleIDProvider: ASAuthorizationAppleIDProvider = {
         return ASAuthorizationAppleIDProvider()
     }()
@@ -54,7 +54,7 @@ private class AppleSignInInternalWrapper: NSObject {
 }
 
 @available(iOS 13.0, *)
-extension AppleSignInInternalWrapper: ASAuthorizationControllerDelegate {
+extension AppleSignInInternalWrappera: ASAuthorizationControllerDelegate {
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
         if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
             if let authorizationCode = appleIDCredential.authorizationCode, let identityToken = appleIDCredential.identityToken {
@@ -87,7 +87,7 @@ extension AppleSignInInternalWrapper: ASAuthorizationControllerDelegate {
 }
 
 @available(iOS 13.0, *)
-extension AppleSignInInternalWrapper: ASAuthorizationControllerPresentationContextProviding {
+extension AppleSignInInternalWrappera: ASAuthorizationControllerPresentationContextProviding {
     func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
         return self.viewController!.view.window!
     }

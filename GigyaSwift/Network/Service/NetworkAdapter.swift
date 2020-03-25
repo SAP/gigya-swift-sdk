@@ -31,6 +31,7 @@ class NetworkAdapter: NetworkAdapterProtocol {
         queueHelper.add(block:
             BlockOperation {
                 // forword only model
+                GigyaLogger.log(with: self, message: "Start: \(model.method)")
                 self.networkProvider.dataRequest(model: model, completion: { (data, error) in
                     completion(data, error)
 

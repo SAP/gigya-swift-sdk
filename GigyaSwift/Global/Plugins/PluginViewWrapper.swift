@@ -55,7 +55,7 @@ class PluginViewWrapper<T: GigyaAccountProtocol>: PluginViewWrapperProtocol {
         }
         
         let html = getHtml(self.plugin)
-        GigyaLogger.log(with: self, message: "Initial HTML:\n\(html)")
+        GigyaLogger.log(with: self, message: "Initial HTML")
 
         var pluginViewController: PluginViewController<T>?
 
@@ -76,6 +76,7 @@ class PluginViewWrapper<T: GigyaAccountProtocol>: PluginViewWrapperProtocol {
         pluginViewController = PluginViewController(webBridge: webBridge, pluginEvent: eventHandler)
 
         let navigationController = UINavigationController(rootViewController: pluginViewController!)
+
         viewController.present(navigationController, animated: true) {
             self.webBridge.load(html: html)
         }
@@ -142,5 +143,4 @@ class PluginViewWrapper<T: GigyaAccountProtocol>: PluginViewWrapperProtocol {
         """
         return html
     }
-    
 }

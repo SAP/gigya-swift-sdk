@@ -50,6 +50,7 @@ final class WebLoginWrapper: NSObject, ProviderWrapperProtocol {
 
         webViewController?.userDidCancel = { [weak self] in
             self?.completionHandler?(nil, "sign in cancelled")
+            self?.navigationController?.dismiss(animated: true, completion: nil)
         }
 
     }
