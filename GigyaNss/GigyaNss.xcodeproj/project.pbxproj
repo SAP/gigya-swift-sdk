@@ -32,18 +32,22 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		E70F8BBC23FD742C00D52208 /* NssFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70F8BBB23FD742C00D52208 /* NssFlow.swift */; };
-		E70F8BBF23FD748F00D52208 /* CordinatorContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70F8BBE23FD748F00D52208 /* CordinatorContainer.swift */; };
+		E70F8BBC23FD742C00D52208 /* NssAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70F8BBB23FD742C00D52208 /* NssAction.swift */; };
 		E70F8BC123FD786E00D52208 /* OrderedDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70F8BC023FD786E00D52208 /* OrderedDictionary.swift */; };
 		E70F8BCB2404095600D52208 /* BaseChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70F8BCA2404095600D52208 /* BaseChannel.swift */; };
-		E70F8BED2405215C00D52208 /* FlowFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70F8BEC2405215C00D52208 /* FlowFactory.swift */; };
-		E70F8BEF24053ABA00D52208 /* RegisterFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70F8BEE24053AB900D52208 /* RegisterFlow.swift */; };
-		E70F8BF124053B5800D52208 /* LoginFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70F8BF024053B5800D52208 /* LoginFlow.swift */; };
+		E70F8BED2405215C00D52208 /* ActionFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70F8BEC2405215C00D52208 /* ActionFactory.swift */; };
+		E70F8BEF24053ABA00D52208 /* RegisterAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70F8BEE24053AB900D52208 /* RegisterAction.swift */; };
+		E70F8BF124053B5800D52208 /* LoginAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70F8BF024053B5800D52208 /* LoginAction.swift */; };
 		E719C6AF24225216002F8C36 /* LogChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E719C6AE24225216002F8C36 /* LogChannel.swift */; };
-		E719C6B124226139002F8C36 /* AccountFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E719C6B024226139002F8C36 /* AccountFlow.swift */; };
+		E719C6B124226139002F8C36 /* SetAccountAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E719C6B024226139002F8C36 /* SetAccountAction.swift */; };
 		E722572923CC9F22000DDB24 /* engine.sh in Resources */ = {isa = PBXBuildFile; fileRef = E722572823CC9F22000DDB24 /* engine.sh */; };
 		E722573423CCB1CE000DDB24 /* NativeScreenSetsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E722573323CCB1CE000DDB24 /* NativeScreenSetsViewController.swift */; };
 		E722573623CCBB31000DDB24 /* ScreenChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E722573523CCBB31000DDB24 /* ScreenChannel.swift */; };
+		E73C8A0A2430D8290064EFE1 /* NssFlowManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73C8A092430D8290064EFE1 /* NssFlowManager.swift */; };
+		E73C8A322430F2E10064EFE1 /* Flutter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E73C8A1D2430EFC60064EFE1 /* Flutter.framework */; };
+		E73C8A4F2431D3480064EFE1 /* NssFlowManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73C8A4E2431D3480064EFE1 /* NssFlowManagerDelegate.swift */; };
+		E73C8A522431D3930064EFE1 /* NssInterruptionsSupported.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73C8A512431D3930064EFE1 /* NssInterruptionsSupported.swift */; };
+		E73C8A542431E6080064EFE1 /* NssResolverModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73C8A532431E6080064EFE1 /* NssResolverModel.swift */; };
 		E740A3D723DF4B07000FD651 /* Gigya.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E740A3D623DF4B07000FD651 /* Gigya.framework */; };
 		E775E81223C5D1710059151D /* GigyaNss.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E775E80823C5D1710059151D /* GigyaNss.framework */; };
 		E775E81723C5D1710059151D /* GigyaNssTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E775E81623C5D1710059151D /* GigyaNssTests.swift */; };
@@ -58,7 +62,6 @@
 		E7D1F70C240BD92B00394185 /* IgnitionChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7D1F70B240BD92B00394185 /* IgnitionChannel.swift */; };
 		E7D1F70E240E5F0700394185 /* EngineLifeCycle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7D1F70D240E5F0700394185 /* EngineLifeCycle.swift */; };
 		E7D1F71124152D5000394185 /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7D1F71024152D5000394185 /* Dictionary.swift */; };
-		E7F8E33923C777D7002A2A92 /* Flutter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7F8E33823C777D7002A2A92 /* Flutter.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,18 +75,24 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		E70F8BBB23FD742C00D52208 /* NssFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NssFlow.swift; sourceTree = "<group>"; };
-		E70F8BBE23FD748F00D52208 /* CordinatorContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CordinatorContainer.swift; sourceTree = "<group>"; };
+		E70F8BBB23FD742C00D52208 /* NssAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NssAction.swift; sourceTree = "<group>"; };
 		E70F8BC023FD786E00D52208 /* OrderedDictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderedDictionary.swift; sourceTree = "<group>"; };
 		E70F8BCA2404095600D52208 /* BaseChannel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseChannel.swift; sourceTree = "<group>"; };
-		E70F8BEC2405215C00D52208 /* FlowFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowFactory.swift; sourceTree = "<group>"; };
-		E70F8BEE24053AB900D52208 /* RegisterFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterFlow.swift; sourceTree = "<group>"; };
-		E70F8BF024053B5800D52208 /* LoginFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFlow.swift; sourceTree = "<group>"; };
+		E70F8BEC2405215C00D52208 /* ActionFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionFactory.swift; sourceTree = "<group>"; };
+		E70F8BEE24053AB900D52208 /* RegisterAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterAction.swift; sourceTree = "<group>"; };
+		E70F8BF024053B5800D52208 /* LoginAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginAction.swift; sourceTree = "<group>"; };
 		E719C6AE24225216002F8C36 /* LogChannel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogChannel.swift; sourceTree = "<group>"; };
-		E719C6B024226139002F8C36 /* AccountFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountFlow.swift; sourceTree = "<group>"; };
+		E719C6B024226139002F8C36 /* SetAccountAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetAccountAction.swift; sourceTree = "<group>"; };
 		E722572823CC9F22000DDB24 /* engine.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = engine.sh; sourceTree = "<group>"; };
 		E722573323CCB1CE000DDB24 /* NativeScreenSetsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeScreenSetsViewController.swift; sourceTree = "<group>"; };
 		E722573523CCBB31000DDB24 /* ScreenChannel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenChannel.swift; sourceTree = "<group>"; };
+		E73C8A092430D8290064EFE1 /* NssFlowManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NssFlowManager.swift; sourceTree = "<group>"; };
+		E73C8A1D2430EFC60064EFE1 /* Flutter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Flutter.framework; path = Flutter/Debug/Flutter.framework; sourceTree = "<group>"; };
+		E73C8A272430F2030064EFE1 /* GigyaNssEngine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GigyaNssEngine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E73C8A2E2430F28C0064EFE1 /* GigyaNssEngine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GigyaNssEngine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E73C8A4E2431D3480064EFE1 /* NssFlowManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NssFlowManagerDelegate.swift; sourceTree = "<group>"; };
+		E73C8A512431D3930064EFE1 /* NssInterruptionsSupported.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NssInterruptionsSupported.swift; sourceTree = "<group>"; };
+		E73C8A532431E6080064EFE1 /* NssResolverModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NssResolverModel.swift; sourceTree = "<group>"; };
 		E740A3D623DF4B07000FD651 /* Gigya.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Gigya.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E775E80823C5D1710059151D /* GigyaNss.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GigyaNss.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E775E80B23C5D1710059151D /* GigyaNss.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GigyaNss.h; sourceTree = "<group>"; };
@@ -110,7 +119,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E740A3D723DF4B07000FD651 /* Gigya.framework in Frameworks */,
-				E7F8E33923C777D7002A2A92 /* Flutter.framework in Frameworks */,
+				E73C8A322430F2E10064EFE1 /* Flutter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -125,22 +134,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		E70F8BBA23FD741A00D52208 /* Flow */ = {
+		E70F8BBA23FD741A00D52208 /* Actions */ = {
 			isa = PBXGroup;
 			children = (
-				E70F8BBB23FD742C00D52208 /* NssFlow.swift */,
-				E70F8BEC2405215C00D52208 /* FlowFactory.swift */,
-				E70F8BF024053B5800D52208 /* LoginFlow.swift */,
-				E719C6B024226139002F8C36 /* AccountFlow.swift */,
-				E70F8BEE24053AB900D52208 /* RegisterFlow.swift */,
+				E70F8BBB23FD742C00D52208 /* NssAction.swift */,
+				E70F8BEC2405215C00D52208 /* ActionFactory.swift */,
+				E70F8BF024053B5800D52208 /* LoginAction.swift */,
+				E719C6B024226139002F8C36 /* SetAccountAction.swift */,
+				E70F8BEE24053AB900D52208 /* RegisterAction.swift */,
 			);
-			path = Flow;
+			path = Actions;
 			sourceTree = "<group>";
 		};
 		E70F8BBD23FD747200D52208 /* Cordinator */ = {
 			isa = PBXGroup;
 			children = (
-				E70F8BBE23FD748F00D52208 /* CordinatorContainer.swift */,
+				E73C8A4E2431D3480064EFE1 /* NssFlowManagerDelegate.swift */,
+				E73C8A092430D8290064EFE1 /* NssFlowManager.swift */,
+				E73C8A532431E6080064EFE1 /* NssResolverModel.swift */,
 			);
 			path = Cordinator;
 			sourceTree = "<group>";
@@ -163,6 +174,14 @@
 				E78B8A5F23FC399C00E29651 /* ApiChannel.swift */,
 			);
 			path = Channels;
+			sourceTree = "<group>";
+		};
+		E73C8A502431D3840064EFE1 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E73C8A512431D3930064EFE1 /* NssInterruptionsSupported.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		E775E7FE23C5D1710059151D = {
@@ -188,8 +207,9 @@
 			isa = PBXGroup;
 			children = (
 				E775E80B23C5D1710059151D /* GigyaNss.h */,
+				E73C8A502431D3840064EFE1 /* Models */,
 				E70F8BBD23FD747200D52208 /* Cordinator */,
-				E70F8BBA23FD741A00D52208 /* Flow */,
+				E70F8BBA23FD741A00D52208 /* Actions */,
 				E7772A0723D5EA3D00DE9DDD /* Helpers */,
 				E7772A0423D5DBBD00DE9DDD /* Builders */,
 				E722572723CC9EDB000DDB24 /* Scripts */,
@@ -213,6 +233,9 @@
 		E775E82A23C5E3600059151D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E73C8A2E2430F28C0064EFE1 /* GigyaNssEngine.framework */,
+				E73C8A272430F2030064EFE1 /* GigyaNssEngine.framework */,
+				E73C8A1D2430EFC60064EFE1 /* Flutter.framework */,
 				E740A3D623DF4B07000FD651 /* Gigya.framework */,
 				E7F8E33823C777D7002A2A92 /* Flutter.framework */,
 			);
@@ -426,21 +449,24 @@
 				E7772A0323D5D8A500DE9DDD /* ScreenSetsBuilder.swift in Sources */,
 				E7D1F70C240BD92B00394185 /* IgnitionChannel.swift in Sources */,
 				E7772A0623D5DC0400DE9DDD /* LoaderFilesHelper.swift in Sources */,
-				E70F8BEF24053ABA00D52208 /* RegisterFlow.swift in Sources */,
-				E70F8BBF23FD748F00D52208 /* CordinatorContainer.swift in Sources */,
+				E70F8BEF24053ABA00D52208 /* RegisterAction.swift in Sources */,
 				E78B8A5E23FC375700E29651 /* NativeScreenSetsViewModel.swift in Sources */,
 				E719C6AF24225216002F8C36 /* LogChannel.swift in Sources */,
-				E70F8BF124053B5800D52208 /* LoginFlow.swift in Sources */,
+				E70F8BF124053B5800D52208 /* LoginAction.swift in Sources */,
 				E77F7A2D2407BF5100FF90FB /* CreateEngineFactory.swift in Sources */,
 				E7D1F71124152D5000394185 /* Dictionary.swift in Sources */,
+				E73C8A522431D3930064EFE1 /* NssInterruptionsSupported.swift in Sources */,
 				E70F8BCB2404095600D52208 /* BaseChannel.swift in Sources */,
 				E78B8A6023FC399C00E29651 /* ApiChannel.swift in Sources */,
-				E719C6B124226139002F8C36 /* AccountFlow.swift in Sources */,
+				E73C8A0A2430D8290064EFE1 /* NssFlowManager.swift in Sources */,
+				E719C6B124226139002F8C36 /* SetAccountAction.swift in Sources */,
 				E7D1F70E240E5F0700394185 /* EngineLifeCycle.swift in Sources */,
 				E722573623CCBB31000DDB24 /* ScreenChannel.swift in Sources */,
-				E70F8BED2405215C00D52208 /* FlowFactory.swift in Sources */,
+				E70F8BED2405215C00D52208 /* ActionFactory.swift in Sources */,
 				E722573423CCB1CE000DDB24 /* NativeScreenSetsViewController.swift in Sources */,
-				E70F8BBC23FD742C00D52208 /* NssFlow.swift in Sources */,
+				E73C8A542431E6080064EFE1 /* NssResolverModel.swift in Sources */,
+				E73C8A4F2431D3480064EFE1 /* NssFlowManagerDelegate.swift in Sources */,
+				E70F8BBC23FD742C00D52208 /* NssAction.swift in Sources */,
 				E7772A0923D5EAA000DE9DDD /* BuilderOptionsProtocol.swift in Sources */,
 				E70F8BC123FD786E00D52208 /* OrderedDictionary.swift in Sources */,
 				E775E82623C5D1AD0059151D /* GigyaNss.swift in Sources */,
@@ -601,7 +627,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/Flutter/Release",
+					"$(PROJECT_DIR)/Flutter/Debug/",
 				);
 				INFOPLIST_FILE = GigyaNss/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -637,7 +663,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/Flutter/Release",
+					"$(PROJECT_DIR)/Flutter/Debug/",
 				);
 				INFOPLIST_FILE = GigyaNss/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";

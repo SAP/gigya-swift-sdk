@@ -48,6 +48,12 @@ final public class GigyaNss {
 
     public func register<T: GigyaAccountProtocol>(scheme: T.Type) {
 
+        dependenciesContainer.register(service: NssFlowManager<T>.self) { resolver in
+            let flowFactory = resolver.resolve(ActionFactory<T>.self)
+
+            return NssFlowManager(flowFactory: flowFactory!)
+        }
+
         dependenciesContainer.register(service: ScreenSetsBuilder<T>.self) { resolver in
             let engineLifeCycle = resolver.resolve(EngineLifeCycle.self)!
 
@@ -58,12 +64,12 @@ final public class GigyaNss {
             let mainChannel = resolver.resolve(ScreenChannel.self)
             let apiChannel = resolver.resolve(ApiChannel.self)
             let logChannel = resolver.resolve(LogChannel.self)
-            let flowFactory = resolver.resolve(FlowFactory<T>.self)
+            let flowManager = resolver.resolve(NssFlowManager<T>.self)
 
             return NativeScreenSetsViewModel(mainChannel: mainChannel!,
                                              apiChannel: apiChannel!,
                                              logChannel: logChannel!,
-                                             flowFactory: flowFactory!
+                                             flowManager: flowManager!
             )
         }
 
@@ -101,26 +107,26 @@ final public class GigyaNss {
               return LogChannel()
         }
 
-        dependenciesContainer.register(service: FlowFactory<T>.self) { _ in
-            return FlowFactory()
+        dependenciesContainer.register(service: ActionFactory<T>.self) { _ in
+            return ActionFactory()
         }
 
-        dependenciesContainer.register(service: RegisterFlow<T>.self) { resolver in
+        dependenciesContainer.register(service: RegisterAction<T>.self) { resolver in
             let busnessApi = resolver.resolve(BusinessApiDelegate.self)
             
-            return RegisterFlow(busnessApi: busnessApi!)
+            return RegisterAction(busnessApi: busnessApi!)
         }
 
-        dependenciesContainer.register(service: LoginFlow<T>.self) { resolver in
+        dependenciesContainer.register(service: LoginAction<T>.self) { resolver in
             let busnessApi = resolver.resolve(BusinessApiDelegate.self)
 
-            return LoginFlow(busnessApi: busnessApi!)
+            return LoginAction(busnessApi: busnessApi!)
         }
 
-        dependenciesContainer.register(service: AccountFlow<T>.self) { resolver in
+        dependenciesContainer.register(service: SetAccountAction<T>.self) { resolver in
             let busnessApi = resolver.resolve(BusinessApiDelegate.self)
 
-            return AccountFlow(busnessApi: busnessApi!)
+            return SetAccountAction(busnessApi: busnessApi!)
         }
 
         dependenciesContainer.register(service: CreateEngineFactory.self) { _ in

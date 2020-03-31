@@ -123,4 +123,28 @@ class NssTests: XCTestCase {
 
         XCTAssertTrue(error.exists)
     }
+
+    func testUpdateProfileShowing() {
+
+        testLoginSuccessful()
+
+        sleep(1)
+
+        app.buttons["done"].tap()
+
+        app.buttons["updateProfile"].tap()
+
+        let fname = app.textViews["First name"].value as? String ?? ""
+        let lname = app.textViews["Last name"].value as? String ?? ""
+        let email = app.textViews["Email"].value as? String ?? ""
+        let zip = app.textViews["Zipcode"].value as? String ?? ""
+        let country = app.textViews["Country"].value as? String ?? ""
+
+        XCTAssertEqual(fname, "Sagi")
+        XCTAssertEqual(lname, "Shmuel")
+        XCTAssertEqual(email, "sagishm@gmail.com")
+        XCTAssertEqual(zip, "23432432")
+        XCTAssertEqual(country, "Israel")
+    }
+
 }

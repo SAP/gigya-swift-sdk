@@ -1,7 +1,7 @@
 {
   "platformAware": false,
   "markup": {
-    "initialRoute": "register",
+    "initialRoute": "login",
     "defaultRouting": {
       "success": "dismiss"
     },
@@ -38,7 +38,7 @@
       },
       "register": {
         "routing": {
-          "success": "dismiss"
+          "success": "accountUpdate"
         },
         "action": "register",
         "appBar": {
@@ -78,12 +78,29 @@
         "children": [
           {
             "bind": "profile.firstName",
-            "type": "label"
+            "type": "input",
+            "textKey": "First name"
           },
           {
             "bind": "profile.lastName",
             "type": "input",
             "textKey": "Last name"
+          },
+
+          {
+            "bind": "profile.email",
+            "type": "input",
+            "textKey": "Email"
+          },
+          {
+            "bind": "profile.zip",
+            "type": "input",
+            "textKey": "Zipcode"
+          },
+          {
+            "bind": "profile.country",
+            "type": "input",
+            "textKey": "Country"
           },
           {
             "type": "submit",

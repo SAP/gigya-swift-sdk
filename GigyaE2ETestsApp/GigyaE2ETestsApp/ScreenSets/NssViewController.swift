@@ -56,6 +56,10 @@ class NssViewController: UIViewController {
          initialViewController = storyboard.instantiateViewController(withIdentifier: "Results") as? ResultsViewController
          self.navigationController?.present(self.initialViewController!, animated: true) {
 
+            GigyaNss.shared
+                .load(asset: "init")
+                .setScreen(name: "accountUpdate")
+                .show(viewController: self.initialViewController!)
 
          }
     }

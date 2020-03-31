@@ -62,8 +62,6 @@
 		E7221D7A22B903E500C296A9 /* GoogleWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7D59B1D227F34D3002FA864 /* GoogleWrapper.swift */; };
 		E7221D8022B90C0C00C296A9 /* UserHostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7221D7F22B90C0C00C296A9 /* UserHostModel.swift */; };
 		E7221D8222B90C2A00C296A9 /* ValidateLoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7221D8122B90C2A00C296A9 /* ValidateLoginModel.swift */; };
-		E722573123CCA7E0000DDB24 /* GigyaNss.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E722573023CCA7E0000DDB24 /* GigyaNss.framework */; };
-		E722573223CCA7E0000DDB24 /* GigyaNss.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E722573023CCA7E0000DDB24 /* GigyaNss.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E7257C5F23B4BBC300692528 /* SessionVerificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7257C5E23B4BBC300692528 /* SessionVerificationService.swift */; };
 		E7257C6123B8C3F500692528 /* InterceptorsUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7257C6023B8C3F500692528 /* InterceptorsUtils.swift */; };
 		E72FEC53234F19850028EF28 /* Lang.strings in Resources */ = {isa = PBXBuildFile; fileRef = E72FEC55234F19850028EF28 /* Lang.strings */; };
@@ -86,6 +84,10 @@
 		E7350537237188B700C33212 /* NetworkError.swift in Headers */ = {isa = PBXBuildFile; fileRef = E7CBAFB9222D1840000B6C11 /* NetworkError.swift */; settings = {ATTRIBUTES = (Public, ); }; };
 		E735C2F822B7DBF7007A055E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E735C2F722B7DBF7007A055E /* GoogleService-Info.plist */; };
 		E73A930222F974120004F93E /* Notification.Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73A930122F974120004F93E /* Notification.Name.swift */; };
+		E73C8A4A2430FB2A0064EFE1 /* GigyaNss.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E73C8A3E2430F6310064EFE1 /* GigyaNss.framework */; };
+		E73C8A4B2430FB2A0064EFE1 /* GigyaNss.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E73C8A3E2430F6310064EFE1 /* GigyaNss.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E73C8A4C2430FB320064EFE1 /* GigyaNssEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E73C8A3B2430F6210064EFE1 /* GigyaNssEngine.framework */; };
+		E73C8A4D2430FB320064EFE1 /* GigyaNssEngine.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E73C8A3B2430F6210064EFE1 /* GigyaNssEngine.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E74E26692383E9B1002E361B /* GeneralUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74E26682383E9B1002E361B /* GeneralUtils.swift */; };
 		E756A2992275CB5C007FA801 /* SocialProviderLoginTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E756A2982275CB5C007FA801 /* SocialProviderLoginTests.swift */; };
 		E756A29C2275CC13007FA801 /* ProviderFactoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E756A29B2275CC13007FA801 /* ProviderFactoryMock.swift */; };
@@ -125,9 +127,6 @@
 		E7791A7B238BD3800075BAFD /* PushServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7791A7A238BD3800075BAFD /* PushServiceTests.swift */; };
 		E7791A7D238BE1070075BAFD /* SessionServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7791A7C238BE1070075BAFD /* SessionServiceMock.swift */; };
 		E77F71A0230AD95600E8738A /* GigyaWebBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77F719F230AD95600E8738A /* GigyaWebBridge.swift */; };
-		E77F7A282406B12100FF90FB /* GigyaNss.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E77F7A272406B12100FF90FB /* GigyaNss.framework */; };
-		E77F7A2A2406B12B00FF90FB /* GigyaNssEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E77F7A292406B12B00FF90FB /* GigyaNssEngine.framework */; };
-		E77F7A2B2406B12B00FF90FB /* GigyaNssEngine.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E77F7A292406B12B00FF90FB /* GigyaNssEngine.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E77F7A2F2407EC7900FF90FB /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E77F7A2E2407EC7900FF90FB /* CoreFoundation.framework */; };
 		E7A6E0AA2240F8080063638F /* GigyaApiResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A6E0A92240F8080063638F /* GigyaApiResult.swift */; };
 		E7A6E0AC224245D00063638F /* ApiResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A6E0AB224245D00063638F /* ApiResultModel.swift */; };
@@ -302,18 +301,18 @@
 		};
 		E7A6E07C223EB4A40063638F /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 8;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
 				E713E0CD2247773100181328 /* Gigya.framework in Embed Frameworks */,
-				E77F7A2B2406B12B00FF90FB /* GigyaNssEngine.framework in Embed Frameworks */,
+				E73C8A4D2430FB320064EFE1 /* GigyaNssEngine.framework in Embed Frameworks */,
 				E775E8FE23C6262E0059151D /* GigyaAuth.framework in Embed Frameworks */,
-				E722573223CCA7E0000DDB24 /* GigyaNss.framework in Embed Frameworks */,
 				E775E8FB23C626270059151D /* GigyaTfa.framework in Embed Frameworks */,
+				E73C8A4B2430FB2A0064EFE1 /* GigyaNss.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
@@ -394,6 +393,20 @@
 		E7337466226C538300ADEDBB /* DecodeTestUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecodeTestUtils.swift; sourceTree = "<group>"; };
 		E735C2F722B7DBF7007A055E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E73A930122F974120004F93E /* Notification.Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.Name.swift; sourceTree = "<group>"; };
+		E73C8A0B2430DA540064EFE1 /* GigyaNss.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GigyaNss.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E73C8A0E2430DA640064EFE1 /* GigyaNss.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GigyaNss.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E73C8A112430ECE30064EFE1 /* GigyaNss.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GigyaNss.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E73C8A142430ED110064EFE1 /* GigyaNss.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GigyaNss.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E73C8A172430ED660064EFE1 /* GigyaNssEngine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GigyaNssEngine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E73C8A1A2430EF7A0064EFE1 /* GigyaNss.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GigyaNss.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E73C8A212430F0B10064EFE1 /* GigyaNssEngine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GigyaNssEngine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E73C8A352430F5B40064EFE1 /* GigyaNssEngine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GigyaNssEngine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E73C8A382430F5BB0064EFE1 /* GigyaNss.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GigyaNss.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E73C8A3B2430F6210064EFE1 /* GigyaNssEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GigyaNssEngine.framework; path = GigyaNssEngine/Debug/GigyaNssEngine.framework; sourceTree = "<group>"; };
+		E73C8A3E2430F6310064EFE1 /* GigyaNss.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GigyaNss.framework; path = GigyaNss/Debug/GigyaNss.framework; sourceTree = "<group>"; };
+		E73C8A412430F69F0064EFE1 /* GigyaNssEngine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GigyaNssEngine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E73C8A442430F6B60064EFE1 /* GigyaNssEngine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GigyaNssEngine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E73C8A472430F6BB0064EFE1 /* GigyaNss.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GigyaNss.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E74E26682383E9B1002E361B /* GeneralUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralUtils.swift; sourceTree = "<group>"; };
 		E756A2982275CB5C007FA801 /* SocialProviderLoginTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialProviderLoginTests.swift; sourceTree = "<group>"; };
 		E756A29B2275CC13007FA801 /* ProviderFactoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderFactoryMock.swift; sourceTree = "<group>"; };
@@ -640,10 +653,9 @@
 				E73373F522633BDA00ADEDBB /* SafariServices.framework in Frameworks */,
 				E775E8FA23C626270059151D /* GigyaTfa.framework in Frameworks */,
 				E731B72D232A53AD0032E111 /* AuthenticationServices.framework in Frameworks */,
-				E77F7A2A2406B12B00FF90FB /* GigyaNssEngine.framework in Frameworks */,
-				E722573123CCA7E0000DDB24 /* GigyaNss.framework in Frameworks */,
+				E73C8A4C2430FB320064EFE1 /* GigyaNssEngine.framework in Frameworks */,
 				E77F7A2F2407EC7900FF90FB /* CoreFoundation.framework in Frameworks */,
-				E77F7A282406B12100FF90FB /* GigyaNss.framework in Frameworks */,
+				E73C8A4A2430FB2A0064EFE1 /* GigyaNss.framework in Frameworks */,
 				E7DC2C5B2280550600A13426 /* LineSDK.framework in Frameworks */,
 				E73373F422633BD300ADEDBB /* SystemConfiguration.framework in Frameworks */,
 				E7A71CAD232F7F3000993A61 /* CoreTelephony.framework in Frameworks */,
@@ -1121,6 +1133,20 @@
 		E7BE368C2224225900A108D9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E73C8A472430F6BB0064EFE1 /* GigyaNss.framework */,
+				E73C8A442430F6B60064EFE1 /* GigyaNssEngine.framework */,
+				E73C8A412430F69F0064EFE1 /* GigyaNssEngine.framework */,
+				E73C8A3E2430F6310064EFE1 /* GigyaNss.framework */,
+				E73C8A3B2430F6210064EFE1 /* GigyaNssEngine.framework */,
+				E73C8A382430F5BB0064EFE1 /* GigyaNss.framework */,
+				E73C8A352430F5B40064EFE1 /* GigyaNssEngine.framework */,
+				E73C8A212430F0B10064EFE1 /* GigyaNssEngine.framework */,
+				E73C8A1A2430EF7A0064EFE1 /* GigyaNss.framework */,
+				E73C8A172430ED660064EFE1 /* GigyaNssEngine.framework */,
+				E73C8A142430ED110064EFE1 /* GigyaNss.framework */,
+				E73C8A112430ECE30064EFE1 /* GigyaNss.framework */,
+				E73C8A0E2430DA640064EFE1 /* GigyaNss.framework */,
+				E73C8A0B2430DA540064EFE1 /* GigyaNss.framework */,
 				E77F7A2E2407EC7900FF90FB /* CoreFoundation.framework */,
 				E77F7A292406B12B00FF90FB /* GigyaNssEngine.framework */,
 				E77F7A272406B12100FF90FB /* GigyaNss.framework */,
@@ -2568,7 +2594,10 @@
 					"$(PROJECT_DIR)/TestApp",
 					"$(PROJECT_DIR)/TestApp/facebook",
 					"$(PROJECT_DIR)/GigyaTfa",
-					"$(PROJECT_DIR)/GigyaNssEngine",
+					"$(PROJECT_DIR)/GigyaNssEngine/Debug/",
+					"$(PROJECT_DIR)/GigyaNss/Debug",
+					"$(PROJECT_DIR)/GigyaNssEngine/Debug",
+					"$(PROJECT_DIR)/GigyaNssEngine/Debug/GigyaNssEngine.framework/Frameworks",
 				);
 				INFOPLIST_FILE = TestApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -2617,6 +2646,8 @@
 					"$(PROJECT_DIR)/GigyaTfa",
 					"$(PROJECT_DIR)/GigyaNss/Flutter/Debug",
 					"$(PROJECT_DIR)/GigyaNssEngine",
+					"$(PROJECT_DIR)/GigyaNssEngine/Debug",
+					"$(PROJECT_DIR)/GigyaNss/Debug",
 				);
 				INFOPLIST_FILE = TestApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;

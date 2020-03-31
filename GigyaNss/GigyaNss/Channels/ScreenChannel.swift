@@ -23,6 +23,7 @@ class ScreenChannel: BaseChannel {
 }
 
 enum ScreenChannelEvent: String {
-    case flow
+    // TODO: need to remove the "flow" string
+    case action = "flow"
     case dismiss
 }

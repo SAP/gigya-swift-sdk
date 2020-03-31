@@ -9,7 +9,7 @@
 import Flutter
 import Gigya
 
-class NativeScreenSetsViewModel<T: GigyaAccountProtocol>: CordinatorContainer<T>, UIAdaptivePresentationControllerDelegate {
+class NativeScreenSetsViewModel<T: GigyaAccountProtocol>: NSObject, UIAdaptivePresentationControllerDelegate {
     
     var dismissClosure: () -> Void = {}
     var closeClosure: () -> Void = {}
@@ -18,15 +18,15 @@ class NativeScreenSetsViewModel<T: GigyaAccountProtocol>: CordinatorContainer<T>
     var apiChannel: ApiChannel?
     var logChannel: LogChannel?
 
-    let flowFactory: FlowFactory<T>
+    let flowManager: NssFlowManager<T>
 
     var engine: FlutterEngine?
 
-    init(mainChannel: ScreenChannel, apiChannel: ApiChannel, logChannel: LogChannel, flowFactory: FlowFactory<T>) {
+    init(mainChannel: ScreenChannel, apiChannel: ApiChannel, logChannel: LogChannel, flowManager: NssFlowManager<T>) {
         self.screenChannel = mainChannel
         self.apiChannel = apiChannel
-        self.flowFactory = flowFactory
         self.logChannel = logChannel
+        self.flowManager = flowManager
     }
 
     func loadChannels(with engine: FlutterEngine) {
@@ -40,22 +40,17 @@ class NativeScreenSetsViewModel<T: GigyaAccountProtocol>: CordinatorContainer<T>
             }
 
             switch method {
-            case .flow:
-                print(data)
+            case .action:
                 guard
                     let flowId = data?["flowId"] as? String,
-                    let flow = Flow(rawValue: flowId) else {
+                    let flow = Action(rawValue: flowId) else {
                     return
                 }
 
-                let generateFlow = self.flowFactory.create(identifier: flow)
-
-                self.add(id: flow, flow: generateFlow)
-
-                generateFlow.initialize(response: response)
+                self.flowManager.setCurrent(action: flow, response: response)
+                
             case .dismiss:
                 self.dismissClosure()
-                self.removeAll()
             }
         }
 
@@ -64,7 +59,9 @@ class NativeScreenSetsViewModel<T: GigyaAccountProtocol>: CordinatorContainer<T>
                 return
             }
     
-            self.currentFlow?.next(method: method, params: data, response: response)
+            self.flowManager.next(method: method, params: data, response: response)
+
+            GigyaLogger.log(with: self, message: "next: \(method)")
         }
 
         logChannel?.methodHandler(scheme: LogChannelEvent.self, { [weak self] (method, data, response) in

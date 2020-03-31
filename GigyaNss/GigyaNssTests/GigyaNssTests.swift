@@ -7,6 +7,7 @@
 //
 
 import XCTest
+@testable import Gigya
 @testable import GigyaNss
 
 class GigyaNssTests: XCTestCase {
@@ -22,6 +23,17 @@ class GigyaNssTests: XCTestCase {
     func testExample() {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
+        Gigya.sharedInstance().initFor(apiKey: "123")
+        let bbb = Gigya.getContainer().resolve(BusinessApiServiceProtocol.self)
+        let factory = ActionFactory<GigyaAccount>()
+        let flow = NssFlowManager(flowFactory: factory)
+        flow.interruptions["pendingRegistration"] = PendingRegistrationResolver<GigyaAccount>(originalError: .emptyResponse, regToken: "", businessDelegate: bbb! as! BusinessApiDelegate) { _ in
+
+        }
+
+        let resolver = flow.getResolver(name: "pendingRegistration", as: PendingRegistrationResolver<GigyaAccount>.self)
+//        resolver?.setAccount(params: <#T##[String : Any]#>)
+
     }
 
     func testPerformanceExample() {
