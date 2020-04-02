@@ -76,9 +76,9 @@
 	<key>FacebookDisplayName</key>
 	<string>GigyaTestApp</string>
 	<key>GigyaApiDomain</key>
-	<string>eu1.gigya.com</string>
+	<string>us1.gigya.com</string>
 	<key>GigyaApiKey</key>
-	<string>3_nxiMrY6Y-366iNQzA-QmkTGp2Wx21JP2cF7IYC9MKKxD8sKD0YQGIH7UxcWk8DGu</string>
+	<string>3_KF6Dwf0BoTktLiX54s_rSWRiklW69xCLG8pZa413Z6pkuBGBwQeSK9k19grZfCDe</string>
 	<key>GigyaSessionVerificationInterval</key>
 	<integer>5000</integer>
 	<key>GoogleClientID</key>

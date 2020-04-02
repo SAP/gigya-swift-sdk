@@ -29,7 +29,7 @@ final class PluginViewController<T: GigyaAccountProtocol>: GigyaWebViewControlle
         self.webView.navigationDelegate = self
 
         userDidCancel = {
-            pluginEvent(.onHide(event: ["event": "screenSet cancelled"]))
+            pluginEvent(.onCanceled)
         }
     }
 

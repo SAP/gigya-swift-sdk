@@ -6,13 +6,26 @@
 	objectVersion = 50;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		E750977C2434C990008E984C /* GigyaAuth-Universal */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = E750977D2434C990008E984C /* Build configuration list for PBXAggregateTarget "GigyaAuth-Universal" */;
+			buildPhases = (
+				E75097802434C9AB008E984C /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = "GigyaAuth-Universal";
+			productName = "GigyaAuth-Universal";
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
+		E75097822434CA3A008E984C /* Gigya.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E75097812434CA3A008E984C /* Gigya.framework */; };
 		E7791A4D23853A510075BAFD /* GigyaAuth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7791A4323853A510075BAFD /* GigyaAuth.framework */; };
 		E7791A5223853A510075BAFD /* GigyaAuthTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7791A5123853A510075BAFD /* GigyaAuthTests.swift */; };
 		E7791A5423853A510075BAFD /* GigyaAuth.h in Headers */ = {isa = PBXBuildFile; fileRef = E7791A4623853A510075BAFD /* GigyaAuth.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E7791A5E23853DF00075BAFD /* GigyaAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7791A5D23853DF00075BAFD /* GigyaAuth.swift */; };
-		E7791A6123853E3C0075BAFD /* Gigya.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7791A6023853E3C0075BAFD /* Gigya.framework */; };
-		E7791A6223853E3C0075BAFD /* Gigya.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E7791A6023853E3C0075BAFD /* Gigya.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E7791A6623853EF40075BAFD /* PushLoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7791A6523853EF40075BAFD /* PushLoginManager.swift */; };
 /* End PBXBuildFile section */
 
@@ -26,21 +39,8 @@
 		};
 /* End PBXContainerItemProxy section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		E7791A6323853E3C0075BAFD /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				E7791A6223853E3C0075BAFD /* Gigya.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
+		E75097812434CA3A008E984C /* Gigya.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Gigya.framework; sourceTree = "<group>"; };
 		E7791A4323853A510075BAFD /* GigyaAuth.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GigyaAuth.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7791A4623853A510075BAFD /* GigyaAuth.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GigyaAuth.h; sourceTree = "<group>"; };
 		E7791A4723853A510075BAFD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -57,7 +57,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E7791A6123853E3C0075BAFD /* Gigya.framework in Frameworks */,
+				E75097822434CA3A008E984C /* Gigya.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -114,6 +114,7 @@
 		E7791A5F23853E3C0075BAFD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E75097812434CA3A008E984C /* Gigya.framework */,
 				E7791A6023853E3C0075BAFD /* Gigya.framework */,
 			);
 			name = Frameworks;
@@ -149,7 +150,6 @@
 				E7791A3F23853A510075BAFD /* Sources */,
 				E7791A4023853A510075BAFD /* Frameworks */,
 				E7791A4123853A510075BAFD /* Resources */,
-				E7791A6323853E3C0075BAFD /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -188,6 +188,9 @@
 				LastUpgradeCheck = 1120;
 				ORGANIZATIONNAME = Gigya;
 				TargetAttributes = {
+					E750977C2434C990008E984C = {
+						CreatedOnToolsVersion = 11.4;
+					};
 					E7791A4223853A510075BAFD = {
 						CreatedOnToolsVersion = 11.2.1;
 						LastSwiftMigration = 1120;
@@ -212,6 +215,7 @@
 			targets = (
 				E7791A4223853A510075BAFD /* GigyaAuth */,
 				E7791A4B23853A510075BAFD /* GigyaAuthTests */,
+				E750977C2434C990008E984C /* GigyaAuth-Universal */,
 			);
 		};
 /* End PBXProject section */
@@ -232,6 +236,26 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		E75097802434C9AB008E984C /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#!/bin/sh\n\nUNIVERSAL_OUTPUTFOLDER=${BUILD_DIR}/${CONFIGURATION}-universal\n\n# make sure the output directory exists\nmkdir -p \"${UNIVERSAL_OUTPUTFOLDER}\"\n\n# Step 1. Build Device and Simulator versions\nxcodebuild -target \"${PROJECT_NAME}\" ONLY_ACTIVE_ARCH=NO -configuration ${CONFIGURATION} -sdk iphoneos  BUILD_DIR=\"${BUILD_DIR}\" ENABLE_BITCODE=YES OTHER_CFLAGS=\"-fembed-bitcode\" BITCODE_GENERATION_MODE=bitcode BUILD_ROOT=\"${BUILD_ROOT}\" clean build\nxcodebuild -target \"${PROJECT_NAME}\" -configuration ${CONFIGURATION} -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO ENABLE_BITCODE=YES OTHER_CFLAGS=\"-fembed-bitcode\" BITCODE_GENERATION_MODE=bitcode BUILD_DIR=\"${BUILD_DIR}\" BUILD_ROOT=\"${BUILD_ROOT}\" clean build\n\n# Step 2. Copy the framework structure (from iphoneos build) to the universal folder\ncp -R \"${BUILD_DIR}/${CONFIGURATION}-iphoneos/${PROJECT_NAME}.framework\" \"${UNIVERSAL_OUTPUTFOLDER}/\"\n\n# Step 3. Copy Swift modules from iphonesimulator build (if it exists) to the copied framework directory\nSIMULATOR_SWIFT_MODULES_DIR=\"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/${PROJECT_NAME}.framework/Modules/${PROJECT_NAME}.swiftmodule/.\"\nif [ -d \"${SIMULATOR_SWIFT_MODULES_DIR}\" ]; then\ncp -R \"${SIMULATOR_SWIFT_MODULES_DIR}\" \"${UNIVERSAL_OUTPUTFOLDER}/${PROJECT_NAME}.framework/Modules/${PROJECT_NAME}.swiftmodule\"\nfi\n\n# Step 4. Create universal binary file using lipo and place the combined executable in the copied framework directory\nlipo -create -output \"${UNIVERSAL_OUTPUTFOLDER}/${PROJECT_NAME}.framework/${PROJECT_NAME}\" \"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/${PROJECT_NAME}.framework/${PROJECT_NAME}\" \"${BUILD_DIR}/${CONFIGURATION}-iphoneos/${PROJECT_NAME}.framework/${PROJECT_NAME}\"\n\n# Step 5. Convenience step to copy the framework to the project's directory\ncp -R \"${UNIVERSAL_OUTPUTFOLDER}/${PROJECT_NAME}.framework\" \"${PROJECT_DIR}\"\n\n# Step 6. Convenience step to open the project's directory in Finder\nopen \"${PROJECT_DIR}\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		E7791A3F23853A510075BAFD /* Sources */ = {
@@ -262,6 +286,24 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		E750977E2434C990008E984C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = T48CNFXFQH;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		E750977F2434C990008E984C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = T48CNFXFQH;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		E7791A5523853A510075BAFD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -393,6 +435,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = GigyaAuth/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -401,6 +447,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0.1;
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = Gigya.GigyaAuth;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
@@ -422,6 +469,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = GigyaAuth/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -430,6 +481,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = Gigya.GigyaAuth;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -481,6 +533,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		E750977D2434C990008E984C /* Build configuration list for PBXAggregateTarget "GigyaAuth-Universal" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E750977E2434C990008E984C /* Debug */,
+				E750977F2434C990008E984C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		E7791A3D23853A510075BAFD /* Build configuration list for PBXProject "GigyaAuth" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

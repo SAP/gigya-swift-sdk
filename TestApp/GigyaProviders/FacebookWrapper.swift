@@ -33,7 +33,7 @@ class FacebookWrapper: ProviderWrapperProtocol {
         
         fbLogin.logIn(permissions: defaultReadPermissions, from: viewController) { (result, error) in
             if result?.isCancelled != false {
-                completion(nil, "sign in cancelled")
+                completion(nil, "canceled")
                 return
             }
 

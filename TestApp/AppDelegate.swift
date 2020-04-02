@@ -42,7 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
         ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
 
         if #available(iOS 13.0, *) {
-            gigya.registerSocialProvider(by: .apple, factory: AppleSignInWrappera())
+            gigya.registerSocialProvider(of: .apple, factory: AppleSignInWrapper())
         } else {
             // Fallback on earlier versions
         }
