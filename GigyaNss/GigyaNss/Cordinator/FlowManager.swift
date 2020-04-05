@@ -10,20 +10,22 @@ import Gigya
 import Flutter
 typealias MainClosure<T: GigyaAccountProtocol> = (GigyaLoginResult<T>) -> Void
 
-final class NssFlowManager<T: GigyaAccountProtocol> {
+final class FlowManager<T: GigyaAccountProtocol> {
 
     // Flow handling
-    let flowFactory: ActionFactory<T>
-    var currentFlow: NssAction<T>?
+    private let flowFactory: ActionFactory<T>
+
+    private var currentAction: NssAction<T>?
 
     // storage relevent interruptions
-    var interruptions: [NssInterruptionsSupported: NssResolverModelProtocol] = [:]
+    //TODO: change to only one resolver
+    private var currentResolver: NssResolverModelProtocol?
 
     // main result handler (for Login / Register)
     private var mainLoginClosure: MainClosure<T> = { _ in }
 
     // current result to dart when using interruption
-    var engineResultHandler: FlutterResult?
+    private var engineResultHandler: FlutterResult?
 
     // initalize new flow
     init(flowFactory: ActionFactory<T>) {
@@ -32,7 +34,7 @@ final class NssFlowManager<T: GigyaAccountProtocol> {
         initClosure()
     }
 
-    func initClosure() {
+    private func initClosure() {
         mainLoginClosure = { [weak self] result in
             guard let self = self else {
                 return
@@ -42,11 +44,15 @@ final class NssFlowManager<T: GigyaAccountProtocol> {
                 let resultData = ["errorCode": 0, "errorMessage": "", "callId": "", "statusCode": 200] as [String : Any]
 
                 self.engineResultHandler?(resultData)
+
+                // dispose current resolver
+                self.disposeResolver()
             case .failure(let error):
                 if let interrupt = error.interruption {
                     switch interrupt {
                     case .pendingRegistration(resolver: let resolver):
-                        self.interruptions[interrupt.description] = NssResolverModel<PendingRegistrationResolver<T>>(interrupt: interrupt.description, resolver: resolver)
+                        self.currentResolver = NssResolverModel<PendingRegistrationResolver<T>>(interrupt: interrupt.description, resolver: resolver)
+                        break
                     default:
                         break
                     }
@@ -66,16 +72,20 @@ final class NssFlowManager<T: GigyaAccountProtocol> {
         }
     }
 
+    private func disposeResolver() {
+        currentResolver = nil
+    }
+
     // set the current action
     func setCurrent(action: Action, response: @escaping FlutterResult) {
-        currentFlow = flowFactory.create(identifier: action)
-        currentFlow?.delegate = self
-        currentFlow?.initialize(response: response)
+        currentAction = flowFactory.create(identifier: action)
+        currentAction?.delegate = self
+        currentAction?.initialize(response: response)
     }
 
     func next(method: ApiChannelEvent, params: [String : Any]?, response: @escaping FlutterResult) {
         engineResultHandler = response
-        currentFlow?.next(method: method, params: params)
+        currentAction?.next(method: method, params: params)
     }
 
     deinit {
@@ -83,20 +93,16 @@ final class NssFlowManager<T: GigyaAccountProtocol> {
     }
 }
 
-extension NssFlowManager: NssFlowManagerDelegate {
-    func getMainLoginClosure<T>() -> MainClosure<T> where T : GigyaAccountProtocol {
+extension FlowManager: NssFlowManagerDelegate {
+    func getMainLoginClosure<T: GigyaAccountProtocol>() -> MainClosure<T> {
         return self.mainLoginClosure as! MainClosure<T>
     }
 
-    func getResolver<R>(by interrupt: NssInterruptionsSupported, as: R.Type) -> NssResolverModel<R>? {
-        guard let resolver = interruptions[interrupt] as? NssResolverModel<R> else {
+    func getResolver() -> NssResolverModelProtocol? {
+        guard let resolver = currentResolver else {
             return nil
         }
 
         return resolver
-    }
-
-    func disposeResolver(by interrupt: NssInterruptionsSupported) {
-        interruptions.removeValue(forKey: interrupt)
     }
 }
