@@ -12,7 +12,6 @@ protocol NssFlowManagerDelegate: class {
 
     func getMainLoginClosure<T>() -> MainClosure<T>
 
-    func getResolver<R>(by interrupt: NssInterruptionsSupported, as: R.Type) -> NssResolverModel<R>?
+    func getResolver() -> NssResolverModelProtocol? 
 
-    func disposeResolver(by interrupt: NssInterruptionsSupported)
 }

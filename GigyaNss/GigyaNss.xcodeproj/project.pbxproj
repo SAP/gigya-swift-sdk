@@ -43,7 +43,7 @@
 		E722572923CC9F22000DDB24 /* engine.sh in Resources */ = {isa = PBXBuildFile; fileRef = E722572823CC9F22000DDB24 /* engine.sh */; };
 		E722573423CCB1CE000DDB24 /* NativeScreenSetsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E722573323CCB1CE000DDB24 /* NativeScreenSetsViewController.swift */; };
 		E722573623CCBB31000DDB24 /* ScreenChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E722573523CCBB31000DDB24 /* ScreenChannel.swift */; };
-		E73C8A0A2430D8290064EFE1 /* NssFlowManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73C8A092430D8290064EFE1 /* NssFlowManager.swift */; };
+		E73C8A0A2430D8290064EFE1 /* FlowManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73C8A092430D8290064EFE1 /* FlowManager.swift */; };
 		E73C8A322430F2E10064EFE1 /* Flutter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E73C8A1D2430EFC60064EFE1 /* Flutter.framework */; };
 		E73C8A4F2431D3480064EFE1 /* NssFlowManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73C8A4E2431D3480064EFE1 /* NssFlowManagerDelegate.swift */; };
 		E73C8A522431D3930064EFE1 /* NssInterruptionsSupported.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73C8A512431D3930064EFE1 /* NssInterruptionsSupported.swift */; };
@@ -59,6 +59,8 @@
 		E77F7A2D2407BF5100FF90FB /* CreateEngineFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77F7A2C2407BF5100FF90FB /* CreateEngineFactory.swift */; };
 		E78B8A5E23FC375700E29651 /* NativeScreenSetsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78B8A5D23FC375700E29651 /* NativeScreenSetsViewModel.swift */; };
 		E78B8A6023FC399C00E29651 /* ApiChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78B8A5F23FC399C00E29651 /* ApiChannel.swift */; };
+		E7BC7B6024360ADD003F28F9 /* NssResolverRegTokenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BC7B5F24360ADD003F28F9 /* NssResolverRegTokenModel.swift */; };
+		E7BC7B6224360B06003F28F9 /* NssResolverTfaModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BC7B6124360B06003F28F9 /* NssResolverTfaModel.swift */; };
 		E7D1F70C240BD92B00394185 /* IgnitionChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7D1F70B240BD92B00394185 /* IgnitionChannel.swift */; };
 		E7D1F70E240E5F0700394185 /* EngineLifeCycle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7D1F70D240E5F0700394185 /* EngineLifeCycle.swift */; };
 		E7D1F71124152D5000394185 /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7D1F71024152D5000394185 /* Dictionary.swift */; };
@@ -86,7 +88,7 @@
 		E722572823CC9F22000DDB24 /* engine.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = engine.sh; sourceTree = "<group>"; };
 		E722573323CCB1CE000DDB24 /* NativeScreenSetsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeScreenSetsViewController.swift; sourceTree = "<group>"; };
 		E722573523CCBB31000DDB24 /* ScreenChannel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenChannel.swift; sourceTree = "<group>"; };
-		E73C8A092430D8290064EFE1 /* NssFlowManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NssFlowManager.swift; sourceTree = "<group>"; };
+		E73C8A092430D8290064EFE1 /* FlowManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowManager.swift; sourceTree = "<group>"; };
 		E73C8A1D2430EFC60064EFE1 /* Flutter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Flutter.framework; path = Flutter/Debug/Flutter.framework; sourceTree = "<group>"; };
 		E73C8A272430F2030064EFE1 /* GigyaNssEngine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GigyaNssEngine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E73C8A2E2430F28C0064EFE1 /* GigyaNssEngine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GigyaNssEngine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -107,6 +109,8 @@
 		E77F7A2C2407BF5100FF90FB /* CreateEngineFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEngineFactory.swift; sourceTree = "<group>"; };
 		E78B8A5D23FC375700E29651 /* NativeScreenSetsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeScreenSetsViewModel.swift; sourceTree = "<group>"; };
 		E78B8A5F23FC399C00E29651 /* ApiChannel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiChannel.swift; sourceTree = "<group>"; };
+		E7BC7B5F24360ADD003F28F9 /* NssResolverRegTokenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NssResolverRegTokenModel.swift; sourceTree = "<group>"; };
+		E7BC7B6124360B06003F28F9 /* NssResolverTfaModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NssResolverTfaModel.swift; sourceTree = "<group>"; };
 		E7D1F70B240BD92B00394185 /* IgnitionChannel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IgnitionChannel.swift; sourceTree = "<group>"; };
 		E7D1F70D240E5F0700394185 /* EngineLifeCycle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EngineLifeCycle.swift; sourceTree = "<group>"; };
 		E7D1F71024152D5000394185 /* Dictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dictionary.swift; sourceTree = "<group>"; };
@@ -150,8 +154,7 @@
 			isa = PBXGroup;
 			children = (
 				E73C8A4E2431D3480064EFE1 /* NssFlowManagerDelegate.swift */,
-				E73C8A092430D8290064EFE1 /* NssFlowManager.swift */,
-				E73C8A532431E6080064EFE1 /* NssResolverModel.swift */,
+				E73C8A092430D8290064EFE1 /* FlowManager.swift */,
 			);
 			path = Cordinator;
 			sourceTree = "<group>";
@@ -180,6 +183,9 @@
 			isa = PBXGroup;
 			children = (
 				E73C8A512431D3930064EFE1 /* NssInterruptionsSupported.swift */,
+				E73C8A532431E6080064EFE1 /* NssResolverModel.swift */,
+				E7BC7B6124360B06003F28F9 /* NssResolverTfaModel.swift */,
+				E7BC7B5F24360ADD003F28F9 /* NssResolverRegTokenModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -458,18 +464,20 @@
 				E73C8A522431D3930064EFE1 /* NssInterruptionsSupported.swift in Sources */,
 				E70F8BCB2404095600D52208 /* BaseChannel.swift in Sources */,
 				E78B8A6023FC399C00E29651 /* ApiChannel.swift in Sources */,
-				E73C8A0A2430D8290064EFE1 /* NssFlowManager.swift in Sources */,
+				E73C8A0A2430D8290064EFE1 /* FlowManager.swift in Sources */,
 				E719C6B124226139002F8C36 /* SetAccountAction.swift in Sources */,
 				E7D1F70E240E5F0700394185 /* EngineLifeCycle.swift in Sources */,
 				E722573623CCBB31000DDB24 /* ScreenChannel.swift in Sources */,
 				E70F8BED2405215C00D52208 /* ActionFactory.swift in Sources */,
 				E722573423CCB1CE000DDB24 /* NativeScreenSetsViewController.swift in Sources */,
+				E7BC7B6224360B06003F28F9 /* NssResolverTfaModel.swift in Sources */,
 				E73C8A542431E6080064EFE1 /* NssResolverModel.swift in Sources */,
 				E73C8A4F2431D3480064EFE1 /* NssFlowManagerDelegate.swift in Sources */,
 				E70F8BBC23FD742C00D52208 /* NssAction.swift in Sources */,
 				E7772A0923D5EAA000DE9DDD /* BuilderOptionsProtocol.swift in Sources */,
 				E70F8BC123FD786E00D52208 /* OrderedDictionary.swift in Sources */,
 				E775E82623C5D1AD0059151D /* GigyaNss.swift in Sources */,
+				E7BC7B6024360ADD003F28F9 /* NssResolverRegTokenModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -26,7 +26,7 @@ class GigyaNssTests: XCTestCase {
         Gigya.sharedInstance().initFor(apiKey: "123")
         let bbb = Gigya.getContainer().resolve(BusinessApiServiceProtocol.self)
         let factory = ActionFactory<GigyaAccount>()
-        let flow = NssFlowManager(flowFactory: factory)
+        let flow = FlowManager(flowFactory: factory)
         flow.interruptions["pendingRegistration"] = PendingRegistrationResolver<GigyaAccount>(originalError: .emptyResponse, regToken: "", businessDelegate: bbb! as! BusinessApiDelegate) { _ in
 
         }

@@ -48,10 +48,10 @@ final public class GigyaNss {
 
     public func register<T: GigyaAccountProtocol>(scheme: T.Type) {
 
-        dependenciesContainer.register(service: NssFlowManager<T>.self) { resolver in
+        dependenciesContainer.register(service: FlowManager<T>.self) { resolver in
             let flowFactory = resolver.resolve(ActionFactory<T>.self)
 
-            return NssFlowManager(flowFactory: flowFactory!)
+            return FlowManager(flowFactory: flowFactory!)
         }
 
         dependenciesContainer.register(service: ScreenSetsBuilder<T>.self) { resolver in
@@ -64,7 +64,7 @@ final public class GigyaNss {
             let mainChannel = resolver.resolve(ScreenChannel.self)
             let apiChannel = resolver.resolve(ApiChannel.self)
             let logChannel = resolver.resolve(LogChannel.self)
-            let flowManager = resolver.resolve(NssFlowManager<T>.self)
+            let flowManager = resolver.resolve(FlowManager<T>.self)
 
             return NativeScreenSetsViewModel(mainChannel: mainChannel!,
                                              apiChannel: apiChannel!,

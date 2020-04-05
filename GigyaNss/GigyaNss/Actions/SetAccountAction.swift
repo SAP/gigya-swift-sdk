@@ -29,7 +29,7 @@ class SetAccountAction<T: GigyaAccountProtocol>: NssAction<T> {
 
         var params = ["include": includeAll, "extraProfileFields": extraProfileFieldsAll]
 
-        if let resolverModel = delegate?.getResolver(by: .pendingRegistration, as: PendingRegistrationResolver<T>.self) {
+        if let resolverModel = delegate?.getResolver() as? NssResolverModel<PendingRegistrationResolver<T>> {
             // storage refrence to the resolver
             self.pendingRegResolver = resolverModel
 
@@ -63,7 +63,6 @@ class SetAccountAction<T: GigyaAccountProtocol>: NssAction<T> {
                 // TODO: hard code setAccount, would send the data from the form the engine ready
                 resolver.setAccount(params: ["profile": ["zip": "12345"]])
 
-                delegate?.disposeResolver(by: .pendingRegistration)
             } else {
                 busnessApi.callSetAccount(dataType: T.self, params: params ?? [:]) { (result) in
                     switch result {

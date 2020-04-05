@@ -8,7 +8,6 @@
 
 import Gigya
 import Flutter
-
 typealias MainClosure<T: GigyaAccountProtocol> = (GigyaLoginResult<T>) -> Void
 
 final class FlowManager<T: GigyaAccountProtocol> {
@@ -16,10 +15,10 @@ final class FlowManager<T: GigyaAccountProtocol> {
     // Flow handling
     private let flowFactory: ActionFactory<T>
 
-    //
     private var currentAction: NssAction<T>?
 
     // storage relevent interruptions
+    //TODO: change to only one resolver
     private var currentResolver: NssResolverModelProtocol?
 
     // main result handler (for Login / Register)
@@ -40,7 +39,6 @@ final class FlowManager<T: GigyaAccountProtocol> {
             guard let self = self else {
                 return
             }
-
             switch result {
             case .success:
                 let resultData = ["errorCode": 0, "errorMessage": "", "callId": "", "statusCode": 200] as [String : Any]
@@ -76,7 +74,6 @@ final class FlowManager<T: GigyaAccountProtocol> {
 
     private func disposeResolver() {
         currentResolver = nil
-        mainLoginClosure = { _ in }
     }
 
     // set the current action

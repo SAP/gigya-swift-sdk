@@ -18,11 +18,11 @@ class NativeScreenSetsViewModel<T: GigyaAccountProtocol>: NSObject, UIAdaptivePr
     var apiChannel: ApiChannel?
     var logChannel: LogChannel?
 
-    let flowManager: NssFlowManager<T>
+    let flowManager: FlowManager<T>
 
     var engine: FlutterEngine?
 
-    init(mainChannel: ScreenChannel, apiChannel: ApiChannel, logChannel: LogChannel, flowManager: NssFlowManager<T>) {
+    init(mainChannel: ScreenChannel, apiChannel: ApiChannel, logChannel: LogChannel, flowManager: FlowManager<T>) {
         self.screenChannel = mainChannel
         self.apiChannel = apiChannel
         self.logChannel = logChannel
