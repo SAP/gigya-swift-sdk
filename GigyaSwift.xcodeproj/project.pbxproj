@@ -2414,7 +2414,7 @@
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 55;
+				CURRENT_PROJECT_VERSION = 58;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = T48CNFXFQH;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -2434,7 +2434,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.10;
+				MARKETING_VERSION = 1.0.11;
 				MODULEMAP_FILE = "";
 				MODULEMAP_PRIVATE_FILE = "";
 				ONLY_ACTIVE_ARCH = NO;
@@ -2466,7 +2466,7 @@
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 55;
+				CURRENT_PROJECT_VERSION = 58;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = T48CNFXFQH;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -2486,7 +2486,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.10;
+				MARKETING_VERSION = 1.0.11;
 				MODULEMAP_FILE = "";
 				MODULEMAP_PRIVATE_FILE = "";
 				OTHER_LDFLAGS = (

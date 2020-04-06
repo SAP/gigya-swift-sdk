@@ -28,7 +28,7 @@ public class GigyaWebBridge<T: GigyaAccountProtocol>: NSObject, WKScriptMessageH
     weak var viewController: UIViewController?
 
     let JSEventHandler = "gsapi"
-    let baseURL = "http://www.gigya.com"
+    let baseURL = "https://www.gigya.com"
 
     var completion: (GigyaPluginEvent<T>) -> Void = { _ in }
 

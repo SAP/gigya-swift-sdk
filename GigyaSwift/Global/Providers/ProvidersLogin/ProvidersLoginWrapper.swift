@@ -42,7 +42,8 @@ class ProvidersLoginWrapper: NSObject {
         webViewController?.setDelegate(delegate: self)
 
         webViewController?.userDidCancel = { [weak self] in
-            self?.completionHandler?(nil, "sign in cancelled")
+            self?.completionHandler?(nil, GigyaDefinitions.Plugin.canceled)
+            self?.navigationController?.dismiss(animated: true, completion: nil)
         }
 
         webViewController?.title = "Sign In"

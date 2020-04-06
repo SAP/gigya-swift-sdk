@@ -74,7 +74,7 @@ class WebViewWrapperTests: XCTestCase {
         let vc = UIViewController()
 
         webViewWrapper.login(params: nil, viewController: vc, completion: { (json, error) in
-            XCTAssert(error?.contains("sign in cancelled") ?? false)
+            XCTAssert(error?.contains("canceled") ?? false)
         })
 
         webViewWrapper.webViewController?.dismissView()

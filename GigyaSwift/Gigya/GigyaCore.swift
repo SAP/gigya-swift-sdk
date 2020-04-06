@@ -395,4 +395,14 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
         pushService.verifyPush(response: response.notification.request.content.userInfo)
     }
 
+    /**
+     Register Social Provider without reflection.
+
+      - Parameter provider: `GigyaNativeSocialProviders` type.
+      - Parameter wrapper: Your class as extend to`ProviderWrapperProtocol` protocol.
+      */
+
+    public func registerSocialProvider(of provider: GigyaNativeSocialProviders, wrapper: ProviderWrapperProtocol) {
+        businessApiService.socialProviderFactory.registerProvider(by: provider, wrapper: wrapper)
+    }
 }

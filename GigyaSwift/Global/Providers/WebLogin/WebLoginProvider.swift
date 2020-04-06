@@ -40,19 +40,26 @@ final class WebLoginProvider: Provider {
 
         provider.login(params: newParams, viewController: viewController) { [weak self] jsonData, error in
             guard error == nil else {
+                if error == GigyaDefinitions.Plugin.canceled {
+                    let errorObject = NetworkError.providerError(data: error ?? "")
 
+                    self?.loginGigyaFailed(error: errorObject, completion: completion)
+
+                    GigyaLogger.log(with: WebLoginProvider.self, message: error ?? "")
+                    return
+                }
                 let errorDesc = error!["error_description"]
-                 let getErrorCode = errorDesc?.split(separator: "+").first
-                 let errorCode = Int("\(getErrorCode ?? "-1")") ?? -1
-                 let regToken = error!["regToken"] ?? ""
+                let getErrorCode = errorDesc?.split(separator: "+").first
+                let errorCode = Int("\(getErrorCode ?? "-1")") ?? -1
+                let regToken = error!["regToken"] ?? ""
 
-                 let data = ["regToken": regToken, "errorCode": errorCode] as [String : Any]
+                let data = ["regToken": regToken, "errorCode": errorCode] as [String : Any]
 
-                 let objData = try! JSONSerialization.data(withJSONObject: data, options: .prettyPrinted)
+                let objData = try! JSONSerialization.data(withJSONObject: data, options: .prettyPrinted)
 
-                 let errorObject = NetworkError.gigyaError(data: GigyaResponseModel(statusCode: .unknown, errorCode: errorCode, callId: "", errorMessage: error, sessionInfo: nil, requestData: objData))
+                let errorObject = NetworkError.gigyaError(data: GigyaResponseModel(statusCode: .unknown, errorCode: errorCode, callId: "", errorMessage: error, sessionInfo: nil, requestData: objData))
 
-                 self?.loginGigyaFailed(error: errorObject, completion: completion)
+                self?.loginGigyaFailed(error: errorObject, completion: completion)
 
                 GigyaLogger.log(with: WebLoginProvider.self, message: errorObject.localizedDescription)
                 return

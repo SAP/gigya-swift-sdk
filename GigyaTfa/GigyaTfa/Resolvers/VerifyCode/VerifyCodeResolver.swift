@@ -101,6 +101,7 @@ final class VerifyCodeResolver<T: GigyaAccountProtocol>: TFAResolver<T>, VerifyC
     }
 }
 
+@frozen
 public enum VerifyCodeResultCallback {
     case resolved
     case invalidCode

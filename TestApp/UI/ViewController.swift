@@ -21,7 +21,7 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         let not = NotificationCenter.default
         not.addObserver(self, selector: #selector(gigyaSessionExpire(_:)), name: Notification.Name("didGigyaSessionExpire"), object: nil)
 
@@ -243,7 +243,7 @@ class ViewController: UIViewController {
     }
 
     @IBAction func loginWithProvider(_ sender: Any) {
-        gigya.login(with: .facebook, viewController: self, params: ["dataCenter": "ru1"]) { [weak self] (result) in
+        gigya.login(with: .yahoo, viewController: self, params: ["dataCenter": "ru1"]) { [weak self] (result) in
             switch result {
             case .success(let data):
                 print(data)

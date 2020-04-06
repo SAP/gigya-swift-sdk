@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import WebKit
 
 class SessionService: SessionServiceProtocol {
 
@@ -293,6 +294,9 @@ class SessionService: SessionServiceProtocol {
         // clear account from cach
         accountService.clear()
 
+        // clear all cookies created in WKWebView
+        clearCookies()
+
         // clear session from memory
         self.session = nil
     }
@@ -307,6 +311,17 @@ class SessionService: SessionServiceProtocol {
             }
 
             completion()
+        }
+    }
+
+    private func clearCookies() {
+        HTTPCookieStorage.shared.removeCookies(since: .distantPast)
+
+        WKWebsiteDataStore.default().fetchDataRecords(ofTypes: WKWebsiteDataStore.allWebsiteDataTypes()) { records in
+            records.forEach { record in
+                WKWebsiteDataStore.default().removeData(ofTypes: record.dataTypes, for: [record], completionHandler: {})
+                GigyaLogger.log(with: self, message: "Cookie ::: \(record) deleted")
+            }
         }
     }
 

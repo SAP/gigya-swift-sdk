@@ -80,7 +80,7 @@
 	<key>GigyaApiKey</key>
 	<string>3_KF6Dwf0BoTktLiX54s_rSWRiklW69xCLG8pZa413Z6pkuBGBwQeSK9k19grZfCDe</string>
 	<key>GigyaSessionVerificationInterval</key>
-	<integer>5</integer>
+	<integer>5000</integer>
 	<key>GoogleClientID</key>
 	<string>444662304199-camlom5iaqmrs7i1ernfv7eudr1ejkvm.apps.googleusercontent.com</string>
 	<key>GoogleServerClientID</key>

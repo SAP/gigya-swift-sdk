@@ -8,6 +8,7 @@
 
 import Foundation
 
+@frozen
 public enum TFAProvider: String, Codable {
     case phone = "gigyaPhone"
     case liveLink = "livelink"

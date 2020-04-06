@@ -10,6 +10,7 @@ import Foundation
 @testable import Gigya
 
 class ProviderFactoryMock: SocialProvidersManagerProtocol {
+
     let config: GigyaConfig
     let sessionService: SessionServiceProtocol
 
@@ -28,5 +29,9 @@ class ProviderFactoryMock: SocialProvidersManagerProtocol {
         }
 
         return WebLoginProvider(sessionService: sessionService, provider: WebProviderWrapperMock(), delegate: delegate)
+    }
+
+    func registerProvider(by provider: GigyaNativeSocialProviders, factory: ProviderWrapperProtocol) {
+
     }
 }
