@@ -11,7 +11,7 @@ import Foundation
 public struct GigyaProfile: Codable {
     public var firstName: String?
     public var lastname: String?
-    public var nickName: String?
+    public var nickname: String?
     public var address: String?
     public var age: Int?
     public var bio: String?

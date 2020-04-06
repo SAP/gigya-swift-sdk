@@ -93,7 +93,7 @@ final public class RegisteredEmailsResolver<T: GigyaAccountProtocol>: TFAResolve
     
 }
 
-
+@frozen
 public enum RegisteredEmailsResult {
     case registeredEmails(emails: [TFAEmail])
     case emailVerificationCodeSent(resolver: VerifyCodeResolverProtocol)

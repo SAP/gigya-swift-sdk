@@ -399,10 +399,10 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
      Register Social Provider without reflection.
 
       - Parameter provider: `GigyaNativeSocialProviders` type.
-      - Parameter factory: Your class as extend to`ProviderWrapperProtocol` protocol.
+      - Parameter wrapper: Your class as extend to`ProviderWrapperProtocol` protocol.
       */
 
-    public func registerSocialProvider(of provider: GigyaNativeSocialProviders, factory: ProviderWrapperProtocol) {
-        businessApiService.socialProviderFactory.registerProvider(by: provider, factory: factory)
+    public func registerSocialProvider(of provider: GigyaNativeSocialProviders, wrapper: ProviderWrapperProtocol) {
+        businessApiService.socialProviderFactory.registerProvider(by: provider, wrapper: wrapper)
     }
 }

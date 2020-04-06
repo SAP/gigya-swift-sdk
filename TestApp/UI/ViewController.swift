@@ -21,9 +21,7 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        Gigya.sharedInstance().registerSocialProvider(of: .facebook, factory: FacebookWrapper())
-
+        
         let not = NotificationCenter.default
         not.addObserver(self, selector: #selector(gigyaSessionExpire(_:)), name: Notification.Name("didGigyaSessionExpire"), object: nil)
 

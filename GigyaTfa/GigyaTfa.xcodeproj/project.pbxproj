@@ -22,7 +22,7 @@
 
 /* Begin PBXBuildFile section */
 		E719373E22D4823400CD149E /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = E719373D22D4823400CD149E /* Dictionary.swift */; };
-		E750977724337BCE008E984C /* Gigya.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E750977624337BCE008E984C /* Gigya.framework */; };
+		E7B52189243A16DE00DAB464 /* Gigya.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7EEF3E922C902890004DF5D /* Gigya.framework */; };
 		E7EEF33222C8BB880004DF5D /* GigyaTfa.h in Headers */ = {isa = PBXBuildFile; fileRef = E7EEF33022C8BB880004DF5D /* GigyaTfa.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E7EEF35722C8BBDB0004DF5D /* AlertControllerUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7EEF33922C8BBDB0004DF5D /* AlertControllerUtils.swift */; };
 		E7EEF35B22C8BBDB0004DF5D /* GigyaTfa.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7EEF33F22C8BBDB0004DF5D /* GigyaTfa.swift */; };
@@ -76,7 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E750977724337BCE008E984C /* Gigya.framework in Frameworks */,
+				E7B52189243A16DE00DAB464 /* Gigya.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -475,7 +475,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = GigyaTfa/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -514,7 +514,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = GigyaTfa/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";

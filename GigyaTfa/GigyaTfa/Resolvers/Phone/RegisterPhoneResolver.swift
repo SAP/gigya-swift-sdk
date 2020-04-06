@@ -78,6 +78,7 @@ final public class RegisterPhoneResolver<T: GigyaAccountProtocol>: TFAResolver<T
     }
 }
 
+@frozen
 public enum RegisterPhonesResult {
     case verificationCodeSent(resolver: VerifyCodeResolverProtocol)
     case error(NetworkError)

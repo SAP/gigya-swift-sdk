@@ -82,6 +82,7 @@ final public class RegisterTotpResolver<T: GigyaAccountProtocol>: TFAResolver<T>
     }
 }
 
+@frozen
 public enum RegisterTotpResult {
     case QRCodeAvilabe(image: UIImage?, resolver: VerifyTotpResolverProtocol)
     case error(NetworkError)

@@ -11,7 +11,7 @@ import Foundation
 protocol SocialProvidersManagerProtocol {
     func getProvider(with socialProvider: GigyaSocialProviders, delegate: BusinessApiDelegate) -> Provider
 
-    func registerProvider(by provider: GigyaNativeSocialProviders, factory: ProviderWrapperProtocol)
+    func registerProvider(by provider: GigyaNativeSocialProviders, wrapper: ProviderWrapperProtocol)
 }
 
 final class SocialProvidersManager: SocialProvidersManagerProtocol {
@@ -69,7 +69,7 @@ final class SocialProvidersManager: SocialProvidersManagerProtocol {
         return WebLoginProvider(sessionService: sessionService, provider: WebLoginWrapper(config: config, persistenceService: persistenceService, providerType: socialProvider, networkAdapter: networkAdapter), delegate: delegate)
     }
 
-    func registerProvider(by provider: GigyaNativeSocialProviders, factory: ProviderWrapperProtocol) {
-        providersContainer[provider] = factory
+    func registerProvider(by provider: GigyaNativeSocialProviders, wrapper: ProviderWrapperProtocol) {
+        providersContainer[provider] = wrapper
     }
 }
