@@ -20,7 +20,7 @@ class LoginAction<T: GigyaAccountProtocol>: NssAction<T> {
         
         switch method {
         case .submit:
-            guard let params = params?["params"] as? [String: Any] else {
+            guard let params = params else {
                 return
             }
 

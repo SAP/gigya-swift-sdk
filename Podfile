@@ -4,18 +4,22 @@
 workspace 'GigyaSwift.xcworkspace'
 
 target 'TestApp' do
-  workspace 'GigyaSwift.xcodeproj'
+#  workspace 'GigyaSwift.xcodeproj'
 
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
 
   # Pods for TestApp
+  pod 'LineSDKSwift', '~> 5.0'
+
   pod 'GoogleSignIn', '5.0.1', :modular_headers => false
-  pod 'FBSDKCoreKit', '5.4.0'
-  pod 'FBSDKLoginKit', '5.4.0'
+  pod 'FBSDKCoreKit', '5.5.0'
+  pod 'FBSDKLoginKit', '5.5.0'
 
   pod 'Firebase/Analytics'
   pod 'Firebase/Messaging'
+
+
 end
 
 
@@ -29,6 +33,6 @@ target 'GigyaE2ETestsApp' do
   pod 'GoogleSignIn', :modular_headers => false
   pod 'FBSDKCoreKit'
   pod 'FBSDKLoginKit'
-  pod 'LineSDK', '~> 4.1.0'
+  pod 'LineSDK', '~> 4.0.1'
 
 end

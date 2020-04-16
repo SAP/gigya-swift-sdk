@@ -205,10 +205,6 @@
 		E7D9C5AE23682DD400714807 /* NetworkBlockingQueueUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7D9C5AD23682DD400714807 /* NetworkBlockingQueueUtils.swift */; };
 		E7D9C5B02368398500714807 /* NetworkRetryDispacher.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7D9C5AF2368398500714807 /* NetworkRetryDispacher.swift */; };
 		E7DC2C3B228019AC00A13426 /* SocialLoginProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DC2C3A228019AC00A13426 /* SocialLoginProvider.swift */; };
-		E7DC2C4C22804C2F00A13426 /* AccountKitStrings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E7DC2C4222804C2F00A13426 /* AccountKitStrings.bundle */; };
-		E7DC2C4D22804C2F00A13426 /* FacebookSDKStrings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E7DC2C4322804C2F00A13426 /* FacebookSDKStrings.bundle */; };
-		E7DC2C5022804C2F00A13426 /* AccountKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7DC2C4622804C2F00A13426 /* AccountKit.framework */; };
-		E7DC2C5B2280550600A13426 /* LineSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7DC2C5A2280550600A13426 /* LineSDK.framework */; };
 		E7DC2C60228055CA00A13426 /* LineWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DC2C5F228055CA00A13426 /* LineWrapper.swift */; };
 		E7DC2C6B228076E600A13426 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E7DC2C6A228076E600A13426 /* libsqlite3.tbd */; };
 		E7DC2C6C2280771700A13426 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E7F94F4F22247A7400A85640 /* libz.tbd */; };
@@ -546,18 +542,6 @@
 		E7D9C5AD23682DD400714807 /* NetworkBlockingQueueUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkBlockingQueueUtils.swift; sourceTree = "<group>"; };
 		E7D9C5AF2368398500714807 /* NetworkRetryDispacher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRetryDispacher.swift; sourceTree = "<group>"; };
 		E7DC2C3A228019AC00A13426 /* SocialLoginProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialLoginProvider.swift; sourceTree = "<group>"; };
-		E7DC2C4022804C2F00A13426 /* FBSDKPlacesKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKPlacesKit.framework; sourceTree = "<group>"; };
-		E7DC2C4122804C2F00A13426 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
-		E7DC2C4222804C2F00A13426 /* AccountKitStrings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AccountKitStrings.bundle; sourceTree = "<group>"; };
-		E7DC2C4322804C2F00A13426 /* FacebookSDKStrings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = FacebookSDKStrings.bundle; sourceTree = "<group>"; };
-		E7DC2C4422804C2F00A13426 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
-		E7DC2C4522804C2F00A13426 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
-		E7DC2C4622804C2F00A13426 /* AccountKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AccountKit.framework; sourceTree = "<group>"; };
-		E7DC2C4722804C2F00A13426 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
-		E7DC2C4822804C2F00A13426 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
-		E7DC2C4922804C2F00A13426 /* FBSDKMarketingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKMarketingKit.framework; sourceTree = "<group>"; };
-		E7DC2C5622804C6400A13426 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
-		E7DC2C5A2280550600A13426 /* LineSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LineSDK.framework; path = ../LineSDK.framework; sourceTree = "<group>"; };
 		E7DC2C5F228055CA00A13426 /* LineWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineWrapper.swift; sourceTree = "<group>"; };
 		E7DC2C6A228076E600A13426 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		E7DC2C6E2280779A00A13426 /* WeChatWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeChatWrapper.swift; sourceTree = "<group>"; };
@@ -656,12 +640,10 @@
 				E73C8A4C2430FB320064EFE1 /* GigyaNssEngine.framework in Frameworks */,
 				E77F7A2F2407EC7900FF90FB /* CoreFoundation.framework in Frameworks */,
 				E73C8A4A2430FB2A0064EFE1 /* GigyaNss.framework in Frameworks */,
-				E7DC2C5B2280550600A13426 /* LineSDK.framework in Frameworks */,
 				E73373F422633BD300ADEDBB /* SystemConfiguration.framework in Frameworks */,
 				E7A71CAD232F7F3000993A61 /* CoreTelephony.framework in Frameworks */,
 				E73373F322633BCC00ADEDBB /* LocalAuthentication.framework in Frameworks */,
 				E713E0CC2247773100181328 /* Gigya.framework in Frameworks */,
-				E7DC2C5022804C2F00A13426 /* AccountKit.framework in Frameworks */,
 				E76F2E992346241E00056D19 /* libWeChatSDK.a in Frameworks */,
 				F42F7E39077C84C62D51B15F /* Pods_TestApp.framework in Frameworks */,
 			);
@@ -1408,25 +1390,6 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
-		E7DC2C3F22804C2F00A13426 /* facebook */ = {
-			isa = PBXGroup;
-			children = (
-				E7DC2C5622804C6400A13426 /* FBSDKLoginKit.framework */,
-				E7DC2C4022804C2F00A13426 /* FBSDKPlacesKit.framework */,
-				E7DC2C4122804C2F00A13426 /* FBSDKShareKit.framework */,
-				E7DC2C4222804C2F00A13426 /* AccountKitStrings.bundle */,
-				E7DC2C4322804C2F00A13426 /* FacebookSDKStrings.bundle */,
-				E7DC2C4422804C2F00A13426 /* FBSDKCoreKit.framework */,
-				E7DC2C4522804C2F00A13426 /* Bolts.framework */,
-				E7DC2C4622804C2F00A13426 /* AccountKit.framework */,
-				E7DC2C4722804C2F00A13426 /* README.txt */,
-				E7DC2C4822804C2F00A13426 /* LICENSE.txt */,
-				E7DC2C4922804C2F00A13426 /* FBSDKMarketingKit.framework */,
-			);
-			name = facebook;
-			path = ../facebook;
-			sourceTree = "<group>";
-		};
 		E7DC2C5D2280554700A13426 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -1434,8 +1397,6 @@
 				E7D59B17227F33DA002FA864 /* GoogleSignIn.bundle */,
 				E7D59B18227F33DA002FA864 /* GoogleSignIn.framework */,
 				E7D59B19227F33DB002FA864 /* GoogleSignInDependencies.framework */,
-				E7DC2C5A2280550600A13426 /* LineSDK.framework */,
-				E7DC2C3F22804C2F00A13426 /* facebook */,
 			);
 			path = Frameworks;
 			sourceTree = "<group>";
@@ -1772,8 +1733,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				E7BE36A72224260500A108D9 /* LaunchScreen.storyboard in Resources */,
-				E7DC2C4C22804C2F00A13426 /* AccountKitStrings.bundle in Resources */,
-				E7DC2C4D22804C2F00A13426 /* FacebookSDKStrings.bundle in Resources */,
 				D584D346228D7993004CA28F /* CountryCodes.json in Resources */,
 				E7584EEB22E0BC22007229FE /* View.xib in Resources */,
 				E7BE36A42224260500A108D9 /* Assets.xcassets in Resources */,

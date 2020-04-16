@@ -43,9 +43,8 @@ final class FlowManager<T: GigyaAccountProtocol> {
 
             switch result {
             case .success:
-                let resultData = ["errorCode": 0, "errorMessage": "", "callId": "", "statusCode": 200] as [String : Any]
 
-                self.engineResultHandler?(resultData)
+                self.engineResultHandler?(GigyaResponseModel.successfullyResponse())
 
                 // dispose current resolver
                 self.disposeResolver()
@@ -58,18 +57,9 @@ final class FlowManager<T: GigyaAccountProtocol> {
                     default:
                         break
                     }
-
-                    switch error.error {
-                    case .gigyaError(let data):
-                        //TODO: Hardcoded sucess, will be change after engine can handling interruptions
-                        let resultData = ["errorCode": 0, "errorMessage": "", "callId": "", "statusCode": 200] as [String : Any]
-                        self.engineResultHandler?(resultData)
-
-//                        response(FlutterError(code: "\(data.errorCode)", message: data.errorMessage, details: data.toDictionary().asJson))
-                    default:
-                        self.engineResultHandler?(FlutterError(code: "500", message: "", details: nil))
-                    }
                 }
+
+                self.engineResultHandler?(GigyaResponseModel.failedResponse(with: error.error))
             }
         }
     }
@@ -96,9 +86,13 @@ final class FlowManager<T: GigyaAccountProtocol> {
     }
 }
 
-extension FlowManager: NssFlowManagerDelegate {
+extension FlowManager: FlowManagerDelegate {
     func getMainLoginClosure<T: GigyaAccountProtocol>() -> MainClosure<T> {
         return self.mainLoginClosure as! MainClosure<T>
+    }
+
+    func getEngineResultClosure() -> FlutterResult? {
+        return engineResultHandler
     }
 
     func getResolver() -> NssResolverModelProtocol? {

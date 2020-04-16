@@ -45,7 +45,7 @@
 		E722573623CCBB31000DDB24 /* ScreenChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E722573523CCBB31000DDB24 /* ScreenChannel.swift */; };
 		E73C8A0A2430D8290064EFE1 /* FlowManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73C8A092430D8290064EFE1 /* FlowManager.swift */; };
 		E73C8A322430F2E10064EFE1 /* Flutter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E73C8A1D2430EFC60064EFE1 /* Flutter.framework */; };
-		E73C8A4F2431D3480064EFE1 /* NssFlowManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73C8A4E2431D3480064EFE1 /* NssFlowManagerDelegate.swift */; };
+		E73C8A4F2431D3480064EFE1 /* FlowManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73C8A4E2431D3480064EFE1 /* FlowManagerDelegate.swift */; };
 		E73C8A522431D3930064EFE1 /* NssInterruptionsSupported.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73C8A512431D3930064EFE1 /* NssInterruptionsSupported.swift */; };
 		E73C8A542431E6080064EFE1 /* NssResolverModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73C8A532431E6080064EFE1 /* NssResolverModel.swift */; };
 		E740A3D723DF4B07000FD651 /* Gigya.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E740A3D623DF4B07000FD651 /* Gigya.framework */; };
@@ -59,6 +59,7 @@
 		E77F7A2D2407BF5100FF90FB /* CreateEngineFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77F7A2C2407BF5100FF90FB /* CreateEngineFactory.swift */; };
 		E78B8A5E23FC375700E29651 /* NativeScreenSetsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78B8A5D23FC375700E29651 /* NativeScreenSetsViewModel.swift */; };
 		E78B8A6023FC399C00E29651 /* ApiChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78B8A5F23FC399C00E29651 /* ApiChannel.swift */; };
+		E7B521982444902C00DAB464 /* GigyaResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B521972444902C00DAB464 /* GigyaResponseModel.swift */; };
 		E7BC7B6024360ADD003F28F9 /* NssResolverRegTokenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BC7B5F24360ADD003F28F9 /* NssResolverRegTokenModel.swift */; };
 		E7BC7B6224360B06003F28F9 /* NssResolverTfaModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BC7B6124360B06003F28F9 /* NssResolverTfaModel.swift */; };
 		E7D1F70C240BD92B00394185 /* IgnitionChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7D1F70B240BD92B00394185 /* IgnitionChannel.swift */; };
@@ -92,7 +93,7 @@
 		E73C8A1D2430EFC60064EFE1 /* Flutter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Flutter.framework; path = Flutter/Debug/Flutter.framework; sourceTree = "<group>"; };
 		E73C8A272430F2030064EFE1 /* GigyaNssEngine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GigyaNssEngine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E73C8A2E2430F28C0064EFE1 /* GigyaNssEngine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GigyaNssEngine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E73C8A4E2431D3480064EFE1 /* NssFlowManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NssFlowManagerDelegate.swift; sourceTree = "<group>"; };
+		E73C8A4E2431D3480064EFE1 /* FlowManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowManagerDelegate.swift; sourceTree = "<group>"; };
 		E73C8A512431D3930064EFE1 /* NssInterruptionsSupported.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NssInterruptionsSupported.swift; sourceTree = "<group>"; };
 		E73C8A532431E6080064EFE1 /* NssResolverModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NssResolverModel.swift; sourceTree = "<group>"; };
 		E740A3D623DF4B07000FD651 /* Gigya.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Gigya.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -109,6 +110,7 @@
 		E77F7A2C2407BF5100FF90FB /* CreateEngineFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEngineFactory.swift; sourceTree = "<group>"; };
 		E78B8A5D23FC375700E29651 /* NativeScreenSetsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeScreenSetsViewModel.swift; sourceTree = "<group>"; };
 		E78B8A5F23FC399C00E29651 /* ApiChannel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiChannel.swift; sourceTree = "<group>"; };
+		E7B521972444902C00DAB464 /* GigyaResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigyaResponseModel.swift; sourceTree = "<group>"; };
 		E7BC7B5F24360ADD003F28F9 /* NssResolverRegTokenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NssResolverRegTokenModel.swift; sourceTree = "<group>"; };
 		E7BC7B6124360B06003F28F9 /* NssResolverTfaModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NssResolverTfaModel.swift; sourceTree = "<group>"; };
 		E7D1F70B240BD92B00394185 /* IgnitionChannel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IgnitionChannel.swift; sourceTree = "<group>"; };
@@ -153,7 +155,7 @@
 		E70F8BBD23FD747200D52208 /* Cordinator */ = {
 			isa = PBXGroup;
 			children = (
-				E73C8A4E2431D3480064EFE1 /* NssFlowManagerDelegate.swift */,
+				E73C8A4E2431D3480064EFE1 /* FlowManagerDelegate.swift */,
 				E73C8A092430D8290064EFE1 /* FlowManager.swift */,
 			);
 			path = Cordinator;
@@ -220,6 +222,7 @@
 				E7772A0423D5DBBD00DE9DDD /* Builders */,
 				E722572723CC9EDB000DDB24 /* Scripts */,
 				E722573723CCBEE3000DDB24 /* Channels */,
+				E7B521962444901A00DAB464 /* Extensions */,
 				E775E83423C5E4030059151D /* ViewControllers */,
 				E775E82523C5D1AD0059151D /* GigyaNss.swift */,
 				E775E80C23C5D1710059151D /* Info.plist */,
@@ -276,6 +279,14 @@
 				E70F8BC023FD786E00D52208 /* OrderedDictionary.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		E7B521962444901A00DAB464 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				E7B521972444902C00DAB464 /* GigyaResponseModel.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -460,6 +471,7 @@
 				E719C6AF24225216002F8C36 /* LogChannel.swift in Sources */,
 				E70F8BF124053B5800D52208 /* LoginAction.swift in Sources */,
 				E77F7A2D2407BF5100FF90FB /* CreateEngineFactory.swift in Sources */,
+				E7B521982444902C00DAB464 /* GigyaResponseModel.swift in Sources */,
 				E7D1F71124152D5000394185 /* Dictionary.swift in Sources */,
 				E73C8A522431D3930064EFE1 /* NssInterruptionsSupported.swift in Sources */,
 				E70F8BCB2404095600D52208 /* BaseChannel.swift in Sources */,
@@ -472,7 +484,7 @@
 				E722573423CCB1CE000DDB24 /* NativeScreenSetsViewController.swift in Sources */,
 				E7BC7B6224360B06003F28F9 /* NssResolverTfaModel.swift in Sources */,
 				E73C8A542431E6080064EFE1 /* NssResolverModel.swift in Sources */,
-				E73C8A4F2431D3480064EFE1 /* NssFlowManagerDelegate.swift in Sources */,
+				E73C8A4F2431D3480064EFE1 /* FlowManagerDelegate.swift in Sources */,
 				E70F8BBC23FD742C00D52208 /* NssAction.swift in Sources */,
 				E7772A0923D5EAA000DE9DDD /* BuilderOptionsProtocol.swift in Sources */,
 				E70F8BC123FD786E00D52208 /* OrderedDictionary.swift in Sources */,

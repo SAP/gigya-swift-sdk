@@ -21,11 +21,14 @@ class RegisterAction<T: GigyaAccountProtocol>: NssAction<T> {
 
         switch method {
         case .submit:
+            var exportedParams = params
+
             let email = params?["email"] as? String ?? ""
             let password = params?["password"] as? String ?? ""
-            let params = params?["params"] as? [String: Any] ?? [:]
+            exportedParams?.removeValue(forKey: "email")
+            exportedParams?.removeValue(forKey: "password")
 
-            busnessApi.callRegister(dataType: T.self, email: email, password: password, params: params, completion: delegate!.getMainLoginClosure())
+            busnessApi.callRegister(dataType: T.self, email: email, password: password, params: exportedParams!, completion: delegate!.getMainLoginClosure())
         default:
             break
         }

@@ -8,6 +8,7 @@
     "screens": {
       "login": {
         "routing": {
+          "pendingRegistration": "accountUpdate",
           "success": "accountUpdate"
         },
         "action": "login",
@@ -38,7 +39,8 @@
       },
       "register": {
         "routing": {
-          "success": "accountUpdate"
+            "pendingRegistration": "updateProfile",
+            "success": "dismiss"
         },
         "action": "register",
         "appBar": {
@@ -61,12 +63,22 @@
             "textKey": "Password"
           },
           {
+            "bind": "profile.firstName",
+            "type": "input",
+            "textKey": "First name"
+          },
+          {
+            "bind": "profile.lastName",
+            "type": "input",
+            "textKey": "Last name"
+          },
+          {
             "type": "submit",
             "textKey": "Submit"
           }
         ]
       },
-      "accountUpdate" : {
+      "updateProfile" : {
         "routing": {
           "success": "dismiss"
         },

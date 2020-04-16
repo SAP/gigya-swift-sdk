@@ -78,7 +78,6 @@ class NativeScreenSetsViewModel<T: GigyaAccountProtocol>: NSObject, UIAdaptivePr
         })
     }
 
-
     func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
         closeClosure()
     }

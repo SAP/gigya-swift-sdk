@@ -61,19 +61,20 @@ class SetAccountAction<T: GigyaAccountProtocol>: NssAction<T> {
         case .submit:
             if let resolver = pendingRegResolver?.resolver {
                 // TODO: hard code setAccount, would send the data from the form the engine ready
-                resolver.setAccount(params: ["profile": ["zip": "12345"]])
+                resolver.setAccount(params: params!)
 
             } else {
                 busnessApi.callSetAccount(dataType: T.self, params: params ?? [:]) { (result) in
+                    let response = self.delegate?.getEngineResultClosure()
+
                     switch result {
-                    case .success(data: let data):
-                        break
-                    case .failure(_):
-                        break
+                    case .success:
+                        response?(GigyaResponseModel.successfullyResponse())
+                    case .failure(let error):
+                        response?(GigyaResponseModel.failedResponse(with: error))
                     }
                 }
             }
-            break
         default:
             break
         }

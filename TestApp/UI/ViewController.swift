@@ -34,7 +34,6 @@ class ViewController: UIViewController {
         let session = GigyaSession(sessionToken: "", secret: "")
         self.navigationController?.modalPresentationStyle = .fullScreen
 
-
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -66,7 +65,7 @@ class ViewController: UIViewController {
 
         GigyaNss.shared
             .load(asset: "init")
-            .setScreen(name: "accountUpdate")
+            .setScreen(name: "updateProfile")
             .show(viewController: self)
 //
 //        let container = Gigya.getContainer()
@@ -82,7 +81,7 @@ class ViewController: UIViewController {
         //Default-ProfileUpdate
 ////
 //        var currentScreen: String = ""
-//        gigya.showScreenSet(with: "Default-ProfileUpdate", viewController: self) { [weak self] (result) in
+//        gigya.showScreenSet(with: "Default-RegistrationLogin", viewController: self) { [weak self] (result) in
 //            switch result {
 //            case .onLogin(let account):
 //                self?.resultTextView!.text = account.toJson()
@@ -247,7 +246,7 @@ class ViewController: UIViewController {
             isLoggedIn = gigya.isLoggedIn()
             print("session is valid?: \(isLoggedIn)")
             if (isLoggedIn) {
-                gigya.getAccount() { [weak self] result in
+                gigya.getAccount(true) { [weak self] result in
                     switch result {
                     case .success(let data):
                         self?.resultTextView?.text = data.toJson()

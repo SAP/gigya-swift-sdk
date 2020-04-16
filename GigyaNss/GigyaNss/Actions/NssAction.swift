@@ -11,7 +11,7 @@ import Gigya
 
 protocol NssActionProtocol: class {
 
-    var delegate: NssFlowManagerDelegate? { get set }
+    var delegate: FlowManagerDelegate? { get set }
 
     func initialize(response: @escaping FlutterResult)
 
@@ -20,7 +20,7 @@ protocol NssActionProtocol: class {
 
 class NssAction<T: GigyaAccountProtocol>: NssActionProtocol {
 
-    weak var delegate: NssFlowManagerDelegate?
+    weak var delegate: FlowManagerDelegate?
 
     func initialize(response: @escaping FlutterResult) {
         response([:])

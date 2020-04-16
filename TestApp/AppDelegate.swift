@@ -14,7 +14,6 @@ import GoogleUtilities
 import GigyaTfa
 import GigyaAuth
 import FBSDKCoreKit
-import FBSDKShareKit
 import GigyaNss
 
 @UIApplicationMain
@@ -41,6 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
         Messaging.messaging().delegate = self
 
         WXApi.registerApp("wx222c4ccaa989aa00", universalLink: "https://")
+        LoginManager.shared.setup(channelID: "1618046855", universalLinkURL: nil)
 
         UNUserNotificationCenter.current().delegate = self
 
@@ -87,9 +87,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
     }
 
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
-        let _ = LineSDKLogin.sharedInstance().handleOpen(url)
+//        let _ = LineSDKLogin.sharedInstance().handleOpen(url)
         let _ = WXApi.handleOpen(url, delegate: self)
-
+        let _ = LoginManager.shared.application(app, open: url)
         let handled = ApplicationDelegate.shared.application(
             app,
             open: url,
