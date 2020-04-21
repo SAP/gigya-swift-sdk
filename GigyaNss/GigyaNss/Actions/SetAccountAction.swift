@@ -64,16 +64,7 @@ class SetAccountAction<T: GigyaAccountProtocol>: NssAction<T> {
                 resolver.setAccount(params: params!)
 
             } else {
-                busnessApi.callSetAccount(dataType: T.self, params: params ?? [:]) { (result) in
-                    let response = self.delegate?.getEngineResultClosure()
-
-                    switch result {
-                    case .success:
-                        response?(GigyaResponseModel.successfullyResponse())
-                    case .failure(let error):
-                        response?(GigyaResponseModel.failedResponse(with: error))
-                    }
-                }
+                busnessApi.callSetAccount(dataType: T.self, params: params ?? [:], completion: self.apiClosure)
             }
         default:
             break

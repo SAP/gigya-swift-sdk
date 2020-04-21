@@ -38,8 +38,13 @@ class ScreenSetsBuilder<T: GigyaAccountProtocol>: ScreenSetsMainBuilderProtocol 
 
 extension ScreenSetsBuilder: ScreenSetsExternalBuilderProtocol {
 
-    func setScreen(name: String) -> BuilderOptions {
+    func initialRoute(name: String) -> BuilderOptions {
         screenName = name
+        return self
+    }
+
+    func events<B: GigyaAccountProtocol>(_ obj: B.Type, closure: @escaping (NssEvents<B>) -> Void) -> BuilderOptions {
+//        self.handler = BuilderEventHandler(handler: closure)
         return self
     }
 }
@@ -67,6 +72,17 @@ extension ScreenSetsBuilder: ScreenSetsActionsBuilderProtocol {
     }
 }
 
-struct BuilderEventHandler<T: GigyaAccountProtocol> {
-    var handler: (GigyaLoginResult<T>) -> Void = { _ in }
+class BuilderEventHandler<T: GigyaAccountProtocol> {
+    var handler: (NssEvents<T>) -> Void = { _ in }
+
+    init(handler: @escaping (NssEvents<T>) -> Void) {
+        self.handler = handler
+    }
+}
+
+@frozen
+public enum NssEvents<ResponseType: GigyaAccountProtocol> {
+    case logged
+    case error
+    case canceled
 }

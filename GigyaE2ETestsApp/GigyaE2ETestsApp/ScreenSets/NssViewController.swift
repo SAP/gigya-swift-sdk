@@ -29,7 +29,7 @@ class NssViewController: UIViewController {
 
             GigyaNss.shared
                 .load(asset: "init")
-                .setScreen(name: "login")
+                .initalRoute(name: "login")
                 .show(viewController: self.initialViewController!)
 
         }
@@ -44,7 +44,7 @@ class NssViewController: UIViewController {
 
             GigyaNss.shared
                 .load(asset: "init")
-                .setScreen(name: "register")
+                .initalRoute(name: "register")
                 .show(viewController: self.initialViewController!)
 
         }    }
@@ -58,7 +58,7 @@ class NssViewController: UIViewController {
 
             GigyaNss.shared
                 .load(asset: "init")
-                .setScreen(name: "accountUpdate")
+                .initalRoute(name: "accountUpdate")
                 .show(viewController: self.initialViewController!)
 
          }

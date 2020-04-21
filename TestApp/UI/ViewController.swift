@@ -65,8 +65,10 @@ class ViewController: UIViewController {
 
         GigyaNss.shared
             .load(asset: "init")
-            .setScreen(name: "updateProfile")
-            .show(viewController: self)
+            .initialRoute(name: "updateProfile")  
+            .events(UserHost.self) { (result) in
+
+        }.show(viewController: self)
 //
 //        let container = Gigya.getContainer()
 //        let sessionService = container.resolve(SessionServiceProtocol.self)
@@ -102,7 +104,7 @@ class ViewController: UIViewController {
     @IBAction func login(_ sender: Any) {
         GigyaNss.shared
             .load(asset: "init")
-            .setScreen(name: "login")
+            .initialRoute(name: "login")
             .show(viewController: self)
 
 //
@@ -144,7 +146,7 @@ class ViewController: UIViewController {
     @IBAction func register(_ sender: Any) {
         GigyaNss.shared
             .load(asset: "init")
-            .setScreen(name: "register")
+            .initialRoute(name: "register")
             .show(viewController: self)
 
 //        let alert = UIFactory.getRegistrationAlert { email, password, expiration in

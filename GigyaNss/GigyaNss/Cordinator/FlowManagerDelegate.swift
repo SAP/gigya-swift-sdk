@@ -11,7 +11,7 @@ import Flutter
 
 protocol FlowManagerDelegate: class {
 
-    func getMainLoginClosure<T>() -> MainClosure<T>
+    func getMainLoginClosure<T: GigyaAccountProtocol>(obj: T.Type) -> MainClosure<T>
 
     func getEngineResultClosure() -> FlutterResult?
 

@@ -42,7 +42,7 @@ class NativeScreenSetsViewModel<T: GigyaAccountProtocol>: NSObject, UIAdaptivePr
             switch method {
             case .action:
                 guard
-                    let flowId = data?["flowId"] as? String,
+                    let flowId = data?["actionId"] as? String,
                     let flow = Action(rawValue: flowId) else {
                     return
                 }

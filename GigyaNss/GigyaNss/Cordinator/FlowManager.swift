@@ -66,7 +66,7 @@ final class FlowManager<T: GigyaAccountProtocol> {
 
     private func disposeResolver() {
         currentResolver = nil
-        mainLoginClosure = { _ in }
+        currentAction = nil
     }
 
     // set the current action
@@ -87,7 +87,7 @@ final class FlowManager<T: GigyaAccountProtocol> {
 }
 
 extension FlowManager: FlowManagerDelegate {
-    func getMainLoginClosure<T: GigyaAccountProtocol>() -> MainClosure<T> {
+    func getMainLoginClosure<T: GigyaAccountProtocol>(obj: T.Type) -> MainClosure<T> {
         return self.mainLoginClosure as! MainClosure<T>
     }
 

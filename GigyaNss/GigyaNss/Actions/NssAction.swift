@@ -26,5 +26,25 @@ class NssAction<T: GigyaAccountProtocol>: NssActionProtocol {
         response([:])
     }
 
-    func next(method: ApiChannelEvent, params: [String : Any]?) {}
+    func next(method: ApiChannelEvent, params: [String : Any]?) {
+        switch method {
+        case .api:
+            break
+        default:
+            break
+        }
+    }
+
+    lazy var apiClosure: (GigyaApiResult<T>) -> Void = { [weak self] result in
+        let mainClosure = self?.delegate?.getMainLoginClosure(obj: T.self)
+
+        switch result {
+        case .success(let data):
+            mainClosure?(.success(data: data))
+        case .failure(let error):
+            let loginError = LoginApiError<T>(error: error, interruption: nil)
+
+            mainClosure?(.failure(loginError))
+        }
+    }
 }

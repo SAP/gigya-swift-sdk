@@ -28,7 +28,7 @@ class RegisterAction<T: GigyaAccountProtocol>: NssAction<T> {
             exportedParams?.removeValue(forKey: "email")
             exportedParams?.removeValue(forKey: "password")
 
-            busnessApi.callRegister(dataType: T.self, email: email, password: password, params: exportedParams!, completion: delegate!.getMainLoginClosure())
+            busnessApi.callRegister(dataType: T.self, email: email, password: password, params: exportedParams!, completion: delegate!.getMainLoginClosure(obj: T.self))
         default:
             break
         }
