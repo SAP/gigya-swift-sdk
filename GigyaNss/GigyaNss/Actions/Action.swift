@@ -10,6 +10,7 @@ import Flutter
 import Gigya
 
 protocol NssActionProtocol: class {
+    var actionId: NssAction? { get set }
 
     var delegate: FlowManagerDelegate? { get set }
 
@@ -18,7 +19,8 @@ protocol NssActionProtocol: class {
     func next(method: ApiChannelEvent, params: [String: Any]?)
 }
 
-class NssAction<T: GigyaAccountProtocol>: NssActionProtocol {
+class Action<T: GigyaAccountProtocol>: NssActionProtocol {
+    var actionId: NssAction?
 
     weak var delegate: FlowManagerDelegate?
 

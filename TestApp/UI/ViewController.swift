@@ -62,12 +62,19 @@ class ViewController: UIViewController {
 
     @IBAction func showScreenSet(_ sender: Any) {
 //        GigyaNss.shared.showScreenSet(with: "test", viewController: self)
-
+//
         GigyaNss.shared
             .load(asset: "init")
-            .initialRoute(name: "updateProfile")  
+            .initialRoute(name: "account-update")
             .events(UserHost.self) { (result) in
-
+                switch result {
+                case .success(data: let data):
+                    self.checkLoginState()
+                case .error:
+                    break
+                case .canceled:
+                    break
+                }
         }.show(viewController: self)
 //
 //        let container = Gigya.getContainer()
@@ -80,8 +87,8 @@ class ViewController: UIViewController {
 //                         "startScreen": "gigya-view-profile-screen"]
 
 
-        //Default-ProfileUpdate
-////
+//        Default-ProfileUpdate
+
 //        var currentScreen: String = ""
 //        gigya.showScreenSet(with: "Default-RegistrationLogin", viewController: self) { [weak self] (result) in
 //            switch result {
@@ -105,9 +112,20 @@ class ViewController: UIViewController {
         GigyaNss.shared
             .load(asset: "init")
             .initialRoute(name: "login")
+            .events(UserHost.self) { result in
+                switch result {
+                case .success(let screenId, let action, let account):
+                    self.checkLoginState()
+                case .error(let screenId, let error):
+                    break
+                case .canceled:
+                
+                    break
+                }
+            }
             .show(viewController: self)
 
-//
+////
 //        let alert = UIFactory.getLoginAlert { email, password in
 //            self.gigya.login(loginId: email!, password: password!, params: ["sessionExpiration": "9000000"]) { [weak self] result in
 //                switch result {
@@ -147,6 +165,16 @@ class ViewController: UIViewController {
         GigyaNss.shared
             .load(asset: "init")
             .initialRoute(name: "register")
+            .events(UserHost.self) { (events) in
+                switch events {
+                case .success(let data):
+                    self.checkLoginState()
+                case .error(let error):
+                    break
+                case .canceled:
+                    break
+                }
+            }
             .show(viewController: self)
 
 //        let alert = UIFactory.getRegistrationAlert { email, password, expiration in

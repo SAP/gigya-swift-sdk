@@ -39,7 +39,9 @@ final class ApiService: ApiServiceProtocol {
                           completion: @escaping (GigyaApiResult<T>) -> Void) {
         tmpModel = model
 
-        networkAdapter?.send(model: model, blocking: blocking) { (data, error) in
+        networkAdapter?.send(model: model, blocking: blocking) { [weak self] (data, error) in
+            self?.tmpModel = nil
+            
             if error == nil {
                 main { [weak self] in
                     self?.validateResult(responseType: responseType, data: data, completion: completion)
@@ -115,5 +117,9 @@ final class ApiService: ApiServiceProtocol {
 
     private func isRetryNeeded(with errorCode: Int) -> Bool {
         return errorCode == GigyaDefinitions.ErrorCode.requestExpired
+    }
+
+    deinit {
+        self.tmpModel = nil
     }
 }

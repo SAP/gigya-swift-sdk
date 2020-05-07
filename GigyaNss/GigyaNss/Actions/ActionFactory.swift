@@ -10,20 +10,28 @@ import Gigya
 import Flutter
 
 class ActionFactory<T: GigyaAccountProtocol> {
-    func create(identifier: Action) -> NssAction<T> {
+    func create(identifier: NssAction) -> Action<T> {
+        var action: Action<T>
+
         switch identifier {
         case .register:
-            return GigyaNss.shared.dependenciesContainer.resolve(RegisterAction<T>.self)!
+            action = GigyaNss.shared.dependenciesContainer.resolve(RegisterAction<T>.self)!
         case .login:
-            return GigyaNss.shared.dependenciesContainer.resolve(LoginAction<T>.self)!
+            action = GigyaNss.shared.dependenciesContainer.resolve(LoginAction<T>.self)!
         case .setAccount:
-            return GigyaNss.shared.dependenciesContainer.resolve(SetAccountAction<T>.self)!
+            action = GigyaNss.shared.dependenciesContainer.resolve(SetAccountAction<T>.self)!
+        case .unknown:
+            GigyaLogger.error(with: GigyaNss.self, message: "action not found")
         }
+        action.actionId = identifier
+        
+        return action
     }
 }
 
-enum Action: String {
+public enum NssAction: String {
     case register
     case login
-    case setAccount = "account"
+    case setAccount
+    case unknown
 }

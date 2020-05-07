@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1130"
+   LastUpgradeVersion = "1140"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E775E8F023C617B80059151D"
-               BuildableName = "GigyaNss-Universal-Release"
-               BlueprintName = "GigyaNss-Universal-Release"
+               BlueprintIdentifier = "E7DD61A423CB1F3400B1F621"
+               BuildableName = "GigyaNss-Universal-Debug"
+               BlueprintName = "GigyaNss-Universal-Debug"
                ReferencedContainer = "container:GigyaNss.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -31,7 +31,7 @@
       </Testables>
    </TestAction>
    <LaunchAction
-      buildConfiguration = "Release"
+      buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
@@ -50,9 +50,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "E775E8F023C617B80059151D"
-            BuildableName = "GigyaNss-Universal-Release"
-            BlueprintName = "GigyaNss-Universal-Release"
+            BlueprintIdentifier = "E7DD61A423CB1F3400B1F621"
+            BuildableName = "GigyaNss-Universal-Debug"
+            BlueprintName = "GigyaNss-Universal-Debug"
             ReferencedContainer = "container:GigyaNss.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

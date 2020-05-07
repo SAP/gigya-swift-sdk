@@ -13,13 +13,14 @@ import Flutter
 // MARK: - Main builder options
 
 class ScreenSetsBuilder<T: GigyaAccountProtocol>: ScreenSetsMainBuilderProtocol {
+    var dependenciesContainer = Gigya.getContainer()
 
     let engineLifeCycle: EngineLifeCycle
 
     var assetName: String?
     var screenName: String?
 
-    var handler: BuilderEventHandler<T>?
+    var handlerExists: Bool?
 
     init(engineLifeCycle: EngineLifeCycle) {
         self.engineLifeCycle = engineLifeCycle
@@ -27,6 +28,7 @@ class ScreenSetsBuilder<T: GigyaAccountProtocol>: ScreenSetsMainBuilderProtocol 
 
     @discardableResult
     func load(withAsset asset: String) -> BuilderOptions {
+        handlerExists = false
         assetName = asset
         return self
     }
@@ -43,8 +45,21 @@ extension ScreenSetsBuilder: ScreenSetsExternalBuilderProtocol {
         return self
     }
 
-    func events<B: GigyaAccountProtocol>(_ obj: B.Type, closure: @escaping (NssEvents<B>) -> Void) -> BuilderOptions {
-//        self.handler = BuilderEventHandler(handler: closure)
+    func events<B: GigyaAccountProtocol>(_ scheme: B.Type, handler: @escaping (NssEvents<B>) -> Void) -> BuilderOptions {
+        dependenciesContainer.register(service: NssHandler<B>.self) { _ in
+            return handler
+        }
+        handlerExists = true
+
+        return self
+    }
+
+    func events(handler: @escaping (NssEvents<GigyaAccount>) -> Void) -> BuilderOptions {
+        dependenciesContainer.register(service: NssHandler<GigyaAccount>.self) { _ in
+            return handler
+        }
+        handlerExists = true
+
         return self
     }
 }
@@ -56,33 +71,28 @@ extension ScreenSetsBuilder: ScreenSetsActionsBuilderProtocol {
         
         // TODO: How to check if the screenSetId is exists? Maybe need to check it in the flutter engine?
         guard let screenSetViewController = GigyaNss.shared.dependenciesContainer.resolve(NativeScreenSetsViewController<T>.self) else {
-            GigyaLogger.error(with: GigyaNss.self, message: "`NativeScreenSetsViewController` dependency not found.")
+            GigyaLogger.error(with: GigyaNss.self, message: "dependency not found, verify that you have implemented `GigyaNss.shared.register()`.")
         }
 
         // build the screen with the asset
         screenSetViewController.build()
         screenSetViewController.presentationController?.delegate = screenSetViewController.viewModel
 
+        guard dependenciesContainer.resolve((NssHandler<T>).self) != nil || handlerExists == false else {
+            GigyaLogger.error(with: GigyaNss.self, message: "scheme is not same to the core scheme")
+        }
+
         engineLifeCycle.register(asset: assetName,
                                  initialRoute: screenName,
                                  presentFrom: viewController,
                                  to: screenSetViewController
         )
-
-    }
-}
-
-class BuilderEventHandler<T: GigyaAccountProtocol> {
-    var handler: (NssEvents<T>) -> Void = { _ in }
-
-    init(handler: @escaping (NssEvents<T>) -> Void) {
-        self.handler = handler
     }
 }
 
 @frozen
 public enum NssEvents<ResponseType: GigyaAccountProtocol> {
-    case logged
-    case error
+    case success(screenId: String, action: NssAction, data: ResponseType?)
+    case error(screenId: String, error: NetworkError)
     case canceled
 }

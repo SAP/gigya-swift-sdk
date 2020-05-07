@@ -100,7 +100,7 @@ final public class RegisteredPhonesResolver<T: GigyaAccountProtocol>: TFAResolve
     }
 }
 
-
+@frozen
 public enum RegisteredPhonesResult {
     case registeredPhones(phones: [TFARegisteredPhone])
     case verificationCodeSent(resolver: VerifyCodeResolverProtocol)

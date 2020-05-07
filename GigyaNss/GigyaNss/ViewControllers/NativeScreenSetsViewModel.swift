@@ -9,6 +9,8 @@
 import Flutter
 import Gigya
 
+typealias NssHandler<T: GigyaAccountProtocol> = ((NssEvents<T>) -> Void)
+
 class NativeScreenSetsViewModel<T: GigyaAccountProtocol>: NSObject, UIAdaptivePresentationControllerDelegate {
     
     var dismissClosure: () -> Void = {}
@@ -22,11 +24,14 @@ class NativeScreenSetsViewModel<T: GigyaAccountProtocol>: NSObject, UIAdaptivePr
 
     var engine: FlutterEngine?
 
-    init(mainChannel: ScreenChannel, apiChannel: ApiChannel, logChannel: LogChannel, flowManager: FlowManager<T>) {
+    var eventHandler: NssHandler<T>? = { _ in }
+
+    init(mainChannel: ScreenChannel, apiChannel: ApiChannel, logChannel: LogChannel, flowManager: FlowManager<T>, eventHandler: NssHandler<T>?) {
         self.screenChannel = mainChannel
         self.apiChannel = apiChannel
         self.logChannel = logChannel
         self.flowManager = flowManager
+        self.eventHandler = eventHandler
     }
 
     func loadChannels(with engine: FlutterEngine) {
@@ -43,14 +48,21 @@ class NativeScreenSetsViewModel<T: GigyaAccountProtocol>: NSObject, UIAdaptivePr
             case .action:
                 guard
                     let flowId = data?["actionId"] as? String,
-                    let flow = Action(rawValue: flowId) else {
+                    let flow = NssAction(rawValue: flowId),
+                    let screenId = data?["screenId"] as? String
+                    else {
                     return
                 }
 
                 self.flowManager.setCurrent(action: flow, response: response)
+                self.flowManager.currentScreenId = screenId
                 
             case .dismiss:
                 self.dismissClosure()
+                self.eventHandler?(.canceled)
+            case .canceled:
+                self.dismissClosure()
+                self.eventHandler?(.canceled)
             }
         }
 
@@ -86,6 +98,4 @@ class NativeScreenSetsViewModel<T: GigyaAccountProtocol>: NSObject, UIAdaptivePr
         GigyaLogger.log(with: self, message: "deinit")
     }
 }
-
-
 

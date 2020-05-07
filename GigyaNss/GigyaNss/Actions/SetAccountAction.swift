@@ -8,7 +8,8 @@
 import Gigya
 import Flutter
 
-class SetAccountAction<T: GigyaAccountProtocol>: NssAction<T> {
+class SetAccountAction<T: GigyaAccountProtocol>: Action<T> {
+
     var busnessApi: BusinessApiDelegate
 
     // resolver for interruption
@@ -64,7 +65,10 @@ class SetAccountAction<T: GigyaAccountProtocol>: NssAction<T> {
                 resolver.setAccount(params: params!)
 
             } else {
-                busnessApi.callSetAccount(dataType: T.self, params: params ?? [:], completion: self.apiClosure)
+                var data: [String: Any] = [:];
+                data["data"] = params?["data"]
+                data["profile"] = params?["profile"]
+                busnessApi.callSetAccount(dataType: T.self, params: data, completion: self.apiClosure)
             }
         default:
             break

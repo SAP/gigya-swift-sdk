@@ -18,7 +18,10 @@ public protocol ScreenSetsMainBuilderProtocol {
 public protocol ScreenSetsExternalBuilderProtocol {
     
     func initialRoute(name: String) -> BuilderOptions
-    func events<B: GigyaAccountProtocol>(_ obj: B.Type, closure: @escaping (NssEvents<B>) -> Void) -> BuilderOptions
+
+    func events<B: GigyaAccountProtocol>(_ scheme: B.Type, handler: @escaping (NssEvents<B>) -> Void) -> BuilderOptions
+
+    func events(handler: @escaping (NssEvents<GigyaAccount>) -> Void) -> BuilderOptions
 
 }
 

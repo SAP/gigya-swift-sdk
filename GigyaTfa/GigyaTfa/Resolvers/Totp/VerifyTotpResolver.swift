@@ -91,6 +91,7 @@ final public class VerifyTotpResolver<T: GigyaAccountProtocol>: TFAResolver<T>, 
         params["regToken"] = self.regToken
         params["providerAssertion"] = providerAssertion
 
+        params["tempDevice"] = "true"
         if rememberDevice == true {
             params["tempDevice"] = "false"
         }

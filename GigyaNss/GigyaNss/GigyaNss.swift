@@ -14,6 +14,7 @@ final public class GigyaNss {
     public static var shared = GigyaNss()
 
     var dependenciesContainer = Gigya.getContainer()
+    var dependenciesDidRegisterd = false
 
     // Channels id's
     static var ignitionChannel = "gigya_nss_engine/method/ignition"
@@ -43,15 +44,17 @@ final public class GigyaNss {
 
     @discardableResult
     public func load(asset: String) -> BuilderOptions {
+        self.registerDependenciesIfNeeded()
+        
         return builder!.load(withAsset: asset)
     }
 
     public func register<T: GigyaAccountProtocol>(scheme: T.Type) {
-
         dependenciesContainer.register(service: FlowManager<T>.self) { resolver in
             let flowFactory = resolver.resolve(ActionFactory<T>.self)
+            let eventHandler = resolver.resolve(NssHandler<T>.self)
 
-            return FlowManager(flowFactory: flowFactory!)
+            return FlowManager(flowFactory: flowFactory!, eventHandler: eventHandler)
         }
 
         dependenciesContainer.register(service: ScreenSetsBuilder<T>.self) { resolver in
@@ -65,11 +68,13 @@ final public class GigyaNss {
             let apiChannel = resolver.resolve(ApiChannel.self)
             let logChannel = resolver.resolve(LogChannel.self)
             let flowManager = resolver.resolve(FlowManager<T>.self)
+            let eventHandler = resolver.resolve(NssHandler<T>.self)
 
             return NativeScreenSetsViewModel(mainChannel: mainChannel!,
                                              apiChannel: apiChannel!,
                                              logChannel: logChannel!,
-                                             flowManager: flowManager!
+                                             flowManager: flowManager!,
+                                             eventHandler: eventHandler
             )
         }
 
@@ -136,7 +141,14 @@ final public class GigyaNss {
         guard let builder = GigyaNss.shared.dependenciesContainer.resolve(ScreenSetsBuilder<T>.self) else {
             GigyaLogger.error(with: GigyaNss.self, message: "`ScreenSetsBuilder` dependency not found.")
         }
-
         self.builder = builder
+
+        self.dependenciesDidRegisterd = true
+    }
+
+    private func registerDependenciesIfNeeded() {
+        if !dependenciesDidRegisterd {
+            register(scheme: GigyaAccount.self)
+        }
     }
 }

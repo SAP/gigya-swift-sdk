@@ -1,125 +1,173 @@
 {
-  "platformAware": false,
-  "markup": {
-    "initialRoute": "login",
-    "defaultRouting": {
-      "success": "dismiss"
+  "routing": {
+    "initial": "register",
+    "default": {
+      "onSuccess": "_dismiss"
+    }
+  },
+  "screens": {
+    "login": {
+      "routing": {
+        "onPendingRegistration": "account-update",
+        "onSuccess": "_dismiss"
+      },
+      "action": "login",
+      "appBar": {
+        "textKey": "login"
+      },
+      "stack": "vertical",
+      "children": [
+        {
+          "type": "label",
+          "textKey": "login in with your email and password:"
+        },
+        {
+          "bind": "loginID",
+          "type": "emailInput",
+          "textKey": "Email"
+        },
+        {
+          "bind": "password",
+          "type": "passwordInput",
+          "textKey": "Password"
+        },
+        {
+          "type": "submit",
+          "textKey": "Submit"
+        }
+      ]
     },
-    "screens": {
-      "login": {
-        "routing": {
-          "pendingRegistration": "accountUpdate",
-          "success": "accountUpdate"
-        },
-        "action": "login",
-        "appBar": {
-          "textKey": "login"
-        },
-        "stack": "vertical",
-        "children": [
-          {
-            "type": "label",
-            "textKey": "login with site credentials:"
-          },
-          {
-            "bind": "loginID",
-            "type": "email",
-            "textKey": "Email"
-          },
-          {
-            "bind": "password",
-            "type": "password",
-            "textKey": "Password"
-          },
-          {
-            "type": "submit",
-            "textKey": "Submit"
-          }
-        ]
+    "register": {
+      "routing": {
+        "onPendingRegistration": "account-update",
+        "onSuccess": "_dismiss"
       },
-      "register": {
-        "routing": {
-            "pendingRegistration": "updateProfile",
-            "success": "dismiss"
-        },
-        "action": "register",
-        "appBar": {
-          "textKey": "Register"
-        },
-        "stack": "vertical",
-        "children": [
-          {
-            "type": "label",
-            "textKey": "Register with site credentials:"
-          },
-          {
-            "bind": "email",
-            "type": "email",
-            "textKey": "Email"
-          },
-          {
-            "bind": "password",
-            "type": "password",
-            "textKey": "Password"
-          },
-          {
-            "bind": "profile.firstName",
-            "type": "input",
-            "textKey": "First name"
-          },
-          {
-            "bind": "profile.lastName",
-            "type": "input",
-            "textKey": "Last name"
-          },
-          {
-            "type": "submit",
-            "textKey": "Submit"
-          }
-        ]
+      "action": "register",
+      "appBar": {
+        "textKey": "Register"
       },
-      "updateProfile" : {
-        "routing": {
-          "success": "dismiss"
+      "stack": "vertical",
+      "children": [
+        {
+          "type": "label",
+          "textKey": "Register with site credentials:"
         },
-        "action": "account",
-        "appBar": {
-          "textKey": "Account Information"
+        {
+          "bind": "email",
+          "type": "emailInput",
+          "textKey": "Email"
         },
-        "stack": "vertical",
-        "children": [
-          {
-            "bind": "profile.firstName",
-            "type": "input",
-            "textKey": "First name"
-          },
-          {
-            "bind": "profile.lastName",
-            "type": "input",
-            "textKey": "Last name"
-          },
-
-          {
-            "bind": "profile.email",
-            "type": "input",
-            "textKey": "Email"
-          },
-          {
-            "bind": "profile.zip",
-            "type": "input",
-            "textKey": "Zipcode"
-          },
-          {
-            "bind": "profile.country",
-            "type": "input",
-            "textKey": "Country"
-          },
-          {
-            "type": "submit",
-            "textKey": "Submit"
-          }
-        ]
-      }
+        {
+          "bind": "password",
+          "type": "passwordInput",
+          "textKey": "Password"
+        },
+        {
+          "type": "container",
+          "stack": "horizontal",
+          "alignment": "start",
+          "children": [
+            {
+              "bind": "profile.firstName",
+              "type": "textInput",
+              "textKey": "First name"
+            },
+            {
+              "bind": "profile.lastName",
+              "type": "textInput",
+              "textKey": "Last name"
+            }
+          ]
+        },
+        {
+          "bind": "data.terms",
+          "type": "checkbox",
+          "textKey": "i have read and understood the terms of use"
+        },
+        {
+          "type": "dropdown",
+          "bind": "data.favGuitar",
+          "options": [
+            {
+              "default": true,
+              "value": "PRS",
+              "textKey": "Paul Reed Smith"
+            },
+            {
+              "value": "Rubato",
+              "textKey": "Rubato"
+            },
+            {
+              "value": "Parker",
+              "textKey": "Parker Guitars"
+            }
+          ]
+        },
+        {
+          "type": "radio",
+          "bind": "data.favGuitar",
+          "options": [
+            {
+              "default": true,
+              "value": "PRS",
+              "textKey": "Paul Reed Smith"
+            },
+            {
+              "value": "Rubato",
+              "textKey": "Rubato"
+            },
+            {
+              "value": "Parker",
+              "textKey": "Parker Guitars"
+            }
+          ]
+        },
+        {
+          "type": "submit",
+          "textKey": "Submit"
+        }
+      ]
+    },
+    "account-update" : {
+      "routing": {
+        "onSuccess": "_dismiss"
+      },
+      "action": "setAccount",
+      "appBar": {
+        "textKey": "Account Information"
+      },
+      "stack": "vertical",
+      "children": [
+        {
+          "bind": "profile.firstName",
+          "type": "textInput",
+          "textKey": "First name"
+        },
+        {
+          "bind": "profile.lastName",
+          "type": "textInput",
+          "textKey": "Last name"
+        },
+        {
+          "bind": "profile.email",
+          "type": "textInput",
+          "textKey": "Email"
+        },
+        {
+          "bind": "profile.zip",
+          "type": "textInput",
+          "textKey": "Zipcode"
+        },
+        {
+          "bind": "profile.country",
+          "type": "textInput",
+          "textKey": "Country"
+        },
+        {
+          "type": "submit",
+          "textKey": "Submit"
+        }
+      ]
     }
   }
 }

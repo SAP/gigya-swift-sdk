@@ -9,7 +9,8 @@
 import Gigya
 import Flutter
 
-class RegisterAction<T: GigyaAccountProtocol>: NssAction<T> {
+class RegisterAction<T: GigyaAccountProtocol>: Action<T> {
+    
     var busnessApi: BusinessApiDelegate
 
     init(busnessApi: BusinessApiDelegate) {

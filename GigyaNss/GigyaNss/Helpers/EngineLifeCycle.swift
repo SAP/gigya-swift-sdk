@@ -39,12 +39,19 @@ class EngineLifeCycle {
 
             switch method {
             case .ignition:
+                GigyaLogger.log(with: self, message: "ignition start")
+
                 var loadAsset = self.loaderHelper.fileToDic(name: assetName)
                 if let initialRoute = initialRoute {
-                    var markup = loadAsset["markup"] as! [String: Any]
-                    markup["initialRoute"] = initialRoute
-                    loadAsset["markup"] = markup
+                    guard var routing = loadAsset["routing"] as? [String: Any] else {
+                        GigyaLogger.error(with: EngineLifeCycle.self, message: "parsing error - `routing` is not exists.")
+                    }
+                    
+                    routing["initial"] = initialRoute
+                    loadAsset["routing"] = routing
                 }
+
+                GigyaLogger.log(with: self, message: "ignition screen load: \(loadAsset)")
 
                 response(loadAsset)
             case .readyForDisplay:

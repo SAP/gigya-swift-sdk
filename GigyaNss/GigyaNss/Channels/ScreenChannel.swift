@@ -24,5 +24,6 @@ class ScreenChannel: BaseChannel {
 
 enum ScreenChannelEvent: String {
     case action
-    case dismiss
+    case dismiss = "_dismiss"
+    case canceled = "_canceled"
 }

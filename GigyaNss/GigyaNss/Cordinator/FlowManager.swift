@@ -17,7 +17,7 @@ final class FlowManager<T: GigyaAccountProtocol> {
     private let flowFactory: ActionFactory<T>
 
     //
-    private var currentAction: NssAction<T>?
+    private var currentAction: Action<T>?
 
     // storage relevent interruptions
     private var currentResolver: NssResolverModelProtocol?
@@ -28,9 +28,16 @@ final class FlowManager<T: GigyaAccountProtocol> {
     // current result to dart when using interruption
     private var engineResultHandler: FlutterResult?
 
+    // Current screen id - for events handler
+    var currentScreenId: String?
+
+    // events handler
+    var eventsClosure: NssHandler<T>? = { _ in }
+
     // initalize new flow
-    init(flowFactory: ActionFactory<T>) {
+    init(flowFactory: ActionFactory<T>, eventHandler: NssHandler<T>?) {
         self.flowFactory = flowFactory
+        self.eventsClosure = eventHandler
 
         initClosure()
     }
@@ -42,9 +49,12 @@ final class FlowManager<T: GigyaAccountProtocol> {
             }
 
             switch result {
-            case .success:
+            case .success(let data):
 
                 self.engineResultHandler?(GigyaResponseModel.successfullyResponse())
+
+                // call to event handler
+                self.eventsClosure?(.success(screenId: self.currentScreenId ?? "", action: self.currentAction?.actionId ?? .unknown, data: data))
 
                 // dispose current resolver
                 self.disposeResolver()
@@ -53,11 +63,11 @@ final class FlowManager<T: GigyaAccountProtocol> {
                     switch interrupt {
                     case .pendingRegistration(resolver: let resolver):
                         self.currentResolver = NssResolverModel<PendingRegistrationResolver<T>>(interrupt: interrupt.description, resolver: resolver)
-                        break
                     default:
                         break
                     }
                 }
+                self.eventsClosure?(.error(screenId: self.currentScreenId ?? "", error: error.error))
 
                 self.engineResultHandler?(GigyaResponseModel.failedResponse(with: error.error))
             }
@@ -70,7 +80,7 @@ final class FlowManager<T: GigyaAccountProtocol> {
     }
 
     // set the current action
-    func setCurrent(action: Action, response: @escaping FlutterResult) {
+    func setCurrent(action: NssAction, response: @escaping FlutterResult) {
         currentAction = flowFactory.create(identifier: action)
         currentAction?.delegate = self
         currentAction?.initialize(response: response)
