@@ -215,6 +215,13 @@ class BusinessApiService: NSObject, BusinessApiServiceProtocol {
     func login<T: GigyaAccountProtocol>(providers: [GigyaSocialProviders], viewController: UIViewController, params: [String: Any], completion: @escaping (GigyaLoginResult<T>) -> Void) {
         providersFactory = ProvidersLoginWrapper(config: config, persistenceService: persistenceService, providers: providers)
         providersFactory?.show(params: params, viewController: viewController) { [weak self] json, error in
+            if error == GigyaDefinitions.Plugin.canceled {
+                let error = LoginApiError<T>(error: .providerError(data: error ?? ""), interruption: nil)
+
+                completion(.failure(error))
+                return
+            }
+
             if let providerString = json?["provider"] as? String,
                let provider = GigyaSocialProviders(rawValue: providerString),
                let vc = self?.providersFactory?.webViewController
@@ -280,7 +287,7 @@ class BusinessApiService: NSObject, BusinessApiServiceProtocol {
         apiService.send(model: model, responseType: GigyaDictionary.self) { [weak self] result in
             self?.sessionService.clear()
             self?.biometricService.clearBiometric()
-
+            
             switch result {
             case .success(let data):
                 completion(.success(data: data))
@@ -330,5 +337,4 @@ class BusinessApiService: NSObject, BusinessApiServiceProtocol {
         self.providersFactory?.dismiss()
         self.providersFactory = nil
     }
-
 }

@@ -29,7 +29,7 @@ class PluginViewWrapper<T: GigyaAccountProtocol>: PluginViewWrapperProtocol {
     var plugin: String
     
     var params: [String:Any]
-    
+
     init(config: GigyaConfig, persistenceService: PersistenceService, sessionService: SessionServiceProtocol, businessApiService: BusinessApiServiceProtocol, webBridge: GigyaWebBridge<T>,
          plugin: String, params: [String: Any], completion: @escaping (GigyaPluginEvent<T>) -> Void) {
         self.config = config
@@ -55,14 +55,14 @@ class PluginViewWrapper<T: GigyaAccountProtocol>: PluginViewWrapperProtocol {
         }
         
         let html = getHtml(self.plugin)
-        GigyaLogger.log(with: self, message: "Initial HTML:\n\(html)")
+        GigyaLogger.log(with: self, message: "Initial HTML")
 
         var pluginViewController: PluginViewController<T>?
 
         // make completionHandler to know when need to dismiss viewController
         let eventHandler: (GigyaPluginEvent<T>) -> Void = { result in
             switch result {
-            case .onHide:
+            case .onHide, .onCanceled:
                 pluginViewController?.dismiss(animated: true, completion: nil)
             default:
                 break
@@ -74,7 +74,9 @@ class PluginViewWrapper<T: GigyaAccountProtocol>: PluginViewWrapperProtocol {
         // Present plugin view controller.
 
         pluginViewController = PluginViewController(webBridge: webBridge, pluginEvent: eventHandler)
+
         let navigationController = UINavigationController(rootViewController: pluginViewController!)
+
         viewController.present(navigationController, animated: true) {
             self.webBridge.load(html: html)
         }
@@ -141,5 +143,4 @@ class PluginViewWrapper<T: GigyaAccountProtocol>: PluginViewWrapperProtocol {
         """
         return html
     }
-    
 }

@@ -12,7 +12,11 @@
 		<key>GigyaUITestsApp.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
+<<<<<<< HEAD
 			<integer>45</integer>
+=======
+			<integer>32</integer>
+>>>>>>> develop
 		</dict>
 		<key>TestApp.xcscheme_^#shared#^_</key>
 		<dict>

@@ -2,6 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
+<<<<<<< HEAD
       location = "group:GigyaNss/GigyaNss.xcodeproj">
    </FileRef>
    <FileRef
@@ -9,15 +10,18 @@
    </FileRef>
    <FileRef
       location = "group:GigyaAuth/GigyaAuth.xcodeproj">
+=======
+      location = "group:GigyaSwift.xcodeproj">
+>>>>>>> develop
    </FileRef>
    <FileRef
-      location = "group:GigyaE2ETestsApp/GigyaE2ETestsApp.xcodeproj">
+      location = "group:GigyaAuth/GigyaAuth.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:GigyaTfa/GigyaTfa.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:GigyaSwift.xcodeproj">
+      location = "group:GigyaE2ETestsApp/GigyaE2ETestsApp.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">

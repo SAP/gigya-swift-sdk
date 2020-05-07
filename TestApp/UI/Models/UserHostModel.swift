@@ -69,3 +69,4 @@ struct UserHost: GigyaAccountProtocol {
         return ""
     }
 }
+

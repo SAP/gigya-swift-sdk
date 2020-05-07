@@ -30,6 +30,7 @@ public enum GigyaPluginEvent<T: GigyaAccountProtocol> {
     case onLogout
     case onConnectionAdded
     case onConnectionRemoved
+    case onCanceled
     case error(event: PluginEventData)
 }
 
