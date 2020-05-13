@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14854.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="92V-yH-a3l">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="92V-yH-a3l">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14806.4"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -135,17 +135,25 @@
                                     <action selector="LockSessionBiometric:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rnj-sz-f36"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f6E-bX-ckL">
-                                <rect key="frame" x="16" y="312" width="80" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f6E-bX-ckL">
+                                <rect key="frame" x="16" y="292" width="80" height="30"/>
                                 <state key="normal" title="Web Bridge"/>
                                 <connections>
                                     <segue destination="6dQ-xk-LHw" kind="show" id="pd6-GS-wad"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6EA-Hf-HK3">
+                                <rect key="frame" x="170" y="292" width="94" height="30"/>
+                                <state key="normal" title="Configuration"/>
+                                <connections>
+                                    <action selector="changeSetttings:" destination="BYZ-38-t0r" eventType="touchUpInside" id="wze-jh-6tN"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="WvG-tz-Pye" firstAttribute="leading" secondItem="9wC-xP-8OI" secondAttribute="trailing" constant="43" id="0qk-QC-BPy"/>
+                            <constraint firstItem="f6E-bX-ckL" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="1B7-eu-NZa"/>
                             <constraint firstItem="owO-vP-SNV" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="16" id="2AI-Bd-Fzi"/>
                             <constraint firstItem="TiM-DB-mr3" firstAttribute="top" secondItem="0fX-WN-aKg" secondAttribute="bottom" constant="16" id="2YG-O4-hBB"/>
                             <constraint firstItem="0fX-WN-aKg" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="2p7-lC-fVD"/>
@@ -157,15 +165,16 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="owO-vP-SNV" secondAttribute="trailing" constant="16" id="KJ2-A9-xhx"/>
                             <constraint firstItem="9wC-xP-8OI" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="Nde-ba-g2z"/>
                             <constraint firstItem="NHW-O1-ecN" firstAttribute="top" secondItem="Jkr-xe-GiC" secondAttribute="bottom" constant="16" id="R45-Yl-OOX"/>
+                            <constraint firstItem="6EA-Hf-HK3" firstAttribute="leading" secondItem="f6E-bX-ckL" secondAttribute="trailing" constant="74" id="RLq-tb-yCj"/>
                             <constraint firstItem="owO-vP-SNV" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="RMc-LD-XvY"/>
                             <constraint firstItem="Cu6-gD-2R1" firstAttribute="top" secondItem="fyN-es-d2v" secondAttribute="bottom" constant="16" id="U4r-Fs-aWR"/>
                             <constraint firstItem="Jkr-xe-GiC" firstAttribute="leading" secondItem="cq6-7s-6Kn" secondAttribute="trailing" constant="97" id="UfP-Kp-Jye"/>
                             <constraint firstItem="9wC-xP-8OI" firstAttribute="top" secondItem="f6E-bX-ckL" secondAttribute="bottom" constant="18" id="V7s-ph-sqS"/>
+                            <constraint firstItem="WvG-tz-Pye" firstAttribute="top" secondItem="6EA-Hf-HK3" secondAttribute="bottom" constant="18" id="YcF-1f-RmZ"/>
                             <constraint firstItem="TiM-DB-mr3" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="YjH-RD-fcU"/>
                             <constraint firstItem="WvG-tz-Pye" firstAttribute="top" secondItem="owO-vP-SNV" secondAttribute="bottom" constant="40" id="Z3E-a7-GZJ"/>
-                            <constraint firstItem="WvG-tz-Pye" firstAttribute="top" secondItem="B1q-mp-f3s" secondAttribute="bottom" constant="20" id="Zq8-CT-wa8"/>
                             <constraint firstItem="8sE-Kg-WNH" firstAttribute="top" secondItem="hhx-Bt-vKE" secondAttribute="bottom" constant="16" id="duC-hH-cOv"/>
-                            <constraint firstItem="B1q-mp-f3s" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="fZE-Zo-wdh"/>
+                            <constraint firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="fZE-Zo-wdh"/>
                             <constraint firstItem="fNt-XW-RSV" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="faR-xz-gJk"/>
                             <constraint firstItem="hhx-Bt-vKE" firstAttribute="leading" secondItem="0fX-WN-aKg" secondAttribute="trailing" constant="63" id="fbf-co-naf"/>
                             <constraint firstItem="fNt-XW-RSV" firstAttribute="top" secondItem="9wC-xP-8OI" secondAttribute="bottom" constant="16" id="grl-cd-jq3"/>
@@ -243,7 +252,6 @@
                                                 </pickerView>
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Phone number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ldY-Qp-Jnl">
                                                     <rect key="frame" x="20" y="104" width="335" height="29"/>
-                                                    <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
@@ -298,7 +306,6 @@
                                                 </label>
                                                 <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Code..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BBz-8Y-6mI">
                                                     <rect key="frame" x="20" y="30" width="335" height="30"/>
-                                                    <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
@@ -350,7 +357,6 @@
                                                 </imageView>
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Code..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yJx-xW-Tab">
                                                     <rect key="frame" x="133" y="34" width="222" height="34"/>
-                                                    <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
@@ -426,7 +432,6 @@
                                                 </button>
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Code..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ft3-jc-7UQ" userLabel="Code Text Field">
                                                     <rect key="frame" x="20" y="160" width="335" height="34"/>
-                                                    <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>

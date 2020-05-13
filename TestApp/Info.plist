@@ -17,7 +17,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -84,7 +84,7 @@
 	<key>GigyaApiDomain</key>
 	<string>us1.gigya.com</string>
 	<key>GigyaApiKey</key>
-	<string>3_l7zxNcj4vhu8tLzYafUnKDSA4VsOVNzR4VnclcC6VKsXXmQdq950uC-zY7Vsu9RC</string>
+	<string>3_KF6Dwf0BoTktLiX54s_rSWRiklW69xCLG8pZa413Z6pkuBGBwQeSK9k19grZfCDe</string>
 	<key>GigyaSessionVerificationInterval</key>
 	<integer>9999</integer>
 	<key>GoogleClientID</key>

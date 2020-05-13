@@ -46,7 +46,6 @@ class ViewController: UIViewController {
         UIFactory.showAlert(vc: self, msg: "Session is expire!")
     }
 
-
     @IBAction func changeSetttings(_ sender: Any) {
         let alert = UIFactory.getChangeSettingAlert(dc: gigya.config.apiDomain, api: gigya.config.apiKey!) { [weak self] dc, api in
             UserDefaults.standard.removeObject(forKey: "com.gigya.GigyaSDK:ucid")
@@ -56,26 +55,26 @@ class ViewController: UIViewController {
 
             UIFactory.showAlert(vc: self, msg: "your new dc: \(dc!), api: \(api!)")
         }
-        self.present(alert, animated: true, completion: nil)
 
+        self.present(alert, animated: true, completion: nil)
     }
 
     @IBAction func showScreenSet(_ sender: Any) {
 //        GigyaNss.shared.showScreenSet(with: "test", viewController: self)
 //
-        GigyaNss.shared
-            .load(asset: "init")
-            .initialRoute(name: "account-update")
-            .events(UserHost.self) { (result) in
-                switch result {
-                case .success(data: let data):
-                    self.checkLoginState()
-                case .error:
-                    break
-                case .canceled:
-                    break
-                }
-        }.show(viewController: self)
+//        GigyaNss.shared
+//            .load(asset: "init")
+//            .initialRoute(name: "account-update")
+//            .events(UserHost.self) { (result) in
+//                switch result {
+//                case .success(data: let data):
+//                    self.checkLoginState()
+//                case .error:
+//                    break
+//                case .canceled:
+//                    break
+//                }
+//        }.show(viewController: self)
 //
 //        let container = Gigya.getContainer()
 //        let sessionService = container.resolve(SessionServiceProtocol.self)
@@ -89,76 +88,76 @@ class ViewController: UIViewController {
 
 //        Default-ProfileUpdate
 
-//        var currentScreen: String = ""
-//        gigya.showScreenSet(with: "Default-RegistrationLogin", viewController: self) { [weak self] (result) in
-//            switch result {
-//            case .onLogin(let account):
-//                self?.resultTextView!.text = account.toJson()
-//            case .onAfterScreenLoad(let event):
-//                currentScreen = event["currentScreen"] as? String ?? ""
-//            case .error(let event):
-//                print(event)
-//            case .onHide(let event):
-//                print(event)
-//            case .onLogout:
-//                break
-//            default:
-//                break
-//            }
-//        }
+        var currentScreen: String = ""
+        gigya.showScreenSet(with: "Default-RegistrationLogin", viewController: self) { [weak self] (result) in
+            switch result {
+            case .onLogin(let account):
+                self?.resultTextView!.text = account.toJson()
+            case .onAfterScreenLoad(let event):
+                currentScreen = event["currentScreen"] as? String ?? ""
+            case .error(let event):
+                print(event)
+            case .onHide(let event):
+                print(event)
+            case .onLogout:
+                break
+            default:
+                break
+            }
+        }
     }
 
     @IBAction func login(_ sender: Any) {
-        GigyaNss.shared
-            .load(asset: "init")
-            .initialRoute(name: "login")
-            .events(UserHost.self) { result in
-                switch result {
-                case .success(let screenId, let action, let account):
-                    self.checkLoginState()
-                case .error(let screenId, let error):
-                    break
-                case .canceled:
-                
-                    break
-                }
-            }
-            .show(viewController: self)
-
-////
-//        let alert = UIFactory.getLoginAlert { email, password in
-//            self.gigya.login(loginId: email!, password: password!, params: ["sessionExpiration": "9000000"]) { [weak self] result in
+//        GigyaNss.shared
+//            .load(asset: "init")
+//            .initialRoute(name: "login")
+//            .events(UserHost.self) { result in
 //                switch result {
-//                case .success(let data):
-//                    self?.resultTextView?.text = data.toJson()
-//                case .failure(let error):
+//                case .success(let screenId, let action, let account):
+//                    self.checkLoginState()
+//                case .error(let screenId, let error):
+//                    break
+//                case .canceled:
 //
-//                    switch error.error {
-//                    case .gigyaError(let data):
-//                        let errorData = data.toDictionary()
-//                    default:
-//                        break
-//                    }
-//
-//
-//                    guard let interruption = error.interruption else { return }
-//                    // Evaluage interruption.
-//                    switch interruption {
-//                    case .conflitingAccount(let resolver):
-//                        resolver.linkToSite(loginId: resolver.conflictingAccount?.loginID ?? "", password: "123123")
-//                    case .pendingTwoFactorVerification(let interruption, let activeProviders, let factory):
-//                        self?.presentTFAController(tfaProviders: activeProviders!, mode: .verification, factoryResolver: factory)
-//
-//                    case .pendingTwoFactorRegistration(let interruption, let inactiveProviders, let factory):
-//                        self?.presentTFAController(tfaProviders: inactiveProviders!, mode: .registration, factoryResolver: factory)
-//                    default:
-//                        break
-//                    }
+//                    break
 //                }
 //            }
-//        }
+//            .show(viewController: self)
+
 //
-//        self.present(alert, animated: true, completion: nil)
+        let alert = UIFactory.getLoginAlert { email, password in
+            self.gigya.login(loginId: email!, password: password!, params: ["sessionExpiration": "9000000"]) { [weak self] result in
+                switch result {
+                case .success(let data):
+                    self?.resultTextView?.text = data.toJson()
+                case .failure(let error):
+
+                    switch error.error {
+                    case .gigyaError(let data):
+                        let errorData = data.toDictionary()
+                    default:
+                        break
+                    }
+
+
+                    guard let interruption = error.interruption else { return }
+                    // Evaluage interruption.
+                    switch interruption {
+                    case .conflitingAccount(let resolver):
+                        resolver.linkToSite(loginId: resolver.conflictingAccount?.loginID ?? "", password: "123123")
+                    case .pendingTwoFactorVerification(let interruption, let activeProviders, let factory):
+                        self?.presentTFAController(tfaProviders: activeProviders!, mode: .verification, factoryResolver: factory)
+
+                    case .pendingTwoFactorRegistration(let interruption, let inactiveProviders, let factory):
+                        self?.presentTFAController(tfaProviders: inactiveProviders!, mode: .registration, factoryResolver: factory)
+                    default:
+                        break
+                    }
+                }
+            }
+        }
+
+        self.present(alert, animated: true, completion: nil)
     }
     
     @IBAction func register(_ sender: Any) {
@@ -291,7 +290,7 @@ class ViewController: UIViewController {
     }
 
     @IBAction func loginWithProvider(_ sender: Any) {
-        gigya.login(with: .yahoo, viewController: self, params: ["dataCenter": "ru1"]) { [weak self] (result) in
+        gigya.login(with: .apple, viewController: self, params: ["dataCenter": "ru1"]) { [weak self] (result) in
             switch result {
             case .success(let data):
                 print(data)

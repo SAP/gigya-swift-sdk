@@ -652,6 +652,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MARKETING_VERSION = 0.1.0;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = Gigya.GigyaNss;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
@@ -688,6 +689,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MARKETING_VERSION = 0.1.0;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = Gigya.GigyaNss;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
