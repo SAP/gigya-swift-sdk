@@ -89,10 +89,19 @@ final class WebLoginWrapper: NSObject, ProviderWrapperProtocol {
         serverParams["gmid"] = persistenceService?.gmid ?? ""
         serverParams["ucid"] = persistenceService?.ucid ?? ""
         serverParams["x_secret_type"] = "oauth1"
-        serverParams["x_sdk"] = InternalConfig.General.version
+        serverParams["x_s€dk"] = InternalConfig.General.version
         serverParams["x_provider"] = providerType.rawValue
         serverParams["oauth_token"] = params?["oauth_token"] ?? ""
 
+        if let params = params {
+            for param in params {
+                if param.key.contains("x_") {
+                    serverParams[param.key] = param.value
+                } else {
+                    serverParams["x_\(param.key)"] = param.value
+                }
+            }
+        }
 
         var bodyData: [String : Any] = [:]
 

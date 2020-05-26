@@ -9,7 +9,7 @@
 import Foundation
 import WebKit
 
-final class PluginViewController<T: GigyaAccountProtocol>: GigyaWebViewController, WKNavigationDelegate {
+final class PluginViewController<T: GigyaAccountProtocol>: GigyaWebViewController, WKNavigationDelegate, WKUIDelegate {
 
     let contentController = WKUserContentController()
 
@@ -20,6 +20,8 @@ final class PluginViewController<T: GigyaAccountProtocol>: GigyaWebViewControlle
 
         let webViewConfiguration = WKWebViewConfiguration()
         webViewConfiguration.userContentController = contentController
+        webViewConfiguration.preferences.javaScriptCanOpenWindowsAutomatically = true
+        webViewConfiguration.preferences.javaScriptEnabled = true
 
         super.init(configuration: webViewConfiguration)
 
@@ -27,6 +29,7 @@ final class PluginViewController<T: GigyaAccountProtocol>: GigyaWebViewControlle
 
         self.webBridge.viewController = self
         self.webView.navigationDelegate = self
+        self.webView.uiDelegate = self
 
         userDidCancel = {
             pluginEvent(.onCanceled)
@@ -49,6 +52,15 @@ final class PluginViewController<T: GigyaAccountProtocol>: GigyaWebViewControlle
             return
          }
          decisionHandler(.allow)
+    }
+
+    func webView(_ webView: WKWebView, createWebViewWith configuration: WKWebViewConfiguration, for navigationAction: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView? {
+        guard let url = navigationAction.request.url else {
+            return nil
+        }
+
+        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        return nil
     }
 
     deinit {
