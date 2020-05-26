@@ -51,6 +51,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
         GigyaTfa.shared.registerForRemoteNotifications()
         GigyaNss.shared.register(scheme: UserHost.self)
 
+        gigya.registerSocialProvider(of: .facebook, wrapper: FacebookWrapper())
+
         ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
 
         if #available(iOS 13.0, *) {
