@@ -29,6 +29,37 @@ class LoginTestsUi: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
+    func testFlutter() {
+        app.launch()
+
+        app.buttons["Show Screenset"].tap()
+
+        sleep(5)
+
+        let email = app.textViews["Email"]
+
+        email.tap()
+        email.typeText("sagishm@gmail.com")
+
+        email.typeText("\n")
+
+
+        let pass = app.textViews["Password"]
+        pass.tap()
+        pass.typeText("151515")
+
+        app.buttons["Submit"].tap()
+
+        let text = app.staticTexts["Logged out"]
+
+        let exists = NSPredicate(format: "exists != 1")
+
+        expectation(for: exists, evaluatedWith: text, handler: nil)
+
+        waitForExpectations(timeout: 15, handler: nil)
+
+    }
+
     func testLogin() {
         app.launch()
 

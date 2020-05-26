@@ -196,5 +196,11 @@ final class GigyaIOCContainer<T: GigyaAccountProtocol>: GigyaContainerProtocol {
         container.register(service: IOCContainer.self) { [weak self] _ in
             return self!.container
         }
+
+        container.register(service: BusinessApiDelegate.self) { resolver in
+            let businessService = resolver.resolve(BusinessApiServiceProtocol.self)
+
+            return businessService as! BusinessApiDelegate
+        }
     }
 }

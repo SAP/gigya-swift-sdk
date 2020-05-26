@@ -9,7 +9,8 @@
 import Foundation
 
 struct NetworkBlockingQueueUtils {
-    private let queue = OperationQueue()
+
+    let queue = OperationQueue()
 
     private var blockingQueue: [BlockOperation] = []
 

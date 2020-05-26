@@ -14,13 +14,23 @@ import GoogleUtilities
 import GigyaTfa
 import GigyaAuth
 import FBSDKCoreKit
-import FBSDKShareKit
+import GigyaNss
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
 
     var window: UIWindow?
     let gigya = Gigya.sharedInstance(UserHost.self)
+//    lazy var gigya: GigyaCore<UserHost> = {
+//        let gmid = UserDefaults.standard.object(forKey: "com.gigya.GigyaSDK:gmid")
+//        let hasRunBefore = UserDefaults.standard.bool(forKey: "com.gigya.GigyaSDK:hasRunBefore")
+//
+//        if let _ = gmid, hasRunBefore == false {
+//            UserDefaults.standard.setValue(true, forKey: "com.gigya.GigyaSDK:hasRunBefore")
+//        }
+//
+//        return Gigya.sharedInstance(UserHost.self)
+//    }()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -30,6 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
         Messaging.messaging().delegate = self
 
         WXApi.registerApp("wx222c4ccaa989aa00", universalLink: "https://")
+        LoginManager.shared.setup(channelID: "1618046855", universalLinkURL: nil)
 
         UNUserNotificationCenter.current().delegate = self
 
@@ -38,6 +49,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
         GigyaLogger.setDebugMode(to: true)
         GigyaAuth.shared.registerForRemoteNotifications()
         GigyaTfa.shared.registerForRemoteNotifications()
+        GigyaNss.shared.register(scheme: UserHost.self)
 
         ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
 
@@ -67,7 +79,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
         print("Firebase registration token: \(fcmToken)")
         let dataDict:[String: String] = ["token": fcmToken]
 
-        gigya.updatePushToken(key: fcmToken)
+//        gigya.updatePushToken(key: fcmToken)
         NotificationCenter.default.post(name: Notification.Name("FCMToken"), object: nil, userInfo: dataDict)
     }
 
@@ -80,9 +92,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
     }
 
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
-        let _ = LineSDKLogin.sharedInstance().handleOpen(url)
+//        let _ = LineSDKLogin.sharedInstance().handleOpen(url)
         let _ = WXApi.handleOpen(url, delegate: self)
-
+        let _ = LoginManager.shared.application(app, open: url)
         let handled = ApplicationDelegate.shared.application(
             app,
             open: url,

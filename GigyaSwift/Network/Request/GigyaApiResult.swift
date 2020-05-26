@@ -32,6 +32,11 @@ public struct LoginApiError<T: GigyaAccountProtocol> {
     public let error: NetworkError
 
     public let interruption: GigyaInterruptions<T>?
+
+    public init(error: NetworkError, interruption: GigyaInterruptions<T>? = nil) {
+        self.error = error
+        self.interruption = interruption
+    }
 }
 
 /**

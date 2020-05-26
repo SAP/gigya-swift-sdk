@@ -33,6 +33,7 @@ final class VerifyCodeResolver<T: GigyaAccountProtocol>: TFAResolver<T>, VerifyC
     func finalizeTfa(providerAssertion: String, rememberDevice: Bool, completion: @escaping (VerifyCodeResultCallback) -> Void) {
         var params = ["regToken": self.regToken, "gigyaAssertion": self.gigyaAssertion, "providerAssertion": providerAssertion] as! [String: String]
 
+        params["tempDevice"] = "true"
         if rememberDevice == true {
             params["tempDevice"] = "false"
         }

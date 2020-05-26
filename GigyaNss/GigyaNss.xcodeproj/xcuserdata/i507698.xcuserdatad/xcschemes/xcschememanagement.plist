@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SchemeUserState</key>
+	<dict>
+		<key>GigyaNss-Universal-Debug.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>38</integer>
+		</dict>
+		<key>GigyaNss-Universal-Release.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>39</integer>
+		</dict>
+		<key>GigyaNss.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>E775E80723C5D1710059151D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E775E81023C5D1710059151D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E775E8F023C617B80059151D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E7DD61A423CB1F3400B1F621</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
+</dict>
+</plist>

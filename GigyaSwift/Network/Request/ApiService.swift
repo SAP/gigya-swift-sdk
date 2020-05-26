@@ -17,8 +17,6 @@ final class ApiService: ApiServiceProtocol {
 
     private let networkAdapter: NetworkAdapterProtocol?
 
-    private var tmpModel: ApiRequestModel?
-
     required init(with networkAdapter: NetworkAdapterProtocol, session: SessionServiceProtocol) {
         self.networkAdapter = networkAdapter
         self.sessionService = session
@@ -37,12 +35,11 @@ final class ApiService: ApiServiceProtocol {
     // Send request to server
     private func send<T: Codable>(model: ApiRequestModel, responseType: T.Type, blocking: Bool,
                           completion: @escaping (GigyaApiResult<T>) -> Void) {
-        tmpModel = model
+        networkAdapter?.send(model: model, blocking: blocking) { [weak self] (data, error) in
 
-        networkAdapter?.send(model: model, blocking: blocking) { (data, error) in
             if error == nil {
                 main { [weak self] in
-                    self?.validateResult(responseType: responseType, data: data, completion: completion)
+                    self?.validateResult(tmpData: model, responseType: responseType, data: data, completion: completion)
                 }
                 return
             }
@@ -67,7 +64,7 @@ final class ApiService: ApiServiceProtocol {
     }
 
     // Validate and decode the result to GigyaApiResult
-    private func validateResult<T: Codable>(responseType: T.Type, data: NSData?,
+    private func validateResult<T: Codable>(tmpData: ApiRequestModel? = nil, responseType: T.Type, data: NSData?,
                                             completion: @escaping (GigyaApiResult<T>) -> Void) {
         guard let data = data else {
             GigyaLogger.log(with: self, message: "Error: data not found)")
@@ -83,7 +80,7 @@ final class ApiService: ApiServiceProtocol {
 
             // retry when the error is request expired
             if isRetryNeeded(with: gigyaResponse.errorCode) {
-                let retryDispacer = NetworkRetryDispacher<T>(networkAdapter: networkAdapter, tmpModel: tmpModel!)
+                let retryDispacer = NetworkRetryDispacher<T>(networkAdapter: networkAdapter, tmpModel: tmpData!)
                 retryDispacer.startRetry { [weak self] (data) in
                     self?.validateResult(responseType: T.self, data: data, completion: completion)
                 }
@@ -102,7 +99,7 @@ final class ApiService: ApiServiceProtocol {
                     main { completion(.failure(NetworkError.jsonParsingError(error: error))) }
                 }
 
-            } else {    
+            } else {
                 GigyaLogger.log(with: self, message: "Failed: \(gigyaResponse)")
                 main { completion(.failure(.gigyaError(data: gigyaResponse))) }
             }
@@ -115,5 +112,9 @@ final class ApiService: ApiServiceProtocol {
 
     private func isRetryNeeded(with errorCode: Int) -> Bool {
         return errorCode == GigyaDefinitions.ErrorCode.requestExpired
+    }
+
+    deinit {
+//        self.tmpModel = nil
     }
 }

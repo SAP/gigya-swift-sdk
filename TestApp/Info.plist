@@ -17,7 +17,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -68,6 +68,12 @@
 				<string>Gigya.TestGigyaApp</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array/>
+		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
@@ -80,7 +86,7 @@
 	<key>GigyaApiKey</key>
 	<string>3_KF6Dwf0BoTktLiX54s_rSWRiklW69xCLG8pZa413Z6pkuBGBwQeSK9k19grZfCDe</string>
 	<key>GigyaSessionVerificationInterval</key>
-	<integer>5000</integer>
+	<integer>9999</integer>
 	<key>GoogleClientID</key>
 	<string>444662304199-camlom5iaqmrs7i1ernfv7eudr1ejkvm.apps.googleusercontent.com</string>
 	<key>GoogleServerClientID</key>
@@ -108,6 +114,7 @@
 		<string>weixinULAPI</string>
 		<string>fb-messenger-share-api</string>
 		<string>fbshareextension</string>
+		<string>lineauth2</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>

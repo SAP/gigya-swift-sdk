@@ -181,7 +181,7 @@ class BusinessApiService: NSObject, BusinessApiServiceProtocol {
                 self?.accountService.account = data
 
                 completion(.success(data: data))
-
+                
                 self?.clearOptionalObjects()
             case .failure(let error):
                 self?.interruptionResolver(error: error, completion: completion)

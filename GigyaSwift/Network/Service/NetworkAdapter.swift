@@ -18,7 +18,7 @@ class NetworkAdapter: NetworkAdapterProtocol {
 
     let networkProvider: NetworkProvider
 
-    private var queueHelper: NetworkBlockingQueueUtils
+    var queueHelper: NetworkBlockingQueueUtils
 
     // remove all dependencies and add 'NetworkProvider' to constructor
     init(networkProvider: NetworkProvider, queueHelper: NetworkBlockingQueueUtils) {

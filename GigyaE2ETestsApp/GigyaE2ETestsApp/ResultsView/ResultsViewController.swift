@@ -7,8 +7,10 @@
 //
 
 import UIKit
+import Gigya
 
 class ResultsViewController: UIViewController {
+    let gigya = Gigya.sharedInstance(GigyaAccount.self)
 
     var statusValue: String = "" {
         didSet {
@@ -34,7 +36,26 @@ class ResultsViewController: UIViewController {
         uid.text = uidValue
 
     }
+
+    override func viewDidAppear(_ animated: Bool) {
+
+        let isLoggedIn = gigya.isLoggedIn()
+        if (isLoggedIn) {
+            gigya.getAccount() { [weak self] result in
+                switch result {
+                case .success(let data):
+                    self?.status.text = "success"
+                    self?.uid.text = data.UID ?? ""
+                case .failure(_):
+                    break
+                }
+            }
+        } else {
+            self.status.text = "Logged out"
+        }
+    }
     
+
     @IBAction func done(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
