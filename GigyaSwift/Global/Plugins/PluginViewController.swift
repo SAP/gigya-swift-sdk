@@ -63,6 +63,10 @@ final class PluginViewController<T: GigyaAccountProtocol>: GigyaWebViewControlle
         return nil
     }
 
+    func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
+        // network error
+    }
+
     deinit {
         GigyaLogger.log(with: self, message: "deinit")
     }

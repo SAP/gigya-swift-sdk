@@ -1,6 +1,7 @@
 {
+  "platformAware": false,
   "routing": {
-    "initial": "register",
+    "initial": "login",
     "default": {
       "onSuccess": "_dismiss"
     }
@@ -13,27 +14,62 @@
       },
       "action": "login",
       "appBar": {
-        "textKey": "login"
+        "textKey": "Login",
+        "style": {
+          "fontColor": "white",
+          "background": "#000000"
+        }
       },
       "stack": "vertical",
+      "style": {
+        "background": "https://image.freepik.com/free-vector/abstract-galaxy-background_1199-247.jpg"
+      },
       "children": [
         {
           "type": "label",
-          "textKey": "login in with your email and password:"
+          "textKey": "login in with your email and password:",
+          "style": {
+            "padding": 50,
+            "fontSize": 50,
+            "fontColor": "#BCBCBC",
+            "fontWeight": 1
+          }
         },
         {
           "bind": "loginID",
           "type": "emailInput",
-          "textKey": "Email"
+          "textKey": "Email",
+          "theme": "input",
+          "style": {
+            "borderColor": "white",
+            "borderSize": 1,
+            "fontColor": "white",
+            "cornerRadius": 10
+          }
         },
         {
           "bind": "password",
           "type": "passwordInput",
-          "textKey": "Password"
+          "textKey": "Password",
+          "style": {
+            "borderColor": "white",
+            "borderSize": 1,
+            "fontColor": "white",
+            "cornerRadius": 10
+          }
         },
         {
           "type": "submit",
-          "textKey": "Submit"
+          "textKey": "Submit",
+          "style": {
+            "background": "#000000",
+            "padding": 50,
+            "fontSize": 50,
+            "fontColor": "#BCBCBC",
+            "fontWeight": 1,
+            "elevation": 2,
+            "cornerRadius": 10
+          }
         }
       ]
     },
