@@ -15,8 +15,11 @@ final class PluginViewController<T: GigyaAccountProtocol>: GigyaWebViewControlle
 
     var webBridge: GigyaWebBridge<T>
 
+    let pluginEvent: (GigyaPluginEvent<T>) -> Void
+
     init(webBridge: GigyaWebBridge<T>, pluginEvent: @escaping (GigyaPluginEvent<T>) -> Void) {
         self.webBridge = webBridge
+        self.pluginEvent = pluginEvent
 
         let webViewConfiguration = WKWebViewConfiguration()
         webViewConfiguration.userContentController = contentController
@@ -61,6 +64,11 @@ final class PluginViewController<T: GigyaAccountProtocol>: GigyaWebViewControlle
 
         UIApplication.shared.open(url, options: [:], completionHandler: nil)
         return nil
+    }
+
+    func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
+        // network error
+        pluginEvent(.error(event: ["error": error.localizedDescription]))
     }
 
     deinit {

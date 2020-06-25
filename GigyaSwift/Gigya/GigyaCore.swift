@@ -140,6 +140,10 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
         sessionService.setSession(sessionInfo)
     }
 
+    public func getSession() -> GigyaSession? {
+        return sessionService.session
+    }
+
     /**
      Logout of Gigya services.
 

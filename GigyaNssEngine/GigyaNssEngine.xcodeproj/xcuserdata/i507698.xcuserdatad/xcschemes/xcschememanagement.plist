@@ -7,12 +7,12 @@
 		<key>GigyaNssEngine-Universal-Debug.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>45</integer>
+			<integer>44</integer>
 		</dict>
 		<key>GigyaNssEngine-Universal-Release.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>37</integer>
+			<integer>4</integer>
 		</dict>
 		<key>GigyaNssEngine.xcscheme_^#shared#^_</key>
 		<dict>

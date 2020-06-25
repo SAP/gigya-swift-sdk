@@ -12,11 +12,11 @@ import Foundation
 public class GigyaSession: NSObject, NSSecureCoding {
     public static var supportsSecureCoding: Bool = true
 
-    var token: String = ""
+    public var token: String = ""
 
-    var secret: String = ""
+    public var secret: String = ""
 
-    var sessionExpirationTimestamp: Double?
+    public var sessionExpirationTimestamp: Double?
 
     var lastLoginProvider = ""
 

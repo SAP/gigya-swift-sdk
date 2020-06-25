@@ -56,7 +56,12 @@ class NativeScreenSetsViewModel<T: GigyaAccountProtocol>: NSObject, UIAdaptivePr
 
                 self.flowManager.setCurrent(action: flow, response: response)
                 self.flowManager.currentScreenId = screenId
-                
+
+            case .link:
+                guard let stringUrl = data?["url"] as? String,
+                    let url = URL(string: stringUrl) else { return }
+
+                UIApplication.shared.open(url)
             case .dismiss:
                 self.dismissClosure()
                 self.eventHandler?(.canceled)

@@ -397,4 +397,5 @@ public class GigyaWebBridge<T: GigyaAccountProtocol>: NSObject, WKScriptMessageH
             }
         }
     }
+
 }

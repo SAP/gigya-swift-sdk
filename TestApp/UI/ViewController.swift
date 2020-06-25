@@ -62,19 +62,19 @@ class ViewController: UIViewController {
     @IBAction func showScreenSet(_ sender: Any) {
 //        GigyaNss.shared.showScreenSet(with: "test", viewController: self)
 //
-//        GigyaNss.shared
-//            .load(asset: "init")
-//            .initialRoute(name: "account-update")
-//            .events(UserHost.self) { (result) in
-//                switch result {
-//                case .success(data: let data):
-//                    self.checkLoginState()
-//                case .error:
-//                    break
-//                case .canceled:
-//                    break
-//                }
-//        }.show(viewController: self)
+        GigyaNss.shared
+            .load(asset: "init")
+            .initialRoute(name: "account-update")
+            .events(UserHost.self) { (result) in
+                switch result {
+                case .success(data: let data):
+                    self.checkLoginState()
+                case .error:
+                    break
+                case .canceled:
+                    break
+                }
+        }.show(viewController: self)
 //
 //        let container = Gigya.getContainer()
 //        let sessionService = container.resolve(SessionServiceProtocol.self)
@@ -87,24 +87,29 @@ class ViewController: UIViewController {
 
 
 //        Default-ProfileUpdate
-
-        var currentScreen: String = ""
-        gigya.showScreenSet(with: "Default-RegistrationLogin", viewController: self) { [weak self] (result) in
-            switch result {
-            case .onLogin(let account):
-                self?.resultTextView!.text = account.toJson()
-            case .onAfterScreenLoad(let event):
-                currentScreen = event["currentScreen"] as? String ?? ""
-            case .error(let event):
-                print(event)
-            case .onHide(let event):
-                print(event)
-            case .onLogout:
-                break
-            default:
-                break
-            }
-        }
+//
+//        var currentScreen: String = ""
+//        gigya.showScreenSet(with: "Default-RegistrationLogin", viewController: self) { [weak self] (result) in
+//            switch result {
+//            case .onLogin(let account):
+//                self?.resultTextView!.text = account.toJson()
+////                self?.gigya.getAccount(true, params: [:], completion: { result in
+////
+////                })
+//            case .onAfterScreenLoad(let event):
+//                currentScreen = event["currentScreen"] as? String ?? ""
+//            case .error(let event):
+//                print(event)
+//            case .onHide(let event):
+//                print(event)
+//            case .onLogout:
+//                break
+//            case .onCanceled:
+//                print("bla")
+//            default:
+//                break
+//            }
+//        }
     }
 
     @IBAction func login(_ sender: Any) {
@@ -275,6 +280,9 @@ class ViewController: UIViewController {
             isLoggedIn = gigya.isLoggedIn()
             print("session is valid?: \(isLoggedIn)")
             if (isLoggedIn) {
+                let session = gigya.getSession()
+
+
                 gigya.getAccount(true) { [weak self] result in
                     switch result {
                     case .success(let data):

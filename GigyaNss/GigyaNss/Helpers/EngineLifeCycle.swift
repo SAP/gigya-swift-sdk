@@ -41,17 +41,28 @@ class EngineLifeCycle {
             case .ignition:
                 GigyaLogger.log(with: self, message: "ignition start")
 
+                // load the `screenSets` file from bundle. (example: `init.json`)
                 var loadAsset = self.loaderHelper.fileToDic(name: assetName)
+                
+                // load the `theme` file from bundle. (example: `init.theme.json`)
+                let loadTheme = self.loaderHelper.fileToDic(name: "\(assetName).theme")
+
                 if let initialRoute = initialRoute {
-                    guard var routing = loadAsset["routing"] as? [String: Any] else {
+                    guard var assetJson = loadAsset, var routing = assetJson["routing"] as? [String: Any] else {
                         GigyaLogger.error(with: EngineLifeCycle.self, message: "parsing error - `routing` is not exists.")
                     }
                     
                     routing["initial"] = initialRoute
-                    loadAsset["routing"] = routing
+                    assetJson["routing"] = routing
+
+                    if let theme = loadTheme {
+                        assetJson["theme"] = theme
+                    }
+
+                    loadAsset = assetJson
                 }
 
-                GigyaLogger.log(with: self, message: "ignition screen load: \(loadAsset)")
+                GigyaLogger.log(with: self, message: "ignition screen load: \(loadAsset ?? [:])")
 
                 response(loadAsset)
             case .readyForDisplay:

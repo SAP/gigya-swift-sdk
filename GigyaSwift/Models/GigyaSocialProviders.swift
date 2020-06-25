@@ -47,9 +47,9 @@ public enum GigyaSocialProviders {
 
     static var webValue: String?
 
-    func isOnlySdk() -> Bool {
+    func isRequiredSdk() -> Bool {
         switch self {
-        case .facebook, .wechat, .apple:
+        case .facebook, .wechat:
             return true
         default:
             return false
