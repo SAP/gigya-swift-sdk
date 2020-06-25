@@ -58,7 +58,6 @@ class ProvidersLoginWrapper: NSObject {
 
         navigationController = UINavigationController(rootViewController: webViewController!)
 
-
         if let navigationController = navigationController {
             viewController?.show(navigationController, sender: nil)
         }

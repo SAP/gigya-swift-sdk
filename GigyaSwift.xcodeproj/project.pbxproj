@@ -2440,7 +2440,7 @@
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 73;
+				CURRENT_PROJECT_VERSION = 76;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 52P2295V75;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -2460,7 +2460,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.1;
+				MARKETING_VERSION = 1.1.2;
 				MODULEMAP_FILE = "";
 				MODULEMAP_PRIVATE_FILE = "";
 				ONLY_ACTIVE_ARCH = NO;
@@ -2492,7 +2492,7 @@
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 73;
+				CURRENT_PROJECT_VERSION = 76;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 52P2295V75;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -2512,7 +2512,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.1;
+				MARKETING_VERSION = 1.1.2;
 				MODULEMAP_FILE = "";
 				MODULEMAP_PRIVATE_FILE = "";
 				OTHER_LDFLAGS = (
@@ -2543,7 +2543,7 @@
 				CODE_SIGN_ENTITLEMENTS = TestApp/TestApp.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 52P2295V75;
+				DEVELOPMENT_TEAM = 9J35N2U9YY;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2574,7 +2574,7 @@
 					"$(inherited)",
 					"-ObjC",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.sagigigya.appleid;
+				PRODUCT_BUNDLE_IDENTIFIER = com.gigya.appleid;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "TestApp/TestApp-Bridging-Header.h";
@@ -2594,7 +2594,7 @@
 				CODE_SIGN_ENTITLEMENTS = TestApp/TestApp.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 52P2295V75;
+				DEVELOPMENT_TEAM = 9J35N2U9YY;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2624,7 +2624,7 @@
 					"$(inherited)",
 					"-ObjC",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.sagigigya.appleid;
+				PRODUCT_BUNDLE_IDENTIFIER = com.gigya.appleid;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "TestApp/TestApp-Bridging-Header.h";

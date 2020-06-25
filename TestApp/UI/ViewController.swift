@@ -64,7 +64,7 @@ class ViewController: UIViewController {
 //
         GigyaNss.shared
             .load(asset: "init")
-            .initialRoute(name: "login")
+            .initialRoute(name: "account-update")
             .events(UserHost.self) { (result) in
                 switch result {
                 case .success(data: let data):
@@ -104,6 +104,8 @@ class ViewController: UIViewController {
 //                print(event)
 //            case .onLogout:
 //                break
+//            case .onCanceled:
+//                print("bla")
 //            default:
 //                break
 //            }
@@ -278,6 +280,9 @@ class ViewController: UIViewController {
             isLoggedIn = gigya.isLoggedIn()
             print("session is valid?: \(isLoggedIn)")
             if (isLoggedIn) {
+                let session = gigya.getSession()
+
+
                 gigya.getAccount(true) { [weak self] result in
                     switch result {
                     case .success(let data):
@@ -293,7 +298,7 @@ class ViewController: UIViewController {
     }
 
     @IBAction func loginWithProvider(_ sender: Any) {
-        gigya.login(with: .facebook, viewController: self, params: ["dataCenter": "ru1"]) { [weak self] (result) in
+        gigya.login(with: .apple, viewController: self, params: ["dataCenter": "ru1"]) { [weak self] (result) in
             switch result {
             case .success(let data):
                 print(data)

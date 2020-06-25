@@ -1,7 +1,47 @@
 {
   "platformAware": false,
+  "theme": {
+    "primaryColor": "blue",
+    "secondaryColor": "white",
+    "textColor": "black",
+    "enabledColor": "blue",
+    "disabledColor": "grey",
+    "errorColor": "red",
+    "title": {
+      "fontWeight": "bold",
+      "fontSize": 22
+    },
+    "subtitle": {
+      "fontSize": 16
+    },
+    "input": {
+      "margin": 5
+    },
+    "flatButton": {
+      "fontSize": 14,
+      "fontColor": "white",
+      "fontWeight": 6,
+      "elevation": 2,
+      "background": "blue",
+      "size": [
+        220,
+        44
+      ]
+    },
+    "raisedButton": {
+      "fontSize": 14,
+      "fontColor": "white",
+      "fontWeight": 4,
+      "elevation": 4,
+      "background": "blue",
+      "size": [
+        300,
+        40
+      ]
+    }
+  },
   "routing": {
-    "initial": "login",
+    "initial": "register",
     "default": {
       "onSuccess": "_dismiss"
     }
@@ -14,62 +54,69 @@
       },
       "action": "login",
       "appBar": {
-        "textKey": "Login",
-        "style": {
-          "fontColor": "white",
-          "background": "#000000"
-        }
-      },
-      "stack": "vertical",
-      "style": {
-        "background": "https://image.freepik.com/free-vector/abstract-galaxy-background_1199-247.jpg"
+        "textKey": "Login"
       },
       "children": [
         {
-          "type": "label",
-          "textKey": "login in with your email and password:",
+          "type": "container",
+          "stack": "horizontal",
+          "alignment": "start",
           "style": {
-            "padding": 50,
-            "fontSize": 50,
-            "fontColor": "#BCBCBC",
-            "fontWeight": 1
-          }
+            "margin": 0
+          },
+          "children": [
+            {
+              "type": "label",
+              "textKey": "login in with your email and password:",
+              "theme": "subtitle"
+            }
+          ]
         },
         {
           "bind": "loginID",
           "type": "emailInput",
           "textKey": "Email",
           "theme": "input",
-          "style": {
-            "borderColor": "white",
-            "borderSize": 1,
-            "fontColor": "white",
-            "cornerRadius": 10
+          "validations": {
+            "required": {
+              "enabled": true,
+              "errorKey": "This field is required"
+            },
+            "regex": {
+              "enabled": true,
+              "value": "^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\\.[a-zA-Z]+",
+              "errorKey": "Invalid email format"
+            }
           }
         },
         {
           "bind": "password",
           "type": "passwordInput",
           "textKey": "Password",
+          "theme": "input",
+          "validations": {
+            "required": {
+              "enabled": true,
+              "errorKey": "This field is required"
+            }
+          }
+        },
+        {
+          "type": "label",
+          "textKey": "I don't have an account. [Register](register)",
           "style": {
-            "borderColor": "white",
-            "borderSize": 1,
-            "fontColor": "white",
-            "cornerRadius": 10
+            "margin": [
+              0,
+              24,
+              0,
+              16
+            ]
           }
         },
         {
           "type": "submit",
           "textKey": "Submit",
-          "style": {
-            "background": "#000000",
-            "padding": 50,
-            "fontSize": 50,
-            "fontColor": "#BCBCBC",
-            "fontWeight": 1,
-            "elevation": 2,
-            "cornerRadius": 10
-          }
+          "theme": "raisedButton"
         }
       ]
     },
@@ -85,86 +132,81 @@
       "stack": "vertical",
       "children": [
         {
-          "type": "label",
-          "textKey": "Register with site credentials:"
+          "type": "container",
+          "stack": "horizontal",
+          "alignment": "start",
+          "style": {
+            "margin": 0
+          },
+          "children": [
+            {
+              "type": "label",
+              "textKey": "Register with your email and password:"
+            }
+          ]
         },
         {
           "bind": "email",
           "type": "emailInput",
-          "textKey": "Email"
-        },
-        {
-          "bind": "password",
-          "type": "passwordInput",
-          "textKey": "Password"
+          "textKey": "Email",
+          "theme": "input"
         },
         {
           "type": "container",
           "stack": "horizontal",
           "alignment": "start",
+          "style": {
+            "margin": 0
+          },
           "children": [
             {
               "bind": "profile.firstName",
               "type": "textInput",
-              "textKey": "First name"
+              "textKey": "First name",
+              "theme": "input"
             },
             {
               "bind": "profile.lastName",
               "type": "textInput",
-              "textKey": "Last name"
+              "textKey": "Last name",
+              "theme": "input"
             }
           ]
+        },
+        {
+          "bind": "password",
+          "type": "passwordInput",
+          "textKey": "Password",
+          "theme": "input"
+        },
+        {
+          "type": "label",
+          "textKey": "Already registered? [Login](login)",
+          "style": {
+            "margin": [
+              0,
+              26,
+              0,
+              16
+            ]
+          }
         },
         {
           "bind": "data.terms",
           "type": "checkbox",
-          "textKey": "i have read and understood the terms of use"
-        },
-        {
-          "type": "dropdown",
-          "bind": "data.favGuitar",
-          "options": [
-            {
-              "default": true,
-              "value": "PRS",
-              "textKey": "Paul Reed Smith"
-            },
-            {
-              "value": "Rubato",
-              "textKey": "Rubato"
-            },
-            {
-              "value": "Parker",
-              "textKey": "Parker Guitars"
-            }
-          ]
-        },
-        {
-          "type": "radio",
-          "bind": "data.favGuitar",
-          "options": [
-            {
-              "default": true,
-              "value": "PRS",
-              "textKey": "Paul Reed Smith"
-            },
-            {
-              "value": "Rubato",
-              "textKey": "Rubato"
-            },
-            {
-              "value": "Parker",
-              "textKey": "Parker Guitars"
-            }
-          ]
+          "textKey": "I have read and understood these [terms of use](https://www.google.com)",
+          "style": {
+            "margin": 0
+          }
         },
         {
           "type": "submit",
-          "textKey": "Submit"
+          "textKey": "Submit",
+          "theme": "raisedButton"
         }
       ]
     },
-    "account-update" : {
+    "account-update": {
       "routing": {
         "onSuccess": "_dismiss"
       },
@@ -177,31 +219,39 @@
         {
           "bind": "profile.firstName",
           "type": "textInput",
-          "textKey": "First name"
+          "textKey": "First name",
+          "theme": "input"
         },
         {
           "bind": "profile.lastName",
           "type": "textInput",
-          "textKey": "Last name"
+          "textKey": "Last name",
+          "theme": "input"
         },
         {
           "bind": "profile.email",
           "type": "textInput",
-          "textKey": "Email"
+          "textKey": "Email",
+          "theme": "input"
         },
         {
           "bind": "profile.zip",
           "type": "textInput",
-          "textKey": "Zipcode"
-        },
-        {
-          "bind": "profile.country",
-          "type": "textInput",
-          "textKey": "Country"
+          "textKey": "Zipcode",
+          "theme": "input"
         },
         {
           "type": "submit",
-          "textKey": "Submit"
+          "textKey": "Submit",
+          "theme": "raisedButton",
+          "style": {
+            "margin": [
+              0,
+              100,
+              0,
+              0
+            ]
+          }
         }
       ]
     }

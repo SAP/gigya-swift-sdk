@@ -13,8 +13,8 @@ target 'TestApp' do
   pod 'LineSDKSwift', '~> 5.0'
 
   pod 'GoogleSignIn', '5.0.1', :modular_headers => false
-  pod 'FBSDKCoreKit', '5.5.0'
-  pod 'FBSDKLoginKit', '5.5.0'
+  pod 'FBSDKCoreKit', '7.0.1'
+  pod 'FBSDKLoginKit', '7.0.1'
 
   pod 'Firebase/Analytics'
   pod 'Firebase/Messaging'
