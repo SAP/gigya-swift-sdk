@@ -21,20 +21,24 @@ class NativeScreenSetsViewModel<T: GigyaAccountProtocol>: NSObject, UIAdaptivePr
     var logChannel: LogChannel?
 
     let flowManager: FlowManager<T>
+    let busnessApi: BusinessApiDelegate
 
     var engine: FlutterEngine?
 
     var eventHandler: NssHandler<T>? = { _ in }
 
-    init(mainChannel: ScreenChannel, apiChannel: ApiChannel, logChannel: LogChannel, flowManager: FlowManager<T>, eventHandler: NssHandler<T>?) {
+    init(mainChannel: ScreenChannel, apiChannel: ApiChannel, logChannel: LogChannel, busnessApi: BusinessApiDelegate, flowManager: FlowManager<T>, eventHandler: NssHandler<T>?) {
         self.screenChannel = mainChannel
         self.apiChannel = apiChannel
         self.logChannel = logChannel
         self.flowManager = flowManager
         self.eventHandler = eventHandler
+        self.busnessApi = busnessApi
     }
 
     func loadChannels(with engine: FlutterEngine) {
+        flowManager.currentVc = engine.viewController
+
         screenChannel?.initChannel(engine: engine)
         apiChannel?.initChannel(engine: engine)
         logChannel?.initChannel(engine: engine)
@@ -75,7 +79,6 @@ class NativeScreenSetsViewModel<T: GigyaAccountProtocol>: NSObject, UIAdaptivePr
             guard let self = self, let method = method else {
                 return
             }
-    
             self.flowManager.next(method: method, params: data, response: response)
 
             GigyaLogger.log(with: self, message: "next: \(method)")

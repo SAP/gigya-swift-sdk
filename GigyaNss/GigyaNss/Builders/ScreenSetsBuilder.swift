@@ -19,6 +19,7 @@ class ScreenSetsBuilder<T: GigyaAccountProtocol>: ScreenSetsMainBuilderProtocol 
 
     var assetName: String?
     var screenName: String?
+    var langName: String?
 
     var handlerExists: Bool?
 
@@ -42,6 +43,11 @@ extension ScreenSetsBuilder: ScreenSetsExternalBuilderProtocol {
 
     func initialRoute(name: String) -> BuilderOptions {
         screenName = name
+        return self
+    }
+
+    func lang(name: String) -> BuilderOptions {
+        langName = name
         return self
     }
 
@@ -84,6 +90,7 @@ extension ScreenSetsBuilder: ScreenSetsActionsBuilderProtocol {
 
         engineLifeCycle.register(asset: assetName,
                                  initialRoute: screenName,
+                                 defaultLang: langName,
                                  presentFrom: viewController,
                                  to: screenSetViewController
         )

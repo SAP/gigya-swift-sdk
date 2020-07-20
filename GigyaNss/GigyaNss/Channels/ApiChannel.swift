@@ -12,7 +12,7 @@ import Gigya
 class ApiChannel: BaseChannel {
     var flutterMethodChannel: FlutterMethodChannel?
 
-    func initChannel(engine: FlutterEngine) {
+    func initChannel(engine: FlutterEngine) {        
         flutterMethodChannel = FlutterMethodChannel(name: GigyaNss.apiChannel, binaryMessenger: engine.binaryMessenger)
     }
 
@@ -24,6 +24,7 @@ class ApiChannel: BaseChannel {
 enum ApiChannelEvent: String {
     case submit
     case api
+    case socialLogin
 }
 //struct ApiChannelEvent: RawRepresentable {
 //    var rawValue: String

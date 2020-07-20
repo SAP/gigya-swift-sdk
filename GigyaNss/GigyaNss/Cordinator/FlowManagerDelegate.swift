@@ -15,6 +15,8 @@ protocol FlowManagerDelegate: class {
 
     func getEngineResultClosure() -> FlutterResult?
 
-    func getResolver() -> NssResolverModelProtocol? 
+    func getResolver() -> NssResolverModelProtocol?
+
+    func getEngineVc() -> UIViewController?
 
 }

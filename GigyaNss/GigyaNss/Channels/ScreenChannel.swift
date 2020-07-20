@@ -10,7 +10,6 @@ import Flutter
 import Gigya
 
 class ScreenChannel: BaseChannel {
-
     var flutterMethodChannel: FlutterMethodChannel?
 
     func initChannel(engine: FlutterEngine) {
