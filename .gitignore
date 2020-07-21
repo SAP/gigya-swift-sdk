@@ -13,6 +13,8 @@ TestApp/facebook/
 
 facebook
 
+GigyaTfa.framework
+
 .DS_Store
 
 Podfile.lock
