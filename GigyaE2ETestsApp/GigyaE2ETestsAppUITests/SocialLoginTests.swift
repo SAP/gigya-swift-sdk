@@ -64,7 +64,7 @@ class SocialLoginTests: XCTestCase {
 
         email.tap()
 
-        app.typeText("bugbuster121@gmail.com")
+        app.typeText(TestCredentials.Google.user)
 
         app.toolbars.buttons["Done"].tap()
 
@@ -78,7 +78,7 @@ class SocialLoginTests: XCTestCase {
 
         pass.tap()
 
-        app.typeText("Aqwe123 #")
+        app.typeText(TestCredentials.Google.pass)
 
         app.toolbars.buttons["Done"].tap()
 
@@ -131,7 +131,7 @@ class SocialLoginTests: XCTestCase {
 
             email.tap()
 
-            app.typeText("tskawjkmuh_1549533638@tfbnw.net")
+            app.typeText(TestCredentials.Facebook.user)
 
             app.toolbars.buttons["Done"].tap()
 
@@ -143,7 +143,7 @@ class SocialLoginTests: XCTestCase {
 
             pass.tap()
 
-            app.typeText("Sa151515")
+            app.typeText(TestCredentials.Facebook.pass)
 
             app.buttons["Log In"].tap()
         }
@@ -186,7 +186,7 @@ class SocialLoginTests: XCTestCase {
         XCTAssertTrue(email.exists)
 
         email.tap()
-        app.typeText("toolmarmel@gmail.com")
+        app.typeText(TestCredentials.Line.user)
 
         let pass = app.secureTextFields.element(boundBy: 0)
 
@@ -198,7 +198,7 @@ class SocialLoginTests: XCTestCase {
 
         pass.tap()
 
-        app.typeText("jenssin123")
+        app.typeText(TestCredentials.Line.pass)
 
         sleep(2)
 
@@ -239,7 +239,7 @@ class SocialLoginTests: XCTestCase {
         sleep(1)
 
         email.tap()
-        app.typeText("toolmarmel@yahoo.com")
+        app.typeText(TestCredentials.Yahoo.user)
         app.toolbars.buttons["Done"].tap()
 
         let nextButtonQuery = app.buttons.matching(identifier: "Next")
@@ -256,7 +256,7 @@ class SocialLoginTests: XCTestCase {
 
         pass.tap()
 
-        app.typeText("yhmihr250#80")
+        app.typeText(TestCredentials.Yahoo.pass)
 
         sleep(1)
         app.toolbars.buttons["Done"].tap()
