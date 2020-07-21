@@ -2,7 +2,7 @@
 
 Pods/Target Support Files/Pods-TestApp/
 
-Pods/*
+Pods
 GoogleSignIn.bundle
 
 GoogleSignInDependencies.framework
