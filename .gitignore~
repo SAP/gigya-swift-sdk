@@ -1,0 +1,65 @@
+.idea/
+
+fastlane
+
+Pods/Target Support Files/Pods-TestApp/
+
+Pods
+GoogleSignIn.bundle
+
+GoogleSignInDependencies.framework
+
+TestApp/facebook/
+
+facebook
+
+GigyaTfa.framework
+
+.DS_Store
+
+Podfile.lock
+
+Gigya.framework/
+
+build/GigyaSwift.build/
+
+<<<<<<< HEAD
+docs/
+
+build/Release-iphoneos/Gigya.framework.dSYM/Contents/
+=======
+build/Release-iphoneos/Gigya.framework.dSYM/Contents/
+
+docs/
+>>>>>>> update-docs
+
+<<<<<<< HEAD
+GigyaTfa/GigyaTfa.framework/_CodeSignature/CodeResources
+
+GigyaTfa/GigyaTfa.framework/
+GigyaTfa/build/
+=======
+.DS_Store
+>>>>>>> develop
+
+<<<<<<< HEAD
+GigyaNss/build/
+GigyaNss/Debug/
+GigyaNss/Release/
+GigyaNss/Flutter/
+GigyaNssEngine/build/
+GigyaNssEngine/Debug/
+GigyaNssEngine/Release/
+
+GigyaNss/gigya-native-screensets-engine/
+=======
+GigyaNss/gigya-native-screensets-engine/
+
+GigyaNss/Flutter/
+>>>>>>> develop
+
+GigyaNss/nss-src.zip
+
+Archive.zip
+
+GigyaE2ETestsApp/GigyaE2ETestsAppUITests/Utils/TestCredentials.swift

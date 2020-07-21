@@ -9,6 +9,12 @@ GoogleSignIn.bundle
 
 GoogleSignInDependencies.framework
 
+GigyaSwift.xcworkspace
+
+GigyaSwift.xcodeproj.xcworkspace
+
+TestApp/
+
 TestApp/facebook/
 
 facebook
