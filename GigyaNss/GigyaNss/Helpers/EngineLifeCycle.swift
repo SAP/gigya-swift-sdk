@@ -13,15 +13,19 @@ class EngineLifeCycle {
 
     private let loaderHelper: LoaderFileHelper
 
+    private let schemaHelper: SchemaHelper
+
     private var isDisplay = false
 
-    init(ignitionChannel: IgnitionChannel, loaderHelper: LoaderFileHelper) {
+    init(ignitionChannel: IgnitionChannel, loaderHelper: LoaderFileHelper, schemaHelper: SchemaHelper) {
         self.ignitionChannel = ignitionChannel
         self.loaderHelper = loaderHelper
+        self.schemaHelper = schemaHelper
     }
 
     func register<T: GigyaAccountProtocol>(asset: String?,
                                                        initialRoute: String?,
+                                                       defaultLang: String?,
                                                        presentFrom vc: UIViewController,
                                                        to screen: NativeScreenSetsViewController<T>) {
         guard let assetName = asset, !assetName.isEmpty else {
@@ -32,8 +36,8 @@ class EngineLifeCycle {
 
         ignitionChannel.initChannel(engine: screen.engine!)
 
-        ignitionChannel.methodHandler(scheme: IgnitionChannelEvent.self) { (method, data, response) in
-            guard let method = method else {
+        ignitionChannel.methodHandler(scheme: IgnitionChannelEvent.self) { [weak self] (method, data, response) in
+            guard let self = self, let method = method else {
                 return
             }
 
@@ -42,27 +46,38 @@ class EngineLifeCycle {
                 GigyaLogger.log(with: self, message: "ignition start")
 
                 // load the `screenSets` file from bundle. (example: `init.json`)
-                var loadAsset = self.loaderHelper.fileToDic(name: assetName)
+                guard var loadAsset = self.loaderHelper.fileToDic(name: assetName) else {
+                    GigyaLogger.error(with: EngineLifeCycle.self, message: "parsing error ")
+                }
                 
                 // load the `theme` file from bundle. (example: `init.theme.json`)
-                let loadTheme = self.loaderHelper.fileToDic(name: "\(assetName).theme")
+                let loadFileTheme = self.loaderHelper.fileToDic(name: "\(assetName).\(GigyaNss.themePrefix))")
+
+                // load the `i18n` file from bundle. (example: `init.theme.json`)
+                let loadLangFile = self.loaderHelper.fileToDic(name: "\(assetName).\(GigyaNss.langPrefix)")
 
                 if let initialRoute = initialRoute {
-                    guard var assetJson = loadAsset, var routing = assetJson["routing"] as? [String: Any] else {
+                    guard var routing = loadAsset["routing"] as? [String: Any] else {
                         GigyaLogger.error(with: EngineLifeCycle.self, message: "parsing error - `routing` is not exists.")
                     }
                     
                     routing["initial"] = initialRoute
-                    assetJson["routing"] = routing
-
-                    if let theme = loadTheme {
-                        assetJson["theme"] = theme
-                    }
-
-                    loadAsset = assetJson
+                    loadAsset["routing"] = routing
                 }
 
-                GigyaLogger.log(with: self, message: "ignition screen load: \(loadAsset ?? [:])")
+                if let lang = defaultLang {
+                    loadAsset["lang"] = lang
+                }
+
+                if let theme = loadFileTheme {
+                    loadAsset["theme"] = theme
+                }
+
+                if let i18n = loadLangFile {
+                    loadAsset["i18n"] = i18n
+                }
+
+                GigyaLogger.log(with: self, message: "ignition screen load: \(loadAsset)")
 
                 response(loadAsset)
             case .readyForDisplay:
@@ -72,6 +87,10 @@ class EngineLifeCycle {
 
                 self.isDisplay = true
                 vc.present(screen, animated: true, completion: nil)
+            case .loadSchema:
+                self.schemaHelper.getSchema { (data) in
+                    response(data)
+                }
             }
         }
     }

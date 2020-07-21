@@ -14,13 +14,18 @@ protocol NssActionProtocol: class {
 
     var delegate: FlowManagerDelegate? { get set }
 
+    var busnessApi: BusinessApiDelegate? { get set }
+
     func initialize(response: @escaping FlutterResult)
 
     func next(method: ApiChannelEvent, params: [String: Any]?)
 }
 
 class Action<T: GigyaAccountProtocol>: NssActionProtocol {
+
     var actionId: NssAction?
+
+    var busnessApi: BusinessApiDelegate?
 
     weak var delegate: FlowManagerDelegate?
 
@@ -32,6 +37,15 @@ class Action<T: GigyaAccountProtocol>: NssActionProtocol {
         switch method {
         case .api:
             break
+        case .socialLogin:
+            guard
+                let vc = delegate?.getEngineVc(),
+                let provider = params?["provider"] as? String,
+                let socialProvider = GigyaSocialProviders(rawValue: provider) else {
+                return
+            }
+
+            busnessApi?.callSociallogin(provider: socialProvider, viewController: vc, params: [:], dataType: T.self, completion: delegate!.getMainLoginClosure(obj: T.self))
         default:
             break
         }

@@ -10,8 +10,6 @@ import Flutter
 
 class SetAccountAction<T: GigyaAccountProtocol>: Action<T> {
 
-    var busnessApi: BusinessApiDelegate
-
     // resolver for interruption
     var pendingRegResolver: NssResolverModel<PendingRegistrationResolver<T>>?
 
@@ -23,9 +21,10 @@ class SetAccountAction<T: GigyaAccountProtocol>: Action<T> {
             " hometown, favorites, followersCount, followingCount, username, name, locale, verified, timezone, likes, samlData"
 
     init(busnessApi: BusinessApiDelegate) {
+        super.init()
         self.busnessApi = busnessApi
     }
-
+    
     override func initialize(response: @escaping FlutterResult) {
 
         var params = ["include": includeAll, "extraProfileFields": extraProfileFieldsAll]
@@ -38,7 +37,7 @@ class SetAccountAction<T: GigyaAccountProtocol>: Action<T> {
             params["regToken"] = resolverModel.resolver?.regToken ?? ""
         }
 
-        busnessApi.callGetAccount(dataType: T.self, params: params) { (result) in
+        busnessApi?.callGetAccount(dataType: T.self, params: params) { (result) in
             switch result {
             case .success(let data):
                 guard let decodedObject = try? JSONSerialization.jsonObject(with: JSONEncoder().encode(data)) as? [String: AnyObject] else {
@@ -68,7 +67,7 @@ class SetAccountAction<T: GigyaAccountProtocol>: Action<T> {
                 var data: [String: Any] = [:];
                 data["data"] = params?["data"]
                 data["profile"] = params?["profile"]
-                busnessApi.callSetAccount(dataType: T.self, params: data, completion: self.apiClosure)
+                busnessApi?.callSetAccount(dataType: T.self, params: data, completion: self.apiClosure)
             }
         default:
             break

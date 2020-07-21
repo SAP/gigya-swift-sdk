@@ -14,6 +14,7 @@
 		E732A0C3237D7DCD00620668 /* SocialLoginTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E732A0C2237D7DCD00620668 /* SocialLoginTests.swift */; };
 		E76F8AB023A2703300FBF925 /* ScreenSetsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E76F8AAF23A2703300FBF925 /* ScreenSetsViewController.swift */; };
 		E775E7FC23BB585F0059151D /* XCUIElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = E775E7FB23BB585F0059151D /* XCUIElement.swift */; };
+		E7D0505C24C6B98600CCEC3A /* TestCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7D0505B24C6B98600CCEC3A /* TestCredentials.swift */; };
 		E7D1F71624167DFB00394185 /* GigyaNssEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7D1F71524167DFB00394185 /* GigyaNssEngine.framework */; };
 		E7D1F71724167DFB00394185 /* GigyaNssEngine.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E7D1F71524167DFB00394185 /* GigyaNssEngine.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E7D1F71C241A25BD00394185 /* GigyaNss.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7D1F71B241A25BD00394185 /* GigyaNss.framework */; };
@@ -71,6 +72,7 @@
 		E732A0C2237D7DCD00620668 /* SocialLoginTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialLoginTests.swift; sourceTree = "<group>"; };
 		E76F8AAF23A2703300FBF925 /* ScreenSetsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenSetsViewController.swift; sourceTree = "<group>"; };
 		E775E7FB23BB585F0059151D /* XCUIElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCUIElement.swift; sourceTree = "<group>"; };
+		E7D0505B24C6B98600CCEC3A /* TestCredentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCredentials.swift; sourceTree = "<group>"; };
 		E7D1F71224167DF700394185 /* GigyaNss.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GigyaNss.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7D1F71524167DFB00394185 /* GigyaNssEngine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GigyaNssEngine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7D1F718241A257F00394185 /* GigyaNssEngine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GigyaNssEngine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -135,6 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				E72A85FF23A10EDC00C213BE /* GeneralGigyaUtils.swift */,
+				E7D0505B24C6B98600CCEC3A /* TestCredentials.swift */,
 				E775E7FB23BB585F0059151D /* XCUIElement.swift */,
 			);
 			path = Utils;
@@ -447,6 +450,7 @@
 				E7F2EFD92379524F00565388 /* GigyaE2ETestsAppUITests.swift in Sources */,
 				E775E7FC23BB585F0059151D /* XCUIElement.swift in Sources */,
 				E71203FD23A2785700C99596 /* ScreensetsTests.swift in Sources */,
+				E7D0505C24C6B98600CCEC3A /* TestCredentials.swift in Sources */,
 				E7D1F723241A2FDA00394185 /* NssTests.swift in Sources */,
 				E72A860023A10EDC00C213BE /* GeneralGigyaUtils.swift in Sources */,
 			);

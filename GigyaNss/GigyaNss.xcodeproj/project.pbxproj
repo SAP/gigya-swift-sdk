@@ -57,6 +57,7 @@
 		E7772A0623D5DC0400DE9DDD /* LoaderFilesHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7772A0523D5DC0400DE9DDD /* LoaderFilesHelper.swift */; };
 		E7772A0923D5EAA000DE9DDD /* BuilderOptionsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7772A0823D5EAA000DE9DDD /* BuilderOptionsProtocol.swift */; };
 		E77F7A2D2407BF5100FF90FB /* CreateEngineFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77F7A2C2407BF5100FF90FB /* CreateEngineFactory.swift */; };
+		E78038CF24A8A0240002911C /* SchemaHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78038CE24A8A0240002911C /* SchemaHelper.swift */; };
 		E78B8A5E23FC375700E29651 /* NativeScreenSetsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78B8A5D23FC375700E29651 /* NativeScreenSetsViewModel.swift */; };
 		E78B8A6023FC399C00E29651 /* ApiChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78B8A5F23FC399C00E29651 /* ApiChannel.swift */; };
 		E7B521982444902C00DAB464 /* GigyaResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B521972444902C00DAB464 /* GigyaResponseModel.swift */; };
@@ -105,6 +106,7 @@
 		E7772A0523D5DC0400DE9DDD /* LoaderFilesHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderFilesHelper.swift; sourceTree = "<group>"; };
 		E7772A0823D5EAA000DE9DDD /* BuilderOptionsProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuilderOptionsProtocol.swift; sourceTree = "<group>"; };
 		E77F7A2C2407BF5100FF90FB /* CreateEngineFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEngineFactory.swift; sourceTree = "<group>"; };
+		E78038CE24A8A0240002911C /* SchemaHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchemaHelper.swift; sourceTree = "<group>"; };
 		E78B8A5D23FC375700E29651 /* NativeScreenSetsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeScreenSetsViewModel.swift; sourceTree = "<group>"; };
 		E78B8A5F23FC399C00E29651 /* ApiChannel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiChannel.swift; sourceTree = "<group>"; };
 		E7B521972444902C00DAB464 /* GigyaResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigyaResponseModel.swift; sourceTree = "<group>"; };
@@ -268,6 +270,7 @@
 			children = (
 				E7772A0523D5DC0400DE9DDD /* LoaderFilesHelper.swift */,
 				E7D1F70D240E5F0700394185 /* EngineLifeCycle.swift */,
+				E78038CE24A8A0240002911C /* SchemaHelper.swift */,
 				E77F7A2C2407BF5100FF90FB /* CreateEngineFactory.swift */,
 				E7D1F71024152D5000394185 /* Dictionary.swift */,
 				E70F8BC023FD786E00D52208 /* OrderedDictionary.swift */,
@@ -463,6 +466,7 @@
 				E70F8BEF24053ABA00D52208 /* RegisterAction.swift in Sources */,
 				E78B8A5E23FC375700E29651 /* NativeScreenSetsViewModel.swift in Sources */,
 				E719C6AF24225216002F8C36 /* LogChannel.swift in Sources */,
+				E78038CF24A8A0240002911C /* SchemaHelper.swift in Sources */,
 				E70F8BF124053B5800D52208 /* LoginAction.swift in Sources */,
 				E77F7A2D2407BF5100FF90FB /* CreateEngineFactory.swift in Sources */,
 				E7B521982444902C00DAB464 /* GigyaResponseModel.swift in Sources */,
@@ -653,7 +657,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.2.1;
+				MARKETING_VERSION = 0.3;
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = Gigya.GigyaNss;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
@@ -693,7 +697,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.2.1;
+				MARKETING_VERSION = 0.3;
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = Gigya.GigyaNss;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";

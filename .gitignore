@@ -1,4 +1,5 @@
 .idea/
+
 Pods/Target Support Files/Pods-TestApp/
 
 Pods/
@@ -47,3 +48,5 @@ GigyaNss/Flutter/
 GigyaNss/nss-src.zip
 
 Archive.zip
+
+GigyaE2ETestsApp/GigyaE2ETestsAppUITests/Utils/TestCredentials.swift

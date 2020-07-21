@@ -28,6 +28,9 @@ final class FlowManager<T: GigyaAccountProtocol> {
     // current result to dart when using interruption
     private var engineResultHandler: FlutterResult?
 
+    // Current engine view controller
+    weak var currentVc: UIViewController?
+
     // Current screen id - for events handler
     var currentScreenId: String?
 
@@ -111,5 +114,9 @@ extension FlowManager: FlowManagerDelegate {
         }
 
         return resolver
+    }
+
+    func getEngineVc() -> UIViewController? {
+        return currentVc
     }
 }

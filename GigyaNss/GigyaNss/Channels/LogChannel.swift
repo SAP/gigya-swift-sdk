@@ -10,7 +10,6 @@ import Gigya
 import Flutter
 
 class LogChannel: BaseChannel {
-
     var flutterMethodChannel: FlutterMethodChannel?
 
     func initChannel(engine: FlutterEngine) {
