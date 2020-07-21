@@ -26,6 +26,11 @@ final public class GigyaNss {
     static let engineBundle = "Gigya.GigyaNssEngine"
     static let engineId = "io.flutter"
 
+    // extends files prefix
+    static let themePrefix = "theme"
+    static let langPrefix = "i18n"
+
+
     var builder: ScreenSetsMainBuilderProtocol?
 
     /**
@@ -69,10 +74,12 @@ final public class GigyaNss {
             let logChannel = resolver.resolve(LogChannel.self)
             let flowManager = resolver.resolve(FlowManager<T>.self)
             let eventHandler = resolver.resolve(NssHandler<T>.self)
+            let busnessApi = resolver.resolve(BusinessApiDelegate.self)
 
             return NativeScreenSetsViewModel(mainChannel: mainChannel!,
                                              apiChannel: apiChannel!,
                                              logChannel: logChannel!,
+                                             busnessApi: busnessApi!,
                                              flowManager: flowManager!,
                                              eventHandler: eventHandler
             )
@@ -88,8 +95,9 @@ final public class GigyaNss {
         dependenciesContainer.register(service: EngineLifeCycle.self) { resolver in
             let ignitionChannel = resolver.resolve(IgnitionChannel.self)!
             let loaderHelper = resolver.resolve(LoaderFileHelper.self)!
+            let schemaHelper = resolver.resolve(SchemaHelper.self)!
 
-            return EngineLifeCycle(ignitionChannel: ignitionChannel, loaderHelper: loaderHelper)
+            return EngineLifeCycle(ignitionChannel: ignitionChannel, loaderHelper: loaderHelper, schemaHelper: schemaHelper)
         }
 
         dependenciesContainer.register(service: LoaderFileHelper.self) { _ in
@@ -120,6 +128,12 @@ final public class GigyaNss {
             let busnessApi = resolver.resolve(BusinessApiDelegate.self)
             
             return RegisterAction(busnessApi: busnessApi!)
+        }
+
+        dependenciesContainer.register(service: SchemaHelper.self) { resolver in
+            let busnessApi = resolver.resolve(BusinessApiDelegate.self)
+
+            return SchemaHelper(busnessApi: busnessApi!)
         }
 
         dependenciesContainer.register(service: LoginAction<T>.self) { resolver in

@@ -9,12 +9,12 @@ import Gigya
 import Flutter
 
 class LoginAction<T: GigyaAccountProtocol>: Action<T> {
-    var busnessApi: BusinessApiDelegate
 
     init(busnessApi: BusinessApiDelegate) {
+        super.init()
         self.busnessApi = busnessApi
     }
-    
+
     override func next(method: ApiChannelEvent, params: [String: Any]?) {
         super.next(method: method, params: params)
         
@@ -28,7 +28,7 @@ class LoginAction<T: GigyaAccountProtocol>: Action<T> {
             let password = params["password"] as? String ?? ""
             let paramss = params["params"] as? [String: Any] ?? [:]
             
-            busnessApi.callLogin(dataType: T.self, loginId: loginId, password: password, params: paramss, completion: delegate!.getMainLoginClosure(obj: T.self))
+            busnessApi?.callLogin(dataType: T.self, loginId: loginId, password: password, params: paramss, completion: delegate!.getMainLoginClosure(obj: T.self))
         default:
             break
         }

@@ -10,7 +10,6 @@ import Gigya
 import Flutter
 
 class IgnitionChannel: BaseChannel {
-
     var flutterMethodChannel: FlutterMethodChannel?
 
     func initChannel(engine: FlutterEngine) {
@@ -25,4 +24,5 @@ class IgnitionChannel: BaseChannel {
 enum IgnitionChannelEvent: String {
     case ignition
     case readyForDisplay = "ready_for_display"
+    case loadSchema = "load_schema"
 }
