@@ -17,7 +17,7 @@ Pod::Spec.new do |spec|
 #  spec.platform = :ios
   spec.ios.deployment_target  = '10.0'
 
-  spec.source_files       = 'GigyaSwift/*.swift'
+  spec.source_files       = 'GigyaSwift/*/*.swift', 'GigyaSwift/*/*/*.swift', 'GigyaSwift/*/*/*/*.swift', 'GigyaSwift/*/*/*/*/*.swift'
   
   spec.framework      = 'SystemConfiguration'
   spec.library = 'c++', 'z'
