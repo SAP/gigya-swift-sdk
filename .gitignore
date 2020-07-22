@@ -1,10 +1,29 @@
 .idea/
 
+fastlane
+
 Pods/Target Support Files/Pods-TestApp/
 
-Pods/
+Pods
+GoogleSignIn.bundle
+
+GoogleSignInDependencies.framework
+
+GigyaSwift.xcworkspace
+
+GigyaSwift.xcodeproj.xcworkspace
+
+TestApp/
 
 TestApp/facebook/
+
+facebook
+
+GigyaTfa.framework
+
+.DS_Store
+
+Podfile.lock
 
 Gigya.framework/
 
