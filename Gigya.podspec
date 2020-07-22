@@ -5,7 +5,7 @@ Pod::Spec.new do |spec|
   spec.homepage      = 'https://developers.gigya.com/display/GD/Swift+SDK'
   spec.authors       = { 'Gigya SAP' }
   spec.summary       = 'The Swift SDK provides an interface for the Gigya API. The library makes it simple to integrate Gigya's service in your Swift application'
-  spec.source        = { :git => 'https://github.com/SAP/gigya-swift-sdk', :tag => 'v1.1.2' }
+  spec.source        = { :git => 'https://github.com/SAP/gigya-swift-sdk', :tag => 'core-v#{spec.version}' }
   spec.module_name   = 'Gigya'
   spec.swift_version = '5.2'
 
