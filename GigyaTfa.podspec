@@ -11,7 +11,7 @@ Pod::Spec.new do |spec|
                         DESC
 
   spec.source        = { :git => 'https://github.com/SAP/gigya-swift-sdk.git', :tag => 'tfa/v1.0.8' }
-  spec.module_name   = 'Gigya'
+  spec.module_name   = 'GigyaTfa'
   spec.swift_version = '5.2'
 
   spec.platform = :ios
@@ -20,6 +20,7 @@ Pod::Spec.new do |spec|
   spec.source_files       = 'GigyaTfa/GigyaTfa/*.swift', 'GigyaTfa/GigyaTfa/*/*.swift', 'GigyaTfa/GigyaTfa/*/*/*.swift'
 
   spec.framework      = 'SystemConfiguration'
+  spec.dependency = 'Gigya'
   spec.library = 'c++', 'z'
 
 end
