@@ -20,7 +20,7 @@ Pod::Spec.new do |spec|
   spec.source_files       = 'GigyaTfa/GigyaTfa/*.swift', 'GigyaTfa/GigyaTfa/*/*.swift', 'GigyaTfa/GigyaTfa/*/*/*.swift'
 
   spec.framework      = 'SystemConfiguration'
-  spec.dependency = 'Gigya'
+  spec.dependency 'Gigya'
   spec.library = 'c++', 'z'
 
 end
