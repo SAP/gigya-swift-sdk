@@ -27,7 +27,7 @@ Pod::Spec.new do |spec|
   end
 
   spec.subspec "Release" do |spec|
-     spec.dependenc 'Flutter', '1.12.1309'
+     spec.dependency 'Flutter', '1.12.1309'
   end
 end
 
