@@ -21,13 +21,14 @@ Pod::Spec.new do |spec|
   spec.framework      = 'SystemConfiguration'
   spec.dependency 'Gigya'
   spec.library = 'c++', 'z'
- 
-  spec.subspec "Debug" do |spec|
-     spec.vendored_frameworks = 'GigyaNss/Flutter/Debug/Flutter.framework'
+  spec.default_subspec = 'Debug' 
+  
+  spec.subspec "Debug" do |debug|
+     debug.vendored_frameworks = 'GigyaNss/Flutter/Debug/Flutter.framework'
   end
 
-  spec.subspec "Release" do |spec|
-     spec.dependency 'Flutter', '1.12.1309'
+  spec.subspec "Release" do |release|
+     release.dependency 'Flutter', '1.12.1309'
   end
 end
 
