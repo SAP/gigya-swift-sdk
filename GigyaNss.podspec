@@ -15,12 +15,19 @@ Pod::Spec.new do |spec|
 
   spec.platform = :ios
   spec.ios.deployment_target  = '11.0'
-  spec.vendored_frameworks = 'GigyaNss/Flutter/Debug/Flutter.framework'
+  
   spec.source_files       = 'GigyaNss/GigyaNss/*.swift', 'GigyaNss/GigyaNss/*/*.swift', 'GigyaNss/GigyaNss/*/*/*.swift'
 
   spec.framework      = 'SystemConfiguration'
   spec.dependency 'Gigya'
   spec.library = 'c++', 'z'
+ 
+  spec.subspec "Debug" do |spec|
+     spec.vendored_frameworks = 'GigyaNss/Flutter/Debug/Flutter.framework'
+  end
 
+  spec.subspec "Release" do |spec|
+     spec.dependenc 'Flutter', '1.12.1309'
+  end
 end
 
