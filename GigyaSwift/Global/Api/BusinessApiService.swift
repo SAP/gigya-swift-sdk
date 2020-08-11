@@ -121,10 +121,11 @@ class BusinessApiService: NSObject, BusinessApiServiceProtocol {
     func setAccount<T: Codable>(params: [String: Any], completion: @escaping (GigyaApiResult<T>) -> Void) {
         let model = ApiRequestModel(method: GigyaDefinitions.API.setAccountInfo, params: params)
 
-        apiService.send(model: model, responseType: T.self) { result in
+        apiService.send(model: model, responseType: T.self) { [weak self] result in
             switch result {
-            case .success(let data):
-                completion(.success(data: data))
+            case .success:
+                self?.accountService.clear()
+                self?.getAccount(dataType: T.self, completion: completion)
             case .failure(let error):
                 completion(.failure(error))
             }
