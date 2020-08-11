@@ -99,6 +99,7 @@
 		E760668B2278998E005E4CFD /* WebLoginProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E76066882278998E005E4CFD /* WebLoginProvider.swift */; };
 		E760668C2278998E005E4CFD /* WebViewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E76066892278998E005E4CFD /* WebViewWrapper.swift */; };
 		E760668D2278998E005E4CFD /* GigyaWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E760668A2278998E005E4CFD /* GigyaWebViewController.swift */; };
+		E76AF6EB24C88BA8008B9114 /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E76AF6EA24C88BA8008B9114 /* ApiService.swift */; };
 		E76F2E942345E78800056D19 /* Gigya.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7BE36732224219200A108D9 /* Gigya.framework */; };
 		E76F2E952345E78800056D19 /* Gigya.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E7BE36732224219200A108D9 /* Gigya.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E76F2E992346241E00056D19 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E71D4A2222817F83000892C2 /* libWeChatSDK.a */; };
@@ -166,7 +167,6 @@
 		E7CBAFB8222D17C9000B6C11 /* NetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CBAFB7222D17C9000B6C11 /* NetworkProvider.swift */; };
 		E7CBAFBA222D1840000B6C11 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CBAFB9222D1840000B6C11 /* NetworkError.swift */; };
 		E7CBAFBE222D18A6000B6C11 /* NetworkMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CBAFBD222D18A6000B6C11 /* NetworkMethod.swift */; };
-		E7CBAFC0222D1F5B000B6C11 /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CBAFBF222D1F5B000B6C11 /* ApiService.swift */; };
 		E7CBAFC5222E7314000B6C11 /* GigyaResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CBAFC4222E7314000B6C11 /* GigyaResult.swift */; };
 		E7CBAFCE222EA268000B6C11 /* GigyaSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CBAFCD222EA268000B6C11 /* GigyaSession.swift */; };
 		E7CBAFD0222EB89D000B6C11 /* BusinessApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CBAFCF222EB89D000B6C11 /* BusinessApiService.swift */; };
@@ -396,6 +396,7 @@
 		E76066882278998E005E4CFD /* WebLoginProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebLoginProvider.swift; sourceTree = "<group>"; };
 		E76066892278998E005E4CFD /* WebViewWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewWrapper.swift; sourceTree = "<group>"; };
 		E760668A2278998E005E4CFD /* GigyaWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GigyaWebViewController.swift; sourceTree = "<group>"; };
+		E76AF6EA24C88BA8008B9114 /* ApiService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
 		E76F2E722345E72500056D19 /* GigyaUITestsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GigyaUITestsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E76F2E872345E72700056D19 /* GigyaUITestsAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GigyaUITestsAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E774A54A224283DF00BC67D1 /* ApiRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiRequestModel.swift; sourceTree = "<group>"; };
@@ -478,7 +479,6 @@
 		E7CBAFB7222D17C9000B6C11 /* NetworkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkProvider.swift; sourceTree = "<group>"; };
 		E7CBAFB9222D1840000B6C11 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		E7CBAFBD222D18A6000B6C11 /* NetworkMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMethod.swift; sourceTree = "<group>"; };
-		E7CBAFBF222D1F5B000B6C11 /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ApiService.swift; path = ../../Network/Request/ApiService.swift; sourceTree = "<group>"; };
 		E7CBAFC4222E7314000B6C11 /* GigyaResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigyaResult.swift; sourceTree = "<group>"; };
 		E7CBAFCD222EA268000B6C11 /* GigyaSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigyaSession.swift; sourceTree = "<group>"; };
 		E7CBAFCF222EB89D000B6C11 /* BusinessApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessApiService.swift; sourceTree = "<group>"; };
@@ -715,7 +715,7 @@
 			children = (
 				E7CBAFCF222EB89D000B6C11 /* BusinessApiService.swift */,
 				E733743C22671FDD00ADEDBB /* BusinessApiDelegate.swift */,
-				E7CBAFBF222D1F5B000B6C11 /* ApiService.swift */,
+				E76AF6EA24C88BA8008B9114 /* ApiService.swift */,
 				E7ACF9A7226C83F200900C65 /* BusinessApiServiceProtocol.swift */,
 				E7ACF9AB226C841300900C65 /* ApiServiceProtocol.swift */,
 			);
@@ -1808,6 +1808,7 @@
 				E7E80D8A224BC17000D3B663 /* FatalErrorUtils.swift in Sources */,
 				E713E0FC2247C6E700181328 /* SignatureUtils.swift in Sources */,
 				E7CBB03D22356086000B6C11 /* GigyaInstanceProtocol.swift in Sources */,
+				E76AF6EB24C88BA8008B9114 /* ApiService.swift in Sources */,
 				E720D3502382D49400446EA4 /* PushNotificationModes.swift in Sources */,
 				E7C859DB2289604F005C1FBE /* LinkAccountsResolver.swift in Sources */,
 				E7CBB068223E595D000B6C11 /* GigyaPlistConfig.swift in Sources */,
@@ -1830,7 +1831,6 @@
 				E720D34E2382D33900446EA4 /* PushNotificationsServiceProtocol.swift in Sources */,
 				E7D412F422E8A38F0082A3E3 /* PersistenceService.swift in Sources */,
 				E71D3C9E22BF906300A413D7 /* TFAModels.swift in Sources */,
-				E7CBAFC0222D1F5B000B6C11 /* ApiService.swift in Sources */,
 				E71D3C8C22BF7C2E00A413D7 /* Resolver.swift in Sources */,
 				E7DC2C3B228019AC00A13426 /* SocialLoginProvider.swift in Sources */,
 				E7CBAFD42230232D000B6C11 /* AccountService.swift in Sources */,
