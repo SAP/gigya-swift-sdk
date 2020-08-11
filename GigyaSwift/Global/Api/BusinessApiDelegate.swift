@@ -32,6 +32,8 @@ public protocol BusinessApiDelegate: class {
 
     func callRegister<T: GigyaAccountProtocol>(dataType: T.Type, email: String, password: String, params: [String:Any], completion: @escaping (GigyaLoginResult<T>) -> Void)
 
+    func callLogout(completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void )
+
 }
 
 extension BusinessApiService: BusinessApiDelegate {
@@ -73,5 +75,9 @@ extension BusinessApiService: BusinessApiDelegate {
 
     func callRegister<T: GigyaAccountProtocol>(dataType: T.Type, email: String, password: String, params: [String:Any], completion: @escaping (GigyaLoginResult<T>) -> Void) {
         self.register(email: email, password: password, params: params, dataType: dataType, completion: completion)
+    }
+
+    func callLogout(completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void ) {
+        self.logout(completion: completion)
     }
 }
