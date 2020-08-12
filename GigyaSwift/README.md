@@ -1,5 +1,4 @@
-
-# Swift SDK
+# Swift Core Library
 
 ## Description
 
@@ -11,35 +10,8 @@ SAP Customer Data Cloud Swift SDK supports Apple ID.
 SAP Customer Data Cloud Swift SDK requires XCode 11.4 or above.
 Gigya Swift SDK requires Swift 5.1.2 and above.
 ```
-## Why should I upgrade?
 
-The CDC sdks intend to facilitate implementation of CDC RaaS Flows, by providing functions to authorise CDC API endpoints, manage social
-providers auth flows, user session management and plugins for CDC’s screensets technology. CDC’s latest Swift SDK v1 is a complete redesign
-of the previous Objective C SDK. During the redesign, developers that experienced implementation of the old SDK in their mobile app were
-consulted, and 3 leading aspects were defined for the new sdk:
-
-```
-Aligned with up-to-date development and performance standards
-Great customer development experience (never leave the IDE)
-Focus on common business flows
-```
-The redesign also benefits from the following:
-
-```
-Better performance.
-Easy work with you site's custom account schema as it's now easily integrated with the entire SDK.
-Caching of the end-user's account data to reduce network calls.
-Built-in business flows, like registration, login and more, with out-of-the-box handling for the different outcome scenarios.
-For example, an end-user tries to register and gets "pending registration" due to a missing required field configured in the site's
-schema.
-```
-## Download SDK and Samples
-
-Download the latest Swift SDK files:
-
-Gigya Developer Downloads
-
-## Basic Integration
+## Integrating using binary file.
 
 In order to integrate the Swift SDK into your project, please download and add the following .framework files to your Frameworks and Libraries s
 ections and set the Embed to Embed & Sign:
@@ -53,7 +25,7 @@ as follows and make sure this phase is below the Embed Frameworks phase.
 bash "${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/Gigya.framework/ios-framework-build.sh" Gigya
 ```
 
-## Basic Integration From Cocoapods
+## Integrating using Cocoapods
 For the base SDK, open your Podfile and add this follow line:
 ```
 pod 'Gigya'
@@ -67,7 +39,7 @@ pod install
 
 ### Initialization
 
-The SDK requires an active reference to the running AppDelegate.swift, for example:
+The SDK requires an active reference to the running *AppDelegate.swift*, for example:
 ```
 import Gigya
 
@@ -87,7 +59,7 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
 
 ### Implicit Initialization
 
-The SDK will implicitly initialize itself according to Info.plist configuration.
+The SDK will implicitly initialize itself according to *Info.plist* configuration.
 
 Add the following two key/values to your app's .plist file:
 
@@ -127,8 +99,7 @@ You can send anonymous requests to Gigya using the SDK using one of two overload
 General - this will return an dictionary (see the section below on how to access its data).
 Typed - this will return an instance of the provided class.
 ```
-The following example sends an "accounts.verifyLogin" request using the current logged in user's UID field to verify that the current session is still
-valid.
+The following example sends an "accounts.verifyLogin" request using the current logged in user's UID field to verify that the current session is still valid.
 
 ```
 From this point, code blocks will use the Gigya interface as member variable (gigya), as if it was already initialized.
@@ -336,16 +307,13 @@ We will review the relevant providers and their implementation flow.
 
 ### Apple
 
-Using Sign in With Apple is mandatory if you want users to login via Apple. The first step is to go to your Xcode project settings and add Authenti
-cationServices.framework to the frameworks tab.
+Using Sign in With Apple is mandatory if you want users to login via Apple. The first step is to go to your Xcode project settings and add AuthenticationServices.framework to the frameworks tab.
 
 Next step you need to allow Sign in with Apple, go to "Signing & Capabilities" section.
 
 Tap on + Capability and add Sign in With Apple.
 
-
-After you have added AuthenticationServices.framework to your project you next need to import the AppleSigninWrapper.swift file from the G
-igyaProviders dictionary to your Xcode project.
+After you have added AuthenticationServices.framework to your project you next need to import the AppleSigninWrapper.swift file from the GigyaProviders dictionary to your Xcode project.
 
 An example of login flow to a Apple provider:
 ```
@@ -360,8 +328,8 @@ gigya.login(with: .apple, viewController: self ) { [weak self] result in
 ```
 ### Facebook
 
-Adding Facebook native login to your iOS app is mandatory if you want to login via Facebook. To do so, set up your Facebook app in your XCode
-project using the following instructions:
+Adding Facebook native login to your iOS app is mandatory if you want to login via Facebook.
+To do so, set up your Facebook app in your XCodeproject using the following instructions:
 
 ```
 If you do not yet have an active Facebook app please see our Facebook documentation.
@@ -369,8 +337,7 @@ If you do not yet have an active Facebook app please see our Facebook documentat
 
 Instructions for adding Facebook SDK to your iOS device can be found at Facebook SDK for iOS.
 
-After completing to add the Facebook SDK to your project you need to import "FacebookWrapper.swift" file from "GigyaProviders" dictionary to
-your Xcode project.
+After completing to add the Facebook SDK to your project you need to import "FacebookWrapper.swift" file from "GigyaProviders" dictionary to your Xcode project.
 
 ### Google
 
@@ -378,15 +345,13 @@ Using Google Sign-In is mandatory if you want users to login via Google.
 
 Instructions for adding Google Sign-in to your iOS device can be found at Google Sign-In for iOS.
 
-Add the following tag to your plist file. It is recommended that the "GoogleClientID" String and "GoogleServerClientID" be placed in the your Info.p
-list file.
+Add the following tag to your plist file. It is recommended that the "GoogleClientID" String and "GoogleServerClientID" be placed in the your *Info.plist* file.
 
 ##### GoogleClientID: <iOS key from google console>
 
 ##### GoogleServerClientID: <Web application key from google console>
 
-After you have completed to add Google Sign-in to your project you need to import "GoogleWrapper.swift" file from "GigyaProviders" dictionary to
-your Xcode project.
+After you have completed to add Google Sign-in to your project you need to import *GoogleWrapper.swift* file from "GigyaProviders" dictionary toyour Xcode project.
 
 ### Line
 
@@ -394,8 +359,7 @@ The Gigya Swift SDK allows you to enable LINE native login for users that have t
 
 Instructions can be found at Integrating LINE Login with an iOS app.
 
-After you have completed adding Line SDK to your project you need to import "LineWrapper.swift" file from the "GigyaProviders" dictionary to your
-Xcode project.
+After you have completed adding Line SDK to your project you need to import "LineWrapper.swift" file from the "GigyaProviders" dictionary to your Xcode project.
 
 ### WeChat
 
@@ -403,12 +367,9 @@ The Gigya Swift SDK allows you to enable WeChat native login for users that have
 
 Instructions can be found at WeChat for iOS.
 
-Add the following tag to your plist file, It is recommended that the "WeChatAppID" String be placed in the your Info.plist file.
+Add the following tag to your plist file, It is recommended that the "WeChatAppID" String be placed in the your *Info.plist* file.
 
-MISSING?
-
-After you have completed adding the WeChat SDK to your project you need to import "WeChatWrapper.swift" file from the "GigyaProviders"
-dictionary to your Xcode project.
+After you have completed adding the WeChat SDK to your project you need to import "WeChatWrapper.swift" file from the "GigyaProviders" dictionary to your Xcode project.
 
 Notes:
 
@@ -467,9 +428,8 @@ Messaging.messaging().shouldEstablishDirectChannel = true
 ```
 —
 
-Add Firebase delegate
-The Gigya server requires the push token to be sent to it in order to send push notifications to your client devices. In order to do
-so, add the following to your AppDelegate.swift:
+Add Firebase delegate:
+The Gigya server requires the push token to be sent to it in order to send push notifications to your client devices. In order to do so, add the following to your AppDelegate.swift:
 ```
 // MessagingDelegate implementation as shown in Firebase documentation.
 
@@ -497,9 +457,8 @@ func application(_ application: UIApplication, didReceiveRemoteNotification user
 }
 ```
 
-Notification interaction.
-Customer Data Cloud's notifications require action confirmations. Whether it is to approve or deny the opt-in or login process. In
-order to open the actions alert confirmation you will need to add the following to your AppDelegate.swift.
+Notification interaction:
+Customer Data Cloud's notifications require action confirmations. Whether it is to approve or deny the opt-in or login process. In order to open the actions alert confirmation you will need to add the following to your AppDelegate.swift.
 ```
 @available(iOS 10.0, *)
 
@@ -550,23 +509,21 @@ func viewDidLoad() {
 
 #### Verify Login Interval
 
-The Swift SDK can track a user's current session and determine if there were changes to the site's schema and require re-authentication for the
-user when necessary.
+The Swift SDK can track a user's current session and determine if there were changes to the site's schema and require re-authentication for the user when necessary.
 
 For example, this can be used to invalidate a user's active session if their previously agreed Terms of Service consent version has changed.
 
-When using session verification, the client application will be informed, via 'NotificationCenter', if the automatic verification fails. This will allow
-your application to perform the necessary logic in order to re-authenticate the user.
+When using session verification, the client application will be informed, via 'NotificationCenter', if the automatic verification fails. This will allow your application to perform the necessary logic in order to re-authenticate the user.
 
 To implement this flow, add the following key/value to your app's .plist file:
-
 
 ```
 GigyaSessionVerificationInterval : Integer (the length of time, in seconds, to check the user's profile against the site's schema).
 ```
 When the verification fails, the SDK will send a notification about it via NotificationCenter.
 
-In order to be notified of session changes, you will need to use addObserver in your ViewController, for example:
+In order to be notified of session changes, you will need to use addObserver in your ViewController.
+for example:
 ```
 func viewDidLoad() {
    NotificationCenter.default.addObserver(self, selector: #selector(gigyaInvalidSession(_:)), name: Notification.Name("didInvalidateSession"), object: nil)
@@ -575,7 +532,7 @@ func viewDidLoad() {
 @objc func gigyaInvalidSession(_ notification: Notification) {
    // Verification fails
 }
-”
+```
 
 ## Account Handling
 
@@ -619,14 +576,15 @@ struct MyData: Codable {
    var terms: Bool?
    var comment: String?
 }
-
+```
 
 We can initialize a Gigya instance with the MyAccount struct, and see the account methods operate accordingly.
 
 ### Get Account
 
 In order to retrieve the current account you can use the "getAccount" method:
-”
+
+```
 gigya.getAccount() { result in
    switch result {
    case .success(let account):
@@ -636,13 +594,11 @@ gigya.getAccount() { result in
      // Fail
    }
 }
-”
+```
 
-In order to improve the end-user's experience by avoiding unnecessary network requests, the SDK caches the current account data for a period
-of 5 minutes (by default).
+In order to improve the end-user's experience by avoiding unnecessary network requests, the SDK caches the current account data for a period of 5 minutes (by default).
 
-The account cache property can be set via the JSON configuration file or by adding a meta-data tag as show in the initializationsection of the
-document.
+The account cache property can be set via the JSON configuration file or by adding a meta-data tag as show in the initializationsection of the document.
 
 To bypass the account's caching you must provide true when requesting a new account:
 ```
@@ -661,8 +617,7 @@ gigya.getAccount(true) { result in
 
 The SDK provides two options for updating a user account data.
 
-When you inherit from GigyaAccountProtocol, the relevant profile fields will be inherited and you can add the data field according to
-your schema.
+When you inherit from GigyaAccountProtocol, the relevant profile fields will be inherited and you can add the data field according to your schema.
 
 Using "getAccount" requires you to have a valid session.
 Using "setAccount" requires you to have a valid session.
@@ -777,20 +732,16 @@ the generic Gigya.send interface for all request purposes.
 
 Some flows can be "interrupted" due to certain Site policies.
 
-For example, when trying to register but Two Factor Authentication is required - then an "interruption" can occur about "pending TFA registration"
-that will require the end user to setup a TFA method before being able to complete the registration flow.
+For example, when trying to register but Two Factor Authentication is required - then an "interruption" can occur about "pending TFA registration" that will require the end user to setup a TFA method before being able to complete the registration flow.
 
-Interruptions map:
-
-The SDK's Business APIs are design to help to easily develop a friendly way to face and resolve those interruptions in order to get the end user
-logged in and still complying to the site's policies.
+**Interruptions map:**
+The SDK's Business APIs are design to help to easily develop a friendly way to face and resolve those interruptions in order to get the end user logged in and still complying to the site's policies.
 
 ### Handling Interruptions
 
 Interruption handling is a key feature introduced as of v1 of the Swift SDK.
 
-The SDK will expose a resolver object for supported interruptions in order to give you as a developer the ability to resolve them within the same
-flow that they were triggered.
+The SDK will expose a resolver object for supported interruptions in order to give you as a developer the ability to resolve them within the same flow that they were triggered.
 
 The current supported interruption flows are:
 
@@ -817,10 +768,9 @@ gigya.register(email: "EMAIL-ADDRESS-ALREADY-REGISTERED", password: "PASSWORD") 
 }
 ```
 
-As expected we will receive an error which indicates that this login identifier already exists in the system (errorCode 403043 ).
+As expected we will receive an error which indicates that this login identifier already exists in the system **(errorCode 403043 )**.
 
-Usually when receiving that kind of error, we would trigger an API call to retrieve the conflicting accounts (via accounts.getConflictingAccount),
-then try to login with one of the supported account's identities (using mode:"link").
+Usually when receiving that kind of error, we would trigger an API call to retrieve the conflicting accounts (via accounts.getConflictingAccount), then try to login with one of the supported account's identities (using mode:"link").
 
 However, the SDK can handle this interruption for us:
 
@@ -842,8 +792,7 @@ gigya.register(email: "EMAIL-ADDRESS-ALREADY-REGISTERED", password: "PASSWORD") 
 }
 ```
 
-While the response parameter contains the original response from the register API call (accounts.register), the resolver object (of type LinkAccou
-ntsResolver) already contains all we need in order to complete the flow:
+While the response parameter contains the original response from the register API call (accounts.register), the resolver object (of type *LinkAccountsResolver*) already contains all we need in order to complete the flow:
 We can get the conflicting accounts from it and try to link the account to them.
 
 ```
@@ -861,14 +810,12 @@ Trying the resolve the flow will now try to login with the original conflicted a
 
 If the operation was successful, the original GigyaLoginResult will be notified and the flow will be directed to its original successcase.
 
-In order to provide the end user with a fluid experience some UI intervention is recommended. Examples for this can be found in the Sample
-application.
+In order to provide the end user with a fluid experience some UI intervention is recommended. Examples for this can be found in the Sample application.
 
 ## Using the GigyaWebBridge explicitly.
 
 You are able to use the GigyaWebBridge.swift class explicitly in order to attach Gigya's web sdk actions into your own WebView implementation.
-Attaching the GigyaWebBridge will allow you to add Gigya's session management you your custom web implementation. Special cases include
-uses of SAML & captcha implementations. The following snippet demonstrates the basic implementation of the GigyaWebBridge.
+Attaching the GigyaWebBridge will allow you to add Gigya's session management you your custom web implementation. Special cases include uses of SAML & captcha implementations. The following snippet demonstrates the basic implementation of the GigyaWebBridge.
 
 ```
 /*
@@ -953,21 +900,23 @@ Additionally, when you want to set a custom text in Touch ID prompt , you can in
 
 ##### GigyaTouchIDMessage = (String) "Your custom message" (default = "Please authenticate to proceed”).
 
-## FAQ
+## Limitations
+None
 
-### General
+## Known Issues
+None
 
+## How to obtain support
+Via SAP standard support.
+https://developers.gigya.com/display/GD/Opening+A+Support+Incident
 
-```
-What is the minimum Xcode Version supported by Gigya's Swift SDK (v1)?
-Gigya Swift SDK requires Xcode 11 and above.
-```
-```
-Is Gigya's Swift SDK v1 compatible with Objective c version releases?
-Upgrading application from Objective c to Swift SDK is supported (Only in Swift project). Migration of your application code is required
-```
-###### .
+## Contributing
+Via pull request to this repository.
 
-###### .
+## To-Do (upcoming changes)
+None
+
+## License
+Copyright © 2020 SAP SE or an SAP affiliate company. All rights reserved. This file is licensed under the Apache License, v 2.0 except as noted otherwise in the LICENSE file.
 
 
