@@ -10,10 +10,10 @@ None
 
 ## Download and Installation
 Gigya Available SDK libraries:
-* [Core](https://github.com/SAP/gigya-swift-sdk/blob/master/GigyaSwift/README.md)
-* [Authentication](https://github.com/SAP/gigya-swift-sdk/blob/master/GigyaAuth/README.md)
-* [Two factor authentication](https://github.com/SAP/gigya-swift-sdk/blob/master/GigyaTfa/README.md)
-* [Native screen-sets](https://github.com/SAP/gigya-nSS/blob/master/README.md)
+* [Core](https://sap.github.io/gigya-swift-sdk/GigyaSwift/)
+* [Authentication](https://sap.github.io/gigya-swift-sdk/GigyaAuth/)
+* [Two factor authentication](https://sap.github.io/gigya-swift-sdk/GigyaTfa/)
+* [Native screen-sets](https://sap.github.io/gigya-nSS/)
 
 Follow instruction for each library in order to apply them to your application.
 
