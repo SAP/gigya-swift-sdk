@@ -9,8 +9,13 @@ For more details see: For documentation: https://developers.gigya.com/display/GD
 None
 
 ## Download and Installation
-* Clone the repo.
-* Open & Build via XCode.
+Gigya Available SDK libraries:
+* [Core](https://github.com/SAP/gigya-swift-sdk/GigyaSwift/README.md)
+* [Authentication](https://github.com/SAP/gigya-swift-sdk/GigyaAuth/README.md)
+* [Two factor authentication](https://github.com/SAP/gigya-swift-sdk/GigyaTfa/README.md)
+* [Native screen-sets](https://github.com/SAP/gigya-nSS/blob/master/README.md)
+
+Follow instruction for each library in order to apply them to your application.
 
 ## Configuration
 None

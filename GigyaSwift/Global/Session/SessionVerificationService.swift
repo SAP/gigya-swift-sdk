@@ -9,7 +9,7 @@
 import UIKit
 
 protocol SessionVerificationServiceProtocol {
-    init(config: GigyaConfig, apiService: ApiServiceProtocol, sessionService: SessionServiceProtocol)
+    init(config: GigyaConfig, apiService: ApiServiceProtocol, sessionService: SessionServiceProtocol, businessApi: BusinessApiService)
 
     func registerAppStateEvents()
 
@@ -24,12 +24,15 @@ class SessionVerificationService: SessionVerificationServiceProtocol {
 
     let sessionService: SessionServiceProtocol
 
+    let businessApi: BusinessApiService
+
     private var sessionLifeCountdownTimer: Timer?
 
-    required init(config: GigyaConfig, apiService: ApiServiceProtocol, sessionService: SessionServiceProtocol) {
+    required init(config: GigyaConfig, apiService: ApiServiceProtocol, sessionService: SessionServiceProtocol, businessApi: BusinessApiService) {
         self.config = config
         self.apiService = apiService
         self.sessionService = sessionService
+        self.businessApi = businessApi
     }
 
     func registerAppStateEvents() {
@@ -97,20 +100,20 @@ class SessionVerificationService: SessionVerificationServiceProtocol {
         if case .gigyaError(let errorData) = error {
             GigyaLogger.log(with: self, message: "evaluateVerifyLoginError: error = \(errorData.errorCode) session invalid -> invalidate & notify")
 
-            notifyInvalidSession()
+            notifyInvalidSession(errorData: errorData)
         }
     }
 
-    private func notifyInvalidSession() {
+    private func notifyInvalidSession(errorData: GigyaResponseModel) {
         GigyaLogger.log(with: self, message: "notifyInvalidSession: Invalidating session and cached account. Trigger local broadcast")
 
         // stop timer
         stop()
 
-        // clear session
-        sessionService.clear()
+        // do logout
+        businessApi.logout { _ in }
 
         // send message to the host
-        NotificationCenter.default.post(name: .didInvalidateSession, object: nil)
+        NotificationCenter.default.post(name: .didInvalidateSession, object: nil, userInfo: errorData.toDictionary())
     }
 }
