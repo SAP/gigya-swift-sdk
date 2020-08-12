@@ -36,7 +36,7 @@ final class GigyaIOCContainer<T: GigyaAccountProtocol>: GigyaContainerProtocol {
             let config = resolver.resolve(GigyaConfig.self)
             let sessionService = resolver.resolve(SessionServiceProtocol.self)
             let apiService = resolver.resolve(ApiServiceProtocol.self)
-            let busnessApi = resolver.resolve(BusinessApiService.self)
+            let busnessApi = resolver.resolve(BusinessApiServiceProtocol.self)
 
             return SessionVerificationService(config: config!,
                                               apiService: apiService!,

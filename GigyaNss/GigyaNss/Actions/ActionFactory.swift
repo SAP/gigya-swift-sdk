@@ -20,6 +20,8 @@ class ActionFactory<T: GigyaAccountProtocol> {
             action = GigyaNss.shared.dependenciesContainer.resolve(LoginAction<T>.self)!
         case .setAccount:
             action = GigyaNss.shared.dependenciesContainer.resolve(SetAccountAction<T>.self)!
+        case .forgotPassword:
+            action = GigyaNss.shared.dependenciesContainer.resolve(ForgotPasswordAction<T>.self)!
         case .unknown:
             GigyaLogger.error(with: GigyaNss.self, message: "action not found")
         }
@@ -33,5 +35,6 @@ public enum NssAction: String {
     case register
     case login
     case setAccount
+    case forgotPassword
     case unknown
 }
