@@ -113,5 +113,3 @@ Via pull request to this repository.
 ## To-Do (upcoming changes)
 None
 ​
-## License
-Copyright © 2020 SAP SE or an SAP affiliate company. All rights reserved. This file is licensed under the Apache License, v 2.0 except as noted otherwise in the LICENSE file.
