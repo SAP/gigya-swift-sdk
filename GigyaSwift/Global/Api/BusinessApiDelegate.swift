@@ -34,6 +34,8 @@ public protocol BusinessApiDelegate: class {
 
     func callLogout(completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void )
 
+    func callForgotPassword(params: [String:Any], completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void )
+
 }
 
 extension BusinessApiService: BusinessApiDelegate {
@@ -79,5 +81,9 @@ extension BusinessApiService: BusinessApiDelegate {
 
     func callLogout(completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void ) {
         self.logout(completion: completion)
+    }
+
+    func callForgotPassword(params: [String:Any], completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void) {
+        self.forgotPassword(params: params, completion: completion)
     }
 }

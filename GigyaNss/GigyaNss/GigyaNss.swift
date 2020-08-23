@@ -21,6 +21,7 @@ final public class GigyaNss {
     static var screenChannel = "gigya_nss_engine/method/screen"
     static var apiChannel = "gigya_nss_engine/method/api"
     static var logChannel = "gigya_nss_engine/method/log"
+    static var dataChannel = "gigya_nss_engine/method/data"
 
     // Engine configuration
     static let engineBundle = "Gigya.GigyaNssEngine"
@@ -72,6 +73,8 @@ final public class GigyaNss {
             let mainChannel = resolver.resolve(ScreenChannel.self)
             let apiChannel = resolver.resolve(ApiChannel.self)
             let logChannel = resolver.resolve(LogChannel.self)
+            let dataChannel = resolver.resolve(DataChannel.self)
+            let dataResolver = resolver.resolve(DataResolver.self)
             let flowManager = resolver.resolve(FlowManager<T>.self)
             let eventHandler = resolver.resolve(NssHandler<T>.self)
             let busnessApi = resolver.resolve(BusinessApiDelegate.self)
@@ -79,6 +82,8 @@ final public class GigyaNss {
             return NativeScreenSetsViewModel(mainChannel: mainChannel!,
                                              apiChannel: apiChannel!,
                                              logChannel: logChannel!,
+                                             dataChannel: dataChannel!,
+                                             dataResolver: dataResolver!,
                                              busnessApi: busnessApi!,
                                              flowManager: flowManager!,
                                              eventHandler: eventHandler
@@ -120,6 +125,14 @@ final public class GigyaNss {
               return LogChannel()
         }
 
+        dependenciesContainer.register(service: DataChannel.self) {  _ in
+              return DataChannel()
+        }
+
+        dependenciesContainer.register(service: DataResolver.self) { _ in
+            return DataResolver()
+        }
+
         dependenciesContainer.register(service: ActionFactory<T>.self) { _ in
             return ActionFactory()
         }
@@ -146,6 +159,12 @@ final public class GigyaNss {
             let busnessApi = resolver.resolve(BusinessApiDelegate.self)
 
             return SetAccountAction(busnessApi: busnessApi!)
+        }
+
+        dependenciesContainer.register(service: ForgotPasswordAction<T>.self) { resolver in
+            let busnessApi = resolver.resolve(BusinessApiDelegate.self)
+
+            return ForgotPasswordAction(busnessApi: busnessApi!)
         }
 
         dependenciesContainer.register(service: CreateEngineFactory.self) { _ in

@@ -25,6 +25,8 @@ final class FlowManager<T: GigyaAccountProtocol> {
     // main result handler (for Login / Register)
     private var mainLoginClosure: MainClosure<T> = { _ in }
 
+    private var genericClosure: (GigyaApiResult<GigyaDictionary>) -> Void = { _ in }
+
     // current result to dart when using interruption
     private var engineResultHandler: FlutterResult?
 
@@ -46,6 +48,22 @@ final class FlowManager<T: GigyaAccountProtocol> {
     }
 
     private func initClosure() {
+        genericClosure = { [weak self] result in
+            guard let self = self else {
+                return
+            }
+
+            switch result {
+            case .success:
+                self.engineResultHandler?(GigyaResponseModel.successfullyResponse())
+                self.eventsClosure?(.success(screenId: self.currentScreenId ?? "", action: self.currentAction?.actionId ?? .unknown, data: nil))
+
+            case .failure(let error):
+                self.engineResultHandler?(GigyaResponseModel.failedResponse(with: error))
+                self.eventsClosure?(.error(screenId: self.currentScreenId ?? "", error: error))
+            }
+        }
+
         mainLoginClosure = { [weak self] result in
             guard let self = self else {
                 return
@@ -102,6 +120,10 @@ final class FlowManager<T: GigyaAccountProtocol> {
 extension FlowManager: FlowManagerDelegate {
     func getMainLoginClosure<T: GigyaAccountProtocol>(obj: T.Type) -> MainClosure<T> {
         return self.mainLoginClosure as! MainClosure<T>
+    }
+
+    func getGenericClosure() -> ((GigyaApiResult<GigyaDictionary>) -> Void) {
+        return genericClosure
     }
 
     func getEngineResultClosure() -> FlutterResult? {

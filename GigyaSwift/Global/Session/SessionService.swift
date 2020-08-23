@@ -32,6 +32,9 @@ class SessionService: SessionServiceProtocol {
 
     private var registerAppState: Bool = false
 
+    // allow to enable/disable clear cookies from webKit in logout
+    private var clearCookiesEnable = true
+
     init(config: GigyaConfig, persistenceService: PersistenceService, accountService: AccountServiceProtocol, keychainHelper: KeychainStorageFactory) {
         self.accountService = accountService
         self.keychainHelper = keychainHelper
@@ -315,14 +318,22 @@ class SessionService: SessionServiceProtocol {
     }
 
     private func clearCookies() {
-        HTTPCookieStorage.shared.removeCookies(since: .distantPast)
+        if clearCookiesEnable {
+            DispatchQueue.main.async {
+                HTTPCookieStorage.shared.removeCookies(since: .distantPast)
 
-        WKWebsiteDataStore.default().fetchDataRecords(ofTypes: WKWebsiteDataStore.allWebsiteDataTypes()) { records in
-            records.forEach { record in
-                WKWebsiteDataStore.default().removeData(ofTypes: record.dataTypes, for: [record], completionHandler: {})
-                GigyaLogger.log(with: self, message: "Cookie ::: \(record) deleted")
+                WKWebsiteDataStore.default().fetchDataRecords(ofTypes: WKWebsiteDataStore.allWebsiteDataTypes()) { records in
+                    records.forEach { record in
+                        WKWebsiteDataStore.default().removeData(ofTypes: record.dataTypes, for: [record], completionHandler: {})
+                        GigyaLogger.log(with: self, message: "Cookie ::: \(record) deleted")
+                    }
+                }
             }
         }
+    }
+
+    public func setClearCookies(to value: Bool) {
+        clearCookiesEnable = value
     }
 
     deinit {

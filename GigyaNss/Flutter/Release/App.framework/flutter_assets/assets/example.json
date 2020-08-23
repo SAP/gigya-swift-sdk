@@ -58,6 +58,10 @@
       "account-custom-rubato": "Rubato Guitars",
       "account-custom-parker": "Parker Guitars",
       "account_marketing_notifications_selection": "I agree to receive marketing communications",
+      "forgot-password-title": "Forgot password",
+      "forgot-password-custom-title": "Please enter your email address to reset your password:",
+      "forgot-password-back-to-login": "[Back to login](login)",
+      "forgot-password+link": "[Forgot password](forgot-password)",
       "common-email": "Email",
       "common-password": "Password",
       "common-submit": "Submit",
@@ -87,6 +91,10 @@
       "account-custom-rubato": "Guitarras Rubato",
       "account-custom-parker": "Guitarras Parker",
       "account_marketing_notifications_selection": "Acepto recibir comunicaciones de marketing",
+      "forgot-password-title": "Se te olvidó tu contraseña",
+      "forgot-password-custom-title": "Ingrese su dirección de correo electrónico para restablecer su contraseña:",
+      "forgot-password-back-to-login": "[Atrás para iniciar sesión](login)",
+      "forgot-password+link": "[Se te olvidó tu contraseña](forgot-password)",
       "common-email": "Email",
       "common-password": "Contraseña",
       "common-submit": "Enviar",
@@ -113,7 +121,7 @@
     "login": {
       "routing": {
         "onPendingRegistration": "account-update",
-        "onSuccess": "_dismiss"
+        "onSuccess": "account-update"
       },
       "action": "login",
       "appBar": {
@@ -233,6 +241,19 @@
               "format": "(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@%#$&*~]).{8,}",
               "errorKey": "error-invalid-format"
             }
+          }
+        },
+        {
+          "type": "label",
+          "textKey": "forgot-password+link",
+          "style": {
+            "fontSize": 14,
+            "margin": [
+              0,
+              4,
+              0,
+              8
+            ]
           }
         },
         {
@@ -360,15 +381,17 @@
             "twitter",
             "apple",
             "line",
-            "amazon"
+            "amazon",
+            "yahooJapan"
           ],
           "columns": 3,
+          "rows": 2,
           "style": {
             "cornerRadius": 6,
             "fontSize": 14,
             "fontColor": "black",
             "fontWeight": "bold",
-            "elevation" : 2,
+            "elevation": 2,
             "indicatorColor": "grey"
           }
         },
@@ -396,6 +419,24 @@
       },
       "stack": "vertical",
       "children": [
+        {
+          "type": "image",
+          "url": "https://www.w3schools.com/howto/img_avatar.png",
+          "style": {
+            "cornerRadius": 40,
+            "elevation": 4,
+            "margin": [
+              0,
+              20,
+              0,
+              10
+            ],
+            "size": [
+              80,
+              80
+            ]
+          }
+        },
         {
           "bind": "profile.firstName",
           "type": "textInput",
@@ -431,7 +472,12 @@
           "bind": "data.marketingNotifications",
           "textKey": "account_marketing_notifications_selection",
           "style": {
-            "margin": [0, 10, 0, 0]
+            "margin": [
+              0,
+              10,
+              0,
+              0
+            ]
           }
         },
         {
@@ -510,6 +556,70 @@
               0,
               0
             ]
+          }
+        }
+      ]
+    },
+    "forgot-password": {
+      "routing": {
+        "onSuccess": "_dismiss"
+      },
+      "action": "forgotPassword",
+      "appBar": {
+        "textKey": "forgot-password-title"
+      },
+      "stack": "vertical",
+      "children": [
+        {
+          "type": "label",
+          "textKey": "forgot-password-custom-title",
+          "theme": "subtitle"
+        },
+        {
+          "bind": "#loginID",
+          "type": "emailInput",
+          "textKey": "common-email",
+          "theme": "input",
+          "style": {
+            "cornerRadius": 5,
+            "borderSize": 1
+          },
+          "validations": {
+            "required": {
+              "enabled": true,
+              "errorKey": "error-required-field"
+            },
+            "regex": {
+              "enabled": true,
+              "format": "^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\\.[a-zA-Z]+",
+              "errorKey": "error-invalid-email"
+            }
+          }
+        },
+        {
+          "type": "label",
+          "textKey": "forgot-password-back-to-login",
+          "style": {
+            "margin": [
+              0,
+              26,
+              0,
+              16
+            ]
+          }
+        },
+        {
+          "type": "submit",
+          "textKey": "common-submit",
+          "theme": "raisedButton",
+          "style": {
+            "margin": [
+              0,
+              40,
+              0,
+              0
+            ],
+            "cornerRadius": 5
           }
         }
       ]
