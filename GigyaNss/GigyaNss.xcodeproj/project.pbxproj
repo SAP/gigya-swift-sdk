@@ -60,6 +60,9 @@
 		E78038CF24A8A0240002911C /* SchemaHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78038CE24A8A0240002911C /* SchemaHelper.swift */; };
 		E78B8A5E23FC375700E29651 /* NativeScreenSetsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78B8A5D23FC375700E29651 /* NativeScreenSetsViewModel.swift */; };
 		E78B8A6023FC399C00E29651 /* ApiChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78B8A5F23FC399C00E29651 /* ApiChannel.swift */; };
+		E798FD7824E2980000654983 /* ForgotPasswordAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E798FD7724E2980000654983 /* ForgotPasswordAction.swift */; };
+		E7AD56A924E3E27800BCF005 /* DataChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7AD56A824E3E27800BCF005 /* DataChannel.swift */; };
+		E7AD56AB24E3E5D900BCF005 /* DataResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7AD56AA24E3E5D900BCF005 /* DataResolver.swift */; };
 		E7B521982444902C00DAB464 /* GigyaResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B521972444902C00DAB464 /* GigyaResponseModel.swift */; };
 		E7BC7B6024360ADD003F28F9 /* NssResolverRegTokenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BC7B5F24360ADD003F28F9 /* NssResolverRegTokenModel.swift */; };
 		E7BC7B6224360B06003F28F9 /* NssResolverTfaModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BC7B6124360B06003F28F9 /* NssResolverTfaModel.swift */; };
@@ -109,6 +112,9 @@
 		E78038CE24A8A0240002911C /* SchemaHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchemaHelper.swift; sourceTree = "<group>"; };
 		E78B8A5D23FC375700E29651 /* NativeScreenSetsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeScreenSetsViewModel.swift; sourceTree = "<group>"; };
 		E78B8A5F23FC399C00E29651 /* ApiChannel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiChannel.swift; sourceTree = "<group>"; };
+		E798FD7724E2980000654983 /* ForgotPasswordAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordAction.swift; sourceTree = "<group>"; };
+		E7AD56A824E3E27800BCF005 /* DataChannel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataChannel.swift; sourceTree = "<group>"; };
+		E7AD56AA24E3E5D900BCF005 /* DataResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataResolver.swift; sourceTree = "<group>"; };
 		E7B521972444902C00DAB464 /* GigyaResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigyaResponseModel.swift; sourceTree = "<group>"; };
 		E7BC7B5F24360ADD003F28F9 /* NssResolverRegTokenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NssResolverRegTokenModel.swift; sourceTree = "<group>"; };
 		E7BC7B6124360B06003F28F9 /* NssResolverTfaModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NssResolverTfaModel.swift; sourceTree = "<group>"; };
@@ -146,6 +152,7 @@
 				E70F8BEC2405215C00D52208 /* ActionFactory.swift */,
 				E70F8BF024053B5800D52208 /* LoginAction.swift */,
 				E719C6B024226139002F8C36 /* SetAccountAction.swift */,
+				E798FD7724E2980000654983 /* ForgotPasswordAction.swift */,
 				E70F8BEE24053AB900D52208 /* RegisterAction.swift */,
 			);
 			path = Actions;
@@ -173,6 +180,7 @@
 			children = (
 				E70F8BCA2404095600D52208 /* BaseChannel.swift */,
 				E722573523CCBB31000DDB24 /* ScreenChannel.swift */,
+				E7AD56A824E3E27800BCF005 /* DataChannel.swift */,
 				E7D1F70B240BD92B00394185 /* IgnitionChannel.swift */,
 				E719C6AE24225216002F8C36 /* LogChannel.swift */,
 				E78B8A5F23FC399C00E29651 /* ApiChannel.swift */,
@@ -272,6 +280,7 @@
 				E7D1F70D240E5F0700394185 /* EngineLifeCycle.swift */,
 				E78038CE24A8A0240002911C /* SchemaHelper.swift */,
 				E77F7A2C2407BF5100FF90FB /* CreateEngineFactory.swift */,
+				E7AD56AA24E3E5D900BCF005 /* DataResolver.swift */,
 				E7D1F71024152D5000394185 /* Dictionary.swift */,
 				E70F8BC023FD786E00D52208 /* OrderedDictionary.swift */,
 			);
@@ -460,11 +469,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E7AD56AB24E3E5D900BCF005 /* DataResolver.swift in Sources */,
 				E7772A0323D5D8A500DE9DDD /* ScreenSetsBuilder.swift in Sources */,
 				E7D1F70C240BD92B00394185 /* IgnitionChannel.swift in Sources */,
 				E7772A0623D5DC0400DE9DDD /* LoaderFilesHelper.swift in Sources */,
 				E70F8BEF24053ABA00D52208 /* RegisterAction.swift in Sources */,
 				E78B8A5E23FC375700E29651 /* NativeScreenSetsViewModel.swift in Sources */,
+				E798FD7824E2980000654983 /* ForgotPasswordAction.swift in Sources */,
 				E719C6AF24225216002F8C36 /* LogChannel.swift in Sources */,
 				E78038CF24A8A0240002911C /* SchemaHelper.swift in Sources */,
 				E70F8BF124053B5800D52208 /* LoginAction.swift in Sources */,
@@ -482,6 +493,7 @@
 				E722573423CCB1CE000DDB24 /* NativeScreenSetsViewController.swift in Sources */,
 				E7BC7B6224360B06003F28F9 /* NssResolverTfaModel.swift in Sources */,
 				E73C8A542431E6080064EFE1 /* NssResolverModel.swift in Sources */,
+				E7AD56A924E3E27800BCF005 /* DataChannel.swift in Sources */,
 				E73C8A4F2431D3480064EFE1 /* FlowManagerDelegate.swift in Sources */,
 				E70F8BBC23FD742C00D52208 /* Action.swift in Sources */,
 				E7772A0923D5EAA000DE9DDD /* BuilderOptionsProtocol.swift in Sources */,
