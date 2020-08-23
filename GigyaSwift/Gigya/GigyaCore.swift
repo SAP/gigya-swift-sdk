@@ -140,8 +140,20 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
         sessionService.setSession(sessionInfo)
     }
 
+    /**
+     Get session.
+
+     - returns:         GigyaSession object.
+    */
     public func getSession() -> GigyaSession? {
         return sessionService.session
+    }
+
+    /**
+     Enable/Disable Clear Cookies.
+    */
+    public func setClearCookies(to value: Bool){
+        sessionService.setClearCookies(to: value)
     }
 
     /**
