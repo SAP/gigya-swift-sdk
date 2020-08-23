@@ -19,21 +19,26 @@ class NativeScreenSetsViewModel<T: GigyaAccountProtocol>: NSObject, UIAdaptivePr
     var screenChannel: ScreenChannel?
     var apiChannel: ApiChannel?
     var logChannel: LogChannel?
+    var dataChannel: DataChannel?
 
     let flowManager: FlowManager<T>
     let busnessApi: BusinessApiDelegate
+    let dataResolver: DataResolver
 
     var engine: FlutterEngine?
 
     var eventHandler: NssHandler<T>? = { _ in }
 
-    init(mainChannel: ScreenChannel, apiChannel: ApiChannel, logChannel: LogChannel, busnessApi: BusinessApiDelegate, flowManager: FlowManager<T>, eventHandler: NssHandler<T>?) {
+    init(mainChannel: ScreenChannel, apiChannel: ApiChannel, logChannel: LogChannel, dataChannel: DataChannel,
+         dataResolver: DataResolver, busnessApi: BusinessApiDelegate, flowManager: FlowManager<T>, eventHandler: NssHandler<T>?) {
         self.screenChannel = mainChannel
         self.apiChannel = apiChannel
         self.logChannel = logChannel
+        self.dataChannel = dataChannel
         self.flowManager = flowManager
         self.eventHandler = eventHandler
         self.busnessApi = busnessApi
+        self.dataResolver = dataResolver
     }
 
     func loadChannels(with engine: FlutterEngine) {
@@ -42,6 +47,7 @@ class NativeScreenSetsViewModel<T: GigyaAccountProtocol>: NSObject, UIAdaptivePr
         screenChannel?.initChannel(engine: engine)
         apiChannel?.initChannel(engine: engine)
         logChannel?.initChannel(engine: engine)
+        dataChannel?.initChannel(engine: engine)
 
         screenChannel?.methodHandler(scheme: ScreenChannelEvent.self) { [weak self] method, data, response in
             guard let self = self, let method = method else {
@@ -95,6 +101,10 @@ class NativeScreenSetsViewModel<T: GigyaAccountProtocol>: NSObject, UIAdaptivePr
             case .error:
                 GigyaLogger.error(with: GigyaNss.self, message: data?["message"] as? String ?? "")
             }
+        })
+
+        dataChannel?.methodHandler(scheme: DataChannelEvent.self, { [weak self] (method, data, response) in
+            self?.dataResolver.handleDataRequest(request: method!, params: data, response: response)
         })
     }
 

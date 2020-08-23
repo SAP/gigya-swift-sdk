@@ -13,6 +13,8 @@ protocol FlowManagerDelegate: class {
 
     func getMainLoginClosure<T: GigyaAccountProtocol>(obj: T.Type) -> MainClosure<T>
 
+    func getGenericClosure() -> ((GigyaApiResult<GigyaDictionary>) -> Void)
+
     func getEngineResultClosure() -> FlutterResult?
 
     func getResolver() -> NssResolverModelProtocol?
