@@ -25,6 +25,8 @@ class NativeScreenSetsViewModel<T: GigyaAccountProtocol>: NSObject, UIAdaptivePr
     let busnessApi: BusinessApiDelegate
     let dataResolver: DataResolver
 
+    var imagePickerVc: ImagePickerViewController?
+
     var engine: FlutterEngine?
 
     var eventHandler: NssHandler<T>? = { _ in }
@@ -104,7 +106,34 @@ class NativeScreenSetsViewModel<T: GigyaAccountProtocol>: NSObject, UIAdaptivePr
         })
 
         dataChannel?.methodHandler(scheme: DataChannelEvent.self, { [weak self] (method, data, response) in
-            self?.dataResolver.handleDataRequest(request: method!, params: data, response: response)
+            guard let self = self, let method = method else {
+                return
+            }
+
+            switch method {
+            case .imageResource:
+                self.dataResolver.handleDataRequest(request: method, params: data, response: response)
+            case .pickImage:
+                guard let vc = self.flowManager.currentVc else {
+                    GigyaLogger.log(with: self, message: "ViewController not found")
+                    return
+                }
+
+                self.imagePickerVc = ImagePickerViewController()
+
+                self.imagePickerVc?.didSelectImage = { [weak self] image in
+                    self?.flowManager.next(method: .api, params: ["api": "setProfilePhoto", "image": image.pngData() ?? Data()], response: response)
+                    self?.imagePickerVc = nil
+                }
+
+                self.imagePickerVc?.didCancel = { [weak self] in
+                    self?.imagePickerVc = nil
+                }
+
+                self.imagePickerVc?.showSelectPicker(vc: vc, text: data?["text"] as? String)
+
+
+            }
         })
     }
 
