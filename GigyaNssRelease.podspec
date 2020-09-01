@@ -19,7 +19,7 @@ Pod::Spec.new do |spec|
   spec.source_files       = 'GigyaNss/GigyaNss/*.swift', 'GigyaNss/GigyaNss/*/*.swift', 'GigyaNss/GigyaNss/*/*/*.swift'
 
   spec.framework      = 'SystemConfiguration'
-  spec.dependency 'Gigya', '>= 1.1.3
+  spec.dependency 'Gigya', '>= 1.1.3'
   spec.library = 'c++', 'z'
   
   spec.dependency 'Flutter', '1.12.1309'
