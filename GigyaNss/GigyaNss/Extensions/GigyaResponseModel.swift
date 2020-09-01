@@ -41,4 +41,17 @@ extension GigyaResponseModel {
 
         return FlutterError(code: String(code), message: msg, details: errorData)
     }
+
+    static func makeError(errorCode: Int, errorMessage: String) throws -> GigyaResponseModel {
+        let error: [String: Any] = ["errorCode": errorCode, "errorMessage": errorMessage, "statusCode": 200, "callId": ""]
+
+        do {
+            let jsonData = try JSONSerialization.data(withJSONObject: error, options: .prettyPrinted)
+            let decodedObject = try JSONDecoder().decode(GigyaResponseModel.self, from: jsonData)
+            return decodedObject
+        } catch let error {
+            throw error
+        }
+
+    }
 }

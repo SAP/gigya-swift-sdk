@@ -68,6 +68,6 @@ public struct GigyaDefinitions {
         public static let requestExpired = 403002
     }
 
-    public static var charactersAllowed = "!*'|();/:@&=^+$,?%#[]{}\" "
+    public static var charactersAllowed = "!*'|()_;/:@&=^+$,?%#[]{}\" "
 
 }

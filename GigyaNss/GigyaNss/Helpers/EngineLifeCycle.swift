@@ -69,8 +69,14 @@ class EngineLifeCycle {
                     loadAsset["lang"] = lang
                 }
 
-                if let theme = loadFileTheme {
-                    loadAsset["theme"] = theme
+                if let themeFile = loadFileTheme {
+                    if let themeMap = themeFile["theme"] {
+                        loadAsset["theme"] = themeMap
+                    }
+
+                    if let customThemes = themeFile["customThemes"] {
+                         loadAsset["customThemes"] = customThemes
+                     }
                 }
 
                 if let i18n = loadLangFile {

@@ -49,6 +49,7 @@
 		E73C8A4F2431D3480064EFE1 /* FlowManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73C8A4E2431D3480064EFE1 /* FlowManagerDelegate.swift */; };
 		E73C8A522431D3930064EFE1 /* NssInterruptionsSupported.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73C8A512431D3930064EFE1 /* NssInterruptionsSupported.swift */; };
 		E73C8A542431E6080064EFE1 /* NssResolverModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73C8A532431E6080064EFE1 /* NssResolverModel.swift */; };
+		E761DBF624F3A27F0072BAFF /* ImagePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E761DBF524F3A27F0072BAFF /* ImagePickerViewController.swift */; };
 		E775E81223C5D1710059151D /* GigyaNss.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E775E80823C5D1710059151D /* GigyaNss.framework */; };
 		E775E81723C5D1710059151D /* GigyaNssTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E775E81623C5D1710059151D /* GigyaNssTests.swift */; };
 		E775E81923C5D1710059151D /* GigyaNss.h in Headers */ = {isa = PBXBuildFile; fileRef = E775E80B23C5D1710059151D /* GigyaNss.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -98,6 +99,7 @@
 		E73C8A4E2431D3480064EFE1 /* FlowManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowManagerDelegate.swift; sourceTree = "<group>"; };
 		E73C8A512431D3930064EFE1 /* NssInterruptionsSupported.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NssInterruptionsSupported.swift; sourceTree = "<group>"; };
 		E73C8A532431E6080064EFE1 /* NssResolverModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NssResolverModel.swift; sourceTree = "<group>"; };
+		E761DBF524F3A27F0072BAFF /* ImagePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerViewController.swift; sourceTree = "<group>"; };
 		E775E80823C5D1710059151D /* GigyaNss.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GigyaNss.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E775E80B23C5D1710059151D /* GigyaNss.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GigyaNss.h; sourceTree = "<group>"; };
 		E775E80C23C5D1710059151D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -260,6 +262,7 @@
 			children = (
 				E722573323CCB1CE000DDB24 /* NativeScreenSetsViewController.swift */,
 				E78B8A5D23FC375700E29651 /* NativeScreenSetsViewModel.swift */,
+				E761DBF524F3A27F0072BAFF /* ImagePickerViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -495,6 +498,7 @@
 				E73C8A542431E6080064EFE1 /* NssResolverModel.swift in Sources */,
 				E7AD56A924E3E27800BCF005 /* DataChannel.swift in Sources */,
 				E73C8A4F2431D3480064EFE1 /* FlowManagerDelegate.swift in Sources */,
+				E761DBF624F3A27F0072BAFF /* ImagePickerViewController.swift in Sources */,
 				E70F8BBC23FD742C00D52208 /* Action.swift in Sources */,
 				E7772A0923D5EAA000DE9DDD /* BuilderOptionsProtocol.swift in Sources */,
 				E70F8BC123FD786E00D52208 /* OrderedDictionary.swift in Sources */,
