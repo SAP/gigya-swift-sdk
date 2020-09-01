@@ -7,8 +7,10 @@
 //
 import Gigya
 import Flutter
+import UIKit
 
 class SetAccountAction<T: GigyaAccountProtocol>: Action<T> {
+    var publishPhotoOnSubmit = false
 
     // resolver for interruption
     var pendingRegResolver: NssResolverModel<PendingRegistrationResolver<T>>?
@@ -68,9 +70,64 @@ class SetAccountAction<T: GigyaAccountProtocol>: Action<T> {
                 data["data"] = params?["data"]
                 data["profile"] = params?["profile"]
                 busnessApi?.callSetAccount(dataType: T.self, params: data, completion: self.apiClosure)
+
+                if publishPhotoOnSubmit {
+                    self.publishProfilePhoto()
+                }
+            }
+        case .api:
+            if
+                let api = params?["api"] as? String,
+                let imageData = params?["image"] as? Data,
+                api == "setProfilePhoto" {
+                setProfilePhoto(imageInBytes: imageData)
             }
         default:
             break
+        }
+    }
+
+    func setProfilePhoto(imageInBytes: Data?) {
+        let imageSize = Double(imageInBytes?.count ?? 0 ) / 1024 / 1024
+        if imageSize >= 6 {
+            let handler = self.delegate?.getGenericClosure()
+            let error = try! GigyaResponseModel.makeError(errorCode: 413004, errorMessage: "Image size exceeds 6 MB")
+
+            handler?(GigyaApiResult.failure(.gigyaError(data: error)))
+        }
+
+        let base64image = imageInBytes!.base64EncodedString(options: .init(rawValue: 0))
+
+        busnessApi?.sendApi(api: "accounts.setProfilePhoto", params: ["photoBytes": base64image]) { [weak self] (result) in
+
+            switch result {
+            case .success:
+                self?.publishPhotoOnSubmit = true
+                GigyaLogger.log(with: self, message: "publishProfilePhoto: success")
+
+                let returnImage = self?.delegate?.getEngineResultClosure()
+                returnImage?(imageInBytes!)
+            case .failure(let error):
+                self?.publishPhotoOnSubmit = true
+                GigyaLogger.log(with: self, message: "publishProfilePhoto: failed")
+
+                let handler = self?.delegate?.getGenericClosure()
+                handler?(.failure(error))
+            }
+
+        }
+    }
+
+    func publishProfilePhoto() {
+        busnessApi?.sendApi(api: "accounts.publishProfilePhoto", params: [:]) { [weak self] (result) in
+            switch result {
+            case .success:
+                GigyaLogger.log(with: self, message: "publishProfilePhoto: success")
+            case .failure:
+                GigyaLogger.log(with: self, message: "publishProfilePhoto: failed")
+            }
+
+            self?.publishPhotoOnSubmit = false
         }
     }
 

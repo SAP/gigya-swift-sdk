@@ -5,40 +5,45 @@
     "textColor": "black",
     "enabledColor": "blue",
     "disabledColor": "grey",
-    "errorColor": "red",
-    "customTheme": {
-      "title": {
-        "fontWeight": "bold",
-        "fontSize": 22
-      },
-      "subtitle": {
-        "fontSize": 16
-      },
-      "input": {
-        "margin": 5
-      },
-      "flatButton": {
-        "fontSize": 14,
-        "fontColor": "white",
-        "fontWeight": 6,
-        "elevation": 2,
-        "background": "blue",
-        "size": [
-          220,
-          44
-        ]
-      },
-      "raisedButton": {
-        "fontSize": 14,
-        "fontColor": "white",
-        "fontWeight": 4,
-        "elevation": 0,
-        "background": "blue",
-        "size": [
-          300,
-          40
-        ]
-      }
+    "errorColor": "red"
+  },
+  "customThemes": {
+    "title": {
+      "fontWeight": "bold",
+      "fontSize": 18
+    },
+    "subtitle": {
+      "fontSize": 16
+    },
+    "input": {
+      "margin": [
+        16,
+        8,
+        15,
+        8
+      ]
+    },
+    "flatButton": {
+      "fontSize": 14,
+      "fontColor": "white",
+      "fontWeight": 6,
+      "elevation": 2,
+      "background": "blue",
+      "size": [
+        220,
+        44
+      ]
+    },
+    "raisedButton": {
+      "fontSize": 14,
+      "fontColor": "white",
+      "fontWeight": 4,
+      "elevation": 0,
+      "background": "blue",
+      "size": [
+        300,
+        40
+      ]
     }
   },
   "useSchemaValidations": false,
@@ -111,7 +116,7 @@
     }
   },
   "routing": {
-    "initial": "account-update",
+    "initial": "login",
     "default": {
       "onSuccess": "_dismiss",
       "onPendingEmailVerification": "_dismiss"
@@ -129,19 +134,14 @@
       },
       "children": [
         {
-          "type": "container",
-          "stack": "horizontal",
-          "alignment": "start",
+          "type": "label",
+          "textKey": "login-social-title",
+          "theme": "title",
           "style": {
-            "margin": 0
-          },
-          "children": [
-            {
-              "type": "label",
-              "textKey": "login-social-title",
-              "theme": "subtitle"
-            }
-          ]
+            "margin": 16,
+            "textAlign": "end",
+            "size": [200, 50]
+          }
         },
         {
           "type": "socialLoginButton",
@@ -149,9 +149,9 @@
           "textKey": "social-sign-in-facebook",
           "style": {
             "margin": [
-              4,
+              16,
               0,
-              4,
+              16,
               0
             ],
             "cornerRadius": 5,
@@ -163,9 +163,9 @@
           "provider": "linkedin",
           "style": {
             "margin": [
-              4,
+              16,
               0,
-              4,
+              16,
               0
             ],
             "cornerRadius": 5,
@@ -177,9 +177,9 @@
           "provider": "google",
           "style": {
             "margin": [
-              4,
+              16,
               0,
-              4,
+              16,
               0
             ],
             "cornerRadius": 5,
@@ -191,7 +191,7 @@
           "stack": "horizontal",
           "alignment": "start",
           "style": {
-            "margin": 0
+            "margin": 16
           },
           "children": [
             {
@@ -207,8 +207,10 @@
           "textKey": "common-email",
           "theme": "input",
           "style": {
-            "cornerRadius": 5,
-            "borderSize": 1
+            "margin": [16, 4, 16, 4],
+            "cornerRadius": 22,
+            "borderSize": 1,
+            "textAlign": "end"
           },
           "validations": {
             "required": {
@@ -228,7 +230,8 @@
           "textKey": "common-password",
           "theme": "input",
           "style": {
-            "cornerRadius": 5,
+            "margin": [16, 4, 16, 4],
+            "cornerRadius": 22,
             "borderSize": 1
           },
           "validations": {
@@ -244,13 +247,35 @@
           }
         },
         {
+          "type": "dropdown",
+          "bind": "data.favGuitar",
+          "style": {
+            "textAlign": "center"
+          },
+          "options": [
+            {
+              "default": true,
+              "value": "PRS",
+              "textKey": "Paul Reed Smith"
+            },
+            {
+              "value": "Rubato",
+              "textKey": "Rubato Guitars"
+            },
+            {
+              "value": "Parker",
+              "textKey": "Parker Guitars"
+            }
+          ]
+        },
+        {
           "type": "label",
           "textKey": "forgot-password+link",
           "style": {
             "fontSize": 14,
             "margin": [
               0,
-              4,
+              8,
               0,
               8
             ]
@@ -264,7 +289,7 @@
               0,
               24,
               0,
-              16
+              24
             ]
           }
         },
@@ -273,7 +298,13 @@
           "textKey": "common-submit",
           "theme": "raisedButton",
           "style": {
-            "cornerRadius": 5
+            "size": [
+              200,
+              44
+            ],
+            "cornerRadius": 5,
+            "borderColor": "black",
+            "borderSize": 2
           }
         }
       ]
@@ -299,7 +330,10 @@
           "children": [
             {
               "type": "label",
-              "textKey": "register-title"
+              "textKey": "register-title",
+              "style": {
+                "margin": 16
+              }
             }
           ]
         },
@@ -354,7 +388,12 @@
           "type": "checkbox",
           "textKey": "register-terms+link",
           "style": {
-            "margin": 0
+            "margin": [
+              16,
+              0,
+              16,
+              0
+            ]
           }
         },
         {
@@ -363,10 +402,10 @@
           "style": {
             "fontSize": 16,
             "margin": [
-              0,
+              16,
               4,
-              0,
-              0
+              16,
+              8
             ]
           }
         },
@@ -392,6 +431,7 @@
             "fontColor": "black",
             "fontWeight": "bold",
             "elevation": 2,
+            "margin": 16,
             "indicatorColor": "grey"
           }
         },
@@ -404,6 +444,7 @@
               280,
               44
             ],
+            "margin": 16,
             "cornerRadius": 6
           }
         }
@@ -420,14 +461,15 @@
       "stack": "vertical",
       "children": [
         {
-          "type": "image",
-          "url": "https://www.w3schools.com/howto/img_avatar.png",
+          "type": "profilePhoto",
+          "allowUpload": false,
+          "default": "https://www.w3schools.com/howto/img_avatar.png",
           "style": {
             "cornerRadius": 40,
             "elevation": 4,
             "margin": [
               0,
-              20,
+              22,
               0,
               10
             ],
@@ -462,101 +504,54 @@
           "theme": "input"
         },
         {
-          "bind": "data.rescueString",
-          "type": "textInput",
-          "textKey": "common-rescueString",
-          "theme": "input"
-        },
-        {
-          "type": "checkbox",
-          "bind": "data.marketingNotifications",
-          "textKey": "account_marketing_notifications_selection",
+          "type": "container",
+          "stack": "horizontal",
           "style": {
-            "margin": [
-              0,
-              10,
-              0,
-              0
-            ]
-          }
-        },
-        {
-          "type": "checkbox",
-          "bind": "data.formatTrue",
-          "textKey": "Testing format true field",
-          "style": {
-            "margin": 0
-          }
-        },
-        {
-          "type": "submit",
-          "textKey": "common-submit",
-          "theme": "raisedButton",
-          "style": {
-            "margin": [
-              0,
-              20,
-              0,
-              0
-            ]
-          }
-        }
-      ]
-    },
-    "account-custom": {
-      "routing": {
-        "onSuccess": "_dismiss"
-      },
-      "action": "setAccount",
-      "appBar": {
-        "textKey": "account-information"
-      },
-      "stack": "vertical",
-      "children": [
-        {
-          "type": "label",
-          "textKey": "account-custom-title",
-          "theme": "title"
-        },
-        {
-          "type": "radio",
-          "bind": "data.favGuitar",
-          "style": {
-            "margin": [
-              16,
-              30,
-              16,
-              0
-            ]
+            "size": [0, 44],
+            "background": "blue"
           },
-          "options": [
+          "children": [
             {
-              "default": true,
-              "value": "PRS",
-              "textKey": "Paul Reed Smith"
+              "type": "label",
+              "textKey": "I'm a label",
+              "style": {
+                "fontColor": "white"
+              }
             },
             {
-              "value": "Rubato",
-              "textKey": "account-custom-rubato"
-            },
-            {
-              "value": "Parker",
-              "textKey": "account-custom-parker"
+              "type": "label",
+              "textKey": "I'm a another label",
+              "style": {
+                "fontColor": "white"
+              }
             }
           ]
         },
         {
-          "type": "submit",
-          "textKey": "common-submit",
-          "theme": "raisedButton",
+          "type": "container",
+          "stack": "vertical",
           "style": {
-            "margin": [
-              0,
-              50,
-              0,
-              0
-            ]
-          }
+            "background": "green"
+          },
+          "children": [
+            {
+              "type": "submit",
+              "textKey": "common-submit",
+              "theme": "raisedButton",
+              "style": {
+                "size": [
+                  200,
+                  44
+                ],
+                "margin": [
+                  16,
+                  10,
+                  16,
+                  16
+                ]
+              }
+            }
+          ]
         }
       ]
     },
@@ -573,7 +568,10 @@
         {
           "type": "label",
           "textKey": "forgot-password-custom-title",
-          "theme": "subtitle"
+          "theme": "subtitle",
+          "style": {
+            "margin": 16
+          }
         },
         {
           "bind": "#loginID",
