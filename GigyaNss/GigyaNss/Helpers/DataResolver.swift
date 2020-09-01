@@ -10,17 +10,14 @@ import Flutter
 
 class DataResolver {
     func handleDataRequest(request: DataChannelEvent, params: [String: Any]?, response: @escaping FlutterResult) {
-        switch request {
-        case .imageResource:
-            guard
-                let imageName = params?["url"] as? String,
-                let image = UIImage(named: imageName),
-                let data = image.pngData() else {
-                    response(nil)
-                    return
-            }
-
-            response(data)
+        guard
+            let imageName = params?["url"] as? String,
+            let image = UIImage(named: imageName),
+            let data = image.pngData() else {
+                response(nil)
+                return
         }
+
+        response(data)
     }
 }

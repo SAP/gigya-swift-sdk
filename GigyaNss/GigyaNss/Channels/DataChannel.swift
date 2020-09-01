@@ -23,5 +23,6 @@ class DataChannel: BaseChannel {
 
 enum DataChannelEvent: String {
     case imageResource = "image_resource"
+    case pickImage = "pick_image"
 
 }
