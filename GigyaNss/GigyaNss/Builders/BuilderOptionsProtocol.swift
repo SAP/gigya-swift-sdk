@@ -25,6 +25,8 @@ public protocol ScreenSetsExternalBuilderProtocol {
 
     func events(handler: @escaping (NssEvents<GigyaAccount>) -> Void) -> BuilderOptions
 
+    func eventsFor(screen: String, handler: @escaping (NssScreenEvent) -> Void) -> BuilderOptions
+
 }
 
 public protocol ScreenSetsActionsBuilderProtocol {

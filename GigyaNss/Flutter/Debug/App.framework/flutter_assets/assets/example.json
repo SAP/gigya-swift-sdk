@@ -5,7 +5,8 @@
     "textColor": "black",
     "enabledColor": "blue",
     "disabledColor": "grey",
-    "errorColor": "red"
+    "errorColor": "red",
+    "linkColor": "blue"
   },
   "customThemes": {
     "title": {
@@ -30,7 +31,7 @@
       "elevation": 2,
       "background": "blue",
       "size": [
-        220,
+        300,
         44
       ]
     },
@@ -134,14 +135,22 @@
       },
       "children": [
         {
-          "type": "label",
-          "textKey": "login-social-title",
-          "theme": "title",
+          "type": "container",
+          "stack": "horizontal",
+          "alignment": "start",
           "style": {
-            "margin": 16,
-            "textAlign": "end",
-            "size": [200, 50]
-          }
+            "margin": 0
+          },
+          "children": [
+            {
+              "type": "label",
+              "textKey": "login-social-title",
+              "theme": "title",
+              "style": {
+                "margin": 16
+              }
+            }
+          ]
         },
         {
           "type": "socialLoginButton",
@@ -209,8 +218,7 @@
           "style": {
             "margin": [16, 4, 16, 4],
             "cornerRadius": 22,
-            "borderSize": 1,
-            "textAlign": "end"
+            "borderSize": 1
           },
           "validations": {
             "required": {
@@ -247,28 +255,6 @@
           }
         },
         {
-          "type": "dropdown",
-          "bind": "data.favGuitar",
-          "style": {
-            "textAlign": "center"
-          },
-          "options": [
-            {
-              "default": true,
-              "value": "PRS",
-              "textKey": "Paul Reed Smith"
-            },
-            {
-              "value": "Rubato",
-              "textKey": "Rubato Guitars"
-            },
-            {
-              "value": "Parker",
-              "textKey": "Parker Guitars"
-            }
-          ]
-        },
-        {
           "type": "label",
           "textKey": "forgot-password+link",
           "style": {
@@ -285,6 +271,7 @@
           "type": "label",
           "textKey": "login-no-account+link",
           "style": {
+            "linkColor": "red",
             "margin": [
               0,
               24,
@@ -298,10 +285,6 @@
           "textKey": "common-submit",
           "theme": "raisedButton",
           "style": {
-            "size": [
-              200,
-              44
-            ],
             "cornerRadius": 5,
             "borderColor": "black",
             "borderSize": 2
@@ -505,34 +488,7 @@
         },
         {
           "type": "container",
-          "stack": "horizontal",
-          "style": {
-            "size": [0, 44],
-            "background": "blue"
-          },
-          "children": [
-            {
-              "type": "label",
-              "textKey": "I'm a label",
-              "style": {
-                "fontColor": "white"
-              }
-            },
-            {
-              "type": "label",
-              "textKey": "I'm a another label",
-              "style": {
-                "fontColor": "white"
-              }
-            }
-          ]
-        },
-        {
-          "type": "container",
           "stack": "vertical",
-          "style": {
-            "background": "green"
-          },
           "children": [
             {
               "type": "submit",

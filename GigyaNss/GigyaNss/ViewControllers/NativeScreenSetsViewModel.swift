@@ -20,10 +20,12 @@ class NativeScreenSetsViewModel<T: GigyaAccountProtocol>: NSObject, UIAdaptivePr
     var apiChannel: ApiChannel?
     var logChannel: LogChannel?
     var dataChannel: DataChannel?
+    var screenEventsChannel: EventsChannel?
 
     let flowManager: FlowManager<T>
     let busnessApi: BusinessApiDelegate
     let dataResolver: DataResolver
+    var eventsClosuresManager: EventsClosuresManager?
 
     var imagePickerVc: ImagePickerViewController?
 
@@ -31,12 +33,13 @@ class NativeScreenSetsViewModel<T: GigyaAccountProtocol>: NSObject, UIAdaptivePr
 
     var eventHandler: NssHandler<T>? = { _ in }
 
-    init(mainChannel: ScreenChannel, apiChannel: ApiChannel, logChannel: LogChannel, dataChannel: DataChannel,
+    init(mainChannel: ScreenChannel, apiChannel: ApiChannel, logChannel: LogChannel, dataChannel: DataChannel, screenEventsChannel: EventsChannel,
          dataResolver: DataResolver, busnessApi: BusinessApiDelegate, flowManager: FlowManager<T>, eventHandler: NssHandler<T>?) {
         self.screenChannel = mainChannel
         self.apiChannel = apiChannel
         self.logChannel = logChannel
         self.dataChannel = dataChannel
+        self.screenEventsChannel = screenEventsChannel
         self.flowManager = flowManager
         self.eventHandler = eventHandler
         self.busnessApi = busnessApi
@@ -50,6 +53,7 @@ class NativeScreenSetsViewModel<T: GigyaAccountProtocol>: NSObject, UIAdaptivePr
         apiChannel?.initChannel(engine: engine)
         logChannel?.initChannel(engine: engine)
         dataChannel?.initChannel(engine: engine)
+        screenEventsChannel?.initChannel(engine: engine)
 
         screenChannel?.methodHandler(scheme: ScreenChannelEvent.self) { [weak self] method, data, response in
             guard let self = self, let method = method else {
@@ -133,6 +137,56 @@ class NativeScreenSetsViewModel<T: GigyaAccountProtocol>: NSObject, UIAdaptivePr
                 self.imagePickerVc?.showSelectPicker(vc: vc, text: data?["text"] as? String)
 
 
+            }
+        })
+
+        screenEventsChannel?.methodHandler(scheme: EventsChannelEvent.self, { [weak self] (method, data, response) in
+            guard
+                let self = self,
+                let method = method,
+                let screenId = data?["sid"] as? String,
+                let screenClosure = self.eventsClosuresManager?[screenId]
+            else {
+                response(["data": [:]])
+                return
+            }
+
+
+            switch method {
+            case .screenDidLoad:
+                screenClosure(.screenDidLoad)
+
+                response(nil)
+            case .routeFrom:
+                let screen = ScreenModel()
+                screen.data = data ?? [:]
+
+                screen.engineResponse = response
+
+                screen.previousRoute = data?["pid"] as? String ?? ""
+
+                screenClosure(.routeFrom(screen: screen))
+
+            case .routeTo:
+                let screen = ScreenModel()
+                screen.data = data ?? [:]
+
+                screen.engineResponse = response
+
+                screen.nextRoute = data?["nid"] as? String ?? ""
+
+                screenClosure(.routeTo(screen: screen))
+
+            case .submit:
+                let screen = ScreenModel()
+                screen.data = data ?? [:]
+
+                screen.engineResponse = response
+
+                screenClosure(.submit(screen: screen))
+
+            case .fieldDidChange:
+                break
             }
         })
     }

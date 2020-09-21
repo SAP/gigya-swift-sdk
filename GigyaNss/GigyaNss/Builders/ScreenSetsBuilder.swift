@@ -23,6 +23,8 @@ class ScreenSetsBuilder<T: GigyaAccountProtocol>: ScreenSetsMainBuilderProtocol 
 
     var handlerExists: Bool?
 
+    var eventsClosuresManager: EventsClosuresManager?
+
     init(engineLifeCycle: EngineLifeCycle) {
         self.engineLifeCycle = engineLifeCycle
     }
@@ -31,6 +33,8 @@ class ScreenSetsBuilder<T: GigyaAccountProtocol>: ScreenSetsMainBuilderProtocol 
     func load(withAsset asset: String) -> BuilderOptions {
         handlerExists = false
         assetName = asset
+
+        eventsClosuresManager = dependenciesContainer.resolve(EventsClosuresManager.self)
         return self
     }
 
@@ -68,7 +72,13 @@ extension ScreenSetsBuilder: ScreenSetsExternalBuilderProtocol {
 
         return self
     }
+
+    func eventsFor(screen: String, handler: @escaping (NssScreenEvent) -> Void) -> BuilderOptions {
+        eventsClosuresManager?[screen] = handler
+        return self
+    }
 }
+
 
 // MARK: - Builder actions
 
@@ -81,9 +91,12 @@ extension ScreenSetsBuilder: ScreenSetsActionsBuilderProtocol {
         }
 
         // build the screen with the asset
+        screenSetViewController.viewModel?.eventsClosuresManager = eventsClosuresManager
         screenSetViewController.build()
         screenSetViewController.presentationController?.delegate = screenSetViewController.viewModel
 
+        eventsClosuresManager = nil
+        
         guard dependenciesContainer.resolve((NssHandler<T>).self) != nil || handlerExists == false else {
             GigyaLogger.error(with: GigyaNss.self, message: "scheme is not same to the core scheme")
         }
