@@ -18,6 +18,9 @@ public enum GigyaApiResult<ResponseType> {
     case failure(_ error: NetworkError)
 }
 
+/**
+ The `LoginApiError` is an Struct representing a result from login api with option to resolving interruptions.
+ */
 public struct LoginApiError<T: GigyaAccountProtocol> {
     public let error: NetworkError
 
