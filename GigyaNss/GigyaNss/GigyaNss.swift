@@ -22,6 +22,7 @@ final public class GigyaNss {
     static var apiChannel = "gigya_nss_engine/method/api"
     static var logChannel = "gigya_nss_engine/method/log"
     static var dataChannel = "gigya_nss_engine/method/data"
+    static var eventsChannel = "gigya_nss_engine/method/events"
 
     // Engine configuration
     static let engineBundle = "Gigya.GigyaNssEngine"
@@ -74,6 +75,7 @@ final public class GigyaNss {
             let apiChannel = resolver.resolve(ApiChannel.self)
             let logChannel = resolver.resolve(LogChannel.self)
             let dataChannel = resolver.resolve(DataChannel.self)
+            let screenEventsChannel = resolver.resolve(EventsChannel.self)
             let dataResolver = resolver.resolve(DataResolver.self)
             let flowManager = resolver.resolve(FlowManager<T>.self)
             let eventHandler = resolver.resolve(NssHandler<T>.self)
@@ -83,6 +85,7 @@ final public class GigyaNss {
                                              apiChannel: apiChannel!,
                                              logChannel: logChannel!,
                                              dataChannel: dataChannel!,
+                                             screenEventsChannel: screenEventsChannel!,
                                              dataResolver: dataResolver!,
                                              busnessApi: busnessApi!,
                                              flowManager: flowManager!,
@@ -129,6 +132,10 @@ final public class GigyaNss {
               return DataChannel()
         }
 
+        dependenciesContainer.register(service: EventsChannel.self) { _ in
+            return EventsChannel()
+        }
+
         dependenciesContainer.register(service: DataResolver.self) { _ in
             return DataResolver()
         }
@@ -136,6 +143,7 @@ final public class GigyaNss {
         dependenciesContainer.register(service: ActionFactory<T>.self) { _ in
             return ActionFactory()
         }
+
 
         dependenciesContainer.register(service: RegisterAction<T>.self) { resolver in
             let busnessApi = resolver.resolve(BusinessApiDelegate.self)
@@ -169,6 +177,10 @@ final public class GigyaNss {
 
         dependenciesContainer.register(service: CreateEngineFactory.self) { _ in
             return CreateEngineFactory()
+        }
+
+        dependenciesContainer.register(service: EventsClosuresManager.self) { _ in
+            return EventsClosuresManager()
         }
 
         guard let builder = GigyaNss.shared.dependenciesContainer.resolve(ScreenSetsBuilder<T>.self) else {
