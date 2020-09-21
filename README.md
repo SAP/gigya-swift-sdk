@@ -9,8 +9,13 @@ For more details see: For documentation: https://developers.gigya.com/display/GD
 None
 
 ## Download and Installation
-* Clone the repo.
-* Open & Build via XCode.
+Gigya Available SDK libraries:
+* [Core](https://sap.github.io/gigya-swift-sdk/GigyaSwift/)
+* [Authentication](https://sap.github.io/gigya-swift-sdk/GigyaAuth/)
+* [Two factor authentication](https://sap.github.io/gigya-swift-sdk/GigyaTfa/)
+* [Native screen-sets](https://sap.github.io/gigya-nSS/)
+
+Follow instruction for each library in order to apply them to your application.
 
 ## Configuration
 None
@@ -31,5 +36,3 @@ Via pull request to this repository.
 ## To-Do (upcoming changes)
 None
 
-## License
-Copyright © 2020 SAP SE or an SAP affiliate company. All rights reserved. This file is licensed under the Apache License, v 2.0 except as noted otherwise in the LICENSE file.

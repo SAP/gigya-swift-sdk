@@ -18,16 +18,6 @@ public enum GigyaApiResult<ResponseType> {
     case failure(_ error: NetworkError)
 }
 
-/**
- The `GigyaLoginResult` is an Enum representing a result from login api.
- */
-@frozen
-public enum GigyaLoginResult<ResponseType: GigyaAccountProtocol> {
-    case success(data: ResponseType)
-
-    case failure(LoginApiError<ResponseType>)
-}
-
 public struct LoginApiError<T: GigyaAccountProtocol> {
     public let error: NetworkError
 
@@ -37,6 +27,16 @@ public struct LoginApiError<T: GigyaAccountProtocol> {
         self.error = error
         self.interruption = interruption
     }
+}
+
+/**
+ The `GigyaLoginResult` is an Enum representing a result from login api.
+ */
+@frozen
+public enum GigyaLoginResult<ResponseType: GigyaAccountProtocol> {
+    case success(data: ResponseType)
+
+    case failure(LoginApiError<ResponseType>)
 }
 
 /**
