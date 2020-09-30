@@ -90,7 +90,7 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
         config.apiDomain = apiDomain ?? self.defaultApiDomain
         config.apiKey = apiKey
 
-        businessApiService.getSDKConfig()
+        businessApiService.apiService.getSDKConfig()
     }
 
     // MARK: - Anonymous API
@@ -154,6 +154,10 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
     */
     public func setClearCookies(to value: Bool){
         sessionService.setClearCookies(to: value)
+    }
+
+    public func setRequestTimeout(sec: Int) {
+
     }
 
     /**
