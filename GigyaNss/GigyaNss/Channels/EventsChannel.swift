@@ -31,8 +31,8 @@ enum EventsChannelEvent: String {
 @frozen
 public enum NssScreenEvent {
     case screenDidLoad
-    case routeFrom(screen: ScreenPreviousProtocol & ScreenDataProtocol)
-    case routeTo(screen: ScreenNextProtocol & ScreenDataProtocol)
-    case submit(screen: ScreenDataProtocol)
-    case fieldDidChange(obj: String) // TODO: need to understand how to handle it
+    case routeFrom(screen: ScreenPreviousProtocol & ScreenContinueProtocol & ScreenDataProtocol)
+    case routeTo(screen: ScreenNextProtocol & ScreenContinueProtocol & ScreenDataProtocol)
+    case submit(screen: ScreenContinueProtocol & ScreenDataProtocol & ScreenError)
+    case fieldDidChange(screen: ScreenContinueProtocol & ScreenError & ScreenFieldProtocol, field: FieldEventModel) // TODO: need to understand how to handle it
 }

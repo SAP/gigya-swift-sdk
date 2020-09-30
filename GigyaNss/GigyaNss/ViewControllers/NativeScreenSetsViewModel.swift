@@ -151,6 +151,9 @@ class NativeScreenSetsViewModel<T: GigyaAccountProtocol>: NSObject, UIAdaptivePr
                 return
             }
 
+            let screen = ScreenEventModel()
+            screen.data = data?["data"] as? [String: Any] ?? [:]
+            screen.engineResponse = response
 
             switch method {
             case .screenDidLoad:
@@ -158,35 +161,24 @@ class NativeScreenSetsViewModel<T: GigyaAccountProtocol>: NSObject, UIAdaptivePr
 
                 response(nil)
             case .routeFrom:
-                let screen = ScreenModel()
-                screen.data = data ?? [:]
 
-                screen.engineResponse = response
-
-                screen.previousRoute = data?["pid"] as? String ?? ""
+                screen.previousRoute = screen.data["pid"] as? String ?? ""
 
                 screenClosure(.routeFrom(screen: screen))
 
             case .routeTo:
-                let screen = ScreenModel()
-                screen.data = data ?? [:]
 
-                screen.engineResponse = response
-
-                screen.nextRoute = data?["nid"] as? String ?? ""
+                screen.nextRoute = screen.data["nid"] as? String ?? ""
 
                 screenClosure(.routeTo(screen: screen))
 
             case .submit:
-                let screen = ScreenModel()
-                screen.data = data ?? [:]
-
-                screen.engineResponse = response
-
                 screenClosure(.submit(screen: screen))
 
             case .fieldDidChange:
-                break
+                let fieldModel = FieldEventModel(id: screen.data["field"] as? String ?? "", oldVal: screen.data["from"] as? String, newVal: screen.data["to"] as? String)
+
+                screenClosure(.fieldDidChange(screen: screen, field: fieldModel))
             }
         })
     }

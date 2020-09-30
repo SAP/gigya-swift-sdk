@@ -14,15 +14,27 @@ public protocol ScreenPreviousProtocol {
 
 public protocol ScreenDataProtocol {
     var data: [String: Any] { get set }
+}
+
+public typealias EventFieldClosure = ((_ oldVal: String, _ newVal: String) -> Void)
+public protocol ScreenContinueProtocol {
 
     func `continue`()
+}
+
+public protocol ScreenFieldProtocol {
+    var fieldEvents: [String: EventFieldClosure] { get set }
 }
 
 public protocol ScreenNextProtocol {
     var nextRoute: String { get set }
 }
 
-class ScreenModel: ScreenPreviousProtocol, ScreenDataProtocol, ScreenNextProtocol {
+public protocol ScreenError {
+    func showError(_ e: String)
+}
+
+class ScreenEventModel: ScreenPreviousProtocol, ScreenDataProtocol, ScreenNextProtocol, ScreenError, ScreenContinueProtocol, ScreenFieldProtocol {
 
     var engineResponse: FlutterResult?
 
@@ -32,6 +44,8 @@ class ScreenModel: ScreenPreviousProtocol, ScreenDataProtocol, ScreenNextProtoco
 
     var data: [String: Any] = [:]
 
+    var fieldEvents: [String: EventFieldClosure] = [:]
+
     func `continue`() {
         engineResponse?(["sid": nextRoute, "data": data])
     }
@@ -39,4 +53,10 @@ class ScreenModel: ScreenPreviousProtocol, ScreenDataProtocol, ScreenNextProtoco
     func showError(_ e: String) {
         engineResponse?(["error": e])
     }
+}
+
+public struct FieldEventModel {
+    public var id: String
+    public let oldVal: String?
+    public let newVal: String?
 }

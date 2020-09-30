@@ -46,7 +46,7 @@
 		E7288CA32455CFD800AD99CA /* Gigya.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7288CA22455CFD800AD99CA /* Gigya.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		E7288CA62455D46300AD99CA /* Flutter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7F8E33823C777D7002A2A92 /* Flutter.framework */; };
 		E7364F9E25051BC5006DD45F /* EventsChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7364F9D25051BC5006DD45F /* EventsChannel.swift */; };
-		E7364FA12505284F006DD45F /* ScreenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7364F9F25051C3A006DD45F /* ScreenModel.swift */; };
+		E7364FA12505284F006DD45F /* ScreenEventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7364F9F25051C3A006DD45F /* ScreenEventModel.swift */; };
 		E73C8A0A2430D8290064EFE1 /* FlowManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73C8A092430D8290064EFE1 /* FlowManager.swift */; };
 		E73C8A4F2431D3480064EFE1 /* FlowManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73C8A4E2431D3480064EFE1 /* FlowManagerDelegate.swift */; };
 		E73C8A522431D3930064EFE1 /* NssInterruptionsSupported.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73C8A512431D3930064EFE1 /* NssInterruptionsSupported.swift */; };
@@ -99,7 +99,7 @@
 		E722573523CCBB31000DDB24 /* ScreenChannel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenChannel.swift; sourceTree = "<group>"; };
 		E7288CA22455CFD800AD99CA /* Gigya.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Gigya.framework; sourceTree = "<group>"; };
 		E7364F9D25051BC5006DD45F /* EventsChannel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsChannel.swift; sourceTree = "<group>"; };
-		E7364F9F25051C3A006DD45F /* ScreenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenModel.swift; sourceTree = "<group>"; };
+		E7364F9F25051C3A006DD45F /* ScreenEventModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenEventModel.swift; sourceTree = "<group>"; };
 		E73C8A092430D8290064EFE1 /* FlowManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowManager.swift; sourceTree = "<group>"; };
 		E73C8A4E2431D3480064EFE1 /* FlowManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowManagerDelegate.swift; sourceTree = "<group>"; };
 		E73C8A512431D3930064EFE1 /* NssInterruptionsSupported.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NssInterruptionsSupported.swift; sourceTree = "<group>"; };
@@ -202,7 +202,7 @@
 			children = (
 				E73C8A512431D3930064EFE1 /* NssInterruptionsSupported.swift */,
 				E73C8A532431E6080064EFE1 /* NssResolverModel.swift */,
-				E7364F9F25051C3A006DD45F /* ScreenModel.swift */,
+				E7364F9F25051C3A006DD45F /* ScreenEventModel.swift */,
 				E7BC7B6124360B06003F28F9 /* NssResolverTfaModel.swift */,
 				E7BC7B5F24360ADD003F28F9 /* NssResolverRegTokenModel.swift */,
 			);
@@ -497,7 +497,7 @@
 				E7364F9E25051BC5006DD45F /* EventsChannel.swift in Sources */,
 				E7D1F71124152D5000394185 /* Dictionary.swift in Sources */,
 				E73C8A522431D3930064EFE1 /* NssInterruptionsSupported.swift in Sources */,
-				E7364FA12505284F006DD45F /* ScreenModel.swift in Sources */,
+				E7364FA12505284F006DD45F /* ScreenEventModel.swift in Sources */,
 				E70F8BCB2404095600D52208 /* BaseChannel.swift in Sources */,
 				E78B8A6023FC399C00E29651 /* ApiChannel.swift in Sources */,
 				E73C8A0A2430D8290064EFE1 /* FlowManager.swift in Sources */,
