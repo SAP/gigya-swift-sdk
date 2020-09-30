@@ -80,6 +80,7 @@ final class FlowManager<T: GigyaAccountProtocol> {
                 // dispose current resolver
                 self.disposeResolver()
             case .failure(let error):
+      
                 if let interrupt = error.interruption {
                     switch interrupt {
                     case .pendingRegistration(resolver: let resolver):
@@ -88,9 +89,16 @@ final class FlowManager<T: GigyaAccountProtocol> {
                         break
                     }
                 }
+
                 self.eventsClosure?(.error(screenId: self.currentScreenId ?? "", error: error.error))
 
-                self.engineResultHandler?(GigyaResponseModel.failedResponse(with: error.error))
+                var newError = error.error
+                if case .providerError(data: "cancelled") = error.error {
+                    newError = NetworkError.gigyaError(data: try! GigyaResponseModel.makeError(errorCode: 200001, errorMessage: "error-operation-canceled"))
+                }
+
+                self.engineResultHandler?(GigyaResponseModel.failedResponse(with: newError))
+
             }
         }
     }
