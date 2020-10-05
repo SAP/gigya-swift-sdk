@@ -146,6 +146,8 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
      - returns:         GigyaSession object.
     */
     public func getSession() -> GigyaSession? {
+        guard isLoggedIn() else { return nil }
+        
         return sessionService.session
     }
 
@@ -156,8 +158,11 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
         sessionService.setClearCookies(to: value)
     }
 
-    public func setRequestTimeout(sec: Int) {
-
+    /**
+     Override the default timeout for network requests.
+    */
+    public func setRequestTimeout(to sec: Double) {
+        config.timestampOffset = sec
     }
 
     /**
