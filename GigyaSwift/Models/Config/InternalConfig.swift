@@ -32,4 +32,8 @@ struct InternalConfig {
         internal static let pushKey = "com.gigya.GigyaTfa:pushKey"
 
     }
+
+    struct Network {
+        internal static let requestTimeoutDefult: Double = 60
+    }
 }
