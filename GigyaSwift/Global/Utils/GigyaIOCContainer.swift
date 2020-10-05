@@ -86,8 +86,9 @@ final class GigyaIOCContainer<T: GigyaAccountProtocol>: GigyaContainerProtocol {
 
         container.register(service: ApiServiceProtocol.self) { resolver in
             let sessionService = resolver.resolve(SessionServiceProtocol.self)
+            let persistenceService = resolver.resolve(PersistenceService.self)
 
-            return ApiService(with: resolver.resolve(NetworkAdapterProtocol.self)!, session: sessionService!)
+            return ApiService(with: resolver.resolve(NetworkAdapterProtocol.self)!, session: sessionService!, persistenceService: persistenceService!)
         }
 
         container.register(service: KeychainStorageFactory.self) { resolver in
