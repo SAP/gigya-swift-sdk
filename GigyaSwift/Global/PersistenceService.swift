@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class PersistenceService {
+public final class PersistenceService {
     var isInitSdk: Bool = false
 
     // MARK: - UserDefault

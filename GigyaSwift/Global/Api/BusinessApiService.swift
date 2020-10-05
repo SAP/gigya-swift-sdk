@@ -49,23 +49,6 @@ class BusinessApiService: NSObject, BusinessApiServiceProtocol {
     }
 
     // Send regular request
-    func getSDKConfig() {
-        let params = ["include": "permissions,ids,appIds"]
-        let model = ApiRequestModel(method: GigyaDefinitions.API.getSdkConfig, params: params)
-
-        apiService.sendBlocking(model: model, responseType: InitSdkResponseModel.self) { [weak self] result in
-            switch result {
-            case .success(let data):
-                self?.persistenceService.save(ids: data.ids)
-                self?.persistenceService.isInitSdk = true
-            case .failure(let error):
-                GigyaLogger.log(with: self, message: error.localizedDescription)
-                break
-            }
-        }
-    }
-
-    // Send regular request
     func send(api: String, params: [String: Any] = [:], completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void ) {
         let model = ApiRequestModel(method: api, params: params)
 
