@@ -10,7 +10,7 @@ import Foundation
 
 struct InternalConfig {
     struct General {
-        internal static let version = "ios_swift_1.1.4"
+        internal static let version = "ios_swift_1.1.5"
         internal static let sdkDomain = "com.gigya.GigyaSDK"
         internal static let defaultLang = "en"
     }
@@ -31,5 +31,9 @@ struct InternalConfig {
         internal static let expirationSession = "com.gigya.GigyaSDK:expirationSession"
         internal static let pushKey = "com.gigya.GigyaTfa:pushKey"
 
+    }
+
+    struct Network {
+        internal static let requestTimeoutDefult: Double = 60
     }
 }

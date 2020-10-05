@@ -17,13 +17,36 @@ final class ApiService: ApiServiceProtocol {
 
     private let networkAdapter: NetworkAdapterProtocol?
 
-    required init(with networkAdapter: NetworkAdapterProtocol, session: SessionServiceProtocol) {
+    private let persistenceService: PersistenceService
+
+    required init(with networkAdapter: NetworkAdapterProtocol, session: SessionServiceProtocol, persistenceService: PersistenceService) {
         self.networkAdapter = networkAdapter
         self.sessionService = session
+        self.persistenceService = persistenceService
+    }
+
+    func getSDKConfig() {
+        let params = ["include": "permissions,ids,appIds"]
+        let model = ApiRequestModel(method: GigyaDefinitions.API.getSdkConfig, params: params)
+
+        self.sendBlocking(model: model, responseType: InitSdkResponseModel.self) { [weak self] result in
+            switch result {
+            case .success(let data):
+                self?.persistenceService.save(ids: data.ids)
+                self?.persistenceService.isInitSdk = true
+            case .failure(let error):
+                GigyaLogger.log(with: self, message: error.localizedDescription)
+                break
+            }
+        }
     }
 
     func send<T: Codable>(model: ApiRequestModel, responseType: T.Type,
                           completion: @escaping (GigyaApiResult<T>) -> Void) {
+        if persistenceService.isInitSdk == false {
+            getSDKConfig()
+        }
+        
         send(model: model, responseType: responseType, blocking: false, completion: completion)
     }
 
@@ -35,6 +58,7 @@ final class ApiService: ApiServiceProtocol {
     // Send request to server
     private func send<T: Codable>(model: ApiRequestModel, responseType: T.Type, blocking: Bool,
                           completion: @escaping (GigyaApiResult<T>) -> Void) {
+
         networkAdapter?.send(model: model, blocking: blocking) { [weak self] (data, error) in
 
             if error == nil {

@@ -40,6 +40,7 @@ final class NetworkProvider {
         dataURL.appendPathComponent(model.method)
 
         var request: URLRequest = URLRequest(url: dataURL)
+        request.timeoutInterval = TimeInterval(config?.requestTimeout ?? InternalConfig.Network.requestTimeoutDefult)
 
         // Encode body request to params
         do {
@@ -53,7 +54,7 @@ final class NetworkProvider {
             
             request.httpBody = bodyString.dropLast().data(using: .utf8)
 
-            GigyaLogger.log(with: self, message: "[Request]:httpBody, jsonData: \(bodyDataParmas)")
+            GigyaLogger.log(with: self, message: "[Request]:httpBody, jsonData: \(bodyString)")
 
         } catch {
             GigyaLogger.log(with: self, message: "Error: \(NetworkError.createURLRequestFailed.localizedDescription)")

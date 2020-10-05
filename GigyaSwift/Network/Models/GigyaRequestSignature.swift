@@ -9,7 +9,7 @@
 import Foundation
 
 struct GigyaRequestSignature: Codable {
-    var apikey: String
+    var apikey: String?
     var format: String = "json"
     var gmid: String?
     var ucid: String?
@@ -23,11 +23,14 @@ struct GigyaRequestSignature: Codable {
 
     init(oauthToken: String?, apikey: String, nonce: String?, timestamp: String?, ucid: String?, gmid: String?) {
         self.oauthToken = oauthToken
-        self.apikey = apikey
         self.nonce = nonce
         self.timestamp = timestamp
         self.ucid = ucid
         self.gmid = gmid
+
+        if oauthToken == nil {
+            self.apikey = apikey
+        }
     }
 
     init(apikey: String, ucid: String?, gmid: String?) {

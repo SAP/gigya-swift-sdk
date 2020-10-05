@@ -90,7 +90,7 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
         config.apiDomain = apiDomain ?? self.defaultApiDomain
         config.apiKey = apiKey
 
-        businessApiService.getSDKConfig()
+        businessApiService.apiService.getSDKConfig()
     }
 
     // MARK: - Anonymous API
@@ -146,6 +146,8 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
      - returns:         GigyaSession object.
     */
     public func getSession() -> GigyaSession? {
+        guard isLoggedIn() else { return nil }
+        
         return sessionService.session
     }
 
@@ -154,6 +156,13 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
     */
     public func setClearCookies(to value: Bool){
         sessionService.setClearCookies(to: value)
+    }
+
+    /**
+     Override the default timeout for network requests.
+    */
+    public func setRequestTimeout(to sec: Double) {
+        config.timestampOffset = sec
     }
 
     /**
