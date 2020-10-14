@@ -13,6 +13,8 @@ public typealias BuilderOptions = ScreenSetsExternalBuilderProtocol & ScreenSets
 
 public protocol ScreenSetsMainBuilderProtocol {
     func load(withAsset asset: String) -> BuilderOptions
+
+    func load(screenSetId id: String) -> BuilderOptions
 }
 
 public protocol ScreenSetsExternalBuilderProtocol {
