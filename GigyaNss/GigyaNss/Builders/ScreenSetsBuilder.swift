@@ -17,7 +17,7 @@ class ScreenSetsBuilder<T: GigyaAccountProtocol>: ScreenSetsMainBuilderProtocol 
 
     let engineLifeCycle: EngineLifeCycle
 
-    var assetName: String?
+    var loadModel: ScreenLoadType?
     var screenName: String?
     var langName: String?
 
@@ -31,11 +31,25 @@ class ScreenSetsBuilder<T: GigyaAccountProtocol>: ScreenSetsMainBuilderProtocol 
 
     @discardableResult
     func load(withAsset asset: String) -> BuilderOptions {
+        loadModel = .asset(value: asset)
+
+        registerInit()
+        return self
+    }
+
+    @discardableResult
+    func load(screenSetId id: String) -> BuilderOptions {
+        loadModel = .id(value: id)
+
+        registerInit()
+
+        return self
+    }
+
+    private func registerInit() {
         handlerExists = false
-        assetName = asset
 
         eventsClosuresManager = dependenciesContainer.resolve(EventsClosuresManager.self)
-        return self
     }
 
     deinit {
@@ -83,8 +97,8 @@ extension ScreenSetsBuilder: ScreenSetsExternalBuilderProtocol {
 // MARK: - Builder actions
 
 extension ScreenSetsBuilder: ScreenSetsActionsBuilderProtocol {
+
     func show(viewController: UIViewController) {
-        
         // TODO: How to check if the screenSetId is exists? Maybe need to check it in the flutter engine?
         guard let screenSetViewController = GigyaNss.shared.dependenciesContainer.resolve(NativeScreenSetsViewController<T>.self) else {
             GigyaLogger.error(with: GigyaNss.self, message: "dependency not found, verify that you have implemented `GigyaNss.shared.register()`.")
@@ -101,7 +115,7 @@ extension ScreenSetsBuilder: ScreenSetsActionsBuilderProtocol {
             GigyaLogger.error(with: GigyaNss.self, message: "scheme is not same to the core scheme")
         }
 
-        engineLifeCycle.register(asset: assetName,
+        engineLifeCycle.register(asset: loadModel,
                                  initialRoute: screenName,
                                  defaultLang: langName,
                                  presentFrom: viewController,

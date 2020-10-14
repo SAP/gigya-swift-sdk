@@ -56,6 +56,13 @@ final public class GigyaNss {
         return builder!.load(withAsset: asset)
     }
 
+    @discardableResult
+    public func load(screenSetId: String) -> BuilderOptions {
+        self.registerDependenciesIfNeeded()
+
+        return builder!.load(screenSetId: screenSetId)
+    }
+
     public func register<T: GigyaAccountProtocol>(scheme: T.Type) {
         dependenciesContainer.register(service: FlowManager<T>.self) { resolver in
             let flowFactory = resolver.resolve(ActionFactory<T>.self)
@@ -108,8 +115,10 @@ final public class GigyaNss {
             return EngineLifeCycle(ignitionChannel: ignitionChannel, loaderHelper: loaderHelper, schemaHelper: schemaHelper)
         }
 
-        dependenciesContainer.register(service: LoaderFileHelper.self) { _ in
-            return LoaderFileHelper()
+        dependenciesContainer.register(service: LoaderFileHelper.self) { resolver in
+            let busnessApi = resolver.resolve(BusinessApiDelegate.self)!
+
+            return LoaderFileHelper(busnessApi: busnessApi)
         }
 
         dependenciesContainer.register(service: ScreenChannel.self) {  _ in
