@@ -127,11 +127,14 @@
     "login": {
       "routing": {
         "onPendingRegistration": "account-update",
-        "onSuccess": "account-update"
+        "onSuccess": "_dismiss"
       },
       "action": "login",
       "appBar": {
         "textKey": "login"
+      },
+      "style": {
+        "background": "green"
       },
       "children": [
         {
@@ -246,11 +249,6 @@
             "required": {
               "enabled": true,
               "errorKey": "error-required-field"
-            },
-            "regex": {
-              "enabled": true,
-              "format": "(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@%#$&*~]).{8,}",
-              "errorKey": "error-invalid-format"
             }
           }
         },
@@ -295,6 +293,7 @@
     "register": {
       "routing": {
         "onPendingRegistration": "account-update",
+        "onLoginIdentifierExists": "link-account",
         "onSuccess": "_dismiss"
       },
       "action": "register",
@@ -505,6 +504,89 @@
                   16,
                   16
                 ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "link-account": {
+      "routing": {
+        "onSuccess": "_dismiss"
+      },
+      "action": "linkAccount",
+      "appBar": {
+        "textKey": "account-information"
+      },
+      "stack": "vertical",
+      "children": [
+        {
+          "type": "container",
+          "showIf": "conflictingAccount.loginProviders.filter(p => p != 'site').length > 0",
+          "children": [
+            {
+              "type": "socialLoginGrid",
+              "providers": [
+                "facebook",
+                "google",
+                "wechat",
+                "yahoo",
+                "linkedin",
+                "twitter",
+                "apple",
+                "line",
+                "amazon",
+                "yahooJapan"
+              ],
+              "columns": 3,
+              "rows": 2,
+              "style": {
+                "cornerRadius": 6,
+                "fontSize": 14,
+                "fontColor": "black",
+                "fontWeight": "bold",
+                "elevation": 2,
+                "margin": 16,
+                "indicatorColor": "grey"
+              }
+            }
+          ]
+        },
+        {
+          "type": "container",
+          "showIf": "conflictingAccount.loginProviders.includes('site')",
+          "children": [
+            {
+              "bind": "conflictingAccount.loginID",
+              "type": "textInput",
+              "textKey": "common-email",
+              "disabled": "true",
+              "theme": "input"
+            },
+            {
+              "bind": "password",
+              "type": "passwordInput",
+              "textKey": "common-password",
+              "theme": "input",
+              "validations": {
+                "required": {
+                  "enabled": true,
+                  "errorKey": "error-required-field"
+                }
+              }
+            },
+            {
+              "type": "submit",
+              "textKey": "common-submit",
+              "theme": "raisedButton",
+              "style": {
+                "margin": [
+                  0,
+                  40,
+                  0,
+                  0
+                ],
+                "cornerRadius": 5
               }
             }
           ]

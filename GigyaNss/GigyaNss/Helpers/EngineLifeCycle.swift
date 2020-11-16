@@ -7,6 +7,7 @@
 //
 import UIKit
 import Gigya
+import Flutter
 
 class EngineLifeCycle {
     private let ignitionChannel: IgnitionChannel
@@ -16,6 +17,8 @@ class EngineLifeCycle {
     private let schemaHelper: SchemaHelper
 
     private var isDisplay = false
+
+    private var response: FlutterResult?
 
     init(ignitionChannel: IgnitionChannel, loaderHelper: LoaderFileHelper, schemaHelper: SchemaHelper) {
         self.ignitionChannel = ignitionChannel
@@ -36,7 +39,7 @@ class EngineLifeCycle {
 
         ignitionChannel.initChannel(engine: screen.engine!)
 
-        ignitionChannel.methodHandler(scheme: IgnitionChannelEvent.self) { [weak self] (method, data, response) in
+        ignitionChannel.methodHandler(scheme: IgnitionChannelEvent.self) { [weak self, weak screen] (method, data, response) in
             guard let self = self, let method = method else {
                 return
             }
@@ -47,7 +50,7 @@ class EngineLifeCycle {
 
                 self.loaderHelper.load(asset: asset, defaultLang: defaultLang) { (data) in
                     var loadAsset = data
-                    
+
                     if let initialRoute = initialRoute {
                         guard var routing = loadAsset["routing"] as? [String: Any] else {
                             GigyaLogger.error(with: EngineLifeCycle.self, message: "parsing error - `routing` is not exists.")
@@ -68,14 +71,17 @@ class EngineLifeCycle {
                 }
 
                 self.isDisplay = true
-                
-                vc.present(screen, animated: true, completion: nil)
+
+                screen?.removeSpinner()
+
             case .loadSchema:
                 self.schemaHelper.getSchema { (data) in
                     response(data)
                 }
             }
         }
+
+        vc.present(screen, animated: true, completion: nil)
     }
 
     func regToLifeCircleOf<T: GigyaAccountProtocol>(vc: NativeScreenSetsViewController<T>) {
@@ -90,14 +96,14 @@ class EngineLifeCycle {
             self?.destroyContext(vc)
         }
 
-        loaderHelper.errorClosure = { [weak self] error in
-            vc.viewModel?.eventHandler?(NssEvents.error(screenId: "", error: error))
+        loaderHelper.errorClosure = { [weak vc, weak self] error in
+            vc?.viewModel?.eventHandler?(NssEvents.error(screenId: "", error: error))
             self?.destroyContext(vc)
         }
     }
 
     func destroyContext<T: GigyaAccountProtocol>(_ vc: NativeScreenSetsViewController<T>?) {
-        vc?.engine?.destroyContext()
+        vc?.removeSpinner()
         vc?.viewModel = nil
         self.isDisplay = false
     }
