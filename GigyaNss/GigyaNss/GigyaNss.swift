@@ -156,8 +156,9 @@ final public class GigyaNss {
 
         dependenciesContainer.register(service: RegisterAction<T>.self) { resolver in
             let busnessApi = resolver.resolve(BusinessApiDelegate.self)
-            
-            return RegisterAction(busnessApi: busnessApi!)
+            let jsEval = resolver.resolve(JsEvaluatorHelper.self)
+
+            return RegisterAction(busnessApi: busnessApi!, jsEval: jsEval!)
         }
 
         dependenciesContainer.register(service: SchemaHelper.self) { resolver in
@@ -168,24 +169,38 @@ final public class GigyaNss {
 
         dependenciesContainer.register(service: LoginAction<T>.self) { resolver in
             let busnessApi = resolver.resolve(BusinessApiDelegate.self)
+            let jsEval = resolver.resolve(JsEvaluatorHelper.self)
 
-            return LoginAction(busnessApi: busnessApi!)
+            return LoginAction(busnessApi: busnessApi!, jsEval: jsEval!)
         }
 
         dependenciesContainer.register(service: SetAccountAction<T>.self) { resolver in
             let busnessApi = resolver.resolve(BusinessApiDelegate.self)
+            let jsEval = resolver.resolve(JsEvaluatorHelper.self)
 
-            return SetAccountAction(busnessApi: busnessApi!)
+            return SetAccountAction(busnessApi: busnessApi!, jsEval: jsEval!)
+        }
+
+        dependenciesContainer.register(service: LinkAccountAction<T>.self) { resolver in
+            let busnessApi = resolver.resolve(BusinessApiDelegate.self)
+            let jsEval = resolver.resolve(JsEvaluatorHelper.self)
+
+            return LinkAccountAction(busnessApi: busnessApi!, jsEval: jsEval!)
         }
 
         dependenciesContainer.register(service: ForgotPasswordAction<T>.self) { resolver in
             let busnessApi = resolver.resolve(BusinessApiDelegate.self)
+            let jsEval = resolver.resolve(JsEvaluatorHelper.self)
 
-            return ForgotPasswordAction(busnessApi: busnessApi!)
+            return ForgotPasswordAction(busnessApi: busnessApi!, jsEval: jsEval!)
         }
 
         dependenciesContainer.register(service: CreateEngineFactory.self) { _ in
             return CreateEngineFactory()
+        }
+
+        dependenciesContainer.register(service: JsEvaluatorHelper.self) { _ in
+            return JsEvaluatorHelper()
         }
 
         dependenciesContainer.register(service: EventsClosuresManager.self) { _ in
@@ -198,6 +213,16 @@ final public class GigyaNss {
         self.builder = builder
 
         self.dependenciesDidRegisterd = true
+
+//        let jsEval = JsEvaluatorHelper()
+//        jsEval.setData(data: ["account": ["profile": ["firstName": "Sagi"]]])
+//        jsEval.setConditions(data: [
+//                                "cId123": "account.profile.firstName == 'Sagi'",
+//                                "cId124": "account.profile.firstName == 'Tal'",
+//        ])
+//
+//        let x = jsEval.eval()
+
     }
 
     private func registerDependenciesIfNeeded() {

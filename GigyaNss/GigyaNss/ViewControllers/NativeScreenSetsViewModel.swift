@@ -70,7 +70,9 @@ class NativeScreenSetsViewModel<T: GigyaAccountProtocol>: NSObject, UIAdaptivePr
                     return
                 }
 
-                self.flowManager.setCurrent(action: flow, response: response)
+                let expressions = data?["expressions"] as? [String : String] ?? [:]
+
+                self.flowManager.setCurrent(action: flow, response: response, expressions: expressions)
                 self.flowManager.currentScreenId = screenId
 
             case .link:

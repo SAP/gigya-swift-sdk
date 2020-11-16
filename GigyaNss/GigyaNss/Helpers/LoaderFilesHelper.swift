@@ -46,7 +46,7 @@ class LoaderFileHelper {
         case .asset(let value):
             // load the `screenSets` file from bundle. (example: `init.json`)
             guard var loadAsset = fileToDic(name: value) else {
-                GigyaLogger.error(with: EngineLifeCycle.self, message: "parsing error")
+                GigyaLogger.error(with: LoaderFileHelper.self, message: "the asset: \(value) is not found.")
             }
 
             // load the `theme` file from bundle. (example: `init.theme.json`)

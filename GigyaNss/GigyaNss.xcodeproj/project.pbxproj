@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXAggregateTarget section */
@@ -40,6 +40,8 @@
 		E70F8BF124053B5800D52208 /* LoginAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70F8BF024053B5800D52208 /* LoginAction.swift */; };
 		E719C6AF24225216002F8C36 /* LogChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E719C6AE24225216002F8C36 /* LogChannel.swift */; };
 		E719C6B124226139002F8C36 /* SetAccountAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E719C6B024226139002F8C36 /* SetAccountAction.swift */; };
+		E71CB3B22554029000D63726 /* JsEvaluatorHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71CB3B12554029000D63726 /* JsEvaluatorHelper.swift */; };
+		E71CB3B825540C6F00D63726 /* JsEvalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71CB3B725540C6F00D63726 /* JsEvalTests.swift */; };
 		E722572923CC9F22000DDB24 /* engine.sh in Resources */ = {isa = PBXBuildFile; fileRef = E722572823CC9F22000DDB24 /* engine.sh */; };
 		E722573423CCB1CE000DDB24 /* NativeScreenSetsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E722573323CCB1CE000DDB24 /* NativeScreenSetsViewController.swift */; };
 		E722573623CCBB31000DDB24 /* ScreenChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E722573523CCBB31000DDB24 /* ScreenChannel.swift */; };
@@ -52,6 +54,7 @@
 		E73C8A522431D3930064EFE1 /* NssInterruptionsSupported.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73C8A512431D3930064EFE1 /* NssInterruptionsSupported.swift */; };
 		E73C8A542431E6080064EFE1 /* NssResolverModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73C8A532431E6080064EFE1 /* NssResolverModel.swift */; };
 		E761DBF624F3A27F0072BAFF /* ImagePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E761DBF524F3A27F0072BAFF /* ImagePickerViewController.swift */; };
+		E767A9E82548225400444E02 /* LinkAccountAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E767A9E72548225400444E02 /* LinkAccountAction.swift */; };
 		E775E81223C5D1710059151D /* GigyaNss.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E775E80823C5D1710059151D /* GigyaNss.framework */; };
 		E775E81723C5D1710059151D /* GigyaNssTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E775E81623C5D1710059151D /* GigyaNssTests.swift */; };
 		E775E81923C5D1710059151D /* GigyaNss.h in Headers */ = {isa = PBXBuildFile; fileRef = E775E80B23C5D1710059151D /* GigyaNss.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -94,6 +97,8 @@
 		E70F8BF024053B5800D52208 /* LoginAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginAction.swift; sourceTree = "<group>"; };
 		E719C6AE24225216002F8C36 /* LogChannel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogChannel.swift; sourceTree = "<group>"; };
 		E719C6B024226139002F8C36 /* SetAccountAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetAccountAction.swift; sourceTree = "<group>"; };
+		E71CB3B12554029000D63726 /* JsEvaluatorHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsEvaluatorHelper.swift; sourceTree = "<group>"; };
+		E71CB3B725540C6F00D63726 /* JsEvalTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsEvalTests.swift; sourceTree = "<group>"; };
 		E722572823CC9F22000DDB24 /* engine.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = engine.sh; sourceTree = "<group>"; };
 		E722573323CCB1CE000DDB24 /* NativeScreenSetsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeScreenSetsViewController.swift; sourceTree = "<group>"; };
 		E722573523CCBB31000DDB24 /* ScreenChannel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenChannel.swift; sourceTree = "<group>"; };
@@ -105,6 +110,7 @@
 		E73C8A512431D3930064EFE1 /* NssInterruptionsSupported.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NssInterruptionsSupported.swift; sourceTree = "<group>"; };
 		E73C8A532431E6080064EFE1 /* NssResolverModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NssResolverModel.swift; sourceTree = "<group>"; };
 		E761DBF524F3A27F0072BAFF /* ImagePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerViewController.swift; sourceTree = "<group>"; };
+		E767A9E72548225400444E02 /* LinkAccountAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkAccountAction.swift; sourceTree = "<group>"; };
 		E775E80823C5D1710059151D /* GigyaNss.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GigyaNss.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E775E80B23C5D1710059151D /* GigyaNss.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GigyaNss.h; sourceTree = "<group>"; };
 		E775E80C23C5D1710059151D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -161,6 +167,7 @@
 				E70F8BF024053B5800D52208 /* LoginAction.swift */,
 				E719C6B024226139002F8C36 /* SetAccountAction.swift */,
 				E798FD7724E2980000654983 /* ForgotPasswordAction.swift */,
+				E767A9E72548225400444E02 /* LinkAccountAction.swift */,
 				E70F8BEE24053AB900D52208 /* RegisterAction.swift */,
 			);
 			path = Actions;
@@ -251,6 +258,7 @@
 			isa = PBXGroup;
 			children = (
 				E775E81623C5D1710059151D /* GigyaNssTests.swift */,
+				E71CB3B725540C6F00D63726 /* JsEvalTests.swift */,
 				E775E81823C5D1710059151D /* Info.plist */,
 			);
 			path = GigyaNssTests;
@@ -288,6 +296,7 @@
 			isa = PBXGroup;
 			children = (
 				E7772A0523D5DC0400DE9DDD /* LoaderFilesHelper.swift */,
+				E71CB3B12554029000D63726 /* JsEvaluatorHelper.swift */,
 				E7D1F70D240E5F0700394185 /* EngineLifeCycle.swift */,
 				E78038CE24A8A0240002911C /* SchemaHelper.swift */,
 				E77F7A2C2407BF5100FF90FB /* CreateEngineFactory.swift */,
@@ -384,7 +393,7 @@
 				};
 			};
 			buildConfigurationList = E775E80223C5D1710059151D /* Build configuration list for PBXProject "GigyaNss" */;
-			compatibilityVersion = "Xcode 9.3";
+			compatibilityVersion = "Xcode 12.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -486,6 +495,7 @@
 				E7AE06B82506360D00D4A171 /* EventsClosuresManager.swift in Sources */,
 				E7D1F70C240BD92B00394185 /* IgnitionChannel.swift in Sources */,
 				E7772A0623D5DC0400DE9DDD /* LoaderFilesHelper.swift in Sources */,
+				E71CB3B22554029000D63726 /* JsEvaluatorHelper.swift in Sources */,
 				E70F8BEF24053ABA00D52208 /* RegisterAction.swift in Sources */,
 				E78B8A5E23FC375700E29651 /* NativeScreenSetsViewModel.swift in Sources */,
 				E798FD7824E2980000654983 /* ForgotPasswordAction.swift in Sources */,
@@ -496,6 +506,7 @@
 				E7B521982444902C00DAB464 /* GigyaResponseModel.swift in Sources */,
 				E7364F9E25051BC5006DD45F /* EventsChannel.swift in Sources */,
 				E7D1F71124152D5000394185 /* Dictionary.swift in Sources */,
+				E767A9E82548225400444E02 /* LinkAccountAction.swift in Sources */,
 				E73C8A522431D3930064EFE1 /* NssInterruptionsSupported.swift in Sources */,
 				E7364FA12505284F006DD45F /* ScreenEventModel.swift in Sources */,
 				E70F8BCB2404095600D52208 /* BaseChannel.swift in Sources */,
@@ -523,6 +534,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E71CB3B825540C6F00D63726 /* JsEvalTests.swift in Sources */,
 				E775E81723C5D1710059151D /* GigyaNssTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -686,7 +698,7 @@
 					"@loader_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.3;
-				ONLY_ACTIVE_ARCH = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = Gigya.GigyaNss;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -695,7 +707,7 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALID_ARCHS = "arm64 arm64e armv7 armv7s";
+				VALID_ARCHS = "arm64 arm64e armv7 armv7s x86_64";
 			};
 			name = Debug;
 		};
@@ -726,7 +738,7 @@
 					"@loader_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.3;
-				ONLY_ACTIVE_ARCH = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = Gigya.GigyaNss;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -734,7 +746,7 @@
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALID_ARCHS = "arm64 arm64e armv7 armv7s";
+				VALID_ARCHS = "arm64 arm64e armv7 armv7s x86_64";
 			};
 			name = Release;
 		};

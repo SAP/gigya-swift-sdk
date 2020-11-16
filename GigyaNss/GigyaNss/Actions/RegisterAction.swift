@@ -11,9 +11,10 @@ import Flutter
 
 class RegisterAction<T: GigyaAccountProtocol>: Action<T> {
 
-    init(busnessApi: BusinessApiDelegate) {
+    init(busnessApi: BusinessApiDelegate, jsEval: JsEvaluatorHelper) {
         super.init()
         self.busnessApi = busnessApi
+        self.jsEval = jsEval
     }
 
     override func next(method: ApiChannelEvent, params: [String: Any]?) {
