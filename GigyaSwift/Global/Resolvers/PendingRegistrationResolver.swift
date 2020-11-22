@@ -23,8 +23,6 @@ final public class PendingRegistrationResolver<T: GigyaAccountProtocol>: BaseRes
         self.regToken = regToken
         self.completion = completion
         self.businessDelegate = businessDelegate
-
-        start()
     }
 
     internal func start() {
