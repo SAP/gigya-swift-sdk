@@ -36,7 +36,6 @@ class LinkAccountAction<T: GigyaAccountProtocol>: Action<T> {
                 return
             }
 
-            var returnObject: [String: Any] = [:]
             let data = ["conflictingAccount": decodedObject]
 
             response(doExpressions(data: data, expressions: expressions))
