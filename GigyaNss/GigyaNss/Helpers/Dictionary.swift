@@ -19,3 +19,17 @@ extension Dictionary {
         return ""
     }
 }
+
+extension String {
+    func convertStringToDictionary() -> [String: AnyObject]? {
+       if let data = self.data(using: .utf8) {
+           do {
+               let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String:AnyObject]
+               return json
+           } catch {
+               print("Something went wrong")
+           }
+       }
+       return nil
+   }
+}

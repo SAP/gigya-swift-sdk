@@ -10,7 +10,10 @@ import UIKit
 import Flutter
 import Gigya
 
-class NativeScreenSetsViewController<T: GigyaAccountProtocol>: FlutterViewController, UIGestureRecognizerDelegate {
+class NativeScreenSetsViewController<T: GigyaAccountProtocol>: FlutterViewController, LoadingContainer, UIGestureRecognizerDelegate {
+
+    var spinnerView = SpinnerView()
+
     var viewModel: NativeScreenSetsViewModel<T>?
 
     var initialRoute: String?
@@ -24,7 +27,7 @@ class NativeScreenSetsViewController<T: GigyaAccountProtocol>: FlutterViewContro
         super.init(engine: engine, nibName: nil, bundle: nil)
     }
 
-    required init?(coder: NSCoder) {
+    required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
@@ -44,7 +47,14 @@ class NativeScreenSetsViewController<T: GigyaAccountProtocol>: FlutterViewContro
         let gestureRecognizer = UIGestureRecognizer()
         gestureRecognizer.delegate = self
         self.view.addGestureRecognizer(gestureRecognizer)
+
+        self.view.backgroundColor = .clear
+        self.view.subviews[0].alpha = 0
+
+        showSpinner()
+
     }
+
 
     private func disableDismissalRecognizers() {
         presentationController?.presentedView?.gestureRecognizers?.forEach {
@@ -74,3 +84,47 @@ class NativeScreenSetsViewController<T: GigyaAccountProtocol>: FlutterViewContro
 
 }
 
+typealias SpinnerView = UIView
+
+protocol LoadingContainer {
+    var spinnerView: SpinnerView {get set}
+
+    mutating func showSpinner()
+
+    func removeSpinner()
+}
+
+extension LoadingContainer where Self: UIViewController {
+    func showSpinner() {
+        if self.spinnerView.superview != nil {
+            return
+        }
+
+        let spinnerView = UIView()
+
+        spinnerView.backgroundColor = .clear
+        let ai = UIActivityIndicatorView(style: .gray)
+        ai.transform = CGAffineTransform(scaleX: 2, y: 2)
+        ai.startAnimating()
+        ai.center = spinnerView.center
+
+        spinnerView.addSubview(ai)
+        self.spinnerView.addSubview(spinnerView)
+        self.view.addSubview(self.spinnerView)
+
+        spinnerView.translatesAutoresizingMaskIntoConstraints = false
+        let horizontalConstraint = spinnerView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor)
+        let verticalConstraint = spinnerView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor)
+        NSLayoutConstraint.activate([horizontalConstraint, verticalConstraint])
+
+    }
+
+    func removeSpinner() {
+        DispatchQueue.main.async { [weak self] in
+            self?.view.subviews[0].alpha = 1.0
+
+            (self?.spinnerView.subviews[0] as? UIActivityIndicatorView)?.stopAnimating()
+            self?.spinnerView.removeFromSuperview()
+        }
+    }
+}

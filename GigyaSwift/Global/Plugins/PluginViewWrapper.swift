@@ -103,7 +103,8 @@ class PluginViewWrapper<T: GigyaAccountProtocol>: PluginViewWrapperProtocol {
         if (params.keys.contains("RatingUI") && params.keys.contains("showCommentButton")) {
             params["showCommentButton"] = false
         }
-        
+        let lang = params["lang"] ?? "en"
+
         let enableTestNetworksScript = """
             gigya._.providers.arProviders.push(new gigya._.providers.Provider(6016, 'testnetwork3', 650, 400, \'login,friends,actions,status,photos,places,checkins', true));\
             gigya._.providers.arProviders.push(new gigya._.providers.Provider(6017, 'testnetwork4', 650, 400, 'login,friends,actions,status,photos,places,checkins', true));
@@ -126,7 +127,7 @@ class PluginViewWrapper<T: GigyaAccountProtocol>: PluginViewWrapperProtocol {
                 document.location.href = 'gsapi://on_js_load_error';
                 }, 10000);
             </script>
-            <script src='https://cdns.\(apiDomain)/JS/gigya.js?apikey=\(apiKey)' type='text/javascript' onLoad='onJSLoad();'>
+            <script src='https://cdns.\(apiDomain)/JS/gigya.js?apikey=\(apiKey)&lang=\(lang)' type='text/javascript' onLoad='onJSLoad();'>
                 {
                     deviceType: 'mobile' // consoleLogLevel: 'error'
                 }

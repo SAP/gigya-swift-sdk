@@ -13,6 +13,8 @@ public typealias BuilderOptions = ScreenSetsExternalBuilderProtocol & ScreenSets
 
 public protocol ScreenSetsMainBuilderProtocol {
     func load(withAsset asset: String) -> BuilderOptions
+
+    func load(screenSetId id: String) -> BuilderOptions
 }
 
 public protocol ScreenSetsExternalBuilderProtocol {
@@ -24,6 +26,8 @@ public protocol ScreenSetsExternalBuilderProtocol {
     func events<B: GigyaAccountProtocol>(_ scheme: B.Type, handler: @escaping (NssEvents<B>) -> Void) -> BuilderOptions
 
     func events(handler: @escaping (NssEvents<GigyaAccount>) -> Void) -> BuilderOptions
+
+    func eventsFor(screen: String, handler: @escaping (NssScreenEvent) -> Void) -> BuilderOptions
 
 }
 

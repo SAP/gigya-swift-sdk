@@ -80,17 +80,27 @@ final class FlowManager<T: GigyaAccountProtocol> {
                 // dispose current resolver
                 self.disposeResolver()
             case .failure(let error):
+      
                 if let interrupt = error.interruption {
                     switch interrupt {
                     case .pendingRegistration(resolver: let resolver):
                         self.currentResolver = NssResolverModel<PendingRegistrationResolver<T>>(interrupt: interrupt.description, resolver: resolver)
+                    case .conflitingAccount(let resolver):
+                        self.currentResolver = NssResolverModel<LinkAccountsResolver<T>>(interrupt: interrupt.description, resolver: resolver)
                     default:
                         break
                     }
                 }
+
                 self.eventsClosure?(.error(screenId: self.currentScreenId ?? "", error: error.error))
 
-                self.engineResultHandler?(GigyaResponseModel.failedResponse(with: error.error))
+                var newError = error.error
+                if case .providerError(data: "cancelled") = error.error {
+                    newError = NetworkError.gigyaError(data: try! GigyaResponseModel.makeError(errorCode: 200001, errorMessage: "error-operation-canceled"))
+                }
+
+                self.engineResultHandler?(GigyaResponseModel.failedResponse(with: newError))
+
             }
         }
     }
@@ -101,10 +111,10 @@ final class FlowManager<T: GigyaAccountProtocol> {
     }
 
     // set the current action
-    func setCurrent(action: NssAction, response: @escaping FlutterResult) {
+    func setCurrent(action: NssAction, response: @escaping FlutterResult, expressions: [String: String] = [:]) {
         currentAction = flowFactory.create(identifier: action)
         currentAction?.delegate = self
-        currentAction?.initialize(response: response)
+        currentAction?.initialize(response: response, expressions: expressions)
     }
 
     func next(method: ApiChannelEvent, params: [String : Any]?, response: @escaping FlutterResult) {

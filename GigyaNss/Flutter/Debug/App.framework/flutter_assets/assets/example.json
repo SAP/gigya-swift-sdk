@@ -5,7 +5,8 @@
     "textColor": "black",
     "enabledColor": "blue",
     "disabledColor": "grey",
-    "errorColor": "red"
+    "errorColor": "red",
+    "linkColor": "blue"
   },
   "customThemes": {
     "title": {
@@ -30,7 +31,7 @@
       "elevation": 2,
       "background": "blue",
       "size": [
-        220,
+        300,
         44
       ]
     },
@@ -116,7 +117,7 @@
     }
   },
   "routing": {
-    "initial": "login",
+    "initial": "register",
     "default": {
       "onSuccess": "_dismiss",
       "onPendingEmailVerification": "_dismiss"
@@ -126,22 +127,33 @@
     "login": {
       "routing": {
         "onPendingRegistration": "account-update",
-        "onSuccess": "account-update"
+        "onSuccess": "_dismiss"
       },
       "action": "login",
       "appBar": {
         "textKey": "login"
       },
+      "style": {
+        "background": "green"
+      },
       "children": [
         {
-          "type": "label",
-          "textKey": "login-social-title",
-          "theme": "title",
+          "type": "container",
+          "stack": "horizontal",
+          "alignment": "start",
           "style": {
-            "margin": 16,
-            "textAlign": "end",
-            "size": [200, 50]
-          }
+            "margin": 0
+          },
+          "children": [
+            {
+              "type": "label",
+              "textKey": "login-social-title",
+              "theme": "title",
+              "style": {
+                "margin": 16
+              }
+            }
+          ]
         },
         {
           "type": "socialLoginButton",
@@ -209,8 +221,7 @@
           "style": {
             "margin": [16, 4, 16, 4],
             "cornerRadius": 22,
-            "borderSize": 1,
-            "textAlign": "end"
+            "borderSize": 1
           },
           "validations": {
             "required": {
@@ -238,35 +249,8 @@
             "required": {
               "enabled": true,
               "errorKey": "error-required-field"
-            },
-            "regex": {
-              "enabled": true,
-              "format": "(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@%#$&*~]).{8,}",
-              "errorKey": "error-invalid-format"
             }
           }
-        },
-        {
-          "type": "dropdown",
-          "bind": "data.favGuitar",
-          "style": {
-            "textAlign": "center"
-          },
-          "options": [
-            {
-              "default": true,
-              "value": "PRS",
-              "textKey": "Paul Reed Smith"
-            },
-            {
-              "value": "Rubato",
-              "textKey": "Rubato Guitars"
-            },
-            {
-              "value": "Parker",
-              "textKey": "Parker Guitars"
-            }
-          ]
         },
         {
           "type": "label",
@@ -285,6 +269,7 @@
           "type": "label",
           "textKey": "login-no-account+link",
           "style": {
+            "linkColor": "red",
             "margin": [
               0,
               24,
@@ -298,10 +283,6 @@
           "textKey": "common-submit",
           "theme": "raisedButton",
           "style": {
-            "size": [
-              200,
-              44
-            ],
             "cornerRadius": 5,
             "borderColor": "black",
             "borderSize": 2
@@ -312,6 +293,7 @@
     "register": {
       "routing": {
         "onPendingRegistration": "account-update",
+        "onLoginIdentifierExists": "link-account",
         "onSuccess": "_dismiss"
       },
       "action": "register",
@@ -413,18 +395,10 @@
           "type": "socialLoginGrid",
           "providers": [
             "facebook",
-            "google",
-            "wechat",
-            "yahoo",
-            "linkedin",
-            "twitter",
-            "apple",
-            "line",
-            "amazon",
-            "yahooJapan"
+            "google"
           ],
           "columns": 3,
-          "rows": 2,
+          "rows": 1,
           "style": {
             "cornerRadius": 6,
             "fontSize": 14,
@@ -505,34 +479,7 @@
         },
         {
           "type": "container",
-          "stack": "horizontal",
-          "style": {
-            "size": [0, 44],
-            "background": "blue"
-          },
-          "children": [
-            {
-              "type": "label",
-              "textKey": "I'm a label",
-              "style": {
-                "fontColor": "white"
-              }
-            },
-            {
-              "type": "label",
-              "textKey": "I'm a another label",
-              "style": {
-                "fontColor": "white"
-              }
-            }
-          ]
-        },
-        {
-          "type": "container",
           "stack": "vertical",
-          "style": {
-            "background": "green"
-          },
           "children": [
             {
               "type": "submit",
@@ -549,6 +496,77 @@
                   16,
                   16
                 ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "link-account": {
+      "routing": {
+        "onSuccess": "_dismiss"
+      },
+      "action": "linkAccount",
+      "appBar": {
+        "textKey": "account-information"
+      },
+      "stack": "vertical",
+      "children": [
+        {
+          "type": "container",
+          "showIf": "conflictingAccount.loginProviders.filter(p => p != 'site').length > 0",
+          "children": [
+            {
+              "type": "socialLoginGrid",
+              "columns": 3,
+              "rows": 2,
+              "style": {
+                "cornerRadius": 6,
+                "fontSize": 14,
+                "fontColor": "black",
+                "fontWeight": "bold",
+                "elevation": 2,
+                "margin": 16,
+                "indicatorColor": "grey"
+              }
+            }
+          ]
+        },
+        {
+          "type": "container",
+          "showIf": "conflictingAccount.loginProviders.includes('site')",
+          "children": [
+            {
+              "bind": "conflictingAccount.loginID",
+              "type": "textInput",
+              "textKey": "common-email",
+              "disabled": "true",
+              "theme": "input"
+            },
+            {
+              "bind": "password",
+              "type": "passwordInput",
+              "textKey": "common-password",
+              "theme": "input",
+              "validations": {
+                "required": {
+                  "enabled": true,
+                  "errorKey": "error-required-field"
+                }
+              }
+            },
+            {
+              "type": "submit",
+              "textKey": "common-submit",
+              "theme": "raisedButton",
+              "style": {
+                "margin": [
+                  0,
+                  40,
+                  0,
+                  0
+                ],
+                "cornerRadius": 5
               }
             }
           ]
