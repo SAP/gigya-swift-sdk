@@ -7,15 +7,18 @@
 //
 import UIKit
 import Gigya
+import Flutter
 
 class EngineLifeCycle {
     private let ignitionChannel: IgnitionChannel
 
-    private let loaderHelper: LoaderFileHelper
+    let loaderHelper: LoaderFileHelper
 
     private let schemaHelper: SchemaHelper
 
     private var isDisplay = false
+
+    private var response: FlutterResult?
 
     init(ignitionChannel: IgnitionChannel, loaderHelper: LoaderFileHelper, schemaHelper: SchemaHelper) {
         self.ignitionChannel = ignitionChannel
@@ -23,12 +26,12 @@ class EngineLifeCycle {
         self.schemaHelper = schemaHelper
     }
 
-    func register<T: GigyaAccountProtocol>(asset: String?,
+    func register<T: GigyaAccountProtocol>(asset: ScreenLoadType?,
                                                        initialRoute: String?,
                                                        defaultLang: String?,
                                                        presentFrom vc: UIViewController,
                                                        to screen: NativeScreenSetsViewController<T>) {
-        guard let assetName = asset, !assetName.isEmpty else {
+        guard let asset = asset else {
             GigyaLogger.error(with: EngineLifeCycle.self, message: "asset is empty.")
         }
 
@@ -36,7 +39,7 @@ class EngineLifeCycle {
 
         ignitionChannel.initChannel(engine: screen.engine!)
 
-        ignitionChannel.methodHandler(scheme: IgnitionChannelEvent.self) { [weak self] (method, data, response) in
+        ignitionChannel.methodHandler(scheme: IgnitionChannelEvent.self) { [weak self, weak screen] (method, data, response) in
             guard let self = self, let method = method else {
                 return
             }
@@ -45,77 +48,64 @@ class EngineLifeCycle {
             case .ignition:
                 GigyaLogger.log(with: self, message: "ignition start")
 
-                // load the `screenSets` file from bundle. (example: `init.json`)
-                guard var loadAsset = self.loaderHelper.fileToDic(name: assetName) else {
-                    GigyaLogger.error(with: EngineLifeCycle.self, message: "parsing error ")
-                }
-                
-                // load the `theme` file from bundle. (example: `init.theme.json`)
-                let loadFileTheme = self.loaderHelper.fileToDic(name: "\(assetName).\(GigyaNss.themePrefix))")
+                self.loaderHelper.load(asset: asset, defaultLang: defaultLang) { (data) in
+                    var loadAsset = data
 
-                // load the `i18n` file from bundle. (example: `init.theme.json`)
-                let loadLangFile = self.loaderHelper.fileToDic(name: "\(assetName).\(GigyaNss.langPrefix)")
+                    if let initialRoute = initialRoute {
+                        guard var routing = loadAsset["routing"] as? [String: Any] else {
+                            GigyaLogger.error(with: EngineLifeCycle.self, message: "parsing error - `routing` is not exists.")
+                        }
 
-                if let initialRoute = initialRoute {
-                    guard var routing = loadAsset["routing"] as? [String: Any] else {
-                        GigyaLogger.error(with: EngineLifeCycle.self, message: "parsing error - `routing` is not exists.")
-                    }
-                    
-                    routing["initial"] = initialRoute
-                    loadAsset["routing"] = routing
-                }
-
-                if let lang = defaultLang {
-                    loadAsset["lang"] = lang
-                }
-
-                if let themeFile = loadFileTheme {
-                    if let themeMap = themeFile["theme"] {
-                        loadAsset["theme"] = themeMap
+                        routing["initial"] = initialRoute
+                        loadAsset["routing"] = routing
                     }
 
-                    if let customThemes = themeFile["customThemes"] {
-                         loadAsset["customThemes"] = customThemes
-                     }
+                    GigyaLogger.log(with: self, message: "ignition screen load: \(loadAsset)")
+
+                    response(loadAsset)
                 }
 
-                if let i18n = loadLangFile {
-                    loadAsset["i18n"] = i18n
-                }
-
-                GigyaLogger.log(with: self, message: "ignition screen load: \(loadAsset)")
-
-                response(loadAsset)
             case .readyForDisplay:
                 if self.isDisplay {
                     return
                 }
 
                 self.isDisplay = true
-                vc.present(screen, animated: true, completion: nil)
+
+                screen?.removeSpinner()
+
             case .loadSchema:
                 self.schemaHelper.getSchema { (data) in
                     response(data)
                 }
             }
         }
+
+        vc.present(screen, animated: true, completion: nil)
     }
 
     func regToLifeCircleOf<T: GigyaAccountProtocol>(vc: NativeScreenSetsViewController<T>) {
         vc.viewModel?.dismissClosure = { [weak vc] in
             vc?.dismiss(animated: true, completion: { [weak vc, weak self] in
-                vc?.engine?.destroyContext()
-                vc?.viewModel = nil
-                self?.isDisplay = false
+                self?.destroyContext(vc)
             })
         }
 
         // Close by swipe down event ( for iOS 13+ )
         vc.viewModel?.closeClosure = { [weak vc, weak self] in
-            vc?.engine?.destroyContext()
-            vc?.viewModel = nil
-            self?.isDisplay = false
+            self?.destroyContext(vc)
         }
+
+        loaderHelper.errorClosure = { [weak vc, weak self] error in
+            vc?.viewModel?.eventHandler?(NssEvents.error(screenId: "", error: error))
+            self?.destroyContext(vc)
+        }
+    }
+
+    func destroyContext<T: GigyaAccountProtocol>(_ vc: NativeScreenSetsViewController<T>?) {
+        vc?.removeSpinner()
+        vc?.viewModel = nil
+        self.isDisplay = false
     }
 
     deinit {
