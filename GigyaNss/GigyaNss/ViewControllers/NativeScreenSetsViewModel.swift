@@ -20,10 +20,12 @@ class NativeScreenSetsViewModel<T: GigyaAccountProtocol>: NSObject, UIAdaptivePr
     var apiChannel: ApiChannel?
     var logChannel: LogChannel?
     var dataChannel: DataChannel?
+    var screenEventsChannel: EventsChannel?
 
     let flowManager: FlowManager<T>
     let busnessApi: BusinessApiDelegate
     let dataResolver: DataResolver
+    var eventsClosuresManager: EventsClosuresManager?
 
     var imagePickerVc: ImagePickerViewController?
 
@@ -31,12 +33,13 @@ class NativeScreenSetsViewModel<T: GigyaAccountProtocol>: NSObject, UIAdaptivePr
 
     var eventHandler: NssHandler<T>? = { _ in }
 
-    init(mainChannel: ScreenChannel, apiChannel: ApiChannel, logChannel: LogChannel, dataChannel: DataChannel,
+    init(mainChannel: ScreenChannel, apiChannel: ApiChannel, logChannel: LogChannel, dataChannel: DataChannel, screenEventsChannel: EventsChannel,
          dataResolver: DataResolver, busnessApi: BusinessApiDelegate, flowManager: FlowManager<T>, eventHandler: NssHandler<T>?) {
         self.screenChannel = mainChannel
         self.apiChannel = apiChannel
         self.logChannel = logChannel
         self.dataChannel = dataChannel
+        self.screenEventsChannel = screenEventsChannel
         self.flowManager = flowManager
         self.eventHandler = eventHandler
         self.busnessApi = busnessApi
@@ -50,6 +53,7 @@ class NativeScreenSetsViewModel<T: GigyaAccountProtocol>: NSObject, UIAdaptivePr
         apiChannel?.initChannel(engine: engine)
         logChannel?.initChannel(engine: engine)
         dataChannel?.initChannel(engine: engine)
+        screenEventsChannel?.initChannel(engine: engine)
 
         screenChannel?.methodHandler(scheme: ScreenChannelEvent.self) { [weak self] method, data, response in
             guard let self = self, let method = method else {
@@ -66,7 +70,9 @@ class NativeScreenSetsViewModel<T: GigyaAccountProtocol>: NSObject, UIAdaptivePr
                     return
                 }
 
-                self.flowManager.setCurrent(action: flow, response: response)
+                let expressions = data?["expressions"] as? [String : String] ?? [:]
+
+                self.flowManager.setCurrent(action: flow, response: response, expressions: expressions)
                 self.flowManager.currentScreenId = screenId
 
             case .link:
@@ -133,6 +139,48 @@ class NativeScreenSetsViewModel<T: GigyaAccountProtocol>: NSObject, UIAdaptivePr
                 self.imagePickerVc?.showSelectPicker(vc: vc, text: data?["text"] as? String)
 
 
+            }
+        })
+
+        screenEventsChannel?.methodHandler(scheme: EventsChannelEvent.self, { [weak self] (method, data, response) in
+            guard
+                let self = self,
+                let method = method,
+                let screenId = data?["sid"] as? String,
+                let screenClosure = self.eventsClosuresManager?[screenId]
+            else {
+                response(["data": [:]])
+                return
+            }
+
+            let screen = ScreenEventModel()
+            screen.data = data?["data"] as? [String: Any] ?? [:]
+            screen.engineResponse = response
+
+            switch method {
+            case .screenDidLoad:
+                screenClosure(.screenDidLoad)
+
+                response(nil)
+            case .routeFrom:
+
+                screen.previousRoute = screen.data["pid"] as? String ?? ""
+
+                screenClosure(.routeFrom(screen: screen))
+
+            case .routeTo:
+
+                screen.nextRoute = screen.data["nid"] as? String ?? ""
+
+                screenClosure(.routeTo(screen: screen))
+
+            case .submit:
+                screenClosure(.submit(screen: screen))
+
+            case .fieldDidChange:
+                let fieldModel = FieldEventModel(id: screen.data["field"] as? String ?? "", oldVal: screen.data["from"] as? String, newVal: screen.data["to"] as? String)
+
+                screenClosure(.fieldDidChange(screen: screen, field: fieldModel))
             }
         })
     }

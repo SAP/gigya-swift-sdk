@@ -22,12 +22,13 @@ class SetAccountAction<T: GigyaAccountProtocol>: Action<T> {
             " specialties, work, skills, religion, politicalView, interestedIn, relationshipStatus," +
             " hometown, favorites, followersCount, followingCount, username, name, locale, verified, timezone, likes, samlData"
 
-    init(busnessApi: BusinessApiDelegate) {
+    init(busnessApi: BusinessApiDelegate, jsEval: JsEvaluatorHelper) {
         super.init()
+        self.jsEval = jsEval
         self.busnessApi = busnessApi
     }
     
-    override func initialize(response: @escaping FlutterResult) {
+    override func initialize(response: @escaping FlutterResult, expressions: [String: String]) {
 
         var params = ["include": includeAll, "extraProfileFields": extraProfileFieldsAll]
 
@@ -39,7 +40,7 @@ class SetAccountAction<T: GigyaAccountProtocol>: Action<T> {
             params["regToken"] = resolverModel.resolver?.regToken ?? ""
         }
 
-        busnessApi?.callGetAccount(dataType: T.self, params: params) { (result) in
+        busnessApi?.callGetAccount(dataType: T.self, params: params) { [weak self] (result) in
             switch result {
             case .success(let data):
                 guard let decodedObject = try? JSONSerialization.jsonObject(with: JSONEncoder().encode(data)) as? [String: AnyObject] else {
@@ -47,7 +48,8 @@ class SetAccountAction<T: GigyaAccountProtocol>: Action<T> {
                     return
                 }
 
-                response(decodedObject)
+                response(self?.doExpressions(data: decodedObject, expressions: expressions))
+
             case .failure(let error):
                 GigyaLogger.log(with: SetAccountAction.self, message: "initialize() failed with: \(error.localizedDescription)")
 
