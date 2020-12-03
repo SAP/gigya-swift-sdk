@@ -13,6 +13,12 @@ let package = Package(
         .library(
             name: "Gigya",
             targets: ["Gigya"]),
+        .library(
+            name: "GigyaTfa",
+            targets: ["GigyaTfa"]),
+        .library(
+            name: "GigyaAuth",
+            targets: ["GigyaAuth"]),
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
@@ -26,5 +32,15 @@ let package = Package(
             dependencies: [],
             path: "GigyaSwift",
             exclude: ["Info.plist", "README.md", "Config.xcconfig"]),
+        .target(
+            name: "GigyaTfa",
+            dependencies: [],
+            path: "GigyaTfa",
+            exclude: ["GigyaTfa/Info.plist", "README.md"]),
+        .target(
+            name: "GigyaAuth",
+            dependencies: [],
+            path: "GigyaAuth",
+            exclude: ["GigyaAuth/Info.plist", "README.md"]),
     ]
 )
