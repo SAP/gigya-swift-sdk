@@ -87,7 +87,7 @@ public enum GigyaSocialProviders {
     }
 
     public init?(rawValue: String) {
-        switch rawValue {
+        switch rawValue.lowercased() {
         case "facebook":
             self = .facebook
         case "google", "googleplus":
@@ -124,15 +124,15 @@ public enum GigyaSocialProviders {
             self = .netlog
         case "odnoklassniki":
             self = .odnoklassniki
-        case "orangeFrance":
+        case "orangefrance":
             self = .orangeFrance
         case "paypaloauth":
             self = .paypaloauth
-        case "tencentQq":
+        case "tencentqq":
             self = .tencentQq
         case "renren":
             self = .renren
-        case "sinaWeibo":
+        case "sinaweibo":
             self = .sinaWeibo
         case "spiceworks":
             self = .spiceworks
@@ -142,7 +142,7 @@ public enum GigyaSocialProviders {
             self = .wordpress
         case "xing":
             self = .xing
-        case "yahooJapan":
+        case "yahoojapan":
             self = .yahooJapan
         case "apple":
             self = .apple
