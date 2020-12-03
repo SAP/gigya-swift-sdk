@@ -42,8 +42,7 @@ docs/
 <<<<<<< HEAD
 GigyaTfa/GigyaTfa.framework/_CodeSignature/CodeResources
 
-GigyaTfa/GigyaTfa.framework/
-GigyaTfa/build/
+
 =======
 .DS_Store
 >>>>>>> develop
@@ -77,3 +76,4 @@ GigyaAuth/GigyaAuth.framework/
 Gigya.framework.zip
 
 *.zip
+
