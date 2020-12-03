@@ -6,7 +6,7 @@
 //  Copyright © 2019 Gigya. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class AlertControllerUtils {
     static func show(vc: UIViewController, title: String, message: String, result: @escaping (Bool) -> Void) {
