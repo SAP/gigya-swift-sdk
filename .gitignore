@@ -71,3 +71,9 @@ Archive.zip
 GigyaE2ETestsApp/GigyaE2ETestsAppUITests/Utils/TestCredentials.swift
 
 Gigya.podspec~
+
+GigyaAuth/GigyaAuth.framework/
+
+Gigya.framework.zip
+
+*.zip

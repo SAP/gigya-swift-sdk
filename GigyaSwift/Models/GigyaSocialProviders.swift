@@ -49,7 +49,7 @@ public enum GigyaSocialProviders {
 
     func isRequiredSdk() -> Bool {
         switch self {
-        case .facebook, .wechat:
+        case .facebook, .wechat, .google:
             return true
         default:
             return false

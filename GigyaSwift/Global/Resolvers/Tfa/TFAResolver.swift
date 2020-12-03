@@ -10,4 +10,8 @@ import Foundation
 
 open class TFAResolver<T: GigyaAccountProtocol>: Resolver<T> {
     public var gigyaAssertion: String?
+
+    public required init(businessApiDelegate: BusinessApiDelegate, interruption: GigyaResponseModel, completionHandler: @escaping (GigyaLoginResult<T>) -> Void) {
+        super.init(businessApiDelegate: businessApiDelegate, interruption: interruption, completionHandler: completionHandler)
+    }
 }
