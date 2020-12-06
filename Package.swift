@@ -34,12 +34,12 @@ let package = Package(
             exclude: ["Info.plist", "README.md", "Config.xcconfig"]),
         .target(
             name: "GigyaTfa",
-            dependencies: [],
+            dependencies: ["Gigya"],
             path: "GigyaTfa",
             exclude: ["GigyaTfa/Info.plist", "README.md"]),
         .target(
             name: "GigyaAuth",
-            dependencies: [],
+            dependencies: ["Gigya"],
             path: "GigyaAuth",
             exclude: ["GigyaAuth/Info.plist", "README.md"]),
     ]
