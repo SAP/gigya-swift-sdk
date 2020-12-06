@@ -22,31 +22,16 @@
 
 /* Begin PBXBuildFile section */
 		E75097822434CA3A008E984C /* Gigya.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E75097812434CA3A008E984C /* Gigya.framework */; };
-		E7791A4D23853A510075BAFD /* GigyaAuth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7791A4323853A510075BAFD /* GigyaAuth.framework */; };
-		E7791A5223853A510075BAFD /* GigyaAuthTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7791A5123853A510075BAFD /* GigyaAuthTests.swift */; };
 		E7791A5423853A510075BAFD /* GigyaAuth.h in Headers */ = {isa = PBXBuildFile; fileRef = E7791A4623853A510075BAFD /* GigyaAuth.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E7791A5E23853DF00075BAFD /* GigyaAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7791A5D23853DF00075BAFD /* GigyaAuth.swift */; };
 		E7791A6623853EF40075BAFD /* PushLoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7791A6523853EF40075BAFD /* PushLoginManager.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		E7791A4E23853A510075BAFD /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E7791A3A23853A510075BAFD /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = E7791A4223853A510075BAFD;
-			remoteInfo = GigyaAuth;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		E75097812434CA3A008E984C /* Gigya.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Gigya.framework; sourceTree = "<group>"; };
 		E7791A4323853A510075BAFD /* GigyaAuth.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GigyaAuth.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7791A4623853A510075BAFD /* GigyaAuth.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GigyaAuth.h; sourceTree = "<group>"; };
 		E7791A4723853A510075BAFD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E7791A4C23853A510075BAFD /* GigyaAuthTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GigyaAuthTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		E7791A5123853A510075BAFD /* GigyaAuthTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigyaAuthTests.swift; sourceTree = "<group>"; };
-		E7791A5323853A510075BAFD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E7791A5D23853DF00075BAFD /* GigyaAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigyaAuth.swift; sourceTree = "<group>"; };
 		E7791A6023853E3C0075BAFD /* Gigya.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Gigya.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7791A6523853EF40075BAFD /* PushLoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushLoginManager.swift; sourceTree = "<group>"; };
@@ -61,14 +46,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E7791A4923853A510075BAFD /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E7791A4D23853A510075BAFD /* GigyaAuth.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -76,7 +53,6 @@
 			isa = PBXGroup;
 			children = (
 				E7791A4523853A510075BAFD /* GigyaAuth */,
-				E7791A5023853A510075BAFD /* GigyaAuthTests */,
 				E7791A4423853A510075BAFD /* Products */,
 				E7791A5F23853E3C0075BAFD /* Frameworks */,
 			);
@@ -86,7 +62,6 @@
 			isa = PBXGroup;
 			children = (
 				E7791A4323853A510075BAFD /* GigyaAuth.framework */,
-				E7791A4C23853A510075BAFD /* GigyaAuthTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -100,15 +75,6 @@
 				E7791A4723853A510075BAFD /* Info.plist */,
 			);
 			path = GigyaAuth;
-			sourceTree = "<group>";
-		};
-		E7791A5023853A510075BAFD /* GigyaAuthTests */ = {
-			isa = PBXGroup;
-			children = (
-				E7791A5123853A510075BAFD /* GigyaAuthTests.swift */,
-				E7791A5323853A510075BAFD /* Info.plist */,
-			);
-			path = GigyaAuthTests;
 			sourceTree = "<group>";
 		};
 		E7791A5F23853E3C0075BAFD /* Frameworks */ = {
@@ -160,24 +126,6 @@
 			productReference = E7791A4323853A510075BAFD /* GigyaAuth.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		E7791A4B23853A510075BAFD /* GigyaAuthTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = E7791A5A23853A510075BAFD /* Build configuration list for PBXNativeTarget "GigyaAuthTests" */;
-			buildPhases = (
-				E7791A4823853A510075BAFD /* Sources */,
-				E7791A4923853A510075BAFD /* Frameworks */,
-				E7791A4A23853A510075BAFD /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				E7791A4F23853A510075BAFD /* PBXTargetDependency */,
-			);
-			name = GigyaAuthTests;
-			productName = GigyaAuthTests;
-			productReference = E7791A4C23853A510075BAFD /* GigyaAuthTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -195,9 +143,6 @@
 						CreatedOnToolsVersion = 11.2.1;
 						LastSwiftMigration = 1120;
 					};
-					E7791A4B23853A510075BAFD = {
-						CreatedOnToolsVersion = 11.2.1;
-					};
 				};
 			};
 			buildConfigurationList = E7791A3D23853A510075BAFD /* Build configuration list for PBXProject "GigyaAuth" */;
@@ -214,7 +159,6 @@
 			projectRoot = "";
 			targets = (
 				E7791A4223853A510075BAFD /* GigyaAuth */,
-				E7791A4B23853A510075BAFD /* GigyaAuthTests */,
 				E750977C2434C990008E984C /* GigyaAuth-Universal */,
 			);
 		};
@@ -222,13 +166,6 @@
 
 /* Begin PBXResourcesBuildPhase section */
 		E7791A4123853A510075BAFD /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E7791A4A23853A510075BAFD /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -267,23 +204,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E7791A4823853A510075BAFD /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E7791A5223853A510075BAFD /* GigyaAuthTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		E7791A4F23853A510075BAFD /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = E7791A4223853A510075BAFD /* GigyaAuth */;
-			targetProxy = E7791A4E23853A510075BAFD /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		E750977E2434C990008E984C /* Debug */ = {
@@ -494,46 +415,6 @@
 			};
 			name = Release;
 		};
-		E7791A5B23853A510075BAFD /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = T48CNFXFQH;
-				INFOPLIST_FILE = GigyaAuthTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = Gigya.GigyaAuthTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		E7791A5C23853A510075BAFD /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = T48CNFXFQH;
-				INFOPLIST_FILE = GigyaAuthTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = Gigya.GigyaAuthTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -560,15 +441,6 @@
 			buildConfigurations = (
 				E7791A5823853A510075BAFD /* Debug */,
 				E7791A5923853A510075BAFD /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		E7791A5A23853A510075BAFD /* Build configuration list for PBXNativeTarget "GigyaAuthTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				E7791A5B23853A510075BAFD /* Debug */,
-				E7791A5C23853A510075BAFD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
