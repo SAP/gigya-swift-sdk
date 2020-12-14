@@ -206,6 +206,7 @@
 		E7E80DA0225203D400D3B663 /* ServiceMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7E80D9F225203D400D3B663 /* ServiceMaker.swift */; };
 		E7E80DA22252041D00D3B663 /* ResolverProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7E80DA12252041D00D3B663 /* ResolverProtocol.swift */; };
 		E7E80DA522535A5700D3B663 /* ResponseDataGlobal.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7E80DA422535A5700D3B663 /* ResponseDataGlobal.swift */; };
+		E7E90CAD25875B7000576186 /* ReportingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7E90CAC25875B7000576186 /* ReportingService.swift */; };
 		E7F63B1322A7E88200ABA24F /* PluginViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F63B1222A7E88200ABA24F /* PluginViewControllerTests.swift */; };
 		E7F63B1722A7E9FC00ABA24F /* FakeWKScriptMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F63B1622A7E9FC00ABA24F /* FakeWKScriptMessage.swift */; };
 		E7F63B1922A7ED5E00ABA24F /* LogRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F63B1822A7ED5E00ABA24F /* LogRecord.swift */; };
@@ -522,6 +523,7 @@
 		E7E80D9F225203D400D3B663 /* ServiceMaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceMaker.swift; sourceTree = "<group>"; };
 		E7E80DA12252041D00D3B663 /* ResolverProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResolverProtocol.swift; sourceTree = "<group>"; };
 		E7E80DA422535A5700D3B663 /* ResponseDataGlobal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseDataGlobal.swift; sourceTree = "<group>"; };
+		E7E90CAC25875B7000576186 /* ReportingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportingService.swift; sourceTree = "<group>"; };
 		E7F63B1222A7E88200ABA24F /* PluginViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluginViewControllerTests.swift; sourceTree = "<group>"; };
 		E7F63B1622A7E9FC00ABA24F /* FakeWKScriptMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeWKScriptMessage.swift; sourceTree = "<group>"; };
 		E7F63B1822A7ED5E00ABA24F /* LogRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogRecord.swift; sourceTree = "<group>"; };
@@ -1182,6 +1184,7 @@
 		E7CBAFA2222BC871000B6C11 /* Global */ = {
 			isa = PBXGroup;
 			children = (
+				E7E90CAC25875B7000576186 /* ReportingService.swift */,
 				E7D412F322E8A38F0082A3E3 /* PersistenceService.swift */,
 				E720D34A2382D2FC00446EA4 /* PushNotifications */,
 				E719373422D32FA100CD149E /* Biometric */,
@@ -1796,6 +1799,7 @@
 				D58EF441227993C6003DB878 /* Dictionary.swift in Sources */,
 				E774A54B224283DF00BC67D1 /* ApiRequestModel.swift in Sources */,
 				E7E80D9D22510EC600D3B663 /* IOCContainer.swift in Sources */,
+				E7E90CAD25875B7000576186 /* ReportingService.swift in Sources */,
 				E7A6E0AA2240F8080063638F /* GigyaApiResult.swift in Sources */,
 				E71D3C8E22BF8B6E00A413D7 /* TFAResolver.swift in Sources */,
 				E719373622D32FB800CD149E /* BiometricService.swift in Sources */,
