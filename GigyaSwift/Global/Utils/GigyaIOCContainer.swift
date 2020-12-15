@@ -129,6 +129,13 @@ final class GigyaIOCContainer<T: GigyaAccountProtocol>: GigyaContainerProtocol {
             return SocialProvidersManager(sessionService: sessionService!, config: config!, persistenceService: persistenceService!, networkAdapter: networkAdapter!)
         }
 
+        container.register(service: ReportingService.self, isSingleton: true) { resolver in
+            let config = resolver.resolve(GigyaConfig.self)
+            let networkProvider = resolver.resolve(NetworkProvider.self)
+
+            return ReportingService(networkProvider: networkProvider!, config: config!)
+        }
+
         container.register(service: BusinessApiServiceProtocol.self, isSingleton: true) { resolver in
             let config = resolver.resolve(GigyaConfig.self)
             let apiService = resolver.resolve(ApiServiceProtocol.self)

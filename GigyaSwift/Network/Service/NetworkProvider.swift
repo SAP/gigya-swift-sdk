@@ -24,9 +24,18 @@ final class NetworkProvider {
         self.sessionService = sessionService
     }
 
-    func dataRequest(model: ApiRequestModel, method: NetworkMethod = .post, completion: @escaping GigyaResponseHandler) {
+    func unsignRequest(url: String, model: ApiRequestModel, method: NetworkMethod = .post, completion: @escaping GigyaResponseHandler) {
 
+        doRequest(url: url, model: model, method: method, completion: completion, disableSign: true)
+    }
+
+    func dataRequest(model: ApiRequestModel, method: NetworkMethod = .post, completion: @escaping GigyaResponseHandler) {
         let url = makeUrl(with: model.method)
+
+        doRequest(url: url, model: model, method: method, completion: completion)
+    }
+
+    private func doRequest(url: String, model: ApiRequestModel, method: NetworkMethod = .post, completion: @escaping GigyaResponseHandler, disableSign: Bool = false) {
 
         guard var dataURL = URL(string: url) else {
             DispatchQueue.main.async { completion(nil, NetworkError.createURLRequestFailed) }
@@ -44,7 +53,7 @@ final class NetworkProvider {
 
         // Encode body request to params
         do {
-           let bodyData: [String : Any] = try SignatureUtils.prepareSignature(config: config!, persistenceService: persistenceService, session: sessionService.session, path: model.method, params: newParams ?? [:])
+            let bodyData: [String : Any] = try SignatureUtils.prepareSignature(config: config!, persistenceService: persistenceService, session: disableSign ? nil : sessionService.session, path: model.method, params: newParams ?? [:])
 
             let bodyDataParmas = bodyData.mapValues { value -> String in
                 return "\(value)"

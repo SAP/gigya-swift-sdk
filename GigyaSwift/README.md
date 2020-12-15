@@ -904,6 +904,13 @@ Additionally, when you want to set a custom text in Touch ID prompt , you can in
 
 ##### GigyaTouchIDMessage = (String) "Your custom message" (default = "Please authenticate to proceed”).
 
+## Error reporting
+The SDK contains an error reporting service that tracks critical SDK specific errors and reports them
+back to us.
+The service is disabled by default and can be activated using:
+```
+Gigya.sharedInstance().setErrorReporting(to: true)
+```
 ## Limitations
 None
 
