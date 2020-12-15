@@ -71,4 +71,6 @@ public struct GigyaDefinitions {
     public static var charactersAllowed = "!*'|();/:-_.@&=^+$,?%#[]{}\" "
     public static var charactersAllowedInSig = "!*'|();/:@&=^+$,?%#\\[]{}\" "
 
+    // Sdk prefix version
+    public static var versionPrefix: String?
 }
