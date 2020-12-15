@@ -10,7 +10,7 @@ import Foundation
 
 struct InternalConfig {
     struct General {
-        internal static let version = "ios_swift_1.1.6"
+        internal static let version = "\(GigyaDefinitions.versionPrefix ?? "")ios_swift_1.1.6"
         internal static let sdkDomain = "com.gigya.GigyaSDK"
         internal static let defaultLang = "en"
     }
