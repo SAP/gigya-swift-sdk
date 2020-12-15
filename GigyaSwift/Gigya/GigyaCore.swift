@@ -430,4 +430,14 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
     public func registerSocialProvider(of provider: GigyaNativeSocialProviders, wrapper: ProviderWrapperProtocol) {
         businessApiService.socialProviderFactory.registerProvider(by: provider, wrapper: wrapper)
     }
+
+    /**
+     Activate SDK error reporting (inactive by default).
+     Reporting is used internally by the SDK to track critical errors within the SDK core flows.
+
+     - Parameter active True to activate.
+     */
+    public func setErrorReporting(to active: Bool) {
+        container.resolve(ReportingService.self)?.disabled = !active
+    }
 }
