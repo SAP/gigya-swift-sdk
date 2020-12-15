@@ -25,6 +25,10 @@ as follows and make sure this phase is below the Embed Frameworks phase.
 bash "${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/Gigya.framework/ios-framework-build.sh" Gigya
 ```
 
+## Integrating using Swift Package Manager
+- In Xcode, select File > Swift Packages > Add Package Dependency.
+- Follow the prompts using the URL for this repository.
+
 ## Integrating using Cocoapods
 For the base SDK, open your Podfile and add this follow line:
 ```

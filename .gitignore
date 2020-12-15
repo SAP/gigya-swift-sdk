@@ -42,8 +42,7 @@ docs/
 <<<<<<< HEAD
 GigyaTfa/GigyaTfa.framework/_CodeSignature/CodeResources
 
-GigyaTfa/GigyaTfa.framework/
-GigyaTfa/build/
+
 =======
 .DS_Store
 >>>>>>> develop
@@ -73,3 +72,8 @@ GigyaE2ETestsApp/GigyaE2ETestsAppUITests/Utils/TestCredentials.swift
 Gigya.podspec~
 
 GigyaAuth/GigyaAuth.framework/
+
+Gigya.framework.zip
+
+*.zip
+

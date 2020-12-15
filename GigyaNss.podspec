@@ -22,6 +22,12 @@ Pod::Spec.new do |spec|
   spec.dependency 'Gigya', '>= 1.1.6'
   spec.library = 'c++', 'z'
   spec.vendored_frameworks = 'GigyaNss/Flutter/Debug/Flutter.framework', 'GigyaNss/Flutter/Debug/App.framework'
+
+  spec.pod_target_xcconfig = {
+    'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64'
+  }
+  spec.user_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
+
   
 end
 

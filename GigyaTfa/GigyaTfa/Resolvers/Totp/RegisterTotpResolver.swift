@@ -5,8 +5,9 @@
 //  Created by Shmuel, Sagi on 24/06/2019.
 //  Copyright © 2019 Gigya. All rights reserved.
 //
-
+import UIKit
 import Gigya
+
 public protocol TFAResolversProtocol { }
 
 final public class RegisterTotpResolver<T: GigyaAccountProtocol>: TFAResolver<T>, RegisterTotpResolverProtocol, TFAResolversProtocol {
