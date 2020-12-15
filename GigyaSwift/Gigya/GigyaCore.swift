@@ -437,7 +437,7 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
 
      - Parameter active True to activate.
      */
-    public func errorReporting(is active: Bool) {
-        container.resolve(ReportingService.self)?.disabled = active
+    public func setErrorReporting(to active: Bool) {
+        container.resolve(ReportingService.self)?.disabled = !active
     }
 }
