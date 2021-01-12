@@ -116,8 +116,9 @@
       "error-schema-checkbox-validation": "Validación fallida. campo booleano"
     }
   },
+  "useSchemaValidations": false,
   "routing": {
-    "initial": "register",
+    "initial": "login",
     "default": {
       "onSuccess": "_dismiss",
       "onPendingEmailVerification": "_dismiss"
@@ -593,21 +594,8 @@
       "stack": "vertical",
       "children": [
         {
-          "type": "label",
-          "textKey": "Account linking",
-          "theme": "title",
-          "style": {
-            "margin": [
-              16,
-              20,
-              16,
-              0
-            ]
-          }
-        },
-        {
           "type": "container",
-          "showIf": "conflictingAccounts.loginProviders.filter(p => p != 'site').length > 0",
+          "showIf": "1 == 1",
           "children": [
             {
               "type": "socialLoginGrid",
@@ -627,50 +615,20 @@
         },
         {
           "type": "container",
-          "showIf": "conflictingAccounts.loginProviders.includes('site')",
-          "style": {
-            "margin": [
-              16,
-              20,
-              16,
-              0
-            ]
-          },
+          "showIf": "1 == 0",
           "children": [
             {
-              "type": "label",
-              "textKey": "Enter your account password in order to link you account",
-              "style": {
-                "fontSize": 14,
-                "margin": [
-                  16,
-                  10,
-                  16,
-                  0
-                ]
-              }
-            },
-            {
-              "bind": "#conflictingAccounts.loginID",
-              "sendAs": "loginID",
+              "bind": "loginID",
               "disabled": true,
-              "type": "textInput",
+              "type": "emailInput",
               "textKey": "common-email",
               "theme": "input"
             },
             {
-              "bind": "#password",
+              "bind": "password",
               "type": "passwordInput",
               "textKey": "common-password",
               "theme": "input",
-              "style": {
-                "margin": [
-                  0,
-                  10,
-                  0,
-                  0
-                ]
-              },
               "validations": {
                 "required": {
                   "enabled": true,
@@ -685,7 +643,7 @@
               "style": {
                 "margin": [
                   0,
-                  20,
+                  40,
                   0,
                   0
                 ],
