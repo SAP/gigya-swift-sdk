@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class ReportingService {
+public final class ReportingService {
     private let networkProvider: NetworkProvider
     private let config: GigyaConfig
 
@@ -25,7 +25,13 @@ final class ReportingService {
         }
 
         let url = "https://accounts.\(config.apiDomain)/"
-        let params: [String: Any] = ["message": msg, "details": details]
+        let params: [String: Any] = [
+            "message": msg,
+            "details": details,
+            "apikey": config.apiKey ?? "",
+            "sdkVersion": InternalConfig.General.version
+        ]
+
         let model = ApiRequestModel(method: "sdk.errorReport", params: params)
         networkProvider.unsignRequest(url: url, model: model, method: .post) { response, error in
             guard error == nil else {

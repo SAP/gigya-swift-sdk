@@ -21,6 +21,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		E726B27025B9B2C6000637CE /* OtpService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E726B26F25B9B2C6000637CE /* OtpService.swift */; };
 		E75097822434CA3A008E984C /* Gigya.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E75097812434CA3A008E984C /* Gigya.framework */; };
 		E7791A5423853A510075BAFD /* GigyaAuth.h in Headers */ = {isa = PBXBuildFile; fileRef = E7791A4623853A510075BAFD /* GigyaAuth.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E7791A5E23853DF00075BAFD /* GigyaAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7791A5D23853DF00075BAFD /* GigyaAuth.swift */; };
@@ -28,6 +29,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E726B26F25B9B2C6000637CE /* OtpService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtpService.swift; sourceTree = "<group>"; };
 		E75097812434CA3A008E984C /* Gigya.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Gigya.framework; sourceTree = "<group>"; };
 		E7791A4323853A510075BAFD /* GigyaAuth.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GigyaAuth.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7791A4623853A510075BAFD /* GigyaAuth.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GigyaAuth.h; sourceTree = "<group>"; };
@@ -49,6 +51,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E726B26E25B9B2B4000637CE /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				E726B26F25B9B2C6000637CE /* OtpService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		E7791A3923853A510075BAFD = {
 			isa = PBXGroup;
 			children = (
@@ -70,6 +80,7 @@
 			isa = PBXGroup;
 			children = (
 				E7791A4623853A510075BAFD /* GigyaAuth.h */,
+				E726B26E25B9B2B4000637CE /* Services */,
 				E7791A6423853EDA0075BAFD /* PushNotifications */,
 				E7791A5D23853DF00075BAFD /* GigyaAuth.swift */,
 				E7791A4723853A510075BAFD /* Info.plist */,
@@ -200,6 +211,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E7791A5E23853DF00075BAFD /* GigyaAuth.swift in Sources */,
+				E726B27025B9B2C6000637CE /* OtpService.swift in Sources */,
 				E7791A6623853EF40075BAFD /* PushLoginManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

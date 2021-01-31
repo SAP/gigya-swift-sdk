@@ -36,7 +36,6 @@ final class WebLoginWrapper: NSObject, ProviderWrapperProtocol {
         self.config = config
         self.persistenceService = persistenceService
         self.webViewController = GigyaWebViewController()
-
         self.networkAdapter = networkAdapter
 
         super.init()

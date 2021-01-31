@@ -59,11 +59,20 @@ public class GigyaWebBridge<T: GigyaAccountProtocol>: NSObject, WKScriptMessageH
         self.viewController = viewController
         self.completion = pluginEvent
 
+
         let JSInterface = getJSInterface(apikey: apikey)
 
-        let userScript = WKUserScript(source: JSInterface, injectionTime: .atDocumentStart, forMainFrameOnly: false)
-        contentController.addUserScript(userScript)
-        contentController.add(self, name: JSEventHandler)
+        if #available(iOS 14.0, *) {
+            let userScript = WKUserScript(source: JSInterface, injectionTime: .atDocumentStart, forMainFrameOnly: false, in: .page)
+            contentController.addUserScript(userScript)
+
+            contentController.add(self, contentWorld: .page, name: JSEventHandler)
+        } else {
+            let userScript = WKUserScript(source: JSInterface, injectionTime: .atDocumentStart, forMainFrameOnly: false)
+            contentController.addUserScript(userScript)
+
+            contentController.add(self, name: JSEventHandler)
+        }
 
         GigyaLogger.log(with: self, message: "JS Interface:\n\(JSInterface)")
     }
@@ -151,11 +160,18 @@ public class GigyaWebBridge<T: GigyaAccountProtocol>: NSObject, WKScriptMessageH
      JS invocation of given result.
      */
     private func invokeCallback(callbackId: String, and result: String) {
+
         let JS = "gigya._.apiAdapters.mobile.mobileCallbacks['\(callbackId)'](\(result));"
         GigyaLogger.log(with: self, message: "invokeCallback:\n\(JS)")
 
-        DispatchQueue.main.async {
-            self.webView?.evaluateJavaScript(JS)
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+
+            if #available(iOS 14.0, *) {
+                self.webView?.evaluateJavaScript(JS)
+            } else {
+                self.webView?.evaluateJavaScript(JS)
+            }
         }
     }
 
