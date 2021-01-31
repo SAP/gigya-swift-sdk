@@ -21,9 +21,9 @@ public class TFAResolverFactory<A: GigyaAccountProtocol> {
 
     public func getResolver<T: TFAResolver<A>>(for resolver: T.Type) -> T {
 
-        let resolverA = TFAResolver<A>.init(businessApiDelegate: businessApiDelegate, interruption: interruption, completionHandler: completionHandler)
+        let resolverA = T.init(businessApiDelegate: businessApiDelegate, interruption: interruption, completionHandler: completionHandler)
 
-        return resolverA as! T
+        return resolverA
 
     }
 }
