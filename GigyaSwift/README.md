@@ -82,7 +82,7 @@ As an alternative to implicit initialization, you can initialize the SDK explici
 When you using custom account schema you need include it every time you are using Gigya.sharedInstance.
 ```
 
-```
+```swift
 /*
 Using default domain (us1-gigya.com).
 */
@@ -109,7 +109,7 @@ The following example sends an "accounts.verifyLogin" request using the current 
 From this point, code blocks will use the Gigya interface as member variable (gigya), as if it was already initialized.
 ```
 
-```
+```swift
 /*
 Setup a map of parameters.
 */
@@ -158,7 +158,7 @@ Here are a few examples of a given response:
 You can find the list of available Gigya API endpoints and their required parameters in the REST API Reference.
 ```
 
-```
+```swift
 /*
 Switch result (GigyaApiResult Enum) - return in all api requests
 */
@@ -191,7 +191,7 @@ Site login & registration via API calls (to differ from social login & registrat
 Here are a few examples for login/register usage:
 
 Login via loginID & password:
-```
+```swift
 gigya.login(loginId: "LOGIN-ID", password: "PASSWORD") { result in
     switch result {
     case .success(let data):
@@ -267,7 +267,7 @@ Having native support will require you to add the provider's library dependency 
 
 You can show a dialog with defined social providers in the following way:
 
-```
+```swift
 /*
 Show providers selection UI for selected providers
 */
@@ -285,7 +285,7 @@ Here is a screenshot using the above implementation:
 ## Login With A Specified Provider
 
 Alternatively, you can initiate social login flow to a specific social provider:
-```
+```swift
 /*
 Sign in with Facebook.
 */
@@ -320,7 +320,7 @@ Tap on + Capability and add Sign in With Apple.
 After you have added AuthenticationServices.framework to your project you next need to import the AppleSigninWrapper.swift file from the GigyaProviders dictionary to your Xcode project.
 
 An example of login flow to a Apple provider:
-```
+```swift
 gigya.login(with: .apple, viewController: self ) { [weak self] result in
     switch result {
     case .success(let data):
@@ -387,7 +387,7 @@ If you experience problems and notice errCode -6 from WeChat while debugging, it
 
 A simple logout is available by using:
 
-```
+```swift
 gigya.logout()
 ```
 
@@ -426,7 +426,7 @@ Go to your project target -> Capabilities -> Background Modes -> Remote notifica
 
 Allow Firebase to send foreground notifications.
 After you called FirebaseApp.configure() add the follow line:
-```
+```swift
 FirebaseApp.configure()
 Messaging.messaging().shouldEstablishDirectChannel = true
 ```
@@ -434,7 +434,7 @@ Messaging.messaging().shouldEstablishDirectChannel = true
 
 Add Firebase delegate:
 The Gigya server requires the push token to be sent to it in order to send push notifications to your client devices. In order to do so, add the following to your AppDelegate.swift:
-```
+```swift
 // MessagingDelegate implementation as shown in Firebase documentation.
 
 func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
@@ -454,7 +454,7 @@ func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemote
 ```
 Handling push notifications.
 In order to let the SDK handle incoming TFA push notifications, add the following to you AppDelegate.swift as well.
-```
+```swift
 func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
     // Enable Gigya's handling of the notification.
     Gigya.sharedInstance().receivePush(userInfo: userInfo, completion: completionHandler)
@@ -463,7 +463,7 @@ func application(_ application: UIApplication, didReceiveRemoteNotification user
 
 Notification interaction:
 Customer Data Cloud's notifications require action confirmations. Whether it is to approve or deny the opt-in or login process. In order to open the actions alert confirmation you will need to add the following to your AppDelegate.swift.
-```
+```swift
 @available(iOS 10.0, *)
 
 extension AppDelegate: UNUserNotificationCenterDelegate {
@@ -481,7 +481,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
 Starting a new session via register or login is also available with a fixed time span expiration constraint.
 
 For example:
-```
+```swift
 /*
 Adding a 600 seconds session expiration constraint.
 */
@@ -498,7 +498,7 @@ gigya.login(loginId: "EMAIL", password: "PASSWORD", params: ["sessionExpiration"
 When the session expires, the SDK will notify about it via NotificationCenter.
 
 In order to be notified of session changes, you will need to addObserver in your ViewController, for example:
-```
+```swift
 func viewDidLoad() {
    NotificationCenter.default.addObserver(self, selector: #selector(gigyaSessionExpire(_:)), name:
    Notification.Name("didGigyaSessionExpire"), object: nil)
@@ -521,14 +521,14 @@ When using session verification, the client application will be informed, via 'N
 
 To implement this flow, add the following key/value to your app's .plist file:
 
-```
+```swift
 GigyaSessionVerificationInterval : Integer (the length of time, in seconds, to check the user's profile against the site's schema).
 ```
 When the verification fails, the SDK will send a notification about it via NotificationCenter.
 
 In order to be notified of session changes, you will need to use addObserver in your ViewController.
 for example:
-```
+```swift
 func viewDidLoad() {
    NotificationCenter.default.addObserver(self, selector: #selector(gigyaInvalidSession(_:)), name: Notification.Name("didInvalidateSession"), object: nil)
 }
@@ -547,7 +547,7 @@ This will allow the SDK to accept and return account instances according to your
 
 Here is an example of a custom Account Schema struct, which corresponds with the above site's Schema.
 
-```
+```swift
 struct MyAccount: GigyaAccountProtocol {
 
    var UID: String? 
@@ -588,7 +588,7 @@ We can initialize a Gigya instance with the MyAccount struct, and see the accoun
 
 In order to retrieve the current account you can use the "getAccount" method:
 
-```
+```swift
 gigya.getAccount() { result in
    switch result {
    case .success(let account):
@@ -605,7 +605,7 @@ In order to improve the end-user's experience by avoiding unnecessary network re
 The account cache property can be set via the JSON configuration file or by adding a meta-data tag as show in the initializationsection of the document.
 
 To bypass the account's caching you must provide true when requesting a new account:
-```
+```swift
 gigya.getAccount(true) { result in
    switch result {
    case .success(let account):
@@ -626,7 +626,7 @@ When you inherit from GigyaAccountProtocol, the relevant profile fields will be 
 Using "getAccount" requires you to have a valid session.
 Using "setAccount" requires you to have a valid session.
 In order to avoid unnecessary errors, please make sure that the fields you trying to update are marked as "client Modify" in the site's
-```
+```swift
 /*
 Using live data to keep track of account object changes.
 */
@@ -652,7 +652,7 @@ The SDK provides a simple interface for using & displaying screen-sets via the P
 Using screen-sets is available using the "showScreenSet" method of the Gigya interface.
 
 Here is an example of using the SDK's showScreenSet method using the default "Registration-Login" screen set:
-```
+```swift
 /*
 Showing "Registration-Login" screen set in a dialog mode. Use only the onLogin case to be notified when logging in event was fired.
 */
@@ -678,7 +678,7 @@ schema. You can verify this using Gigya's Admin Console, in your site's Schema E
 ```
 
 Here is the Enum to its extent. You can use separate case by add default to the switch case:
-```
+```swift
 switch result {
    case .onLogin(let account):
     // onLogin event
@@ -761,7 +761,7 @@ All interruption flows are implemented in the provided Sample project.
 
 We will start with a simple register request for an email address that is already registered:
 
-```
+```swift
 gigya.register(email: "EMAIL-ADDRESS-ALREADY-REGISTERED", password: "PASSWORD") { result in
    switch result {
    case .success(let data):
@@ -779,7 +779,7 @@ Usually when receiving that kind of error, we would trigger an API call to retri
 However, the SDK can handle this interruption for us:
 
 To do so, in our our GigyaLoginResult we will switch the conflictingAccounts case:
-```
+```swift
 gigya.register(email: "EMAIL-ADDRESS-ALREADY-REGISTERED", password: "PASSWORD") { result in
    switch result {
    case .success(let data):
@@ -799,7 +799,7 @@ gigya.register(email: "EMAIL-ADDRESS-ALREADY-REGISTERED", password: "PASSWORD") 
 While the response parameter contains the original response from the register API call (accounts.register), the resolver object (of type *LinkAccountsResolver*) already contains all we need in order to complete the flow:
 We can get the conflicting accounts from it and try to link the account to them.
 
-```
+```swift
 let accounts = resolver.conflictingAccount
 let providers = accounts?.conflictingAccount
 let loginID = accounts?.loginID
@@ -821,7 +821,7 @@ In order to provide the end user with a fluid experience some UI intervention is
 You are able to use the GigyaWebBridge.swift class explicitly in order to attach Gigya's web sdk actions into your own WebView implementation.
 Attaching the GigyaWebBridge will allow you to add Gigya's session management you your custom web implementation. Special cases include uses of SAML & captcha implementations. The following snippet demonstrates the basic implementation of the GigyaWebBridge.
 
-```
+```swift
 /*
 Generate a new GigyaWebBridge instance.
 */
@@ -879,7 +879,7 @@ Lock - Locks the existing session until unlocking it. No authentication based ac
 Unlock - Unlocks the session so the user can continue to make authentication based actions.
 ```
 Example of biometric authentication flow:
-```
+```swift
 /*
 Use authentication action
 */
@@ -908,7 +908,7 @@ Additionally, when you want to set a custom text in Touch ID prompt , you can in
 The SDK contains an error reporting service that tracks critical SDK specific errors and reports them
 back to us.
 The service is disabled by default and can be activated using:
-```
+```swift
 Gigya.sharedInstance().setErrorReporting(to: true)
 ```
 ## Limitations
