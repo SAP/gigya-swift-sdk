@@ -44,7 +44,7 @@ pod install
 ### Initialization
 
 The SDK requires an active reference to the running *AppDelegate.swift*, for example:
-```
+```swift
 import Gigya
 
 func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
