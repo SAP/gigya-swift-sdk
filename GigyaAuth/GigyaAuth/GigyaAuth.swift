@@ -18,7 +18,11 @@ final public class GigyaAuth {
     private let pushLoginManager: PushLoginManager
 
     public lazy var otp: OtpServiceProtocol = {
-        return dependenciesContainer.resolve(OtpServiceProtocol.self)!
+        guard let instance = dependenciesContainer.resolve(OtpServiceProtocol.self) else {
+            GigyaLogger.error(with: GigyaAuth.self, message: "Instance is not found, please add the follow line to your `AppDelegate: GigyaAuth.shared.register(scheme: <YOUR_SCHEMA>.self)`")
+        }
+
+        return instance
     }()
 
     init() {
@@ -28,8 +32,9 @@ final public class GigyaAuth {
     public func register<T: GigyaAccountProtocol>(scheme: T.Type) {
         dependenciesContainer.register(service: OtpServiceProtocol.self) { resolver in
             let businessApi = resolver.resolve(BusinessApiDelegate.self)!
+            let accountService = resolver.resolve(AccountServiceProtocol.self)!
 
-            return OtpService<T>(businessApi: businessApi)
+            return OtpService<T>(businessApi: businessApi, accountService: accountService)
         }
 
     }

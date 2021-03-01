@@ -14,12 +14,17 @@ public final class ReportingService {
 
     var disabled = true
 
+    enum Priority: String {
+        case info = "INFO"
+        case error = "ERROR"
+    }
+
     init(networkProvider: NetworkProvider, config: GigyaConfig) {
         self.networkProvider = networkProvider
         self.config = config
     }
 
-    func sendErrorReport(msg: String, details: [String: Any]) {
+    func sendErrorReport(msg: String, details: [String: Any], priority: Priority = .info) {
         guard disabled else {
             return
         }
@@ -29,7 +34,8 @@ public final class ReportingService {
             "message": msg,
             "details": details,
             "apikey": config.apiKey ?? "",
-            "sdkVersion": InternalConfig.General.version
+            "sdkVersion": InternalConfig.General.version,
+            "priority": priority.rawValue
         ]
 
         let model = ApiRequestModel(method: "sdk.errorReport", params: params)

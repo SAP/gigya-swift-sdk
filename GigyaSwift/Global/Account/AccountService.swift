@@ -18,7 +18,7 @@ final class AccountService: AccountServiceProtocol {
     private var accountInvalidationTimestamp: Int = 0
 
     // caches time in minutes
-    private var accountCacheTime: Int = 5
+    var accountCacheTime: Int = 5
 
     func getAccount<T: Codable>() -> T {
         guard let account = account as? T else {

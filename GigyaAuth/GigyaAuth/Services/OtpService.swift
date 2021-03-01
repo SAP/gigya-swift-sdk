@@ -8,62 +8,71 @@
 
 import Gigya
 
-/**
- The `GigyaOtpResult` is an Enum representing a result from login api.
- */
-@frozen
-public enum GigyaOtpResult<ResponseType: GigyaAccountProtocol> {
-    case success(data: ResponseType)
+public class OtpService<T: GigyaAccountProtocol>: OtpServiceProtocol {
 
-    case pendingVerification(resolver: OtpServiceVerifyProtocol)
+    let busnessApi: BusinessApiDelegate
+    var accountService: AccountServiceProtocol
 
-    case failure(error: NetworkError)
-}
+    private var type: OtpType = .login
 
-public protocol OtpServiceProtocol {
+    private var _vToken: String?
+    private var _data: [String: Any]?
+    private var _params: [String: Any]?
 
-    /**
-     This method is used to trigger a Phone Number OTP Login flow.
-     Returns a vToken, and sends an email containing the authentication code to the user.
+    private var completionHandler: Any?
 
-     - Parameter phoneNumber: User's phone number.
-     - Parameter params:        .
-     */
+    init(businessApi: BusinessApiDelegate, accountService: AccountServiceProtocol) {
+        self.busnessApi = businessApi
+        self.accountService = accountService
+    }
 
-    func login<T>(phone: String, completion: @escaping (GigyaOtpResult<T>) -> Void)
+    public func login<T: GigyaAccountProtocol>(phone: String, completion: @escaping (GigyaOtpResult<T>) -> Void) {
+        login(phone: phone, params: [:], completion: completion)
+    }
 
-    func login<T>(phone: String, params: [String: Any], completion: @escaping (GigyaOtpResult<T>) -> Void)
+    public func login<T: GigyaAccountProtocol>(phone: String, params: [String : Any], completion: @escaping (GigyaOtpResult<T>) -> Void) {
+        type = .login
 
-    func update<T>(phone: String, completion: @escaping (GigyaOtpResult<T>) -> Void)
+        var params = params
+        self._params = params
 
-    func update<T>(phone: String, params: [String: Any], completion: @escaping (GigyaOtpResult<T>) -> Void)
+        params["phoneNumber"] = phone
+        sendRequest(params: params, completion: completion)
+    }
 
-}
+    public func update<T: GigyaAccountProtocol>(phone: String, completion: @escaping (GigyaOtpResult<T>) -> Void) {
+        update(phone: phone, params: [:], completion: completion)
+    }
 
-enum OtpType {
-    case login, update
+    public func update<T: GigyaAccountProtocol>(phone: String, params: [String : Any], completion: @escaping (GigyaOtpResult<T>) -> Void) {
+        type = .update
 
-    func getApi() -> String {
-        switch self {
-        case .login:
-            return "accounts.otp.login"
-        case .update:
-            return "accounts.otp.update"
+        var params = params
+        self._params = params
+
+        params["phoneNumber"] = phone
+        sendRequest(params: params, completion: completion)
+    }
+
+
+    private func sendRequest<T: GigyaAccountProtocol>(params: [String : Any], completion: @escaping (GigyaOtpResult<T>) -> Void) {
+        completionHandler = completion
+
+        busnessApi.sendApi(api: "accounts.otp.sendCode", params: params) { [weak self] (result) in
+            guard let self = self else { return }
+
+            switch result {
+            case .success(data: let data):
+                self._vToken = data["vToken"]?.value as? String
+                self._data = data
+
+                completion(.pendingOtpVerification(resolver: self as OtpServiceVerifyProtocol))
+            case .failure(let error):
+                let e = LoginApiError<T>(error: error)
+                completion(.failure(error: e))
+            }
         }
     }
-}
-
-public protocol OtpServiceVerifyProtocol {
-    var vToken: String? { get }
-    var data: [String: Any]? { get }
-
-    /**
-     This method is used to log in users via Phone Number Login. It requires the vToken and code returned from accounts.OTP.sendCode.
-
-     - Parameter code:   OTP code.
-     */
-
-    func verify(code: String)
 }
 
 extension OtpService: OtpServiceVerifyProtocol {
@@ -82,71 +91,34 @@ extension OtpService: OtpServiceVerifyProtocol {
 
             switch result {
             case .success(data: let data):
-                handler(.success(data: data))
-                break
+                if self?.type == .update {
+                    self?.accountService.clear()
+
+                    self?.busnessApi.callGetAccount(dataType: T.self, params: self?._params ?? [:]) { (result) in
+                        switch result {
+                        case .success(data: let data):
+                            handler(.success(data: data))
+                        case .failure(let error):
+                            let e = LoginApiError<T>(error: error)
+                            handler(.failure(error: e))
+                        }
+                    }
+                } else {
+                    self?.accountService.account = data
+
+                    handler(.success(data: data))
+                }
             case .failure(let error):
-                handler(.failure(error: error))
+                self?.busnessApi.callInterruptionResolver(dataType: T.self, error: error) { (result) in
+                    switch result {
+                    case .success(data: let data):
+                        handler(.success(data: data))
+                    case .failure(let error):
+                        handler(.failure(error: error))
+                    }
+                }
+
             }
         }
     }
 }
-
-public class OtpService<T: GigyaAccountProtocol>: OtpServiceProtocol {
-
-    let busnessApi: BusinessApiDelegate
-
-    private var type: OtpType = .login
-
-    private var _vToken: String?
-    private var _data: [String: Any]?
-
-    private var completionHandler: Any?
-
-    init(businessApi: BusinessApiDelegate) {
-        self.busnessApi = businessApi
-    }
-
-    public func login<T: GigyaAccountProtocol>(phone: String, completion: @escaping (GigyaOtpResult<T>) -> Void) {
-        login(phone: phone, params: [:], completion: completion)
-    }
-
-    public func login<T: GigyaAccountProtocol>(phone: String, params: [String : Any], completion: @escaping (GigyaOtpResult<T>) -> Void) {
-        type = .login
-
-        var params = params
-        params["phoneNumber"] = phone
-        sendRequest(params: params, completion: completion)
-    }
-
-    public func update<T: GigyaAccountProtocol>(phone: String, completion: @escaping (GigyaOtpResult<T>) -> Void) {
-        update(phone: phone, params: [:], completion: completion)
-    }
-
-    public func update<T: GigyaAccountProtocol>(phone: String, params: [String : Any], completion: @escaping (GigyaOtpResult<T>) -> Void) {
-        type = .update
-
-        var params = params
-        params["phone"] = phone
-        sendRequest(params: params, completion: completion)
-    }
-
-
-    private func sendRequest<T: GigyaAccountProtocol>(params: [String : Any], completion: @escaping (GigyaOtpResult<T>) -> Void) {
-        completionHandler = completion
-
-        busnessApi.sendApi(api: "accounts.otp.sendCode", params: params) { [weak self] (result) in
-            guard let self = self else { return }
-
-            switch result {
-            case .success(data: let data):
-                self._vToken = data["vToken"]?.value as? String
-                self._data = data
-
-                completion(.pendingVerification(resolver: self as OtpServiceVerifyProtocol))
-            case .failure(let error):
-                completion(.failure(error: error))
-            }
-        }
-    }
-}
-
