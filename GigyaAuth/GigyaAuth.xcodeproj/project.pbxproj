@@ -26,6 +26,10 @@
 		E7791A5423853A510075BAFD /* GigyaAuth.h in Headers */ = {isa = PBXBuildFile; fileRef = E7791A4623853A510075BAFD /* GigyaAuth.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E7791A5E23853DF00075BAFD /* GigyaAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7791A5D23853DF00075BAFD /* GigyaAuth.swift */; };
 		E7791A6623853EF40075BAFD /* PushLoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7791A6523853EF40075BAFD /* PushLoginManager.swift */; };
+		E7C3A6F225D3E1410037E574 /* OtpServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C3A6F125D3E1400037E574 /* OtpServiceProtocol.swift */; };
+		E7C3A6F725D3E1750037E574 /* OtpType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C3A6F625D3E1750037E574 /* OtpType.swift */; };
+		E7C3A6FD25D3E1B00037E574 /* GigyaOtpResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C3A6FC25D3E1B00037E574 /* GigyaOtpResult.swift */; };
+		E7C3A70125D3E2190037E574 /* OtpServiceVerifyProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C3A70025D3E2190037E574 /* OtpServiceVerifyProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +41,10 @@
 		E7791A5D23853DF00075BAFD /* GigyaAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigyaAuth.swift; sourceTree = "<group>"; };
 		E7791A6023853E3C0075BAFD /* Gigya.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Gigya.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7791A6523853EF40075BAFD /* PushLoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushLoginManager.swift; sourceTree = "<group>"; };
+		E7C3A6F125D3E1400037E574 /* OtpServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtpServiceProtocol.swift; sourceTree = "<group>"; };
+		E7C3A6F625D3E1750037E574 /* OtpType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtpType.swift; sourceTree = "<group>"; };
+		E7C3A6FC25D3E1B00037E574 /* GigyaOtpResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigyaOtpResult.swift; sourceTree = "<group>"; };
+		E7C3A70025D3E2190037E574 /* OtpServiceVerifyProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtpServiceVerifyProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +62,8 @@
 		E726B26E25B9B2B4000637CE /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				E7C3A6F125D3E1400037E574 /* OtpServiceProtocol.swift */,
+				E7C3A70025D3E2190037E574 /* OtpServiceVerifyProtocol.swift */,
 				E726B26F25B9B2C6000637CE /* OtpService.swift */,
 			);
 			path = Services;
@@ -80,6 +90,7 @@
 			isa = PBXGroup;
 			children = (
 				E7791A4623853A510075BAFD /* GigyaAuth.h */,
+				E7C3A6F525D3E1650037E574 /* Models */,
 				E726B26E25B9B2B4000637CE /* Services */,
 				E7791A6423853EDA0075BAFD /* PushNotifications */,
 				E7791A5D23853DF00075BAFD /* GigyaAuth.swift */,
@@ -103,6 +114,15 @@
 				E7791A6523853EF40075BAFD /* PushLoginManager.swift */,
 			);
 			path = PushNotifications;
+			sourceTree = "<group>";
+		};
+		E7C3A6F525D3E1650037E574 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E7C3A6F625D3E1750037E574 /* OtpType.swift */,
+				E7C3A6FC25D3E1B00037E574 /* GigyaOtpResult.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -210,7 +230,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E7C3A70125D3E2190037E574 /* OtpServiceVerifyProtocol.swift in Sources */,
+				E7C3A6FD25D3E1B00037E574 /* GigyaOtpResult.swift in Sources */,
 				E7791A5E23853DF00075BAFD /* GigyaAuth.swift in Sources */,
+				E7C3A6F225D3E1410037E574 /* OtpServiceProtocol.swift in Sources */,
+				E7C3A6F725D3E1750037E574 /* OtpType.swift in Sources */,
 				E726B27025B9B2C6000637CE /* OtpService.swift in Sources */,
 				E7791A6623853EF40075BAFD /* PushLoginManager.swift in Sources */,
 			);
@@ -387,6 +411,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Gigya.GigyaAuth;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -422,6 +447,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Gigya.GigyaAuth;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

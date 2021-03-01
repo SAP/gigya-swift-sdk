@@ -15,11 +15,22 @@ Pod::Spec.new do |spec|
 
   spec.platform = :ios
   spec.ios.deployment_target  = '11.0'
+  spec.default_subspecs = 'Core'
   
-  spec.source_files       = 'GigyaNss/GigyaNss/*.swift', 'GigyaNss/GigyaNss/*/*.swift', 'GigyaNss/GigyaNss/*/*/*.swift'
+
+  spec.subspec 'Core' do |ss|
+     ss.source_files       = 'GigyaNss/GigyaNss/*.swift', 'GigyaNss/GigyaNss/*/*.swift', 'GigyaNss/GigyaNss/*/*/*.swift'
+     ss.exclude_files = 'GigyaNss/GigyaNss/services/*/*.swift'
+
+     spec.dependency 'Gigya', '>= 1.1.6'
+  end
+
+  spec.subspec 'Auth' do |ss|
+     ss.source_files       = 'GigyaNss/GigyaNss/services/*/*.swift'
+     ss.dependency 'GigyaAuth'
+  end
 
   spec.framework      = 'SystemConfiguration'
-  spec.dependency 'Gigya', '>= 1.1.6'
   spec.library = 'c++', 'z'
   spec.vendored_frameworks = 'GigyaNss/Flutter/Debug/Flutter.framework', 'GigyaNss/Flutter/Debug/App.framework'
 

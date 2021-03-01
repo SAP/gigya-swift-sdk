@@ -76,3 +76,11 @@ Gigya.framework.zip
 
 *.zip
 
+
+GigyaTfa/build/XCBuildData/
+
+GigyaTfa/build/GigyaTfa.build/Debug-iphonesimulator/GigyaTfa.build/Objects-normal/x86_64/
+
+GigyaTfa/build/GigyaTfa.build/Debug-iphonesimulator/GigyaTfa.build/
+
+GigyaTfa/GigyaTfa.xcodeproj/xcuserdata/i507698.xcuserdatad/xcschemes/

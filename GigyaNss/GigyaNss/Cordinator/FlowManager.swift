@@ -112,6 +112,12 @@ final class FlowManager<T: GigyaAccountProtocol> {
 
     // set the current action
     func setCurrent(action: NssAction, response: @escaping FlutterResult, expressions: [String: String] = [:]) {
+        // when action is exists, use it.
+        guard action != currentAction?.actionId else {
+            currentAction?.initialize(response: response, expressions: expressions)
+            return
+        }
+
         currentAction = flowFactory.create(identifier: action)
         currentAction?.delegate = self
         currentAction?.initialize(response: response, expressions: expressions)

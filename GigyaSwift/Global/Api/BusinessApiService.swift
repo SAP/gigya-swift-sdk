@@ -70,7 +70,8 @@ class BusinessApiService: NSObject, BusinessApiServiceProtocol {
         if accountService.isCachedAccount() {
             completion(.success(data: accountService.getAccount()))
         } else {
-            let model = ApiRequestModel(method: GigyaDefinitions.API.getAccountInfo, params: params)
+
+            let model = ApiRequestModel(method: GigyaDefinitions.API.getAccountInfo, params: params, config: config)
             
             apiService.send(model: model, responseType: T.self) { [weak accountService] result in
                 switch result {
@@ -156,7 +157,7 @@ class BusinessApiService: NSObject, BusinessApiServiceProtocol {
         login(params: params, completion: completion)
     }
 
-    private func login<T: GigyaAccountProtocol>(params: [String: Any], completion: @escaping (GigyaLoginResult<T>) -> Void) {
+    func login<T: GigyaAccountProtocol>(params: [String: Any], completion: @escaping (GigyaLoginResult<T>) -> Void) {
         let model = ApiRequestModel(method: GigyaDefinitions.API.login, params: params)
 
         apiService.send(model: model, responseType: T.self) { [weak self] result in
@@ -223,6 +224,22 @@ class BusinessApiService: NSObject, BusinessApiServiceProtocol {
                     }
                     completion(result)
                 }
+            }
+        }
+    }
+
+    func verifyLogin<T: GigyaAccountProtocol>(UID: String, params: [String: Any], completion: @escaping (GigyaApiResult<T>) -> Void) {
+        var params: [String: Any] = params
+        params["loginID"] = UID
+
+        let model = ApiRequestModel(method: GigyaDefinitions.API.verifyLogin, params: params)
+
+        apiService.send(model: model, responseType: T.self) { result in
+            switch result {
+            case .success(let result):
+                completion(.success(data: result))
+            case .failure(let error):
+                completion(.failure(error))
             }
         }
     }
@@ -307,9 +324,54 @@ class BusinessApiService: NSObject, BusinessApiServiceProtocol {
         apiService.send(model: model, responseType: GigyaDictionary.self, completion: completion)
     }
 
+    // MARK: - Api methods
+
+    func isAvailable(loginId: String, completion: @escaping (GigyaApiResult<Bool>) -> Void) {
+        var params: [String: Any] = [:]
+        params["loginID"] = loginId
+
+        let model = ApiRequestModel(method: GigyaDefinitions.API.isAvailableLoginID, params: params)
+
+        apiService.send(model: model, responseType: GigyaDictionary.self) { result in
+            switch result {
+            case .success(let result):
+                let isAvailble = result["isAvailable"]?.value as? Bool ?? false
+                completion(.success(data: isAvailble))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+
+    func getSchema(params: [String: Any], completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void) {
+        let model = ApiRequestModel(method: GigyaDefinitions.API.getSchema, params: params)
+
+        apiService.send(model: model, responseType: GigyaDictionary.self) { result in
+            switch result {
+            case .success(let data):
+                completion(.success(data: data))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+
+    func getPolicies(params: [String: Any], completion: @escaping (GigyaApiResult<GigyaPolicies>) -> Void) {
+        let model = ApiRequestModel(method: GigyaDefinitions.API.getPolicies, params: params)
+
+        apiService.send(model: model, responseType: GigyaPolicies.self) { result in
+            switch result {
+            case .success(let data):
+                completion(.success(data: data))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+
     // MARK: - Internal methods
 
-    private func interruptionResolver<T: GigyaAccountProtocol>(error: NetworkError, completion: @escaping (GigyaLoginResult<T>) -> Void) {
+    func interruptionResolver<T: GigyaAccountProtocol>(error: NetworkError, completion: @escaping (GigyaLoginResult<T>) -> Void) {
         interruptionsHandler.resolve(error: error, businessDelegate: self, completion: completion)
     }
 

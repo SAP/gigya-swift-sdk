@@ -176,6 +176,29 @@ public class GigyaWebBridge<T: GigyaAccountProtocol>: NSObject, WKScriptMessageH
     }
 
     /**
+     Show/Hide spinner.
+     */
+    private func spinner(show: Bool) {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+
+            if show {
+                if #available(iOS 14.0, *) {
+                    self.webView?.evaluateJavaScript("gigya._.plugins.instances.pluginContainer.dimScreenSet()", in: nil, in: .page)
+                } else {
+                    // Fallback on earlier versions
+                }
+            } else {
+                if #available(iOS 14.0, *) {
+                    self.webView?.evaluateJavaScript("gigya._.plugins.instances.pluginContainer.undimScreenSet()", in: nil, in: .page)
+                } else {
+                    // Fallback on earlier versions
+                }
+            }
+        }
+    }
+
+    /**
      Delegate received error to client.
      JS invocation of given error result.
      */
@@ -373,8 +396,13 @@ public class GigyaWebBridge<T: GigyaAccountProtocol>: NSObject, WKScriptMessageH
         guard let providerName = params["provider"] else { return }
 
         if let provider = GigyaSocialProviders(rawValue: providerName) {
+            spinner(show: true)
+
             businessApiService.login(provider: provider, viewController: viewController!, params: params, dataType: T.self) { [weak self] result in
                 guard let self = self else { return }
+
+                self.spinner(show: false)
+
                 switch result {
                 case .success(let data):
                     GigyaLogger.log(with: self, message: "sendOauthRequest success")

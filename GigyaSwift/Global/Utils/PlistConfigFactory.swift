@@ -17,7 +17,7 @@ final class PlistConfigFactory {
             let decoder = PropertyListDecoder()
             return try decoder.decode(PlistConfig.self, from: data)
         } catch let error {
-            preconditionFailure("Can't get the .plist file: \(error)")
+            preconditionFailure("Something wrong with your .plist configuration, check your configuration types: \(error)")
         }
     }
 }
