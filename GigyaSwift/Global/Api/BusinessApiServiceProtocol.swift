@@ -44,9 +44,13 @@ protocol BusinessApiServiceProtocol {
 
     func login<T: GigyaAccountProtocol>(dataType: T.Type, loginId: String, password: String, params: [String: Any], completion: @escaping (GigyaLoginResult<T>) -> Void)
 
+    func login<T: GigyaAccountProtocol>(params: [String: Any], completion: @escaping (GigyaLoginResult<T>) -> Void)
+    
     func login<T: GigyaAccountProtocol>(provider: GigyaSocialProviders, viewController: UIViewController, params: [String: Any], dataType: T.Type, completion: @escaping (GigyaLoginResult<T>) -> Void)
 
     func login<T: GigyaAccountProtocol>(providers: [GigyaSocialProviders], viewController: UIViewController, params: [String: Any], completion: @escaping (GigyaLoginResult<T>) -> Void)
+
+    func verifyLogin<T: GigyaAccountProtocol>(UID: String, params: [String: Any], completion: @escaping (GigyaApiResult<T>) -> Void)
     
     func addConnection<T: GigyaAccountProtocol>(provider: GigyaSocialProviders, viewController: UIViewController, params: [String: Any], dataType: T.Type, completion: @escaping (GigyaApiResult<T>) -> Void)
     
@@ -57,4 +61,9 @@ protocol BusinessApiServiceProtocol {
     func nativeSocialLogin<T: GigyaAccountProtocol>(params: [String: Any], completion: @escaping (GigyaApiResult<T>) -> Void)
 
     func forgotPassword(params: [String: Any], completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void)
+
+    func isAvailable(loginId: String, completion: @escaping (GigyaApiResult<Bool>) -> Void)
+
+    func getSchema(params: [String: Any], completion: @escaping (GigyaApiResult<GigyaSchema>) -> Void)
+
 }

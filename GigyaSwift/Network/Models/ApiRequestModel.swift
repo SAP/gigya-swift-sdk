@@ -10,15 +10,19 @@ import Foundation
 
 public struct ApiRequestModel {
     public let method: String
-    public let params: [String: Any]?
+    public var params: [String: Any]?
     public let isAnonymous: Bool
+    var config: GigyaConfig?
 
-    public init(method: String, params: [String: Any]? = nil, isAnonymous: Bool = false) {
+    public init(method: String, params: [String: Any]? = nil, isAnonymous: Bool = false, config: GigyaConfig? = nil) {
         self.method = method
         self.isAnonymous = isAnonymous
+        self.config = config
         
         var newParams = params
         newParams?["targetEnv"] = "mobile"
         self.params = newParams
+
+        addRequiredParams()
     }
 }

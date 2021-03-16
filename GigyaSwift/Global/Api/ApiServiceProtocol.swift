@@ -10,7 +10,7 @@ import Foundation
 
 public protocol ApiServiceProtocol {
     
-    init(with requst: NetworkAdapterProtocol, session: SessionServiceProtocol, persistenceService: PersistenceService)
+    init(with requst: NetworkAdapterProtocol, session: SessionServiceProtocol, persistenceService: PersistenceService, reportingService: ReportingService)
 
     func sendBlocking<T: Codable & Any>(model: ApiRequestModel, responseType: T.Type, completion: @escaping (GigyaApiResult<T>) -> Void)
 

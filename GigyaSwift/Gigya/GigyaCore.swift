@@ -70,6 +70,10 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
             initFor(apiKey: apiKey, apiDomain: plistConfig?.apiDomain)
         }
 
+        if let ccountConfig = plistConfig?.account {
+            config.accountConfig = ccountConfig
+        }
+
         // Must be registered following the init call
         config.sessionVerificationInterval = plistConfig?.sessionVerificationInterval
         sessionVerificationService.registerAppStateEvents()
@@ -162,7 +166,7 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
      Override the default timeout for network requests.
     */
     public func setRequestTimeout(to sec: Double) {
-        config.timestampOffset = sec
+        config.requestTimeout = sec
     }
 
     /**
@@ -172,6 +176,15 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
      */
     public func logout(completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void) {
         businessApiService.logout(completion: completion)
+        sessionVerificationService.stop()
+    }
+
+    /**
+     Logout of Gigya services.
+
+     */
+    public func logout() {
+        businessApiService.logout(completion: { _ in })
         sessionVerificationService.stop()
     }
 
@@ -190,6 +203,16 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
     }
 
     /**
+     Login api
+
+     - Parameter params:       Request parameters.
+     - Parameter completion:   Response `GigyaLoginResult<T>`.
+     */
+    public func login(params: [String: Any] = [:], completion: @escaping (GigyaLoginResult<T>) -> Void) {
+        businessApiService.login(params: params, completion: completion)
+    }
+
+    /**
      Login with a 3rd party provider.
 
      - Parameter provider:          Social provider.
@@ -205,6 +228,28 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
     }
 
     /**
+     Is Available login id api.
+
+     - Parameter loginId:           user identity.
+     - Parameter completion:        Response `GigyaLoginResult<Bool>`.
+     */
+    
+    func isAvailable(loginId: String, completion: @escaping (GigyaApiResult<Bool>) -> Void) {
+        businessApiService.isAvailable(loginId: loginId, completion: completion)
+    }
+
+    /**
+     Verify login id api.
+
+     - Parameter UID:           user identity.
+     - Parameter completion:        Response `GigyaLoginResult<Bool>`.
+     */
+
+    func verifyLogin(UID: String, params: [String: Any] = [:], completion: @escaping (GigyaApiResult<T>) -> Void) {
+        businessApiService.verifyLogin(UID: UID, params: params, completion: completion)
+    }
+
+    /**
      Register account using email and password combination
 
      - Parameter email:         user email.
@@ -212,7 +257,7 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
      - Parameter params:        Request parameters.
      - Parameter completion:    Response `GigyaLoginResult<T>`.
      */
-    public func register(email: String, password: String, params: [String: Any], completion: @escaping (GigyaLoginResult<T>) -> Void) {
+    public func register(email: String, password: String, params: [String: Any] = [:], completion: @escaping (GigyaLoginResult<T>) -> Void) {
         businessApiService.register(email: email, password: password, params: params, dataType: T.self, completion: completion)
     }
 
@@ -306,7 +351,7 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
      - Parameter completion:  Login response `GigyaApiResult<T>`.
      */
     
-    public func addConnection(provider: GigyaSocialProviders, viewController: UIViewController, params: [String: Any], completion: @escaping (GigyaApiResult<T>) -> Void) {
+    public func addConnection(provider: GigyaSocialProviders, viewController: UIViewController, params: [String: Any] = [:], completion: @escaping (GigyaApiResult<T>) -> Void) {
         businessApiService.addConnection(provider: provider, viewController: viewController, params: params, dataType: T.self, completion: completion)
     }
     
@@ -319,6 +364,17 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
     
     public func removeConnection(provider: GigyaSocialProviders, completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void) {
         businessApiService.removeConnection(providerName: provider, completion: completion)
+    }
+
+    /**
+     Get Schema api.
+
+     - Parameter params: Request parameters.
+     - Parameter completion: Login response `GigyaApiResult<GigyaDictionary>`.
+     */
+
+    public func getSchema(params: [String: Any] = [:], completion: @escaping (GigyaApiResult<GigyaSchema>) -> Void) {
+        businessApiService.getSchema(params: params, completion: completion)
     }
 
     // MARK: - Plugins
@@ -420,6 +476,8 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
         pushService.verifyPush(response: response.notification.request.content.userInfo)
     }
 
+    // MARK: Global methods
+
     /**
      Register Social Provider without reflection.
 
@@ -439,5 +497,16 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
      */
     public func setErrorReporting(to active: Bool) {
         container.resolve(ReportingService.self)?.disabled = !active
+    }
+
+    /**
+     Set Account configuration fields
+     These configuration fields will be used by default for all relevant SDK calls.
+
+     - Parameter account GigyaAccountConfig object.
+     */
+
+    public func setAccountConfig(with account: GigyaAccountConfig) {
+        config.accountConfig = account
     }
 }

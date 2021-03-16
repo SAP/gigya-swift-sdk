@@ -19,13 +19,18 @@ final class ApiService: ApiServiceProtocol {
 
     private let persistenceService: PersistenceService
 
-    required init(with networkAdapter: NetworkAdapterProtocol, session: SessionServiceProtocol, persistenceService: PersistenceService) {
+    private let reportingService: ReportingService
+
+    required init(with networkAdapter: NetworkAdapterProtocol, session: SessionServiceProtocol, persistenceService: PersistenceService, reportingService: ReportingService) {
         self.networkAdapter = networkAdapter
         self.sessionService = session
         self.persistenceService = persistenceService
+        self.reportingService = reportingService
     }
 
     func getSDKConfig() {
+        persistenceService.isStartSdk = true
+
         let params = ["include": "permissions,ids,appIds"]
         let model = ApiRequestModel(method: GigyaDefinitions.API.getSdkConfig, params: params)
 
@@ -35,6 +40,7 @@ final class ApiService: ApiServiceProtocol {
                 self?.persistenceService.save(ids: data.ids)
                 self?.persistenceService.isInitSdk = true
             case .failure(let error):
+                self?.reportingService.sendErrorReport(msg: "getSDKConfig error", details: ["details": error.localizedDescription])
                 GigyaLogger.log(with: self, message: error.localizedDescription)
                 break
             }
@@ -43,10 +49,10 @@ final class ApiService: ApiServiceProtocol {
 
     func send<T: Codable>(model: ApiRequestModel, responseType: T.Type,
                           completion: @escaping (GigyaApiResult<T>) -> Void) {
-        if persistenceService.isInitSdk == false {
-            getSDKConfig()
+        if persistenceService.isInitSdk == false && persistenceService.isStartSdk  == false {
+                getSDKConfig()
         }
-        
+
         send(model: model, responseType: responseType, blocking: false, completion: completion)
     }
 
@@ -73,6 +79,7 @@ final class ApiService: ApiServiceProtocol {
             let error = error as NSError?
 
             guard let code = error?.code, let callId = error?.userInfo["callId"] as? String else {
+                self?.reportingService.sendErrorReport(msg: "NetworkError.networkError", details: ["details": error?.localizedDescription ?? ""])
                 main { completion(.failure(NetworkError.networkError(error: error!))) }
                 return
             }
@@ -119,6 +126,8 @@ final class ApiService: ApiServiceProtocol {
 
                     main { completion(GigyaApiResult.success(data: typedResponse)) }
                 } catch let error {
+                    self.reportingService.sendErrorReport(msg: "Json parsing error", details: ["details": error.localizedDescription])
+
                     GigyaLogger.log(with: self, message: error.localizedDescription)
                     main { completion(.failure(NetworkError.jsonParsingError(error: error))) }
                 }
@@ -129,6 +138,8 @@ final class ApiService: ApiServiceProtocol {
             }
 
         } catch let error {
+            self.reportingService.sendErrorReport(msg: "Json parsing error", details: ["details": error.localizedDescription])
+
             GigyaLogger.log(with: self, message: error.localizedDescription)
             main { completion(.failure(NetworkError.jsonParsingError(error: error))) }
         }
@@ -139,6 +150,6 @@ final class ApiService: ApiServiceProtocol {
     }
 
     deinit {
-//        self.tmpModel = nil
+
     }
 }

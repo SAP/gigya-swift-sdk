@@ -32,6 +32,11 @@ public class GigyaWebBridge<T: GigyaAccountProtocol>: NSObject, WKScriptMessageH
 
     var completion: (GigyaPluginEvent<T>) -> Void = { _ in }
 
+    // MARK: - webBridge triggers
+    let showSpinner = "gigya._.plugins.instances.pluginContainer.dimScreenSet()"
+    let hideSpinner = "gigya._.plugins.instances.pluginContainer.undimScreenSet()"
+
+    // MARK: - initialization
     init(config: GigyaConfig, persistenceService: PersistenceService, sessionService: SessionServiceProtocol, businessApiService: BusinessApiServiceProtocol) {
         self.config = config
         self.persistenceService = persistenceService
@@ -59,11 +64,20 @@ public class GigyaWebBridge<T: GigyaAccountProtocol>: NSObject, WKScriptMessageH
         self.viewController = viewController
         self.completion = pluginEvent
 
+
         let JSInterface = getJSInterface(apikey: apikey)
 
-        let userScript = WKUserScript(source: JSInterface, injectionTime: .atDocumentStart, forMainFrameOnly: false)
-        contentController.addUserScript(userScript)
-        contentController.add(self, name: JSEventHandler)
+        if #available(iOS 14.0, *) {
+            let userScript = WKUserScript(source: JSInterface, injectionTime: .atDocumentStart, forMainFrameOnly: false, in: .page)
+            contentController.addUserScript(userScript)
+
+            contentController.add(self, contentWorld: .page, name: JSEventHandler)
+        } else {
+            let userScript = WKUserScript(source: JSInterface, injectionTime: .atDocumentStart, forMainFrameOnly: false)
+            contentController.addUserScript(userScript)
+
+            contentController.add(self, name: JSEventHandler)
+        }
 
         GigyaLogger.log(with: self, message: "JS Interface:\n\(JSInterface)")
     }
@@ -151,11 +165,41 @@ public class GigyaWebBridge<T: GigyaAccountProtocol>: NSObject, WKScriptMessageH
      JS invocation of given result.
      */
     private func invokeCallback(callbackId: String, and result: String) {
+
         let JS = "gigya._.apiAdapters.mobile.mobileCallbacks['\(callbackId)'](\(result));"
         GigyaLogger.log(with: self, message: "invokeCallback:\n\(JS)")
 
-        DispatchQueue.main.async {
-            self.webView?.evaluateJavaScript(JS)
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+
+            if #available(iOS 14.0, *) {
+                self.webView?.evaluateJavaScript(JS)
+            } else {
+                self.webView?.evaluateJavaScript(JS)
+            }
+        }
+    }
+
+    /**
+     Show/Hide spinner.
+     */
+    private func spinner(show: Bool) {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+
+            if show {
+                if #available(iOS 14.0, *) {
+                    self.webView?.evaluateJavaScript(self.showSpinner, in: nil, in: .page)
+                } else {
+                    self.webView?.evaluateJavaScript(self.showSpinner)
+                }
+            } else {
+                if #available(iOS 14.0, *) {
+                    self.webView?.evaluateJavaScript(self.hideSpinner, in: nil, in: .page)
+                } else {
+                    self.webView?.evaluateJavaScript(self.hideSpinner)
+                }
+            }
         }
     }
 
@@ -357,8 +401,13 @@ public class GigyaWebBridge<T: GigyaAccountProtocol>: NSObject, WKScriptMessageH
         guard let providerName = params["provider"] else { return }
 
         if let provider = GigyaSocialProviders(rawValue: providerName) {
+            spinner(show: true)
+
             businessApiService.login(provider: provider, viewController: viewController!, params: params, dataType: T.self) { [weak self] result in
                 guard let self = self else { return }
+
+                self.spinner(show: false)
+
                 switch result {
                 case .success(let data):
                     GigyaLogger.log(with: self, message: "sendOauthRequest success")
