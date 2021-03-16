@@ -64,7 +64,6 @@ protocol BusinessApiServiceProtocol {
 
     func isAvailable(loginId: String, completion: @escaping (GigyaApiResult<Bool>) -> Void)
 
-    func getSchema(params: [String: Any], completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void)
+    func getSchema(params: [String: Any], completion: @escaping (GigyaApiResult<GigyaSchema>) -> Void)
 
-    func getPolicies(params: [String: Any], completion: @escaping (GigyaApiResult<GigyaPolicies>) -> Void)
 }

@@ -373,19 +373,8 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
      - Parameter completion: Login response `GigyaApiResult<GigyaDictionary>`.
      */
 
-    public func getSchema(params: [String: Any] = [:], completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void) {
+    public func getSchema(params: [String: Any] = [:], completion: @escaping (GigyaApiResult<GigyaSchema>) -> Void) {
         businessApiService.getSchema(params: params, completion: completion)
-    }
-
-    /**
-     Get Schema api.
-
-     - Parameter params: Request parameters.
-     - Parameter completion: Login response `GigyaApiResult<GigyaDictionary>`.
-     */
-
-    public func getPolicies(params: [String: Any], completion: @escaping (GigyaApiResult<GigyaPolicies>) -> Void) {
-        businessApiService.getPolicies(params: params, completion: completion)
     }
 
     // MARK: - Plugins

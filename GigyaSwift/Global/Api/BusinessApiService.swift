@@ -343,23 +343,10 @@ class BusinessApiService: NSObject, BusinessApiServiceProtocol {
         }
     }
 
-    func getSchema(params: [String: Any], completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void) {
+    func getSchema(params: [String: Any], completion: @escaping (GigyaApiResult<GigyaSchema>) -> Void) {
         let model = ApiRequestModel(method: GigyaDefinitions.API.getSchema, params: params)
 
-        apiService.send(model: model, responseType: GigyaDictionary.self) { result in
-            switch result {
-            case .success(let data):
-                completion(.success(data: data))
-            case .failure(let error):
-                completion(.failure(error))
-            }
-        }
-    }
-
-    func getPolicies(params: [String: Any], completion: @escaping (GigyaApiResult<GigyaPolicies>) -> Void) {
-        let model = ApiRequestModel(method: GigyaDefinitions.API.getPolicies, params: params)
-
-        apiService.send(model: model, responseType: GigyaPolicies.self) { result in
+        apiService.send(model: model, responseType: GigyaSchema.self) { result in
             switch result {
             case .success(let data):
                 completion(.success(data: data))
