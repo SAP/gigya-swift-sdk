@@ -83,10 +83,6 @@
 		E7337467226C538300ADEDBB /* DecodeTestUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7337466226C538300ADEDBB /* DecodeTestUtils.swift */; };
 		E735C2F822B7DBF7007A055E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E735C2F722B7DBF7007A055E /* GoogleService-Info.plist */; };
 		E73A930222F974120004F93E /* Notification.Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73A930122F974120004F93E /* Notification.Name.swift */; };
-		E73C8A4A2430FB2A0064EFE1 /* GigyaNss.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E73C8A3E2430F6310064EFE1 /* GigyaNss.framework */; };
-		E73C8A4B2430FB2A0064EFE1 /* GigyaNss.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E73C8A3E2430F6310064EFE1 /* GigyaNss.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		E73C8A4C2430FB320064EFE1 /* GigyaNssEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E73C8A3B2430F6210064EFE1 /* GigyaNssEngine.framework */; };
-		E73C8A4D2430FB320064EFE1 /* GigyaNssEngine.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E73C8A3B2430F6210064EFE1 /* GigyaNssEngine.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E74E26692383E9B1002E361B /* GeneralUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74E26682383E9B1002E361B /* GeneralUtils.swift */; };
 		E756A2992275CB5C007FA801 /* SocialProviderLoginTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E756A2982275CB5C007FA801 /* SocialProviderLoginTests.swift */; };
 		E756A29C2275CC13007FA801 /* ProviderFactoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E756A29B2275CC13007FA801 /* ProviderFactoryMock.swift */; };
@@ -103,7 +99,6 @@
 		E764219825D51F9700CDED4C /* GigyaAuth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E764219725D51F9700CDED4C /* GigyaAuth.framework */; };
 		E764219925D51F9700CDED4C /* GigyaAuth.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E764219725D51F9700CDED4C /* GigyaAuth.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E76421DF25E2BFEB00CDED4C /* ApiRequestModel+GlobalConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = E76421DE25E2BFEB00CDED4C /* ApiRequestModel+GlobalConfig.swift */; };
-		E76421F525E3BA7E00CDED4C /* GigyaPolicies.swift in Sources */ = {isa = PBXBuildFile; fileRef = E76421F425E3BA7E00CDED4C /* GigyaPolicies.swift */; };
 		E76AF6EB24C88BA8008B9114 /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E76AF6EA24C88BA8008B9114 /* ApiService.swift */; };
 		E76F2E942345E78800056D19 /* Gigya.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7BE36732224219200A108D9 /* Gigya.framework */; };
 		E76F2E952345E78800056D19 /* Gigya.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E7BE36732224219200A108D9 /* Gigya.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -136,6 +131,13 @@
 		E7ACF9AE226C843100900C65 /* SessionServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7ACF9AD226C843100900C65 /* SessionServiceProtocol.swift */; };
 		E7ACF9B0226C844A00900C65 /* AccountServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7ACF9AF226C844A00900C65 /* AccountServiceProtocol.swift */; };
 		E7ACF9CC226F2A4100900C65 /* ProviderWrapperProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7ACF9CB226F2A4100900C65 /* ProviderWrapperProtocol.swift */; };
+		E7B2FA4225EF9B78002A7010 /* Flutter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7B2FA4025EF9B78002A7010 /* Flutter.framework */; };
+		E7B2FA4325EF9B78002A7010 /* Flutter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E7B2FA4025EF9B78002A7010 /* Flutter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E7B2FA4425EF9B78002A7010 /* App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7B2FA4125EF9B78002A7010 /* App.framework */; };
+		E7B2FA4525EF9B78002A7010 /* App.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E7B2FA4125EF9B78002A7010 /* App.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E7B2FA8E25EF9EDB002A7010 /* GigyaNss.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E775E8ED23C6170D0059151D /* GigyaNss.framework */; };
+		E7B2FA8F25EF9EDB002A7010 /* GigyaNss.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E775E8ED23C6170D0059151D /* GigyaNss.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E7B2FA9525F0FAF6002A7010 /* GigyaSchema.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B2FA9425F0FAF6002A7010 /* GigyaSchema.swift */; };
 		E7B4D69C238329F50090E57D /* PushNotificationsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E720D34B2382D32300446EA4 /* PushNotificationsService.swift */; };
 		E7B5408A23952E2200C0C8D8 /* UserNotificationCenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B5408923952E2200C0C8D8 /* UserNotificationCenterProtocol.swift */; };
 		E7BE36782224219200A108D9 /* GigyaSwift.h in Headers */ = {isa = PBXBuildFile; fileRef = E7BE36762224219200A108D9 /* GigyaSwift.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -286,10 +288,11 @@
 			dstSubfolderSpec = 10;
 			files = (
 				E764219925D51F9700CDED4C /* GigyaAuth.framework in Embed Frameworks */,
+				E7B2FA4325EF9B78002A7010 /* Flutter.framework in Embed Frameworks */,
 				E713E0CD2247773100181328 /* Gigya.framework in Embed Frameworks */,
-				E73C8A4D2430FB320064EFE1 /* GigyaNssEngine.framework in Embed Frameworks */,
 				E764218E25D51F0F00CDED4C /* GigyaTfa.framework in Embed Frameworks */,
-				E73C8A4B2430FB2A0064EFE1 /* GigyaNss.framework in Embed Frameworks */,
+				E7B2FA4525EF9B78002A7010 /* App.framework in Embed Frameworks */,
+				E7B2FA8F25EF9EDB002A7010 /* GigyaNss.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -402,7 +405,6 @@
 		E764218C25D51F0F00CDED4C /* GigyaTfa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GigyaTfa.framework; path = GigyaTfa/GigyaTfa.framework; sourceTree = "<group>"; };
 		E764219725D51F9700CDED4C /* GigyaAuth.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GigyaAuth.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E76421DE25E2BFEB00CDED4C /* ApiRequestModel+GlobalConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ApiRequestModel+GlobalConfig.swift"; sourceTree = "<group>"; };
-		E76421F425E3BA7E00CDED4C /* GigyaPolicies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigyaPolicies.swift; sourceTree = "<group>"; };
 		E76AF6EA24C88BA8008B9114 /* ApiService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
 		E76F2E722345E72500056D19 /* GigyaUITestsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GigyaUITestsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E76F2E872345E72700056D19 /* GigyaUITestsAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GigyaUITestsAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -444,6 +446,9 @@
 		E7ACF9AD226C843100900C65 /* SessionServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionServiceProtocol.swift; sourceTree = "<group>"; };
 		E7ACF9AF226C844A00900C65 /* AccountServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountServiceProtocol.swift; sourceTree = "<group>"; };
 		E7ACF9CB226F2A4100900C65 /* ProviderWrapperProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderWrapperProtocol.swift; sourceTree = "<group>"; };
+		E7B2FA4025EF9B78002A7010 /* Flutter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Flutter.framework; path = GigyaNss/Flutter/Debug/Flutter.framework; sourceTree = "<group>"; };
+		E7B2FA4125EF9B78002A7010 /* App.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = App.framework; path = GigyaNss/Flutter/Debug/App.framework; sourceTree = "<group>"; };
+		E7B2FA9425F0FAF6002A7010 /* GigyaSchema.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigyaSchema.swift; sourceTree = "<group>"; };
 		E7B5408923952E2200C0C8D8 /* UserNotificationCenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNotificationCenterProtocol.swift; sourceTree = "<group>"; };
 		E7BE36732224219200A108D9 /* Gigya.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Gigya.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7BE36762224219200A108D9 /* GigyaSwift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GigyaSwift.h; sourceTree = "<group>"; };
@@ -594,15 +599,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				E7DC2C6D2280778000A13426 /* libc++.tbd in Frameworks */,
+				E7B2FA4425EF9B78002A7010 /* App.framework in Frameworks */,
 				E7DC2C6C2280771700A13426 /* libz.tbd in Frameworks */,
 				E764219825D51F9700CDED4C /* GigyaAuth.framework in Frameworks */,
+				E7B2FA4225EF9B78002A7010 /* Flutter.framework in Frameworks */,
 				E7DC2C6B228076E600A13426 /* libsqlite3.tbd in Frameworks */,
 				E73373F522633BDA00ADEDBB /* SafariServices.framework in Frameworks */,
 				E731B72D232A53AD0032E111 /* AuthenticationServices.framework in Frameworks */,
+				E7B2FA8E25EF9EDB002A7010 /* GigyaNss.framework in Frameworks */,
 				E764218D25D51F0F00CDED4C /* GigyaTfa.framework in Frameworks */,
-				E73C8A4C2430FB320064EFE1 /* GigyaNssEngine.framework in Frameworks */,
 				E77F7A2F2407EC7900FF90FB /* CoreFoundation.framework in Frameworks */,
-				E73C8A4A2430FB2A0064EFE1 /* GigyaNss.framework in Frameworks */,
 				E73373F422633BD300ADEDBB /* SystemConfiguration.framework in Frameworks */,
 				E7A71CAD232F7F3000993A61 /* CoreTelephony.framework in Frameworks */,
 				E73373F322633BCC00ADEDBB /* LocalAuthentication.framework in Frameworks */,
@@ -697,9 +703,9 @@
 			children = (
 				E7D3E22922CA01F90033BAF1 /* InitSdkResponseModel.swift */,
 				E7CBB067223E595D000B6C11 /* GigyaPlistConfig.swift */,
+				E7B2FA9425F0FAF6002A7010 /* GigyaSchema.swift */,
 				E7CBAFA3222BC881000B6C11 /* InternalConfig.swift */,
 				E713E0FD2248C83D00181328 /* GigyaConfig.swift */,
-				E76421F425E3BA7E00CDED4C /* GigyaPolicies.swift */,
 				E73373AB2254D79200ADEDBB /* GigyaDefinitions.swift */,
 			);
 			path = Config;
@@ -1023,6 +1029,8 @@
 		E7BE368C2224225900A108D9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E7B2FA4125EF9B78002A7010 /* App.framework */,
+				E7B2FA4025EF9B78002A7010 /* Flutter.framework */,
 				E764219725D51F9700CDED4C /* GigyaAuth.framework */,
 				E764218C25D51F0F00CDED4C /* GigyaTfa.framework */,
 				E764214525D51D2200CDED4C /* GigyaAuth.framework */,
@@ -1852,7 +1860,6 @@
 				E73373E22263339400ADEDBB /* Provider.swift in Sources */,
 				E7ACF9B0226C844A00900C65 /* AccountServiceProtocol.swift in Sources */,
 				E7ACF9AC226C841300900C65 /* ApiServiceProtocol.swift in Sources */,
-				E76421F525E3BA7E00CDED4C /* GigyaPolicies.swift in Sources */,
 				E71D3C9D22BF906300A413D7 /* TFAProvider.swift in Sources */,
 				E719374122D5CCCF00CD149E /* GigyaIOCContainer.swift in Sources */,
 				E73374622268B25B00ADEDBB /* SocialProvidersManager.swift in Sources */,
@@ -1885,6 +1892,7 @@
 				E7CBB05A2237DD2C000B6C11 /* GigyaSocialProviders.swift in Sources */,
 				E7CBAF9D22282BE3000B6C11 /* KeychainStorage.swift in Sources */,
 				E7CBAFD2222EBD95000B6C11 /* SessionService.swift in Sources */,
+				E7B2FA9525F0FAF6002A7010 /* GigyaSchema.swift in Sources */,
 				E7A6E0CE22425A910063638F /* NetworkAdapter.swift in Sources */,
 				E7D9C5AE23682DD400714807 /* NetworkBlockingQueueUtils.swift in Sources */,
 				E7ACF9AE226C843100900C65 /* SessionServiceProtocol.swift in Sources */,
@@ -2410,6 +2418,7 @@
 					"$(PROJECT_DIR)/GigyaNss/Debug",
 					"$(PROJECT_DIR)/GigyaNssEngine/Debug",
 					"$(PROJECT_DIR)/GigyaNssEngine/Debug/GigyaNssEngine.framework/Frameworks",
+					"$(PROJECT_DIR)/GigyaNss/Flutter/Debug",
 				);
 				INFOPLIST_FILE = TestApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;

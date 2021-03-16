@@ -32,6 +32,11 @@ public class GigyaWebBridge<T: GigyaAccountProtocol>: NSObject, WKScriptMessageH
 
     var completion: (GigyaPluginEvent<T>) -> Void = { _ in }
 
+    // MARK: - webBridge triggers
+    let showSpinner = "gigya._.plugins.instances.pluginContainer.dimScreenSet()"
+    let hideSpinner = "gigya._.plugins.instances.pluginContainer.undimScreenSet()"
+
+    // MARK: - initialization
     init(config: GigyaConfig, persistenceService: PersistenceService, sessionService: SessionServiceProtocol, businessApiService: BusinessApiServiceProtocol) {
         self.config = config
         self.persistenceService = persistenceService
@@ -184,15 +189,15 @@ public class GigyaWebBridge<T: GigyaAccountProtocol>: NSObject, WKScriptMessageH
 
             if show {
                 if #available(iOS 14.0, *) {
-                    self.webView?.evaluateJavaScript("gigya._.plugins.instances.pluginContainer.dimScreenSet()", in: nil, in: .page)
+                    self.webView?.evaluateJavaScript(self.showSpinner, in: nil, in: .page)
                 } else {
-                    // Fallback on earlier versions
+                    self.webView?.evaluateJavaScript(self.showSpinner)
                 }
             } else {
                 if #available(iOS 14.0, *) {
-                    self.webView?.evaluateJavaScript("gigya._.plugins.instances.pluginContainer.undimScreenSet()", in: nil, in: .page)
+                    self.webView?.evaluateJavaScript(self.hideSpinner, in: nil, in: .page)
                 } else {
-                    // Fallback on earlier versions
+                    self.webView?.evaluateJavaScript(self.hideSpinner)
                 }
             }
         }
