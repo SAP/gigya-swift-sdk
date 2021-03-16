@@ -36,6 +36,8 @@ public protocol BusinessApiDelegate: class {
 
     func callForgotPassword(params: [String:Any], completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void )
 
+    func callInterruptionResolver<T: GigyaAccountProtocol>(dataType: T.Type, error: NetworkError, completion: @escaping (GigyaLoginResult<T>) -> Void)
+
 }
 
 extension BusinessApiService: BusinessApiDelegate {
@@ -85,5 +87,9 @@ extension BusinessApiService: BusinessApiDelegate {
 
     func callForgotPassword(params: [String:Any], completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void) {
         self.forgotPassword(params: params, completion: completion)
+    }
+
+    func callInterruptionResolver<T: GigyaAccountProtocol>(dataType: T.Type, error: NetworkError, completion: @escaping (GigyaLoginResult<T>) -> Void) {
+        self.interruptionResolver(error: error, completion: completion)
     }
 }
