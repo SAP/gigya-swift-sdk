@@ -40,6 +40,35 @@ Once you have completed the changes above, run the following:
 pod install
 ```
 
+### Setting account configuration
+In order to align all account related request we recommend that an account configuration setting will be applied.
+This is a global SDK setting and will affect all account related requests.
+Account configuration will include:
+ - cacheTime - The time the SDK will cache your account data until requested again to lower network usage.
+ - include - The default include fields used in every account request.
+ - extraProfileFieds - The default extra profile fields used in every account request.
+In order to set the account configuration use one of the following methods:
+#### Implicit settings via the *info.plist* file
+```xml
+<dict>
+	<key>GigyaAccount</key>
+	<dict>
+		<key>include</key>
+		<array>
+			<string>data</string>
+			<string>profile</string>
+			<string>emails</string>
+		</array>
+		<key>cacheTime</key>
+		<integer>60</integer>
+		<key>extraProfileFields</key>
+		<array>
+			<string>languages</string>
+			<string>phones</string>
+		</array>
+	</dict>
+</dict>
+```
 
 ### Initialization
 
