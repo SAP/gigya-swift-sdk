@@ -20,4 +20,6 @@ public class GigyaConfig {
 
     internal var timestampOffset: Double = 0
     internal var requestTimeout = InternalConfig.Network.requestTimeoutDefult
+
+    internal var accountConfig: GigyaAccountConfig?
 }

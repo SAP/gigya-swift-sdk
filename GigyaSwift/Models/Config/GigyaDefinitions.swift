@@ -30,6 +30,9 @@ public struct GigyaDefinitions {
         public static let accountsSocialLogin = "accounts.socialLogin"
         public static let addConnection = "socialize.addConnection"
         public static let accountsAddConnection = "accounts.addConnection"
+        public static let isAvailableLoginID = "accounts.isAvailableLoginID"
+        public static let getSchema = "accounts.getSchema"
+        public static let getPolicies = "accounts.getPolicies"
 
         // MARK:  TFA
         public static let initTFA = "accounts.tfa.initTFA"

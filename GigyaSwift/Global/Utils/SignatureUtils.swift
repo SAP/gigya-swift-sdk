@@ -29,8 +29,12 @@ class SignatureUtils {
             timestamp = nil
             nonce = nil
         }
-        //swiftlint:disable:next line_length
-         let signatureModel = GigyaRequestSignature(oauthToken: token, apikey: config.apiKey!, nonce: nonce, timestamp: timestamp, ucid: persistenceService.ucid, gmid: persistenceService.gmid)
+
+        if (config.apiKey == nil) {
+            GigyaLogger.log(with: self, message: "ApiKey is not exists, please check your initialization of Gigya.")
+        }
+
+        let signatureModel = GigyaRequestSignature(oauthToken: token, apikey: config.apiKey ?? "", nonce: nonce, timestamp: timestamp, ucid: persistenceService.ucid, gmid: persistenceService.gmid)
 
         let encoderPrepareData = try JSONEncoder().encode(signatureModel)
         let bodyPrepareData = try JSONSerialization.jsonObject(with: encoderPrepareData, options: .allowFragments) as! [String: Any]
