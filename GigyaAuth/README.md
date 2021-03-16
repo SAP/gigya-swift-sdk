@@ -97,6 +97,38 @@ GigyaAuth.shared.registerForAuthPush { result in
 ​
 Once the device is successfully registered, when the user starts a login process on a separate device (e.g. desktop), the registered mobile device will receive a push notification which they can approve or deny.
 ​
+
+## OTP Phone number login (v2.1.+)
+**In order to use this method you will require a minumim Gigya Core SDK version of 1.2.0.**
+Initiating a phone number login is available using the following flow.
+1. Initiate the login flow providing a phone number. This will result in a verification message to be sent to the provided
+Phone number.
+```swift
+GigyaAuth.shared.otp.login(phone: phone) { (result: GigyaOtpResult<UserHost>) in
+    switch result {
+    case .success(let data):
+        // Success
+    case .pendingOtpVerification(let resolver):
+        // Code sent
+    case .failure(let error):
+        // error
+    }
+}
+```
+2. Verify the recieved code to complete login flow.
+Using the *IGigyaOtpResult* resolve class received in the *onPendingOTPVerification* callback you are now able to
+verify the code and complete the login flow. The flow will resolve in the original callback.
+```swift
+resolver.verify(code: code)
+```
+Updating the user phone number is also available. The flow is the same but will start with the **update** option
+rather than the **login** option.
+```swift
+GigyaAuth.shared.otp.update(phone: ...
+```
+NOTE:
+OTP phone number supports the following format +[country code][number] only.
+
 ## Limitations
 None
 ​
