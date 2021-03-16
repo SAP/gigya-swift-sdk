@@ -70,6 +70,11 @@ In order to set the account configuration use one of the following methods:
 </dict>
 ```
 
+#### Explicit setting via the Gigya instance.
+```swift
+Gigya.sharedInstance().setAccountConfig(with: myAccountConfigObject)
+```
+
 ### Initialization
 
 The SDK requires an active reference to the running *AppDelegate.swift*, for example:
