@@ -98,7 +98,7 @@ GigyaAuth.shared.registerForAuthPush { result in
 Once the device is successfully registered, when the user starts a login process on a separate device (e.g. desktop), the registered mobile device will receive a push notification which they can approve or deny.
 ​
 
-## OTP Phone number login (v2.1.+)
+## OTP Phone number login (v1.1.+)
 **In order to use this method you will require a minumim Gigya Core SDK version of 1.2.0.**
 Initiating a phone number login is available using the following flow.
 1. Initiate the login flow providing a phone number. This will result in a verification message to be sent to the provided
