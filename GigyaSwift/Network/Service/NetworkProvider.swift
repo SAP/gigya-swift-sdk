@@ -18,6 +18,7 @@ final class NetworkProvider {
 
     let urlSession = URLSession.sharedInternal
 
+
     init(config: GigyaConfig, persistenceService: PersistenceService, sessionService: SessionServiceProtocol) {
         self.config = config
         self.persistenceService = persistenceService
@@ -76,7 +77,7 @@ final class NetworkProvider {
         request.httpMethod = method.description
         var task: URLSessionDataTask?
 
-        let handler: (Data?, URLResponse?, Error?) -> Void = { [weak config] data, response, error in
+        let handler: (Data?, URLResponse?, Error?) -> Void = { [weak config, weak self] data, response, error in
             if let headerResponse = response as? HTTPURLResponse, let date = headerResponse.allHeaderFields["Date"] as? String {
 
                 if let dateFromRequest = date.stringToDate() {

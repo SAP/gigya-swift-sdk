@@ -26,6 +26,7 @@ final public class GigyaNss {
 
     // Engine configuration
     static let engineBundle = "Gigya.GigyaNssEngine"
+    static let wrapperBundle = "Gigya.GigyaNss"
     static let engineId = "io.flutter"
 
     // extends files prefix
@@ -174,6 +175,14 @@ final public class GigyaNss {
             return LoginAction(busnessApi: busnessApi!, jsEval: jsEval!)
         }
 
+        dependenciesContainer.register(service: OtpAction<T>.self) { resolver in
+            let busnessApi = resolver.resolve(BusinessApiDelegate.self)
+            let jsEval = resolver.resolve(JsEvaluatorHelper.self)
+            let otpHelper = resolver.resolve(OtpProtocol.self)
+
+            return OtpAction(busnessApi: busnessApi!, jsEval: jsEval!, otpHelper: otpHelper)
+        }
+
         dependenciesContainer.register(service: SetAccountAction<T>.self) { resolver in
             let busnessApi = resolver.resolve(BusinessApiDelegate.self)
             let jsEval = resolver.resolve(JsEvaluatorHelper.self)
@@ -206,22 +215,30 @@ final public class GigyaNss {
         dependenciesContainer.register(service: EventsClosuresManager.self) { _ in
             return EventsClosuresManager()
         }
+//        let bundle = Bundle(identifier: GigyaNss.wrapperBundle)
+//
+//        // check if GigyaNss Auth wrappers is exists is exists.
+//        if let otpClass = bundle?.classNamed("GigyaNss.OtpHelper"),
+//           let otpHelper = otpClass as AnyClass as? OtpProtocol.Type {
+//
+//            // register the relevent helper
+//            dependenciesContainer.register(service: OtpProtocol.self) { _ in
+//                return OtpHead()
+//            }
+//        }
 
+        dependenciesContainer.register(service: OtpProtocol.self) { _ in
+            let otp = OtpHead()
+            return otp
+        }
+
+        dependenciesContainer.resolve(OtpProtocol.self)?.isAvailable()
         guard let builder = GigyaNss.shared.dependenciesContainer.resolve(ScreenSetsBuilder<T>.self) else {
             GigyaLogger.error(with: GigyaNss.self, message: "`ScreenSetsBuilder` dependency not found.")
         }
         self.builder = builder
 
         self.dependenciesDidRegisterd = true
-
-//        let jsEval = JsEvaluatorHelper()
-//        jsEval.setData(data: ["account": ["profile": ["firstName": "Sagi"]]])
-//        jsEval.setConditions(data: [
-//                                "cId123": "account.profile.firstName == 'Sagi'",
-//                                "cId124": "account.profile.firstName == 'Tal'",
-//        ])
-//
-//        let x = jsEval.eval()
 
     }
 

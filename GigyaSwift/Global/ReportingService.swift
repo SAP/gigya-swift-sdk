@@ -8,24 +8,36 @@
 
 import Foundation
 
-final class ReportingService {
+public final class ReportingService {
     private let networkProvider: NetworkProvider
     private let config: GigyaConfig
 
     var disabled = true
+
+    enum Priority: String {
+        case info = "INFO"
+        case error = "ERROR"
+    }
 
     init(networkProvider: NetworkProvider, config: GigyaConfig) {
         self.networkProvider = networkProvider
         self.config = config
     }
 
-    func sendErrorReport(msg: String, details: [String: Any]) {
+    func sendErrorReport(msg: String, details: [String: Any], priority: Priority = .info) {
         guard disabled else {
             return
         }
 
         let url = "https://accounts.\(config.apiDomain)/"
-        let params: [String: Any] = ["message": msg, "details": details]
+        let params: [String: Any] = [
+            "message": msg,
+            "details": details,
+            "apikey": config.apiKey ?? "",
+            "sdkVersion": InternalConfig.General.version,
+            "priority": priority.rawValue
+        ]
+
         let model = ApiRequestModel(method: "sdk.errorReport", params: params)
         networkProvider.unsignRequest(url: url, model: model, method: .post) { response, error in
             guard error == nil else {
