@@ -19,7 +19,7 @@ Pod::Spec.new do |spec|
   spec.source_files       = 'GigyaAuth/GigyaAuth/*.swift', 'GigyaAuth/GigyaAuth/*/*.swift', 'GigyaAuth/GigyaAuth/*/*/*.swift'
 
   spec.framework      = 'SystemConfiguration'
-  spec.dependency 'Gigya'
+  spec.dependency 'Gigya' , '>= 1.2.0'
   spec.library = 'c++', 'z'
 
 end

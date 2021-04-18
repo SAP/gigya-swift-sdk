@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name          = 'GigyaNssRelease'
-  spec.version       = '1.1.1'
+  spec.version       = '1.2.0'
   spec.license       = 'Apache 2.0'
   spec.homepage      = 'https://developers.gigya.com/display/GD/Native+Screen-Sets'
   spec.author       = 'Gigya SAP'
@@ -9,17 +9,29 @@ Pod::Spec.new do |spec|
                         authentication methods from the standard login flow
                         DESC
 
-  spec.source        = { :git => 'https://github.com/SAP/gigya-swift-sdk.git', :tag => 'nss/v1.1.1' }
+  spec.source        = { :git => 'https://github.com/SAP/gigya-swift-sdk.git', :tag => 'nss/v1.2.0' }
   spec.module_name   = 'GigyaNss'
   spec.swift_version = '5.2'
 
   spec.platform = :ios
   spec.ios.deployment_target  = '11.0'
   
-  spec.source_files       = 'GigyaNss/GigyaNss/*.swift', 'GigyaNss/GigyaNss/*/*.swift', 'GigyaNss/GigyaNss/*/*/*.swift'
+  spec.default_subspecs = 'Core'
+  
+  spec.subspec 'Core' do |ss|
+     ss.source_files       = 'GigyaNss/GigyaNss/*.swift', 'GigyaNss/GigyaNss/*/*.swift', 'GigyaNss/GigyaNss/*/*/*.swift'
+     ss.exclude_files = 'GigyaNss/GigyaNss/services/*/*.swift'
+
+     spec.dependency 'Gigya', '>= 1.2.0'
+  end
+
+  spec.subspec 'Auth' do |ss|
+     ss.source_files       = 'GigyaNss/GigyaNss/services/*/*.swift'
+     ss.dependency 'GigyaAuth'
+  end
 
   spec.framework      = 'SystemConfiguration'
-  spec.dependency 'Gigya', '>= 1.1.6'
+  spec.dependency 'Gigya', '>= 1.2.0'
   spec.library = 'c++', 'z'
   
   spec.dependency 'Flutter', '1.22.4'
