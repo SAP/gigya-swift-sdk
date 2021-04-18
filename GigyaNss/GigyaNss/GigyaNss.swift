@@ -215,24 +215,12 @@ final public class GigyaNss {
         dependenciesContainer.register(service: EventsClosuresManager.self) { _ in
             return EventsClosuresManager()
         }
-//        let bundle = Bundle(identifier: GigyaNss.wrapperBundle)
-//
-//        // check if GigyaNss Auth wrappers is exists is exists.
-//        if let otpClass = bundle?.classNamed("GigyaNss.OtpHelper"),
-//           let otpHelper = otpClass as AnyClass as? OtpProtocol.Type {
-//
-//            // register the relevent helper
-//            dependenciesContainer.register(service: OtpProtocol.self) { _ in
-//                return OtpHead()
-//            }
-//        }
 
         dependenciesContainer.register(service: OtpProtocol.self) { _ in
             let otp = OtpHead()
             return otp
         }
 
-        dependenciesContainer.resolve(OtpProtocol.self)?.isAvailable()
         guard let builder = GigyaNss.shared.dependenciesContainer.resolve(ScreenSetsBuilder<T>.self) else {
             GigyaLogger.error(with: GigyaNss.self, message: "`ScreenSetsBuilder` dependency not found.")
         }
