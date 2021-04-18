@@ -20,7 +20,7 @@ Pod::Spec.new do |spec|
   
   spec.subspec 'Core' do |ss|
      ss.source_files       = 'GigyaNss/GigyaNss/*.swift', 'GigyaNss/GigyaNss/*/*.swift', 'GigyaNss/GigyaNss/*/*/*.swift'
-     ss.exclude_files = 'GigyaNss/GigyaNss/services/*/*.swift'
+     ss.exclude_files = 'GigyaNss/GigyaNss/services/Otp/OtpService.swift'
 
      ss.dependency 'Gigya', '>= 1.2.0'
      ss.framework      = 'SystemConfiguration'
