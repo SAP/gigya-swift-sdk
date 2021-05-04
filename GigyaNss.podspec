@@ -20,9 +20,12 @@ Pod::Spec.new do |spec|
 
   spec.subspec 'Core' do |ss|
      ss.source_files       = 'GigyaNss/GigyaNss/*.swift', 'GigyaNss/GigyaNss/*/*.swift', 'GigyaNss/GigyaNss/*/*/*.swift'
-     ss.exclude_files = 'GigyaNss/GigyaNss/services/*/*.swift'
+     ss.exclude_files = 'GigyaNss/GigyaNss/services/Otp/OtpService.swift'
 
-     spec.dependency 'Gigya', '>= 1.2.0'
+     ss.dependency 'Gigya', '>= 1.2.0'
+     ss.framework      = 'SystemConfiguration'
+     ss.library = 'c++', 'z'
+     ss.vendored_frameworks = 'GigyaNss/Flutter/Debug/Flutter.framework', 'GigyaNss/Flutter/Debug/App.framework'
   end
 
   spec.subspec 'Auth' do |ss|
@@ -30,9 +33,7 @@ Pod::Spec.new do |spec|
      ss.dependency 'GigyaAuth'
   end
 
-  spec.framework      = 'SystemConfiguration'
-  spec.library = 'c++', 'z'
-  spec.vendored_frameworks = 'GigyaNss/Flutter/Debug/Flutter.framework', 'GigyaNss/Flutter/Debug/App.framework'
+
 
   spec.pod_target_xcconfig = {
     'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64'
