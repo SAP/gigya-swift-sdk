@@ -467,7 +467,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 34;
+				CURRENT_PROJECT_VERSION = 35;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = T48CNFXFQH;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -486,7 +486,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.11;
+				MARKETING_VERSION = 1.0.12;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = Gigya.GigyaTfa;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
@@ -508,7 +508,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 34;
+				CURRENT_PROJECT_VERSION = 35;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = T48CNFXFQH;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -527,7 +527,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.11;
+				MARKETING_VERSION = 1.0.12;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = Gigya.GigyaTfa;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
