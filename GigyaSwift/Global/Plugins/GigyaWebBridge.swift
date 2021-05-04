@@ -289,6 +289,8 @@ public class GigyaWebBridge<T: GigyaAccountProtocol>: NSObject, WKScriptMessageH
                         let objData = try JSONSerialization.data(withJSONObject: mapped, options: .prettyPrinted)
                         let dataEncoded = try DecodeEncodeUtils.decode(fromType: T.self, data: objData)
 
+                        self.businessApiService.accountService.account = data
+                        
                         self.completion(.onLogin(account: dataEncoded))
                     } catch let error {
                         self.invokeError(callbackId: "internal", error: .jsonParsingError(error: error))
@@ -320,6 +322,8 @@ public class GigyaWebBridge<T: GigyaAccountProtocol>: NSObject, WKScriptMessageH
                 GigyaLogger.log(with: self, message: "sendOauthRequest success")
                 let dataEncoded = try? DecodeEncodeUtils.encodeToDictionary(obj: data)
                 self.invokeCallback(callbackId: callbackId, and: dataEncoded!.asJson)
+
+                self.businessApiService.accountService.account = data
 
                 self.completion(.onLogin(account: data))
             case .failure(let error):
