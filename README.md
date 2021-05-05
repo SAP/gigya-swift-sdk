@@ -1,4 +1,6 @@
 # SAP CDC (Gigya) Swift SDK
+[![REUSE status](https://api.reuse.software/badge/github.com/SAP/gigya-swift-sdk)](https://api.reuse.software/info/github.com/SAP/gigya-swift-sdk)
+
 
 ## Description
 The Swift SDK provides an interface for the Gigya API.
