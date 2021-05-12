@@ -130,7 +130,7 @@ NOTE:
 OTP phone number supports the following format +[country code][number] only.
 
 ## Limitations
-None
+- Our authentication libraries currently support up to Firebase v6 only.
 ​
 ## Known Issues
 None
