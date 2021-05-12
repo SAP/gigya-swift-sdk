@@ -289,7 +289,7 @@ public class GigyaWebBridge<T: GigyaAccountProtocol>: NSObject, WKScriptMessageH
                         let objData = try JSONSerialization.data(withJSONObject: mapped, options: .prettyPrinted)
                         let dataEncoded = try DecodeEncodeUtils.decode(fromType: T.self, data: objData)
 
-                        self.businessApiService.accountService.account = data
+                        self.businessApiService.accountService.account = dataEncoded
                         
                         self.completion(.onLogin(account: dataEncoded))
                     } catch let error {
