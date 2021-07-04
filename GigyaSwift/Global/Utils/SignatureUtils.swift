@@ -13,13 +13,12 @@ class SignatureUtils {
 
     static func prepareSignature(config: GigyaConfig, persistenceService: PersistenceService, session: GigyaSession?, path: String, params: [String: Any] = [:]) throws -> [String: Any] {
         var timestamp: String?
-        var nonce: String?
+        let nonce: String? = params["nonce"] as? String
         var session: GigyaSession? = session
         var token: String? = session?.token
 
         if session != nil {
             timestamp = String(Int(Date().timeIntervalSince1970 + config.timestampOffset))
-            nonce = String(timestamp!) + "_" + String(describing: arc4random())
         }
 
         if path.contains(GigyaDefinitions.API.getSdkConfig) {
@@ -27,7 +26,6 @@ class SignatureUtils {
             session = nil
             token = nil
             timestamp = nil
-            nonce = nil
         }
 
         if (config.apiKey == nil) {
