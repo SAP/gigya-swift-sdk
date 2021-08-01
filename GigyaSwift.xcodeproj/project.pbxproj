@@ -109,6 +109,12 @@
 		E7791A78238BC5880075BAFD /* BiometricServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7791A77238BC5880075BAFD /* BiometricServiceMock.swift */; };
 		E7791A7B238BD3800075BAFD /* PushServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7791A7A238BD3800075BAFD /* PushServiceTests.swift */; };
 		E7791A7D238BE1070075BAFD /* SessionServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7791A7C238BE1070075BAFD /* SessionServiceMock.swift */; };
+		E779232626A04F1E00446A7F /* GigyaAuth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E779232526A04F1E00446A7F /* GigyaAuth.framework */; };
+		E779232726A04F1E00446A7F /* GigyaAuth.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E779232526A04F1E00446A7F /* GigyaAuth.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E779232926A04F2400446A7F /* GigyaTfa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E779232826A04F2400446A7F /* GigyaTfa.framework */; };
+		E779232A26A04F2400446A7F /* GigyaTfa.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E779232826A04F2400446A7F /* GigyaTfa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E779232C26A04F2900446A7F /* GigyaNss.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E779232B26A04F2900446A7F /* GigyaNss.framework */; };
+		E779232D26A04F2900446A7F /* GigyaNss.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E779232B26A04F2900446A7F /* GigyaNss.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E77F71A0230AD95600E8738A /* GigyaWebBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77F719F230AD95600E8738A /* GigyaWebBridge.swift */; };
 		E77F7A2F2407EC7900FF90FB /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E77F7A2E2407EC7900FF90FB /* CoreFoundation.framework */; };
 		E7A6E0AA2240F8080063638F /* GigyaApiResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A6E0A92240F8080063638F /* GigyaApiResult.swift */; };
@@ -211,12 +217,6 @@
 		E7FEF6A6264123D900180165 /* FacebookWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7584EE822E0524D007229FE /* FacebookWrapper.swift */; };
 		E7FF6BAB2691A7FC00FF8E8A /* App.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7FF6BA82691A7FB00FF8E8A /* App.xcframework */; };
 		E7FF6BAC2691A7FC00FF8E8A /* App.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E7FF6BA82691A7FB00FF8E8A /* App.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		E7FF6BAE2691A83900FF8E8A /* GigyaNss.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7FF6BAD2691A83900FF8E8A /* GigyaNss.framework */; };
-		E7FF6BAF2691A83900FF8E8A /* GigyaNss.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E7FF6BAD2691A83900FF8E8A /* GigyaNss.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		E7FF6BB12691A84000FF8E8A /* GigyaTfa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7FF6BB02691A84000FF8E8A /* GigyaTfa.framework */; };
-		E7FF6BB22691A84000FF8E8A /* GigyaTfa.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E7FF6BB02691A84000FF8E8A /* GigyaTfa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		E7FF6BB42691A84500FF8E8A /* GigyaAuth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7FF6BB32691A84500FF8E8A /* GigyaAuth.framework */; };
-		E7FF6BB52691A84500FF8E8A /* GigyaAuth.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E7FF6BB32691A84500FF8E8A /* GigyaAuth.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E7FFD59322FB0A8A00DBE663 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		E7FFF8F6232003AD002EC944 /* WebBridgeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FFF8F5232003AD002EC944 /* WebBridgeViewController.swift */; };
 		F42F7E39077C84C62D51B15F /* Pods_TestApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACE784C21E7F740E1C0E1BA1 /* Pods_TestApp.framework */; };
@@ -285,11 +285,11 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				E7FF6BB52691A84500FF8E8A /* GigyaAuth.framework in Embed Frameworks */,
-				E7FF6BB22691A84000FF8E8A /* GigyaTfa.framework in Embed Frameworks */,
+				E779232726A04F1E00446A7F /* GigyaAuth.framework in Embed Frameworks */,
 				E7FEF6A3263FFEF900180165 /* Gigya.framework in Embed Frameworks */,
+				E779232A26A04F2400446A7F /* GigyaTfa.framework in Embed Frameworks */,
+				E779232D26A04F2900446A7F /* GigyaNss.framework in Embed Frameworks */,
 				E7FF6BAC2691A7FC00FF8E8A /* App.xcframework in Embed Frameworks */,
-				E7FF6BAF2691A83900FF8E8A /* GigyaNss.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -420,6 +420,9 @@
 		E7791A77238BC5880075BAFD /* BiometricServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricServiceMock.swift; sourceTree = "<group>"; };
 		E7791A7A238BD3800075BAFD /* PushServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushServiceTests.swift; sourceTree = "<group>"; };
 		E7791A7C238BE1070075BAFD /* SessionServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionServiceMock.swift; sourceTree = "<group>"; };
+		E779232526A04F1E00446A7F /* GigyaAuth.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GigyaAuth.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E779232826A04F2400446A7F /* GigyaTfa.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GigyaTfa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E779232B26A04F2900446A7F /* GigyaNss.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GigyaNss.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E77F719F230AD95600E8738A /* GigyaWebBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigyaWebBridge.swift; sourceTree = "<group>"; };
 		E77F7A222406A12E00FF90FB /* GigyaNssEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GigyaNssEngine.framework; path = GigyaNssEngine/GigyaNssEngine.framework; sourceTree = "<group>"; };
 		E77F7A272406B12100FF90FB /* GigyaNss.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GigyaNss.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -605,14 +608,14 @@
 				E7DC2C6D2280778000A13426 /* libc++.tbd in Frameworks */,
 				E7FF6BAB2691A7FC00FF8E8A /* App.xcframework in Frameworks */,
 				E7DC2C6C2280771700A13426 /* libz.tbd in Frameworks */,
+				E779232C26A04F2900446A7F /* GigyaNss.framework in Frameworks */,
 				E7DC2C6B228076E600A13426 /* libsqlite3.tbd in Frameworks */,
+				E779232626A04F1E00446A7F /* GigyaAuth.framework in Frameworks */,
+				E779232926A04F2400446A7F /* GigyaTfa.framework in Frameworks */,
 				E73373F522633BDA00ADEDBB /* SafariServices.framework in Frameworks */,
-				E7FF6BB42691A84500FF8E8A /* GigyaAuth.framework in Frameworks */,
 				E731B72D232A53AD0032E111 /* AuthenticationServices.framework in Frameworks */,
 				E77F7A2F2407EC7900FF90FB /* CoreFoundation.framework in Frameworks */,
-				E7FF6BAE2691A83900FF8E8A /* GigyaNss.framework in Frameworks */,
 				E73373F422633BD300ADEDBB /* SystemConfiguration.framework in Frameworks */,
-				E7FF6BB12691A84000FF8E8A /* GigyaTfa.framework in Frameworks */,
 				E7FEF6A2263FFEF900180165 /* Gigya.framework in Frameworks */,
 				E7A71CAD232F7F3000993A61 /* CoreTelephony.framework in Frameworks */,
 				E73373F322633BCC00ADEDBB /* LocalAuthentication.framework in Frameworks */,
@@ -1032,6 +1035,9 @@
 		E7BE368C2224225900A108D9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E779232B26A04F2900446A7F /* GigyaNss.framework */,
+				E779232826A04F2400446A7F /* GigyaTfa.framework */,
+				E779232526A04F1E00446A7F /* GigyaAuth.framework */,
 				E7FF6BB32691A84500FF8E8A /* GigyaAuth.framework */,
 				E7FF6BB02691A84000FF8E8A /* GigyaTfa.framework */,
 				E7FF6BAD2691A83900FF8E8A /* GigyaNss.framework */,
