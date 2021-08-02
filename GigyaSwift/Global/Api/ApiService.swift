@@ -34,10 +34,10 @@ final class ApiService: ApiServiceProtocol {
         let params = ["include": "permissions,ids,appIds"]
         let model = ApiRequestModel(method: GigyaDefinitions.API.getSdkConfig, params: params)
 
-        self.sendBlocking(model: model, responseType: InitSdkResponseModel.self) { [weak self] result in
+        self.sendBlocking(model: model, responseType: InitSdkIdsModel.self) { [weak self] result in
             switch result {
             case .success(let data):
-                self?.persistenceService.save(ids: data.ids)
+                self?.persistenceService.save(ids: data)
                 self?.persistenceService.isInitSdk = true
             case .failure(let error):
                 self?.reportingService.sendErrorReport(msg: "getSDKConfig error", details: ["details": error.localizedDescription])

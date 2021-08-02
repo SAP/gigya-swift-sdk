@@ -25,16 +25,18 @@ Pod::Spec.new do |spec|
      ss.dependency 'Gigya', '>= 1.2.0'
      ss.framework      = 'SystemConfiguration'
      ss.library = 'c++', 'z'
-  
-     ss.dependency 'Flutter', '2.0.0'
+
+     ss.dependency 'Flutter', '2.0.2'
 
      ss.vendored_frameworks = 'GigyaNss/Flutter/Release/App.xcframework'
+
   end
 
   spec.subspec 'Auth' do |ss|
      ss.source_files       = 'GigyaNss/GigyaNss/services/*/*.swift'
      ss.dependency 'GigyaAuth'
   end
+
 
 
   spec.pod_target_xcconfig = {

@@ -58,7 +58,7 @@ public final class PersistenceService {
 
     // save gmid, ucid to userDefaults
     internal func save(ids: InitSdkIdsModel) {
-        UserDefaults.standard.setValue(ids.gmid, forKey: InternalConfig.Storage.GMID)
+        UserDefaults.standard.setValue(ids.gcid, forKey: InternalConfig.Storage.GMID)
         UserDefaults.standard.setValue(ids.ucid, forKey: InternalConfig.Storage.UCID)
     }
 
