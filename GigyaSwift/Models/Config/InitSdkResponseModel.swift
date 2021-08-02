@@ -14,5 +14,5 @@ struct InitSdkResponseModel: Codable {
 
 struct InitSdkIdsModel: Codable {
     let ucid: String
-    let gmid: String
+    let gcid: String
 }
