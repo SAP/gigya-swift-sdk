@@ -11,7 +11,7 @@ import Foundation
 public struct GigyaDefinitions {
     public struct API {
         // MARK:  ACCOUNT
-        public static let getSdkConfig = "socialize.getSDKConfig"
+        public static let getSdkConfig = "socialize.getIDs"
         public static let login = "accounts.login"
         public static let logout = "accounts.logout"
         public static let getAccountInfo = "accounts.getAccountInfo"
