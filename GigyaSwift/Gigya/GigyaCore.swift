@@ -70,7 +70,7 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
             initFor(apiKey: apiKey, apiDomain: plistConfig?.apiDomain)
         }
 
-        if let ccountConfig = plistConfig?.account {
+        if let ccountConfig: GigyaAccountConfig = plistConfig?.account {
             config.accountConfig = ccountConfig
         }
 

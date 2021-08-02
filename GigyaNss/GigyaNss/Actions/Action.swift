@@ -9,7 +9,7 @@
 import Flutter
 import Gigya
 
-protocol NssActionProtocol: class {
+protocol NssActionProtocol: AnyObject {
     var actionId: NssAction? { get set }
 
     var delegate: FlowManagerDelegate? { get set }

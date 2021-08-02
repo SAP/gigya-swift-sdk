@@ -8,7 +8,7 @@
 
 import Foundation
 
-public protocol AccountServiceProtocol: class {
+public protocol AccountServiceProtocol: AnyObject {
     var account: Any? { get set }
 
     func getAccount<T: Codable>() -> T
