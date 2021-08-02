@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-public protocol BusinessApiDelegate: class {
+public protocol BusinessApiDelegate: AnyObject {
     
     func sendApi(api: String, params: [String: Any], completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void )
 

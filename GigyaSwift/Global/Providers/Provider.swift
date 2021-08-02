@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol Provider: class {
+protocol Provider: AnyObject {
     
     var delegate: BusinessApiDelegate? { get set }
 

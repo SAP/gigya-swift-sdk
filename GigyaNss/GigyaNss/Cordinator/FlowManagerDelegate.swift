@@ -9,7 +9,7 @@
 import Gigya
 import Flutter
 
-protocol FlowManagerDelegate: class {
+protocol FlowManagerDelegate: AnyObject {
 
     func getMainLoginClosure<T: GigyaAccountProtocol>(obj: T.Type) -> MainClosure<T>
 
