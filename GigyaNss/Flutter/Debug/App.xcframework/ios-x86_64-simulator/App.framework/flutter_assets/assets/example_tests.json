@@ -1,7 +1,7 @@
 {
   "theme": {
     "primaryColor": "blue",
-    "secondaryColor": "red",
+    "secondaryColor": "white",
     "textColor": "black",
     "enabledColor": "blue",
     "disabledColor": "grey",
@@ -528,13 +528,11 @@
         },
         {
           "type": "radio",
-          "bind": "#data.favGuitar",
+          "bind": "data.favGuitar",
           "style": {
-            "fontSize": 10,
-            "borderSize": 5,
             "margin": [
               16,
-              0,
+              30,
               16,
               0
             ]
