@@ -227,7 +227,8 @@
               16,
               0
             ],
-            "background": "green"
+            "cornerRadius": 22,
+            "borderSize": 1
           },
           "validations": {
             "required": {
@@ -384,31 +385,16 @@
         },
         {
           "bind": "data.terms",
-          "type": "container",
-          "stack": "horizontal",
-          "alignment": "start",
-          "children": [
-            {
-              "bind": "data.terms",
-              "type": "checkbox",
-              "textKey": "register-terms+link",
-              "style": {
-                "fontSize": 16,
-                "fontColor": "grey",
-                "size": [
-                  240,
-                  80
-                ]
-              }
-            },
-            {
-              "type": "label",
-              "textKey": "test test",
-              "style": {
-                "fontSize": 16
-              }
-            }
-          ]
+          "type": "checkbox",
+          "textKey": "register-terms+link",
+          "style": {
+            "margin": [
+              16,
+              0,
+              16,
+              0
+            ]
+          }
         },
         {
           "type": "label",
