@@ -11,6 +11,8 @@ import Foundation
 public protocol AccountServiceProtocol: AnyObject {
     var account: Any? { get set }
 
+    var accountCacheTime: Int { get set }
+
     func getAccount<T: Codable>() -> T
 
     func setAccount<T: Codable>(newAccount: T) -> [String: AnyObject]

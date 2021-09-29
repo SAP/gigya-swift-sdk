@@ -70,8 +70,12 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
             initFor(apiKey: apiKey, apiDomain: plistConfig?.apiDomain)
         }
 
-        if let ccountConfig: GigyaAccountConfig = plistConfig?.account {
-            config.accountConfig = ccountConfig
+        if let accountConfig: GigyaAccountConfig = plistConfig?.account {
+            config.accountConfig = accountConfig
+            
+            if let cacheTime = accountConfig.cacheTime {
+                businessApiService.accountService.accountCacheTime = cacheTime
+            }
         }
 
         // Must be registered following the init call

@@ -88,6 +88,7 @@ final public class GigyaNss {
             let flowManager = resolver.resolve(FlowManager<T>.self)
             let eventHandler = resolver.resolve(NssHandler<T>.self)
             let busnessApi = resolver.resolve(BusinessApiDelegate.self)
+            let jsEval = resolver.resolve(JsEvaluatorHelper.self)
 
             return NativeScreenSetsViewModel(mainChannel: mainChannel!,
                                              apiChannel: apiChannel!,
@@ -97,7 +98,8 @@ final public class GigyaNss {
                                              dataResolver: dataResolver!,
                                              busnessApi: busnessApi!,
                                              flowManager: flowManager!,
-                                             eventHandler: eventHandler
+                                             eventHandler: eventHandler,
+                                             jsEval: jsEval!
             )
         }
 

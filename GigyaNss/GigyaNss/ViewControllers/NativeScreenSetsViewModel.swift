@@ -29,12 +29,14 @@ class NativeScreenSetsViewModel<T: GigyaAccountProtocol>: NSObject, UIAdaptivePr
 
     var imagePickerVc: ImagePickerViewController?
 
+    var jsEval: JsEvaluatorHelper?
+
     var engine: FlutterEngine?
 
     var eventHandler: NssHandler<T>? = { _ in }
 
     init(mainChannel: ScreenChannel, apiChannel: ApiChannel, logChannel: LogChannel, dataChannel: DataChannel, screenEventsChannel: EventsChannel,
-         dataResolver: DataResolver, busnessApi: BusinessApiDelegate, flowManager: FlowManager<T>, eventHandler: NssHandler<T>?) {
+         dataResolver: DataResolver, busnessApi: BusinessApiDelegate, flowManager: FlowManager<T>, eventHandler: NssHandler<T>?, jsEval: JsEvaluatorHelper) {
         self.screenChannel = mainChannel
         self.apiChannel = apiChannel
         self.logChannel = logChannel
@@ -44,6 +46,7 @@ class NativeScreenSetsViewModel<T: GigyaAccountProtocol>: NSObject, UIAdaptivePr
         self.eventHandler = eventHandler
         self.busnessApi = busnessApi
         self.dataResolver = dataResolver
+        self.jsEval = jsEval
     }
 
     func loadChannels(with engine: FlutterEngine) {
@@ -86,6 +89,12 @@ class NativeScreenSetsViewModel<T: GigyaAccountProtocol>: NSObject, UIAdaptivePr
             case .canceled:
                 self.dismissClosure()
                 self.eventHandler?(.canceled)
+            case .eval:
+                let expressions = data?["expression"] as? String ?? ""
+                let data = data?["data"] as? [String : Any] ?? [:]
+
+                let eval = self.jsEval?.singleEval(data: data, expressions: expressions)
+                response(eval)
             }
         }
 
