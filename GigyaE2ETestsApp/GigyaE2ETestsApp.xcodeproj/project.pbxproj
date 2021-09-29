@@ -259,7 +259,6 @@
 				E7F2EFBC2379524C00565388 /* Resources */,
 				E7F2EFE72379528D00565388 /* Embed Frameworks */,
 				374A15AFFBAB0FEA2F8223A5 /* [CP] Embed Pods Frameworks */,
-				46DEAED82D1D15B8CA191D9F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -365,23 +364,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GigyaE2ETestsApp/Pods-GigyaE2ETestsApp-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		46DEAED82D1D15B8CA191D9F /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-GigyaE2ETestsApp/Pods-GigyaE2ETestsApp-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-GigyaE2ETestsApp/Pods-GigyaE2ETestsApp-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GigyaE2ETestsApp/Pods-GigyaE2ETestsApp-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E775E7FD23BB6ADC0059151D /* ShellScript */ = {
