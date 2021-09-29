@@ -65,7 +65,7 @@ extension ScreenSetsBuilder: ScreenSetsExternalBuilderProtocol {
     }
 
     func lang(name: String) -> BuilderOptions {
-        langName = name
+        langName = name.lowercased()
         return self
     }
 

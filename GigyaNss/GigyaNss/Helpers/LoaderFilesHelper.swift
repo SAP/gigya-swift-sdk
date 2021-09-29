@@ -50,7 +50,7 @@ class LoaderFileHelper {
             }
 
             // load the `theme` file from bundle. (example: `init.theme.json`)
-            let loadFileTheme = fileToDic(name: "\(value).\(GigyaNss.themePrefix))")
+            let loadFileTheme = fileToDic(name: "\(value).\(GigyaNss.themePrefix)")
 
             // load the `i18n` file from bundle. (example: `init.theme.json`)
             let loadLangFile = fileToDic(name: "\(value).\(GigyaNss.langPrefix)")
@@ -81,7 +81,7 @@ class LoaderFileHelper {
                 params["lang"] = defaultLang
             }
             
-            busnessApi?.sendApi(api: "accounts.getNativeScreenSet", params: ["screenSetId": value, "lang": defaultLang ?? ""]) { [weak self] (result) in
+            busnessApi?.sendApi(api: "accounts.getNativeScreenSet", params: params) { [weak self] (result) in
                 switch result {
                 case .success(data: let data):
                     guard let decodedObject = try? JSONSerialization.jsonObject(with: JSONEncoder().encode(data)) as? [String: AnyObject] else {
