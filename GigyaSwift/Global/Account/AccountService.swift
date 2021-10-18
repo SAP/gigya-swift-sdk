@@ -60,7 +60,11 @@ final class AccountService: AccountServiceProtocol {
 
         for item in new {
             if let itemAsDictionary = item.value as? [String: AnyObject], let olditemAsDictionary = old[item.key] as? [String: AnyObject] {
-                newObject[item.key] = getDiff(old: olditemAsDictionary, new: itemAsDictionary) as AnyObject
+                let diff = getDiff(old: olditemAsDictionary, new: itemAsDictionary) as [String: AnyObject]
+
+                if diff.count != 0 {
+                    newObject[item.key] = diff as AnyObject
+                }
             } else {
                 if !item.value.isEqual(old[item.key]) {
                     newObject[item.key] = item.value
