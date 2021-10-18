@@ -37,4 +37,15 @@ class JsEvaluatorHelper {
 
         return result == "undefined" ? "{}" : result
     }
+
+    func singleEval(data: [String: Any], expressions: String) -> String {
+        let context = JSContext()!
+        setData(context: context, data: data)
+
+        let result = context
+            .evaluateScript("JSON.stringify(\(expressions))")
+            .toString() ?? ""
+
+        return result == "undefined" ? "" : result
+    }
 }
