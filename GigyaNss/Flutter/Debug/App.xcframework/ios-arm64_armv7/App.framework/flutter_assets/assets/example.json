@@ -117,7 +117,7 @@
     }
   },
   "routing": {
-    "initial": "register",
+    "initial": "account-update",
     "default": {
       "onSuccess": "_dismiss",
       "onPendingEmailVerification": "_dismiss"
@@ -493,6 +493,34 @@
           "type": "textInput",
           "textKey": "common-zip",
           "theme": "input"
+        },
+        {
+          "type": "datePicker",
+          "initialDisplay": "input",
+          "textKey": "Birth date:",
+          "bind": {
+            "type": "date",
+            "day": "profile.birthDay",
+            "month": "profile.birthMonth",
+            "year": "profile.birthYear"
+          },
+          "startYear": 2000,
+          "endYear": 2025,
+          "datePickerStyle" : {
+              "primaryColor": "blue"
+          },
+          "style": {
+            "fontSize": 16,
+            "cornerRadius": 15,
+            "borderSize": 2,
+            "fontColor": "black",
+            "margin": [
+              16,
+              10,
+              16,
+              8
+            ]
+          }
         },
         {
           "type": "container",

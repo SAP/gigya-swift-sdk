@@ -12,7 +12,7 @@ target 'TestApp' do
   # Pods for TestApp
   pod 'LineSDKSwift', '~> 5.0'
 
-  pod 'GoogleSignIn', '5.0.1', :modular_headers => false
+  pod 'GoogleSignIn', '6.0.1', :modular_headers => false
   pod 'FBSDKCoreKit', '7.0.1'
   pod 'FBSDKLoginKit', '7.0.1'
 

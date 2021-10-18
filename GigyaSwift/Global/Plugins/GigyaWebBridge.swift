@@ -213,6 +213,8 @@ public class GigyaWebBridge<T: GigyaAccountProtocol>: NSObject, WKScriptMessageH
             self.completion(.error(event: data.toDictionary()))
             self.invokeCallback(callbackId: callbackId, and: data.asJson())
         default:
+            let dic: [String: Any] = ["errorCode": 400, "statusCode": 0]
+            self.invokeCallback(callbackId: callbackId, and: dic.asJson)
             break
         }
     }
