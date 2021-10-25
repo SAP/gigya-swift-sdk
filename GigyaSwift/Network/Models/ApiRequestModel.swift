@@ -14,7 +14,7 @@ public struct ApiRequestModel {
     public let isAnonymous: Bool
     var config: GigyaConfig?
 
-    public init(method: String, params: [String: Any]? = nil, isAnonymous: Bool = false, config: GigyaConfig? = nil) {
+    public init(method: String, params: [String: Any]? = [:], isAnonymous: Bool = false, config: GigyaConfig? = nil) {
         self.method = method
         self.isAnonymous = isAnonymous
         self.config = config
