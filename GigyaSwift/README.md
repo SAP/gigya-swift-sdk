@@ -44,7 +44,7 @@ pod install
 In order to align all account related request we recommend that an account configuration setting will be applied.
 This is a global SDK setting and will affect all account related requests.
 Account configuration will include:
- - cacheTime - The time the SDK will cache your account data until requested again to lower network usage.
+ - cacheTime - The time the SDK will cache your account data until requested again to lower network usage (minutes).
  - include - The default include fields used in every account request.
  - extraProfileFieds - The default extra profile fields used in every account request.
 In order to set the account configuration use one of the following methods:
