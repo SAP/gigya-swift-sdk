@@ -5,9 +5,9 @@
 This document is a practical step-by-step guide for integrating and utilizing Gigya's services within the extent of your iOS Swift native application.
 
 ```
-SAP Customer Data Cloud Swift SDK supports iOS 10.0 through 13.
+SAP Customer Data Cloud Swift SDK supports iOS 10.0+.
 SAP Customer Data Cloud Swift SDK supports Apple ID.
-SAP Customer Data Cloud Swift SDK requires XCode 11.4 or above.
+SAP Customer Data Cloud Swift SDK requires XCode 13 or above.
 Gigya Swift SDK requires Swift 5.1.2 and above.
 ```
 
