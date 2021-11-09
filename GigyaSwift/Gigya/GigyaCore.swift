@@ -71,11 +71,7 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
         }
 
         if let accountConfig: GigyaAccountConfig = plistConfig?.account {
-            config.accountConfig = accountConfig
-            
-            if let cacheTime = accountConfig.cacheTime {
-                businessApiService.accountService.accountCacheTime = cacheTime
-            }
+            setAccountConfig(with: accountConfig)
         }
 
         // Must be registered following the init call
@@ -512,5 +508,9 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
 
     public func setAccountConfig(with account: GigyaAccountConfig) {
         config.accountConfig = account
+
+        if let cacheTime = account.cacheTime {
+            businessApiService.accountService.accountCacheTime = cacheTime
+        }
     }
 }
