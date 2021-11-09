@@ -5,9 +5,9 @@
 This document is a practical step-by-step guide for integrating and utilizing Gigya's services within the extent of your iOS Swift native application.
 
 ```
-SAP Customer Data Cloud Swift SDK supports iOS 10.0 through 13.
+SAP Customer Data Cloud Swift SDK supports iOS 10.0+.
 SAP Customer Data Cloud Swift SDK supports Apple ID.
-SAP Customer Data Cloud Swift SDK requires XCode 11.4 or above.
+SAP Customer Data Cloud Swift SDK requires XCode 13 or above.
 Gigya Swift SDK requires Swift 5.1.2 and above.
 ```
 
@@ -23,6 +23,9 @@ Under the Build Phases tab in your Target, click the + button on the top left an
 as follows and make sure this phase is below the Embed Frameworks phase.
 ```
 bash "${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/Gigya.framework/ios-framework-build.sh" Gigya
+```
+```
+* Relevant only for old versions, from v1.2.2 is not needed.
 ```
 
 ## Integrating using Swift Package Manager
@@ -44,7 +47,7 @@ pod install
 In order to align all account related request we recommend that an account configuration setting will be applied.
 This is a global SDK setting and will affect all account related requests.
 Account configuration will include:
- - cacheTime - The time the SDK will cache your account data until requested again to lower network usage.
+ - cacheTime - The time the SDK will cache your account data until requested again to lower network usage **(minutes)**.
  - include - The default include fields used in every account request.
  - extraProfileFieds - The default extra profile fields used in every account request.
 In order to set the account configuration use one of the following methods:

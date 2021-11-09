@@ -486,13 +486,54 @@
           "bind": "profile.email",
           "type": "textInput",
           "textKey": "common-email",
-          "theme": "input"
+          "theme": "input",
+          "validations": {
+            "required": {
+              "enabled": true,
+              "errorKey": "error-required-field"
+            }
+          }
         },
         {
           "bind": "profile.zip",
           "type": "textInput",
           "textKey": "common-zip",
-          "theme": "input"
+          "theme": "input",
+          "validations": {
+            "required": {
+              "enabled": true,
+              "errorKey": "error-required-field"
+            }
+          }
+        },
+        {
+          "type": "dropdown",
+          "bind": "data.favGuitar",
+          "validations": {
+            "required": {
+              "enabled": true,
+              "errorKey": "error-required-field"
+            }
+          },
+          "style": {
+            "cornerRadius": 15,
+            "borderSize": 2
+          },
+          "options": [
+            {
+              "default": true,
+              "value": "",
+              "textKey": "Paul Reed Smith"
+            },
+            {
+              "value": "Rubato",
+              "textKey": "account-custom-rubato"
+            },
+            {
+              "value": "Parker",
+              "textKey": "account-custom-parker"
+            }
+          ]
         },
         {
           "type": "datePicker",
