@@ -1,0 +1,52 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.5.1 (swiftlang-1300.0.31.4 clang-1300.0.29.6)
+// swift-module-flags: -target armv7-apple-ios10.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name GigyaAuth
+import Foundation
+import Gigya
+@_exported import GigyaAuth
+import Swift
+import UserNotifications
+import _Concurrency
+public protocol OtpServiceVerifyProtocol {
+  var vToken: Swift.String? { get }
+  var data: [Swift.String : Any]? { get }
+  func verify(code: Swift.String)
+}
+@frozen public enum GigyaOtpResult<ResponseType> where ResponseType : Gigya.GigyaAccountProtocol {
+  case success(data: ResponseType)
+  case pendingOtpVerification(resolver: GigyaAuth.OtpServiceVerifyProtocol)
+  case failure(error: Gigya.LoginApiError<ResponseType>)
+}
+@_hasMissingDesignatedInitializers final public class GigyaAuth {
+  public static let shared: GigyaAuth.GigyaAuth
+  final public var otp: GigyaAuth.OtpServiceProtocol {
+    get
+    set
+  }
+  final public func register<T>(scheme: T.Type) where T : Gigya.GigyaAccountProtocol
+  final public func registerForRemoteNotifications()
+  final public func registerForAuthPush(completion: @escaping (Gigya.GigyaApiResult<Gigya.GigyaDictionary>) -> Swift.Void)
+  @objc deinit
+}
+public protocol OtpServiceProtocol {
+  func login<T>(phone: Swift.String, completion: @escaping (GigyaAuth.GigyaOtpResult<T>) -> Swift.Void) where T : Gigya.GigyaAccountProtocol
+  func login<T>(phone: Swift.String, params: [Swift.String : Any], completion: @escaping (GigyaAuth.GigyaOtpResult<T>) -> Swift.Void) where T : Gigya.GigyaAccountProtocol
+  func update<T>(phone: Swift.String, completion: @escaping (GigyaAuth.GigyaOtpResult<T>) -> Swift.Void) where T : Gigya.GigyaAccountProtocol
+  func update<T>(phone: Swift.String, params: [Swift.String : Any], completion: @escaping (GigyaAuth.GigyaOtpResult<T>) -> Swift.Void) where T : Gigya.GigyaAccountProtocol
+}
+@_hasMissingDesignatedInitializers public class OtpService<T> : GigyaAuth.OtpServiceProtocol where T : Gigya.GigyaAccountProtocol {
+  public func login<T>(phone: Swift.String, completion: @escaping (GigyaAuth.GigyaOtpResult<T>) -> Swift.Void) where T : Gigya.GigyaAccountProtocol
+  public func login<T>(phone: Swift.String, params: [Swift.String : Any], completion: @escaping (GigyaAuth.GigyaOtpResult<T>) -> Swift.Void) where T : Gigya.GigyaAccountProtocol
+  public func update<T>(phone: Swift.String, completion: @escaping (GigyaAuth.GigyaOtpResult<T>) -> Swift.Void) where T : Gigya.GigyaAccountProtocol
+  public func update<T>(phone: Swift.String, params: [Swift.String : Any], completion: @escaping (GigyaAuth.GigyaOtpResult<T>) -> Swift.Void) where T : Gigya.GigyaAccountProtocol
+  @objc deinit
+}
+extension GigyaAuth.OtpService : GigyaAuth.OtpServiceVerifyProtocol {
+  public var vToken: Swift.String? {
+    get
+  }
+  public var data: [Swift.String : Any]? {
+    get
+  }
+  public func verify(code: Swift.String)
+}
