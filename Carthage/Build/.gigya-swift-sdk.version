@@ -1,0 +1,56 @@
+{
+  "Mac" : [
+
+  ],
+  "watchOS" : [
+
+  ],
+  "tvOS" : [
+
+  ],
+  "commitish" : "9bd8e27733076d4638dc296bb6f76132493061cf",
+  "iOS" : [
+    {
+      "swiftToolchainVersion" : "5.5.1 (swiftlang-1300.0.31.4 clang-1300.0.29.6)",
+      "hash" : "9d88e461e832a6735c6d153f0b2fd29166906fe4b915c9a581aeb3d5d41fea46",
+      "name" : "Gigya",
+      "container" : "Gigya.xcframework",
+      "identifier" : "ios-arm64_x86_64-simulator"
+    },
+    {
+      "swiftToolchainVersion" : "5.5.1 (swiftlang-1300.0.31.4 clang-1300.0.29.6)",
+      "hash" : "030af300fd0c01590be58d214e6983659a35302a53f8455bd10b17394cbe7e89",
+      "name" : "Gigya",
+      "container" : "Gigya.xcframework",
+      "identifier" : "ios-arm64_armv7"
+    },
+    {
+      "swiftToolchainVersion" : "5.5.1 (swiftlang-1300.0.31.4 clang-1300.0.29.6)",
+      "hash" : "fe07060b63cfeb83d58ad1095b4b98aa39f7ca3570b3df39a164b9f8b1b29748",
+      "name" : "GigyaAuth",
+      "container" : "GigyaAuth.xcframework",
+      "identifier" : "ios-arm64_x86_64-simulator"
+    },
+    {
+      "swiftToolchainVersion" : "5.5.1 (swiftlang-1300.0.31.4 clang-1300.0.29.6)",
+      "hash" : "1f91d1a10f71d28cc13709ac4db2ac2659d2b6b3ae06b5eaf3baa4522f945fb8",
+      "name" : "GigyaAuth",
+      "container" : "GigyaAuth.xcframework",
+      "identifier" : "ios-arm64_armv7"
+    },
+    {
+      "swiftToolchainVersion" : "5.5.1 (swiftlang-1300.0.31.4 clang-1300.0.29.6)",
+      "hash" : "8be858aa439aa0cd0dd364d449aa3564a5ec236fdcb4c169aede06f6a1919bf4",
+      "name" : "GigyaTfa",
+      "container" : "GigyaTfa.xcframework",
+      "identifier" : "ios-arm64_x86_64-simulator"
+    },
+    {
+      "swiftToolchainVersion" : "5.5.1 (swiftlang-1300.0.31.4 clang-1300.0.29.6)",
+      "hash" : "6b7cb77a334394cf21b13f9400d830db9c3808e0ce268085de9412445db82097",
+      "name" : "GigyaTfa",
+      "container" : "GigyaTfa.xcframework",
+      "identifier" : "ios-arm64_armv7"
+    }
+  ]
+}
