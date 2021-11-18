@@ -14,8 +14,10 @@
 			<key>orderHint</key>
 			<integer>11</integer>
 		</dict>
-		<key>GigyaNss.xcscheme_^#shared#^_</key>
+		<key>GigyaNss.xcscheme</key>
 		<dict>
+			<key>isShown</key>
+			<true/>
 			<key>orderHint</key>
 			<integer>3</integer>
 		</dict>
