@@ -199,22 +199,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "D400143A-9B80-4905-A988-2F016DB3C793"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "TestApp/UI/ViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "441"
-            endingLineNumber = "441"
-            landmarkName = "loginWithProvider(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "65A716E3-D285-4201-8786-A225BC43A653"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -886,16 +870,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "5D6AB915-170E-458C-8405-3353C64541BD"
-            shouldBeEnabled = "Yes"
+            uuid = "6B5F3EB1-4B45-4E70-9848-7E430C5D8D65"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "TestApp/GigyaProviders/FacebookWrapper.swift"
+            filePath = "GigyaSwift/Global/Providers/WebLogin/OidcLoginWrapper.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "44"
-            endingLineNumber = "44"
-            landmarkName = "login(params:viewController:completion:)"
+            startingLineNumber = "139"
+            endingLineNumber = "139"
+            landmarkName = "responseHandler(data:error:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
