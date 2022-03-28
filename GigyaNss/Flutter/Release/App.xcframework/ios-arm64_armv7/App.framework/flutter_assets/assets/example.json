@@ -117,7 +117,7 @@
     }
   },
   "routing": {
-    "initial": "account-update",
+    "initial": "login",
     "default": {
       "onSuccess": "_dismiss",
       "onPendingEmailVerification": "_dismiss"
@@ -293,6 +293,21 @@
               0,
               24
             ]
+          }
+        },
+        {
+          "bind": "#remember",
+          "disabled": false,
+          "style": {
+            "margin": 10,
+            "opacity": 1
+          },
+          "textKey": "login-checkbox",
+          "type": "checkbox",
+          "validations": {
+            "required": {
+              "enabled": true
+            }
           }
         },
         {
