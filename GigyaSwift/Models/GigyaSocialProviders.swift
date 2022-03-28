@@ -44,6 +44,8 @@ public enum GigyaSocialProviders {
     case yahooJapan
     case apple
     case web(provider: String)
+    case oidc(provider: String)
+    case sso
 
     static var webValue: String?
 
@@ -80,6 +82,9 @@ public enum GigyaSocialProviders {
             return "yahoo japan"
         case .web(let provider):
             return provider
+        case .oidc(let provider):
+            return provider
+
         default:
             return String(describing: self)
         }

@@ -121,6 +121,7 @@ public struct GigyaProfile: Codable {
         self.firstName = try? container.decodeIfPresent(String.self, forKey: .firstName)
         self.lastName = try? container.decodeIfPresent(String.self, forKey: .lastName)
         self.nickname = try? container.decodeIfPresent(String.self, forKey: .nickname)
+        self.username = try? container.decodeIfPresent(String.self, forKey: .username)
         self.address = try? container.decodeIfPresent(String.self, forKey: .address)
         self.city = try? container.decodeIfPresent(String.self, forKey: .city)
         self.country = try? container.decodeIfPresent(String.self, forKey: .country)
