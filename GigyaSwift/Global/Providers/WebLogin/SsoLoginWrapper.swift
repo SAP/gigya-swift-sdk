@@ -173,10 +173,12 @@ class ASWebAuthenticationLayer: NSObject, ASWebAuthenticationPresentationContext
         let session = ASWebAuthenticationSession(url: url, callbackURLScheme: SsoLoginWrapper.callbackURLScheme) { [self] u, error in
             if let error = error {
                 closure(nil, error.localizedDescription)
+                return
             }
             
             if let u = u, u.absoluteString.contains("error") {
                 closure(nil, u["error_description"])
+                return
             }
 
             if let u = u, u.absoluteString.contains(SsoLoginWrapper.redirectUri) {
