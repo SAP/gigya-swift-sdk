@@ -31,8 +31,8 @@ None
 None
 
 ## How to obtain support
-Via SAP standard support.
-https://developers.gigya.com/display/GD/Opening+A+Support+Incident
+[Via SAP standard support](https://help.sap.com/viewer/8b8d6fffe113457094a17701f63e3d6a/GIGYA/en-US/4167e8a470b21014bbc5a10ce4041860.html)
+
 
 ## Contributing
 Via pull request to this repository.

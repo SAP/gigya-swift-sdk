@@ -12,12 +12,12 @@
 		<key>GigyaUITestsApp.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>46</integer>
+			<integer>41</integer>
 		</dict>
 		<key>GigyaXC.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>47</integer>
+			<integer>3</integer>
 		</dict>
 		<key>TestApp.xcscheme_^#shared#^_</key>
 		<dict>
@@ -27,6 +27,11 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>E741DCDD2771DDF400E46223</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>E7F5C8ED26B6B67D00C63D60</key>
 		<dict>
 			<key>primary</key>

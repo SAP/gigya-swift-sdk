@@ -420,6 +420,33 @@ You will not be able to test WeChat functionality using an emulator. WeChat requ
 Once you update your app signature in the WeChat console, it could take a couple of hours to update.
 If you experience problems and notice errCode -6 from WeChat while debugging, it means the signature isn't correct.
 ```
+
+## SSO (Single Sign-on)
+Single Sign-On (SSO) is an authentication method that allows a user to log in to multiple applications that reside within the same site group with a single login credential.
+
+Requirements:
+1. Mobile SSO requires iOS 13+.
+2. You will be required to setup you central login page on your site’s console.
+
+The SDK will use the following redirect schema structure:
+**gsapi://app-bundle-id/login/**
+
+Please make sure you add your unique URL to the **Trusted Site URLs** section of your parent site.
+
+Finally, to initiate the flow, use the SSO function provided by the Gigya shared interface.
+```swift
+Gigya.sharedInstance().sso(viewController: viewController) { result in
+                switch result {
+                case .success(data: let data):
+                    print(data)
+                    isLogged = true
+                case .failure(_):
+                    break
+                }
+            }
+```
+
+
 ## Logout
 
 A simple logout is available by using:

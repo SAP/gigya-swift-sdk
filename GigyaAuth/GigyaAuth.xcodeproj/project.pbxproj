@@ -22,7 +22,7 @@
 
 /* Begin PBXBuildFile section */
 		E726B27025B9B2C6000637CE /* OtpService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E726B26F25B9B2C6000637CE /* OtpService.swift */; };
-		E75097822434CA3A008E984C /* Gigya.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E75097812434CA3A008E984C /* Gigya.framework */; };
+		E741DCB52770A47D00E46223 /* Gigya.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7791A6023853E3C0075BAFD /* Gigya.framework */; };
 		E7791A5423853A510075BAFD /* GigyaAuth.h in Headers */ = {isa = PBXBuildFile; fileRef = E7791A4623853A510075BAFD /* GigyaAuth.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E7791A5E23853DF00075BAFD /* GigyaAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7791A5D23853DF00075BAFD /* GigyaAuth.swift */; };
 		E7791A6623853EF40075BAFD /* PushLoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7791A6523853EF40075BAFD /* PushLoginManager.swift */; };
@@ -52,7 +52,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E75097822434CA3A008E984C /* Gigya.framework in Frameworks */,
+				E741DCB52770A47D00E46223 /* Gigya.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -164,7 +164,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1120;
-				LastUpgradeCheck = 1120;
+				LastUpgradeCheck = 1320;
 				ORGANIZATIONNAME = Gigya;
 				TargetAttributes = {
 					E750977C2434C990008E984C = {
@@ -287,6 +287,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -350,6 +351,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -400,7 +402,7 @@
 				);
 				INFOPLIST_FILE = GigyaAuth/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -437,7 +439,7 @@
 				);
 				INFOPLIST_FILE = GigyaAuth/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
