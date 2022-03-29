@@ -56,3 +56,16 @@ public class GeneralUtils {
     }
 }
 
+extension URL {
+    func valueOf(_ queryParamaterName: String) -> String? {
+        guard let url = URLComponents(string: self.absoluteString) else { return nil }
+        return url.queryItems?.first(where: { $0.name == queryParamaterName })?.value
+    }
+}
+
+extension Dictionary {
+    var asURI: String {
+        let urlAllowed = NSCharacterSet(charactersIn: GigyaDefinitions.charactersAllowed).inverted
+        return self.reduce("") { "\($0)\($1.0)=\("\($1.1)".addingPercentEncoding(withAllowedCharacters: urlAllowed) ?? "")&" }
+    }
+}

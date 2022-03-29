@@ -117,7 +117,7 @@
     }
   },
   "routing": {
-    "initial": "account-update",
+    "initial": "login",
     "default": {
       "onSuccess": "_dismiss",
       "onPendingEmailVerification": "_dismiss"
@@ -293,6 +293,21 @@
               0,
               24
             ]
+          }
+        },
+        {
+          "bind": "#remember",
+          "disabled": false,
+          "style": {
+            "margin": 10,
+            "opacity": 1
+          },
+          "textKey": "login-checkbox",
+          "type": "checkbox",
+          "validations": {
+            "required": {
+              "enabled": true
+            }
           }
         },
         {
@@ -510,9 +525,10 @@
           "type": "dropdown",
           "bind": "data.favGuitar",
           "validations": {
-            "required": {
+            "regex": {
               "enabled": true,
-              "errorKey": "error-required-field"
+              "errorKey": "error-required-field",
+              "format": "(mr|ms)"
             }
           },
           "style": {
@@ -522,15 +538,15 @@
           "options": [
             {
               "default": true,
-              "value": "",
+              "value": "dasdasd",
               "textKey": "Paul Reed Smith"
             },
             {
-              "value": "Rubato",
+              "value": "mr",
               "textKey": "account-custom-rubato"
             },
             {
-              "value": "Parker",
+              "value": "ms",
               "textKey": "account-custom-parker"
             }
           ]
