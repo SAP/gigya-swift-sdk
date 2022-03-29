@@ -62,7 +62,7 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
         self.biometric = biometric
         self.container = container
         self.sessionVerificationService = sessionVerificationService
-        
+
         // load plist and make init
         let plistConfig = plistFactory.parsePlistConfig()
 
@@ -71,7 +71,11 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
         }
 
         if let accountConfig: GigyaAccountConfig = plistConfig?.account {
-            setAccountConfig(with: accountConfig)
+            config.accountConfig = accountConfig
+
+            if let cacheTime = accountConfig.cacheTime {
+                businessApiService.accountService.accountCacheTime = cacheTime
+            }
         }
 
         // Must be registered following the init call
@@ -151,7 +155,7 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
     */
     public func getSession() -> GigyaSession? {
         guard isLoggedIn() else { return nil }
-        
+
         return sessionService.session
     }
 
@@ -228,12 +232,26 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
     }
 
     /**
+     Singel sign-on Login.
+
+     - Parameter viewController:    Shown view controller.
+     - Parameter params:            Request parameters.
+     - Parameter completion:        Response `GigyaLoginResult<T>`.
+     */
+
+    @available(iOS 13.0, *)
+    public func sso(viewController: UIViewController,
+                    params: [String: Any] = [:], completion: @escaping (GigyaLoginResult<T>) -> Void) {
+        login(with: .sso, viewController: viewController, params: params, completion: completion)
+    }
+
+    /**
      Is Available login id api.
 
      - Parameter loginId:           user identity.
      - Parameter completion:        Response `GigyaLoginResult<Bool>`.
      */
-    
+
     func isAvailable(loginId: String, completion: @escaping (GigyaApiResult<Bool>) -> Void) {
         businessApiService.isAvailable(loginId: loginId, completion: completion)
     }
@@ -341,27 +359,27 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
     public func socialLoginWith(providers: [GigyaSocialProviders], viewController: UIViewController, params: [String: Any], completion: @escaping (GigyaLoginResult<T>) -> Void) {
         businessApiService.login(providers: providers, viewController: viewController, params: params, completion: completion)
     }
-    
+
     /**
      Add a social connection to current account.
-     
+
      - Parameter providers: selected social provider (GigyaSocielProviders).
      - Parameter viewController: Shown view controller.
      - Parameter params:    Request parameters.
      - Parameter completion:  Login response `GigyaApiResult<T>`.
      */
-    
+
     public func addConnection(provider: GigyaSocialProviders, viewController: UIViewController, params: [String: Any] = [:], completion: @escaping (GigyaApiResult<T>) -> Void) {
         businessApiService.addConnection(provider: provider, viewController: viewController, params: params, dataType: T.self, completion: completion)
     }
-    
+
     /**
      Remove a social connection from current account.
-     
+
      - Parameter providers: selected social provider name.
      - Parameter completion: Login response `GigyaApiResult<GigyaDictionary>`.
      */
-    
+
     public func removeConnection(provider: GigyaSocialProviders, completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void) {
         businessApiService.removeConnection(providerName: provider, completion: completion)
     }
@@ -387,7 +405,7 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
     - Parameter params:         General ScreenSet parameters.
     - Parameter completion:     Plugin completion `GigyaPluginEvent<T>`.
     */
-    
+
     public func showScreenSet(with name: String, viewController: UIViewController, params: [String: Any] = [:], completion: @escaping (GigyaPluginEvent<T>) -> Void) {
         let webBridge = createWebBridge()
 
@@ -508,9 +526,149 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
 
     public func setAccountConfig(with account: GigyaAccountConfig) {
         config.accountConfig = account
-
-        if let cacheTime = account.cacheTime {
-            businessApiService.accountService.accountCacheTime = cacheTime
-        }
     }
+}
+
+@available(iOS 13.0.0, *)
+public extension GigyaCore {
+    func send(api: String, params: [String: Any] = [:]) async throws -> GigyaDictionary {
+        return try await withCheckedThrowingContinuation({
+            (continuation: CheckedContinuation<GigyaDictionary, Error>) in
+            businessApiService.send(api: api, params: params) { result in
+                switch result {
+                case .success(data: let data):
+                    continuation.resume(returning: data)
+                case .failure(let error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        })
+    }
+
+    func send<B: Codable>(dataType: B.Type, api: String, params: [String: Any] = [:]) async throws -> B {
+        return try await withCheckedThrowingContinuation({
+            (continuation: CheckedContinuation<B, Error>) in
+            businessApiService.send(dataType: dataType,api: api, params: params) { result in
+                switch result {
+                case .success(data: let data):
+                    continuation.resume(returning: data)
+                case .failure(let error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        })
+    }
+
+    func logout() async throws -> GigyaDictionary {
+        return try await withCheckedThrowingContinuation({
+            (continuation: CheckedContinuation<GigyaDictionary, Error>) in
+            self.logout() { result in
+                switch result {
+                case .success(data: let data):
+                    continuation.resume(returning: data)
+                case .failure(let error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        })
+    }
+
+    func getAccount(_ clearAccount: Bool = false, params: [String: Any] = [:]) async throws -> T {
+        return try await withCheckedThrowingContinuation({
+            (continuation: CheckedContinuation<T, Error>) in
+            self.getAccount(clearAccount, params: params) { result in
+                switch result {
+                case .success(data: let data):
+                    continuation.resume(returning: data)
+                case .failure(let error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        })
+    }
+
+    func setAccount(with account: T) async throws -> T {
+        return try await withCheckedThrowingContinuation({
+            (continuation: CheckedContinuation<T, Error>) in
+            self.setAccount(with: account) { result in
+                switch result {
+                case .success(data: let data):
+                    continuation.resume(returning: data)
+                case .failure(let error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        })
+    }
+
+    func setAccount(with params: [String: Any]) async throws -> T {
+        return try await withCheckedThrowingContinuation({
+            (continuation: CheckedContinuation<T, Error>) in
+            self.setAccount(with: params) { result in
+                switch result {
+                case .success(data: let data):
+                    continuation.resume(returning: data)
+                case .failure(let error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        })
+    }
+
+    func forgotPassword(loginId: String) async throws -> GigyaDictionary {
+        return try await withCheckedThrowingContinuation({
+            (continuation: CheckedContinuation<GigyaDictionary, Error>) in
+            self.forgotPassword(loginId: loginId) { result in
+                switch result {
+                case .success(data: let data):
+                    continuation.resume(returning: data)
+                case .failure(let error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        })
+    }
+
+    func forgotPassword(params: [String: Any]) async throws -> GigyaDictionary {
+        return try await withCheckedThrowingContinuation({
+            (continuation: CheckedContinuation<GigyaDictionary, Error>) in
+            self.forgotPassword(params: params) { result in
+                switch result {
+                case .success(data: let data):
+                    continuation.resume(returning: data)
+                case .failure(let error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        })
+    }
+
+    func notifySocialLogin(params: [String: Any]) async throws -> T {
+        return try await withCheckedThrowingContinuation({
+            (continuation: CheckedContinuation<T, Error>) in
+            self.notifySocialLogin(params: params) { result in
+                switch result {
+                case .success(data: let data):
+                    continuation.resume(returning: data)
+                case .failure(let error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        })
+    }
+
+    func getSchema(params: [String: Any] = [:]) async throws -> GigyaSchema {
+        return try await withCheckedThrowingContinuation({
+            (continuation: CheckedContinuation<GigyaSchema, Error>) in
+            self.getSchema(params: params) { result in
+                switch result {
+                case .success(data: let data):
+                    continuation.resume(returning: data)
+                case .failure(let error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        })
+    }
+
 }

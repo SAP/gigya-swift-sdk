@@ -48,16 +48,18 @@ final class WebLoginProvider: Provider {
                     GigyaLogger.log(with: WebLoginProvider.self, message: error ?? "")
                     return
                 }
-                let errorDesc = error!["error_description"]
+
+                let errorDesc = error!["error_description"] ?? error
                 let getErrorCode = errorDesc?.split(separator: "+").first
-                let errorCode = Int("\(getErrorCode ?? "-1")") ?? -1
+                let errorCode = Int(getErrorCode ?? "") ?? Int("\(error?["error_code"] ?? "-1")") ?? -1
                 let regToken = error!["regToken"] ?? ""
+                let callId = error!["callId"] ?? ""
 
                 let data = ["regToken": regToken, "errorCode": errorCode] as [String : Any]
 
                 let objData = try! JSONSerialization.data(withJSONObject: data, options: .prettyPrinted)
 
-                let errorObject = NetworkError.gigyaError(data: GigyaResponseModel(statusCode: .unknown, errorCode: errorCode, callId: "", errorMessage: error, sessionInfo: nil, requestData: objData))
+                let errorObject = NetworkError.gigyaError(data: GigyaResponseModel(statusCode: .unknown, errorCode: errorCode, callId: callId, errorMessage: errorDesc, sessionInfo: nil, requestData: objData))
 
                 self?.loginGigyaFailed(error: errorObject, completion: completion)
 

@@ -21,6 +21,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		08C1D6EB23BFCFF79B9AAC08 /* Pods_TestApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9811D8CDBE06A329FC9AA79E /* Pods_TestApp.framework */; };
 		D52F88EA22795F39007DE20F /* PluginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52F88E922795F39007DE20F /* PluginViewController.swift */; };
 		D584D342228D6089004CA28F /* UIFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D584D341228D6089004CA28F /* UIFactory.swift */; };
 		D584D346228D7993004CA28F /* CountryCodes.json in Resources */ = {isa = PBXBuildFile; fileRef = D584D345228D7993004CA28F /* CountryCodes.json */; };
@@ -95,6 +96,18 @@
 		E7337467226C538300ADEDBB /* DecodeTestUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7337466226C538300ADEDBB /* DecodeTestUtils.swift */; };
 		E735C2F822B7DBF7007A055E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E735C2F722B7DBF7007A055E /* GoogleService-Info.plist */; };
 		E73A930222F974120004F93E /* Notification.Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73A930122F974120004F93E /* Notification.Name.swift */; };
+		E741B4CD271420AB00BF693F /* SsoLoginWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E741B4CC271420AA00BF693F /* SsoLoginWrapper.swift */; };
+		E741DCB82770A77200E46223 /* GigyaNss.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E775E8ED23C6170D0059151D /* GigyaNss.framework */; };
+		E741DCB92770A77200E46223 /* GigyaNss.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E775E8ED23C6170D0059151D /* GigyaNss.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E741DCC22770F98D00E46223 /* GigyaTfa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E764218C25D51F0F00CDED4C /* GigyaTfa.framework */; };
+		E741DCC32770F98D00E46223 /* GigyaTfa.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E764218C25D51F0F00CDED4C /* GigyaTfa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E741DCE12771DDF400E46223 /* TestSsoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E741DCE02771DDF400E46223 /* TestSsoApp.swift */; };
+		E741DCE32771DDF400E46223 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E741DCE22771DDF400E46223 /* ContentView.swift */; };
+		E741DCE52771DDF600E46223 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E741DCE42771DDF600E46223 /* Assets.xcassets */; };
+		E741DCE82771DDF600E46223 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E741DCE72771DDF600E46223 /* Preview Assets.xcassets */; };
+		E741DCED2771DE1D00E46223 /* Gigya.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7BE36732224219200A108D9 /* Gigya.framework */; platformFilter = ios; };
+		E741DCEE2771DE1D00E46223 /* Gigya.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E7BE36732224219200A108D9 /* Gigya.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E74C9275272A8CD300934C73 /* PKCEHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74C9274272A8CD300934C73 /* PKCEHelper.swift */; };
 		E74E26692383E9B1002E361B /* GeneralUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74E26682383E9B1002E361B /* GeneralUtils.swift */; };
 		E756A2992275CB5C007FA801 /* SocialProviderLoginTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E756A2982275CB5C007FA801 /* SocialProviderLoginTests.swift */; };
 		E756A29C2275CC13007FA801 /* ProviderFactoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E756A29B2275CC13007FA801 /* ProviderFactoryMock.swift */; };
@@ -102,6 +115,8 @@
 		E756A2A02275D46D007FA801 /* SocialProviderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E756A29F2275D46D007FA801 /* SocialProviderMock.swift */; };
 		E756A2AD22771B6F007FA801 /* Url.swift in Sources */ = {isa = PBXBuildFile; fileRef = E756A2AC22771B6F007FA801 /* Url.swift */; };
 		E7584EEB22E0BC22007229FE /* View.xib in Resources */ = {isa = PBXBuildFile; fileRef = E7584EEA22E0BC22007229FE /* View.xib */; };
+		E75C69E1276A33E500FFA610 /* CryptoKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E75C69E0276A33E400FFA610 /* CryptoKit.framework */; };
+		E75C69E2276A342400FFA610 /* CryptoKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E75C69E0276A33E400FFA610 /* CryptoKit.framework */; };
 		E760668B2278998E005E4CFD /* WebLoginProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E76066882278998E005E4CFD /* WebLoginProvider.swift */; };
 		E760668C2278998E005E4CFD /* WebViewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E76066892278998E005E4CFD /* WebViewWrapper.swift */; };
 		E760668D2278998E005E4CFD /* GigyaWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E760668A2278998E005E4CFD /* GigyaWebViewController.swift */; };
@@ -109,8 +124,6 @@
 		E76AF6EB24C88BA8008B9114 /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E76AF6EA24C88BA8008B9114 /* ApiService.swift */; };
 		E76F2E942345E78800056D19 /* Gigya.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7BE36732224219200A108D9 /* Gigya.framework */; };
 		E76F2E952345E78800056D19 /* Gigya.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E7BE36732224219200A108D9 /* Gigya.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		E76F2E992346241E00056D19 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E71D4A2222817F83000892C2 /* libWeChatSDK.a */; };
-		E76F2E9A2346256700056D19 /* WeChatWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DC2C6E2280779A00A13426 /* WeChatWrapper.swift */; };
 		E774A54B224283DF00BC67D1 /* ApiRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E774A54A224283DF00BC67D1 /* ApiRequestModel.swift */; };
 		E774A54D2242A12800BC67D1 /* AnyCodableUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E774A54C2242A12800BC67D1 /* AnyCodableUtils.swift */; };
 		E774A5622243D7D300BC67D1 /* RequestTestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E774A5612243D7D300BC67D1 /* RequestTestModel.swift */; };
@@ -125,12 +138,9 @@
 		E7791A7D238BE1070075BAFD /* SessionServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7791A7C238BE1070075BAFD /* SessionServiceMock.swift */; };
 		E779232626A04F1E00446A7F /* GigyaAuth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E779232526A04F1E00446A7F /* GigyaAuth.framework */; };
 		E779232726A04F1E00446A7F /* GigyaAuth.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E779232526A04F1E00446A7F /* GigyaAuth.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		E779232926A04F2400446A7F /* GigyaTfa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E779232826A04F2400446A7F /* GigyaTfa.framework */; };
-		E779232A26A04F2400446A7F /* GigyaTfa.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E779232826A04F2400446A7F /* GigyaTfa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		E779232C26A04F2900446A7F /* GigyaNss.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E779232B26A04F2900446A7F /* GigyaNss.framework */; };
-		E779232D26A04F2900446A7F /* GigyaNss.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E779232B26A04F2900446A7F /* GigyaNss.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E77F71A0230AD95600E8738A /* GigyaWebBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77F719F230AD95600E8738A /* GigyaWebBridge.swift */; };
 		E77F7A2F2407EC7900FF90FB /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E77F7A2E2407EC7900FF90FB /* CoreFoundation.framework */; };
+		E7A535E8274A5E160070AF63 /* PKCETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A535E7274A5E160070AF63 /* PKCETests.swift */; };
 		E7A6E0AA2240F8080063638F /* GigyaApiResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A6E0A92240F8080063638F /* GigyaApiResult.swift */; };
 		E7A6E0AC224245D00063638F /* ApiResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A6E0AB224245D00063638F /* ApiResultModel.swift */; };
 		E7A6E0AE2242488D0063638F /* ApiStatusCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A6E0AD2242488D0063638F /* ApiStatusCode.swift */; };
@@ -233,10 +243,16 @@
 		E7FF6BAC2691A7FC00FF8E8A /* App.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E7FF6BA82691A7FB00FF8E8A /* App.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E7FFD59322FB0A8A00DBE663 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		E7FFF8F6232003AD002EC944 /* WebBridgeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FFF8F5232003AD002EC944 /* WebBridgeViewController.swift */; };
-		F42F7E39077C84C62D51B15F /* Pods_TestApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACE784C21E7F740E1C0E1BA1 /* Pods_TestApp.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		E741DCEF2771DE1D00E46223 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E7BE366A2224219200A108D9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E7BE36722224219200A108D9;
+			remoteInfo = Gigya;
+		};
 		E76F2E882345E72700056D19 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E7BE366A2224219200A108D9 /* Project object */;
@@ -282,6 +298,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		E741DCF12771DE1D00E46223 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				E741DCEE2771DE1D00E46223 /* Gigya.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E76F2E982345E78800056D19 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -300,9 +327,9 @@
 			dstSubfolderSpec = 10;
 			files = (
 				E779232726A04F1E00446A7F /* GigyaAuth.framework in Embed Frameworks */,
+				E741DCC32770F98D00E46223 /* GigyaTfa.framework in Embed Frameworks */,
 				E7FEF6A3263FFEF900180165 /* Gigya.framework in Embed Frameworks */,
-				E779232A26A04F2400446A7F /* GigyaTfa.framework in Embed Frameworks */,
-				E779232D26A04F2900446A7F /* GigyaNss.framework in Embed Frameworks */,
+				E741DCB92770A77200E46223 /* GigyaNss.framework in Embed Frameworks */,
 				E7FF6BAC2691A7FC00FF8E8A /* App.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -311,8 +338,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		A76506757B780929FFF23218 /* Pods-TestApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestApp.debug.xcconfig"; path = "Target Support Files/Pods-TestApp/Pods-TestApp.debug.xcconfig"; sourceTree = "<group>"; };
-		ACE784C21E7F740E1C0E1BA1 /* Pods_TestApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TestApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		575B9CEA15DFEDE1C9E1D419 /* Pods-TestApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestApp.release.xcconfig"; path = "Target Support Files/Pods-TestApp/Pods-TestApp.release.xcconfig"; sourceTree = "<group>"; };
+		76CCB1D137222C73D20FF0CF /* Pods-TestApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestApp.debug.xcconfig"; path = "Target Support Files/Pods-TestApp/Pods-TestApp.debug.xcconfig"; sourceTree = "<group>"; };
+		9811D8CDBE06A329FC9AA79E /* Pods_TestApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TestApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D52F88E922795F39007DE20F /* PluginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluginViewController.swift; sourceTree = "<group>"; };
 		D584D341228D6089004CA28F /* UIFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFactory.swift; sourceTree = "<group>"; };
 		D584D345228D7993004CA28F /* CountryCodes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CountryCodes.json; sourceTree = "<group>"; };
@@ -401,6 +429,16 @@
 		E73C8A412430F69F0064EFE1 /* GigyaNssEngine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GigyaNssEngine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E73C8A442430F6B60064EFE1 /* GigyaNssEngine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GigyaNssEngine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E73C8A472430F6BB0064EFE1 /* GigyaNss.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GigyaNss.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E741B4CC271420AA00BF693F /* SsoLoginWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SsoLoginWrapper.swift; sourceTree = "<group>"; };
+		E741DCBC2770F72F00E46223 /* GigyaTfa.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GigyaTfa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E741DCBF2770F79B00E46223 /* GigyaTfa.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GigyaTfa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E741DCDE2771DDF400E46223 /* TestSso.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestSso.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E741DCE02771DDF400E46223 /* TestSsoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestSsoApp.swift; sourceTree = "<group>"; };
+		E741DCE22771DDF400E46223 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		E741DCE42771DDF600E46223 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E741DCE72771DDF600E46223 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		E741DCEC2771DE1400E46223 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		E74C9274272A8CD300934C73 /* PKCEHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKCEHelper.swift; sourceTree = "<group>"; };
 		E74E26682383E9B1002E361B /* GeneralUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralUtils.swift; sourceTree = "<group>"; };
 		E756A2982275CB5C007FA801 /* SocialProviderLoginTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialProviderLoginTests.swift; sourceTree = "<group>"; };
 		E756A29B2275CC13007FA801 /* ProviderFactoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderFactoryMock.swift; sourceTree = "<group>"; };
@@ -409,6 +447,7 @@
 		E756A2AC22771B6F007FA801 /* Url.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Url.swift; sourceTree = "<group>"; };
 		E7584EE822E0524D007229FE /* FacebookWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebookWrapper.swift; sourceTree = "<group>"; };
 		E7584EEA22E0BC22007229FE /* View.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = View.xib; sourceTree = "<group>"; };
+		E75C69E0276A33E400FFA610 /* CryptoKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CryptoKit.framework; path = System/Library/Frameworks/CryptoKit.framework; sourceTree = SDKROOT; };
 		E76066882278998E005E4CFD /* WebLoginProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebLoginProvider.swift; sourceTree = "<group>"; };
 		E76066892278998E005E4CFD /* WebViewWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewWrapper.swift; sourceTree = "<group>"; };
 		E760668A2278998E005E4CFD /* GigyaWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GigyaWebViewController.swift; sourceTree = "<group>"; };
@@ -443,6 +482,7 @@
 		E77F7A292406B12B00FF90FB /* GigyaNssEngine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GigyaNssEngine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E77F7A2E2407EC7900FF90FB /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		E7818A6B222445F8008117AB /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		E7A535E7274A5E160070AF63 /* PKCETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKCETests.swift; sourceTree = "<group>"; };
 		E7A6E0A92240F8080063638F /* GigyaApiResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigyaApiResult.swift; sourceTree = "<group>"; };
 		E7A6E0AB224245D00063638F /* ApiResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiResultModel.swift; sourceTree = "<group>"; };
 		E7A6E0AD2242488D0063638F /* ApiStatusCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiStatusCode.swift; sourceTree = "<group>"; };
@@ -533,7 +573,6 @@
 		E7DC2C6E2280779A00A13426 /* WeChatWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeChatWrapper.swift; sourceTree = "<group>"; };
 		E7DC2C702280786D00A13426 /* TestApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TestApp-Bridging-Header.h"; sourceTree = "<group>"; };
 		E7E119AC266CD26F006EE19C /* App.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = App.xcframework; path = GigyaNss/Flutter/Release/App.xcframework; sourceTree = "<group>"; };
-		E7E119AD266CD26F006EE19C /* Flutter.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Flutter.xcframework; path = GigyaNss/Flutter/Release/Flutter.xcframework; sourceTree = "<group>"; };
 		E7E80D79224B6A3900D3B663 /* GigyaLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigyaLogger.swift; sourceTree = "<group>"; };
 		E7E80D7D224BADFC00D3B663 /* GigyaInitTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigyaInitTest.swift; sourceTree = "<group>"; };
 		E7E80D84224BB59100D3B663 /* UserDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataModel.swift; sourceTree = "<group>"; };
@@ -563,16 +602,22 @@
 		E7F94FB322248CFE00A85640 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		E7F94FB522248D0E00A85640 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E7F94FB722248DB100A85640 /* GoogleSignIn.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = GoogleSignIn.bundle; sourceTree = "<group>"; };
-		E7FF6BA72691A7FB00FF8E8A /* Flutter.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Flutter.xcframework; path = GigyaNss/Flutter/Debug/Flutter.xcframework; sourceTree = "<group>"; };
 		E7FF6BA82691A7FB00FF8E8A /* App.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = App.xcframework; path = GigyaNss/Flutter/Debug/App.xcframework; sourceTree = "<group>"; };
 		E7FF6BAD2691A83900FF8E8A /* GigyaNss.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GigyaNss.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7FF6BB02691A84000FF8E8A /* GigyaTfa.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GigyaTfa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7FF6BB32691A84500FF8E8A /* GigyaAuth.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GigyaAuth.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7FFF8F5232003AD002EC944 /* WebBridgeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebBridgeViewController.swift; sourceTree = "<group>"; };
-		F5AC22FDECAD773DF81ABF16 /* Pods-TestApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestApp.release.xcconfig"; path = "Target Support Files/Pods-TestApp/Pods-TestApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		E741DCDB2771DDF400E46223 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E741DCED2771DE1D00E46223 /* Gigya.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E76F2E6F2345E72500056D19 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -609,6 +654,7 @@
 			files = (
 				E7F94FAE22248C7C00A85640 /* SystemConfiguration.framework in Frameworks */,
 				E7F94FAC22248C7200A85640 /* SafariServices.framework in Frameworks */,
+				E75C69E1276A33E500FFA610 /* CryptoKit.framework in Frameworks */,
 				E7F94FAA22248C6800A85640 /* LocalAuthentication.framework in Frameworks */,
 				E7F94F5222247A7D00A85640 /* libc++.tbd in Frameworks */,
 				E7F94F5022247A7400A85640 /* libz.tbd in Frameworks */,
@@ -622,19 +668,19 @@
 				E7DC2C6D2280778000A13426 /* libc++.tbd in Frameworks */,
 				E7FF6BAB2691A7FC00FF8E8A /* App.xcframework in Frameworks */,
 				E7DC2C6C2280771700A13426 /* libz.tbd in Frameworks */,
-				E779232C26A04F2900446A7F /* GigyaNss.framework in Frameworks */,
 				E7DC2C6B228076E600A13426 /* libsqlite3.tbd in Frameworks */,
 				E779232626A04F1E00446A7F /* GigyaAuth.framework in Frameworks */,
-				E779232926A04F2400446A7F /* GigyaTfa.framework in Frameworks */,
 				E73373F522633BDA00ADEDBB /* SafariServices.framework in Frameworks */,
 				E731B72D232A53AD0032E111 /* AuthenticationServices.framework in Frameworks */,
+				E741DCC22770F98D00E46223 /* GigyaTfa.framework in Frameworks */,
+				E741DCB82770A77200E46223 /* GigyaNss.framework in Frameworks */,
 				E77F7A2F2407EC7900FF90FB /* CoreFoundation.framework in Frameworks */,
 				E73373F422633BD300ADEDBB /* SystemConfiguration.framework in Frameworks */,
 				E7FEF6A2263FFEF900180165 /* Gigya.framework in Frameworks */,
 				E7A71CAD232F7F3000993A61 /* CoreTelephony.framework in Frameworks */,
 				E73373F322633BCC00ADEDBB /* LocalAuthentication.framework in Frameworks */,
-				E76F2E992346241E00056D19 /* libWeChatSDK.a in Frameworks */,
-				F42F7E39077C84C62D51B15F /* Pods_TestApp.framework in Frameworks */,
+				E75C69E2276A342400FFA610 /* CryptoKit.framework in Frameworks */,
+				08C1D6EB23BFCFF79B9AAC08 /* Pods_TestApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -644,8 +690,8 @@
 		0712F92684620387C2E314A0 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				A76506757B780929FFF23218 /* Pods-TestApp.debug.xcconfig */,
-				F5AC22FDECAD773DF81ABF16 /* Pods-TestApp.release.xcconfig */,
+				76CCB1D137222C73D20FF0CF /* Pods-TestApp.debug.xcconfig */,
+				575B9CEA15DFEDE1C9E1D419 /* Pods-TestApp.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -854,6 +900,7 @@
 			children = (
 				E73373D7225F222F00ADEDBB /* AnyCodableTest.swift */,
 				E7019AFD234B37A8005E05A4 /* URLTests.swift */,
+				E7A535E7274A5E160070AF63 /* PKCETests.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -891,6 +938,26 @@
 			path = Session;
 			sourceTree = "<group>";
 		};
+		E741DCDF2771DDF400E46223 /* TestSso */ = {
+			isa = PBXGroup;
+			children = (
+				E741DCEC2771DE1400E46223 /* Info.plist */,
+				E741DCE02771DDF400E46223 /* TestSsoApp.swift */,
+				E741DCE22771DDF400E46223 /* ContentView.swift */,
+				E741DCE42771DDF600E46223 /* Assets.xcassets */,
+				E741DCE62771DDF600E46223 /* Preview Content */,
+			);
+			path = TestSso;
+			sourceTree = "<group>";
+		};
+		E741DCE62771DDF600E46223 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				E741DCE72771DDF600E46223 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
 		E756A2972275CB44007FA801 /* Providers */ = {
 			isa = PBXGroup;
 			children = (
@@ -918,6 +985,7 @@
 			children = (
 				E76066882278998E005E4CFD /* WebLoginProvider.swift */,
 				E76066892278998E005E4CFD /* WebViewWrapper.swift */,
+				E741B4CC271420AA00BF693F /* SsoLoginWrapper.swift */,
 				E760668A2278998E005E4CFD /* GigyaWebViewController.swift */,
 			);
 			path = WebLogin;
@@ -1011,6 +1079,7 @@
 				E7BE36752224219200A108D9 /* GigyaSwift */,
 				E7BE369B2224260400A108D9 /* TestApp */,
 				E7A6E0B5224256390063638F /* GigyaSwiftTests */,
+				E741DCDF2771DDF400E46223 /* TestSso */,
 				E7BE36742224219200A108D9 /* Products */,
 				E7BE368C2224225900A108D9 /* Frameworks */,
 				0712F92684620387C2E314A0 /* Pods */,
@@ -1026,6 +1095,7 @@
 				E7A71CB2232F9FDC00993A61 /* TestAppUITests.xctest */,
 				E76F2E722345E72500056D19 /* GigyaUITestsApp.app */,
 				E76F2E872345E72700056D19 /* GigyaUITestsAppUITests.xctest */,
+				E741DCDE2771DDF400E46223 /* TestSso.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1049,6 +1119,9 @@
 		E7BE368C2224225900A108D9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E741DCBF2770F79B00E46223 /* GigyaTfa.framework */,
+				E741DCBC2770F72F00E46223 /* GigyaTfa.framework */,
+				E75C69E0276A33E400FFA610 /* CryptoKit.framework */,
 				E779232B26A04F2900446A7F /* GigyaNss.framework */,
 				E779232826A04F2400446A7F /* GigyaTfa.framework */,
 				E779232526A04F1E00446A7F /* GigyaAuth.framework */,
@@ -1057,8 +1130,6 @@
 				E7FF6BAD2691A83900FF8E8A /* GigyaNss.framework */,
 				E7E119AC266CD26F006EE19C /* App.xcframework */,
 				E7FF6BA82691A7FB00FF8E8A /* App.xcframework */,
-				E7E119AD266CD26F006EE19C /* Flutter.xcframework */,
-				E7FF6BA72691A7FB00FF8E8A /* Flutter.xcframework */,
 				E7B2FA4125EF9B78002A7010 /* App.framework */,
 				E7B2FA4025EF9B78002A7010 /* Flutter.framework */,
 				E764219725D51F9700CDED4C /* GigyaAuth.framework */,
@@ -1101,7 +1172,7 @@
 				E7F94FA922248C6800A85640 /* LocalAuthentication.framework */,
 				E7F94F5122247A7D00A85640 /* libc++.tbd */,
 				E7F94F4F22247A7400A85640 /* libz.tbd */,
-				ACE784C21E7F740E1C0E1BA1 /* Pods_TestApp.framework */,
+				9811D8CDBE06A329FC9AA79E /* Pods_TestApp.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1296,6 +1367,7 @@
 			isa = PBXGroup;
 			children = (
 				E7CBB06A223E59EA000B6C11 /* Decode+EncodeUtils.swift */,
+				E74C9274272A8CD300934C73 /* PKCEHelper.swift */,
 				E7D3E22B22CA02F60033BAF1 /* RunnerMainThread.swift */,
 				E7257C6023B8C3F500692528 /* InterceptorsUtils.swift */,
 				E7791A67238542D70075BAFD /* GigyaAlertUtils.swift */,
@@ -1408,6 +1480,25 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		E741DCDD2771DDF400E46223 /* TestSso */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E741DCE92771DDF600E46223 /* Build configuration list for PBXNativeTarget "TestSso" */;
+			buildPhases = (
+				E741DCDA2771DDF400E46223 /* Sources */,
+				E741DCDB2771DDF400E46223 /* Frameworks */,
+				E741DCDC2771DDF400E46223 /* Resources */,
+				E741DCF12771DE1D00E46223 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E741DCF02771DE1D00E46223 /* PBXTargetDependency */,
+			);
+			name = TestSso;
+			productName = TestSso;
+			productReference = E741DCDE2771DDF400E46223 /* TestSso.app */;
+			productType = "com.apple.product-type.application";
+		};
 		E76F2E712345E72500056D19 /* GigyaUITestsApp */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = E76F2E8E2345E72800056D19 /* Build configuration list for PBXNativeTarget "GigyaUITestsApp" */;
@@ -1505,13 +1596,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E7BE36A92224260500A108D9 /* Build configuration list for PBXNativeTarget "TestApp" */;
 			buildPhases = (
-				9F61F93E77FB6C7101523DF2 /* [CP] Check Pods Manifest.lock */,
+				FA4AC37D5F2024F497DDD6FE /* [CP] Check Pods Manifest.lock */,
 				E7BE36962224260400A108D9 /* Sources */,
 				E7BE36982224260400A108D9 /* Resources */,
 				E7BE36972224260400A108D9 /* Frameworks */,
 				E7A6E07C223EB4A40063638F /* Embed Frameworks */,
-				13961A85F14F4CDC927AC26E /* [CP] Embed Pods Frameworks */,
 				E77F7A2124069AC800FF90FB /* ShellScript */,
+				EB7918E424CC7E8B9A7E4C27 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1530,10 +1621,13 @@
 			isa = PBXProject;
 			attributes = {
 				DefaultBuildSystemTypeForWorkspace = Original;
-				LastSwiftUpdateCheck = 1100;
+				LastSwiftUpdateCheck = 1320;
 				LastUpgradeCheck = 1130;
 				ORGANIZATIONNAME = Gigya;
 				TargetAttributes = {
+					E741DCDD2771DDF400E46223 = {
+						CreatedOnToolsVersion = 13.2.1;
+					};
 					E76F2E712345E72500056D19 = {
 						CreatedOnToolsVersion = 11.0;
 					};
@@ -1594,11 +1688,21 @@
 				E76F2E712345E72500056D19 /* GigyaUITestsApp */,
 				E76F2E862345E72700056D19 /* GigyaUITestsAppUITests */,
 				E7F5C8ED26B6B67D00C63D60 /* GigyaXC */,
+				E741DCDD2771DDF400E46223 /* TestSso */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		E741DCDC2771DDF400E46223 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E741DCE82771DDF600E46223 /* Preview Assets.xcassets in Resources */,
+				E741DCE52771DDF600E46223 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E76F2E702345E72500056D19 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1652,45 +1756,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		13961A85F14F4CDC927AC26E /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-TestApp/Pods-TestApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-TestApp/Pods-TestApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TestApp/Pods-TestApp-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		9F61F93E77FB6C7101523DF2 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-TestApp-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 		E77F7A2124069AC800FF90FB /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1744,9 +1809,57 @@
 			shellPath = /bin/sh;
 			shellScript = "# set framework folder name\nFRAMEWORK_FOLDER_NAME=\"${PROJECT_NAME}_XCFramework\"\n# set framework name or read it from project by this variable\nFRAMEWORK_NAME=\"GigyaSwift.xcworkspace\"\nFRAMEWORK_SCHEMA=\"Gigya\"\n\n#xcframework path\nFRAMEWORK_PATH=\"${PROJECT_DIR}/XC/${FRAMEWORK_FOLDER_NAME}/${FRAMEWORK_SCHEMA}.xcframework\"\n# set path for iOS simulator archive\nSIMULATOR_ARCHIVE_PATH=\"${PROJECT_DIR}/${FRAMEWORK_FOLDER_NAME}/simulator.xcarchive\"\n# set path for iOS device archive\nIOS_DEVICE_ARCHIVE_PATH=\"${PROJECT_DIR}/${FRAMEWORK_FOLDER_NAME}/iOS.xcarchive\"\nrm -rf \"${PROJECT_DIR}/XC/${FRAMEWORK_FOLDER_NAME}/${FRAMEWORK_SCHEMA}\"\necho \"Deleted ${FRAMEWORK_FOLDER_NAME}\"\nmkdir \"${FRAMEWORK_FOLDER_NAME}\"\necho \"Created ${FRAMEWORK_FOLDER_NAME}\"\necho \"Archiving ${FRAMEWORK_NAME}\"\n\nxcodebuild archive -workspace \"${FRAMEWORK_NAME}\" -scheme ${FRAMEWORK_SCHEMA} -destination=\"iOS Simulator\" -archivePath \"${SIMULATOR_ARCHIVE_PATH}\" -sdk iphonesimulator SKIP_INSTALL=NO BUILD_LIBRARIES_FOR_DISTRIBUTION=YES\n\nxcodebuild archive -workspace \"${FRAMEWORK_NAME}\" -scheme ${FRAMEWORK_SCHEMA} -destination=\"iOS\" -archivePath \"${IOS_DEVICE_ARCHIVE_PATH}\" -sdk iphoneos SKIP_INSTALL=NO BUILD_LIBRARIES_FOR_DISTRIBUTION=YES\n#Creating XCFramework\nxcodebuild -create-xcframework -framework ${SIMULATOR_ARCHIVE_PATH}/Products/Library/Frameworks/${FRAMEWORK_SCHEMA}.framework -framework ${IOS_DEVICE_ARCHIVE_PATH}/Products/Library/Frameworks/${FRAMEWORK_SCHEMA}.framework -output \"${FRAMEWORK_PATH}\"\nrm -rf \"${SIMULATOR_ARCHIVE_PATH}\"\nrm -rf \"${IOS_DEVICE_ARCHIVE_PATH}\"\nopen \"${PROJECT_DIR}/XC/${FRAMEWORK_FOLDER_NAME}\"\n";
 		};
+		EB7918E424CC7E8B9A7E4C27 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TestApp/Pods-TestApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TestApp/Pods-TestApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TestApp/Pods-TestApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FA4AC37D5F2024F497DDD6FE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TestApp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		E741DCDA2771DDF400E46223 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E741DCE32771DDF400E46223 /* ContentView.swift in Sources */,
+				E741DCE12771DDF400E46223 /* TestSsoApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E76F2E6E2345E72500056D19 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1811,6 +1924,7 @@
 				E7E80D93224D063C00D3B663 /* GigyaContainerUtils.swift in Sources */,
 				E7019AF82349F22D005E05A4 /* KeyChainTests.swift in Sources */,
 				E7BE57B922A40ED100C17D93 /* WebViewWrapperTests.swift in Sources */,
+				E7A535E8274A5E160070AF63 /* PKCETests.swift in Sources */,
 				E70519F722C2539B008ECB25 /* TfaRegistrationTotpResolverTests.swift in Sources */,
 				E7791A6E2386AB930075BAFD /* PushAuthenticationTests.swift in Sources */,
 				E7F63B1922A7ED5E00ABA24F /* LogRecord.swift in Sources */,
@@ -1868,6 +1982,7 @@
 				E756A2AD22771B6F007FA801 /* Url.swift in Sources */,
 				E719374322D5E6C600CD149E /* PlistConfigFactory.swift in Sources */,
 				E7CBAFC5222E7314000B6C11 /* GigyaResult.swift in Sources */,
+				E74C9275272A8CD300934C73 /* PKCEHelper.swift in Sources */,
 				E7CBAFCE222EA268000B6C11 /* GigyaSession.swift in Sources */,
 				E7CBAFB8222D17C9000B6C11 /* NetworkProvider.swift in Sources */,
 				E7A6E0AE2242488D0063638F /* ApiStatusCode.swift in Sources */,
@@ -1884,6 +1999,7 @@
 				E7D412F422E8A38F0082A3E3 /* PersistenceService.swift in Sources */,
 				E71D3C9E22BF906300A413D7 /* TFAModels.swift in Sources */,
 				E71D3C8C22BF7C2E00A413D7 /* Resolver.swift in Sources */,
+				E741B4CD271420AB00BF693F /* SsoLoginWrapper.swift in Sources */,
 				E7DC2C3B228019AC00A13426 /* SocialLoginProvider.swift in Sources */,
 				E7CBAFD42230232D000B6C11 /* AccountService.swift in Sources */,
 				D5C9DD3D227B0C9200E47095 /* GigyaPluginEvent.swift in Sources */,
@@ -1959,13 +2075,18 @@
 				E7221D7A22B903E500C296A9 /* GoogleWrapper.swift in Sources */,
 				E70519D522C0C8B3008ECB25 /* TfaAuthCodeCell.swift in Sources */,
 				E70519D922C0C8B3008ECB25 /* TfaViewController.swift in Sources */,
-				E76F2E9A2346256700056D19 /* WeChatWrapper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		E741DCF02771DE1D00E46223 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			platformFilter = ios;
+			target = E7BE36722224219200A108D9 /* Gigya */;
+			targetProxy = E741DCEF2771DE1D00E46223 /* PBXContainerItemProxy */;
+		};
 		E76F2E892345E72700056D19 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = E76F2E712345E72500056D19 /* GigyaUITestsApp */;
@@ -2027,6 +2148,72 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		E741DCEA2771DDF600E46223 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"TestSso/Preview Content\"";
+				DEVELOPMENT_TEAM = 52P2295V75;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TestSso/Info.plist;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.gigya1.TestSso;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		E741DCEB2771DDF600E46223 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"TestSso/Preview Content\"";
+				DEVELOPMENT_TEAM = 52P2295V75;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TestSso/Info.plist;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.gigya1.TestSso;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		E76F2E8F2345E72800056D19 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -2330,7 +2517,7 @@
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 125;
+				CURRENT_PROJECT_VERSION = 135;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 52P2295V75;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -2344,19 +2531,21 @@
 				);
 				INFOPLIST_FILE = GigyaSwift/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.5;
+				MARKETING_VERSION = 1.3.0;
 				MODULEMAP_FILE = "";
 				MODULEMAP_PRIVATE_FILE = "";
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"$(OTHER_LDFLAGS)",
 					"-ObjC",
+					"-weak_framework",
+					CryptoKit,
 				);
 				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = Gigya.GigyaSwift;
@@ -2389,7 +2578,7 @@
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 125;
+				CURRENT_PROJECT_VERSION = 135;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 52P2295V75;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -2403,19 +2592,21 @@
 				);
 				INFOPLIST_FILE = GigyaSwift/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.5;
+				MARKETING_VERSION = 1.3.0;
 				MODULEMAP_FILE = "";
 				MODULEMAP_PRIVATE_FILE = "";
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"$(OTHER_LDFLAGS)",
 					"-ObjC",
+					"-weak_framework",
+					CryptoKit,
 				);
 				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = Gigya.GigyaSwift;
@@ -2435,7 +2626,7 @@
 		};
 		E7BE36AA2224260500A108D9 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A76506757B780929FFF23218 /* Pods-TestApp.debug.xcconfig */;
+			baseConfigurationReference = 76CCB1D137222C73D20FF0CF /* Pods-TestApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -2452,7 +2643,7 @@
 					"$(PROJECT_DIR)/TestApp",
 					"$(PROJECT_DIR)/TestApp/facebook",
 					"$(PROJECT_DIR)/GigyaTfa",
-					"$(PROJECT_DIR)/GigyaNss/Flutter/Release",
+					"$(PROJECT_DIR)/GigyaNss/Flutter/Debug",
 				);
 				INFOPLIST_FILE = TestApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -2483,7 +2674,7 @@
 		};
 		E7BE36AB2224260500A108D9 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F5AC22FDECAD773DF81ABF16 /* Pods-TestApp.release.xcconfig */;
+			baseConfigurationReference = 575B9CEA15DFEDE1C9E1D419 /* Pods-TestApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -2500,7 +2691,7 @@
 					"$(PROJECT_DIR)/TestApp",
 					"$(PROJECT_DIR)/TestApp/facebook",
 					"$(PROJECT_DIR)/GigyaTfa",
-					"$(PROJECT_DIR)/GigyaNss/Flutter/Release",
+					"$(PROJECT_DIR)/GigyaNss/Flutter/Debug",
 				);
 				INFOPLIST_FILE = TestApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -2548,6 +2739,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		E741DCE92771DDF600E46223 /* Build configuration list for PBXNativeTarget "TestSso" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E741DCEA2771DDF600E46223 /* Debug */,
+				E741DCEB2771DDF600E46223 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		E76F2E8E2345E72800056D19 /* Build configuration list for PBXNativeTarget "GigyaUITestsApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
