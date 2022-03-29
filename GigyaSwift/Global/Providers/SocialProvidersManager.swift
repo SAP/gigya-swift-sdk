@@ -63,7 +63,17 @@ final class SocialProvidersManager: SocialProvidersManagerProtocol {
 
         GigyaLogger.log(with: self, message: "[\(socialProvider.rawValue)] - use webview")
 
+
+        if case .sso = socialProvider {
+            if #available(iOS 13.0, *) {
+                let networkProvider = NetworkProvider(config: config, persistenceService: persistenceService, sessionService: sessionService)
+                let provider = SsoLoginWrapper(config: config, persistenceService: persistenceService, providerType: socialProvider, networkProvider: networkProvider)
+                return WebLoginProvider(sessionService: sessionService, provider: provider, delegate: delegate)
+            }
+        }
+        
         return WebLoginProvider(sessionService: sessionService, provider: WebLoginWrapper(config: config, persistenceService: persistenceService, providerType: socialProvider, networkAdapter: networkAdapter), delegate: delegate)
+
     }
 
     func registerProvider(by provider: GigyaNativeSocialProviders, wrapper: ProviderWrapperProtocol) {

@@ -88,7 +88,7 @@ final class WebLoginWrapper: NSObject, ProviderWrapperProtocol {
         serverParams["gmid"] = persistenceService?.gmid ?? ""
         serverParams["ucid"] = persistenceService?.ucid ?? ""
         serverParams["x_secret_type"] = "oauth1"
-        serverParams["x_s€dk"] = InternalConfig.General.version
+        serverParams["x_sdk"] = InternalConfig.General.version
         serverParams["x_provider"] = providerType.rawValue
         serverParams["oauth_token"] = params?["oauth_token"] ?? ""
 
@@ -101,6 +101,8 @@ final class WebLoginWrapper: NSObject, ProviderWrapperProtocol {
                 }
             }
         }
+
+        serverParams.removeValue(forKey: "secret")
 
         var bodyData: [String : Any] = [:]
 
