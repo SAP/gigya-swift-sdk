@@ -33,7 +33,7 @@ final class SsoLoginWrapper: NSObject, ProviderWrapperProtocol {
 
     static let callbackURLScheme = "gsapi"
     
-    static let redirectUri = "\(callbackURLScheme)://\(Bundle.main.bundleIdentifier ?? "")/login/"
+    static let redirectUri = "\(callbackURLScheme)://\(Bundle.main.bundleIdentifier ?? "")/login/".lowercased()
 
     struct EndPoints {
         static let auth = "authorize"
@@ -164,20 +164,22 @@ class ASWebAuthenticationLayer: NSObject, ASWebAuthenticationPresentationContext
     var closure: ([String: Any]?, String?) -> Void = { _, _ in}
 
     let url: URL
+    
+    private var session: ASWebAuthenticationSession?
 
     init(url: URL) {
         self.url = url
     }
 
     func show() {
-        let session = ASWebAuthenticationSession(url: url, callbackURLScheme: SsoLoginWrapper.callbackURLScheme) { [self] u, error in
+        session = ASWebAuthenticationSession(url: url, callbackURLScheme: SsoLoginWrapper.callbackURLScheme) { [self] u, error in
             if let error = error {
                 closure(nil, error.localizedDescription)
                 return
             }
             
             if let u = u, u.absoluteString.contains("error") {
-                closure(nil, u["error_description"])
+                closure(nil, u["error_uri"])
                 return
             }
 
@@ -192,9 +194,9 @@ class ASWebAuthenticationLayer: NSObject, ASWebAuthenticationPresentationContext
                 }
             }
         }
-        session.presentationContextProvider = self
+        session?.presentationContextProvider = self
 
-        session.start()
+        session?.start()
     }
 
     func presentationAnchor(for session: ASWebAuthenticationSession) -> ASPresentationAnchor {
