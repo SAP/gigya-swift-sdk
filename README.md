@@ -42,3 +42,4 @@ None
 
 ## Licensing
 Please see our [LICENSE](https://github.com/SAP/gigya-swift-sdk/blob/main/LICENSES/Apache-2.0.txt) for copyright and license information.
+Detailed information including third-party components and their licensing/copyright information is available [via the REUSE tool](https://api.reuse.software/info/github.com/SAP/gigya-swift-sdk).
