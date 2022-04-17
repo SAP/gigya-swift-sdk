@@ -10,7 +10,7 @@ import UIKit
 import Flutter
 import Gigya
 
-class NativeScreenSetsViewController<T: GigyaAccountProtocol>: FlutterViewController, LoadingContainer, UIGestureRecognizerDelegate {
+class NativeScreenSetsViewController<T: GigyaAccountProtocol>: FlutterViewController, LoadingContainer {
 
     var spinnerView = SpinnerView()
 
@@ -68,7 +68,7 @@ class NativeScreenSetsViewController<T: GigyaAccountProtocol>: FlutterViewContro
         }
     }
 
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+    override func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
         if touch.location(in: touch.view).y > 65.0 {
             disableDismissalRecognizers()
         }
