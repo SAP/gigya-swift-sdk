@@ -19,8 +19,6 @@ class GigyaWebViewController: UIViewController, UIAdaptivePresentationController
 
         super.init(nibName: nil, bundle: nil)
 
-        self.view.backgroundColor = .white
-
     }
 
     override func viewDidLoad() {
