@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name          = 'GigyaNssRelease'
-  spec.version       = '1.4.2'
+  spec.version       = '1.5.0'
   spec.license       = 'Apache 2.0'
   spec.homepage      = 'https://developers.gigya.com/display/GD/Native+Screen-Sets'
   spec.author       = 'Gigya SAP'
@@ -9,7 +9,7 @@ Pod::Spec.new do |spec|
                         authentication methods from the standard login flow
                         DESC
 
-  spec.source        = { :git => 'https://github.com/SAP/gigya-swift-sdk.git', :tag => 'nss/v1.4.2' }
+  spec.source        = { :git => 'https://github.com/SAP/gigya-swift-sdk.git', :tag => 'nss/v1.5.0' }
   spec.module_name   = 'GigyaNss'
   spec.swift_version = '5.2'
 
@@ -22,11 +22,11 @@ Pod::Spec.new do |spec|
      ss.source_files       = 'GigyaNss/GigyaNss/*.swift', 'GigyaNss/GigyaNss/*/*.swift', 'GigyaNss/GigyaNss/*/*/*.swift'
      ss.exclude_files = 'GigyaNss/GigyaNss/services/Otp/OtpService.swift'
 
-     ss.dependency 'Gigya', '>= 1.2.0'
+     ss.dependency 'Gigya', '>= 1.3.1'
      ss.framework      = 'SystemConfiguration'
      ss.library = 'c++', 'z'
 
-     ss.dependency 'Flutter', '2.0.2'
+     ss.dependency 'Flutter', '2.10.2'
 
      ss.vendored_frameworks = 'GigyaNss/Flutter/Release/App.xcframework'
 

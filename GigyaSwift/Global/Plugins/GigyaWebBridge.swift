@@ -446,7 +446,8 @@ public class GigyaWebBridge<T: GigyaAccountProtocol>: NSObject, WKScriptMessageH
         businessApiService.logout { (result) in
             switch result {
             case .success:
-                self.invokeCallback(callbackId: callbackId, and: "")
+                let dic: [String: Any] = ["errorCode": 0, "statusCode": 0]
+                self.invokeCallback(callbackId: callbackId, and: dic.asJson)
                 self.completion(.onLogout)
             case .failure(let error):
                 self.invokeError(callbackId: callbackId, error: error)
