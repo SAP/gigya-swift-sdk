@@ -37,18 +37,10 @@ final public class GigyaNss {
     var builder: ScreenSetsMainBuilderProtocol?
 
     /**
-    Show ScreenSet
+    Load ScreenSet by Asset.
 
-    - Parameter name:           ScreenSet name.
-    - Parameter viewController: Shown view controller.
+    - Parameter asset:  Asset name from your project..
     */
-
-//    public func showScreenSet(with name: String, viewController: UIViewController) {
-//        let screenSetViewController = NativeScreenSetsViewController()
-//        let nav = UINavigationController(rootViewController: screenSetViewController)
-//
-//        viewController.present(nav, animated: true, completion: nil)
-//    }
 
     @discardableResult
     public func load(asset: String) -> BuilderOptions {
@@ -57,6 +49,11 @@ final public class GigyaNss {
         return builder!.load(withAsset: asset)
     }
 
+    /**
+    Load ScreenSet by id.
+
+    - Parameter screenSetId:    Screen set id from Gigya console..
+    */
     @discardableResult
     public func load(screenSetId: String) -> BuilderOptions {
         self.registerDependenciesIfNeeded()
@@ -64,6 +61,11 @@ final public class GigyaNss {
         return builder!.load(screenSetId: screenSetId)
     }
 
+    /**
+    Register Scheme.
+
+    - Parameter scheme: Your scheme type..
+    */
     public func register<T: GigyaAccountProtocol>(scheme: T.Type) {
         dependenciesContainer.register(service: FlowManager<T>.self) { resolver in
             let flowFactory = resolver.resolve(ActionFactory<T>.self)
