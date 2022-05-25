@@ -34,6 +34,8 @@ class EngineLifeCycle {
         guard let asset = asset else {
             GigyaLogger.error(with: EngineLifeCycle.self, message: "asset is empty.")
         }
+        
+        screen.viewModel?.lang = defaultLang
 
         regToLifeCircleOf(vc: screen)
 

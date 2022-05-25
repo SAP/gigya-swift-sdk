@@ -34,6 +34,8 @@ class NativeScreenSetsViewModel<T: GigyaAccountProtocol>: NSObject, UIAdaptivePr
     var engine: FlutterEngine?
 
     var eventHandler: NssHandler<T>? = { _ in }
+    
+    var lang: String?
 
     init(mainChannel: ScreenChannel, apiChannel: ApiChannel, logChannel: LogChannel, dataChannel: DataChannel, screenEventsChannel: EventsChannel,
          dataResolver: DataResolver, busnessApi: BusinessApiDelegate, flowManager: FlowManager<T>, eventHandler: NssHandler<T>?, jsEval: JsEvaluatorHelper) {
@@ -102,7 +104,8 @@ class NativeScreenSetsViewModel<T: GigyaAccountProtocol>: NSObject, UIAdaptivePr
             guard let self = self, let method = method else {
                 return
             }
-            self.flowManager.next(method: method, params: data, response: response)
+            
+            self.flowManager.next(method: method, params: self.addLangIfNeeded(data: data), response: response)
 
             GigyaLogger.log(with: self, message: "next: \(method)")
         }
@@ -196,6 +199,15 @@ class NativeScreenSetsViewModel<T: GigyaAccountProtocol>: NSObject, UIAdaptivePr
 
     func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
         closeClosure()
+    }
+    
+    func addLangIfNeeded(data: [String : Any]?) -> [String : Any] {
+        guard var data = data, let lang = self.lang else {
+            return ["lang": "en"]
+        }
+        
+        data["lang"] = lang
+        return data
     }
 
     deinit {
