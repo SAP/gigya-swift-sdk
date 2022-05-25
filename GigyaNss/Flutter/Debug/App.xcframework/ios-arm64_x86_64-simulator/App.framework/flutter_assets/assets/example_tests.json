@@ -1,0 +1,640 @@
+{
+  "theme": {
+    "primaryColor": "blue",
+    "secondaryColor": "white",
+    "textColor": "black",
+    "enabledColor": "blue",
+    "disabledColor": "grey",
+    "errorColor": "red",
+    "customTheme": {
+      "title": {
+        "fontWeight": "bold",
+        "fontSize": 22
+      },
+      "subtitle": {
+        "fontSize": 16
+      },
+      "input": {
+        "margin": [16, 8, 15, 8]
+      },
+      "flatButton": {
+        "fontSize": 14,
+        "fontColor": "white",
+        "fontWeight": 6,
+        "elevation": 2,
+        "background": "blue",
+        "size": [
+          220,
+          44
+        ]
+      },
+      "raisedButton": {
+        "fontSize": 14,
+        "fontColor": "white",
+        "fontWeight": 4,
+        "elevation": 0,
+        "background": "blue",
+        "size": [
+          300,
+          40
+        ]
+      }
+    }
+  },
+  "useSchemaValidations": false,
+  "i18n": {
+    "_default": {
+      "login": "Login",
+      "login-title": "login in with your email and password:",
+      "login-no-account+link": "I don't have an account. [Register](register)",
+      "login-social-title": "Login with social provider:",
+      "register": "Register",
+      "register-title": "Register with your email and password:",
+      "register-already+link": "Already registered? [Login](login)",
+      "register-terms+link": "I have read and understood these [terms of use](https://www.google.com)",
+      "register-or": " - Or - ",
+      "account-information": "Account Information",
+      "account-custom-title": "Update account special fields",
+      "account-custom-rubato": "Rubato Guitars",
+      "account-custom-parker": "Parker Guitars",
+      "account_marketing_notifications_selection": "I agree to receive marketing communications",
+      "forgot-password-title": "Forgot password",
+      "forgot-password-custom-title": "Please enter your email address to reset your password:",
+      "forgot-password-back-to-login": "[Back to login](login)",
+      "forgot-password+link": "[Forgot password](forgot-password)",
+      "common-email": "Email",
+      "common-password": "Password",
+      "common-submit": "Submit",
+      "common-first-name": "First Name",
+      "common-last-name": "Last Name",
+      "common-zip": "Zipcode",
+      "common-rescueString": "My rescue code",
+      "error-required-field": "This field is required",
+      "error-invalid-email": "Invalid email format",
+      "error-invalid-format": "Invalid format",
+      "error-schema-required-validation": "Validation failed. Field is required",
+      "error-schema-regex-validation": "Validation failed on regular expression",
+      "error-schema-checkbox-validation": "Validation failed. boolean field"
+    },
+    "es": {
+      "login": "Iniciar sesión",
+      "login-title": "inicie sesión con su correo electrónico y contraseña:",
+      "login-no-account+link": "No tengo una cuenta [Registrarse](register)",
+      "login-social-title": "Inicie sesión con el proveedor social:",
+      "register": "Registrarse",
+      "register-title": "Regístrese con su correo electrónico y contraseña:",
+      "register-already+link": "¿Ya registrado? [Iniciar sesión](login)",
+      "register-terms+link": "He leído y entiendo estos [términos de uso](https://www.google.com)",
+      "register-or": " - o - ",
+      "account-information": "Información de la cuenta",
+      "account-custom-title": "Actualizar campos especiales de cuenta",
+      "account-custom-rubato": "Guitarras Rubato",
+      "account-custom-parker": "Guitarras Parker",
+      "account_marketing_notifications_selection": "Acepto recibir comunicaciones de marketing",
+      "forgot-password-title": "Se te olvidó tu contraseña",
+      "forgot-password-custom-title": "Ingrese su dirección de correo electrónico para restablecer su contraseña:",
+      "forgot-password-back-to-login": "[Atrás para iniciar sesión](login)",
+      "forgot-password+link": "[Se te olvidó tu contraseña](forgot-password)",
+      "common-email": "Email",
+      "common-password": "Contraseña",
+      "common-submit": "Enviar",
+      "common-first-name": "Nombre de pila",
+      "common-last-name": "Apellido",
+      "common-zip": "Código postal",
+      "common-rescueString": "Mi código de rescate",
+      "error-required-field": "este campo es requerido",
+      "error-invalid-email": "Formato de correo inválido",
+      "error-invalid-format": "Formato inválido",
+      "error-schema-required-validation": "Validación fallida. Se requiere campo",
+      "error-schema-regex-validation": "La validación falló en la expresión regular",
+      "error-schema-checkbox-validation": "Validación fallida. campo booleano"
+    }
+  },
+  "routing": {
+    "initial": "account-custom",
+    "default": {
+      "onSuccess": "_dismiss",
+      "onPendingEmailVerification": "_dismiss"
+    }
+  },
+  "screens": {
+    "login": {
+      "routing": {
+        "onPendingRegistration": "account-update",
+        "onSuccess": "account-update"
+      },
+      "action": "login",
+      "appBar": {
+        "textKey": "login"
+      },
+      "children": [
+        {
+          "type": "container",
+          "stack": "horizontal",
+          "alignment": "start",
+          "style": {
+            "margin": 0
+          },
+          "children": [
+            {
+              "type": "label",
+              "textKey": "login-social-title",
+              "theme": "subtitle",
+              "style": {
+                "margin": 16
+              }
+            }
+          ]
+        },
+        {
+          "type": "socialLoginButton",
+          "provider": "facebook",
+          "textKey": "social-sign-in-facebook",
+          "style": {
+            "margin": [
+              16,
+              0,
+              16,
+              0
+            ],
+            "cornerRadius": 5,
+            "elevation": 0
+          }
+        },
+        {
+          "type": "socialLoginButton",
+          "provider": "linkedin",
+          "style": {
+            "margin": [
+              16,
+              0,
+              16,
+              0
+            ],
+            "cornerRadius": 5,
+            "elevation": 0
+          }
+        },
+        {
+          "type": "socialLoginButton",
+          "provider": "google",
+          "style": {
+            "margin": [
+              16,
+              0,
+              16,
+              0
+            ],
+            "cornerRadius": 5,
+            "elevation": 0
+          }
+        },
+        {
+          "type": "container",
+          "stack": "horizontal",
+          "alignment": "start",
+          "style": {
+            "margin": 16
+          },
+          "children": [
+            {
+              "type": "label",
+              "textKey": "login-title",
+              "theme": "subtitle"
+            }
+          ]
+        },
+        {
+          "bind": "#loginID",
+          "type": "emailInput",
+          "textKey": "common-email",
+          "theme": "input",
+          "style": {
+            "cornerRadius": 5,
+            "borderSize": 1
+          },
+          "validations": {
+            "required": {
+              "enabled": true,
+              "errorKey": "error-required-field"
+            },
+            "regex": {
+              "enabled": true,
+              "format": "^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\\.[a-zA-Z]+",
+              "errorKey": "error-invalid-email"
+            }
+          }
+        },
+        {
+          "bind": "#password",
+          "type": "passwordInput",
+          "textKey": "common-password",
+          "theme": "input",
+          "style": {
+            "cornerRadius": 5,
+            "borderSize": 1
+          },
+          "validations": {
+            "required": {
+              "enabled": true,
+              "errorKey": "error-required-field"
+            },
+            "regex": {
+              "enabled": true,
+              "format": "(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@%#$&*~]).{8,}",
+              "errorKey": "error-invalid-format"
+            }
+          }
+        },
+        {
+          "type": "label",
+          "textKey": "forgot-password+link",
+          "style": {
+            "fontSize": 14,
+            "margin": [
+              0,
+              8,
+              0,
+              8
+            ]
+          }
+        },
+        {
+          "type": "label",
+          "textKey": "login-no-account+link",
+          "style": {
+            "margin": [
+              0,
+              24,
+              0,
+              24
+            ]
+          }
+        },
+        {
+          "type": "submit",
+          "textKey": "common-submit",
+          "theme": "raisedButton",
+          "style": {
+            "size": [200, 44],
+            "cornerRadius": 5,
+            "borderColor": "black",
+            "borderSize": 2
+          }
+        }
+      ]
+    },
+    "register": {
+      "routing": {
+        "onPendingRegistration": "account-update",
+        "onSuccess": "_dismiss"
+      },
+      "action": "register",
+      "appBar": {
+        "textKey": "Register"
+      },
+      "stack": "vertical",
+      "children": [
+        {
+          "type": "container",
+          "stack": "horizontal",
+          "alignment": "start",
+          "style": {
+            "margin": 0
+          },
+          "children": [
+            {
+              "type": "label",
+              "textKey": "register-title",
+              "style": {
+                "margin": 16
+              }
+            }
+          ]
+        },
+        {
+          "bind": "#email",
+          "type": "emailInput",
+          "textKey": "common-email",
+          "theme": "input"
+        },
+        {
+          "type": "container",
+          "stack": "horizontal",
+          "alignment": "start",
+          "style": {
+            "margin": 0
+          },
+          "children": [
+            {
+              "bind": "profile.firstName",
+              "type": "textInput",
+              "textKey": "common-first-name",
+              "theme": "input"
+            },
+            {
+              "bind": "profile.lastName",
+              "type": "textInput",
+              "textKey": "common-last-name",
+              "theme": "input"
+            }
+          ]
+        },
+        {
+          "bind": "#password",
+          "type": "passwordInput",
+          "textKey": "common-password",
+          "theme": "input"
+        },
+        {
+          "type": "label",
+          "textKey": "register-already+link",
+          "style": {
+            "margin": [
+              0,
+              26,
+              0,
+              16
+            ]
+          }
+        },
+        {
+          "bind": "data.terms",
+          "type": "checkbox",
+          "textKey": "register-terms+link",
+          "style": {
+            "margin": [16, 0, 16, 0]
+          }
+        },
+        {
+          "type": "label",
+          "textKey": "register-or",
+          "style": {
+            "fontSize": 16,
+            "margin": [
+              16,
+              4,
+              16,
+              8
+            ]
+          }
+        },
+        {
+          "type": "socialLoginGrid",
+          "providers": [
+            "facebook",
+            "google",
+            "wechat",
+            "yahoo",
+            "linkedin",
+            "twitter",
+            "apple",
+            "line",
+            "amazon",
+            "yahooJapan"
+          ],
+          "columns": 3,
+          "rows": 2,
+          "style": {
+            "cornerRadius": 6,
+            "fontSize": 14,
+            "fontColor": "black",
+            "fontWeight": "bold",
+            "elevation": 2,
+            "margin": 16,
+            "indicatorColor": "grey"
+          }
+        },
+        {
+          "type": "submit",
+          "textKey": "common-submit",
+          "theme": "raisedButton",
+          "style": {
+            "size": [
+              280,
+              44
+            ],
+            "margin": 16,
+            "cornerRadius": 6
+          }
+        }
+      ]
+    },
+    "account-update": {
+      "routing": {
+        "onSuccess": "_dismiss"
+      },
+      "action": "setAccount",
+      "appBar": {
+        "textKey": "account-information"
+      },
+      "stack": "vertical",
+      "children": [
+        {
+          "type": "profilePhoto",
+          "allowUpload": false,
+          "default": "https://www.w3schools.com/howto/img_avatar.png",
+          "style": {
+            "cornerRadius": 40,
+            "elevation": 4,
+            "margin": [
+              0,
+              22,
+              0,
+              10
+            ],
+            "size": [
+              80,
+              80
+            ]
+          }
+        },
+        {
+          "bind": "profile.firstName",
+          "type": "textInput",
+          "textKey": "common-first-name",
+          "theme": "input"
+        },
+        {
+          "bind": "profile.lastName",
+          "type": "textInput",
+          "textKey": "common-last-name",
+          "theme": "input"
+        },
+        {
+          "bind": "profile.email",
+          "type": "textInput",
+          "textKey": "common-email",
+          "theme": "input"
+        },
+        {
+          "bind": "profile.zip",
+          "type": "textInput",
+          "textKey": "common-zip",
+          "theme": "input"
+        },
+        {
+          "bind": "data.rescueString",
+          "type": "textInput",
+          "textKey": "common-rescueString",
+          "theme": "input"
+        },
+        {
+          "type": "checkbox",
+          "bind": "data.marketingNotifications",
+          "textKey": "account_marketing_notifications_selection",
+          "style": {
+            "margin": [
+              0,
+              10,
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "type": "submit",
+          "textKey": "common-submit",
+          "theme": "raisedButton",
+          "style": {
+            "size": [200, 44],
+            "margin": [
+              0,
+              10,
+              0,
+              16
+            ]
+          }
+        }
+      ]
+    },
+    "account-custom": {
+      "routing": {
+        "onSuccess": "_dismiss"
+      },
+      "action": "setAccount",
+      "appBar": {
+        "textKey": "account-information"
+      },
+      "stack": "vertical",
+      "children": [
+        {
+          "type": "label",
+          "textKey": "account-custom-title",
+          "theme": "title",
+          "style": {
+            "margin": 16
+          }
+        },
+        {
+          "type": "radio",
+          "bind": "data.favGuitar",
+          "style": {
+            "margin": [
+              16,
+              30,
+              16,
+              0
+            ]
+          },
+          "options": [
+            {
+              "default": true,
+              "value": "PRS",
+              "textKey": "Paul Reed Smith"
+            },
+            {
+              "value": "Rubato",
+              "textKey": "account-custom-rubato"
+            },
+            {
+              "value": "Parker",
+              "textKey": "account-custom-parker"
+            }
+          ]
+        },
+        {
+          "type": "submit",
+          "textKey": "common-submit",
+          "theme": "raisedButton",
+          "style": {
+            "size": [200, 44],
+            "margin": [
+              0,
+              50,
+              0,
+              0
+            ]
+          }
+        }
+      ]
+    },
+    "forgot-password": {
+      "routing": {
+        "onSuccess": "_dismiss"
+      },
+      "action": "forgotPassword",
+      "appBar": {
+        "textKey": "forgot-password-title"
+      },
+      "stack": "vertical",
+      "children": [
+        {
+          "type": "label",
+          "textKey": "forgot-password-custom-title",
+          "theme": "subtitle",
+          "style" : {
+            "margin": 16
+          }
+        },
+        {
+          "bind": "#loginID",
+          "type": "emailInput",
+          "textKey": "common-email",
+          "theme": "input",
+          "style": {
+            "cornerRadius": 5,
+            "borderSize": 1
+          },
+          "validations": {
+            "required": {
+              "enabled": true,
+              "errorKey": "error-required-field"
+            },
+            "regex": {
+              "enabled": true,
+              "format": "^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\\.[a-zA-Z]+",
+              "errorKey": "error-invalid-email"
+            }
+          }
+        },
+        {
+          "type": "label",
+          "textKey": "forgot-password-back-to-login",
+          "style": {
+            "margin": [
+              0,
+              26,
+              0,
+              16
+            ]
+          }
+        },
+        {
+          "type": "submit",
+          "textKey": "common-submit",
+          "theme": "raisedButton",
+          "style": {
+            "margin": [
+              0,
+              40,
+              0,
+              0
+            ],
+            "cornerRadius": 5
+          }
+        }
+      ]
+    }
+  }
+}
