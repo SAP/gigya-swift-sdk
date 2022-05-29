@@ -59,11 +59,21 @@ class ScreenSetsBuilder<T: GigyaAccountProtocol>: ScreenSetsMainBuilderProtocol 
 
 extension ScreenSetsBuilder: ScreenSetsExternalBuilderProtocol {
 
+    /**
+     Initial Route.
+
+     - Parameter name:    Screen name.
+    */
     func initialRoute(name: String) -> BuilderOptions {
         screenName = name
         return self
     }
 
+    /**
+     Set lang for screen set..
+
+     - Parameter lang:   Lang code.
+    */
     func lang(name: String) -> BuilderOptions {
         langName = name.lowercased()
         return self
