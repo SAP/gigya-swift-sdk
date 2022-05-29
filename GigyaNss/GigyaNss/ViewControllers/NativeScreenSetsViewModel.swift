@@ -202,8 +202,9 @@ class NativeScreenSetsViewModel<T: GigyaAccountProtocol>: NSObject, UIAdaptivePr
     }
     
     func addLangIfNeeded(data: [String : Any]?) -> [String : Any] {
-        guard var data = data, let lang = self.lang else {
-            return ["lang": "en"]
+        let lang = self.lang ?? "en"
+        guard var data = data else {
+            return ["lang": lang]
         }
         
         data["lang"] = lang
