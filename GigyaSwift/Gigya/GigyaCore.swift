@@ -51,9 +51,16 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
      */
     public let biometric: BiometricServiceProtocol
 
+    /**
+     WebAuthn (FIDO2).
+
+     - returns: `WebAuthnService` service
+     */
+    public let webAuthn: WebAuthnService<T>
+
     // MARK: - Initialize
 
-    internal init(config: GigyaConfig, persistenceService: PersistenceService, businessApiService: BusinessApiServiceProtocol, sessionService: SessionServiceProtocol, interruptionResolver: InterruptionResolverFactoryProtocol, biometric: BiometricServiceProtocol, plistFactory: PlistConfigFactory, sessionVerificationService: SessionVerificationServiceProtocol, container: IOCContainer) {
+    internal init(config: GigyaConfig, persistenceService: PersistenceService, businessApiService: BusinessApiServiceProtocol, sessionService: SessionServiceProtocol, interruptionResolver: InterruptionResolverFactoryProtocol, biometric: BiometricServiceProtocol, plistFactory: PlistConfigFactory, sessionVerificationService: SessionVerificationServiceProtocol, webAuthn: WebAuthnService<T>, container: IOCContainer) {
         self.config = config
         self.persistenceService = persistenceService
         self.businessApiService = businessApiService
@@ -61,6 +68,7 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
         self.interruptionResolver = interruptionResolver
         self.biometric = biometric
         self.container = container
+        self.webAuthn = webAuthn
         self.sessionVerificationService = sessionVerificationService
 
         // load plist and make init

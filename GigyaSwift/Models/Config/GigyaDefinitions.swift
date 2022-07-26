@@ -70,6 +70,19 @@ public struct GigyaDefinitions {
         public static let invalidJwt = 400006
         public static let requestExpired = 403002
     }
+    
+    public struct WenAuthn {
+        static let initRegister = "accounts.auth.fido.initRegisterCredentials"
+        static let getAssertionOptions = "accounts.auth.fido.getAssertionOptions"
+        static let registerCredentials = "accounts.auth.fido.registerCredentials"
+        static let verifyAssertion = "accounts.auth.fido.verifyAssertion"
+    }
+    
+    public struct Oauth {
+        static let connect = "oauth.connect"
+        static let authorize = "oauth.authorize"
+        static let token = "oauth.token"
+    }
 
     public static var charactersAllowed = "!*'|();/:-_.@&=^+$,?%#[]{}\" "
     public static var charactersAllowedInSig = "!*'|();/:@&=^+$,?%#\\[]{}\" "
