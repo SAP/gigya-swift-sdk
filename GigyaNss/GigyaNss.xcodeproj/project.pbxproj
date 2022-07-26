@@ -38,6 +38,7 @@
 		E70F8BED2405215C00D52208 /* ActionFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70F8BEC2405215C00D52208 /* ActionFactory.swift */; };
 		E70F8BEF24053ABA00D52208 /* RegisterAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70F8BEE24053AB900D52208 /* RegisterAction.swift */; };
 		E70F8BF124053B5800D52208 /* LoginAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70F8BF024053B5800D52208 /* LoginAction.swift */; };
+		E710952E288EC2E70062DCAD /* Flutter.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7E119B2266CD5C3006EE19C /* Flutter.xcframework */; };
 		E719C6AF24225216002F8C36 /* LogChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E719C6AE24225216002F8C36 /* LogChannel.swift */; };
 		E719C6B124226139002F8C36 /* SetAccountAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E719C6B024226139002F8C36 /* SetAccountAction.swift */; };
 		E71CB3B22554029000D63726 /* JsEvaluatorHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71CB3B12554029000D63726 /* JsEvaluatorHelper.swift */; };
@@ -79,7 +80,6 @@
 		E7D1F70C240BD92B00394185 /* IgnitionChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7D1F70B240BD92B00394185 /* IgnitionChannel.swift */; };
 		E7D1F70E240E5F0700394185 /* EngineLifeCycle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7D1F70D240E5F0700394185 /* EngineLifeCycle.swift */; };
 		E7D1F71124152D5000394185 /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7D1F71024152D5000394185 /* Dictionary.swift */; };
-		E7E119B3266CD5C3006EE19C /* Flutter.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7E119B2266CD5C3006EE19C /* Flutter.xcframework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -153,7 +153,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E7E119B3266CD5C3006EE19C /* Flutter.xcframework in Frameworks */,
+				E710952E288EC2E70062DCAD /* Flutter.xcframework in Frameworks */,
 				E76421A325D51FFD00CDED4C /* GigyaAuth.framework in Frameworks */,
 				E7288CA32455CFD800AD99CA /* Gigya.framework in Frameworks */,
 			);
@@ -715,7 +715,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 26;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = T48CNFXFQH;
+				DEVELOPMENT_TEAM = 52P2295V75;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -757,7 +757,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 26;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = T48CNFXFQH;
+				DEVELOPMENT_TEAM = 52P2295V75;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";

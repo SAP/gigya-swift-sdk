@@ -50,6 +50,13 @@ final class NetworkProvider {
         dataURL.appendPathComponent(model.method)
 
         var request: URLRequest = URLRequest(url: dataURL)
+        
+        if let headers = model.headers {
+            headers.forEach { row in
+                request.setValue(row.value, forHTTPHeaderField: row.key)
+            }
+        }
+        
         request.timeoutInterval = TimeInterval(config?.requestTimeout ?? InternalConfig.Network.requestTimeoutDefult)
 
         // Encode body request to params

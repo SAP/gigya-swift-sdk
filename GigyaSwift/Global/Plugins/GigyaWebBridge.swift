@@ -281,7 +281,7 @@ public class GigyaWebBridge<T: GigyaAccountProtocol>: NSObject, WKScriptMessageH
             guard let self = self else { return }
             switch result {
             case .success(let data):
-                GigyaLogger.log(with: self, message: "sendRequest: success")
+                GigyaLogger.log(with: self, message: "sendRequest: success  = \(apiMethod)")
                 // Mapping AnyCodable values. Otherwise we will crash in the JSON dictionary conversion.
                 let mapped: [String: Any] = data.mapValues { value in return value.value }
 
