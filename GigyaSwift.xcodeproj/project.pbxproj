@@ -49,6 +49,8 @@
 		E70519F822C255F7008ECB25 /* TFAVerificationpTotpResolverTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BE5799229D284A00C17D93 /* TFAVerificationpTotpResolverTests.swift */; };
 		E70519FA22C27267008ECB25 /* ProvidersLoginWrapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70519F922C27267008ECB25 /* ProvidersLoginWrapperTests.swift */; };
 		E70DC25722AFEF7300D7346D /* ProvidersLoginWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70DC25622AFEF7300D7346D /* ProvidersLoginWrapper.swift */; };
+		E71095332897D2200062DCAD /* WebBridgeInterruptionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71095322897D2200062DCAD /* WebBridgeInterruptionManager.swift */; };
+		E71095352897D22F0062DCAD /* WebBridgeFroceLoginResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71095342897D22F0062DCAD /* WebBridgeFroceLoginResolver.swift */; };
 		E711A8B522E9A12500ADA304 /* URLSessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E711A8B422E9A12500ADA304 /* URLSessionTests.swift */; };
 		E712E90822A662D6005397BA /* PluginViewWrapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E712E90722A662D6005397BA /* PluginViewWrapperTests.swift */; };
 		E712E90C22A664DB005397BA /* FakeUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E712E90B22A664DB005397BA /* FakeUIViewController.swift */; };
@@ -361,6 +363,8 @@
 		E70519D422C0C8B3008ECB25 /* TfaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TfaViewController.swift; sourceTree = "<group>"; };
 		E70519F922C27267008ECB25 /* ProvidersLoginWrapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProvidersLoginWrapperTests.swift; sourceTree = "<group>"; };
 		E70DC25622AFEF7300D7346D /* ProvidersLoginWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProvidersLoginWrapper.swift; sourceTree = "<group>"; };
+		E71095322897D2200062DCAD /* WebBridgeInterruptionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebBridgeInterruptionManager.swift; sourceTree = "<group>"; };
+		E71095342897D22F0062DCAD /* WebBridgeFroceLoginResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebBridgeFroceLoginResolver.swift; sourceTree = "<group>"; };
 		E711A8B422E9A12500ADA304 /* URLSessionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionTests.swift; sourceTree = "<group>"; };
 		E712E90722A662D6005397BA /* PluginViewWrapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluginViewWrapperTests.swift; sourceTree = "<group>"; };
 		E712E90B22A664DB005397BA /* FakeUIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeUIViewController.swift; sourceTree = "<group>"; };
@@ -699,6 +703,7 @@
 		D52F88E422795793007DE20F /* Plugins */ = {
 			isa = PBXGroup;
 			children = (
+				E71095312897D1DA0062DCAD /* WebBridgeManager */,
 				D52F88E922795F39007DE20F /* PluginViewController.swift */,
 				D58EF4422279948B003DB878 /* PluginViewWrapper.swift */,
 				E77F719F230AD95600E8738A /* GigyaWebBridge.swift */,
@@ -762,6 +767,15 @@
 				E70DC25622AFEF7300D7346D /* ProvidersLoginWrapper.swift */,
 			);
 			path = ProvidersLogin;
+			sourceTree = "<group>";
+		};
+		E71095312897D1DA0062DCAD /* WebBridgeManager */ = {
+			isa = PBXGroup;
+			children = (
+				E71095322897D2200062DCAD /* WebBridgeInterruptionManager.swift */,
+				E71095342897D22F0062DCAD /* WebBridgeFroceLoginResolver.swift */,
+			);
+			path = WebBridgeManager;
 			sourceTree = "<group>";
 		};
 		E713E0FF2248C84000181328 /* Config */ = {
@@ -1973,6 +1987,7 @@
 				E7B4D69C238329F50090E57D /* PushNotificationsService.swift in Sources */,
 				E7E80D8A224BC17000D3B663 /* FatalErrorUtils.swift in Sources */,
 				E713E0FC2247C6E700181328 /* SignatureUtils.swift in Sources */,
+				E71095332897D2200062DCAD /* WebBridgeInterruptionManager.swift in Sources */,
 				E7CBB03D22356086000B6C11 /* GigyaInstanceProtocol.swift in Sources */,
 				E76AF6EB24C88BA8008B9114 /* ApiService.swift in Sources */,
 				E720D3502382D49400446EA4 /* PushNotificationModes.swift in Sources */,
@@ -1982,6 +1997,7 @@
 				E756A2AD22771B6F007FA801 /* Url.swift in Sources */,
 				E719374322D5E6C600CD149E /* PlistConfigFactory.swift in Sources */,
 				E7CBAFC5222E7314000B6C11 /* GigyaResult.swift in Sources */,
+				E71095352897D22F0062DCAD /* WebBridgeFroceLoginResolver.swift in Sources */,
 				E74C9275272A8CD300934C73 /* PKCEHelper.swift in Sources */,
 				E7CBAFCE222EA268000B6C11 /* GigyaSession.swift in Sources */,
 				E7CBAFB8222D17C9000B6C11 /* NetworkProvider.swift in Sources */,
