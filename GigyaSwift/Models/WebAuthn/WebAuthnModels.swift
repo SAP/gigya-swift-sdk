@@ -95,7 +95,7 @@ struct WebAuthnAuthenticatorSelectionModel: Codable {
 }
 
 enum WebAuthnAuthenticatorSelectionType: String, Codable {
-    case platform = "Platform"
-    case crossPlatform = "Cross-Platform"
-    case unspecified = "Unspecified"
+    case platform = "platform"
+    case crossPlatform = "cross-platform"
+    case unspecified = "unspecified"
 }
