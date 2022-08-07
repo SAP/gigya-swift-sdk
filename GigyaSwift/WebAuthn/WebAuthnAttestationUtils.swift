@@ -15,6 +15,7 @@ struct WebAuthnAttestationUtils {
             "attestationObject": object.rawAttestationObject!.toBase64Url(),
             "clientDataJSON": object.rawClientDataJSON.toBase64Url()
         ]
+        
         let attestation: [String: Any] = [
             "id": object.credentialID.toBase64Url(),
             "rawId": object.credentialID.toBase64Url(),

@@ -147,23 +147,14 @@ public class WebAuthnService<T: GigyaAccountProtocol> {
             }
         })
     }
-
+    
     @available(iOS 13.0.0, *)
-    func oauthAuthorize(token: String) async -> GigyaLoginResult<T> {
-        return await withCheckedContinuation() { continuation in
-            var model = ApiRequestModel(method: "oauth.authorize", params: ["response_type": "code"])
-            model.headers = ["Authorization": "Bearer \(token)"]
-            businessApiService.apiService.send(model: model, responseType: GigyaDictionary.self) { [weak self] result in
-                switch result {
-                case .success(data: let data):
-                    print(data)
-                    self?.businessApiService.send(dataType: GigyaDictionary.self, api: "oauth.token", params: ["grant_type": "authorization_code", "code": data["code"]?.value as! String]) { result in
-                        
-                    }
-                case .failure(_):
-                    break
-                }
+    func revokePasskey(key: String) async -> GigyaApiResult<GigyaDictionary> {
+        return await withCheckedContinuation({
+            continuation in
+            businessApiService.send(dataType: GigyaDictionary.self, api: GigyaDefinitions.WenAuthn.verifyAssertion, params: ["credentialId": key]) { result in
+                continuation.resume(returning: result)
             }
-        }
+        })
     }
 }
