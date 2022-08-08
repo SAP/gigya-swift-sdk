@@ -8,8 +8,54 @@
 
 import Foundation
 
-class WebBridgeInterruptionManager {
-    func responseManager() {
+enum WebBridgeInterruption: Int {
+    case forceLink = 409003
+}
+
+protocol WebBridgeInterruptionResolverFactoryProtocol {
+    func interruptionHandler(error: NetworkError)
+    
+    func responseManager<T: GigyaAccountProtocol>(params: [String: String], data: T, completion: @escaping (GigyaPluginEvent<T>) -> Void)
+}
+
+class WebBridgeInterruptionManager: WebBridgeInterruptionResolverFactoryProtocol {
+    private let busnessApi: BusinessApiDelegate
+
+    private var resolver: WebBridgeResolver?    
+    
+    private var disposeResolver: () -> Void = { }
+    
+    init(busnessApi: BusinessApiDelegate) {
+        self.busnessApi = busnessApi
+        disposeResolver = { [weak self] in
+            guard let self = self else { return }
+            
+            self.resolver = nil
+        }
+    }
+    
+    func responseManager<T: GigyaAccountProtocol>(params: [String: String], data: T, completion: @escaping (GigyaPluginEvent<T>) -> Void) {
+        guard let resolver = resolver else {
+            completion(.onLogin(account: data))
+            return
+        }
         
+        resolver.resolve(params: params, data: data, completion: completion)
+    }
+    
+    func interruptionHandler(error: NetworkError) {
+        switch error {
+        case .gigyaError(let data):
+            let errorType = WebBridgeInterruption(rawValue: data.errorCode)
+            
+            switch errorType {
+            case .forceLink:
+                resolver = WebBridgeFroceLoginResolver(busnessApi: busnessApi, dispose: disposeResolver)
+            default:
+                break
+            }
+        default:
+            break;
+        }
     }
 }
