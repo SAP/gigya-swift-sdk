@@ -7,3 +7,40 @@
 //
 
 import Foundation
+
+protocol WebBridgeResolver: BaseResolver {
+    init(busnessApi: BusinessApiDelegate, dispose: @escaping () -> Void)
+    
+    func resolve<T: GigyaAccountProtocol>(params: [String: String], data: T, completion: @escaping (GigyaPluginEvent<T>) -> Void)
+}
+
+class WebBridgeFroceLoginResolver: WebBridgeResolver {
+    let dispose: () -> Void
+    
+    private let busnessApi: BusinessApiDelegate
+    
+    required init(busnessApi: BusinessApiDelegate, dispose: @escaping () -> Void) {
+        self.dispose = dispose
+        self.busnessApi = busnessApi
+    }
+    
+    func resolve<T: GigyaAccountProtocol>(params: [String: String], data: T, completion: @escaping (GigyaPluginEvent<T>) -> Void) {
+        if params["loginMode"] == "connect" {
+            busnessApi.callGetAccount(dataType: T.self, params: [:], clearAccount: true) { [weak self] result in
+                switch result {
+                case .success(data: let userdata):
+                    completion(.onLogin(account: userdata))
+                case .failure(_):
+                    break
+                }
+                
+                self?.dispose()
+            }
+        
+        }
+    }
+    
+    deinit {
+        dispose()
+    }
+}
