@@ -16,12 +16,16 @@ class WebAuthnDeviceIntegration: NSObject {
     @available(iOS 15.0, *)
     enum ResponseType {
         case register(ASAuthorizationPlatformPublicKeyCredentialRegistration)
+        case securityRegister(ASAuthorizationSecurityKeyPublicKeyCredentialRegistration)
         case login(ASAuthorizationPlatformPublicKeyCredentialAssertion)
+        case securityLogin(ASAuthorizationSecurityKeyPublicKeyCredentialAssertion)
         case canceled
         case error
     }
     
     var vc: UIViewController?
+    
+    var data: Data?
     
     var handler: Any = { }
     
@@ -53,7 +57,9 @@ class WebAuthnDeviceIntegration: NSObject {
         }
         // platform = device, cross-platform = both (device & external)
         var authorizationRequests: [ASAuthorizationRequest] = []
-        let authenticatorAttachment = options.options.authenticatorSelection.authenticatorAttachment ?? .unspecified
+//        let authenticatorAttachment = options.options.authenticatorSelection.authenticatorAttachment ?? .unspecified
+        let authenticatorAttachment: WebAuthnAuthenticatorSelectionType = .unspecified
+
         switch authenticatorAttachment {
         case .platform:
             authorizationRequests.append(assertionRequest)
@@ -82,9 +88,13 @@ class WebAuthnDeviceIntegration: NSObject {
         let challenge = options.options.challenge.decodeBase64Url()!
 
         let securityRequest = securityKeyProvider.createCredentialAssertionRequest(challenge: challenge)
-
+        
+        let dd = Data(base64Encoded: "Q6A2Zws87xiQjOWDWKx2DgCMN/xGN6lQC5sbbs6YQLJqlWfKY54xZ5VVkGGRJPggJoDGQ1mQ3Z68d1jMOsJwgA==")
+        securityRequest.allowedCredentials = [ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor(credentialID: dd!, transports: ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor.Transport.allSupported)]
+        
         let assertionRequest = publicKeyCredentialProvider.createCredentialAssertionRequest(challenge: challenge)
 
+        assertionRequest.allowedCredentials = [.init(credentialID: Data(base64Encoded: "Js5zZ/GQmoA8iKZfl7aMrwq0pdk=")!)]
         if let userVerification = options.options.userVerification {
             securityRequest.userVerificationPreference = ASAuthorizationPublicKeyCredentialUserVerificationPreference.init(rawValue: userVerification)
             assertionRequest.userVerificationPreference = ASAuthorizationPublicKeyCredentialUserVerificationPreference.init(rawValue: userVerification)
@@ -107,6 +117,11 @@ class WebAuthnDeviceIntegration: NSObject {
         authController.delegate = self
         authController.presentationContextProvider = self
         authController.performRequests()
+    }
+    
+    
+    deinit {
+        GigyaLogger.log(with: self, message: "deinit")
     }
 }
 
@@ -138,19 +153,27 @@ extension WebAuthnDeviceIntegration: ASAuthorizationControllerPresentationContex
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
         switch authorization.credential {
         case let secCredentialRegistrations as ASAuthorizationSecurityKeyPublicKeyCredentialRegistration:
-            GigyaLogger.log(with: self, message: "A new platform credential was registered: \(secCredentialRegistrations)")
+            GigyaLogger.log(with: self, message: "A new cross-platform credential was registered: \(secCredentialRegistrations)")
+            self.data = secCredentialRegistrations.credentialID
+            (handler as! WebAuthnIntegrationHandler)(.securityRegister(secCredentialRegistrations))
         case let credentialRegistration as ASAuthorizationPlatformPublicKeyCredentialRegistration:
-            GigyaLogger.log(with: self, message: "A new cross-platform credential was registered: \(credentialRegistration)")
+            GigyaLogger.log(with: self, message: "A new platform credential was registered: \(credentialRegistration)")
 
             (handler as! WebAuthnIntegrationHandler)(.register(credentialRegistration))
         case let credentialAssertion as ASAuthorizationPlatformPublicKeyCredentialAssertion:
-            GigyaLogger.log(with: self, message: "A cross-platform credential was used to authenticate: \(credentialAssertion)")
+            GigyaLogger.log(with: self, message: "A platform credential was used to authenticate: \(credentialAssertion)")
             
             (handler as! WebAuthnIntegrationHandler)(.login(credentialAssertion))
 
+        case let credentialAssertion as ASAuthorizationSecurityKeyPublicKeyCredentialAssertion:
+            GigyaLogger.log(with: self, message: "A cross-platform credential was used to authenticate: \(credentialAssertion)")
+            
+            (handler as! WebAuthnIntegrationHandler)(.securityLogin(credentialAssertion))
+            
         default:
             (handler as! WebAuthnIntegrationHandler)(.error)
             GigyaLogger.log(with: self, message: "Received unknown authorization type")
         }
     }
+
 }

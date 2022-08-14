@@ -27,12 +27,49 @@ struct WebAuthnAttestationUtils {
     }
     
     @available(iOS 15.0, *)
+    func makeRegisterData(object: ASAuthorizationSecurityKeyPublicKeyCredentialRegistration) -> [String: Any] {
+        let response: [String: String] = [
+            "attestationObject": object.rawAttestationObject!.toBase64Url(),
+            "clientDataJSON": object.rawClientDataJSON.toBase64Url()
+        ]
+        
+        let attestation: [String: Any] = [
+            "id": object.credentialID.toBase64Url(),
+            "rawId": object.credentialID.toBase64Url(),
+            "type": "public-key",
+            "response": response
+        ]
+        
+        return attestation
+    }
+    
+    
+    @available(iOS 15.0, *)
     func makeLoginData(object: ASAuthorizationPlatformPublicKeyCredentialAssertion) -> [String: Any] {
         let response: [String: String] = [
             "authenticatorData": object.rawAuthenticatorData.toBase64Url(),
             "clientDataJSON": object.rawClientDataJSON.toBase64Url(),
             "signature": object.signature.toBase64Url(),
             "userHandle": object.userID.toBase64Url()
+        ]
+        
+        let attestation: [String: Any] = [
+            "id": object.credentialID.toBase64Url(),
+            "rawId": object.credentialID.toBase64Url(),
+            "type": "public-key",
+            "response": response
+        ]
+        
+        return attestation
+    }
+    
+    @available(iOS 15.0, *)
+    func makeSecurityLoginData(object: ASAuthorizationSecurityKeyPublicKeyCredentialAssertion) -> [String: Any] {
+        let response: [String: Any] = [
+            "authenticatorData": object.rawAuthenticatorData.toBase64Url(),
+            "clientDataJSON": object.rawClientDataJSON.toBase64Url(),
+            "signature": object.signature.toBase64Url(),
+            "userHandle": NSNull()
         ]
         
         let attestation: [String: Any] = [

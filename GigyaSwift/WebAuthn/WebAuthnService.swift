@@ -36,6 +36,20 @@ public class WebAuthnService<T: GigyaAccountProtocol> {
                     }
                     
                     switch result {
+                    case .securityRegister(let token):
+                        let attestation: [String: Any] = self.attestationUtils.makeRegisterData(object: token)
+                        
+                        Task {
+                            let result = await self.registerCredentials(params: ["attestation": attestation, "token": options.token])
+                            switch result {
+                            case .success(data: let data):
+                                self.oauthService.connect(token: data["idToken"]!.value as! String) { result in
+                                    continuation.resume(returning: result)
+                                } // TODO: idToken - save for delete device?
+                            case .failure(let error):
+                                continuation.resume(returning: GigyaApiResult.failure(error))
+                            }
+                        }
                     case .register(let token):
 
                         let attestation: [String: Any] = self.attestationUtils.makeRegisterData(object: token)
@@ -113,6 +127,19 @@ public class WebAuthnService<T: GigyaAccountProtocol> {
                                 continuation.resume(returning: .failure(LoginApiError(error: error)))
                             }
                         }
+                    case .securityLogin(let token):
+                        let attestation: [String: Any] = self.attestationUtils.makeSecurityLoginData(object: token)
+                        
+                        Task {
+                            let result =  await self.verifyAssertion(params: ["authenticatorAssertion": attestation, "token": options.token])
+                            switch result {
+                            case .success(data: let data):
+                                let user: GigyaLoginResult<T> = await self.oauthService.authorize(token: data["idToken"]!.value as! String) // idToken for login
+                                continuation.resume(returning: user)
+                            case .failure(let error):
+                                continuation.resume(returning: .failure(LoginApiError(error: error)))
+                            }
+                        }
                     case .canceled:
                         continuation
                             .resume(returning: .failure(LoginApiError(error: NetworkError.providerError(data: "canceled"))))
@@ -149,10 +176,10 @@ public class WebAuthnService<T: GigyaAccountProtocol> {
     }
     
     @available(iOS 13.0.0, *)
-    func revokePasskey(key: String) async -> GigyaApiResult<GigyaDictionary> {
+    public func revokePasskey(key: String) async -> GigyaApiResult<GigyaDictionary> {
         return await withCheckedContinuation({
             continuation in
-            businessApiService.send(dataType: GigyaDictionary.self, api: GigyaDefinitions.WenAuthn.verifyAssertion, params: ["credentialId": key]) { result in
+            businessApiService.send(dataType: GigyaDictionary.self, api: "accounts.auth.fido.removeCredential", params: ["credentialId": key]) { result in
                 continuation.resume(returning: result)
             }
         })
