@@ -367,6 +367,8 @@ gigya.login(with: .apple, viewController: self ) { [weak self] result in
    }
 }
 ```
+> Apple requires all apps to revoke user access tokens via their endpoint located at https://appleid.apple.com/auth/revoke in order to be reviewed. This behavior has been added to the accounts.deleteAccount endpoint and is handled automatically when you delete an end-user from your partner that has logged in with Apple.
+
 ### Facebook
 
 Adding Facebook native login to your iOS app is mandatory if you want to login via Facebook.
