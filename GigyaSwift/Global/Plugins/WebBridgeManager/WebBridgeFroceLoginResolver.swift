@@ -39,8 +39,4 @@ class WebBridgeFroceLoginResolver: WebBridgeResolver {
         
         }
     }
-    
-    deinit {
-        dispose()
-    }
 }
