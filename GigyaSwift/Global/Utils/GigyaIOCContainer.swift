@@ -178,8 +178,15 @@ final class GigyaIOCContainer<T: GigyaAccountProtocol>: GigyaContainerProtocol {
             let persistenceService = resolver.resolve(PersistenceService.self)
             let sessionService = resolver.resolve(SessionServiceProtocol.self)
             let businessService = resolver.resolve(BusinessApiServiceProtocol.self)
+            let wbBridgeInterruptionManager = resolver.resolve(WebBridgeInterruptionResolverFactoryProtocol.self)
 
-            return GigyaWebBridge(config: config!, persistenceService: persistenceService!, sessionService: sessionService!, businessApiService: businessService!)
+            return GigyaWebBridge(config: config!, persistenceService: persistenceService!, sessionService: sessionService!, businessApiService: businessService!, interruptionManager: wbBridgeInterruptionManager!)
+        }
+        
+        container.register(service: WebBridgeInterruptionResolverFactoryProtocol.self) { resolver in
+            let businessService = resolver.resolve(BusinessApiDelegate.self)
+
+            return WebBridgeInterruptionManager(busnessApi: businessService!)
         }
 
         container.register(service: GigyaCore<T>.self) { resolver in
