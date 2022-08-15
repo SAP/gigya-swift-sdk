@@ -21,17 +21,18 @@ protocol WebBridgeInterruptionResolverFactoryProtocol {
 class WebBridgeInterruptionManager: WebBridgeInterruptionResolverFactoryProtocol {
     private let busnessApi: BusinessApiDelegate
 
-    private var resolver: WebBridgeResolver?    
+    private var resolver: WebBridgeResolver?
     
-    private var disposeResolver: () -> Void = { }
+    private lazy var disposeResolver: () -> Void = { [weak self] in
+        guard let self = self else { return }
+        
+        if self.resolver != nil {
+            self.resolver = nil
+        }
+    }
     
     init(busnessApi: BusinessApiDelegate) {
         self.busnessApi = busnessApi
-        disposeResolver = { [weak self] in
-            guard let self = self else { return }
-            
-            self.resolver = nil
-        }
     }
     
     func responseManager<T: GigyaAccountProtocol>(params: [String: String], data: T, completion: @escaping (GigyaPluginEvent<T>) -> Void) {
