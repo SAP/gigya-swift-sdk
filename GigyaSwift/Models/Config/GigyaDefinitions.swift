@@ -53,6 +53,8 @@ public struct GigyaDefinitions {
         // MARK: Passwordless
         public static let pushOptinLogin = "accounts.devices.register"
         public static let pushVerifyLogin = "accounts.auth.push.verify"
+        
+        public static let isSessionValid = "accounts.session.verify"
     }
 
     public struct Tfa {
