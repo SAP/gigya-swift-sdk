@@ -46,6 +46,7 @@
 		E722573423CCB1CE000DDB24 /* NativeScreenSetsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E722573323CCB1CE000DDB24 /* NativeScreenSetsViewController.swift */; };
 		E722573623CCBB31000DDB24 /* ScreenChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E722573523CCBB31000DDB24 /* ScreenChannel.swift */; };
 		E7288CA32455CFD800AD99CA /* Gigya.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7288CA22455CFD800AD99CA /* Gigya.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		E732A81828AA2CE00035DDEA /* Flutter.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7E119B2266CD5C3006EE19C /* Flutter.xcframework */; };
 		E7364F9E25051BC5006DD45F /* EventsChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7364F9D25051BC5006DD45F /* EventsChannel.swift */; };
 		E7364FA12505284F006DD45F /* ScreenEventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7364F9F25051C3A006DD45F /* ScreenEventModel.swift */; };
 		E73C8A0A2430D8290064EFE1 /* FlowManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73C8A092430D8290064EFE1 /* FlowManager.swift */; };
@@ -79,7 +80,6 @@
 		E7D1F70C240BD92B00394185 /* IgnitionChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7D1F70B240BD92B00394185 /* IgnitionChannel.swift */; };
 		E7D1F70E240E5F0700394185 /* EngineLifeCycle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7D1F70D240E5F0700394185 /* EngineLifeCycle.swift */; };
 		E7D1F71124152D5000394185 /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7D1F71024152D5000394185 /* Dictionary.swift */; };
-		E7E119B3266CD5C3006EE19C /* Flutter.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7E119B2266CD5C3006EE19C /* Flutter.xcframework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -153,7 +153,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E7E119B3266CD5C3006EE19C /* Flutter.xcframework in Frameworks */,
+				E732A81828AA2CE00035DDEA /* Flutter.xcframework in Frameworks */,
 				E76421A325D51FFD00CDED4C /* GigyaAuth.framework in Frameworks */,
 				E7288CA32455CFD800AD99CA /* Gigya.framework in Frameworks */,
 			);
@@ -715,7 +715,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 26;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = T48CNFXFQH;
+				DEVELOPMENT_TEAM = 52P2295V75;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -757,7 +757,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 26;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = T48CNFXFQH;
+				DEVELOPMENT_TEAM = 52P2295V75;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
