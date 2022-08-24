@@ -99,3 +99,15 @@ enum WebAuthnAuthenticatorSelectionType: String, Codable {
     case crossPlatform = "cross-platform"
     case unspecified = "unspecified"
 }
+
+public struct GigyaWebAuthnCredential: Codable {
+    let name: String
+    let displayName: String
+    let type: GigyaWebAuthnCredentialType
+    let key: String
+}
+
+public enum GigyaWebAuthnCredentialType: String, Codable {
+    case crossPlatform = "cross-platform"
+    case platform
+}

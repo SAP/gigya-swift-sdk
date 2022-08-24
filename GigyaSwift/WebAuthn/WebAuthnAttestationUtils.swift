@@ -46,7 +46,7 @@ struct WebAuthnAttestationUtils {
     
     @available(iOS 15.0, *)
     func makeLoginData(object: ASAuthorizationPlatformPublicKeyCredentialAssertion) -> [String: Any] {
-        let response: [String: String] = [
+        let response: [String: Any?] = [
             "authenticatorData": object.rawAuthenticatorData.toBase64Url(),
             "clientDataJSON": object.rawClientDataJSON.toBase64Url(),
             "signature": object.signature.toBase64Url(),

@@ -45,10 +45,20 @@ class OauthService {
     
     @available(iOS 13.0.0, *)
     private func token<T: Codable>(continuation: CheckedContinuation<GigyaLoginResult<T>, Never>, code: String) {
-        self.businessApiService.send(dataType: T.self, api: GigyaDefinitions.Oauth.token, params: ["grant_type": "authorization_code", "code": code]) { res in
+        self.businessApiService.send(dataType: T.self, api: GigyaDefinitions.Oauth.token, params: ["grant_type": "authorization_code", "code": code]) { [weak self] res in
+            guard let self = self else { return }
+
             switch res {
-            case .success(data: let data):
-                continuation.resume(returning: .success(data: data))
+            case .success(data: _):
+                
+                self.businessApiService.getAccount(params: [:], clearAccount: true, dataType: T.self) { result in
+                    switch result {
+                    case .success(data: let data):
+                        continuation.resume(returning: .success(data: data))
+                    case .failure(let error):
+                        continuation.resume(returning: .failure(LoginApiError.init(error: error)))
+                    }
+                }
             case .failure(let error):
                 continuation.resume(returning: .failure(LoginApiError.init(error: error)))
             }

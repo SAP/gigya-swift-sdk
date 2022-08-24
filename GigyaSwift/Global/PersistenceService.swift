@@ -55,6 +55,16 @@ public final class PersistenceService {
             return UserDefaults.standard.string(forKey: InternalConfig.Storage.pushKey)
         }
     }
+    
+    internal var webAuthnlist: [GigyaWebAuthnCredential]? {
+        get {
+            if let data = UserDefaults.standard.object(forKey: InternalConfig.Storage.webAuthn) as? Data {
+                return try? PropertyListDecoder().decode([GigyaWebAuthnCredential].self, from: data)
+            }
+            
+            return nil
+        }
+    }
 
     // save gmid, ucid to userDefaults
     internal func save(ids: InitSdkIdsModel) {
@@ -76,5 +86,15 @@ public final class PersistenceService {
 
     internal func setPushKey(to string: String) {
         UserDefaults.standard.setValue(string, forKey: InternalConfig.Storage.pushKey)
+    }
+    
+    internal func addWebAuthnKey(model: GigyaWebAuthnCredential) {
+        var list = webAuthnlist ?? []
+        list.append(model)
+        UserDefaults.standard.set(try? PropertyListEncoder().encode(list), forKey: InternalConfig.Storage.webAuthn)
+    }
+    
+    internal func removeAllWebAuthnKeys() {
+        UserDefaults.standard.removeObject(forKey: InternalConfig.Storage.webAuthn)
     }
 }
