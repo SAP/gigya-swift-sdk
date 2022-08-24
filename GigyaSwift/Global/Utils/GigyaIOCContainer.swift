@@ -221,8 +221,9 @@ final class GigyaIOCContainer<T: GigyaAccountProtocol>: GigyaContainerProtocol {
             let webAuthnDeviceIntegration = resolver.resolve(WebAuthnDeviceIntegration.self)
             let oauthService = resolver.resolve(OauthService.self)
             let attestationUtils = resolver.resolve(WebAuthnAttestationUtils.self)
+            let persistenceService = resolver.resolve(PersistenceService.self)
 
-            return WebAuthnService(businessApiService: busnessApi!, webAuthnDeviceIntegration: webAuthnDeviceIntegration!, oauthService: oauthService!, attestationUtils: attestationUtils!)
+            return WebAuthnService(businessApiService: busnessApi!, webAuthnDeviceIntegration: webAuthnDeviceIntegration!, oauthService: oauthService!, attestationUtils: attestationUtils!, persistenceService: persistenceService!)
         }
         
         container.register(service: WebAuthnAttestationUtils.self) { resolver in
@@ -237,11 +238,6 @@ final class GigyaIOCContainer<T: GigyaAccountProtocol>: GigyaContainerProtocol {
             let busnessApi = resolver.resolve(BusinessApiServiceProtocol.self)
 
             return OauthService(businessApiService: busnessApi!)
-        }
-        
-        if #available(iOS 15.0.0, *) {
-
-
         }
     }
 }

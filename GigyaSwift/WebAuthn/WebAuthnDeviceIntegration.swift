@@ -22,7 +22,7 @@ class WebAuthnDeviceIntegration: NSObject {
         case canceled
         case error
     }
-    
+        
     var vc: UIViewController?
     
     var data: Data?
@@ -77,7 +77,7 @@ class WebAuthnDeviceIntegration: NSObject {
     }
     
     @available(iOS 15.0, *)
-    func login(viewController: UIViewController, options: WebAuthnGetOptionsResponseModel, handler: @escaping WebAuthnIntegrationHandler) {
+    func login(viewController: UIViewController, options: WebAuthnGetOptionsResponseModel, allowedKeys: [GigyaWebAuthnCredential], handler: @escaping WebAuthnIntegrationHandler) {
         self.vc = viewController
         self.handler = handler
         
@@ -89,12 +89,23 @@ class WebAuthnDeviceIntegration: NSObject {
 
         let securityRequest = securityKeyProvider.createCredentialAssertionRequest(challenge: challenge)
         
-        let dd = Data(base64Encoded: "Q6A2Zws87xiQjOWDWKx2DgCMN/xGN6lQC5sbbs6YQLJqlWfKY54xZ5VVkGGRJPggJoDGQ1mQ3Z68d1jMOsJwgA==")
-        securityRequest.allowedCredentials = [ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor(credentialID: dd!, transports: ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor.Transport.allSupported)]
+        let securityKeys = allowedKeys.filter { $0.type == .crossPlatform }
+            .map {
+                ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor(credentialID: Data(base64Encoded: $0.key) ?? Data(), transports: ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor.Transport.allSupported)
+            }
+
+        
+        securityRequest.allowedCredentials = securityKeys
         
         let assertionRequest = publicKeyCredentialProvider.createCredentialAssertionRequest(challenge: challenge)
-
-        assertionRequest.allowedCredentials = [.init(credentialID: Data(base64Encoded: "Js5zZ/GQmoA8iKZfl7aMrwq0pdk=")!)]
+        
+        let publicKeys = allowedKeys.filter { $0.type == .platform }
+            .map {
+                ASAuthorizationPlatformPublicKeyCredentialDescriptor(credentialID: Data(base64Encoded: $0.key) ?? Data())
+            }
+        
+        assertionRequest.allowedCredentials = publicKeys
+        
         if let userVerification = options.options.userVerification {
             securityRequest.userVerificationPreference = ASAuthorizationPublicKeyCredentialUserVerificationPreference.init(rawValue: userVerification)
             assertionRequest.userVerificationPreference = ASAuthorizationPublicKeyCredentialUserVerificationPreference.init(rawValue: userVerification)
