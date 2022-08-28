@@ -56,13 +56,17 @@ public final class PersistenceService {
         }
     }
     
-    internal var webAuthnlist: [GigyaWebAuthnCredential]? {
+    public var webAuthnlist: [GigyaWebAuthnCredential] {
         get {
             if let data = UserDefaults.standard.object(forKey: InternalConfig.Storage.webAuthn) as? Data {
-                return try? PropertyListDecoder().decode([GigyaWebAuthnCredential].self, from: data)
+                do {
+                    return try PropertyListDecoder().decode([GigyaWebAuthnCredential].self, from: data)
+                } catch {
+                    return []
+                }
             }
             
-            return nil
+            return []
         }
     }
 
@@ -88,8 +92,8 @@ public final class PersistenceService {
         UserDefaults.standard.setValue(string, forKey: InternalConfig.Storage.pushKey)
     }
     
-    internal func addWebAuthnKey(model: GigyaWebAuthnCredential) {
-        var list = webAuthnlist ?? []
+    func addWebAuthnKey(model: GigyaWebAuthnCredential) {
+        var list = webAuthnlist
         list.append(model)
         UserDefaults.standard.set(try? PropertyListEncoder().encode(list), forKey: InternalConfig.Storage.webAuthn)
     }
