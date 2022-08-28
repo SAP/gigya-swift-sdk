@@ -16,9 +16,9 @@ class LinkAccountAction<T: GigyaAccountProtocol>: Action<T> {
     // resolver for interruption
     var linkAccountResolver: NssResolverModel<LinkAccountsResolver<T>>?
 
-    init(busnessApi: BusinessApiDelegate, jsEval: JsEvaluatorHelper) {
+    init(businessApi: BusinessApiDelegate, jsEval: JsEvaluatorHelper) {
         super.init()
-        self.busnessApi = busnessApi
+        self.businessApi = businessApi
         self.jsEval = jsEval
     }
 

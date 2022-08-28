@@ -16,9 +16,9 @@ class OtpAction<T: GigyaAccountProtocol>: Action<T> {
 
     var state: State = .phone
 
-    init(busnessApi: BusinessApiDelegate, jsEval: JsEvaluatorHelper, otpHelper: OtpProtocol?) {
+    init(businessApi: BusinessApiDelegate, jsEval: JsEvaluatorHelper, otpHelper: OtpProtocol?) {
         super.init()
-        self.busnessApi = busnessApi
+        self.businessApi = businessApi
         self.jsEval = jsEval
         self.otpHelper = otpHelper
 
