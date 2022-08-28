@@ -163,7 +163,7 @@ final public class GigyaNss {
             let busnessApi = resolver.resolve(BusinessApiDelegate.self)
             let jsEval = resolver.resolve(JsEvaluatorHelper.self)
 
-            return RegisterAction(busnessApi: busnessApi!, jsEval: jsEval!)
+            return RegisterAction(businessApi: busnessApi!, jsEval: jsEval!)
         }
 
         dependenciesContainer.register(service: SchemaHelper.self) { resolver in
@@ -176,7 +176,7 @@ final public class GigyaNss {
             let busnessApi = resolver.resolve(BusinessApiDelegate.self)
             let jsEval = resolver.resolve(JsEvaluatorHelper.self)
 
-            return LoginAction(busnessApi: busnessApi!, jsEval: jsEval!)
+            return LoginAction(businessApi: busnessApi!, jsEval: jsEval!)
         }
 
         dependenciesContainer.register(service: OtpAction<T>.self) { resolver in
@@ -184,28 +184,28 @@ final public class GigyaNss {
             let jsEval = resolver.resolve(JsEvaluatorHelper.self)
             let otpHelper = resolver.resolve(OtpProtocol.self)
 
-            return OtpAction(busnessApi: busnessApi!, jsEval: jsEval!, otpHelper: otpHelper)
+            return OtpAction(businessApi: busnessApi!, jsEval: jsEval!, otpHelper: otpHelper)
         }
 
         dependenciesContainer.register(service: SetAccountAction<T>.self) { resolver in
             let busnessApi = resolver.resolve(BusinessApiDelegate.self)
             let jsEval = resolver.resolve(JsEvaluatorHelper.self)
 
-            return SetAccountAction(busnessApi: busnessApi!, jsEval: jsEval!)
+            return SetAccountAction(businessApi: busnessApi!, jsEval: jsEval!)
         }
 
         dependenciesContainer.register(service: LinkAccountAction<T>.self) { resolver in
             let busnessApi = resolver.resolve(BusinessApiDelegate.self)
             let jsEval = resolver.resolve(JsEvaluatorHelper.self)
 
-            return LinkAccountAction(busnessApi: busnessApi!, jsEval: jsEval!)
+            return LinkAccountAction(businessApi: busnessApi!, jsEval: jsEval!)
         }
 
         dependenciesContainer.register(service: ForgotPasswordAction<T>.self) { resolver in
             let busnessApi = resolver.resolve(BusinessApiDelegate.self)
             let jsEval = resolver.resolve(JsEvaluatorHelper.self)
 
-            return ForgotPasswordAction(busnessApi: busnessApi!, jsEval: jsEval!)
+            return ForgotPasswordAction(businessApi: busnessApi!, jsEval: jsEval!)
         }
 
         dependenciesContainer.register(service: CreateEngineFactory.self) { _ in

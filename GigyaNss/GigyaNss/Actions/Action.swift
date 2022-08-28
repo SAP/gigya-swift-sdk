@@ -14,7 +14,7 @@ protocol NssActionProtocol: AnyObject {
 
     var delegate: FlowManagerDelegate? { get set }
 
-    var busnessApi: BusinessApiDelegate? { get set }
+    var businessApi: BusinessApiDelegate? { get set }
 
     var jsEval: JsEvaluatorHelper? { get set }
 
@@ -27,17 +27,30 @@ class Action<T: GigyaAccountProtocol>: NssActionProtocol {
 
     var actionId: NssAction?
 
-    var busnessApi: BusinessApiDelegate?
+    var businessApi: BusinessApiDelegate?
 
     var jsEval: JsEvaluatorHelper?
+    
+    var persistenceService: PersistenceService? = {
+        return GigyaNss.shared.dependenciesContainer.resolve(PersistenceService.self)
+    }()
+    
+    var webAuthnService: WebAuthnService<T>? = {
+        return GigyaNss.shared.dependenciesContainer.resolve(WebAuthnService<T>.self)
+    }()
 
     weak var delegate: FlowManagerDelegate?
+    
+    private lazy var globalData: [String: Any] = {
+        return ["Gigya": ["isLoggedIn": Gigya.sharedInstance(T.self).isLoggedIn(), "webAuthnExists": self.persistenceService?.webAuthnlist.count == 0 ? false : true]]
+    }()
 
     func initialize(response: @escaping FlutterResult, expressions: [String: String]) {
-        response(doExpressions(data: [:], expressions: expressions))
+        response(doExpressions(data: globalData, expressions: expressions))
     }
 
     func doExpressions( data: [String: Any], expressions: [String: String]) -> [String: Any] {
+        let data = data.merging(globalData){ (_, new) in new }
         let jsExp = jsEval?.eval(data: data, expressions: expressions)
         var returnData: [String: Any] = [:]
         returnData["expressions"] = jsExp?.convertStringToDictionary() as AnyObject
@@ -51,6 +64,24 @@ class Action<T: GigyaAccountProtocol>: NssActionProtocol {
             break
         case .socialLogin:
             socialLogin(params: params)
+        case .webAuthnLogin:
+            if #available(iOS 15.0, *) {
+                self.webAuthnLogin()
+            } else {
+                GigyaLogger.log(with: self, message: "not supported in this iOS version.")
+            }
+        case .webAuthnRegister:
+            if #available(iOS 15.0, *) {
+                self.webAuthnRegister()
+            } else {
+                GigyaLogger.log(with: self, message: "not supported in this iOS version.")
+            }
+        case .webAuthnRevoke:
+            if #available(iOS 15.0, *) {
+                self.webAuthnRevoke()
+            } else {
+                GigyaLogger.log(with: self, message: "not supported in this iOS version.")
+            }
         default:
             break
         }
@@ -64,8 +95,56 @@ class Action<T: GigyaAccountProtocol>: NssActionProtocol {
             return
         }
 
-        busnessApi?.callSociallogin(provider: socialProvider, viewController: vc, params: [:], dataType: T.self, completion: delegate!.getMainLoginClosure(obj: T.self))
+        businessApi?.callSociallogin(provider: socialProvider, viewController: vc, params: [:], dataType: T.self, completion: delegate!.getMainLoginClosure(obj: T.self))
 
+    }
+    
+    
+    @available(iOS 15.0, *)
+    func webAuthnLogin() {
+        guard
+            let vc = delegate?.getEngineVc(),
+            let webAuthnService = webAuthnService,
+            let delegate = delegate else {
+            return
+        }
+        
+        Task {
+            let result = await webAuthnService.login(viewController: vc)
+            let closure = delegate.getMainLoginClosure(obj: T.self)
+            closure(result)
+        }
+    }
+    
+    @available(iOS 15.0, *)
+    func webAuthnRegister() {
+        guard
+            let vc = delegate?.getEngineVc(),
+            let webAuthnService = webAuthnService,
+            let delegate = delegate else {
+            return
+        }
+        
+        Task {
+            let result = await webAuthnService.register(viewController: vc)
+            let closure = delegate.getGenericClosure()
+            closure(result)
+        }
+    }
+    
+    @available(iOS 15.0, *)
+    func webAuthnRevoke() {
+        guard
+            let webAuthnService = webAuthnService,
+            let delegate = delegate else {
+            return
+        }
+        
+        Task {
+            let result = await webAuthnService.revoke()
+            let closure = delegate.getGenericClosure()
+            closure(result)
+        }
     }
 
     lazy var apiClosure: (GigyaApiResult<T>) -> Void = { [weak self] result in

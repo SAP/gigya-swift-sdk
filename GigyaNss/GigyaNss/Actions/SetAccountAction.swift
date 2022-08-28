@@ -22,10 +22,10 @@ class SetAccountAction<T: GigyaAccountProtocol>: Action<T> {
             " specialties, work, skills, religion, politicalView, interestedIn, relationshipStatus," +
             " hometown, favorites, followersCount, followingCount, username, name, locale, verified, timezone, likes, samlData"
 
-    init(busnessApi: BusinessApiDelegate, jsEval: JsEvaluatorHelper) {
+    init(businessApi: BusinessApiDelegate, jsEval: JsEvaluatorHelper) {
         super.init()
         self.jsEval = jsEval
-        self.busnessApi = busnessApi
+        self.businessApi = businessApi
     }
     
     override func initialize(response: @escaping FlutterResult, expressions: [String: String]) {
@@ -40,7 +40,7 @@ class SetAccountAction<T: GigyaAccountProtocol>: Action<T> {
             params["regToken"] = resolverModel.resolver?.regToken ?? ""
         }
 
-        busnessApi?.callGetAccount(dataType: T.self, params: params) { [weak self] (result) in
+        businessApi?.callGetAccount(dataType: T.self, params: params) { [weak self] (result) in
             switch result {
             case .success(let data):
                 guard let decodedObject = try? JSONSerialization.jsonObject(with: JSONEncoder().encode(data)) as? [String: AnyObject] else {
@@ -71,7 +71,7 @@ class SetAccountAction<T: GigyaAccountProtocol>: Action<T> {
                 var data: [String: Any] = [:];
                 data["data"] = params?["data"]
                 data["profile"] = params?["profile"]
-                busnessApi?.callSetAccount(dataType: T.self, params: data, completion: self.apiClosure)
+                businessApi?.callSetAccount(dataType: T.self, params: data, completion: self.apiClosure)
 
                 if publishPhotoOnSubmit {
                     self.publishProfilePhoto()
@@ -100,7 +100,7 @@ class SetAccountAction<T: GigyaAccountProtocol>: Action<T> {
 
         let base64image = imageInBytes!.base64EncodedString(options: .init(rawValue: 0))
 
-        busnessApi?.sendApi(api: "accounts.setProfilePhoto", params: ["photoBytes": base64image]) { [weak self] (result) in
+        businessApi?.sendApi(api: "accounts.setProfilePhoto", params: ["photoBytes": base64image]) { [weak self] (result) in
 
             switch result {
             case .success:
@@ -121,7 +121,7 @@ class SetAccountAction<T: GigyaAccountProtocol>: Action<T> {
     }
 
     func publishProfilePhoto() {
-        busnessApi?.sendApi(api: "accounts.publishProfilePhoto", params: [:]) { [weak self] (result) in
+        businessApi?.sendApi(api: "accounts.publishProfilePhoto", params: [:]) { [weak self] (result) in
             switch result {
             case .success:
                 GigyaLogger.log(with: self, message: "publishProfilePhoto: success")

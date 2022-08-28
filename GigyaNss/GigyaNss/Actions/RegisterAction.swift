@@ -11,9 +11,9 @@ import Flutter
 
 class RegisterAction<T: GigyaAccountProtocol>: Action<T> {
 
-    init(busnessApi: BusinessApiDelegate, jsEval: JsEvaluatorHelper) {
+    init(businessApi: BusinessApiDelegate, jsEval: JsEvaluatorHelper) {
         super.init()
-        self.busnessApi = busnessApi
+        self.businessApi = businessApi
         self.jsEval = jsEval
     }
 
@@ -29,7 +29,7 @@ class RegisterAction<T: GigyaAccountProtocol>: Action<T> {
             exportedParams?.removeValue(forKey: "email")
             exportedParams?.removeValue(forKey: "password")
 
-            busnessApi?.callRegister(dataType: T.self, email: email, password: password, params: exportedParams!, completion: delegate!.getMainLoginClosure(obj: T.self))
+            businessApi?.callRegister(dataType: T.self, email: email, password: password, params: exportedParams!, completion: delegate!.getMainLoginClosure(obj: T.self))
         default:
             break
         }
