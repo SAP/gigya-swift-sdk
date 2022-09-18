@@ -9,7 +9,7 @@
 import AuthenticationServices
 
 struct WebAuthnAttestationUtils {
-    @available(iOS 15.0, *)
+    @available(iOS 16.0, *)
     func makeRegisterData(object: ASAuthorizationPlatformPublicKeyCredentialRegistration) -> [String: Any] {
         let response: [String: String] = [
             "attestationObject": object.rawAttestationObject!.toBase64Url(),
@@ -26,7 +26,7 @@ struct WebAuthnAttestationUtils {
         return attestation
     }
     
-    @available(iOS 15.0, *)
+    @available(iOS 16.0, *)
     func makeRegisterData(object: ASAuthorizationSecurityKeyPublicKeyCredentialRegistration) -> [String: Any] {
         let response: [String: String] = [
             "attestationObject": object.rawAttestationObject!.toBase64Url(),
@@ -44,7 +44,7 @@ struct WebAuthnAttestationUtils {
     }
     
     
-    @available(iOS 15.0, *)
+    @available(iOS 16.0, *)
     func makeLoginData(object: ASAuthorizationPlatformPublicKeyCredentialAssertion) -> [String: Any] {
         let response: [String: Any?] = [
             "authenticatorData": object.rawAuthenticatorData.toBase64Url(),
@@ -63,7 +63,7 @@ struct WebAuthnAttestationUtils {
         return attestation
     }
     
-    @available(iOS 15.0, *)
+    @available(iOS 16.0, *)
     func makeSecurityLoginData(object: ASAuthorizationSecurityKeyPublicKeyCredentialAssertion) -> [String: Any] {
         let response: [String: Any] = [
             "authenticatorData": object.rawAuthenticatorData.toBase64Url(),
