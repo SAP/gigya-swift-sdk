@@ -38,7 +38,7 @@ public class WebAuthnService<T: GigyaAccountProtocol> {
         }
     }
     
-    @available(iOS 15.0.0, *)
+    @available(iOS 16.0.0, *)
     public func register(viewController: UIViewController) async -> GigyaApiResult<GigyaDictionary> {
         if isActiveContinuation {
             return .failure(.providerError(data: "cancelled"))
@@ -114,7 +114,7 @@ public class WebAuthnService<T: GigyaAccountProtocol> {
         }
     }
     
-    @available(iOS 15.0.0, *)
+    @available(iOS 16.0.0, *)
     private func initRegistration() async -> GigyaApiResult<WebAuthnInitRegisterResponseModel> {
         return await withCheckedContinuation() { continuation in
             businessApiService.send(dataType: WebAuthnInitRegisterResponseModel.self, api: GigyaDefinitions.WenAuthn.initRegister, params: [:]) { result in
@@ -123,7 +123,7 @@ public class WebAuthnService<T: GigyaAccountProtocol> {
         }
     }
     
-    @available(iOS 15.0.0, *)
+    @available(iOS 16.0.0, *)
     private func registerCredentials(params: [String: Any]) async -> GigyaApiResult<GigyaDictionary> {
         return await withCheckedContinuation({
             continuation in
@@ -135,7 +135,7 @@ public class WebAuthnService<T: GigyaAccountProtocol> {
     
     // MARK: Login flow
         
-    @available(iOS 15.0.0, *)
+    @available(iOS 16.0.0, *)
     public func login(viewController: UIViewController) async -> GigyaLoginResult<T> {
         if isActiveContinuation {
             return .failure(.init(error: .providerError(data: "cancelled")))
@@ -202,7 +202,7 @@ public class WebAuthnService<T: GigyaAccountProtocol> {
         }
     }
     
-    @available(iOS 15.0.0, *)
+    @available(iOS 16.0.0, *)
     private func getAssertionOptions() async -> GigyaApiResult<WebAuthnGetOptionsResponseModel> {
         return await withCheckedContinuation({
             continuation in
@@ -212,7 +212,7 @@ public class WebAuthnService<T: GigyaAccountProtocol> {
         })
     }
     
-    @available(iOS 15.0.0, *)
+    @available(iOS 16.0.0, *)
     private func verifyAssertion(params: [String: Any]) async -> GigyaApiResult<GigyaDictionary> {
         return await withCheckedContinuation({
             continuation in
@@ -222,7 +222,7 @@ public class WebAuthnService<T: GigyaAccountProtocol> {
         })
     }
     
-    @available(iOS 13.0.0, *)
+    @available(iOS 16.0.0, *)
     private func revoke(key: String) async -> GigyaApiResult<GigyaDictionary> {
         return await withCheckedContinuation({
             continuation in
@@ -232,7 +232,7 @@ public class WebAuthnService<T: GigyaAccountProtocol> {
         })
     }
     
-    @available(iOS 13.0.0, *)
+    @available(iOS 16.0.0, *)
     @discardableResult
     public func revoke() async -> GigyaApiResult<GigyaDictionary> {
         if let lastKey = self.persistenceService.webAuthnlist.last {
@@ -251,7 +251,7 @@ public class WebAuthnService<T: GigyaAccountProtocol> {
         }
     }
     
-    @available(iOS 13.0, *)
+    @available(iOS 16.0, *)
     @discardableResult
     private func addKey(token: String, user: WebAuthnUserModel, type: GigyaWebAuthnCredentialType) async -> Bool {
         return await withCheckedContinuation({ continuation in
