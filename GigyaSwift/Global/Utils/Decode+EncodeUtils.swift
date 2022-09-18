@@ -8,9 +8,9 @@
 
 import Foundation
 
-final class DecodeEncodeUtils {
+public final class DecodeEncodeUtils {
 
-    static func decode<T>(fromType: T.Type, data: Data) throws -> T where T: Codable {
+    public static func decode<T>(fromType: T.Type, data: Data) throws -> T where T: Codable {
         do {
             let decodedObject = try JSONDecoder().decode(fromType, from: data)
             return decodedObject

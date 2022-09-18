@@ -11,6 +11,7 @@ import Foundation
 public struct ApiRequestModel {
     public let method: String
     public var params: [String: Any]?
+    public var headers: [String: String]?
     public let isAnonymous: Bool
     var config: GigyaConfig?
 

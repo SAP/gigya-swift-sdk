@@ -29,7 +29,7 @@ final class BiometricService: BiometricServiceProtocol, BiometricServiceInternal
      */
 
     var isLocked: Bool {
-        return persistenceService.biometricLocked ?? false
+        return (isOptIn && !sessionService.isValidSession())
     }
 
     init(config: GigyaConfig, persistenceService: PersistenceService, sessionService: SessionServiceProtocol) {
