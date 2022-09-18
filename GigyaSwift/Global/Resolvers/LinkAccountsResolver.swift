@@ -73,6 +73,5 @@ final public class LinkAccountsResolver<T: GigyaAccountProtocol>: BaseResolver {
         businessDelegate?.callSociallogin(provider: provider, viewController: viewController, params: params, dataType: T.self, completion: self.completion)
 
         GigyaLogger.log(with: self, message: "[linkToSocial] - data: \(params), provider: \(provider.rawValue)")
-
     }
 }
