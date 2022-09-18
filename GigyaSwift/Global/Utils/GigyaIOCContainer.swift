@@ -199,6 +199,7 @@ final class GigyaIOCContainer<T: GigyaAccountProtocol>: GigyaContainerProtocol {
             let persistenceService = resolver.resolve(PersistenceService.self)
             let container = resolver.resolve(IOCContainer.self)
             let sessionVerificationService = resolver.resolve(SessionVerificationServiceProtocol.self)
+            let webAuthn = resolver.resolve(WebAuthnService<T>.self)
 
             return GigyaCore(config: config!,
                              persistenceService: persistenceService!,
@@ -208,6 +209,7 @@ final class GigyaIOCContainer<T: GigyaAccountProtocol>: GigyaContainerProtocol {
                              biometric: biometricService!,
                              plistFactory: plistFactory!,
                              sessionVerificationService: sessionVerificationService!,
+                             webAuthn: webAuthn!,
                              container: container!)
         }
 
@@ -219,6 +221,30 @@ final class GigyaIOCContainer<T: GigyaAccountProtocol>: GigyaContainerProtocol {
             let businessService = resolver.resolve(BusinessApiServiceProtocol.self)
 
             return businessService as! BusinessApiDelegate
+        }
+        
+        container.register(service: WebAuthnService<T>.self) { resolver in
+            let busnessApi = resolver.resolve(BusinessApiServiceProtocol.self)
+            let webAuthnDeviceIntegration = resolver.resolve(WebAuthnDeviceIntegration.self)
+            let oauthService = resolver.resolve(OauthService.self)
+            let attestationUtils = resolver.resolve(WebAuthnAttestationUtils.self)
+            let persistenceService = resolver.resolve(PersistenceService.self)
+
+            return WebAuthnService(businessApiService: busnessApi!, webAuthnDeviceIntegration: webAuthnDeviceIntegration!, oauthService: oauthService!, attestationUtils: attestationUtils!, persistenceService: persistenceService!)
+        }
+        
+        container.register(service: WebAuthnAttestationUtils.self) { resolver in
+            return WebAuthnAttestationUtils()
+        }
+        
+        container.register(service: WebAuthnDeviceIntegration.self) { resolver in
+            return WebAuthnDeviceIntegration()
+        }
+        
+        container.register(service: OauthService.self) { resolver in
+            let busnessApi = resolver.resolve(BusinessApiServiceProtocol.self)
+
+            return OauthService(businessApiService: busnessApi!)
         }
     }
 }
