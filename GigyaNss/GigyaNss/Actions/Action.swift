@@ -42,7 +42,7 @@ class Action<T: GigyaAccountProtocol>: NssActionProtocol {
     weak var delegate: FlowManagerDelegate?
     
     private lazy var globalData: [String: Any] = {
-        return ["Gigya": ["isLoggedIn": Gigya.sharedInstance(T.self).isLoggedIn(), "webAuthnExists": self.persistenceService?.webAuthnlist.count == 0 ? false : true]]
+        return ["Gigya": ["isLoggedIn": Gigya.sharedInstance(T.self).isLoggedIn(), "webAuthn":["isExists": self.persistenceService?.webAuthnlist.count == 0 ? false : true, "isSupported": webAuthnService?.isSupported ?? false]]]
     }()
 
     func initialize(response: @escaping FlutterResult, expressions: [String: String]) {
@@ -65,19 +65,19 @@ class Action<T: GigyaAccountProtocol>: NssActionProtocol {
         case .socialLogin:
             socialLogin(params: params)
         case .webAuthnLogin:
-            if #available(iOS 15.0, *) {
+            if #available(iOS 16.0, *) {
                 self.webAuthnLogin()
             } else {
                 GigyaLogger.log(with: self, message: "not supported in this iOS version.")
             }
         case .webAuthnRegister:
-            if #available(iOS 15.0, *) {
+            if #available(iOS 16.0, *) {
                 self.webAuthnRegister()
             } else {
                 GigyaLogger.log(with: self, message: "not supported in this iOS version.")
             }
         case .webAuthnRevoke:
-            if #available(iOS 15.0, *) {
+            if #available(iOS 16.0, *) {
                 self.webAuthnRevoke()
             } else {
                 GigyaLogger.log(with: self, message: "not supported in this iOS version.")
@@ -100,7 +100,7 @@ class Action<T: GigyaAccountProtocol>: NssActionProtocol {
     }
     
     
-    @available(iOS 15.0, *)
+    @available(iOS 16.0, *)
     func webAuthnLogin() {
         guard
             let vc = delegate?.getEngineVc(),
@@ -116,7 +116,7 @@ class Action<T: GigyaAccountProtocol>: NssActionProtocol {
         }
     }
     
-    @available(iOS 15.0, *)
+    @available(iOS 16.0, *)
     func webAuthnRegister() {
         guard
             let vc = delegate?.getEngineVc(),
@@ -132,7 +132,7 @@ class Action<T: GigyaAccountProtocol>: NssActionProtocol {
         }
     }
     
-    @available(iOS 15.0, *)
+    @available(iOS 16.0, *)
     func webAuthnRevoke() {
         guard
             let webAuthnService = webAuthnService,
