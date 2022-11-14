@@ -54,9 +54,11 @@ final class FlowManager<T: GigyaAccountProtocol> {
             }
 
             switch result {
-            case .success:
-                self.engineResultHandler?(GigyaResponseModel.successfullyResponse())
-                self.eventsClosure?(.success(screenId: self.currentScreenId ?? "", action: self.currentAction?.actionId ?? .unknown, data: nil))
+            case .success(let data):
+                let newData = data.map() { ($0.key, $0.value.value) }
+                let mergingWithGlobalData = self.currentAction?.globalData.merging(newData) { (_, new) in new }
+                
+                self.engineResultHandler?(mergingWithGlobalData)
 
             case .failure(let error):
                 self.engineResultHandler?(GigyaResponseModel.failedResponse(with: error))

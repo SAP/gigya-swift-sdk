@@ -41,9 +41,9 @@ class Action<T: GigyaAccountProtocol>: NssActionProtocol {
 
     weak var delegate: FlowManagerDelegate?
     
-    private lazy var globalData: [String: Any] = {
+    var globalData: [String: Any] {
         return ["Gigya": ["isLoggedIn": Gigya.sharedInstance(T.self).isLoggedIn(), "webAuthn":["isExists": self.persistenceService?.webAuthnlist.count == 0 ? false : true, "isSupported": webAuthnService?.isSupported ?? false]]]
-    }()
+    }
 
     func initialize(response: @escaping FlutterResult, expressions: [String: String]) {
         response(doExpressions(data: globalData, expressions: expressions))
