@@ -16,7 +16,7 @@ final class NetworkProvider {
 
     var sessionService: SessionServiceProtocol
 
-    let urlSession = URLSession.sharedInternal
+    var urlSession = URLSession.sharedInternal
 
 
     init(config: GigyaConfig, persistenceService: PersistenceService, sessionService: SessionServiceProtocol) {

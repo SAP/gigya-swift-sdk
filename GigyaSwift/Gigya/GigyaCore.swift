@@ -403,6 +403,18 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
         businessApiService.getSchema(params: params, completion: completion)
     }
 
+    /**
+     Verify Session api.
+
+     - Parameter params: Request parameters.
+     - Parameter completion: Response `GigyaApiResult<GigyaDictionary>`.
+     */
+
+    public func verifySession(params: [String: Any] = [:], completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void) {
+        businessApiService.verifySession(params: params, completion: completion)
+    }
+
+    
     // MARK: - Plugins
 
     /**

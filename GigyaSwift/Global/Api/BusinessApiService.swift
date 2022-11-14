@@ -355,6 +355,19 @@ class BusinessApiService: NSObject, BusinessApiServiceProtocol {
             }
         }
     }
+    
+    func verifySession(params: [String: Any], completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void) {
+        let model = ApiRequestModel(method: GigyaDefinitions.API.isSessionValid, params: params)
+
+        apiService.send(model: model, responseType: GigyaDictionary.self) { result in
+            switch result {
+            case .success(let data):
+                completion(.success(data: data))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
 
     // MARK: - Internal methods
 

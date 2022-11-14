@@ -21,6 +21,8 @@ public class GigyaWebBridge<T: GigyaAccountProtocol>: NSObject, WKScriptMessageH
     let sessionService: SessionServiceProtocol
 
     let businessApiService: BusinessApiServiceProtocol
+    
+    let interruptionManager: WebBridgeInterruptionResolverFactoryProtocol
 
     let contentController = WKUserContentController()
 
@@ -37,11 +39,12 @@ public class GigyaWebBridge<T: GigyaAccountProtocol>: NSObject, WKScriptMessageH
     let hideSpinner = "gigya._.plugins.instances.pluginContainer.undimScreenSet()"
 
     // MARK: - initialization
-    init(config: GigyaConfig, persistenceService: PersistenceService, sessionService: SessionServiceProtocol, businessApiService: BusinessApiServiceProtocol) {
+    init(config: GigyaConfig, persistenceService: PersistenceService, sessionService: SessionServiceProtocol, businessApiService: BusinessApiServiceProtocol, interruptionManager: WebBridgeInterruptionResolverFactoryProtocol) {
         self.config = config
         self.persistenceService = persistenceService
         self.sessionService = sessionService
         self.businessApiService = businessApiService
+        self.interruptionManager = interruptionManager
 
         super.init()
     }
@@ -293,7 +296,8 @@ public class GigyaWebBridge<T: GigyaAccountProtocol>: NSObject, WKScriptMessageH
 
                         self.businessApiService.accountService.account = dataEncoded
                         
-                        self.completion(.onLogin(account: dataEncoded))
+//                        self.completion(.onLogin(account: dataEncoded))
+                        self.interruptionManager.responseManager(params: params, data: dataEncoded, completion: self.completion)
                     } catch let error {
                         self.invokeError(callbackId: "internal", error: .jsonParsingError(error: error))
                         
@@ -304,6 +308,7 @@ public class GigyaWebBridge<T: GigyaAccountProtocol>: NSObject, WKScriptMessageH
                 self.invokeCallback(callbackId: callbackId, and: mapped.asJson)
             case .failure(let error):
                 GigyaLogger.log(with: self, message: "sendRequest: error:\n\(error.localizedDescription)")
+                self.interruptionManager.interruptionHandler(error: error)
                 self.invokeError(callbackId: callbackId, error: error)
             }
         }
@@ -327,10 +332,13 @@ public class GigyaWebBridge<T: GigyaAccountProtocol>: NSObject, WKScriptMessageH
 
                 self.businessApiService.accountService.account = data
 
-                self.completion(.onLogin(account: data))
+                self.interruptionManager.responseManager(params: params, data: data, completion: self.completion)
+//                self.completion(.onLogin(account: data))
             case .failure(let error):
                 GigyaLogger.log(with: self, message: "sendLoginRequest: error:\n\(error.localizedDescription)")
+                self.interruptionManager.interruptionHandler(error: error)
                 self.invokeError(callbackId: callbackId, error: error)
+                
             }
         }
     }
@@ -417,11 +425,16 @@ public class GigyaWebBridge<T: GigyaAccountProtocol>: NSObject, WKScriptMessageH
                 switch result {
                 case .success(let data):
                     GigyaLogger.log(with: self, message: "sendOauthRequest success")
+                    
                     let dataEncoded = try? DecodeEncodeUtils.encodeToDictionary(obj: data)
                     self.invokeCallback(callbackId: callbackId, and: dataEncoded!.asJson)
-                    self.completion(.onLogin(account: data))
+                    
+                    self.interruptionManager.responseManager(params: params, data: data, completion: self.completion)
+                    
                 case .failure(let data):
                     GigyaLogger.log(with: self, message: "sendOauthRequest: error:\n\(data.error.localizedDescription)")
+                    
+                    self.interruptionManager.interruptionHandler(error: data.error)
                     self.invokeError(callbackId: callbackId, error: data.error)
                 }
             }

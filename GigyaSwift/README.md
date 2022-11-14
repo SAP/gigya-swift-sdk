@@ -367,6 +367,8 @@ gigya.login(with: .apple, viewController: self ) { [weak self] result in
    }
 }
 ```
+> Apple requires all apps to revoke user access tokens via their endpoint located at https://appleid.apple.com/auth/revoke in order to be reviewed. This behavior has been added to the accounts.deleteAccount endpoint and is handled automatically when you delete an end-user from your partner that has logged in with Apple.
+
 ### Facebook
 
 Adding Facebook native login to your iOS app is mandatory if you want to login via Facebook.
@@ -444,6 +446,65 @@ Gigya.sharedInstance().sso(viewController: viewController) { result in
                     break
                 }
             }
+```
+
+## FIDO/WebAuthn Authentication
+FIDO is a passwordless authentication method that enables password-only logins to be replaced with secure and fast login experiences across websites and apps.
+Our SDK provides an interface to register a passkey, login, and revoke passkeys created using Fido/Passkeys, backed by our WebAuthn service.
+​
+### SDK limitations:
+Only one passkey is supported at a time. Once registering a new key, the client's previous key will be automatically revoked.
+​
+### SDK prerequisites:
+iOS 16+
+​
+To use Fido authentication on mobile, make sure you have correctly set up your **Fido Configuration** section under the **Identity -> Security -> Authentication** tab of your SAP Customer Data Cloud console.
+​
+**Interoperability with your website**
+You must have an associated domain with the webcredentials service type when making a registration or assertion request; otherwise, the request returns an error. See [Supporting associated domains](https://developer.apple.com/documentation/xcode/supporting-associated-domains) for more information.
+​
+### Implementation.
+The Fido interface contains 3 methods:
+​
+**Registration:**
+Registering a new passkey can be performed only when a valid session is available.
+```
+```
+```
+```
+```
+let result = await gigya.webAuthn.register(viewController: self)
+        switch result {
+        case .success(let data):
+          <#code#>
+        case .failure(let error):
+          <#code#>
+        }
+```
+​
+**Login:**
+Logging in using a valid passkey.
+```
+ let result = await gigya.webAuthn.login(viewController: self)
+                switch result {
+                case .success(let data):
+                    <#code#>
+                case .failure(let error):
+                    <#code#>
+                }
+```
+​
+​
+**Revoke:**
+Revoking the current passkey. Logging in will not be available until registering a new one.
+```
+let result = await gigya.webAuthn.revoke()
+        switch result {
+        case .success(let data):
+          <#code#>
+        case .failure(let error):
+          <#code#>
+        }
 ```
 
 

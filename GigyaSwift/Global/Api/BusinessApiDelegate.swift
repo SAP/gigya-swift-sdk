@@ -22,6 +22,8 @@ public protocol BusinessApiDelegate: AnyObject {
     func callGetAccount<T: GigyaAccountProtocol>(completion: @escaping (GigyaApiResult<T>) -> Void)
 
     func callGetAccount<T: GigyaAccountProtocol>(dataType: T.Type, params: [String: Any], completion: @escaping (GigyaApiResult<T>) -> Void)
+    
+    func callGetAccount<T: GigyaAccountProtocol>(dataType: T.Type, params: [String: Any], clearAccount: Bool, completion: @escaping (GigyaApiResult<T>) -> Void)
 
     func callSociallogin<T: GigyaAccountProtocol>(provider: GigyaSocialProviders, viewController: UIViewController,
                            params: [String: Any], dataType: T.Type, completion: @escaping (GigyaLoginResult<T>) -> Void)
@@ -60,9 +62,13 @@ extension BusinessApiService: BusinessApiDelegate {
     func callGetAccount<T: Codable>(completion: @escaping (GigyaApiResult<T>) -> Void) {
         self.getAccount(dataType: T.self, completion: completion)
     }
-
+    
     func callGetAccount<T: GigyaAccountProtocol>(dataType: T.Type, params: [String : Any], completion: @escaping (GigyaApiResult<T>) -> Void) {
         self.getAccount(params: params, clearAccount: false, dataType: T.self, completion: completion)
+     }
+
+    func callGetAccount<T: GigyaAccountProtocol>(dataType: T.Type, params: [String : Any], clearAccount: Bool = false, completion: @escaping (GigyaApiResult<T>) -> Void) {
+        self.getAccount(params: params, clearAccount: clearAccount, dataType: T.self, completion: completion)
      }
     
     func callSociallogin<T: GigyaAccountProtocol>(provider: GigyaSocialProviders, viewController: UIViewController, params: [String : Any], dataType: T.Type, completion: @escaping (GigyaLoginResult<T>) -> Void)  {
