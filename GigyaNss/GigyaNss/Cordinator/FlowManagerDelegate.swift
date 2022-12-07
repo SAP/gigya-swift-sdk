@@ -15,6 +15,8 @@ protocol FlowManagerDelegate: AnyObject {
 
     func getGenericClosure() -> ((GigyaApiResult<GigyaDictionary>) -> Void)
 
+    func getApiClosure() -> ((GigyaApiResult<GigyaDictionary>, String) -> Void)
+
     func getEngineResultClosure() -> FlutterResult?
 
     func getResolver() -> NssResolverModelProtocol?

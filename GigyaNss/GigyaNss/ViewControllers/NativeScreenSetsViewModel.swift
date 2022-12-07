@@ -93,7 +93,8 @@ class NativeScreenSetsViewModel<T: GigyaAccountProtocol>: NSObject, UIAdaptivePr
                 self.eventHandler?(.canceled)
             case .eval:
                 let expressions = data?["expression"] as? String ?? ""
-                let data = data?["data"] as? [String : Any] ?? [:]
+                var data = data?["data"] as? [String : Any] ?? [:]
+                data = data.merging(self.flowManager.currentAction?.globalData ?? [:]){ (_, new) in new }
 
                 let eval = self.jsEval?.singleEval(data: data, expressions: expressions)
                 response(eval)

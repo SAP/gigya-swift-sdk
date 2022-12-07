@@ -17,7 +17,7 @@ final class FlowManager<T: GigyaAccountProtocol> {
     private let flowFactory: ActionFactory<T>
 
     //
-    private var currentAction: Action<T>?
+    var currentAction: Action<T>?
 
     // storage relevent interruptions
     private var currentResolver: NssResolverModelProtocol?
@@ -26,6 +26,8 @@ final class FlowManager<T: GigyaAccountProtocol> {
     private var mainLoginClosure: MainClosure<T> = { _ in }
 
     private var genericClosure: (GigyaApiResult<GigyaDictionary>) -> Void = { _ in }
+
+    private var apiClosure: (GigyaApiResult<GigyaDictionary>, String) -> Void = { _, _ in }
 
     // current result to dart when using interruption
     private var engineResultHandler: FlutterResult?
@@ -48,6 +50,27 @@ final class FlowManager<T: GigyaAccountProtocol> {
     }
 
     private func initClosure() {
+        apiClosure = { [weak self] result, api in
+            guard let self = self else {
+                return
+            }
+
+            switch result {
+            case .success(let data):
+                let newData = data.map() { ($0.key, $0.value.value) }
+                let mergingWithGlobalData = self.currentAction?.globalData.merging(newData) { (_, new) in new }
+                
+                self.engineResultHandler?(mergingWithGlobalData)
+                // call to event handler
+                self.eventsClosure?(.apiResult(screenId: self.currentScreenId ?? "", action: self.currentAction?.actionId ?? .unknown, api: api, data: data))
+
+
+            case .failure(let error):
+                self.engineResultHandler?(GigyaResponseModel.failedResponse(with: error))
+                self.eventsClosure?(.error(screenId: self.currentScreenId ?? "", error: error))
+            }
+        }
+        
         genericClosure = { [weak self] result in
             guard let self = self else {
                 return
@@ -136,6 +159,10 @@ final class FlowManager<T: GigyaAccountProtocol> {
 }
 
 extension FlowManager: FlowManagerDelegate {
+    func getApiClosure() -> ((GigyaApiResult<GigyaDictionary>, String) -> Void) {
+        return apiClosure
+    }
+    
     func getMainLoginClosure<T: GigyaAccountProtocol>(obj: T.Type) -> MainClosure<T> {
         return self.mainLoginClosure as! MainClosure<T>
     }
