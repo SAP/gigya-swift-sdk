@@ -127,8 +127,8 @@ class Action<T: GigyaAccountProtocol>: NssActionProtocol {
         
         Task {
             let result = await webAuthnService.register(viewController: vc)
-            let closure = delegate.getGenericClosure()
-            closure(result)
+            let closure = delegate.getApiClosure()
+            closure(result, ApiChannelEvent.webAuthnRegister.rawValue)
         }
     }
     
@@ -142,8 +142,8 @@ class Action<T: GigyaAccountProtocol>: NssActionProtocol {
         
         Task {
             let result = await webAuthnService.revoke()
-            let closure = delegate.getGenericClosure()
-            closure(result)
+            let closure = delegate.getApiClosure()
+            closure(result, ApiChannelEvent.webAuthnRevoke.rawValue)
         }
     }
 

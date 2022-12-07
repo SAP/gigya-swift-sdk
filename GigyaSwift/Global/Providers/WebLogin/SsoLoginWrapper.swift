@@ -33,7 +33,8 @@ final class SsoLoginWrapper: NSObject, ProviderWrapperProtocol {
 
     static let callbackURLScheme = "gsapi"
     
-    static let redirectUri = "\(callbackURLScheme)://\(Bundle.main.bundleIdentifier ?? "")/login/".lowercased()
+//    static let redirectUri = "\(callbackURLScheme)://\(Bundle.main.bundleIdentifier ?? "")/login/".lowercased()
+    static let redirectUri = "\(callbackURLScheme)://com.coms-verification.pocswift/login/".lowercased()
 
     struct EndPoints {
         static let auth = "authorize"
