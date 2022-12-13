@@ -237,8 +237,8 @@
             filePath = "GigyaNss/GigyaNss/Actions/Action.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "113"
-            endingLineNumber = "113"
+            startingLineNumber = "115"
+            endingLineNumber = "115"
             landmarkName = "webAuthnLogin()"
             landmarkType = "7">
             <Locations>
@@ -326,7 +326,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "D1BC477F-D678-4DDC-AA4A-11DA2993DCAE"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GigyaSwift/Global/Providers/WebLogin/SsoLoginWrapper.swift"
@@ -395,8 +395,8 @@
             filePath = "GigyaNss/GigyaNss/Actions/Action.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "53"
-            endingLineNumber = "53"
+            startingLineNumber = "55"
+            endingLineNumber = "55"
             landmarkName = "doExpressions(data:expressions:)"
             landmarkType = "7">
             <Locations>
@@ -473,8 +473,8 @@
             filePath = "GigyaNss/GigyaNss/Actions/Action.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "58"
-            endingLineNumber = "58"
+            startingLineNumber = "60"
+            endingLineNumber = "60"
             landmarkName = "doExpressions(data:expressions:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -539,6 +539,114 @@
                   startingLineNumber = "96"
                   endingLineNumber = "96"
                   offsetFromSymbolStart = "4216">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E3E27093-5159-4410-B886-999EB0927396"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GigyaSwift/Global/WebAuthn/WebAuthnService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "89"
+            endingLineNumber = "89"
+            landmarkName = "register(viewController:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "E3E27093-5159-4410-B886-999EB0927396 - 3aa2ea313111424d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for closure #1 @Sendable () async -&gt; () in closure #1 (Gigya.GigyaApiResult&lt;Swift.Dictionary&lt;Swift.String, Gigya.AnyCodable&gt;&gt;) -&gt; () in closure #2 @Sendable () async -&gt; () in closure #1 (Gigya.WebAuthnDeviceIntegration.ResponseType) -&gt; () in closure #1 (Swift.CheckedContinuation&lt;Gigya.GigyaApiResult&lt;Swift.Dictionary&lt;Swift.String, Gigya.AnyCodable&gt;&gt;, Swift.Never&gt;) -&gt; () in Gigya.WebAuthnService.register(viewController: __C.UIViewController) async -&gt; Gigya.GigyaApiResult&lt;Swift.Dictionary&lt;Swift.String, Gigya.AnyCodable&gt;&gt;"
+                  moduleName = "Gigya"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/i507698/Documents/gigya-swift-sdk/GigyaSwift/Global/WebAuthn/WebAuthnService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "89"
+                  endingLineNumber = "89"
+                  offsetFromSymbolStart = "108">
+               </Location>
+               <Location
+                  uuid = "E3E27093-5159-4410-B886-999EB0927396 - 69d7bce18b4cee08"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) await resume partial function for closure #1 @Sendable () async -&gt; () in closure #1 (Gigya.GigyaApiResult&lt;Swift.Dictionary&lt;Swift.String, Gigya.AnyCodable&gt;&gt;) -&gt; () in closure #2 @Sendable () async -&gt; () in closure #1 (Gigya.WebAuthnDeviceIntegration.ResponseType) -&gt; () in closure #1 (Swift.CheckedContinuation&lt;Gigya.GigyaApiResult&lt;Swift.Dictionary&lt;Swift.String, Gigya.AnyCodable&gt;&gt;, Swift.Never&gt;) -&gt; () in Gigya.WebAuthnService.register(viewController: __C.UIViewController) async -&gt; Gigya.GigyaApiResult&lt;Swift.Dictionary&lt;Swift.String, Gigya.AnyCodable&gt;&gt;"
+                  moduleName = "Gigya"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/i507698/Documents/gigya-swift-sdk/GigyaSwift/Global/WebAuthn/WebAuthnService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "89"
+                  endingLineNumber = "89"
+                  offsetFromSymbolStart = "48">
+               </Location>
+               <Location
+                  uuid = "E3E27093-5159-4410-B886-999EB0927396 - 504854fa69798e4f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for closure #1 @Sendable () async -&gt; () in closure #1 (Gigya.GigyaApiResult&lt;Swift.Dictionary&lt;Swift.String, Gigya.AnyCodable&gt;&gt;) -&gt; () in closure #2 @Sendable () async -&gt; () in closure #1 (Gigya.WebAuthnDeviceIntegration.ResponseType) -&gt; () in closure #1 (Swift.CheckedContinuation&lt;Gigya.GigyaApiResult&lt;Swift.Dictionary&lt;Swift.String, Gigya.AnyCodable&gt;&gt;, Swift.Never&gt;) -&gt; () in Gigya.WebAuthnService.register(viewController: __C.UIViewController) async -&gt; Gigya.GigyaApiResult&lt;Swift.Dictionary&lt;Swift.String, Gigya.AnyCodable&gt;&gt;"
+                  moduleName = "Gigya"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/i507698/Documents/gigya-swift-sdk/GigyaSwift/Global/WebAuthn/WebAuthnService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "89"
+                  endingLineNumber = "89"
+                  offsetFromSymbolStart = "84">
+               </Location>
+               <Location
+                  uuid = "E3E27093-5159-4410-B886-999EB0927396 - 3aa2ea313111424d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for closure #1 @Sendable () async -&gt; () in closure #1 (Gigya.GigyaApiResult&lt;Swift.Dictionary&lt;Swift.String, Gigya.AnyCodable&gt;&gt;) -&gt; () in closure #2 @Sendable () async -&gt; () in closure #1 (Gigya.WebAuthnDeviceIntegration.ResponseType) -&gt; () in closure #1 (Swift.CheckedContinuation&lt;Gigya.GigyaApiResult&lt;Swift.Dictionary&lt;Swift.String, Gigya.AnyCodable&gt;&gt;, Swift.Never&gt;) -&gt; () in Gigya.WebAuthnService.register(viewController: __C.UIViewController) async -&gt; Gigya.GigyaApiResult&lt;Swift.Dictionary&lt;Swift.String, Gigya.AnyCodable&gt;&gt;"
+                  moduleName = "Gigya"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/i507698/Documents/gigya-swift-sdk/GigyaSwift/Global/WebAuthn/WebAuthnService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "89"
+                  endingLineNumber = "89"
+                  offsetFromSymbolStart = "101">
+               </Location>
+               <Location
+                  uuid = "E3E27093-5159-4410-B886-999EB0927396 - 69d7bce18b4cee08"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) await resume partial function for closure #1 @Sendable () async -&gt; () in closure #1 (Gigya.GigyaApiResult&lt;Swift.Dictionary&lt;Swift.String, Gigya.AnyCodable&gt;&gt;) -&gt; () in closure #2 @Sendable () async -&gt; () in closure #1 (Gigya.WebAuthnDeviceIntegration.ResponseType) -&gt; () in closure #1 (Swift.CheckedContinuation&lt;Gigya.GigyaApiResult&lt;Swift.Dictionary&lt;Swift.String, Gigya.AnyCodable&gt;&gt;, Swift.Never&gt;) -&gt; () in Gigya.WebAuthnService.register(viewController: __C.UIViewController) async -&gt; Gigya.GigyaApiResult&lt;Swift.Dictionary&lt;Swift.String, Gigya.AnyCodable&gt;&gt;"
+                  moduleName = "Gigya"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/i507698/Documents/gigya-swift-sdk/GigyaSwift/Global/WebAuthn/WebAuthnService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "89"
+                  endingLineNumber = "89"
+                  offsetFromSymbolStart = "36">
+               </Location>
+               <Location
+                  uuid = "E3E27093-5159-4410-B886-999EB0927396 - 504854fa69798e4f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for closure #1 @Sendable () async -&gt; () in closure #1 (Gigya.GigyaApiResult&lt;Swift.Dictionary&lt;Swift.String, Gigya.AnyCodable&gt;&gt;) -&gt; () in closure #2 @Sendable () async -&gt; () in closure #1 (Gigya.WebAuthnDeviceIntegration.ResponseType) -&gt; () in closure #1 (Swift.CheckedContinuation&lt;Gigya.GigyaApiResult&lt;Swift.Dictionary&lt;Swift.String, Gigya.AnyCodable&gt;&gt;, Swift.Never&gt;) -&gt; () in Gigya.WebAuthnService.register(viewController: __C.UIViewController) async -&gt; Gigya.GigyaApiResult&lt;Swift.Dictionary&lt;Swift.String, Gigya.AnyCodable&gt;&gt;"
+                  moduleName = "Gigya"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/i507698/Documents/gigya-swift-sdk/GigyaSwift/Global/WebAuthn/WebAuthnService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "89"
+                  endingLineNumber = "89"
+                  offsetFromSymbolStart = "123">
                </Location>
             </Locations>
          </BreakpointContent>

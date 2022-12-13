@@ -119,6 +119,10 @@
 		E7584EEB22E0BC22007229FE /* View.xib in Resources */ = {isa = PBXBuildFile; fileRef = E7584EEA22E0BC22007229FE /* View.xib */; };
 		E75C69E1276A33E500FFA610 /* CryptoKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E75C69E0276A33E400FFA610 /* CryptoKit.framework */; };
 		E75C69E2276A342400FFA610 /* CryptoKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E75C69E0276A33E400FFA610 /* CryptoKit.framework */; };
+		E75DE0D1294712D900EB5885 /* App.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = E794998D292A1EC900D3FB98 /* App.xcframework */; };
+		E75DE0D2294712D900EB5885 /* App.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E794998D292A1EC900D3FB98 /* App.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E75DE0D3294712D900EB5885 /* Flutter.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = E710952B288EC1FF0062DCAD /* Flutter.xcframework */; };
+		E75DE0D4294712D900EB5885 /* Flutter.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E710952B288EC1FF0062DCAD /* Flutter.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E760668B2278998E005E4CFD /* WebLoginProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E76066882278998E005E4CFD /* WebLoginProvider.swift */; };
 		E760668C2278998E005E4CFD /* WebViewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E76066892278998E005E4CFD /* WebViewWrapper.swift */; };
 		E760668D2278998E005E4CFD /* GigyaWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E760668A2278998E005E4CFD /* GigyaWebViewController.swift */; };
@@ -148,10 +152,6 @@
 		E7791A7D238BE1070075BAFD /* SessionServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7791A7C238BE1070075BAFD /* SessionServiceMock.swift */; };
 		E77F71A0230AD95600E8738A /* GigyaWebBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77F719F230AD95600E8738A /* GigyaWebBridge.swift */; };
 		E77F7A2F2407EC7900FF90FB /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E77F7A2E2407EC7900FF90FB /* CoreFoundation.framework */; };
-		E794998B292A1EC800D3FB98 /* Flutter.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = E710952B288EC1FF0062DCAD /* Flutter.xcframework */; };
-		E794998C292A1EC800D3FB98 /* Flutter.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E710952B288EC1FF0062DCAD /* Flutter.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		E794998E292A1EC900D3FB98 /* App.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = E794998D292A1EC900D3FB98 /* App.xcframework */; };
-		E794998F292A1EC900D3FB98 /* App.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E794998D292A1EC900D3FB98 /* App.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E7A535E8274A5E160070AF63 /* PKCETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A535E7274A5E160070AF63 /* PKCETests.swift */; };
 		E7A6E0AA2240F8080063638F /* GigyaApiResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A6E0A92240F8080063638F /* GigyaApiResult.swift */; };
 		E7A6E0AC224245D00063638F /* ApiResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A6E0AB224245D00063638F /* ApiResultModel.swift */; };
@@ -314,13 +314,13 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				E794998C292A1EC800D3FB98 /* Flutter.xcframework in Embed Frameworks */,
-				E794998F292A1EC900D3FB98 /* App.xcframework in Embed Frameworks */,
 				E76B950028508A7600E63E3B /* Gigya.framework in Embed Frameworks */,
 				E76B94F8285089D100E63E3B /* GigyaAuth.framework in Embed Frameworks */,
 				E732A83028BB62720035DDEA /* (null) in Embed Frameworks */,
 				E76B94FE28508A5E00E63E3B /* GigyaTfa.framework in Embed Frameworks */,
+				E75DE0D4294712D900EB5885 /* Flutter.xcframework in Embed Frameworks */,
 				E76B94FA285089EF00E63E3B /* GigyaNss.framework in Embed Frameworks */,
+				E75DE0D2294712D900EB5885 /* App.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -677,16 +677,16 @@
 			files = (
 				E7DC2C6D2280778000A13426 /* libc++.tbd in Frameworks */,
 				E7DC2C6C2280771700A13426 /* libz.tbd in Frameworks */,
+				E75DE0D1294712D900EB5885 /* App.xcframework in Frameworks */,
 				E76B94F7285089D100E63E3B /* GigyaAuth.framework in Frameworks */,
-				E794998B292A1EC800D3FB98 /* Flutter.xcframework in Frameworks */,
 				E76B94F9285089EF00E63E3B /* GigyaNss.framework in Frameworks */,
 				E7DC2C6B228076E600A13426 /* libsqlite3.tbd in Frameworks */,
+				E75DE0D3294712D900EB5885 /* Flutter.xcframework in Frameworks */,
 				E73373F522633BDA00ADEDBB /* SafariServices.framework in Frameworks */,
 				E731B72D232A53AD0032E111 /* AuthenticationServices.framework in Frameworks */,
 				E732A82F28BB62720035DDEA /* (null) in Frameworks */,
 				E77F7A2F2407EC7900FF90FB /* CoreFoundation.framework in Frameworks */,
 				E73373F422633BD300ADEDBB /* SystemConfiguration.framework in Frameworks */,
-				E794998E292A1EC900D3FB98 /* App.xcframework in Frameworks */,
 				E76B94FD28508A5E00E63E3B /* GigyaTfa.framework in Frameworks */,
 				E7A71CAD232F7F3000993A61 /* CoreTelephony.framework in Frameworks */,
 				E76B94FF28508A7600E63E3B /* Gigya.framework in Frameworks */,

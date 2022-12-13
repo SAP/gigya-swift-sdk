@@ -105,6 +105,7 @@ public struct GigyaWebAuthnCredential: Codable {
     let displayName: String
     let type: GigyaWebAuthnCredentialType
     let key: String
+    let uid: String
 }
 
 public enum GigyaWebAuthnCredentialType: String, Codable {

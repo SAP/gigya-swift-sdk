@@ -48,6 +48,7 @@ class SetAccountAction<T: GigyaAccountProtocol>: Action<T> {
                     return
                 }
 
+                self?.tempUid = data.UID
                 response(self?.doExpressions(data: decodedObject, expressions: expressions))
 
             case .failure(let error):
