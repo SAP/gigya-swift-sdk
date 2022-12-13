@@ -31,6 +31,8 @@ class Action<T: GigyaAccountProtocol>: NssActionProtocol {
 
     var jsEval: JsEvaluatorHelper?
     
+    var tempUid: String?
+    
     var persistenceService: PersistenceService? = {
         return GigyaNss.shared.dependenciesContainer.resolve(PersistenceService.self)
     }()
@@ -42,7 +44,7 @@ class Action<T: GigyaAccountProtocol>: NssActionProtocol {
     weak var delegate: FlowManagerDelegate?
     
     var globalData: [String: Any] {
-        return ["Gigya": ["isLoggedIn": Gigya.sharedInstance(T.self).isLoggedIn(), "webAuthn":["isExists": self.persistenceService?.webAuthnlist.count == 0 ? false : true, "isSupported": webAuthnService?.isSupported ?? false]]]
+        return ["Gigya": ["isLoggedIn": Gigya.sharedInstance(T.self).isLoggedIn(), "webAuthn":["isExists": webAuthnService?.passkeyForUser(uid: tempUid), "isSupported": webAuthnService?.isSupported ?? false]]]
     }
 
     func initialize(response: @escaping FlutterResult, expressions: [String: String]) {

@@ -58,23 +58,23 @@ public class WebAuthnService<T: GigyaAccountProtocol> {
                     switch result {
                     case .securityRegister(let token):
                         let attestation: [String: Any] = self.attestationUtils.makeRegisterData(object: token)
-                        
                         Task {
-                            let result = await self.registerCredentials(params: ["attestation": attestation, "token": options.token])
-                            switch result {
-                            case .success(data: let data):
-                                self.oauthService.connect(token: data["idToken"]!.value as! String) { result in
-                                    Task {
-                                        await self.addKey(token: token.credentialID.base64EncodedString(), user: options.options.user, type: .crossPlatform)
-                                        
-                                        continuation.resume(returning: result)
-                                        self.isActiveContinuation.toggle()
-                                    }
-                                } // TODO: idToken - save for delete device?
-                            case .failure(let error):
-                                continuation.resume(returning: GigyaApiResult.failure(error))
-                                self.isActiveContinuation.toggle()
-                            }
+                                
+                                let result = await self.registerCredentials(params: ["attestation": attestation, "token": options.token])
+                                switch result {
+                                case .success(data: let data):
+                                    self.oauthService.connect(token: data["idToken"]!.value as! String) { result in
+                                        Task {
+                                            await self.addKey(token: token.credentialID.base64EncodedString(), user: options.options.user, type: .crossPlatform)
+                                            
+                                            continuation.resume(returning: result)
+                                            self.isActiveContinuation.toggle()
+                                        }
+                                    } // TODO: idToken - save for delete device?
+                                case .failure(let error):
+                                    continuation.resume(returning: GigyaApiResult.failure(error))
+                                    self.isActiveContinuation.toggle()
+                                }
                         }
                     case .register(let token):
 
@@ -255,21 +255,40 @@ public class WebAuthnService<T: GigyaAccountProtocol> {
     @discardableResult
     private func addKey(token: String, user: WebAuthnUserModel, type: GigyaWebAuthnCredentialType) async -> Bool {
         return await withCheckedContinuation({ continuation in
-            Task {
-                if let lastKey = self.persistenceService.webAuthnlist.last {
-                    let result = await self.revoke(key: lastKey.key)
-                    switch result {
-                    case .success(data: _):
-                        self.persistenceService.removeAllWebAuthnKeys()
-                    case .failure(_):
-                        continuation.resume(returning: false)
+            self.businessApiService.getAccount(params: [:], clearAccount: false, dataType: T.self) { res in
+                switch res {
+                case .success(let account):
+                    Task {
+                        if let lastKey = self.persistenceService.webAuthnlist.last {
+                            let result = await self.revoke(key: lastKey.key)
+                            switch result {
+                            case .success(data: _):
+                                self.persistenceService.removeAllWebAuthnKeys()
+                            case .failure(_):
+                                continuation.resume(returning: false)
+                            }
+                        }
+                        
+                        let credential = GigyaWebAuthnCredential(name: user.name, displayName: user.displayName, type: type, key: token, uid: account.UID ?? "")
+                        self.persistenceService.addWebAuthnKey(model: credential)
+                        continuation.resume(returning: true)
                     }
+                case .failure(_):
+                    continuation.resume(returning: false)
                 }
-                
-                let credential = GigyaWebAuthnCredential(name: user.name, displayName: user.displayName, type: type, key: token)
-                self.persistenceService.addWebAuthnKey(model: credential)
-                continuation.resume(returning: true)
             }
         })
     }
+    
+    public func passkeyForUser(uid: String?) -> Bool {
+        guard let uid = uid else { return false }
+            
+        if let lastKey = self.persistenceService.webAuthnlist.last {
+            return lastKey.uid == uid
+        }
+
+        return false;
+    }
+
+
 }
