@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name          = 'Gigya'
-  spec.version       = '1.4.0'
+  spec.version       = '1.4.1'
   spec.license       = 'Apache 2.0'
   spec.homepage      = 'https://developers.gigya.com/display/GD/Swift+SDK'
   spec.author       = 'Gigya SAP'
@@ -10,7 +10,7 @@ Pod::Spec.new do |spec|
 			your Swift application
 			DESC
 
-  spec.source        = { :git => 'https://github.com/SAP/gigya-swift-sdk.git', :tag => 'core/v1.4.0' }
+  spec.source        = { :git => 'https://github.com/SAP/gigya-swift-sdk.git', :tag => 'core/v1.4.1' }
   spec.module_name   = 'Gigya'
   spec.swift_version = '5.3'
 

@@ -9,10 +9,10 @@ import Gigya
 import Flutter
 
 class LoginAction<T: GigyaAccountProtocol>: Action<T> {
-
-    init(busnessApi: BusinessApiDelegate, jsEval: JsEvaluatorHelper) {
+    
+    init(businessApi: BusinessApiDelegate, jsEval: JsEvaluatorHelper) {        
         super.init()
-        self.busnessApi = busnessApi
+        self.businessApi = businessApi
         self.jsEval = jsEval
     }
 
@@ -28,7 +28,7 @@ class LoginAction<T: GigyaAccountProtocol>: Action<T> {
             let loginId = params["loginID"] as? String ?? ""
             let password = params["password"] as? String ?? ""
             
-            busnessApi?.callLogin(dataType: T.self, loginId: loginId, password: password, params: params, completion: delegate!.getMainLoginClosure(obj: T.self))
+            businessApi?.callLogin(dataType: T.self, loginId: loginId, password: password, params: params, completion: delegate!.getMainLoginClosure(obj: T.self))
         default:
             break
         }
