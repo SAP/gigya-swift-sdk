@@ -25,6 +25,10 @@ enum ApiChannelEvent: String {
     case submit
     case api
     case socialLogin
+    case webAuthnLogin
+    case webAuthnRegister
+    case webAuthnRevoke
+
 }
 //struct ApiChannelEvent: RawRepresentable {
 //    var rawValue: String

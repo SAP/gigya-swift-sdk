@@ -23,8 +23,8 @@
   <key>MinimumOSVersion</key>
   <string>9.0</string>
   <key>FlutterEngine</key>
-  <string>57d3bac3dd5cb5b0e464ab70e7bc8a0d8cf083ab</string>
+  <string>6ba2af10bb05c88a2731482cedf2cfd11cf5af0b</string>
   <key>ClangVersion</key>
-  <string>b'Apple clang version 12.0.0 (clang-1200.0.32.2)'</string>
+  <string>b'Apple clang version 13.0.0 (clang-1300.0.29.3)'</string>
 </dict>
 </plist>
