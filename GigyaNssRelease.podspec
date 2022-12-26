@@ -26,7 +26,7 @@ Pod::Spec.new do |spec|
      ss.framework      = 'SystemConfiguration'
      ss.library = 'c++', 'z'
 
-     ss.dependency 'Flutter', '3.0.2'
+     ss.dependency 'Flutter', '3.0.0'
 
      ss.vendored_frameworks = 'GigyaNss/Flutter/Release/App.xcframework'
 
