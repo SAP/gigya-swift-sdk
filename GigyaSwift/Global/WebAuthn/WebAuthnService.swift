@@ -110,6 +110,7 @@ public class WebAuthnService<T: GigyaAccountProtocol> {
                 }
             })
         case .failure(let error):
+            self.isActiveContinuation.toggle()
             return .failure(error)
         }
     }
@@ -198,6 +199,7 @@ public class WebAuthnService<T: GigyaAccountProtocol> {
                 }
             }
         case .failure(let error):
+            self.isActiveContinuation.toggle()
             return .failure(LoginApiError(error: error))
         }
     }
