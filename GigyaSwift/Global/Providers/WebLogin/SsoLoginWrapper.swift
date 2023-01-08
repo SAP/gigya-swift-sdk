@@ -33,8 +33,7 @@ final class SsoLoginWrapper: NSObject, ProviderWrapperProtocol {
 
     static let callbackURLScheme = "gsapi"
     
-//    static let redirectUri = "\(callbackURLScheme)://\(Bundle.main.bundleIdentifier ?? "")/login/".lowercased()
-    static let redirectUri = "\(callbackURLScheme)://com.coms-verification.pocswift/login/".lowercased()
+    static let redirectUri = "\(callbackURLScheme)://\(Bundle.main.bundleIdentifier ?? "")/login/".lowercased()
 
     struct EndPoints {
         static let auth = "authorize"
@@ -129,7 +128,7 @@ final class SsoLoginWrapper: NSObject, ProviderWrapperProtocol {
             return
         }
 
-        let json: [String : Any] = ["status": "ok", "accessToken": sessionToken, "tokenSecret": sessionSecret, "sessionExpiration": response["expires_in"] as? Int ?? 0]
+        let json: [String : Any] = ["status": "ok", "accessToken": sessionToken, "tokenSecret": sessionSecret, "sessionExpiration": String(response["expires_in"] as? Int ?? 0)]
 
         self.completionHandler?(json, nil)
     }

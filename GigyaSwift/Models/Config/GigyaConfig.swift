@@ -15,6 +15,8 @@ protocol GigyaConfigProtocol {
 public class GigyaConfig {
     public var apiKey: String?
     public var apiDomain: String = InternalConfig.General.sdkDomain
+    public var cname: String?
+    public var cnameEnable: Bool = false
 
     public var sessionVerificationInterval: Double?
 
