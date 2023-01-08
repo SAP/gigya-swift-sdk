@@ -332,57 +332,10 @@
             filePath = "GigyaSwift/Global/Providers/WebLogin/SsoLoginWrapper.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "96"
-            endingLineNumber = "96"
+            startingLineNumber = "94"
+            endingLineNumber = "94"
             landmarkName = "loadProvider(params:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "D1BC477F-D678-4DDC-AA4A-11DA2993DCAE - a0638379d33597d8"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Gigya.SsoLoginWrapper.loadProvider(params: Swift.Dictionary&lt;Swift.String, Any&gt;) -&gt; ()"
-                  moduleName = "Gigya"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/i507698/Documents/gigya-swift-sdk/GigyaSwift/Global/Providers/WebLogin/SsoLoginWrapper.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "96"
-                  endingLineNumber = "96"
-                  offsetFromSymbolStart = "3069">
-               </Location>
-               <Location
-                  uuid = "D1BC477F-D678-4DDC-AA4A-11DA2993DCAE - a0638379d33597d8"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Gigya.SsoLoginWrapper.loadProvider(params: Swift.Dictionary&lt;Swift.String, Any&gt;) -&gt; ()"
-                  moduleName = "Gigya"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/i507698/Documents/gigya-swift-sdk/GigyaSwift/Global/Providers/WebLogin/SsoLoginWrapper.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "96"
-                  endingLineNumber = "96"
-                  offsetFromSymbolStart = "2882">
-               </Location>
-               <Location
-                  uuid = "D1BC477F-D678-4DDC-AA4A-11DA2993DCAE - a0638379d33597d8"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Gigya.SsoLoginWrapper.loadProvider(params: Swift.Dictionary&lt;Swift.String, Any&gt;) -&gt; ()"
-                  moduleName = "Gigya"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/i507698/Documents/gigya-swift-sdk/GigyaSwift/Global/Providers/WebLogin/SsoLoginWrapper.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "96"
-                  endingLineNumber = "96"
-                  offsetFromSymbolStart = "2336">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -649,6 +602,70 @@
                   offsetFromSymbolStart = "123">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A5ABA351-0685-4BCD-A273-D8941B251DDD"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GigyaSwift/Global/Providers/WebLogin/WebLoginProvider.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "89"
+            endingLineNumber = "89"
+            landmarkName = "login(type:params:viewController:loginMode:completion:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "A5ABA351-0685-4BCD-A273-D8941B251DDD - 36110baa0278c30e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Swift.Dictionary&lt;Swift.String, Any&gt;&gt;, Swift.Optional&lt;Swift.String&gt;) -&gt; () in Gigya.WebLoginProvider.login&lt;&#x3c4;_0_0 where &#x3c4;_0_0: Gigya.GigyaAccountProtocol&gt;(type: &#x3c4;_0_0.Type, params: Swift.Dictionary&lt;Swift.String, Any&gt;, viewController: Swift.Optional&lt;__C.UIViewController&gt;, loginMode: Swift.String, completion: (Gigya.GigyaApiResult&lt;&#x3c4;_0_0&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Gigya"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/i507698/Documents/gigya-swift-sdk/GigyaSwift/Global/Providers/WebLogin/WebLoginProvider.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "89"
+                  endingLineNumber = "89"
+                  offsetFromSymbolStart = "2627">
+               </Location>
+               <Location
+                  uuid = "A5ABA351-0685-4BCD-A273-D8941B251DDD - 36110baa0278c30e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Swift.Dictionary&lt;Swift.String, Any&gt;&gt;, Swift.Optional&lt;Swift.String&gt;) -&gt; () in Gigya.WebLoginProvider.login&lt;&#x3c4;_0_0 where &#x3c4;_0_0: Gigya.GigyaAccountProtocol&gt;(type: &#x3c4;_0_0.Type, params: Swift.Dictionary&lt;Swift.String, Any&gt;, viewController: Swift.Optional&lt;__C.UIViewController&gt;, loginMode: Swift.String, completion: (Gigya.GigyaApiResult&lt;&#x3c4;_0_0&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Gigya"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/i507698/Documents/gigya-swift-sdk/GigyaSwift/Global/Providers/WebLogin/WebLoginProvider.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "89"
+                  endingLineNumber = "89"
+                  offsetFromSymbolStart = "2854">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A2B81EFE-1284-40A4-BDD3-5F55D45695C7"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GigyaSwift/Global/Api/BusinessApiService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "166"
+            endingLineNumber = "166"
+            landmarkName = "login(params:completion:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
