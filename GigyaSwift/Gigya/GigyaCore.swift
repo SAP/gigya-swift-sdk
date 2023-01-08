@@ -73,9 +73,13 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
 
         // load plist and make init
         let plistConfig = plistFactory.parsePlistConfig()
-
+        
+        // load cname data
+        config.cname = plistConfig?.cname
+        config.cnameEnable = plistConfig?.cnameEnable ?? false
+        
         if let apiKey = plistConfig?.apiKey, !apiKey.isEmpty {
-            initFor(apiKey: apiKey, apiDomain: plistConfig?.apiDomain)
+            initFor(apiKey: apiKey, apiDomain: plistConfig?.getApiDomain())
         }
 
         if let accountConfig: GigyaAccountConfig = plistConfig?.account {
