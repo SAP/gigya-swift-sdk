@@ -128,7 +128,7 @@ final class SsoLoginWrapper: NSObject, ProviderWrapperProtocol {
             return
         }
 
-        let json: [String : Any] = ["status": "ok", "accessToken": sessionToken, "tokenSecret": sessionSecret, "sessionExpiration": response["expires_in"] as? Int ?? 0]
+        let json: [String : Any] = ["status": "ok", "accessToken": sessionToken, "tokenSecret": sessionSecret, "sessionExpiration": String(response["expires_in"] as? Int ?? 0)]
 
         self.completionHandler?(json, nil)
     }
