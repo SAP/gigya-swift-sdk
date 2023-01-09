@@ -139,4 +139,5 @@ public enum NssEvents<ResponseType: GigyaAccountProtocol> {
     case success(screenId: String, action: NssAction, data: ResponseType?)
     case error(screenId: String, error: NetworkError)
     case canceled
+    case apiResult(screenId: String, action: NssAction, api: String, data: GigyaDictionary?)
 }

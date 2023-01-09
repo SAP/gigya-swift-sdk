@@ -11,9 +11,9 @@ import Flutter
 
 class ForgotPasswordAction<T: GigyaAccountProtocol>: Action<T> {
 
-    init(busnessApi: BusinessApiDelegate, jsEval: JsEvaluatorHelper) {
+    init(businessApi: BusinessApiDelegate, jsEval: JsEvaluatorHelper) {
         super.init()
-        self.busnessApi = busnessApi
+        self.businessApi = businessApi
         self.jsEval = jsEval
     }
 
@@ -22,7 +22,7 @@ class ForgotPasswordAction<T: GigyaAccountProtocol>: Action<T> {
 
         switch method {
         case .submit:
-            busnessApi?.callForgotPassword(params: params ?? [:], completion: self.delegate!.getGenericClosure())
+            businessApi?.callForgotPassword(params: params ?? [:], completion: self.delegate!.getGenericClosure())
         default:
             break
         }
