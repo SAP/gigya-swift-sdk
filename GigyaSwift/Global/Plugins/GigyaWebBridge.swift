@@ -296,8 +296,7 @@ public class GigyaWebBridge<T: GigyaAccountProtocol>: NSObject, WKScriptMessageH
 
                         self.businessApiService.accountService.account = dataEncoded
                         
-//                        self.completion(.onLogin(account: dataEncoded))
-                        self.interruptionManager.responseManager(params: params, data: dataEncoded, completion: self.completion)
+                        self.interruptionManager.responseManager(apiMethod: apiMethod, params: params, data: dataEncoded, completion: self.completion)
                     } catch let error {
                         self.invokeError(callbackId: "internal", error: .jsonParsingError(error: error))
                         
@@ -332,7 +331,7 @@ public class GigyaWebBridge<T: GigyaAccountProtocol>: NSObject, WKScriptMessageH
 
                 self.businessApiService.accountService.account = data
 
-                self.interruptionManager.responseManager(params: params, data: data, completion: self.completion)
+                self.interruptionManager.responseManager(apiMethod: apiMethod, params: params, data: data, completion: self.completion)
 //                self.completion(.onLogin(account: data))
             case .failure(let error):
                 GigyaLogger.log(with: self, message: "sendLoginRequest: error:\n\(error.localizedDescription)")
@@ -429,7 +428,7 @@ public class GigyaWebBridge<T: GigyaAccountProtocol>: NSObject, WKScriptMessageH
                     let dataEncoded = try? DecodeEncodeUtils.encodeToDictionary(obj: data)
                     self.invokeCallback(callbackId: callbackId, and: dataEncoded!.asJson)
                     
-                    self.interruptionManager.responseManager(params: params, data: data, completion: self.completion)
+                    self.interruptionManager.responseManager(apiMethod: apiMethod, params: params, data: data, completion: self.completion)
                     
                 case .failure(let data):
                     GigyaLogger.log(with: self, message: "sendOauthRequest: error:\n\(data.error.localizedDescription)")
