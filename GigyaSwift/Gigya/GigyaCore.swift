@@ -76,10 +76,9 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
         
         // load cname data
         config.cname = plistConfig?.cname
-        config.cnameEnable = plistConfig?.cnameEnable ?? false
         
         if let apiKey = plistConfig?.apiKey, !apiKey.isEmpty {
-            initFor(apiKey: apiKey, apiDomain: plistConfig?.getApiDomain())
+            initFor(apiKey: apiKey, apiDomain: plistConfig?.apiDomain, cname: plistConfig?.cname)
         }
 
         if let accountConfig: GigyaAccountConfig = plistConfig?.account {
@@ -100,15 +99,17 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
 
      - Parameter apiKey:     Client API-KEY
      - Parameter apiDomain:  Request Domain.
+     - Parameter cname:      Custom cname domain.
      */
 
-    public func initFor(apiKey: String, apiDomain: String? = nil) {
+    public func initFor(apiKey: String, apiDomain: String? = nil, cname: String? = nil) {
         guard !apiKey.isEmpty else {
             GigyaLogger.error(with: Gigya.self, message: "please make sure you call 'initWithApi' or add apiKey to plist file")
         }
 
         config.apiDomain = apiDomain ?? self.defaultApiDomain
         config.apiKey = apiKey
+        config.cname = cname
 
         businessApiService.apiService.getSDKConfig()
     }
