@@ -29,7 +29,7 @@ public final class ReportingService {
             return
         }
 
-        let url = "https://accounts.\(config.apiDomain)/"
+        let url = "https://\(config.cnameEnable ? "" : "accounts.")\(config.apiDomain)/"
         let params: [String: Any] = [
             "message": msg,
             "details": details,

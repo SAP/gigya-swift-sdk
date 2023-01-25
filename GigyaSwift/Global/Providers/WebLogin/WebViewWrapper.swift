@@ -79,7 +79,7 @@ final class WebLoginWrapper: NSObject, ProviderWrapperProtocol {
             loginPath = "socialize.addConnection"
         }
 
-        let urlString = "https://socialize.\(config?.apiDomain ?? "")/\(loginPath)"
+        let urlString = "https://\(config?.cnameEnable ?? false ? "" : "socialize.")\(config?.apiDomain ?? "")/\(loginPath)"
 
         var serverParams: [String: Any] = [:]
         serverParams["redirect_uri"] = "gsapi://login_result"
