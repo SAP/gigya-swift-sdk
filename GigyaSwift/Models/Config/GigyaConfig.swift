@@ -14,6 +14,7 @@ protocol GigyaConfigProtocol {
 
 public class GigyaConfig {
     public var apiKey: String?
+    
     internal var _apiDomain: String?
     public var apiDomain: String {
         get {
@@ -26,9 +27,14 @@ public class GigyaConfig {
         set {
             self._apiDomain = newValue
         }
-
     }
-    public var cname: String?
+    
+    public var cname: String? {
+        didSet {
+            self.cname = (cname ?? "").isEmpty ? nil : cname
+        }
+    }
+    
     public var cnameEnable: Bool {
         return cname != nil
     }
