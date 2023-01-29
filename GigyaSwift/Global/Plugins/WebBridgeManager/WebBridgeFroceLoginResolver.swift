@@ -11,7 +11,7 @@ import Foundation
 protocol WebBridgeResolver: BaseResolver {
     init(busnessApi: BusinessApiDelegate, dispose: @escaping () -> Void)
     
-    func resolve<T: GigyaAccountProtocol>(params: [String: String], data: T, completion: @escaping (GigyaPluginEvent<T>) -> Void)
+    func resolve<T: GigyaAccountProtocol>(apiMethod: String, params: [String: String], data: T, completion: @escaping (GigyaPluginEvent<T>) -> Void)
 }
 
 class WebBridgeFroceLoginResolver: WebBridgeResolver {
@@ -24,8 +24,8 @@ class WebBridgeFroceLoginResolver: WebBridgeResolver {
         self.busnessApi = busnessApi
     }
     
-    func resolve<T: GigyaAccountProtocol>(params: [String: String], data: T, completion: @escaping (GigyaPluginEvent<T>) -> Void) {
-        if params["loginMode"] == "connect" {
+    func resolve<T: GigyaAccountProtocol>(apiMethod: String, params: [String: String], data: T, completion: @escaping (GigyaPluginEvent<T>) -> Void) {
+        if params["loginMode"] == "connect" || apiMethod == GigyaDefinitions.API.finalizeRegistration {
             busnessApi.callGetAccount(dataType: T.self, params: [:], clearAccount: true) { [weak self] result in
                 switch result {
                 case .success(data: let userdata):
