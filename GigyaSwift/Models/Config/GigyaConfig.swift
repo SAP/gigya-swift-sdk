@@ -14,7 +14,30 @@ protocol GigyaConfigProtocol {
 
 public class GigyaConfig {
     public var apiKey: String?
-    public var apiDomain: String = InternalConfig.General.sdkDomain
+    
+    internal var _apiDomain: String?
+    public var apiDomain: String {
+        get {
+            if self.cnameEnable {
+                return cname!
+            }
+            return self._apiDomain ?? InternalConfig.Storage.defaultApiDomain
+        }
+        
+        set {
+            self._apiDomain = newValue
+        }
+    }
+    
+    public var cname: String? {
+        didSet {
+            self.cname = (cname ?? "").isEmpty ? nil : cname
+        }
+    }
+    
+    public var cnameEnable: Bool {
+        return cname != nil
+    }
 
     public var sessionVerificationInterval: Double?
 

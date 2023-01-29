@@ -49,7 +49,7 @@ class SignatureUtils {
         }
 
         if let session = session {
-            let sig = hmac(algorithm: .SHA1, url: oauth1SignatureBaseString(config.apiDomain ,path, newParams), secret: session.secret)
+            let sig = hmac(algorithm: .SHA1, url: oauth1SignatureBaseString(config.cnameEnable ? config.cname! : "\(path.components(separatedBy: ".").first!).\(config.apiDomain)" ,path, newParams), secret: session.secret)
 
             newParams["sig"] = sig
         }
@@ -59,7 +59,7 @@ class SignatureUtils {
     
     private static func oauth1SignatureBaseString(_ domain: String ,_ sMethod: String, _ paramsToSend: [String: Any]) -> String {
         let method = "POST"
-        let url =  URL(string: "https://\(sMethod.components(separatedBy: ".").first!).\(domain)/\(sMethod)")!
+        let url =  URL(string: "https://\(domain)/\(sMethod)")!
         let urlAllowed = NSCharacterSet(charactersIn: GigyaDefinitions.charactersAllowedInSig).inverted
 
         let params = paramsToSend.mapValues { value in return "\(value)" }
