@@ -68,7 +68,7 @@ class ProvidersLoginWrapper: NSObject {
         let disabledProviders = params?["disabledProviders"] ?? ""
 
         let providersString = providers.filter { $0.isSupported() }.map { "\($0)" }.joined(separator: ",")
-        var urlString = "https://socialize.\(config?.apiDomain ?? "")/gs/mobile/LoginUI.aspx?"
+        var urlString = "https://\(config?.cnameEnable ?? false ? "" : "socialize.")\(config?.apiDomain ?? "")/gs/mobile/LoginUI.aspx?"
         urlString.append("redirect_uri=gsapi://result&")
         urlString.append("requestType=login&")
         urlString.append("iosVersion=\(UIDevice.current.systemVersion)&")
