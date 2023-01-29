@@ -12,6 +12,7 @@ public struct GigyaResponseModel: Codable {
     public var statusCode: ApiStatusCode
     public var errorCode: Int
     public var callId: String
+
     public let errorMessage: String?
 
     // Mark: - Internal
