@@ -12,7 +12,7 @@ import WebKit
  The `GigyaWebBridge` acts as the optimal bridge between the Gigya webSdk and the iOS sdk. Supporting complex flows such as screensets, saml etc.
  */
 
-public class GigyaWebBridge<T: GigyaAccountProtocol>: NSObject, WKScriptMessageHandler {
+final public class GigyaWebBridge<T: GigyaAccountProtocol>: NSObject, WKScriptMessageHandler {
 
     let config: GigyaConfig
 
@@ -27,7 +27,7 @@ public class GigyaWebBridge<T: GigyaAccountProtocol>: NSObject, WKScriptMessageH
     let contentController = WKUserContentController()
 
     var webView: WKWebView?
-    weak var viewController: UIViewController?
+    var viewController: UIViewController?
 
     let JSEventHandler = "gsapi"
     let baseURL = "https://www.gigya.com"
@@ -57,6 +57,7 @@ public class GigyaWebBridge<T: GigyaAccountProtocol>: NSObject, WKScriptMessageH
      - Parameter pluginEvent:  Plugin completion `GigyaPluginEvent<T>`.
 
      */
+
 
     public func attachTo(webView: WKWebView, viewController: UIViewController, pluginEvent: @escaping (GigyaPluginEvent<T>) -> Void) {
         guard let apikey = config.apiKey else { return }
@@ -332,7 +333,6 @@ public class GigyaWebBridge<T: GigyaAccountProtocol>: NSObject, WKScriptMessageH
                 self.businessApiService.accountService.account = data
 
                 self.interruptionManager.responseManager(apiMethod: apiMethod, params: params, data: data, completion: self.completion)
-//                self.completion(.onLogin(account: data))
             case .failure(let error):
                 GigyaLogger.log(with: self, message: "sendLoginRequest: error:\n\(error.localizedDescription)")
                 self.interruptionManager.interruptionHandler(error: error)
@@ -466,5 +466,8 @@ public class GigyaWebBridge<T: GigyaAccountProtocol>: NSObject, WKScriptMessageH
             }
         }
     }
-
+    
+    deinit {
+        GigyaLogger.log(with: self, message: "deinit")
+    }
 }

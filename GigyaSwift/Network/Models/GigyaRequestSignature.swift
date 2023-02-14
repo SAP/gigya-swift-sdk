@@ -27,6 +27,7 @@ struct GigyaRequestSignature: Codable {
         self.timestamp = timestamp
         self.ucid = ucid
         self.gmid = gmid
+
         self.apikey = apikey
     }
 

@@ -40,6 +40,8 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
         return self.container.resolve(PushNotificationsServiceProtocol.self)!
     }()
 
+    private var pluginViewWrapper: PluginViewWrapper<T>?
+    
     private let container: IOCContainer
 
     // MARK: - Biometric service
@@ -432,10 +434,14 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
     */
 
     public func showScreenSet(with name: String, viewController: UIViewController, params: [String: Any] = [:], completion: @escaping (GigyaPluginEvent<T>) -> Void) {
-        let webBridge = createWebBridge()
+        var webBridge = createWebBridge()
 
-        let wrapper = PluginViewWrapper(config: config, persistenceService: persistenceService, sessionService: sessionService, businessApiService: businessApiService, webBridge: webBridge, plugin: "accounts.screenSet", params: params, completion: completion)
-        wrapper.presentPluginController(viewController: viewController, dataType: T.self, screenSet: name)
+        pluginViewWrapper = PluginViewWrapper(config: config, persistenceService: persistenceService, sessionService: sessionService, businessApiService: businessApiService, webBridge: webBridge, plugin: "accounts.screenSet", params: params, completion: completion)
+        pluginViewWrapper?.presentPluginController(viewController: viewController, dataType: T.self, screenSet: name)
+        
+        pluginViewWrapper?.didFinish = { [weak self] in
+            self?.pluginViewWrapper = nil
+        }
     }
 
     // MARK: - Interruptions
