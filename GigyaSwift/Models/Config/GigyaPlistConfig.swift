@@ -11,6 +11,7 @@ import Foundation
 struct PlistConfig: Decodable {
     let apiKey: String?
     let apiDomain: String?
+    let cname: String?
     let touchIDText: String?
     let sessionVerificationInterval: Double?
     let account: GigyaAccountConfig?
@@ -21,6 +22,14 @@ struct PlistConfig: Decodable {
         case touchIDText = "GigyaTouchIDMessage"
         case sessionVerificationInterval = "GigyaSessionVerificationInterval"
         case account = "GigyaAccount"
+        case cname = "GigyaCname"
+    }
+    
+    func getApiDomain() -> String? {
+        if cname != nil {
+            return cname
+        }
+        return apiDomain
     }
 }
 

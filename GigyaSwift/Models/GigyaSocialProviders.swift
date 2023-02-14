@@ -79,7 +79,7 @@ public enum GigyaSocialProviders {
         case .sinaWeibo:
             return "sina weibo"
         case .yahooJapan:
-            return "yahoo japan"
+            return "yahoojapan"
         case .web(let provider):
             return provider
         case .oidc(let provider):

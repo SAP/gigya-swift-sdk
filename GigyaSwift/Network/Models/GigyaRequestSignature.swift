@@ -28,9 +28,7 @@ struct GigyaRequestSignature: Codable {
         self.ucid = ucid
         self.gmid = gmid
 
-        if oauthToken == nil {
-            self.apikey = apikey
-        }
+        self.apikey = apikey
     }
 
     init(apikey: String, ucid: String?, gmid: String?) {
