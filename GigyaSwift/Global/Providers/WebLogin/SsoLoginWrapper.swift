@@ -96,7 +96,7 @@ final class SsoLoginWrapper: NSObject, ProviderWrapperProtocol {
     }
 
     private func getUrl(path: String = "") -> String {
-        return "\(EndPoints.fidmUrl)\(self.config?.apiDomain ?? "")\(EndPoints.loginPath)\(self.config?.apiKey ?? "")/\(path)"
+        return "\(config!.cnameEnable ? "https://": EndPoints.fidmUrl)\(self.config?.apiDomain ?? "")\(EndPoints.loginPath)\(self.config?.apiKey ?? "")/\(path)"
     }
 
     private func getSessionFrom(code: String) {

@@ -13,11 +13,11 @@ final class PluginViewController<T: GigyaAccountProtocol>: GigyaWebViewControlle
 
     let contentController = WKUserContentController()
 
-    var webBridge: GigyaWebBridge<T>
+    var webBridge: GigyaWebBridge<T>?
 
     let pluginEvent: (GigyaPluginEvent<T>) -> Void
 
-    init(webBridge: GigyaWebBridge<T>, pluginEvent: @escaping (GigyaPluginEvent<T>) -> Void) {
+    init(webBridge: GigyaWebBridge<T>?, pluginEvent: @escaping (GigyaPluginEvent<T>) -> Void) {
         self.webBridge = webBridge
         self.pluginEvent = pluginEvent
 
@@ -28,14 +28,14 @@ final class PluginViewController<T: GigyaAccountProtocol>: GigyaWebViewControlle
 
         super.init(configuration: webViewConfiguration)
 
-        self.webBridge.attachTo(webView: self.webView, viewController: self, pluginEvent: pluginEvent)
+        self.webBridge?.attachTo(webView: self.webView, viewController: self, pluginEvent: pluginEvent)
 
-        self.webBridge.viewController = self
+        self.webBridge?.viewController = self
         self.webView.navigationDelegate = self
         self.webView.uiDelegate = self
 
-        userDidCancel = {
-            pluginEvent(.onCanceled)
+        userDidCancel = { [weak self] in
+            self?.pluginEvent(.onCanceled)
         }
     }
 
@@ -72,6 +72,11 @@ final class PluginViewController<T: GigyaAccountProtocol>: GigyaWebViewControlle
     }
 
     deinit {
+        self.contentController.removeAllUserScripts()
+        if #available(iOS 14.0, *) {
+            self.contentController.removeAllScriptMessageHandlers()
+        }
+
         GigyaLogger.log(with: self, message: "deinit")
     }
 }

@@ -18,7 +18,6 @@ final class NetworkProvider {
 
     var urlSession = URLSession.sharedInternal
 
-
     init(config: GigyaConfig, persistenceService: PersistenceService, sessionService: SessionServiceProtocol) {
         self.config = config
         self.persistenceService = persistenceService
@@ -111,7 +110,15 @@ final class NetworkProvider {
     }
 
     private func makeUrl(with path: String) -> String {
-        let url = "https://\(path.split(separator: ".")[0]).\(self.config!.apiDomain)"
+        guard let config = self.config else {
+            return "https://\(path.split(separator: ".")[0]).\(InternalConfig.General.sdkDomain)"
+        }
+        
+        guard let cname = config.cname else {
+            return "https://\(path.split(separator: ".")[0]).\(config.apiDomain)"
+        }
+        
+        let url = config.cnameEnable ? "https://\(cname)": "https://\(path.split(separator: ".")[0]).\(config.apiDomain)"
         return url
     }
 

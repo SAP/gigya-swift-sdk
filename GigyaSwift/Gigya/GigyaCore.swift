@@ -40,6 +40,8 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
         return self.container.resolve(PushNotificationsServiceProtocol.self)!
     }()
 
+    private var pluginViewWrapper: PluginViewWrapper<T>?
+    
     private let container: IOCContainer
 
     // MARK: - Biometric service
@@ -73,9 +75,12 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
 
         // load plist and make init
         let plistConfig = plistFactory.parsePlistConfig()
-
+        
+        // load cname data
+        config.cname = plistConfig?.cname
+        
         if let apiKey = plistConfig?.apiKey, !apiKey.isEmpty {
-            initFor(apiKey: apiKey, apiDomain: plistConfig?.apiDomain)
+            initFor(apiKey: apiKey, apiDomain: plistConfig?.apiDomain, cname: plistConfig?.cname)
         }
 
         if let accountConfig: GigyaAccountConfig = plistConfig?.account {
@@ -96,15 +101,17 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
 
      - Parameter apiKey:     Client API-KEY
      - Parameter apiDomain:  Request Domain.
+     - Parameter cname:      Custom cname domain.
      */
 
-    public func initFor(apiKey: String, apiDomain: String? = nil) {
+    public func initFor(apiKey: String, apiDomain: String? = nil, cname: String? = nil) {
         guard !apiKey.isEmpty else {
             GigyaLogger.error(with: Gigya.self, message: "please make sure you call 'initWithApi' or add apiKey to plist file")
         }
 
         config.apiDomain = apiDomain ?? self.defaultApiDomain
         config.apiKey = apiKey
+        config.cname = cname
 
         businessApiService.apiService.getSDKConfig()
     }
@@ -427,10 +434,14 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
     */
 
     public func showScreenSet(with name: String, viewController: UIViewController, params: [String: Any] = [:], completion: @escaping (GigyaPluginEvent<T>) -> Void) {
-        let webBridge = createWebBridge()
+        var webBridge = createWebBridge()
 
-        let wrapper = PluginViewWrapper(config: config, persistenceService: persistenceService, sessionService: sessionService, businessApiService: businessApiService, webBridge: webBridge, plugin: "accounts.screenSet", params: params, completion: completion)
-        wrapper.presentPluginController(viewController: viewController, dataType: T.self, screenSet: name)
+        pluginViewWrapper = PluginViewWrapper(config: config, persistenceService: persistenceService, sessionService: sessionService, businessApiService: businessApiService, webBridge: webBridge, plugin: "accounts.screenSet", params: params, completion: completion)
+        pluginViewWrapper?.presentPluginController(viewController: viewController, dataType: T.self, screenSet: name)
+        
+        pluginViewWrapper?.didFinish = { [weak self] in
+            self?.pluginViewWrapper = nil
+        }
     }
 
     // MARK: - Interruptions
