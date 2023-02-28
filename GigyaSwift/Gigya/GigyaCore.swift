@@ -438,10 +438,6 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
 
         pluginViewWrapper = PluginViewWrapper(config: config, persistenceService: persistenceService, sessionService: sessionService, businessApiService: businessApiService, webBridge: webBridge, plugin: "accounts.screenSet", params: params, completion: completion)
         pluginViewWrapper?.presentPluginController(viewController: viewController, dataType: T.self, screenSet: name)
-        
-        pluginViewWrapper?.didFinish = { [weak self] in
-            self?.pluginViewWrapper = nil
-        }
     }
 
     // MARK: - Interruptions

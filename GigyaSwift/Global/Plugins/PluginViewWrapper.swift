@@ -32,8 +32,6 @@ class PluginViewWrapper<T: GigyaAccountProtocol>: PluginViewWrapperProtocol {
     
     var eventHandler: ((GigyaPluginEvent<T>) -> Void)?
     
-    var didFinish: () -> Void = { }
-
     init(config: GigyaConfig, persistenceService: PersistenceService, sessionService: SessionServiceProtocol, businessApiService: BusinessApiServiceProtocol, webBridge: GigyaWebBridge<T>,
          plugin: String, params: [String: Any], completion: @escaping (GigyaPluginEvent<T>) -> Void) {
         self.config = config
@@ -76,7 +74,6 @@ class PluginViewWrapper<T: GigyaAccountProtocol>: PluginViewWrapperProtocol {
                 self?.webBridge?.viewController = nil
                 self?.webBridge = nil
                 self?.completion(result)
-                self?.didFinish()
             default:
                 break
             }
