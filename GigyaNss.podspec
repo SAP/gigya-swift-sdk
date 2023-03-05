@@ -9,7 +9,7 @@ Pod::Spec.new do |spec|
                         authentication methods from the standard login flow
                         DESC
 
-  spec.source        = { :git => 'https://github.com/SAP/gigya-swift-sdk.git', :tag => 'nss/v1.6.0' }
+  spec.source        = { :git => 'https://github.com/SAP/gigya-swift-sdk.git', :tag => 'nss/v1.7.0' }
   spec.module_name   = 'GigyaNss'
   spec.swift_version = '5.2'
 
@@ -22,7 +22,7 @@ Pod::Spec.new do |spec|
      ss.source_files       = 'GigyaNss/GigyaNss/*.swift', 'GigyaNss/GigyaNss/*/*.swift', 'GigyaNss/GigyaNss/*/*/*.swift'
      ss.exclude_files = 'GigyaNss/GigyaNss/services/Otp/OtpService.swift'
 
-     ss.dependency 'Gigya', '>= 1.4.1'
+     ss.dependency 'Gigya', '>= 1.5.1'
      ss.framework      = 'SystemConfiguration'
      ss.library = 'c++', 'z'
      ss.vendored_frameworks = 'GigyaNss/Flutter/Debug/Flutter.xcframework', 'GigyaNss/Flutter/Debug/App.xcframework'
