@@ -20,6 +20,8 @@ protocol WebBridgeInterruptionResolverFactoryProtocol {
 
 class WebBridgeInterruptionManager: WebBridgeInterruptionResolverFactoryProtocol {
     private let busnessApi: BusinessApiDelegate
+    
+    private let accountService: AccountServiceProtocol
 
     private var resolver: WebBridgeResolver?
     
@@ -31,12 +33,14 @@ class WebBridgeInterruptionManager: WebBridgeInterruptionResolverFactoryProtocol
         }
     }
     
-    init(busnessApi: BusinessApiDelegate) {
+    init(busnessApi: BusinessApiDelegate, accountService: AccountServiceProtocol) {
         self.busnessApi = busnessApi
+        self.accountService = accountService
     }
     
     func responseManager<T: GigyaAccountProtocol>(apiMethod: String, params: [String: String], data: T, completion: @escaping (GigyaPluginEvent<T>) -> Void) {
         guard let resolver = resolver else {
+            accountService.account = data
             completion(.onLogin(account: data))
             return
         }

@@ -434,14 +434,10 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
     */
 
     public func showScreenSet(with name: String, viewController: UIViewController, params: [String: Any] = [:], completion: @escaping (GigyaPluginEvent<T>) -> Void) {
-        var webBridge = createWebBridge()
+        let webBridge = createWebBridge()
 
         pluginViewWrapper = PluginViewWrapper(config: config, persistenceService: persistenceService, sessionService: sessionService, businessApiService: businessApiService, webBridge: webBridge, plugin: "accounts.screenSet", params: params, completion: completion)
         pluginViewWrapper?.presentPluginController(viewController: viewController, dataType: T.self, screenSet: name)
-        
-        pluginViewWrapper?.didFinish = { [weak self] in
-            self?.pluginViewWrapper = nil
-        }
     }
 
     // MARK: - Interruptions
