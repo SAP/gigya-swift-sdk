@@ -185,8 +185,9 @@ final class GigyaIOCContainer<T: GigyaAccountProtocol>: GigyaContainerProtocol {
         
         container.register(service: WebBridgeInterruptionResolverFactoryProtocol.self) { resolver in
             let businessService = resolver.resolve(BusinessApiDelegate.self)
+            let accountService = resolver.resolve(AccountServiceProtocol.self)
 
-            return WebBridgeInterruptionManager(busnessApi: businessService!)
+            return WebBridgeInterruptionManager(busnessApi: businessService!, accountService: accountService!)
         }
 
         container.register(service: GigyaCore<T>.self) { resolver in
