@@ -435,6 +435,12 @@ If you experience problems and notice errCode -6 from WeChat while debugging, it
 ## SSO (Single Sign-on)
 Single Sign-On (SSO) is an authentication method that allows a user to log in to multiple applications that reside within the same site group with a single login credential.
 
+When using the mobile SSO feature, applications within the same group are able to share a valid session with the device browser.
+All required applications must be set under the same developer account.
+Supported flows:
+Login via SSO feature on mobile. All applications within the same developer account can share the session using the SSO method. The session is not shared with the system browser.
+Existing session in the system browser. All applications within the same developer account can obtain the session using the SSO method.
+
 Requirements:
 1. Mobile SSO requires iOS 13+.
 2. You will be required to setup you central login page on your site’s console.
