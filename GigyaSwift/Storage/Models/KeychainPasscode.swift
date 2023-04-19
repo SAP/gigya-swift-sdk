@@ -23,7 +23,7 @@ internal enum KeychainMode {
         case .biometric:
             return kSecAttrAccessibleWhenUnlocked
         case .regular:
-            return kSecAttrAccessibleAlwaysThisDeviceOnly
+            return kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly
         }
     }
 
