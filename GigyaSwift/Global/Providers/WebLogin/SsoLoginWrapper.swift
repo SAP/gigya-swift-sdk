@@ -28,7 +28,7 @@ final class SsoLoginWrapper: NSObject, ProviderWrapperProtocol {
     private var navigationController: UINavigationController?
 
     private var completionHandler: ((_ jsonData: [String: Any]?, _ error: String?) -> Void)? = nil
-
+    
     private var pkceCode: PKCEHelper?
 
     static let callbackURLScheme = "gsapi"
@@ -59,7 +59,7 @@ final class SsoLoginWrapper: NSObject, ProviderWrapperProtocol {
 
     func login(params: [String: Any]?, viewController: UIViewController?,
                completion: @escaping (_ jsonData: [String: Any]?, _ error: String?) -> Void) {
-
+        
         loadProvider(params: params ?? [:])
 
         completionHandler = completion
@@ -87,7 +87,9 @@ final class SsoLoginWrapper: NSObject, ProviderWrapperProtocol {
         requestParams["scope"] = "device_sso"
         requestParams["code_challenge"] = pkceCode?.challenge ?? ""
         requestParams["code_challenge_method"] = "S256"
-        requestParams.merge(params) { _, new  in new }
+        requestParams["rpContext"] = params.asJson
+
+//        requestParams.merge(params) { _, new  in new }
         requestParams.removeValue(forKey: "secret")
 
         let dataURL = URL(string: "\(urlString)?\(requestParams.asURI)")!
