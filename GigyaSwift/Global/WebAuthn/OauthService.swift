@@ -47,7 +47,7 @@ class OauthService {
     @available(iOS 13.0.0, *)
     private func token<T: Codable>(continuation: CheckedContinuation<GigyaLoginResult<T>, Never>, code: String) {
         var params: [String: Any] = ["grant_type": "authorization_code", "code": code]
-        params.merge(params) { _, new  in new }
+        params.merge(self.params) { _, new  in new }
         
         self.businessApiService.send(dataType: T.self, api: GigyaDefinitions.Oauth.token, params: params) { [weak self] res in
             guard let self = self else { return }
