@@ -87,9 +87,15 @@ final class SsoLoginWrapper: NSObject, ProviderWrapperProtocol {
         requestParams["scope"] = "device_sso"
         requestParams["code_challenge"] = pkceCode?.challenge ?? ""
         requestParams["code_challenge_method"] = "S256"
-        requestParams["rpContext"] = params.asJson
-
-//        requestParams.merge(params) { _, new  in new }
+        
+        let paramsMapAsJson = params.mapValues {
+            if let p = $0 as? [String: Any] {
+                return p.asJson
+            }
+            return String(describing: $0)
+        }
+        
+        requestParams.merge(paramsMapAsJson) { _, new  in new }
         requestParams.removeValue(forKey: "secret")
 
         let dataURL = URL(string: "\(urlString)?\(requestParams.asURI)")!
