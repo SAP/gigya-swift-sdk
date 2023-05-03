@@ -433,8 +433,8 @@ If you experience problems and notice errCode -6 from WeChat while debugging, it
 ```
 
 ## SSO (Single Sign-on)
-Single Sign-On (SSO) is an authentication method that allows a user to log in to multiple applications that reside within the same site group with a single login credential.
-
+Single Sign-On (SSO) is an authentication method that allows a user to log in to multiple applications that reside within the same site group using a single login credential. When using the mobile SSO feature, applications within the same group are able to share a valid session with the device browser.
+	
 Requirements:
 1. Mobile SSO requires iOS 13+.
 2. You will be required to setup you central login page on your site’s console.
@@ -455,6 +455,20 @@ Gigya.sharedInstance().sso(viewController: viewController) { result in
                     break
                 }
             }
+```
+The available parameters map is a baseline for adding additional parameters to the initial authentication endpoint. Currently supported parameters: • “rp_context” - An available dynamic object which will be JSON serialized upon request. For more information. Usage example:
+
+```
+gigya.sso(viewController: self, params: [“rp_context”: [“context_key”: “context_value”]]) {[weak self] res in
+      switch res {
+      case .success(let data):
+	//...
+        print(data)
+      case .failure(let loginApiError):
+	//...
+        print(loginApiError.error.localizedDescription)
+      }
+    }	
 ```
 
 ## FIDO/WebAuthn Authentication
@@ -801,8 +815,8 @@ gigya.showScreenSet(with: "Default-RegistrationLogin", viewController: self) { r
 }
 ```
 
-The "showScreenSets" method available parameters include all the parameters the web screen-sets plugin can receive.
-
+The available parameters for the “showScreenSetts” method are the same as those for the webSDK, as described here: https://help.sap.com/docs/SAP_CUSTOMER_DATA_CLOUD/8b8d6fffe113457094a17701f63e3d6a/413a5b7170b21014bbc5a10ce4041860.html
+		  
 ### GigyaPluginEvent Enum
 
 This return object is an enum which is aligned to all optional plugin events fired by the screen-sets plugin.
