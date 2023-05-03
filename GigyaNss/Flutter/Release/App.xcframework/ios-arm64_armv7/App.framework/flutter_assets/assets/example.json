@@ -80,7 +80,8 @@
       "error-invalid-format": "Invalid format",
       "error-schema-required-validation": "Validation failed. Field is required",
       "error-schema-regex-validation": "Validation failed on regular expression",
-      "error-schema-checkbox-validation": "Validation failed. boolean field"
+      "error-schema-checkbox-validation": "Validation failed. boolean field",
+      "confirm-password": "Confirm password"
     },
     "es": {
       "login": "Iniciar sesión",
@@ -117,7 +118,7 @@
     }
   },
   "routing": {
-    "initial": "account-update",
+    "initial": "register",
     "default": {
       "onSuccess": "_dismiss",
       "onPendingEmailVerification": "_dismiss"
@@ -247,6 +248,9 @@
           "type": "passwordInput",
           "textKey": "common-password",
           "theme": "input",
+          "confirmPassword": true,
+          "confirmPasswordPlaceholder": "confirm-password",
+          "stack": "horizontal",
           "style": {
             "margin": [
               16,
@@ -254,7 +258,6 @@
               16,
               4
             ],
-            "cornerRadius": 22,
             "borderSize": 1
           },
           "validations": {
@@ -321,31 +324,26 @@
       "alignment": "start",
       "children": [
         {
-          "type": "container",
-          "stack": "horizontal",
-          "alignment": "start",
+          "type": "label",
+          "textKey": "register-title",
           "style": {
-            "margin": 0
-          },
-          "children": [
-            {
-              "type": "label",
-              "textKey": "register-title",
-              "style": {
-                "margin": 16
-              }
-            }
-          ]
+            "margin": 16
+          }
         },
         {
           "bind": "#email",
           "type": "emailInput",
           "textKey": "common-email",
-          "theme": "input"
+          "theme": "input",
+          "validations": {
+            "required": {
+              "enabled": true,
+              "errorKey": "error-required-field"
+            }}
         },
         {
           "type": "container",
-          "stack": "horizontal",
+         "stack": "horizontal",
           "alignment": "start",
           "style": {
             "margin": 0
@@ -369,7 +367,15 @@
           "bind": "#password",
           "type": "passwordInput",
           "textKey": "common-password",
-          "theme": "input"
+          "theme": "input",
+          "confirmPassword": true,
+          "confirmPasswordPlaceholder": "confirm-password",
+          "stack": "vertical",
+          "validations": {
+            "required": {
+              "enabled": true,
+              "errorKey": "error-required-field"
+            }}
         },
         {
           "type": "label",
