@@ -10,6 +10,7 @@ import Foundation
 
 class OauthService {
     let businessApiService: BusinessApiServiceProtocol
+    var params: [String: Any] = [:]
 
     init(businessApiService: BusinessApiServiceProtocol) {
         self.businessApiService = businessApiService
@@ -45,7 +46,10 @@ class OauthService {
     
     @available(iOS 13.0.0, *)
     private func token<T: Codable>(continuation: CheckedContinuation<GigyaLoginResult<T>, Never>, code: String) {
-        self.businessApiService.send(dataType: T.self, api: GigyaDefinitions.Oauth.token, params: ["grant_type": "authorization_code", "code": code]) { [weak self] res in
+        var params: [String: Any] = ["grant_type": "authorization_code", "code": code]
+        params.merge(self.params) { _, new  in new }
+        
+        self.businessApiService.send(dataType: T.self, api: GigyaDefinitions.Oauth.token, params: params) { [weak self] res in
             guard let self = self else { return }
 
             switch res {
