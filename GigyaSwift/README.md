@@ -131,6 +131,14 @@ Supplying Api-Key & Api-Domain
 
 Gigya.sharedInstance().initFor(apiKey: "YOUR-API-KEY", apiDomain: "YOUR-API-DOMAIN")
 ```
+### CNAME initialization
+
+When using implicit initialization of the SDK, add the "cname" property to your app’s plist file.
+
+When using explicit initialization of the SDK, you can use the following method:
+```swift
+public  func  initFor(apiKey: String, apiDomain: String?  =  nil, cname: String?  =  nil)
+```
 
 ## Sending a Request
 
