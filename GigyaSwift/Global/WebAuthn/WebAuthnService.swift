@@ -137,11 +137,12 @@ public class WebAuthnService<T: GigyaAccountProtocol> {
     // MARK: Login flow
         
     @available(iOS 16.0.0, *)
-    public func login(viewController: UIViewController) async -> GigyaLoginResult<T> {
+    public func login(viewController: UIViewController, params: [String: Any] = [:]) async -> GigyaLoginResult<T> {
         if isActiveContinuation {
             return .failure(.init(error: .providerError(data: "cancelled")))
         }
         isActiveContinuation.toggle()
+        oauthService.params = params
         
         let assertionOptions = await getAssertionOptions()
         
