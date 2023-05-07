@@ -267,7 +267,7 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
      - Parameter completion:        Response `GigyaLoginResult<Bool>`.
      */
 
-    func isAvailable(loginId: String, completion: @escaping (GigyaApiResult<Bool>) -> Void) {
+    public func isAvailable(loginId: String, completion: @escaping (GigyaApiResult<Bool>) -> Void) {
         businessApiService.isAvailable(loginId: loginId, completion: completion)
     }
 
@@ -278,7 +278,7 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
      - Parameter completion:        Response `GigyaLoginResult<Bool>`.
      */
 
-    func verifyLogin(UID: String, params: [String: Any] = [:], completion: @escaping (GigyaApiResult<T>) -> Void) {
+    public func verifyLogin(UID: String, params: [String: Any] = [:], completion: @escaping (GigyaApiResult<T>) -> Void) {
         businessApiService.verifyLogin(UID: UID, params: params, completion: completion)
     }
 
