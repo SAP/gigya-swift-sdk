@@ -442,8 +442,8 @@
             filePath = "TestApp/UI/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "187"
-            endingLineNumber = "187"
+            startingLineNumber = "189"
+            endingLineNumber = "189"
             landmarkName = "showScreenSet(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -726,10 +726,42 @@
             filePath = "TestApp/UI/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "660"
-            endingLineNumber = "660"
-            landmarkName = "getAccount(_sender:)"
+            startingLineNumber = "662"
+            endingLineNumber = "662"
+            landmarkName = "loginWithProviders(_:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "EC9506FD-6088-4265-97E0-8B7AB9182B1B - eca0b13ed814fa11"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TestApp.ViewController.logout(Any) -&gt; ()"
+                  moduleName = "TestApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/i507698/Documents/gigya-swift-sdk/TestApp/UI/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "663"
+                  endingLineNumber = "663"
+                  offsetFromSymbolStart = "44">
+               </Location>
+               <Location
+                  uuid = "EC9506FD-6088-4265-97E0-8B7AB9182B1B - 122a239a801200fa"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TestApp.ViewController.loginWithProviders(Any) -&gt; ()"
+                  moduleName = "TestApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/i507698/Documents/gigya-swift-sdk/TestApp/UI/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "663"
+                  endingLineNumber = "663"
+                  offsetFromSymbolStart = "972">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -918,8 +950,8 @@
             filePath = "TestApp/UI/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "153"
-            endingLineNumber = "153"
+            startingLineNumber = "155"
+            endingLineNumber = "155"
             landmarkName = "showScreenSet(_:)"
             landmarkType = "7">
             <Locations>
@@ -966,8 +998,8 @@
             filePath = "TestApp/UI/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "155"
-            endingLineNumber = "155"
+            startingLineNumber = "157"
+            endingLineNumber = "157"
             landmarkName = "showScreenSet(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -998,8 +1030,8 @@
             filePath = "TestApp/UI/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "156"
-            endingLineNumber = "156"
+            startingLineNumber = "158"
+            endingLineNumber = "158"
             landmarkName = "showScreenSet(_:)"
             landmarkType = "7">
          </BreakpointContent>
