@@ -180,6 +180,14 @@ FLUTTER_DARWIN_EXPORT
 - (id<FlutterPluginRegistry>)pluginRegistry;
 
 /**
+ * A wrapper around UIAccessibilityIsVoiceOverRunning().
+ *
+ * As a C function, UIAccessibilityIsVoiceOverRunning() cannot be mocked in testing. Mock
+ * this class method to testing features depends on UIAccessibilityIsVoiceOverRunning().
+ */
++ (BOOL)isUIAccessibilityIsVoiceOverRunning;
+
+/**
  * True if at least one frame has rendered and the ViewController has appeared.
  *
  * This property is reset to false when the ViewController disappears. It is
@@ -189,14 +197,16 @@ FLUTTER_DARWIN_EXPORT
 
 /**
  * Specifies the view to use as a splash screen. Flutter's rendering is asynchronous, so the first
- * frame rendered by the Flutter application might not immediately appear when theFlutter view is
+ * frame rendered by the Flutter application might not immediately appear when the Flutter view is
  * initially placed in the view hierarchy. The splash screen view will be used as
  * a replacement until the first frame is rendered.
  *
  * The view used should be appropriate for multiple sizes; an autoresizing mask to
  * have a flexible width and height will be applied automatically.
+ *
+ * Set to nil to remove the splash screen view.
  */
-@property(strong, nonatomic) UIView* splashScreenView;
+@property(strong, nonatomic, nullable) UIView* splashScreenView;
 
 /**
  * Attempts to set the `splashScreenView` property from the `UILaunchStoryboardName` from the
