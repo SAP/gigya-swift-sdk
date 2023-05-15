@@ -442,8 +442,8 @@
             filePath = "TestApp/UI/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "189"
-            endingLineNumber = "189"
+            startingLineNumber = "190"
+            endingLineNumber = "190"
             landmarkName = "showScreenSet(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -726,26 +726,11 @@
             filePath = "TestApp/UI/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "662"
-            endingLineNumber = "662"
+            startingLineNumber = "663"
+            endingLineNumber = "663"
             landmarkName = "loginWithProviders(_:)"
             landmarkType = "7">
             <Locations>
-               <Location
-                  uuid = "EC9506FD-6088-4265-97E0-8B7AB9182B1B - eca0b13ed814fa11"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "TestApp.ViewController.logout(Any) -&gt; ()"
-                  moduleName = "TestApp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/i507698/Documents/gigya-swift-sdk/TestApp/UI/ViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "663"
-                  endingLineNumber = "663"
-                  offsetFromSymbolStart = "44">
-               </Location>
                <Location
                   uuid = "EC9506FD-6088-4265-97E0-8B7AB9182B1B - 122a239a801200fa"
                   shouldBeEnabled = "Yes"
@@ -759,6 +744,36 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "663"
                   endingLineNumber = "663"
+                  offsetFromSymbolStart = "916">
+               </Location>
+               <Location
+                  uuid = "EC9506FD-6088-4265-97E0-8B7AB9182B1B - 122a239a801200db"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TestApp.ViewController.loginWithProviders(Any) -&gt; ()"
+                  moduleName = "TestApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/i507698/Documents/gigya-swift-sdk/TestApp/UI/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "664"
+                  endingLineNumber = "664"
+                  offsetFromSymbolStart = "916">
+               </Location>
+               <Location
+                  uuid = "EC9506FD-6088-4265-97E0-8B7AB9182B1B - 122a239a801200db"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TestApp.ViewController.loginWithProviders(Any) -&gt; ()"
+                  moduleName = "TestApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/i507698/Documents/gigya-swift-sdk/TestApp/UI/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "664"
+                  endingLineNumber = "664"
                   offsetFromSymbolStart = "972">
                </Location>
             </Locations>
@@ -950,8 +965,8 @@
             filePath = "TestApp/UI/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "155"
-            endingLineNumber = "155"
+            startingLineNumber = "156"
+            endingLineNumber = "156"
             landmarkName = "showScreenSet(_:)"
             landmarkType = "7">
             <Locations>
@@ -998,8 +1013,8 @@
             filePath = "TestApp/UI/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "157"
-            endingLineNumber = "157"
+            startingLineNumber = "158"
+            endingLineNumber = "158"
             landmarkName = "showScreenSet(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1030,8 +1045,8 @@
             filePath = "TestApp/UI/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "158"
-            endingLineNumber = "158"
+            startingLineNumber = "159"
+            endingLineNumber = "159"
             landmarkName = "showScreenSet(_:)"
             landmarkType = "7">
          </BreakpointContent>
