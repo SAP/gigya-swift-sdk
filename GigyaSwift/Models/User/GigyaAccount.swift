@@ -36,7 +36,7 @@ public protocol GigyaAccountProtocol: Codable {
     var registeredTimestamp: Double? { get set }
 
     //    private SessionInfo sessionInfo;
-    var signatureTimestamp: String? { get set }
+//    var signatureTimestamp: String? { get set }
     var socialProviders: String? { get set }
     var verified: String? { get set }
     var verifiedTimestamp: Double? { get set }
