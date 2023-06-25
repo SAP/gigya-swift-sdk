@@ -11,17 +11,54 @@
   "customThemes": {
     "title": {
       "fontWeight": "bold",
-      "fontSize": 18
+      "background": "transparent",
+      "fontSize": 18,
+      "margin": [
+        16,
+        8,
+        16,
+        8
+      ]
     },
     "subtitle": {
       "fontSize": 16
     },
     "input": {
+      "cornerRadius": 4,
+      "borderSize": 1,
       "margin": [
         16,
         8,
-        15,
+        16,
         8
+      ]
+    },
+    "checkbox": {
+      "background": "transparent",
+      "margin": [
+        16,
+        8,
+        16,
+        8
+      ]
+    },
+    "radio": {
+      "background": "transparent",
+      "margin": [
+        16,
+        8,
+        16,
+        8
+      ]
+    },
+    "container": {
+      "background": "grey",
+      "cornerRadius": 22,
+      "margin": [
+        16,
+        44,
+        16,
+        0
       ]
     },
     "flatButton": {
@@ -36,7 +73,7 @@
       ]
     },
     "raisedButton": {
-      "fontSize": 14,
+      "fontSize": 18,
       "fontColor": "white",
       "fontWeight": 4,
       "elevation": 4,
@@ -44,10 +81,18 @@
       "size": [
         300,
         40
-      ]
+      ],
+      "margin": [
+        16,
+        8,
+        16,
+        8
+      ],
+      "cornerRadius": 2
     }
   },
   "useSchemaValidations": false,
+  "platformAware": false,
   "i18n": {
     "_default": {
       "login": "Login",
@@ -81,7 +126,8 @@
       "error-schema-required-validation": "Validation failed. Field is required",
       "error-schema-regex-validation": "Validation failed on regular expression",
       "error-schema-checkbox-validation": "Validation failed. boolean field",
-      "confirm-password": "Confirm password"
+      "confirm-password": "Confirm password",
+      "choose-guitar": "Select"
     },
     "es": {
       "login": "Iniciar sesión",
@@ -118,7 +164,7 @@
     }
   },
   "routing": {
-    "initial": "register",
+    "initial": "login",
     "default": {
       "onSuccess": "_dismiss",
       "onPendingEmailVerification": "_dismiss"
@@ -258,6 +304,7 @@
               16,
               4
             ],
+
             "borderSize": 1
           },
           "validations": {
@@ -802,6 +849,10 @@
           "type": "phoneInput",
           "bind": "#phoneNumber",
           "textKey": "enter your phone number",
+          "disabled": false,
+          "countries": {
+            "showIcons": false
+          },
           "style": {
             "margin": [
               16,
