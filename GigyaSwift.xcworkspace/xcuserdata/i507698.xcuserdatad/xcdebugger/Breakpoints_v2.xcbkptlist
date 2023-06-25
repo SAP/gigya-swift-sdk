@@ -726,8 +726,8 @@
             filePath = "TestApp/UI/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "663"
-            endingLineNumber = "663"
+            startingLineNumber = "665"
+            endingLineNumber = "665"
             landmarkName = "loginWithProviders(_:)"
             landmarkType = "7">
             <Locations>
@@ -775,6 +775,21 @@
                   startingLineNumber = "664"
                   endingLineNumber = "664"
                   offsetFromSymbolStart = "972">
+               </Location>
+               <Location
+                  uuid = "EC9506FD-6088-4265-97E0-8B7AB9182B1B - 122a239a8012011d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TestApp.ViewController.loginWithProviders(Any) -&gt; ()"
+                  moduleName = "TestApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/i507698/Documents/gigya-swift-sdk/TestApp/UI/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "666"
+                  endingLineNumber = "666"
+                  offsetFromSymbolStart = "916">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -1023,7 +1038,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "14E8A73A-1003-437E-B0D6-5E73BF121FCE"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GigyaSwift/Global/Plugins/PluginViewController.swift"
@@ -1055,7 +1070,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "4DBBA2CA-EAA8-4F36-A22D-85F984A03D26"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GigyaSwift/Global/Plugins/GigyaWebBridge.swift"
