@@ -28,6 +28,8 @@ public protocol SessionServiceProtocol {
 
     func clearSession()
 
+    func clearCookies()
+    
     func setClearCookies(to value: Bool)
 
 }
