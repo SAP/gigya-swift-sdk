@@ -287,6 +287,7 @@ class BusinessApiService: NSObject, BusinessApiServiceProtocol {
         let model = ApiRequestModel(method: GigyaDefinitions.API.logout, params: [:])
         apiService.send(model: model, responseType: GigyaDictionary.self) { [weak self] result in
             self?.sessionService.clear()
+            self?.sessionService.clearCookies()
             self?.biometricService.clearBiometric()
             
             switch result {
