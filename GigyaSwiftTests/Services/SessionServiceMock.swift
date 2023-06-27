@@ -43,5 +43,7 @@ class SessionServiceMock: SessionServiceProtocol {
 
     }
 
-
+    func clearCookies() {
+        
+    }
 }
