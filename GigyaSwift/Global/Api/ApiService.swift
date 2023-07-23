@@ -110,8 +110,8 @@ final class ApiService: ApiServiceProtocol {
             sessionService?.setSession(gigyaResponse.sessionInfo)
 
             // retry when the error is request expired
-            if isRetryNeeded(with: gigyaResponse.errorCode) {
-                let retryDispacer = NetworkRetryDispacher<T>(networkAdapter: networkAdapter, tmpModel: tmpData!)
+            if isRetryNeeded(with: gigyaResponse.errorCode), let tmpData = tmpData {
+                let retryDispacer = NetworkRetryDispacher<T>(networkAdapter: networkAdapter, tmpModel: tmpData)
                 retryDispacer.startRetry { [weak self] (data) in
                     self?.validateResult(responseType: T.self, data: data, completion: completion)
                 }
