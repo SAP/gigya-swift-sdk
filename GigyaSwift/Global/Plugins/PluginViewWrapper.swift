@@ -163,7 +163,7 @@ class PluginViewWrapper<T: GigyaAccountProtocol>: PluginViewWrapperProtocol {
     }
     
     private func validateBeforeHide(params: PluginEventData, pluginViewController: inout PluginViewController<T>?, result: GigyaPluginEvent<T>) {
-        guard let isFlowFinalized = params["isFlowFinalized"] as? Bool else {
+        guard let isFlowFinalized = Bool(String(describing: params["isFlowFinalized"] ?? "false")) else {
             self.completion(result)
             return
         }
