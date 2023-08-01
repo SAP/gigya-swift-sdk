@@ -24,7 +24,7 @@ class ScreenChannel: BaseChannel {
 enum ScreenChannelEvent: String {
     case action
     case dismiss = "_dismiss"
-    case canceled = "_canceled"
+    case canceled = "_cancel"
     case link
     case eval
 }

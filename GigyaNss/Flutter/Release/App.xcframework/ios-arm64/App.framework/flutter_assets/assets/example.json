@@ -496,7 +496,8 @@
     },
     "account-update": {
       "routing": {
-        "onSuccess": "_dismiss"
+        "onSuccess": "_dismiss",
+        "onBack" : "_dismiss"
       },
       "action": "setAccount",
       "appBar": {
