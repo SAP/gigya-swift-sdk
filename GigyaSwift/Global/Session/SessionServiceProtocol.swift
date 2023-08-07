@@ -27,6 +27,8 @@ public protocol SessionServiceProtocol {
     func clear(completion: @escaping () -> Void)
 
     func clearSession()
+    
+    func clearCookies()
 
     func setClearCookies(to value: Bool)
 

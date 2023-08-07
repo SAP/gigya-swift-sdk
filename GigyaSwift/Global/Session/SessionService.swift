@@ -297,9 +297,6 @@ class SessionService: SessionServiceProtocol {
         // clear account from cach
         accountService.clear()
 
-        // clear all cookies created in WKWebView
-        clearCookies()
-
         // clear session from memory
         self.session = nil
     }
@@ -317,7 +314,7 @@ class SessionService: SessionServiceProtocol {
         }
     }
 
-    private func clearCookies() {
+    func clearCookies() {
         if clearCookiesEnable {
             DispatchQueue.main.async {
                 HTTPCookieStorage.shared.removeCookies(since: .distantPast)
