@@ -400,6 +400,17 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
     }
 
     /**
+     Remove a social connection from current account.
+
+     - Parameter params: Request parameters.
+     - Parameter completion: Login response `GigyaApiResult<GigyaDictionary>`.
+     */
+
+    public func removeConnection(params: [String: Any] = [:], completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void) {
+        businessApiService.removeConnection(params: params, completion: completion)
+    }
+    
+    /**
      Get Schema api.
 
      - Parameter params: Request parameters.
