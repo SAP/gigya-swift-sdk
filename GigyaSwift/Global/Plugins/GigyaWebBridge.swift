@@ -84,6 +84,11 @@ final public class GigyaWebBridge<T: GigyaAccountProtocol>: NSObject, WKScriptMe
         }
 
         GigyaLogger.log(with: self, message: "JS Interface:\n\(JSInterface)")
+        
+        if #available(iOS 16.4, *), GigyaLogger.isDebug() {
+            self.webView?.isInspectable = true
+        }
+
     }
 
     func load(html: String) {
@@ -372,8 +377,8 @@ final public class GigyaWebBridge<T: GigyaAccountProtocol>: NSObject, WKScriptMe
     private func sendRemoveConnectionRequest(callbackId: String, params: [String: String]) {
         GigyaLogger.log(with: self, message: "sendRemoveConnectionRequest: with params:\n\(params)")
 
-        if let provider = params["provider"], let providerType = GigyaSocialProviders(rawValue: provider) {
-            businessApiService.removeConnection(providerName: providerType) { [weak self] result in
+        if let provider = params["provider"], let _ = GigyaSocialProviders(rawValue: provider) {
+            businessApiService.removeConnection(params: params) { [weak self] result in
                 guard let self = self else { return }
                 switch result {
                 case .success(let data):

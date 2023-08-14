@@ -272,6 +272,13 @@ class BusinessApiService: NSObject, BusinessApiServiceProtocol {
         }
     }
     
+    func removeConnection(params: [String: Any], completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void) {
+        GigyaLogger.log(with: self, message: "[removeConnection]: params: \(params)")
+
+        let model = ApiRequestModel(method: GigyaDefinitions.API.removeConnection, params: params)
+        apiService.send(model: model, responseType: GigyaDictionary.self, completion: completion)
+    }
+    
     func removeConnection(providerName: GigyaSocialProviders, completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void) {
         let params = ["provider": providerName.rawValue]
 
