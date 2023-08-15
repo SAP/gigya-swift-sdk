@@ -54,6 +54,8 @@ protocol BusinessApiServiceProtocol {
     
     func addConnection<T: GigyaAccountProtocol>(provider: GigyaSocialProviders, viewController: UIViewController, params: [String: Any], dataType: T.Type, completion: @escaping (GigyaApiResult<T>) -> Void)
     
+    func removeConnection(params: [String: Any], completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void)
+
     func removeConnection(providerName: GigyaSocialProviders, completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void)
     
     func logout(completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void)
