@@ -208,6 +208,8 @@ class ASWebAuthenticationLayer: NSObject, ASWebAuthenticationPresentationContext
     }
 
     func presentationAnchor(for session: ASWebAuthenticationSession) -> ASPresentationAnchor {
-        return UIApplication.shared.windows.first!
+        return UIApplication.shared.windows.first { window in
+            return window.isKeyWindow
+        } ?? UIApplication.shared.windows.first!
     }
 }
