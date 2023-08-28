@@ -133,7 +133,7 @@ Gigya.sharedInstance().initFor(apiKey: "YOUR-API-KEY", apiDomain: "YOUR-API-DOMA
 ```
 ### CNAME initialization
 
-When using implicit initialization of the SDK, add the "cname" property to your app’s plist file.
+When using implicit initialization of the SDK, add the "GigyaCname" property to your app’s plist file.
 
 When using explicit initialization of the SDK, you can use the following method:
 ```swift
@@ -347,12 +347,18 @@ gigya.login(with: .facebook, viewController: self ) { [weak self] result in
 
 ## Configuring Native Login
 
-For some social providers, the SDK supports social login via the social provider's native implementation.
+For certain social providers, the SDK supports social login via the social provider’s native implementation.
 
-It is done by using the provider's native SDK, so it will require you to add its required libraries and wrappers to your Swift project.
+This is done by using the provider’s native SDK, so this method will require you to add its required libraries and wrappers to your Swift project.
+
+As part of this implementation, you will need to add a wrapper class to your application corresponding to the social provider, which is responsible for initiating the correct provider flow to retrieve the required token/code. If you are not adding the wrappers to your main application bundle, use the following example method to register them so that the SDK will be able to identify them.
+
+Example for registering the Apple social provider:
+```
+gigya.registerSocialProvider(of: .apple, wrapper: AppleSignInWrapper())
+```
 
 We will review the relevant providers and their implementation flow.
-
 
 ### Apple
 
