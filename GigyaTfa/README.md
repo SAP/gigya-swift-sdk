@@ -72,7 +72,7 @@ let registeredEmailsResolver = resolverFactory.getResolver(for: RegisteredEmails
 registeredEmailsResolver?.getRegisteredEmails(completion: registeredEmailsResult(result:))
 ```
 ```
-func registeredEmailsResult(result: TFARegisteredEmailsResult) {
+func registeredEmailsResult(result: RegisteredEmailsResult) {
    switch result {
    case .registeredEmails(let emails):
      registeredEmailsResolver?.sendEmailCode(with: selectedEmail, registeredEmailsResult(result:))
