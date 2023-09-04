@@ -56,6 +56,9 @@ final class NetworkProvider {
             }
         }
         
+        // Add apikey to header
+        request.setValue(config?.apiKey, forHTTPHeaderField: "apikey")
+        
         request.timeoutInterval = TimeInterval(config?.requestTimeout ?? InternalConfig.Network.requestTimeoutDefult)
 
         // Encode body request to params
