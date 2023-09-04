@@ -85,9 +85,11 @@ final public class GigyaWebBridge<T: GigyaAccountProtocol>: NSObject, WKScriptMe
 
         GigyaLogger.log(with: self, message: "JS Interface:\n\(JSInterface)")
         
-        if #available(iOS 16.4, *), GigyaLogger.isDebug() {
-            self.webView?.isInspectable = true
-        }
+        #if compiler(>=5.8) && DEBUG
+            if #available(iOS 16.4, *), GigyaLogger.isDebug() {
+                self.webView?.isInspectable = true
+            }
+        #endif
 
     }
 
