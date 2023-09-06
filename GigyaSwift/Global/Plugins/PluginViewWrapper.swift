@@ -9,7 +9,7 @@
 import UIKit
 
 protocol PluginViewWrapperProtocol {
-    func presentPluginController<T: GigyaAccountProtocol>(viewController: UIViewController, dataType: T.Type, screenSet: String?)
+    func presentPluginController<T: GigyaAccountProtocol>(viewController: UIViewController, dataType: T.Type, screenSet: String?, isModal: Bool)
 }
 
 class PluginViewWrapper<T: GigyaAccountProtocol>: PluginViewWrapperProtocol {
@@ -51,7 +51,7 @@ class PluginViewWrapper<T: GigyaAccountProtocol>: PluginViewWrapperProtocol {
      - Parameter dataType: Account schema.
      - Parameter screenSet: Requested screen set.
      */
-    func presentPluginController<C: GigyaAccountProtocol>(viewController: UIViewController, dataType: C.Type, screenSet: String? = nil) {
+    func presentPluginController<C: GigyaAccountProtocol>(viewController: UIViewController, dataType: C.Type, screenSet: String? = nil, isModal: Bool) {
         if let screenSet = screenSet {
             params["screenSet"] =  screenSet
         }
@@ -85,9 +85,22 @@ class PluginViewWrapper<T: GigyaAccountProtocol>: PluginViewWrapperProtocol {
 
         pluginViewController = PluginViewController(webBridge: webBridge, pluginEvent: eventHandler!)
 
-        let navigationController = UINavigationController(rootViewController: pluginViewController!)
-
-        viewController.present(navigationController, animated: true) {
+        if(isModal) {
+            let navigationController = UINavigationController(rootViewController: pluginViewController!)
+            viewController.present(navigationController, animated: true) {
+                self.webBridge?.load(html: html)
+            }
+        }
+        else {
+            viewController.addChild(pluginViewController!);
+            viewController.view.addSubview(pluginViewController!.view);
+            
+            pluginViewController!.view.translatesAutoresizingMaskIntoConstraints = false;
+            pluginViewController!.view.topAnchor.constraint(equalTo:viewController.view.topAnchor, constant: 0).isActive = true
+            pluginViewController!.view.bottomAnchor.constraint(equalTo:viewController.view.bottomAnchor, constant: 0).isActive = true
+            pluginViewController!.view.leadingAnchor.constraint(equalTo:viewController.view.leadingAnchor, constant: 0).isActive = true
+            pluginViewController!.view.trailingAnchor.constraint(equalTo:viewController.view.trailingAnchor, constant: 0).isActive = true
+            
             self.webBridge?.load(html: html)
         }
     }
