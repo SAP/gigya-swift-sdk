@@ -109,7 +109,7 @@ let registerPhoneResolver = resolverFactory.getResolver(for: RegisterPhoneResolv
 registerPhoneResolver.registerPhone(phone: number, completion: registerPhoneResult(result:))
 ```
 ```
-func registerPhoneResult(result: TFARegisterPhonesResult) {
+func registerPhoneResult(result: RegisterPhonesResult) {
    switch result {
    case .verificationCodeSent(let resolver):
       // Verification code was sent to registered phone number. At this point you should update your UI to support verification input.
@@ -141,7 +141,7 @@ let registeredPhonesResolver = resolverFactory.getResolver(for: RegisteredPhones
 registeredPhonesResolver.getRegisteredPhones(completion: registeredPhonesResult(result:))
 ```
 ```
-func registeredPhonesResult(result: TFARegisteredPhonesResult) {
+func registeredPhonesResult(result: RegisteredPhonesResult) {
    switch result {
    case .registeredPhones(let phones):
    // Display list of registered phones to the user so he will be able to choose where to send verification code sms/voice call.
@@ -177,7 +177,7 @@ let registerTOTPResolver = resolverFactory.getResolver(for: RegisterTotpResolver
 registerTOTPResolver.registerTotp(completion: registerTotpResult(result:))
 ```
 ```
-func registerTotpResult(result: TFARegisterTotpResult) {
+func registerTotpResult(result: RegisterTotpResult) {
    switch result {
    case .QRCodeAvilabe(let image, let resolver):
     // UIImage object QR code is available. Display for the user to scan.
