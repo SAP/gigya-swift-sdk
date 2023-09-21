@@ -77,7 +77,7 @@ func registeredEmailsResult(result: RegisteredEmailsResult) {
    case .registeredEmails(let emails):
      registeredEmailsResolver?.sendEmailCode(with: selectedEmail, registeredEmailsResult(result:))
    case .emailVerificationCodeSent(let resolver):
-     resolver.verifyCode(provider: .email, verificationCode: code, completion: { result in
+     resolver.verifyCode(provider: .email, verificationCode: code, rememberDevice: true, completion: { result in
        switch result {
        case .resolved:
         // Flow completed.
@@ -114,7 +114,7 @@ func registerPhoneResult(result: RegisterPhonesResult) {
    case .verificationCodeSent(let resolver):
       // Verification code was sent to registered phone number. At this point you should update your UI to support verification input.
      // After UI has been updated and the verification code is available, you are able to use:
-      resolver.verifyCode(provider: .phone, verificationCode: code, completion: { result in
+      resolver.verifyCode(provider: .phone, verificationCode: code, rememberDevice: true, completion: { result in
         switch result {
         case .resolved:
         // Flow completed.
