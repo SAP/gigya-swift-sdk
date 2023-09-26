@@ -8,6 +8,7 @@
 
 import XCTest
 @testable import Gigya
+@testable import GigyaNss
 
 class GigyaSwiftTests: XCTestCase {
 
@@ -22,6 +23,11 @@ class GigyaSwiftTests: XCTestCase {
     func testExample() {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
+        
+        var screenModel: ScreenEventModel = ScreenEventModel()
+
+        screenModel.nextRoute = "dasdsad"
+        print(screenModel.nextRoute)
     }
 
 }
