@@ -15,6 +15,8 @@ public protocol ScreenSetsMainBuilderProtocol {
     func load(withAsset asset: String) -> BuilderOptions
 
     func load(screenSetId id: String) -> BuilderOptions
+    
+    func nssDismiss()
 }
 
 public protocol ScreenSetsExternalBuilderProtocol {

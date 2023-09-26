@@ -177,14 +177,13 @@ class NativeScreenSetsViewModel<T: GigyaAccountProtocol>: NSObject, UIAdaptivePr
                 response(nil)
             case .routeFrom:
 
-                screen.previousRoute = screen.data["pid"] as? String ?? ""
+                screen.previousRoute = data?["pid"] as? String ?? ""
 
                 screenClosure(.routeFrom(screen: screen))
 
             case .routeTo:
 
-                screen.nextRoute = screen.data["nid"] as? String ?? ""
-
+                screen.nextRoute = data?["nid"] as? String ?? ""
                 screenClosure(.routeTo(screen: screen))
 
             case .submit:

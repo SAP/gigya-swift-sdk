@@ -60,6 +60,14 @@ final public class GigyaNss {
 
         return builder!.load(screenSetId: screenSetId)
     }
+    
+    /**
+    nss Dismiss.
+
+    */
+    public func nssDismiss() {
+        builder!.nssDismiss()
+    }
 
     /**
     Register Scheme.
