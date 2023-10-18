@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol InterruptionResolverFactoryProtocol {
+public protocol InterruptionResolverFactoryProtocol {
 
     var isEnabled: Bool { get }
 
