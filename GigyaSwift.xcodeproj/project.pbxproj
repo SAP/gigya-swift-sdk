@@ -107,6 +107,7 @@
 		E7337467226C538300ADEDBB /* DecodeTestUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7337466226C538300ADEDBB /* DecodeTestUtils.swift */; };
 		E735C2F822B7DBF7007A055E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E735C2F722B7DBF7007A055E /* GoogleService-Info.plist */; };
 		E73A930222F974120004F93E /* Notification.Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73A930122F974120004F93E /* Notification.Name.swift */; };
+		E73BCF232AB9C0260030AE8F /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73BCF222AB9C0260030AE8F /* TestViewController.swift */; };
 		E741B4CD271420AB00BF693F /* SsoLoginWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E741B4CC271420AA00BF693F /* SsoLoginWrapper.swift */; };
 		E741DCE12771DDF400E46223 /* TestSsoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E741DCE02771DDF400E46223 /* TestSsoApp.swift */; };
 		E741DCE32771DDF400E46223 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E741DCE22771DDF400E46223 /* ContentView.swift */; };
@@ -424,6 +425,7 @@
 		E7337466226C538300ADEDBB /* DecodeTestUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecodeTestUtils.swift; sourceTree = "<group>"; };
 		E735C2F722B7DBF7007A055E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E73A930122F974120004F93E /* Notification.Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.Name.swift; sourceTree = "<group>"; };
+		E73BCF222AB9C0260030AE8F /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		E73C8A0B2430DA540064EFE1 /* GigyaNss.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GigyaNss.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E73C8A0E2430DA640064EFE1 /* GigyaNss.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GigyaNss.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E73C8A112430ECE30064EFE1 /* GigyaNss.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GigyaNss.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -730,6 +732,7 @@
 				D584D341228D6089004CA28F /* UIFactory.swift */,
 				E7BE369E2224260400A108D9 /* ViewController.swift */,
 				E7FFF8F5232003AD002EC944 /* WebBridgeViewController.swift */,
+				E73BCF222AB9C0260030AE8F /* TestViewController.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -2117,6 +2120,7 @@
 			files = (
 				E731B72F232A53E70032E111 /* AppleSignInWrapper.swift in Sources */,
 				E7FFF8F6232003AD002EC944 /* WebBridgeViewController.swift in Sources */,
+				E73BCF232AB9C0260030AE8F /* TestViewController.swift in Sources */,
 				D584D342228D6089004CA28F /* UIFactory.swift in Sources */,
 				E7FFD59322FB0A8A00DBE663 /* (null) in Sources */,
 				E7221D8222B90C2A00C296A9 /* ValidateLoginModel.swift in Sources */,
@@ -2704,7 +2708,7 @@
 					"$(PROJECT_DIR)/GigyaNss/Flutter/Debug",
 				);
 				INFOPLIST_FILE = TestApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2755,7 +2759,7 @@
 					"$(PROJECT_DIR)/GigyaNss/Flutter/Release",
 				);
 				INFOPLIST_FILE = TestApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

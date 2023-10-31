@@ -47,7 +47,7 @@ class ScreenEventModel: ScreenPreviousProtocol, ScreenDataProtocol, ScreenNextPr
     var fieldEvents: [String: EventFieldClosure] = [:]
 
     func `continue`() {
-        engineResponse?(["sid": nextRoute, "data": data])
+        engineResponse?(["sid": nextRoute, "data": data] as [String : Any])
     }
 
     func showError(_ e: String) {

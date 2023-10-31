@@ -101,6 +101,10 @@ extension ScreenSetsBuilder: ScreenSetsExternalBuilderProtocol {
         eventsClosuresManager?[screen] = handler
         return self
     }
+    
+    func nssDismiss() {
+        engineLifeCycle.dismissClosure()
+    }
 }
 
 

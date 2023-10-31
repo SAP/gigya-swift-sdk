@@ -311,9 +311,10 @@ class BusinessApiService: NSObject, BusinessApiServiceProtocol {
 
         GigyaLogger.log(with: self, message: "[finalizeRegistration] - params: \(params)")
 
-        send(dataType: T.self, api: GigyaDefinitions.API.finalizeRegistration, params: params) { result in
+        send(dataType: T.self, api: GigyaDefinitions.API.finalizeRegistration, params: params) { [weak accountService] result in
             switch result {
             case .success(let data):
+                accountService?.account = data
                 completion(.success(data: data))
 
                 GigyaLogger.log(with: BusinessApiService.self, message: "[finalizeRegistration] - success")
