@@ -19,7 +19,9 @@ class EngineLifeCycle {
     private var isDisplay = false
 
     private var response: FlutterResult?
-
+    
+    var dismissClosure: () -> Void = {}
+    
     init(ignitionChannel: IgnitionChannel, loaderHelper: LoaderFileHelper, schemaHelper: SchemaHelper) {
         self.ignitionChannel = ignitionChannel
         self.loaderHelper = loaderHelper
@@ -92,6 +94,8 @@ class EngineLifeCycle {
                 self?.destroyContext(vc)
             })
         }
+        
+        dismissClosure = vc.viewModel!.dismissClosure
 
         // Close by swipe down event ( for iOS 13+ )
         vc.viewModel?.closeClosure = { [weak vc, weak self] in

@@ -181,7 +181,11 @@ class ASWebAuthenticationLayer: NSObject, ASWebAuthenticationPresentationContext
 
     func show() {
         session = ASWebAuthenticationSession(url: url, callbackURLScheme: SsoLoginWrapper.callbackURLScheme) { [self] u, error in
-            if let error = error {
+            if let error = error as? NSError {
+                if error.code == 1 {
+                    closure(nil, GigyaDefinitions.Plugin.canceled)
+                    return
+                }
                 closure(nil, error.localizedDescription)
                 return
             }
