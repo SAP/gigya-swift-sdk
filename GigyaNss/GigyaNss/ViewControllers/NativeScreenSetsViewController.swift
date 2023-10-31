@@ -15,11 +15,13 @@ class NativeScreenSetsViewController<T: GigyaAccountProtocol>: FlutterViewContro
     var spinnerView = SpinnerView()
 
     var viewModel: NativeScreenSetsViewModel<T>?
+    var createEngineFactory: CreateEngineFactory?
 
     var initialRoute: String?
 
     init(viewModel: NativeScreenSetsViewModel<T>, createEngineFactory: CreateEngineFactory) {
         self.viewModel = viewModel
+        self.createEngineFactory = createEngineFactory
 
         let engine = createEngineFactory.create()
         engine.run()
@@ -44,12 +46,12 @@ class NativeScreenSetsViewController<T: GigyaAccountProtocol>: FlutterViewContro
         super.viewDidLoad()
         // Do any additional setup after loading the view.
 
-        let gestureRecognizer = UIGestureRecognizer()
-        gestureRecognizer.delegate = self
-        self.view.addGestureRecognizer(gestureRecognizer)
-
-        self.view.backgroundColor = .clear
-        self.view.subviews[0].alpha = 0
+//        let gestureRecognizer = UIGestureRecognizer()
+//        gestureRecognizer.delegate = self
+//        self.view.addGestureRecognizer(gestureRecognizer)
+//
+//        self.view.backgroundColor = .clear
+//        self.view.subviews[0].alpha = 0
 
         showSpinner()
 
@@ -68,15 +70,16 @@ class NativeScreenSetsViewController<T: GigyaAccountProtocol>: FlutterViewContro
         }
     }
 
-    override func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
-        if touch.location(in: touch.view).y > 65.0 {
-            disableDismissalRecognizers()
-        }
-        else {
-            enableDismissalRecognizers()
-        }
-        return false
-    }
+//    override func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+//        
+//        if touch.location(in: touch.view).y > 65.0 {
+//            disableDismissalRecognizers()
+//        }
+//        else {
+//            enableDismissalRecognizers()
+//        }
+//        return false
+//    }
 
     deinit {
         GigyaLogger.log(with: self, message: "deinit")
