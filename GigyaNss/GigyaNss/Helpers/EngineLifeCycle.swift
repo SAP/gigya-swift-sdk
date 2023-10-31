@@ -30,7 +30,7 @@ class EngineLifeCycle {
                                                        initialRoute: String?,
                                                        defaultLang: String?,
                                                        presentFrom vc: UIViewController,
-                                                       to screen: NativeScreenSetsViewController<T>) {
+                                                       to screen: inout NativeScreenSetsViewController<T>) {
         guard let asset = asset else {
             GigyaLogger.error(with: EngineLifeCycle.self, message: "asset is empty.")
         }
@@ -104,10 +104,14 @@ class EngineLifeCycle {
         }
     }
 
-    func destroyContext<T: GigyaAccountProtocol>(_ vc: NativeScreenSetsViewController<T>?) {
+    func destroyContext<T: GigyaAccountProtocol>(_ vc:  NativeScreenSetsViewController<T>?) {
         vc?.removeSpinner()
         vc?.viewModel = nil
         self.isDisplay = false
+        vc?.engine?.destroyContext()
+        ignitionChannel.flutterMethodChannel = nil
+        loaderHelper.errorClosure = { _ in }
+        
     }
 
     deinit {

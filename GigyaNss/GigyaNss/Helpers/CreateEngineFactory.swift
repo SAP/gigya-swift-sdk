@@ -15,7 +15,6 @@ class CreateEngineFactory {
         let project = FlutterDartProject(precompiledDartBundle: bundle)
 
         let engine = FlutterEngine(name: GigyaNss.engineId, project: project, allowHeadlessExecution: false)
-
         return engine
     }
 }

@@ -110,7 +110,7 @@ extension ScreenSetsBuilder: ScreenSetsActionsBuilderProtocol {
 
     func show(viewController: UIViewController) {
         // TODO: How to check if the screenSetId is exists? Maybe need to check it in the flutter engine?
-        guard let screenSetViewController = GigyaNss.shared.dependenciesContainer.resolve(NativeScreenSetsViewController<T>.self) else {
+        guard var screenSetViewController = GigyaNss.shared.dependenciesContainer.resolve(NativeScreenSetsViewController<T>.self) else {
             GigyaLogger.error(with: GigyaNss.self, message: "dependency not found, verify that you have implemented `GigyaNss.shared.register()`.")
         }
 
@@ -129,7 +129,7 @@ extension ScreenSetsBuilder: ScreenSetsActionsBuilderProtocol {
                                  initialRoute: screenName,
                                  defaultLang: langName,
                                  presentFrom: viewController,
-                                 to: screenSetViewController
+                                 to: &screenSetViewController
         )
     }
 }
