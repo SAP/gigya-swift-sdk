@@ -15,13 +15,11 @@ class NativeScreenSetsViewController<T: GigyaAccountProtocol>: FlutterViewContro
     var spinnerView = SpinnerView()
 
     var viewModel: NativeScreenSetsViewModel<T>?
-    var createEngineFactory: CreateEngineFactory?
 
     var initialRoute: String?
 
     init(viewModel: NativeScreenSetsViewModel<T>, createEngineFactory: CreateEngineFactory) {
         self.viewModel = viewModel
-        self.createEngineFactory = createEngineFactory
 
         let engine = createEngineFactory.create()
         engine.run()
