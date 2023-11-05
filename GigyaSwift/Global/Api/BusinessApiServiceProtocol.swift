@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol BusinessApiServiceProtocol {
+public protocol BusinessApiServiceProtocol {
     var config: GigyaConfig { get }
 
     var apiService: ApiServiceProtocol { get }
