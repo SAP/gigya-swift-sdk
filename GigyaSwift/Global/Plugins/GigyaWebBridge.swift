@@ -12,7 +12,7 @@ import WebKit
  The `GigyaWebBridge` acts as the optimal bridge between the Gigya webSdk and the iOS sdk. Supporting complex flows such as screensets, saml etc.
  */
 
-final public class GigyaWebBridge<T: GigyaAccountProtocol>: NSObject, WKScriptMessageHandler {
+open class GigyaWebBridge<T: GigyaAccountProtocol>: NSObject, WKScriptMessageHandler {
 
     let config: GigyaConfig
 
@@ -39,7 +39,7 @@ final public class GigyaWebBridge<T: GigyaAccountProtocol>: NSObject, WKScriptMe
     let hideSpinner = "gigya._.plugins.instances.pluginContainer.undimScreenSet()"
 
     // MARK: - initialization
-    init(config: GigyaConfig, persistenceService: PersistenceService, sessionService: SessionServiceProtocol, businessApiService: BusinessApiServiceProtocol, interruptionManager: WebBridgeInterruptionResolverFactoryProtocol) {
+    public init(config: GigyaConfig, persistenceService: PersistenceService, sessionService: SessionServiceProtocol, businessApiService: BusinessApiServiceProtocol, interruptionManager: WebBridgeInterruptionResolverFactoryProtocol) {
         self.config = config
         self.persistenceService = persistenceService
         self.sessionService = sessionService
@@ -59,7 +59,7 @@ final public class GigyaWebBridge<T: GigyaAccountProtocol>: NSObject, WKScriptMe
      */
 
 
-    public func attachTo(webView: WKWebView, viewController: UIViewController, pluginEvent: @escaping (GigyaPluginEvent<T>) -> Void) {
+    open func attachTo(webView: WKWebView, viewController: UIViewController, pluginEvent: @escaping (GigyaPluginEvent<T>) -> Void) {
         guard let apikey = config.apiKey else { return }
 
         let contentController = webView.configuration.userContentController
