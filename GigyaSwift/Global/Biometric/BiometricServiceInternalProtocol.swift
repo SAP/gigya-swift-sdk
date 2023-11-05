@@ -8,6 +8,6 @@
 
 import Foundation
 
-protocol BiometricServiceInternalProtocol {
+public protocol BiometricServiceInternalProtocol {
     func clearBiometric()
 }
