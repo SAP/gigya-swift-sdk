@@ -1,0 +1,68 @@
+name: Report a bug or issue
+description: Report a bug or issue related to the SDK or its components.
+labels: ["bug"]
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **For your security, please make sure you are not attaching any sensitive information such as API keys in your bug report.**
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      options:
+        - label: The issue can be reproduced in the attached sample application in the repository.
+          required: true
+        - label: I have read the relevant [SDK documentation](https://github.com/SAP/gigya-swift-sdk#sap-cdc-gigya-swift-sdk) and have not found a suitable solution or answer.
+          required: true
+        - label: I agree to the terms within the [SAP Code of Conduct](https://github.com/SAP/gigya-swift-sdk/blob/main/CODE_OF_CONDUCT.md).
+          required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Provide a clear and concise description of the issue.
+      placeholder: |
+        1. Short description...
+        2. Expected behavior...
+        3. Actual behavior...
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction
+      description: Detail the steps taken to reproduce the issue behavior.
+      placeholder: |
+        1. Step 1...
+        2. Step 2...
+        3. ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional context
+      description: Add any other relevant information you think would be useful in describing the issue.
+    validations:
+      required: false
+
+  - type: input
+    id: sdk-version
+    attributes:
+      label: SDK version
+      description: We recommend staying updated with the latest version.
+    validations:
+      required: true
+
+  - type: markdown
+    id: note
+    attributes:
+      value: |
+        **Note:** In some cases (usually when the issue falls under implementation), you will be required to open a [support ticket](https://me.sap.com/notes/1296527) instead of a publicly viewable bug report. This is to ensure that no sensitive information will be exposed publicly.
+
