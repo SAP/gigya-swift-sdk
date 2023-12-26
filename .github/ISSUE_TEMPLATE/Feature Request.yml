@@ -1,0 +1,46 @@
+name: Feature request
+description: Suggest an idea or feature for this project.
+labels: ["feature request"]
+
+body:
+   - type: checkboxes
+     id: checklist
+     attributes:
+      label: Checklist
+      options:
+        - label: I have read the relevant [SDK documentation](https://github.com/SAP/gigya-swift-sdk#sap-cdc-gigya-swift-sdk) and have not found a suitable solution.
+          required: true
+        - label: I agree to the terms within the [SAP Code of Conduct](https://github.com/SAP/gigya-swift-sdk/blob/main/CODE_OF_CONDUCT.md).
+          required: true
+
+   - type: textarea
+     id: description
+     attributes:
+      label: Describe the problem you'd like to have solved.
+      description: A clear and concise description of what the problem is.
+      placeholder: I have a problem when…
+     validations:
+      required: true
+
+   - type: textarea
+     id: ideal-solution
+     attributes:
+      label: Describe the ideal solution.
+      description: A clear and concise description of what you want to happen.
+     validations:
+      required: true
+
+   - type: textarea
+     id: alternatives-or-workarounds
+     attributes:
+      label: Alternatives or workarounds
+      description: A clear and concise description of any alternative solutions or features you've considered that could solve your problem.
+
+   - type: textarea
+     id: additional-context
+     attributes:
+      label: Additional context
+      description: Add any other information or screenshots to help describe the feature request here.
+     validations:
+      required: false
+
