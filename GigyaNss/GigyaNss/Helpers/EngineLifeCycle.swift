@@ -69,7 +69,7 @@ class EngineLifeCycle {
                     response(loadAsset)
                 }
             case .ignitionStyles:
-                self.loaderHelper.loadStyles { data in
+                self.loaderHelper.loadStyles(asset: asset) { data in
                     GigyaLogger.log(with: self, message: "ignition styles load: \(data)")
 
                     response(data)
