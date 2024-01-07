@@ -1,6 +1,6 @@
 {
   "theme": {
-    "primaryColor": "blue",
+    "primaryColor": "red",
     "secondaryColor": "white",
     "textColor": "black",
     "enabledColor": "blue",
@@ -194,7 +194,7 @@
             {
               "type": "label",
               "textKey": "login-social-title",
-              "theme": "title",
+              "theme": "system-label",
               "style": {
                 "margin": 16
               }

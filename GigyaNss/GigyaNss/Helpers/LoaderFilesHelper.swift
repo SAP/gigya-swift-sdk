@@ -102,22 +102,34 @@ class LoaderFileHelper {
 
     }
     
-    func loadStyles(response: @escaping ([String: Any]) -> Void) {
-        busnessApi?.sendApi(api: "accounts.getNSSTheme", params: [:]) { [weak self] (result) in
-            switch result {
-            case .success(data: let data):
-                guard 
-                    let theme = (data["theme"]?.value as? String)?.data(using: .utf8),
-                    let decodedObject = try? JSONSerialization.jsonObject(with: theme, options: .fragmentsAllowed) as? [String: Any] else {
-                      assertionFailure("Failed to serialize styles object")
-                      return
+    func loadStyles(asset: ScreenLoadType, response: @escaping ([String: Any]) -> Void) {
+        var params = ["themeId": "system-default"]
+        switch asset {
+        case .id(let value):
+            busnessApi?.sendApi(
+                api: "accounts.getNSSTheme",
+                params: ["themeId": "system-default", "screenSetId": value]
+            ) { [weak self] (result) in
+                switch result {
+                case .success(data: let data):
+                    guard
+                        let theme = (data["theme"]?.value as? String)?
+                            .data(using: .utf8),
+                        let decodedObject = try?
+                            JSONSerialization
+                            .jsonObject(with: theme, options: .fragmentsAllowed) as? [String: Any] else {
+                          assertionFailure("Failed to serialize styles object")
+                          return
+                    }
+                    
+                    response(decodedObject)
+                case .failure(let error):
+                    self?.errorClosure(error)
                 }
-                
-                response(decodedObject)
-            case .failure(let error):
-                self?.errorClosure(error)
             }
+        default:
+            response([:])
         }
-
+    
     }
 }
