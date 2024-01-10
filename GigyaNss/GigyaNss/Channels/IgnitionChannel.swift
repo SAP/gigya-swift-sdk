@@ -25,4 +25,5 @@ enum IgnitionChannelEvent: String {
     case ignition
     case readyForDisplay = "ready_for_display"
     case loadSchema = "load_schema"
+    case ignitionStyles = "ignition_styles"
 }
