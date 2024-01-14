@@ -38,9 +38,9 @@
 		E70F8BED2405215C00D52208 /* ActionFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70F8BEC2405215C00D52208 /* ActionFactory.swift */; };
 		E70F8BEF24053ABA00D52208 /* RegisterAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70F8BEE24053AB900D52208 /* RegisterAction.swift */; };
 		E70F8BF124053B5800D52208 /* LoginAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70F8BF024053B5800D52208 /* LoginAction.swift */; };
+		E71611ED2B5407680054D4B7 /* Flutter.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = E798550726552AE200984794 /* Flutter.xcframework */; };
 		E719C6AF24225216002F8C36 /* LogChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E719C6AE24225216002F8C36 /* LogChannel.swift */; };
 		E719C6B124226139002F8C36 /* SetAccountAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E719C6B024226139002F8C36 /* SetAccountAction.swift */; };
-		E71B44412B3AC9D000FF0623 /* Flutter.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = E798550726552AE200984794 /* Flutter.xcframework */; };
 		E71CB3B22554029000D63726 /* JsEvaluatorHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71CB3B12554029000D63726 /* JsEvaluatorHelper.swift */; };
 		E71CB3B825540C6F00D63726 /* JsEvalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71CB3B725540C6F00D63726 /* JsEvalTests.swift */; };
 		E722572923CC9F22000DDB24 /* engine.sh in Resources */ = {isa = PBXBuildFile; fileRef = E722572823CC9F22000DDB24 /* engine.sh */; };
@@ -153,7 +153,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E71B44412B3AC9D000FF0623 /* Flutter.xcframework in Frameworks */,
+				E71611ED2B5407680054D4B7 /* Flutter.xcframework in Frameworks */,
 				E76421A325D51FFD00CDED4C /* GigyaAuth.framework in Frameworks */,
 				E7288CA32455CFD800AD99CA /* Gigya.framework in Frameworks */,
 			);
