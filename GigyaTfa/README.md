@@ -77,7 +77,7 @@ func registeredEmailsResult(result: RegisteredEmailsResult) {
    case .registeredEmails(let emails):
      registeredEmailsResolver?.sendEmailCode(with: selectedEmail, registeredEmailsResult(result:))
    case .emailVerificationCodeSent(let resolver):
-     resolver.verifyCode(provider: .email, verificationCode: code, completion: { result in
+     resolver.verifyCode(provider: .email, verificationCode: code, rememberDevice: true, completion: { result in
        switch result {
        case .resolved:
         // Flow completed.
@@ -109,12 +109,12 @@ let registerPhoneResolver = resolverFactory.getResolver(for: RegisterPhoneResolv
 registerPhoneResolver.registerPhone(phone: number, completion: registerPhoneResult(result:))
 ```
 ```
-func registerPhoneResult(result: TFARegisterPhonesResult) {
+func registerPhoneResult(result: RegisterPhonesResult) {
    switch result {
    case .verificationCodeSent(let resolver):
       // Verification code was sent to registered phone number. At this point you should update your UI to support verification input.
      // After UI has been updated and the verification code is available, you are able to use:
-      resolver.verifyCode(provider: .phone, verificationCode: code, completion: { result in
+      resolver.verifyCode(provider: .phone, verificationCode: code, rememberDevice: true, completion: { result in
         switch result {
         case .resolved:
         // Flow completed.
@@ -141,7 +141,7 @@ let registeredPhonesResolver = resolverFactory.getResolver(for: RegisteredPhones
 registeredPhonesResolver.getRegisteredPhones(completion: registeredPhonesResult(result:))
 ```
 ```
-func registeredPhonesResult(result: TFARegisteredPhonesResult) {
+func registeredPhonesResult(result: RegisteredPhonesResult) {
    switch result {
    case .registeredPhones(let phones):
    // Display list of registered phones to the user so he will be able to choose where to send verification code sms/voice call.
@@ -177,7 +177,7 @@ let registerTOTPResolver = resolverFactory.getResolver(for: RegisterTotpResolver
 registerTOTPResolver.registerTotp(completion: registerTotpResult(result:))
 ```
 ```
-func registerTotpResult(result: TFARegisterTotpResult) {
+func registerTotpResult(result: RegisterTotpResult) {
    switch result {
    case .QRCodeAvilabe(let image, let resolver):
     // UIImage object QR code is available. Display for the user to scan.

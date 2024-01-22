@@ -64,16 +64,10 @@ class PluginViewWrapper<T: GigyaAccountProtocol>: PluginViewWrapperProtocol {
         // make completionHandler to know when need to dismiss viewController
         eventHandler = { [weak self] result in
             switch result {
-            case .onHide, .onCanceled:
-                pluginViewController?.webView.uiDelegate = nil
-                pluginViewController?.webView.navigationDelegate = nil
-                pluginViewController?.dismiss(animated: true, completion: nil)
-                pluginViewController = nil
-                self?.eventHandler = nil
-                self?.webBridge?.webView = nil
-                self?.webBridge?.viewController = nil
-                self?.webBridge = nil
-                self?.completion(result)
+            case .onHide(let params):
+                self?.validateBeforeHide(params: params, pluginViewController: &pluginViewController, result: result)
+            case .onCanceled:
+                self?.dispose(pluginViewController: &pluginViewController, result: result)
             default:
                 break
             }
@@ -167,6 +161,29 @@ class PluginViewWrapper<T: GigyaAccountProtocol>: PluginViewWrapperProtocol {
             </body>
         """
         return html
+    }
+    
+    private func dispose(pluginViewController: inout PluginViewController<T>?, result: GigyaPluginEvent<T>) {
+        pluginViewController?.webView.uiDelegate = nil
+        pluginViewController?.webView.navigationDelegate = nil
+        pluginViewController?.dismiss(animated: true, completion: nil)
+        pluginViewController = nil
+        self.eventHandler = nil
+        self.webBridge?.webView = nil
+        self.webBridge?.viewController = nil
+        self.webBridge = nil
+        self.completion(result)
+    }
+    
+    private func validateBeforeHide(params: PluginEventData, pluginViewController: inout PluginViewController<T>?, result: GigyaPluginEvent<T>) {
+        guard let isFlowFinalized = Bool(String(describing: params["isFlowFinalized"] ?? "false")) else {
+            self.completion(result)
+            return
+        }
+        
+        if isFlowFinalized == true {
+            self.dispose(pluginViewController: &pluginViewController, result: result)
+        }
     }
     
     deinit {

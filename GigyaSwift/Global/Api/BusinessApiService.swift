@@ -319,11 +319,7 @@ class BusinessApiService: NSObject, BusinessApiServiceProtocol {
 
                 GigyaLogger.log(with: BusinessApiService.self, message: "[finalizeRegistration] - success")
             case .failure(let error):
-                let loginError = LoginApiError<T>(error: error, interruption: nil)
-
-                GigyaLogger.log(with: BusinessApiService.self, message: "[finalizeRegistration] - failure: \(error)")
-
-                completion(.failure(loginError))
+                self.interruptionResolver(error: error, completion: completion)
             }
         }
     }

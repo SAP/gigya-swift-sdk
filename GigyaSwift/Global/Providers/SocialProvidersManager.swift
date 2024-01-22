@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol SocialProvidersManagerProtocol {
+public protocol SocialProvidersManagerProtocol {
     func getProvider(with socialProvider: GigyaSocialProviders, delegate: BusinessApiDelegate) -> Provider
 
     func registerProvider(by provider: GigyaNativeSocialProviders, wrapper: ProviderWrapperProtocol)

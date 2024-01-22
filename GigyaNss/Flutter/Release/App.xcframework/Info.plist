@@ -5,6 +5,8 @@
 	<key>AvailableLibraries</key>
 	<array>
 		<dict>
+			<key>BinaryPath</key>
+			<string>App.framework/App</string>
 			<key>DebugSymbolsPath</key>
 			<string>dSYMs</string>
 			<key>LibraryIdentifier</key>

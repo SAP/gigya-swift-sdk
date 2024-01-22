@@ -12,7 +12,7 @@ enum WebBridgeInterruption: Int {
     case forceLink = 409003
 }
 
-protocol WebBridgeInterruptionResolverFactoryProtocol {
+public protocol WebBridgeInterruptionResolverFactoryProtocol {
     func interruptionHandler(error: NetworkError)
     
     func responseManager<T: GigyaAccountProtocol>(apiMethod: String, params: [String: String], data: T, completion: @escaping (GigyaPluginEvent<T>) -> Void)

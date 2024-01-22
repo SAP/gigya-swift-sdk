@@ -19,7 +19,9 @@ class EngineLifeCycle {
     private var isDisplay = false
 
     private var response: FlutterResult?
-
+    
+    var dismissClosure: () -> Void = {}
+    
     init(ignitionChannel: IgnitionChannel, loaderHelper: LoaderFileHelper, schemaHelper: SchemaHelper) {
         self.ignitionChannel = ignitionChannel
         self.loaderHelper = loaderHelper
@@ -30,7 +32,7 @@ class EngineLifeCycle {
                                                        initialRoute: String?,
                                                        defaultLang: String?,
                                                        presentFrom vc: UIViewController,
-                                                       to screen: NativeScreenSetsViewController<T>) {
+                                                       to screen: inout NativeScreenSetsViewController<T>) {
         guard let asset = asset else {
             GigyaLogger.error(with: EngineLifeCycle.self, message: "asset is empty.")
         }
@@ -92,6 +94,8 @@ class EngineLifeCycle {
                 self?.destroyContext(vc)
             })
         }
+        
+        dismissClosure = vc.viewModel!.dismissClosure
 
         // Close by swipe down event ( for iOS 13+ )
         vc.viewModel?.closeClosure = { [weak vc, weak self] in
@@ -104,10 +108,14 @@ class EngineLifeCycle {
         }
     }
 
-    func destroyContext<T: GigyaAccountProtocol>(_ vc: NativeScreenSetsViewController<T>?) {
+    func destroyContext<T: GigyaAccountProtocol>(_ vc:  NativeScreenSetsViewController<T>?) {
         vc?.removeSpinner()
         vc?.viewModel = nil
         self.isDisplay = false
+        vc?.engine?.destroyContext()
+        ignitionChannel.flutterMethodChannel = nil
+        loaderHelper.errorClosure = { _ in }
+        
     }
 
     deinit {
