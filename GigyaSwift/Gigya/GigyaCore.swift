@@ -444,11 +444,11 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
     - Parameter completion:     Plugin completion `GigyaPluginEvent<T>`.
     */
 
-    public func showScreenSet(with name: String, viewController: UIViewController, params: [String: Any] = [:], completion: @escaping (GigyaPluginEvent<T>) -> Void) {
+    public func showScreenSet(with name: String, viewController: UIViewController, params: [String: Any] = [:], isModal: Bool = true, completion: @escaping (GigyaPluginEvent<T>) -> Void) {
         let webBridge = createWebBridge()
 
         pluginViewWrapper = PluginViewWrapper(config: config, persistenceService: persistenceService, sessionService: sessionService, businessApiService: businessApiService, webBridge: webBridge, plugin: "accounts.screenSet", params: params, completion: completion)
-        pluginViewWrapper?.presentPluginController(viewController: viewController, dataType: T.self, screenSet: name)
+        pluginViewWrapper?.presentPluginController(viewController: viewController, dataType: T.self, screenSet: name, isModal: isModal)
     }
 
     // MARK: - Interruptions
