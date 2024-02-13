@@ -442,40 +442,41 @@ If you experience problems and notice errCode -6 from WeChat while debugging, it
 Single Sign-On (SSO) is an authentication method that allows a user to log in to multiple applications that reside within the same site group using a single login credential. When using the mobile SSO feature, applications within the same group are able to share a valid session with the device browser.
 	
 Requirements:
-1. Mobile SSO requires iOS 13+.
-2. You will be required to setup you central login page on your site’s console.
+Note: Mobile SSO requires iOS 13+. 
 
-The SDK will use the following redirect schema structure:
-**gsapi://app-bundle-id/login/**
+Steps for implementing SSO: 
 
-Please make sure you add your unique URL to the **Trusted Site URLs** section of your parent site.
+The SDK will use the following redirect schema structure: gsapi://app-bundle-id/login/. Please make sure you add your unique URL to the Trusted Site URLs section of your parent site. 
+To initiate the flow, use the SSO function provided by the Gigya shared interface: 
 
-Finally, to initiate the flow, use the SSO function provided by the Gigya shared interface.
 ```swift
-Gigya.sharedInstance().sso(viewController: viewController) { result in
-                switch result {
-                case .success(data: let data):
-                    print(data)
-                    isLogged = true
-                case .failure(_):
-                    break
-                }
-            }
-```
-The available parameters map is a baseline for adding additional parameters to the initial authentication endpoint. Currently supported parameters: • “rp_context” - An available dynamic object which will be JSON serialized upon request. For more information. Usage example:
+Gigya.sharedInstance().sso(viewController: viewController) { result in 
+                switch result { 
+                case .success(data: let data): 
+                    print(data) 
+                    isLogged = true 
+                case .failure(_): 
+                    break 
+                } 
+            } 
+``` 
 
-```
-gigya.sso(viewController: self, params: [“rp_context”: [“context_key”: “context_value”]]) {[weak self] res in
-      switch res {
-      case .success(let data):
-	//...
-        print(data)
-      case .failure(let loginApiError):
-	//...
-        print(loginApiError.error.localizedDescription)
-      }
-    }	
-```
+The available parameters map is a baseline for adding additional parameters to the initial authentication endpoint. Currently supported parameters:  
+
+• “rp_context” - An available dynamic object that will be JSON serialized upon request. For more information. Usage example: 
+
+```swift
+gigya.sso(viewController: self, params: [“rp_context”: [“context_key”: “context_value”]]) {[weak self] res in 
+      switch res { 
+      case .success(let data): 
+    //... 
+        print(data) 
+      case .failure(let loginApiError): 
+    //... 
+        print(loginApiError.error.localizedDescription) 
+      } 
+    } 
+``` 
 
 ## FIDO/WebAuthn Authentication
 FIDO is a passwordless authentication method that enables password-only logins to be replaced with secure and fast login experiences across websites and apps.
