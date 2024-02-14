@@ -18,7 +18,7 @@ public struct GigyaResponseModel: Codable {
     // Mark: - Internal
     let sessionInfo: SessionInfoModel?
 
-    internal var requestData: Data? = nil
+    public var requestData: Data? = nil
     
     public func toDictionary() -> [String: Any] {
         return DecodeEncodeUtils.dataToDictionary(data: self.requestData)
