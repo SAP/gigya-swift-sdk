@@ -578,7 +578,6 @@ Use the copied Server key and update your site console RBA settings.
 Enable remote notifications.
 Go to your project target -> Capabilities -> Background Modes -> Remote notifications (Enable if needed).
 ```
-—
 
 Add Firebase delegate:
 The Gigya server requires the push token to be sent to it in order to send push notifications to your client devices. In order to do so, add the following to your AppDelegate.swift:
