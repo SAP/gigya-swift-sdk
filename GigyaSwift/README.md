@@ -578,13 +578,6 @@ Use the copied Server key and update your site console RBA settings.
 Enable remote notifications.
 Go to your project target -> Capabilities -> Background Modes -> Remote notifications (Enable if needed).
 ```
-
-Allow Firebase to send foreground notifications.
-After you called FirebaseApp.configure() add the follow line:
-```swift
-FirebaseApp.configure()
-Messaging.messaging().shouldEstablishDirectChannel = true
-```
 —
 
 Add Firebase delegate:
