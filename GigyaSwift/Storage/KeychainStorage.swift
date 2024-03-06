@@ -88,7 +88,7 @@ internal class KeychainStorageFactory {
                     var session: T?
                     if #available(iOS 11.0, *) {
                         do {
-                            session = try NSKeyedUnarchiver.unarchivedObject(ofClass: T.self, from: data)
+                            session = try NSKeyedUnarchiver.unarchivedObject(ofClasses: [T.self, NSString.self], from: data) as? T
                         } catch (let error) {
                             GigyaLogger.log(with: self, message: "[getSession]: failed unarchiveObject session - \(error.localizedDescription) ")
                         }
