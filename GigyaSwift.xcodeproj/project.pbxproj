@@ -491,6 +491,9 @@
 		E77F7A292406B12B00FF90FB /* GigyaNssEngine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GigyaNssEngine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E77F7A2E2407EC7900FF90FB /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		E7818A6B222445F8008117AB /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		E788BD1C2B906EA800C8F772 /* he */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = he; path = he.lproj/Main.strings; sourceTree = "<group>"; };
+		E788BD1D2B906EA800C8F772 /* he */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = he; path = he.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		E788BD1E2B906EA900C8F772 /* he */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = he; path = he.lproj/Lang.strings; sourceTree = "<group>"; };
 		E794998D292A1EC900D3FB98 /* App.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = App.xcframework; path = GigyaNss/Flutter/Release/App.xcframework; sourceTree = "<group>"; };
 		E7A532952AE7AF43005F3662 /* GigyaTfa.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GigyaTfa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7A532982AE7B039005F3662 /* GigyaTfa.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = GigyaTfa.xcframework; path = GigyaTfa/GigyaTfa.xcframework; sourceTree = "<group>"; };
@@ -1724,6 +1727,7 @@
 				en,
 				Base,
 				es,
+				he,
 			);
 			mainGroup = E7BE36692224219200A108D9;
 			productRefGroup = E7BE36742224219200A108D9 /* Products */;
@@ -2182,6 +2186,7 @@
 			children = (
 				E72FEC54234F19850028EF28 /* en */,
 				E72FEC56234F19A50028EF28 /* es */,
+				E788BD1E2B906EA900C8F772 /* he */,
 			);
 			name = Lang.strings;
 			sourceTree = "<group>";
@@ -2190,6 +2195,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				E7BE36A12224260400A108D9 /* Base */,
+				E788BD1C2B906EA800C8F772 /* he */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -2198,6 +2204,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				E7BE36A62224260500A108D9 /* Base */,
+				E788BD1D2B906EA800C8F772 /* he */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -2594,7 +2601,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.5.9;
+				MARKETING_VERSION = 1.5.10;
 				MODULEMAP_FILE = "";
 				MODULEMAP_PRIVATE_FILE = "";
 				ONLY_ACTIVE_ARCH = NO;
@@ -2655,7 +2662,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.5.9;
+				MARKETING_VERSION = 1.5.10;
 				MODULEMAP_FILE = "";
 				MODULEMAP_PRIVATE_FILE = "";
 				ONLY_ACTIVE_ARCH = NO;
