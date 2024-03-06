@@ -20,6 +20,15 @@ public struct GigyaResponseModel: Codable {
 
     internal var requestData: Data? = nil
     
+    public init(statusCode: ApiStatusCode, errorCode: Int, callId: String, errorMessage: String?, sessionInfo: SessionInfoModel?, requestData: Data? = nil) {
+        self.statusCode = statusCode
+        self.errorCode = errorCode
+        self.callId = callId
+        self.errorMessage = errorMessage
+        self.sessionInfo = sessionInfo
+        self.requestData = requestData
+    }
+    
     public func toDictionary() -> [String: Any] {
         return DecodeEncodeUtils.dataToDictionary(data: self.requestData)
     }
