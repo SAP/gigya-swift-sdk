@@ -12,7 +12,7 @@ public final class ReportingService {
     private let networkProvider: NetworkProvider
     private let config: GigyaConfig
 
-    var disabled = true
+    var enable = false
 
     enum Priority: String {
         case info = "INFO"
@@ -25,7 +25,7 @@ public final class ReportingService {
     }
 
     func sendErrorReport(msg: String, details: [String: Any], priority: Priority = .info) {
-        guard disabled else {
+        guard enable else {
             return
         }
 

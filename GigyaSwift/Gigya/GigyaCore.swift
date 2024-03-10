@@ -552,7 +552,7 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
      - Parameter active True to activate.
      */
     public func setErrorReporting(to active: Bool) {
-        container.resolve(ReportingService.self)?.disabled = !active
+        container.resolve(ReportingService.self)?.enable = active
     }
 
     /**
@@ -564,6 +564,10 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
 
     public func setAccountConfig(with account: GigyaAccountConfig) {
         config.accountConfig = account
+        
+        if let cacheTime = account.cacheTime {
+            businessApiService.accountService.accountCacheTime = cacheTime
+        }
     }
 }
 

@@ -170,13 +170,19 @@ class PushNotificationsService: PushNotificationsServiceExternalProtocol, PushNo
             return
         }
 
-        let model = ApiRequestModel(method: GigyaDefinitions.API.pushUpdateDevice, params: ["platform": "ios", "os": generalUtils.iosVersion(), "man": "apple", "pushToken": pushToken])
+        let model = ApiRequestModel(method: GigyaDefinitions.API.pushUpdateDevice, params: ["deviceInfo": ["platform": "ios", "os": generalUtils.iosVersion(), "man": "apple", "pushToken": pushToken]])
 
         apiService.send(model: model, responseType: GigyaDictionary.self) { [weak persistenceService] result in
             switch result {
             case .success:
                 persistenceService?.setPushKey(to: pushToken)
             case .failure(let error):
+                switch error {
+                case .gigyaError(data: let data):
+                    print(data)
+                default:
+                    break
+                }
                 GigyaLogger.log(with: self, message: error.localizedDescription)
             }
         }
