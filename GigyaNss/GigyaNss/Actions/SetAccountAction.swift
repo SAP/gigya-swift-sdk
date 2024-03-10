@@ -69,9 +69,7 @@ class SetAccountAction<T: GigyaAccountProtocol>: Action<T> {
                 resolver.setAccount(params: params!)
 
             } else {
-                var data: [String: Any] = [:];
-                data["data"] = params?["data"]
-                data["profile"] = params?["profile"]
+                var data: [String: Any] = params ?? [:]
                 businessApi?.callSetAccount(dataType: T.self, params: data, completion: self.apiClosure)
 
                 if publishPhotoOnSubmit {
