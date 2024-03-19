@@ -463,7 +463,9 @@ Gigya.sharedInstance().sso(viewController: viewController) { result in
 
 The available parameters map is a baseline for adding additional parameters to the initial authentication endpoint. Currently supported parameters:  
 
-• “rp_context” - An available dynamic object that will be JSON serialized upon request. For more information. Usage example: 
+• “rp_context” - An available dynamic object that will be JSON serialized upon request. For more information, see https://help.sap.com/docs/SAP_CUSTOMER_DATA_CLOUD/8b8d6fffe113457094a17701f63e3d6a/8f338042a52a47c886684475bede0167.html. 
+
+Usage example: 
 
 ```swift
 gigya.sso(viewController: self, params: [“rp_context”: [“context_key”: “context_value”]]) {[weak self] res in 
