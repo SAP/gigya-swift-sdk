@@ -90,6 +90,7 @@ class SessionVerificationService: SessionVerificationServiceProtocol {
                 }
             })
         })
+        sessionLifeCountdownTimer?.fire()
     }
 
     func stop() {
