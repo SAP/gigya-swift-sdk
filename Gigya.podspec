@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name          = 'Gigya'
-  spec.version       = '1.5.10'
+  spec.version       = '1.6.0'
   spec.license       = 'Apache 2.0'
   spec.homepage      = 'https://developers.gigya.com/display/GD/Swift+SDK'
   spec.author       = 'Gigya SAP'
@@ -10,15 +10,17 @@ Pod::Spec.new do |spec|
 			your Swift application
 			DESC
 
-  spec.source        = { :git => 'https://github.com/SAP/gigya-swift-sdk.git', :tag => 'core/v1.5.10' }
+  spec.source        = { :git => 'https://github.com/SAP/gigya-swift-sdk.git', :tag => 'core/v1.6.0' }
   spec.module_name   = 'Gigya'
   spec.swift_version = '5.3'
 
 #  spec.platform = :ios
-  spec.ios.deployment_target  = '10.0'
+  spec.ios.deployment_target  = '11.0'
 
   spec.source_files       = 'GigyaSwift/*/*.swift', 'GigyaSwift/*/*/*.swift', 'GigyaSwift/*/*/*/*.swift', 'GigyaSwift/*/*/*/*/*.swift'
-  
+  spec.resource_bundle = {
+    "Gigya_Privacy" => "GigyaSwift/PrivacyInfo.xcprivacy"
+  }
   spec.framework      = 'SystemConfiguration'
   spec.library = 'c++', 'z'
 

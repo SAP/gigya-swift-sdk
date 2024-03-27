@@ -25,6 +25,12 @@ public final class PersistenceService {
             return UserDefaults.standard.string(forKey: InternalConfig.Storage.UCID)
         }
     }
+    
+    internal var idsRefreshTime: Double? {
+        get {
+            return UserDefaults.standard.double(forKey: InternalConfig.Storage.idsRefreshTime)
+        }
+    }
 
     internal var hasRunBefore: Bool? {
         get {
@@ -74,6 +80,7 @@ public final class PersistenceService {
     internal func save(ids: InitSdkIdsModel) {
         UserDefaults.standard.setValue(ids.gcid, forKey: InternalConfig.Storage.GMID)
         UserDefaults.standard.setValue(ids.ucid, forKey: InternalConfig.Storage.UCID)
+        UserDefaults.standard.setValue(ids.refreshTime, forKey: InternalConfig.Storage.idsRefreshTime)
     }
 
     internal func setBiometricEnable(to allow: Bool) {

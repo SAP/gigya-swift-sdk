@@ -120,7 +120,7 @@ class SessionService: SessionServiceProtocol {
                 gsession.sessionExpirationTimestamp = sessionExpirationTimestamp
             }
 
-            let data = NSKeyedArchiver.archivedData(withRootObject: gsession)
+            let data = try? NSKeyedArchiver.archivedData(withRootObject: gsession, requiringSecureCoding: true)
 
             self?.keychainHelper.add(with: InternalConfig.Storage.keySession, data: data)  { [weak self] err in
                 GigyaLogger.log(with: self, message: "[setSession]: \(err)")
@@ -182,7 +182,7 @@ class SessionService: SessionServiceProtocol {
     func setSessionAs(biometric: Bool, completion: @escaping (GigyaBiometricResult) -> Void) {
         guard let session = session else { return }
 
-        let data = NSKeyedArchiver.archivedData(withRootObject: session)
+        let data = try? NSKeyedArchiver.archivedData(withRootObject: session, requiringSecureCoding: true)
 
         var mode: KeychainMode = .regular
 
