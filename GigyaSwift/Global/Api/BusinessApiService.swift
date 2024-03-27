@@ -125,7 +125,7 @@ class BusinessApiService: NSObject, BusinessApiServiceProtocol {
                 let regToken = data["regToken"]?.value ?? ""
                 let makeParams: [String: Any] = ["email": email, "password": password, "regToken": regToken, "finalizeRegistration": "true"].merging(params) { $1 }
 
-                let model = ApiRequestModel(method: GigyaDefinitions.API.register, params: makeParams)
+                let model = ApiRequestModel(method: GigyaDefinitions.API.register, params: makeParams, config: self?.config)
 
                 self?.apiService.send(model: model, responseType: T.self) { result in
                     switch result {
@@ -232,7 +232,7 @@ class BusinessApiService: NSObject, BusinessApiServiceProtocol {
         var params: [String: Any] = params
         params["loginID"] = UID
 
-        let model = ApiRequestModel(method: GigyaDefinitions.API.verifyLogin, params: params)
+        let model = ApiRequestModel(method: GigyaDefinitions.API.verifyLogin, params: params, config: config)
 
         apiService.send(model: model, responseType: T.self) { result in
             switch result {
