@@ -87,3 +87,9 @@ extension Data {
         return self.base64EncodedString().replacingOccurrences(of: "+", with: "-").replacingOccurrences(of: "/", with: "_").replacingOccurrences(of: "=", with: "")
     }
 }
+
+extension Date {
+    internal var millisecondsSince1970: Double {
+        Double((self.timeIntervalSince1970 * 1000.0).rounded())
+    }
+}

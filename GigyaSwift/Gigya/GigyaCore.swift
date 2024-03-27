@@ -151,7 +151,7 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
     public func isLoggedIn() -> Bool {
         return sessionService.isValidSession()
     }
-
+    
     /**
      Set session.
 
