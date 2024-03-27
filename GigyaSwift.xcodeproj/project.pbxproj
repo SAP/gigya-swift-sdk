@@ -61,10 +61,6 @@
 		E713E0FE2248C83D00181328 /* GigyaConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = E713E0FD2248C83D00181328 /* GigyaConfig.swift */; };
 		E713E1022248E41400181328 /* GigyaRequestSignature.swift in Sources */ = {isa = PBXBuildFile; fileRef = E713E1012248E41400181328 /* GigyaRequestSignature.swift */; };
 		E713E18C224A2E5800181328 /* NetworkAdapterMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E713E18B224A2E5800181328 /* NetworkAdapterMock.swift */; };
-		E71611F02B54077C0054D4B7 /* App.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = E732A82328BB55240035DDEA /* App.xcframework */; };
-		E71611F12B54077C0054D4B7 /* App.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E732A82328BB55240035DDEA /* App.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		E71611F22B54077C0054D4B7 /* Flutter.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = E732A82428BB55240035DDEA /* Flutter.xcframework */; };
-		E71611F32B54077C0054D4B7 /* Flutter.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E732A82428BB55240035DDEA /* Flutter.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E719373622D32FB800CD149E /* BiometricService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E719373522D32FB800CD149E /* BiometricService.swift */; };
 		E719373822D33F1F00CD149E /* BiometricServiceInternalProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E719373722D33F1F00CD149E /* BiometricServiceInternalProtocol.swift */; };
 		E719373A22D33F3700CD149E /* BiometricServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E719373922D33F3700CD149E /* BiometricServiceProtocol.swift */; };
@@ -107,6 +103,7 @@
 		E7337467226C538300ADEDBB /* DecodeTestUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7337466226C538300ADEDBB /* DecodeTestUtils.swift */; };
 		E735C2F822B7DBF7007A055E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E735C2F722B7DBF7007A055E /* GoogleService-Info.plist */; };
 		E73A930222F974120004F93E /* Notification.Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73A930122F974120004F93E /* Notification.Name.swift */; };
+		E73F8BD52B9F4BB100E11B48 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = E73F8BD42B9EF71400E11B48 /* PrivacyInfo.xcprivacy */; };
 		E741B4CD271420AB00BF693F /* SsoLoginWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E741B4CC271420AA00BF693F /* SsoLoginWrapper.swift */; };
 		E741DCE12771DDF400E46223 /* TestSsoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E741DCE02771DDF400E46223 /* TestSsoApp.swift */; };
 		E741DCE32771DDF400E46223 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E741DCE22771DDF400E46223 /* ContentView.swift */; };
@@ -166,6 +163,10 @@
 		E7ACF9AE226C843100900C65 /* SessionServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7ACF9AD226C843100900C65 /* SessionServiceProtocol.swift */; };
 		E7ACF9B0226C844A00900C65 /* AccountServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7ACF9AF226C844A00900C65 /* AccountServiceProtocol.swift */; };
 		E7ACF9CC226F2A4100900C65 /* ProviderWrapperProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7ACF9CB226F2A4100900C65 /* ProviderWrapperProtocol.swift */; };
+		E7B16EAC2BA045EE005DD81E /* App.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = E732A82328BB55240035DDEA /* App.xcframework */; };
+		E7B16EAD2BA045EE005DD81E /* App.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E732A82328BB55240035DDEA /* App.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E7B16EAE2BA045EE005DD81E /* Flutter.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = E732A82428BB55240035DDEA /* Flutter.xcframework */; };
+		E7B16EAF2BA045EE005DD81E /* Flutter.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E732A82428BB55240035DDEA /* Flutter.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E7B2FA9525F0FAF6002A7010 /* GigyaSchema.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B2FA9425F0FAF6002A7010 /* GigyaSchema.swift */; };
 		E7B4D69C238329F50090E57D /* PushNotificationsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E720D34B2382D32300446EA4 /* PushNotificationsService.swift */; };
 		E7B5408A23952E2200C0C8D8 /* UserNotificationCenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B5408923952E2200C0C8D8 /* UserNotificationCenterProtocol.swift */; };
@@ -318,9 +319,9 @@
 				E76B94F8285089D100E63E3B /* GigyaAuth.framework in Embed Frameworks */,
 				E732A83028BB62720035DDEA /* (null) in Embed Frameworks */,
 				E7A5329A2AE7B039005F3662 /* GigyaTfa.xcframework in Embed Frameworks */,
-				E71611F32B54077C0054D4B7 /* Flutter.xcframework in Embed Frameworks */,
+				E7B16EAF2BA045EE005DD81E /* Flutter.xcframework in Embed Frameworks */,
 				E76B94FA285089EF00E63E3B /* GigyaNss.framework in Embed Frameworks */,
-				E71611F12B54077C0054D4B7 /* App.xcframework in Embed Frameworks */,
+				E7B16EAD2BA045EE005DD81E /* App.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -438,6 +439,7 @@
 		E73C8A412430F69F0064EFE1 /* GigyaNssEngine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GigyaNssEngine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E73C8A442430F6B60064EFE1 /* GigyaNssEngine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GigyaNssEngine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E73C8A472430F6BB0064EFE1 /* GigyaNss.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GigyaNss.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E73F8BD42B9EF71400E11B48 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		E741B4CC271420AA00BF693F /* SsoLoginWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SsoLoginWrapper.swift; sourceTree = "<group>"; };
 		E741DCBC2770F72F00E46223 /* GigyaTfa.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GigyaTfa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E741DCBF2770F79B00E46223 /* GigyaTfa.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GigyaTfa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -682,11 +684,11 @@
 			files = (
 				E7DC2C6D2280778000A13426 /* libc++.tbd in Frameworks */,
 				E7DC2C6C2280771700A13426 /* libz.tbd in Frameworks */,
-				E71611F02B54077C0054D4B7 /* App.xcframework in Frameworks */,
+				E7B16EAC2BA045EE005DD81E /* App.xcframework in Frameworks */,
 				E7A532992AE7B039005F3662 /* GigyaTfa.xcframework in Frameworks */,
 				E76B94F7285089D100E63E3B /* GigyaAuth.framework in Frameworks */,
 				E76B94F9285089EF00E63E3B /* GigyaNss.framework in Frameworks */,
-				E71611F22B54077C0054D4B7 /* Flutter.xcframework in Frameworks */,
+				E7B16EAE2BA045EE005DD81E /* Flutter.xcframework in Frameworks */,
 				E7DC2C6B228076E600A13426 /* libsqlite3.tbd in Frameworks */,
 				E73373F522633BDA00ADEDBB /* SafariServices.framework in Frameworks */,
 				E731B72D232A53AD0032E111 /* AuthenticationServices.framework in Frameworks */,
@@ -1148,6 +1150,7 @@
 				E7CBB03E223561A8000B6C11 /* Gigya */,
 				E7BE36772224219200A108D9 /* Info.plist */,
 				E7BE36762224219200A108D9 /* GigyaSwift.h */,
+				E73F8BD42B9EF71400E11B48 /* PrivacyInfo.xcprivacy */,
 				E7818A6B222445F8008117AB /* Config.xcconfig */,
 			);
 			path = GigyaSwift;
@@ -1788,6 +1791,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E73F8BD52B9F4BB100E11B48 /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1860,7 +1864,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# set framework folder name\nFRAMEWORK_FOLDER_NAME=\"${PROJECT_NAME}_XCFramework\"\n# set framework name or read it from project by this variable\nFRAMEWORK_NAME=\"GigyaSwift.xcworkspace\"\nFRAMEWORK_SCHEMA=\"Gigya\"\n\n#xcframework path\nFRAMEWORK_PATH=\"${PROJECT_DIR}/XC/${FRAMEWORK_FOLDER_NAME}/${FRAMEWORK_SCHEMA}.xcframework\"\n# set path for iOS simulator archive\nSIMULATOR_ARCHIVE_PATH=\"${PROJECT_DIR}/${FRAMEWORK_FOLDER_NAME}/simulator.xcarchive\"\n# set path for iOS device archive\nIOS_DEVICE_ARCHIVE_PATH=\"${PROJECT_DIR}/${FRAMEWORK_FOLDER_NAME}/iOS.xcarchive\"\nrm -rf \"${PROJECT_DIR}/XC/${FRAMEWORK_FOLDER_NAME}/${FRAMEWORK_SCHEMA}\"\necho \"Deleted ${FRAMEWORK_FOLDER_NAME}\"\nmkdir \"${FRAMEWORK_FOLDER_NAME}\"\necho \"Created ${FRAMEWORK_FOLDER_NAME}\"\necho \"Archiving ${FRAMEWORK_NAME}\"\n\nxcodebuild archive -workspace \"${FRAMEWORK_NAME}\" -scheme ${FRAMEWORK_SCHEMA} -destination=\"iOS Simulator\" -archivePath \"${SIMULATOR_ARCHIVE_PATH}\" -sdk iphonesimulator SKIP_INSTALL=NO BUILD_LIBRARIES_FOR_DISTRIBUTION=YES\n\nxcodebuild archive -workspace \"${FRAMEWORK_NAME}\" -scheme ${FRAMEWORK_SCHEMA} -destination=\"iOS\" -archivePath \"${IOS_DEVICE_ARCHIVE_PATH}\" -sdk iphoneos SKIP_INSTALL=NO BUILD_LIBRARIES_FOR_DISTRIBUTION=YES\n#Creating XCFramework\nxcodebuild -create-xcframework -framework ${SIMULATOR_ARCHIVE_PATH}/Products/Library/Frameworks/${FRAMEWORK_SCHEMA}.framework -framework ${IOS_DEVICE_ARCHIVE_PATH}/Products/Library/Frameworks/${FRAMEWORK_SCHEMA}.framework -output \"${FRAMEWORK_PATH}\"\nrm -rf \"${SIMULATOR_ARCHIVE_PATH}\"\nrm -rf \"${IOS_DEVICE_ARCHIVE_PATH}\"\nopen \"${PROJECT_DIR}/XC/${FRAMEWORK_FOLDER_NAME}\"\n\n/opt/homebrew/bin/go run \"${PROJECT_DIR}/XC/fixer/fixer.go\" \"${FRAMEWORK_PATH}\"\n";
+			shellScript = "# set framework folder name\nFRAMEWORK_FOLDER_NAME=\"${PROJECT_NAME}_XCFramework\"\n# set framework name or read it from project by this variable\nFRAMEWORK_NAME=\"GigyaSwift.xcworkspace\"\nFRAMEWORK_SCHEMA=\"Gigya\"\n\n#xcframework path\nFRAMEWORK_PATH=\"${PROJECT_DIR}/XC/${FRAMEWORK_FOLDER_NAME}/${FRAMEWORK_SCHEMA}.xcframework\"\n# set path for iOS simulator archive\nSIMULATOR_ARCHIVE_PATH=\"${PROJECT_DIR}/${FRAMEWORK_FOLDER_NAME}/simulator.xcarchive\"\n# set path for iOS device archive\nIOS_DEVICE_ARCHIVE_PATH=\"${PROJECT_DIR}/${FRAMEWORK_FOLDER_NAME}/iOS.xcarchive\"\nrm -rf \"${PROJECT_DIR}/XC/${FRAMEWORK_FOLDER_NAME}/${FRAMEWORK_SCHEMA}\"\necho \"Deleted ${FRAMEWORK_FOLDER_NAME}\"\nmkdir \"${FRAMEWORK_FOLDER_NAME}\"\necho \"Created ${FRAMEWORK_FOLDER_NAME}\"\necho \"Archiving ${FRAMEWORK_NAME}\"\n\nxcodebuild archive -workspace \"${FRAMEWORK_NAME}\" -scheme ${FRAMEWORK_SCHEMA} -destination=\"iOS Simulator\" -archivePath \"${SIMULATOR_ARCHIVE_PATH}\" -sdk iphonesimulator SKIP_INSTALL=NO BUILD_LIBRARIES_FOR_DISTRIBUTION=YES\n\nxcodebuild archive -workspace \"${FRAMEWORK_NAME}\" -scheme ${FRAMEWORK_SCHEMA} -destination=\"iOS\" -archivePath \"${IOS_DEVICE_ARCHIVE_PATH}\" -sdk iphoneos SKIP_INSTALL=NO BUILD_LIBRARIES_FOR_DISTRIBUTION=YES\n#Creating XCFramework\nxcodebuild -create-xcframework -framework ${SIMULATOR_ARCHIVE_PATH}/Products/Library/Frameworks/${FRAMEWORK_SCHEMA}.framework -framework ${IOS_DEVICE_ARCHIVE_PATH}/Products/Library/Frameworks/${FRAMEWORK_SCHEMA}.framework -output \"${FRAMEWORK_PATH}\"\ncodesign --timestamp -v --sign \"Apple Development: Sagi Shmuel (M54M22QGDP)\" ${FRAMEWORK_NAME}.xcframework\n\nrm -rf \"${SIMULATOR_ARCHIVE_PATH}\"\nrm -rf \"${IOS_DEVICE_ARCHIVE_PATH}\"\nopen \"${PROJECT_DIR}/XC/${FRAMEWORK_FOLDER_NAME}\"\n\n/opt/homebrew/bin/go run \"${PROJECT_DIR}/XC/fixer/fixer.go\" \"${FRAMEWORK_PATH}\"\n";
 		};
 		EB7918E424CC7E8B9A7E4C27 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2579,7 +2583,7 @@
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development: Sagi Shmuel (M54M22QGDP)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 140;
 				DEFINES_MODULE = YES;
@@ -2601,7 +2605,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.5.10;
+				MARKETING_VERSION = 1.6.0;
 				MODULEMAP_FILE = "";
 				MODULEMAP_PRIVATE_FILE = "";
 				ONLY_ACTIVE_ARCH = NO;
@@ -2640,7 +2644,7 @@
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development: Sagi Shmuel (M54M22QGDP)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 140;
 				DEFINES_MODULE = YES;
@@ -2662,7 +2666,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.5.10;
+				MARKETING_VERSION = 1.6.0;
 				MODULEMAP_FILE = "";
 				MODULEMAP_PRIVATE_FILE = "";
 				ONLY_ACTIVE_ARCH = NO;
