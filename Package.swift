@@ -31,16 +31,28 @@ let package = Package(
             name: "Gigya",
             dependencies: [],
             path: "GigyaSwift",
-            exclude: ["Info.plist", "README.md", "Config.xcconfig"]),
+            exclude: ["Info.plist", "README.md", "Config.xcconfig"],
+            resources: [
+              .process("PrivacyInfo.xcprivacy")
+            ]
+        ),
         .target(
             name: "GigyaTfa",
             dependencies: ["Gigya"],
             path: "GigyaTfa",
-            exclude: ["GigyaTfa/Info.plist", "README.md"]),
+            exclude: ["GigyaTfa/Info.plist", "README.md"],
+            resources: [
+              .process("PrivacyInfo.xcprivacy")
+            ]
+        ),
         .target(
             name: "GigyaAuth",
             dependencies: ["Gigya"],
             path: "GigyaAuth",
-            exclude: ["GigyaAuth/Info.plist", "README.md"]),
+            exclude: ["GigyaAuth/Info.plist", "README.md"],
+            resources: [
+              .process("PrivacyInfo.xcprivacy")
+            ]
+        ),
     ]
 )
