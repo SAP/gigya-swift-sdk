@@ -30,7 +30,12 @@ final class ApiService: ApiServiceProtocol {
 
     func getSDKConfig() {
         persistenceService.isStartSdk = true
-
+        
+        if let refreshTime = persistenceService.idsRefreshTime,
+           refreshTime > Date().millisecondsSince1970 {
+            return
+        }
+        
         let params = ["include": "permissions,ids,appIds"]
         let model = ApiRequestModel(method: GigyaDefinitions.API.getSdkConfig, params: params)
 

@@ -15,4 +15,5 @@ struct InitSdkResponseModel: Codable {
 struct InitSdkIdsModel: Codable {
     let ucid: String
     let gcid: String
+    let refreshTime: Double?
 }
