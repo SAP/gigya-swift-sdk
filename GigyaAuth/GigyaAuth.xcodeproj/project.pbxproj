@@ -22,6 +22,7 @@
 
 /* Begin PBXBuildFile section */
 		E726B27025B9B2C6000637CE /* OtpService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E726B26F25B9B2C6000637CE /* OtpService.swift */; };
+		E735678D2BBA9D660001E89C /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = E735678C2BBA9D660001E89C /* PrivacyInfo.xcprivacy */; };
 		E741DCB52770A47D00E46223 /* Gigya.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7791A6023853E3C0075BAFD /* Gigya.framework */; };
 		E7791A5423853A510075BAFD /* GigyaAuth.h in Headers */ = {isa = PBXBuildFile; fileRef = E7791A4623853A510075BAFD /* GigyaAuth.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E7791A5E23853DF00075BAFD /* GigyaAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7791A5D23853DF00075BAFD /* GigyaAuth.swift */; };
@@ -34,6 +35,7 @@
 
 /* Begin PBXFileReference section */
 		E726B26F25B9B2C6000637CE /* OtpService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtpService.swift; sourceTree = "<group>"; };
+		E735678C2BBA9D660001E89C /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = SOURCE_ROOT; };
 		E75097812434CA3A008E984C /* Gigya.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Gigya.framework; sourceTree = "<group>"; };
 		E7791A4323853A510075BAFD /* GigyaAuth.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GigyaAuth.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7791A4623853A510075BAFD /* GigyaAuth.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GigyaAuth.h; sourceTree = "<group>"; };
@@ -94,6 +96,7 @@
 				E726B26E25B9B2B4000637CE /* Services */,
 				E7791A6423853EDA0075BAFD /* PushNotifications */,
 				E7791A5D23853DF00075BAFD /* GigyaAuth.swift */,
+				E735678C2BBA9D660001E89C /* PrivacyInfo.xcprivacy */,
 				E7791A4723853A510075BAFD /* Info.plist */,
 			);
 			path = GigyaAuth;
@@ -200,6 +203,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E735678D2BBA9D660001E89C /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -221,7 +225,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#!/bin/sh\n\nUNIVERSAL_OUTPUTFOLDER=${BUILD_DIR}/${CONFIGURATION}-universal\n\n# make sure the output directory exists\nmkdir -p \"${UNIVERSAL_OUTPUTFOLDER}\"\n\n# Step 1. Build Device and Simulator versions\nxcodebuild -target \"${PROJECT_NAME}\" ONLY_ACTIVE_ARCH=NO ARCHS='armv7 arm64' -configuration ${CONFIGURATION} -sdk iphoneos  BUILD_DIR=\"${BUILD_DIR}\" ENABLE_BITCODE=YES OTHER_CFLAGS=\"-fembed-bitcode\" BITCODE_GENERATION_MODE=bitcode BUILD_ROOT=\"${BUILD_ROOT}\" clean build\nxcodebuild -target \"${PROJECT_NAME}\" -configuration ${CONFIGURATION} -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO ARCHS='i386 x86_64' ENABLE_BITCODE=YES OTHER_CFLAGS=\"-fembed-bitcode\" BITCODE_GENERATION_MODE=bitcode BUILD_DIR=\"${BUILD_DIR}\" BUILD_ROOT=\"${BUILD_ROOT}\" clean build\n\n# Step 2. Copy the framework structure (from iphoneos build) to the universal folder\ncp -R \"${BUILD_DIR}/${CONFIGURATION}-iphoneos/${PROJECT_NAME}.framework\" \"${UNIVERSAL_OUTPUTFOLDER}/\"\n\n# Step 3. Copy Swift modules from iphonesimulator build (if it exists) to the copied framework directory\nSIMULATOR_SWIFT_MODULES_DIR=\"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/${PROJECT_NAME}.framework/Modules/${PROJECT_NAME}.swiftmodule/.\"\nif [ -d \"${SIMULATOR_SWIFT_MODULES_DIR}\" ]; then\ncp -R \"${SIMULATOR_SWIFT_MODULES_DIR}\" \"${UNIVERSAL_OUTPUTFOLDER}/${PROJECT_NAME}.framework/Modules/${PROJECT_NAME}.swiftmodule\"\nfi\n\n# Step 4. Create universal binary file using lipo and place the combined executable in the copied framework directory\nlipo -create -output \"${UNIVERSAL_OUTPUTFOLDER}/${PROJECT_NAME}.framework/${PROJECT_NAME}\" \"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/${PROJECT_NAME}.framework/${PROJECT_NAME}\" \"${BUILD_DIR}/${CONFIGURATION}-iphoneos/${PROJECT_NAME}.framework/${PROJECT_NAME}\"\n\n# Step 5. Convenience step to copy the framework to the project's directory\ncp -R \"${UNIVERSAL_OUTPUTFOLDER}/${PROJECT_NAME}.framework\" \"${PROJECT_DIR}\"\n\n# Step 6. Convenience step to open the project's directory in Finder\nopen \"${PROJECT_DIR}\"\n";
+			shellScript = "#!/bin/sh\n\n\n# set framework folder name\nFRAMEWORK_FOLDER_NAME=\"${PROJECT_NAME}_XCFramework\"\n# set framework name or read it from project by this variable\nFRAMEWORK_NAME=\"../GigyaSwift.xcworkspace\"\nFRAMEWORK_SCHEMA=\"GigyaAuth\"\n\n#xcframework path\nFRAMEWORK_PATH=\"${PROJECT_DIR}/XC/${FRAMEWORK_FOLDER_NAME}/${FRAMEWORK_SCHEMA}.xcframework\"\n# set path for iOS simulator archive\nSIMULATOR_ARCHIVE_PATH=\"${PROJECT_DIR}/${FRAMEWORK_FOLDER_NAME}/simulator.xcarchive\"\n# set path for iOS device archive\nIOS_DEVICE_ARCHIVE_PATH=\"${PROJECT_DIR}/${FRAMEWORK_FOLDER_NAME}/iOS.xcarchive\"\nrm -rf \"${PROJECT_DIR}/XC/${FRAMEWORK_FOLDER_NAME}/${FRAMEWORK_SCHEMA}\"\necho \"Deleted ${FRAMEWORK_FOLDER_NAME}\"\nmkdir \"${FRAMEWORK_FOLDER_NAME}\"\necho \"Created ${FRAMEWORK_FOLDER_NAME}\"\necho \"Archiving ${FRAMEWORK_NAME}\"\n\nxcodebuild archive -workspace \"${FRAMEWORK_NAME}\" -scheme ${FRAMEWORK_SCHEMA} -destination=\"iOS Simulator\" -archivePath \"${SIMULATOR_ARCHIVE_PATH}\" -sdk iphonesimulator SKIP_INSTALL=NO BUILD_LIBRARIES_FOR_DISTRIBUTION=YES\n\nxcodebuild archive -workspace \"${FRAMEWORK_NAME}\" -scheme ${FRAMEWORK_SCHEMA} -destination=\"iOS\" -archivePath \"${IOS_DEVICE_ARCHIVE_PATH}\" -sdk iphoneos SKIP_INSTALL=NO BUILD_LIBRARIES_FOR_DISTRIBUTION=YES\n#Creating XCFramework\nxcodebuild -create-xcframework -framework ${SIMULATOR_ARCHIVE_PATH}/Products/Library/Frameworks/${FRAMEWORK_SCHEMA}.framework -framework ${IOS_DEVICE_ARCHIVE_PATH}/Products/Library/Frameworks/${FRAMEWORK_SCHEMA}.framework -output \"${FRAMEWORK_PATH}\"\nrm -rf \"${SIMULATOR_ARCHIVE_PATH}\"\nrm -rf \"${IOS_DEVICE_ARCHIVE_PATH}\"\nopen \"${PROJECT_DIR}/XC/${FRAMEWORK_FOLDER_NAME}\"\n\n/opt/homebrew/bin/go run \"${PROJECT_DIR}/XC/fixer/fixer.go\" \"${FRAMEWORK_PATH}\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -409,7 +413,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.1;
+				MARKETING_VERSION = 1.1.2;
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = Gigya.GigyaAuth;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
@@ -447,7 +451,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.1;
+				MARKETING_VERSION = 1.1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = Gigya.GigyaAuth;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;

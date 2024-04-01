@@ -22,6 +22,7 @@
 
 /* Begin PBXBuildFile section */
 		E719373E22D4823400CD149E /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = E719373D22D4823400CD149E /* Dictionary.swift */; };
+		E735678B2BBA9D490001E89C /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = E735678A2BBA9D490001E89C /* PrivacyInfo.xcprivacy */; };
 		E7B52189243A16DE00DAB464 /* Gigya.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7EEF3E922C902890004DF5D /* Gigya.framework */; };
 		E7EEF33222C8BB880004DF5D /* GigyaTfa.h in Headers */ = {isa = PBXBuildFile; fileRef = E7EEF33022C8BB880004DF5D /* GigyaTfa.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E7EEF35722C8BBDB0004DF5D /* AlertControllerUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7EEF33922C8BBDB0004DF5D /* AlertControllerUtils.swift */; };
@@ -45,6 +46,7 @@
 
 /* Begin PBXFileReference section */
 		E719373D22D4823400CD149E /* Dictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dictionary.swift; sourceTree = "<group>"; };
+		E735678A2BBA9D490001E89C /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = SOURCE_ROOT; };
 		E750977624337BCE008E984C /* Gigya.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Gigya.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7EEF32D22C8BB880004DF5D /* GigyaTfa.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GigyaTfa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7EEF33022C8BB880004DF5D /* GigyaTfa.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GigyaTfa.h; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 				E7EEF34622C8BBDB0004DF5D /* Resolvers */,
 				E7EEF33822C8BBDB0004DF5D /* Utils */,
 				E7EEF33022C8BB880004DF5D /* GigyaTfa.h */,
+				E735678A2BBA9D490001E89C /* PrivacyInfo.xcprivacy */,
 				E7EEF33122C8BB880004DF5D /* Info.plist */,
 			);
 			path = GigyaTfa;
@@ -283,6 +286,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E735678B2BBA9D490001E89C /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
