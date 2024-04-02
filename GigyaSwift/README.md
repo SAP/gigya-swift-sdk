@@ -446,7 +446,7 @@ Note: Mobile SSO requires iOS 13+.
 
 Steps for implementing SSO: 
 
-The SDK will use the following redirect schema structure: gsapi://app-bundle-id/login/. Please make sure you add your unique URL to the Trusted Site URLs section of your parent site. 
+The SDK will use the following redirect schema structure: gsapi://app-bundle-id/login/. Please make sure you add your unique URL to the Trusted Site URLs section of your parent site, as well as to your application’s child sites.
 To initiate the flow, use the SSO function provided by the Gigya shared interface: 
 
 ```swift
