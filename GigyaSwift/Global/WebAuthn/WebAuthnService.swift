@@ -229,8 +229,21 @@ public class WebAuthnService<T: GigyaAccountProtocol> {
     private func revoke(key: String) async -> GigyaApiResult<GigyaDictionary> {
         return await withCheckedContinuation({
             continuation in
-            businessApiService.send(dataType: GigyaDictionary.self, api: GigyaDefinitions.WenAuthn.removeCredential, params: ["credentialId": key]) { result in
-                continuation.resume(returning: result)
+            businessApiService.send(dataType: GigyaDictionary.self, api: GigyaDefinitions.WenAuthn.removeCredential, params: ["credentialId": key]) { [weak self] result in
+                switch result {
+                case .success(let data):
+                    guard let idToken = data["idToken"]?.value as? String else {
+                        continuation.resume(returning: result)
+                        return
+                    }
+                    
+                    self?.oauthService.disconnect(regToken: key, idToken: idToken) { _ in
+                        continuation.resume(returning: result)
+                    }
+                case .failure(_):
+                    continuation.resume(returning: result)
+                }
+                
             }
         })
     }
