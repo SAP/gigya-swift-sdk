@@ -83,6 +83,7 @@ public struct GigyaDefinitions {
     
     public struct Oauth {
         static let connect = "oauth.connect"
+        static let disconnect = "oauth.disconnect"
         static let authorize = "oauth.authorize"
         static let token = "oauth.token"
     }
