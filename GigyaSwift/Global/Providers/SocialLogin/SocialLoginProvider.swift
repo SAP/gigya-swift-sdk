@@ -55,7 +55,11 @@ class SocialLoginProvider: Provider {
     func getProviderSessions(token: String, expiration: String?, code: String?, firstName: String?, lastName: String?) -> String {
         switch providerType {
         case .facebook:
-            return "{\"\(providerType.rawValue)\": {\"authToken\": \"\(token)\", tokenExpiration: \"\(expiration ?? "")\"}}"
+            if let code = code {
+                return "{\"\(providerType.rawValue)\": {\"authToken\": \"\(token)\", tokenExpiration: \"\(expiration ?? "")\", idToken: \"\(code)\"}}"
+            } else {
+                return "{\"\(providerType.rawValue)\": {\"authToken\": \"\(token)\", tokenExpiration: \"\(expiration ?? "")\"}}"
+            }
         case .line:
             return "{\"\(providerType.rawValue)\":{\"authToken\": \"\(token)\"}}"
         case .google:
