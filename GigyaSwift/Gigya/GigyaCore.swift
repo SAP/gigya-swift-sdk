@@ -533,6 +533,10 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
     }
 
     // MARK: Global methods
+    
+    public func getAuthCode(completion: @escaping (GigyaApiResult<String>) -> Void) {
+        businessApiService.getAuthCode(completion: completion)
+    }
 
     /**
      Register Social Provider without reflection.
@@ -703,6 +707,20 @@ public extension GigyaCore {
         return try await withCheckedThrowingContinuation({
             (continuation: CheckedContinuation<GigyaSchema, Error>) in
             self.getSchema(params: params) { result in
+                switch result {
+                case .success(data: let data):
+                    continuation.resume(returning: data)
+                case .failure(let error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        })
+    }
+    
+    func getAuthCode() async throws -> String {
+        return try await withCheckedThrowingContinuation({
+            (continuation: CheckedContinuation<String, Error>) in
+            self.getAuthCode() { result in
                 switch result {
                 case .success(data: let data):
                     continuation.resume(returning: data)

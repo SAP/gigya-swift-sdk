@@ -253,7 +253,7 @@ open class GigyaWebBridge<T: GigyaAccountProtocol>: NSObject, WKScriptMessageHan
     /**
      Delegate received plugin events to client.
      */
-    private func onPluginEvent<T>(type: T.Type, params: [String: String]) {
+    private func onPluginEvent<B>(type: B.Type, params: [String: String]) {
         if let eventName = params["eventName"] {
             switch eventName {
             case "beforeScreenLoad":
