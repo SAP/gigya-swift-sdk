@@ -480,6 +480,28 @@ gigya.sso(viewController: self, params: [“rp_context”: [“context_key”: �
     } 
 ``` 
 
+## Session Exchange Between Mobile & WebView
+Applications (mobile/web) within the same site group are now able to share a session from the mobile application to a web page running the JS SDK.
+Follow these steps to allow session exchange:
+
+1. Use the “getAuthCode” interface. This call will provide you with the required code that the web page will require for the exchange.
+```swift
+gigya.getAuthCode() { res in 
+      switch res { 
+      case .success(let code): 
+    //... 
+        // Build url using code
+      case .failure(let loginApiError): 
+    //... 
+        print(loginApiError.error.localizedDescription) 
+      } 
+    } 
+```
+2. Add these URL parameters to your hosted page/website URL using the provided code:
+*** https://page-url?authCode=code&gig_actions=sso.login ***
+3. Make sure that the WebView element you are using to open the URL has JavaScript enabled.
+4. Once the page is loaded, the JS SDK will exchange the token provided for a valid session.
+
 ## FIDO/WebAuthn Authentication
 FIDO is a passwordless authentication method that enables password-only logins to be replaced with secure and fast login experiences across websites and apps.
 Our SDK provides an interface to register a passkey, login, and revoke passkeys created using Fido/Passkeys, backed by our WebAuthn service.
