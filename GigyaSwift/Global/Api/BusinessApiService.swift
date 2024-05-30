@@ -117,7 +117,7 @@ class BusinessApiService: NSObject, BusinessApiServiceProtocol {
     }
 
     func register<T: GigyaAccountProtocol>(email: String, password: String, params: [String: Any], dataType: T.Type, completion: @escaping (GigyaLoginResult<T>) -> Void) {
-        let model = ApiRequestModel(method: GigyaDefinitions.API.initRegistration)
+        let model = ApiRequestModel(method: GigyaDefinitions.API.initRegistration, config: config)
 
         apiService.send(model: model, responseType: [String: AnyCodable].self) { [weak self] (result) in
             switch result {
@@ -158,7 +158,7 @@ class BusinessApiService: NSObject, BusinessApiServiceProtocol {
     }
 
     func login<T: GigyaAccountProtocol>(params: [String: Any], completion: @escaping (GigyaLoginResult<T>) -> Void) {
-        let model = ApiRequestModel(method: GigyaDefinitions.API.login, params: params)
+        let model = ApiRequestModel(method: GigyaDefinitions.API.login, params: params, config: config)
 
         apiService.send(model: model, responseType: T.self) { [weak self] result in
             switch result {
@@ -372,6 +372,25 @@ class BusinessApiService: NSObject, BusinessApiServiceProtocol {
                 completion(.failure(error))
             }
         }
+    }
+    
+    func getAuthCode(completion: @escaping (GigyaApiResult<String>) -> Void) {
+        let params = ["resource": "urn:gigya:account",
+                      "subject_token_type": "urn:gigya:token-type:mobile",
+                      "response_type": "code"
+        ]
+        let model = ApiRequestModel(method: "accounts.identity.token.exchange", params: params)
+
+        apiService.send(model: model, responseType: GigyaDictionary.self) { result in
+            switch result {
+            case .success(let data):
+                let code = data["code"]?.value as? String ?? ""
+                completion(.success(data: code))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+
     }
 
     // MARK: - Internal methods

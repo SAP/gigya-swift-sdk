@@ -69,5 +69,7 @@ public protocol BusinessApiServiceProtocol {
     func getSchema(params: [String: Any], completion: @escaping (GigyaApiResult<GigyaSchema>) -> Void)
     
     func verifySession(params: [String: Any], completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void)
+    
+    func getAuthCode(completion: @escaping (GigyaApiResult<String>) -> Void)
 
 }
