@@ -34,13 +34,8 @@ final class InterruptionResolverFactory: InterruptionResolverFactoryProtocol {
                 // get all data from request
                 let dataResponse = data.toDictionary()
 
-                guard let regToken = dataResponse["regToken"] as? String else {
-                    GigyaLogger.log(with: self, message: "[interruptionResolver] - regToken not exists")
-
-                    forwordFailed(error: error, completion: completion)
-                    return
-                }
-
+                let regToken = getRegToken(from: dataResponse)
+                
                 switch errorCode {
                 case .pendingRegistration:
                     // pending registration
@@ -81,5 +76,9 @@ final class InterruptionResolverFactory: InterruptionResolverFactoryProtocol {
     private func forwordFailed<T: Codable>(error: NetworkError, completion: @escaping (GigyaLoginResult<T>) -> Void) {
         let loginError = LoginApiError<T>(error: error, interruption: nil)
         completion(.failure(loginError))
+    }
+    
+    private func getRegToken(from data: [String: Any]) -> String {
+        return data["regToken"] as? String ?? ""
     }
 }
