@@ -13,6 +13,8 @@ enum WebBridgeInterruption: Int {
 }
 
 public protocol WebBridgeInterruptionResolverFactoryProtocol {
+    var resolverIsActive: Bool { get }
+    
     func interruptionHandler(error: NetworkError)
     
     func responseManager<T: GigyaAccountProtocol>(apiMethod: String, params: [String: String], data: T, completion: @escaping (GigyaPluginEvent<T>) -> Void)
@@ -31,6 +33,10 @@ class WebBridgeInterruptionManager: WebBridgeInterruptionResolverFactoryProtocol
         if self.resolver != nil {
             self.resolver = nil
         }
+    }
+    
+    var resolverIsActive: Bool {
+        return resolver != nil
     }
     
     init(busnessApi: BusinessApiDelegate, accountService: AccountServiceProtocol) {

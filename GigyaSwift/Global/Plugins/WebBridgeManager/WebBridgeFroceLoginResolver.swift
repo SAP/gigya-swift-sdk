@@ -30,6 +30,7 @@ class WebBridgeFroceLoginResolver: WebBridgeResolver {
                 switch result {
                 case .success(data: let userdata):
                     completion(.onLogin(account: userdata))
+                    completion(.onHide(event: ["isFlowFinalized": "true"]))
                 case .failure(_):
                     break
                 }

@@ -267,7 +267,7 @@ open class GigyaWebBridge<T: GigyaAccountProtocol>: NSObject, WKScriptMessageHan
             case "afterSubmit":
                 completion(.onAfterSubmit(event: params))
             case "hide":
-                completion(.onHide(event: params))
+                handleOnHide(params: params)
             case "error":
                 completion(.error(event: params))
             case "fieldChanged":
@@ -279,6 +279,12 @@ open class GigyaWebBridge<T: GigyaAccountProtocol>: NSObject, WKScriptMessageHan
             default:
                 break
             }
+        }
+    }
+    
+    private func handleOnHide(params: [String: String]) {
+        if interruptionManager.resolverIsActive == false {
+            completion(.onHide(event: params))
         }
     }
 
