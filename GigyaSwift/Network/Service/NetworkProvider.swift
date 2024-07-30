@@ -10,7 +10,7 @@ import Foundation
 
 final class NetworkProvider {
 
-    weak var config: GigyaConfig?
+    var config: GigyaConfig?
 
     let persistenceService: PersistenceService
 
