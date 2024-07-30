@@ -17,8 +17,8 @@ public protocol Provider: AnyObject {
 
     func logout()
 
-    func getProviderSessions(token: String, expiration: String?, code: String?, firstName: String?, lastName: String?) -> String
-
+    func getProviderSessions(data: [String: Any]) -> String
+    
     var didFinish: () -> Void { get set }
 
 }
