@@ -103,7 +103,7 @@ final class WebLoginProvider: Provider {
         didFinish()
     }
 
-    func getProviderSessions(token: String, expiration: String?, code: String?, firstName: String?, lastName: String?) -> String {
+    func getProviderSessions(data: [String: Any]) -> String {
         return ""
     }
 
