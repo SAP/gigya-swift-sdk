@@ -49,13 +49,14 @@ final class WebLoginProvider: Provider {
                     return
                 }
 
+                let errorDetails = error!["errorDetails"] ?? ""
                 let errorDesc = error!["error_description"] ?? error
                 let getErrorCode = errorDesc?.split(separator: "+").first
                 let errorCode = Int(getErrorCode ?? "") ?? Int("\(error?["error_code"] ?? "-1")") ?? -1
                 let regToken = error!["regToken"] ?? ""
                 let callId = error!["callId"] ?? ""
 
-                let data = ["regToken": regToken, "errorCode": errorCode] as [String : Any]
+                let data = ["regToken": regToken, "errorCode": errorCode, "errorDetails": errorDetails] as [String : Any]
 
                 let objData = try! JSONSerialization.data(withJSONObject: data, options: .prettyPrinted)
 
