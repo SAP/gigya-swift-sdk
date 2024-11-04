@@ -6,13 +6,13 @@ target 'BitsBytes' do
   use_frameworks!
 
   # Pods for BitsBytes
-	pod 'Gigya',
+	pod 'Gigya'
 	pod 'GigyaTfa'
 	pod 'GigyaAuth'
 	pod 'Firebase'
-  pod 'Firebase/Messaging'
-  pod 'FBSDKCoreKit'
-  pod 'FBSDKLoginKit'
-  pod 'GoogleSignIn'
-  pod 'LineSDKSwift'
+  	pod 'Firebase/Messaging'
+  	pod 'FBSDKCoreKit'
+  	pod 'FBSDKLoginKit'
+  	pod 'GoogleSignIn'
+  	pod 'LineSDKSwift'
 end
