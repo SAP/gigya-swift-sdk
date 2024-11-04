@@ -128,7 +128,9 @@ public class WebAuthnService<T: GigyaAccountProtocol> {
     private func registerCredentials(params: [String: Any]) async -> GigyaApiResult<GigyaDictionary> {
         return await withCheckedContinuation({
             continuation in
-            businessApiService.send(dataType: GigyaDictionary.self, api: GigyaDefinitions.WenAuthn.registerCredentials, params: params) { result in
+            var overrideParams = params
+            overrideParams["deviceName"] = "iOS"
+            businessApiService.send(dataType: GigyaDictionary.self, api: GigyaDefinitions.WenAuthn.registerCredentials, params: overrideParams) { result in
                 continuation.resume(returning: result)
             }
         })
