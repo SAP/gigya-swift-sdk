@@ -21,6 +21,15 @@ Gigya Available SDK libraries:
 
 Follow instruction for each library in order to apply them to your application.
 
+## Example application
+
+**Setup instructions:**
+1. Navigate to the project’s “.plist” file and update your API-KEY.
+2. The demo application currently supports Facebook, Google, Line & Apple but can be extended to use any of our supported social networks.
+3. Setup your Passkeys configuration according to the SDK’s core documentation.
+4. Run pod install.
+5. Run the app.
+
 ## Configuration
 None
 
