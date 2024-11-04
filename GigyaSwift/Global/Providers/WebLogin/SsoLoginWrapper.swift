@@ -180,7 +180,7 @@ class ASWebAuthenticationLayer: NSObject, ASWebAuthenticationPresentationContext
     }
 
     func show() {
-        session = ASWebAuthenticationSession(url: url, callbackURLScheme: SsoLoginWrapper.callbackURLScheme) { [self] u, error in
+        let handler: ASWebAuthenticationSession.CompletionHandler = { [self] u, error in
             if let error = error as? NSError {
                 if error.code == 1 {
                     closure(nil, GigyaDefinitions.Plugin.canceled)
@@ -206,6 +206,13 @@ class ASWebAuthenticationLayer: NSObject, ASWebAuthenticationPresentationContext
                 }
             }
         }
+        
+        if #available(iOS 17.4, *) {
+            session = ASWebAuthenticationSession.init(url: url, callback: .customScheme(SsoLoginWrapper.callbackURLScheme), completionHandler: handler)
+        } else {
+            session = ASWebAuthenticationSession(url: url, callbackURLScheme: SsoLoginWrapper.callbackURLScheme, completionHandler: handler)
+        }
+
         session?.presentationContextProvider = self
 
         session?.start()
