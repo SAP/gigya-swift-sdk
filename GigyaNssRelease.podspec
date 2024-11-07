@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name          = 'GigyaNssRelease'
-  spec.version       = '1.9.5'
+  spec.version       = '1.9.6'
   spec.license       = 'Apache 2.0'
   spec.homepage      = 'https://developers.gigya.com/display/GD/Native+Screen-Sets'
   spec.author       = 'Gigya SAP'
@@ -9,7 +9,7 @@ Pod::Spec.new do |spec|
                         authentication methods from the standard login flow
                         DESC
 
-  spec.source        = { :git => 'https://github.com/SAP/gigya-swift-sdk.git', :tag => 'nss/v1.9.5' }
+  spec.source        = { :git => 'https://github.com/SAP/gigya-swift-sdk.git', :tag => 'nss/v1.9.6' }
   spec.module_name   = 'GigyaNss'
   spec.swift_version = '5.2'
 
