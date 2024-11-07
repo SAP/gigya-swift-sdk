@@ -103,7 +103,6 @@ class LoaderFileHelper {
     }
     
     func loadStyles(asset: ScreenLoadType, response: @escaping ([String: Any]) -> Void) {
-        var params = ["themeId": "system-default"]
         switch asset {
         case .id(let value):
             busnessApi?.sendApi(

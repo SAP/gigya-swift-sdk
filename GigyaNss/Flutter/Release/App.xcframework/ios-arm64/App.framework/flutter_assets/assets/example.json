@@ -734,7 +734,7 @@
         },
         {
           "type": "container",
-          "showIf": "conflictingAccounts.loginProviders.filter(p => p != 'site').length > 0",
+          "showIf": "conflictingAccount.loginProviders.filter(p => p != 'site').length > 0",
           "children": [
             {
               "type": "socialLoginGrid",
@@ -754,7 +754,7 @@
         },
         {
           "type": "container",
-          "showIf": "conflictingAccounts.loginProviders.includes('site')",
+          "showIf": "conflictingAccount.loginProviders.includes('site')",
           "style": {
             "margin": [
               16,
@@ -778,7 +778,7 @@
               }
             },
             {
-              "bind": "conflictingAccounts.loginID",
+              "bind": "conflictingAccount.loginID",
               "sendAs": "loginID",
               "disabled": true,
               "type": "textInput",

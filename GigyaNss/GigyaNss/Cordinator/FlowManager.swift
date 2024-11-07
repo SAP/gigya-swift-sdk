@@ -163,8 +163,8 @@ extension FlowManager: FlowManagerDelegate {
         return apiClosure
     }
     
-    func getMainLoginClosure<T: GigyaAccountProtocol>(obj: T.Type) -> MainClosure<T> {
-        return self.mainLoginClosure as! MainClosure<T>
+    func getMainLoginClosure<B: GigyaAccountProtocol>(obj: B.Type) -> MainClosure<B> {
+        return self.mainLoginClosure as! MainClosure<B>
     }
 
     func getGenericClosure() -> ((GigyaApiResult<GigyaDictionary>) -> Void) {
