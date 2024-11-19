@@ -182,8 +182,10 @@ class BusinessApiService: NSObject, BusinessApiServiceProtocol {
         if let mode = params["loginMode"] as? String {
             loginMode = mode
         }
+        var newParams = params
+        newParams["conflictHandling"] = "fail"
 
-        providerAdapter?.login(type: T.self, params: params, viewController: viewController, loginMode: loginMode) { (result) in
+        providerAdapter?.login(type: T.self, params: newParams, viewController: viewController, loginMode: loginMode) { (result) in
             switch result {
             case .success(let data):
                 completion(.success(data: data))
@@ -244,13 +246,13 @@ class BusinessApiService: NSObject, BusinessApiServiceProtocol {
         }
     }
 
-    func nativeSocialLogin<T: Codable>(params: [String: Any], completion: @escaping (GigyaApiResult<T>) -> Void) {
+    func notifySocialLogin<T: Codable>(params: [String: Any], completion: @escaping (GigyaApiResult<T>) -> Void) {
         let model = ApiRequestModel(method: GigyaDefinitions.API.notifySocialLogin, params: params)
 
         apiService.send(model: model, responseType: GigyaDictionary.self) { [weak self] result in
             switch result {
             case .success:
-                self?.getAccount(dataType: T.self, completion: completion)
+                self?.getAccount(clearAccount: true, dataType: T.self, completion: completion)
             case .failure(let error):
                 completion(.failure(error))
             }
