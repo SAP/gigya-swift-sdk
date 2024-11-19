@@ -221,7 +221,6 @@
 		E7D9C5AE23682DD400714807 /* NetworkBlockingQueueUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7D9C5AD23682DD400714807 /* NetworkBlockingQueueUtils.swift */; };
 		E7D9C5B02368398500714807 /* NetworkRetryDispacher.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7D9C5AF2368398500714807 /* NetworkRetryDispacher.swift */; };
 		E7DC2C3B228019AC00A13426 /* SocialLoginProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DC2C3A228019AC00A13426 /* SocialLoginProvider.swift */; };
-		E7DC2C60228055CA00A13426 /* LineWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DC2C5F228055CA00A13426 /* LineWrapper.swift */; };
 		E7DC2C6B228076E600A13426 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E7DC2C6A228076E600A13426 /* libsqlite3.tbd */; };
 		E7DC2C6C2280771700A13426 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E7F94F4F22247A7400A85640 /* libz.tbd */; };
 		E7DC2C6D2280778000A13426 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E7F94F5122247A7D00A85640 /* libc++.tbd */; };
@@ -426,7 +425,7 @@
 		E731B72C232A53AD0032E111 /* AuthenticationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AuthenticationServices.framework; path = System/Library/Frameworks/AuthenticationServices.framework; sourceTree = SDKROOT; };
 		E731B72E232A53E70032E111 /* AppleSignInWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppleSignInWrapper.swift; sourceTree = "<group>"; };
 		E732A82328BB55240035DDEA /* App.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = App.xcframework; path = GigyaNss/Flutter/Debug/App.xcframework; sourceTree = "<group>"; };
-		E732A82428BB55240035DDEA /* Flutter.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Flutter.xcframework; path = GigyaNss/Flutter/Debug/Flutter.xcframework; sourceTree = "<group>"; };
+		E732A82428BB55240035DDEA /* Flutter.xcframework */ = {isa = PBXFileReference; expectedSignature = "AppleDeveloperProgram:S8QB4VV633:FLUTTER.IO LLC"; lastKnownFileType = wrapper.xcframework; name = Flutter.xcframework; path = GigyaNss/Flutter/Debug/Flutter.xcframework; sourceTree = "<group>"; };
 		E73373AB2254D79200ADEDBB /* GigyaDefinitions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigyaDefinitions.swift; sourceTree = "<group>"; };
 		E73373AF2254FD4800ADEDBB /* Int.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Int.swift; sourceTree = "<group>"; };
 		E73373D4225E326100ADEDBB /* GigyaLoggerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigyaLoggerTest.swift; sourceTree = "<group>"; };
@@ -592,6 +591,7 @@
 		E7CBB0592237DD2C000B6C11 /* GigyaSocialProviders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigyaSocialProviders.swift; sourceTree = "<group>"; };
 		E7CBB067223E595D000B6C11 /* GigyaPlistConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigyaPlistConfig.swift; sourceTree = "<group>"; };
 		E7CBB06A223E59EA000B6C11 /* Decode+EncodeUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Decode+EncodeUtils.swift"; sourceTree = "<group>"; };
+		E7D197972CDA1283009409A5 /* GigyaNss.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GigyaNss.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7D3E22622CA016E0033BAF1 /* SessionInfoModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionInfoModel.swift; sourceTree = "<group>"; };
 		E7D3E22922CA01F90033BAF1 /* InitSdkResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitSdkResponseModel.swift; sourceTree = "<group>"; };
 		E7D3E22B22CA02F60033BAF1 /* RunnerMainThread.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunnerMainThread.swift; sourceTree = "<group>"; };
@@ -1205,6 +1205,7 @@
 		E7BE368C2224225900A108D9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E7D197972CDA1283009409A5 /* GigyaNss.framework */,
 				E7A532982AE7B039005F3662 /* GigyaTfa.xcframework */,
 				E7A532952AE7AF43005F3662 /* GigyaTfa.framework */,
 				E794998D292A1EC900D3FB98 /* App.xcframework */,
@@ -2217,7 +2218,6 @@
 				E7221D8222B90C2A00C296A9 /* ValidateLoginModel.swift in Sources */,
 				E70519D822C0C8B3008ECB25 /* TfaQrCodeCell.swift in Sources */,
 				E7BE369F2224260400A108D9 /* ViewController.swift in Sources */,
-				E7DC2C60228055CA00A13426 /* LineWrapper.swift in Sources */,
 				E7221D8022B90C0C00C296A9 /* UserHostModel.swift in Sources */,
 				E7BE369D2224260400A108D9 /* AppDelegate.swift in Sources */,
 				E70519D622C0C8B3008ECB25 /* TfaRegisteredEntryCell.swift in Sources */,
@@ -2766,7 +2766,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.7.1;
+				MARKETING_VERSION = 1.7.2;
 				MODULEMAP_FILE = "";
 				MODULEMAP_PRIVATE_FILE = "";
 				ONLY_ACTIVE_ARCH = NO;
@@ -2828,7 +2828,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.7.1;
+				MARKETING_VERSION = 1.7.2;
 				MODULEMAP_FILE = "";
 				MODULEMAP_PRIVATE_FILE = "";
 				ONLY_ACTIVE_ARCH = NO;
