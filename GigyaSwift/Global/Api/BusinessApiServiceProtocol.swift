@@ -60,7 +60,7 @@ public protocol BusinessApiServiceProtocol {
     
     func logout(completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void)
 
-    func nativeSocialLogin<T: GigyaAccountProtocol>(params: [String: Any], completion: @escaping (GigyaApiResult<T>) -> Void)
+    func notifySocialLogin<T: GigyaAccountProtocol>(params: [String: Any], completion: @escaping (GigyaApiResult<T>) -> Void)
 
     func forgotPassword(params: [String: Any], completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void)
 

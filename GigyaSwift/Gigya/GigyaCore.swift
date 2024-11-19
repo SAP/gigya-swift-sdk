@@ -357,7 +357,7 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
      - Parameter completion:   Response `GigyaApiResult<T>`.
     */
     public func notifySocialLogin(params: [String: Any], completion: @escaping (GigyaApiResult<T>) -> Void) {
-        businessApiService.nativeSocialLogin(params: params, completion: completion)
+        businessApiService.notifySocialLogin(params: params, completion: completion)
     }
 
     // MARK: - Social Login

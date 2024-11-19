@@ -17,7 +17,9 @@ public protocol BusinessApiDelegate: AnyObject {
 
     func callSetAccount<T: GigyaAccountProtocol>(dataType: T.Type, params: [String: Any], completion: @escaping (GigyaApiResult<T>) -> Void)
 
-    func callNativeSocialLogin<T: GigyaAccountProtocol>(params: [String: Any], completion: @escaping (GigyaApiResult<T>?) -> Void)
+    func callNotifySocialLogin<T: GigyaAccountProtocol>(params: [String: Any], completion: @escaping (GigyaApiResult<T>?) -> Void)
+    
+    func callNotifySocialLogin<T: GigyaAccountProtocol>(dataType: T.Type, params: [String: Any], completion: @escaping (GigyaApiResult<T>) -> Void)
 
     func callGetAccount<T: GigyaAccountProtocol>(completion: @escaping (GigyaApiResult<T>) -> Void)
 
@@ -55,8 +57,12 @@ extension BusinessApiService: BusinessApiDelegate {
         self.send(api: api, params: params, completion: completion)
     }
 
-    func callNativeSocialLogin<T: GigyaAccountProtocol>(params: [String: Any], completion: @escaping (GigyaApiResult<T>?) -> Void) {
-        self.nativeSocialLogin(params: params, completion: completion)
+    func callNotifySocialLogin<T: GigyaAccountProtocol>(params: [String: Any], completion: @escaping (GigyaApiResult<T>?) -> Void) {
+        self.notifySocialLogin(params: params, completion: completion)
+    }
+    
+    func callNotifySocialLogin<T: GigyaAccountProtocol>(dataType: T.Type, params: [String: Any], completion: @escaping (GigyaApiResult<T>) -> Void) {
+        self.notifySocialLogin(params: params, completion: completion)
     }
 
     func callGetAccount<T: Codable>(completion: @escaping (GigyaApiResult<T>) -> Void) {

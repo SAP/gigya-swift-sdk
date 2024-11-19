@@ -32,7 +32,7 @@ extension Provider {
         let newParams = ["providerSessions": providerSessions, "loginMode": loginMode]
                         .merging(params) { (_, new) in new }
 
-        delegate?.callNativeSocialLogin(params: newParams) { result in
+        delegate?.callNotifySocialLogin(params: newParams) { result in
             completion(result!)
         }
     }
