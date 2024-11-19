@@ -47,7 +47,7 @@ final class InterruptionResolverFactory: InterruptionResolverFactoryProtocol {
                     completion(.failure(loginError))
                 case .conflitingAccounts:
                     // conflicting accounts
-                    resolver = LinkAccountsResolver(originalError: error, regToken: regToken, businessDelegate: businessDelegate, completion: completion)
+                    resolver = LinkAccountsResolver(originalError: error, regToken: regToken, businessDelegate: businessDelegate, dataResponse: dataResponse, completion: completion)
                     resolver?.start?()
                 case .accountLinked:
                     // account successfuly linked

@@ -11,7 +11,7 @@ import Foundation
 public enum Interruption: Int, CaseIterable {
     case pendingRegistration = 206001
     case pendingVerification = 206002
-    case conflitingAccounts = 403043
+    case conflitingAccounts = 409003
     case pendingTwoFactorRegistration = 403102
     case pendingTwoFactorVerification = 403101
     case accountLinked = 200009
