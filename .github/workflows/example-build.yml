@@ -21,6 +21,9 @@ jobs:
       - name: Pod install
         working-directory: ./example
         run: pod install
+      - name: Pod fix
+        working-directory: ./example/Pods/Pods.xcodeproj
+        run: sed -i -e 's/10.0/12.0/g' project.pbxproj
       - name: Build
         working-directory: ./example
         run: |
