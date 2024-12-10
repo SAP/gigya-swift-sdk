@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    name: using macos
+    name: Build Example App and Upload to SueceLabs
     runs-on: macos-latest
 
     steps:
@@ -29,7 +29,7 @@ jobs:
             -scheme BitsBytes \
             -derivedDataPath './build' \
             -sdk iphonesimulator \
-            -destination 'platform=iOS Simulator,name=iPhone 16,OS=18.0' \
+            -destination 'platform=iOS Simulator,name=iPhone 15,OS=18.0' \
             -configuration Release \
             CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
         shell: bash
