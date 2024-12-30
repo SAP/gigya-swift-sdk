@@ -10,7 +10,6 @@
 		7FA82FB283C1A4E9F1A96655 /* Pods_BitsBytes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3489883CF507FA60E79F18AE /* Pods_BitsBytes.framework */; };
 		E73567A62BCFAEE90001E89C /* AboutMeScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73567A52BCFAEE90001E89C /* AboutMeScreenView.swift */; };
 		E73567A82BCFAF2D0001E89C /* AboutMeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73567A72BCFAF2D0001E89C /* AboutMeViewModel.swift */; };
-		E73567AB2BD132B40001E89C /* LineWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73567A32BCD4FCD0001E89C /* LineWrapper.swift */; };
 		E73F8BC62B98649E00E11B48 /* SignInEmailScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73F8BC52B98649E00E11B48 /* SignInEmailScreenView.swift */; };
 		E73F8BC82B98659F00E11B48 /* SignInEmailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73F8BC72B98659F00E11B48 /* SignInEmailViewModel.swift */; };
 		E73F8BCE2B99C45900E11B48 /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73F8BCD2B99C45900E11B48 /* SignInViewModel.swift */; };
@@ -52,12 +51,13 @@
 		E788BD192B8CA20000C8F772 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E788BD182B8CA20000C8F772 /* RegisterViewModel.swift */; };
 		E788BD1B2B8CCF8800C8F772 /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E788BD1A2B8CCF8800C8F772 /* ProfileCoordinator.swift */; };
 		E78A32F22B83436A00C892D8 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E78A32F12B83436A00C892D8 /* Launch Screen.storyboard */; };
-		E7B16EB12BA05CB3005DD81E /* AppleSignInWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B16EB02BA05CB3005DD81E /* AppleSignInWrapper.swift */; };
-		E7B16EB42BA1E519005DD81E /* FacebookWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B16EB22BA1AEE2005DD81E /* FacebookWrapper.swift */; };
-		E7B16EB62BA304BB005DD81E /* GoogleWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B16EB52BA304BB005DD81E /* GoogleWrapper.swift */; };
 		E7D318102C16FF60005B03A3 /* OtpScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7D3180F2C16FF60005B03A3 /* OtpScreenView.swift */; };
 		E7D318122C171B70005B03A3 /* OtpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7D318112C171B70005B03A3 /* OtpViewModel.swift */; };
 		E7FA5C342D181FD900AC7162 /* TfaMethodsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FA5C332D181FB300AC7162 /* TfaMethodsViewModel.swift */; };
+		E7FA5C432D22F29A00AC7162 /* AppleSignInWrapper 2.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FA5C3F2D22F29A00AC7162 /* AppleSignInWrapper 2.swift */; };
+		E7FA5C442D22F29A00AC7162 /* GoogleWrapper 2.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FA5C412D22F29A00AC7162 /* GoogleWrapper 2.swift */; };
+		E7FA5C452D22F29A00AC7162 /* LineWrapper 2.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FA5C422D22F29A00AC7162 /* LineWrapper 2.swift */; };
+		E7FA5C462D22F29A00AC7162 /* FacebookWrapper 2.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FA5C402D22F29A00AC7162 /* FacebookWrapper 2.swift */; };
 		E7FEA4D82C245343003A3973 /* ChangePasswordScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FEA4D72C245343003A3973 /* ChangePasswordScreenView.swift */; };
 		E7FEA4DA2C245497003A3973 /* ChangePasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FEA4D92C245497003A3973 /* ChangePasswordViewModel.swift */; };
 		E7FEA4DC2C246FC7003A3973 /* ResetPasswordScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FEA4DB2C246FC7003A3973 /* ResetPasswordScreenView.swift */; };
@@ -75,7 +75,6 @@
 		3489883CF507FA60E79F18AE /* Pods_BitsBytes.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BitsBytes.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		36500EF345FAE48629CE033A /* Pods-BitsBytes.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BitsBytes.debug.xcconfig"; path = "Target Support Files/Pods-BitsBytes/Pods-BitsBytes.debug.xcconfig"; sourceTree = "<group>"; };
 		36F42C38E94EBA3902EE14F4 /* Pods-BitsBytes.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BitsBytes.release.xcconfig"; path = "Target Support Files/Pods-BitsBytes/Pods-BitsBytes.release.xcconfig"; sourceTree = "<group>"; };
-		E73567A32BCD4FCD0001E89C /* LineWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LineWrapper.swift; path = ../../../../XC/GigyaSwift_XCFramework5/GigyaProviders/LineWrapper.swift; sourceTree = "<group>"; };
 		E73567A52BCFAEE90001E89C /* AboutMeScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutMeScreenView.swift; sourceTree = "<group>"; };
 		E73567A72BCFAF2D0001E89C /* AboutMeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutMeViewModel.swift; sourceTree = "<group>"; };
 		E73B9A4F2B5FC58F0018E9B4 /* BitsBytes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BitsBytes.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -121,12 +120,13 @@
 		E788BD182B8CA20000C8F772 /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
 		E788BD1A2B8CCF8800C8F772 /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
 		E78A32F12B83436A00C892D8 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
-		E7B16EB02BA05CB3005DD81E /* AppleSignInWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppleSignInWrapper.swift; path = ../../../../TestApp/GigyaProviders/AppleSignInWrapper.swift; sourceTree = "<group>"; };
-		E7B16EB22BA1AEE2005DD81E /* FacebookWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FacebookWrapper.swift; path = ../../../../XC/GigyaSwift_XCFramework3/GigyaProviders/FacebookWrapper.swift; sourceTree = "<group>"; };
-		E7B16EB52BA304BB005DD81E /* GoogleWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GoogleWrapper.swift; path = ../../../../XC/GigyaSwift_XCFramework14/GigyaProviders/GoogleV7/GoogleWrapper.swift; sourceTree = "<group>"; };
 		E7D3180F2C16FF60005B03A3 /* OtpScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtpScreenView.swift; sourceTree = "<group>"; };
 		E7D318112C171B70005B03A3 /* OtpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtpViewModel.swift; sourceTree = "<group>"; };
 		E7FA5C332D181FB300AC7162 /* TfaMethodsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TfaMethodsViewModel.swift; sourceTree = "<group>"; };
+		E7FA5C3F2D22F29A00AC7162 /* AppleSignInWrapper 2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppleSignInWrapper 2.swift"; sourceTree = "<group>"; };
+		E7FA5C402D22F29A00AC7162 /* FacebookWrapper 2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FacebookWrapper 2.swift"; sourceTree = "<group>"; };
+		E7FA5C412D22F29A00AC7162 /* GoogleWrapper 2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GoogleWrapper 2.swift"; sourceTree = "<group>"; };
+		E7FA5C422D22F29A00AC7162 /* LineWrapper 2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LineWrapper 2.swift"; sourceTree = "<group>"; };
 		E7FEA4D72C245343003A3973 /* ChangePasswordScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordScreenView.swift; sourceTree = "<group>"; };
 		E7FEA4D92C245497003A3973 /* ChangePasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewModel.swift; sourceTree = "<group>"; };
 		E7FEA4DB2C246FC7003A3973 /* ResetPasswordScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordScreenView.swift; sourceTree = "<group>"; };
@@ -207,10 +207,10 @@
 		E73F8BCA2B99C40400E11B48 /* GigyaProviders */ = {
 			isa = PBXGroup;
 			children = (
-				E7B16EB22BA1AEE2005DD81E /* FacebookWrapper.swift */,
-				E73567A32BCD4FCD0001E89C /* LineWrapper.swift */,
-				E7B16EB52BA304BB005DD81E /* GoogleWrapper.swift */,
-				E7B16EB02BA05CB3005DD81E /* AppleSignInWrapper.swift */,
+				E7FA5C3F2D22F29A00AC7162 /* AppleSignInWrapper 2.swift */,
+				E7FA5C402D22F29A00AC7162 /* FacebookWrapper 2.swift */,
+				E7FA5C412D22F29A00AC7162 /* GoogleWrapper 2.swift */,
+				E7FA5C422D22F29A00AC7162 /* LineWrapper 2.swift */,
 			);
 			path = GigyaProviders;
 			sourceTree = "<group>";
@@ -491,7 +491,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E7B16EB12BA05CB3005DD81E /* AppleSignInWrapper.swift in Sources */,
 				E7FEA4D82C245343003A3973 /* ChangePasswordScreenView.swift in Sources */,
 				E788BCED2B8357A300C8F772 /* BitsBytesApp.swift in Sources */,
 				E788BCE42B8357A300C8F772 /* CustomButton.swift in Sources */,
@@ -526,11 +525,13 @@
 				E788BCE12B8357A300C8F772 /* TestScreenView.swift in Sources */,
 				E74A46942C748BB000C739EA /* AddPhoneScreenView.swift in Sources */,
 				E788BCEA2B8357A300C8F772 /* AppCoordinator.swift in Sources */,
-				E7B16EB42BA1E519005DD81E /* FacebookWrapper.swift in Sources */,
 				E7FEA4E32C45138C003A3973 /* SignInInterruptionFlow.swift in Sources */,
 				E77BF0E22B94D1BB002C77C1 /* CustomRow.swift in Sources */,
+				E7FA5C432D22F29A00AC7162 /* AppleSignInWrapper 2.swift in Sources */,
+				E7FA5C442D22F29A00AC7162 /* GoogleWrapper 2.swift in Sources */,
+				E7FA5C452D22F29A00AC7162 /* LineWrapper 2.swift in Sources */,
+				E7FA5C462D22F29A00AC7162 /* FacebookWrapper 2.swift in Sources */,
 				E788BCE72B8357A300C8F772 /* LoaderView.swift in Sources */,
-				E73567AB2BD132B40001E89C /* LineWrapper.swift in Sources */,
 				E788BCE32B8357A300C8F772 /* NavigationWrapperView.swift in Sources */,
 				E76A94C92C032D1700862A4B /* PasswordlessScreenView.swift in Sources */,
 				E788BCDF2B8357A300C8F772 /* SplashScreenView.swift in Sources */,
@@ -542,7 +543,6 @@
 				E788BD192B8CA20000C8F772 /* RegisterViewModel.swift in Sources */,
 				E788BCF22B8357A300C8F772 /* Coordinator.swift in Sources */,
 				E788BCF02B8357A300C8F772 /* AppDelegate.swift in Sources */,
-				E7B16EB62BA304BB005DD81E /* GoogleWrapper.swift in Sources */,
 				E7FEA4DA2C245497003A3973 /* ChangePasswordViewModel.swift in Sources */,
 				E74A46962C88499600C739EA /* AccountModel.swift in Sources */,
 				E788BCF12B8357A300C8F772 /* SceneDelegate.swift in Sources */,
