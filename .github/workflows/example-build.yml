@@ -51,7 +51,7 @@ jobs:
         shell: bash
       - name: Compression
         run: |
-          cd build/Build/Products/Debug-iphonesimulator
+          cd build/Build/Products/Release-iphonesimulator
           zip -r BitsBytes.zip BitsBytes.app
         shell: bash
       - name: Upload to SauceLabs
