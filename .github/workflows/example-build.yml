@@ -58,5 +58,6 @@ jobs:
       - name: Upload to SauceLabs
         working-directory: ./example
         run: |
+          cd build/Build/Products/Release-iphonesimulator
           curl -u '${{ secrets.SUECELABS_USER }}:${{ secrets.SUECELABS_SECRET }}' --location --request POST 'https://api.eu-central-1.saucelabs.com/v1/storage/upload' --form payload=@'BitsBytes.zip' --form name='BitsBytes.zip' --form description='e2e test app' --silent --show-error
         
