@@ -27,11 +27,11 @@ jobs:
       - name: Inject keys
         working-directory: ./example/BitsBytes
         run: |
-          sed -i -e 's/#GIGYA_API_KEY#/${{ secrets.GIGYA_API_KEY }}/g' Info.plist \
-          sed -i -e 's/#GOOGLE_CLIENT_ID#/${{ secrets.GOOGLE_CLIENT_ID }}/g' Info.plist \
-          sed -i -e 's/#GOOGLE_CLIENT_ID_REVERSED#/${{ secrets.GOOGLE_CLIENT_ID_REVERSED }}/g' Info.plist \
-          sed -i -e 's/#GOOGLE_SERVER_ID#/${{ secrets.GOOGLE_SERVER_ID }}/g' Info.plist \
-          sed -i -e 's/#FACEBOOK_APPID#/${{ secrets.FACEBOOK_APPID }}/g' Info.plist \
+          sed -i -e 's/#GIGYA_API_KEY#/${{ secrets.GIGYA_API_KEY }}/g' Info.plist 
+          sed -i -e 's/#GOOGLE_CLIENT_ID#/${{ secrets.GOOGLE_CLIENT_ID }}/g' Info.plist 
+          sed -i -e 's/#GOOGLE_CLIENT_ID_REVERSED#/${{ secrets.GOOGLE_CLIENT_ID_REVERSED }}/g' Info.plist 
+          sed -i -e 's/#GOOGLE_SERVER_ID#/${{ secrets.GOOGLE_SERVER_ID }}/g' Info.plist 
+          sed -i -e 's/#FACEBOOK_APPID#/${{ secrets.FACEBOOK_APPID }}/g' Info.plist 
           sed -i -e 's/#FACEBOOK_CLIENT_TOKEN#/${{ secrets.FACEBOOK_CLIENT_TOKEN }}/g' Info.plist
           
       - name: Google Service
