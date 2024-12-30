@@ -8,58 +8,35 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
-			<array/>
-		</dict>
-		<dict>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>CFBundleURLSchemes</key>
-			<array/>
-		</dict>
-		<dict>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>line3rdp.$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+				<string>fb#FACEBOOK_APPID#</string>
 			</array>
 		</dict>
 		<dict>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
-			<array/>
+			<array>
+				<string>#GOOGLE_CLIENT_ID_REVERSED#</string>
+			</array>
 		</dict>
 	</array>
 	<key>FacebookAppID</key>
-	<string></string>
+	<string>#FACEBOOK_APPID#</string>
 	<key>FacebookClientToken</key>
-	<string></string>
+	<string>#FACEBOOK_CLIENT_TOKEN#</string>
 	<key>FacebookDisplayName</key>
 	<string>BitsBytes</string>
-	<key>GigyaAccount</key>
-	<dict>
-		<key>extraProfileFields</key>
-		<array>
-			<string>languages</string>
-			<string>phones</string>
-			<string>education</string>
-		</array>
-		<key>include</key>
-		<array>
-			<string>data</string>
-			<string>profile</string>
-			<string>emails</string>
-		</array>
-	</dict>
+	<key>FirebaseAppDelegateProxyEnabled</key>
+	<false/>
 	<key>GigyaApiDomain</key>
 	<string>us1.gigya.com</string>
 	<key>GigyaApiKey</key>
-	<string></string>
+	<string>#GIGYA_API_KEY#</string>
 	<key>GoogleClientID</key>
-	<string></string>
+	<string>#GOOGLE_CLIENT_ID#</string>
 	<key>GoogleServerClientID</key>
-	<string></string>
+	<string>#GOOGLE_SERVER_ID#</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>fbapi</string>
@@ -85,10 +62,5 @@
 		<string>fbshareextension</string>
 		<string>lineauth2</string>
 	</array>
-	<key>LineSDKConfig</key>
-	<dict>
-		<key>ChannelID</key>
-		<string>2004690310</string>
-	</dict>
 </dict>
 </plist>

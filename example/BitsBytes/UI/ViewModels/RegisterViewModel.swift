@@ -47,6 +47,10 @@ final class RegisterViewModel: BaseViewModel, InterruptionFlow {
                 closure()
             }
             
+            flowManager.errorClousre = { [weak self] error in
+                self?.error = error
+            }
+            
             gigya.shared.register(email: email, password: pass, params: ["profile": ["firstName": firstName, "lastName": lastName]], completion: flowManager.resultClosure)
 
 //            { [ weak self] result in

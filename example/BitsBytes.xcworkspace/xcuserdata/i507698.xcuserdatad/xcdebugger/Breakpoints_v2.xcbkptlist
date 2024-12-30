@@ -142,8 +142,8 @@
             filePath = "BitsBytes/UI/ViewModels/PasswordlessViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "57"
-            endingLineNumber = "57"
+            startingLineNumber = "59"
+            endingLineNumber = "59"
             landmarkName = "useFido()"
             landmarkType = "7">
          </BreakpointContent>
@@ -190,66 +190,66 @@
             filePath = "BitsBytes/UI/ViewModels/PasswordlessViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "62"
-            endingLineNumber = "62"
+            startingLineNumber = "64"
+            endingLineNumber = "64"
             landmarkName = "useFido()"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "EAD44EAB-2A59-4633-9580-CBDEF66B59FE - 8aeb47fcd14b0e1b"
+                  uuid = "EAD44EAB-2A59-4633-9580-CBDEF66B59FE - a26b54c23ccaec64"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "(1) suspend resume partial function for closure #2 @Sendable () async -&gt; () in BitsBytes.PasswordlessViewModel.useFido() -&gt; ()"
-                  moduleName = "BitsBytes"
+                  symbolName = "(1) suspend resume partial function for closure #2 () async -&gt; () in BitsBytes.PasswordlessViewModel.useFido() -&gt; ()"
+                  moduleName = "BitsBytes.debug.dylib"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/i507698/Documents/gigya-swift-sdk/example/BitsBytes/UI/ViewModels/PasswordlessViewModel.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "63"
-                  endingLineNumber = "63">
+                  startingLineNumber = "65"
+                  endingLineNumber = "65">
                </Location>
                <Location
-                  uuid = "EAD44EAB-2A59-4633-9580-CBDEF66B59FE - 8aeb47fcd14b0e1b"
+                  uuid = "EAD44EAB-2A59-4633-9580-CBDEF66B59FE - a26b54c23ccaec64"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "(1) suspend resume partial function for closure #2 @Sendable () async -&gt; () in BitsBytes.PasswordlessViewModel.useFido() -&gt; ()"
-                  moduleName = "BitsBytes"
+                  symbolName = "(1) suspend resume partial function for closure #2 () async -&gt; () in BitsBytes.PasswordlessViewModel.useFido() -&gt; ()"
+                  moduleName = "BitsBytes.debug.dylib"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/i507698/Documents/gigya-swift-sdk/example/BitsBytes/UI/ViewModels/PasswordlessViewModel.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "63"
-                  endingLineNumber = "63">
+                  startingLineNumber = "65"
+                  endingLineNumber = "65">
                </Location>
                <Location
-                  uuid = "EAD44EAB-2A59-4633-9580-CBDEF66B59FE - 8c3c30d88ea0ca15"
+                  uuid = "EAD44EAB-2A59-4633-9580-CBDEF66B59FE - b8e9b5531a0d2066"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "(3) suspend resume partial function for closure #2 @Sendable () async -&gt; () in BitsBytes.PasswordlessViewModel.useFido() -&gt; ()"
-                  moduleName = "BitsBytes"
+                  symbolName = "(3) suspend resume partial function for closure #2 () async -&gt; () in BitsBytes.PasswordlessViewModel.useFido() -&gt; ()"
+                  moduleName = "BitsBytes.debug.dylib"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/i507698/Documents/gigya-swift-sdk/example/BitsBytes/UI/ViewModels/PasswordlessViewModel.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "63"
-                  endingLineNumber = "63">
+                  startingLineNumber = "65"
+                  endingLineNumber = "65">
                </Location>
                <Location
-                  uuid = "EAD44EAB-2A59-4633-9580-CBDEF66B59FE - 8c3c30d88ea0ca15"
+                  uuid = "EAD44EAB-2A59-4633-9580-CBDEF66B59FE - b8e9b5531a0d2066"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "(3) suspend resume partial function for closure #2 @Sendable () async -&gt; () in BitsBytes.PasswordlessViewModel.useFido() -&gt; ()"
-                  moduleName = "BitsBytes"
+                  symbolName = "(3) suspend resume partial function for closure #2 () async -&gt; () in BitsBytes.PasswordlessViewModel.useFido() -&gt; ()"
+                  moduleName = "BitsBytes.debug.dylib"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/i507698/Documents/gigya-swift-sdk/example/BitsBytes/UI/ViewModels/PasswordlessViewModel.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "63"
-                  endingLineNumber = "63">
+                  startingLineNumber = "65"
+                  endingLineNumber = "65">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -264,8 +264,8 @@
             filePath = "BitsBytes/UI/ViewModels/PasswordlessViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "47"
-            endingLineNumber = "47"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
             landmarkName = "useFido()"
             landmarkType = "7">
          </BreakpointContent>
@@ -280,52 +280,52 @@
             filePath = "BitsBytes/UI/ViewModels/PasswordlessViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "54"
-            endingLineNumber = "54"
+            startingLineNumber = "56"
+            endingLineNumber = "56"
             landmarkName = "useFido()"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "BC35C535-9A45-42EA-8968-634201659E4E - 8aeb47fcd14b0cf0"
+                  uuid = "BC35C535-9A45-42EA-8968-634201659E4E - a26b54c23ccaef33"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "(1) suspend resume partial function for closure #2 @Sendable () async -&gt; () in BitsBytes.PasswordlessViewModel.useFido() -&gt; ()"
-                  moduleName = "BitsBytes"
+                  symbolName = "(1) suspend resume partial function for closure #2 () async -&gt; () in BitsBytes.PasswordlessViewModel.useFido() -&gt; ()"
+                  moduleName = "BitsBytes.debug.dylib"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/i507698/Documents/gigya-swift-sdk/example/BitsBytes/UI/ViewModels/PasswordlessViewModel.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "54"
-                  endingLineNumber = "54">
+                  startingLineNumber = "56"
+                  endingLineNumber = "56">
                </Location>
                <Location
-                  uuid = "BC35C535-9A45-42EA-8968-634201659E4E - 20a53ae32f6c99e3"
+                  uuid = "BC35C535-9A45-42EA-8968-634201659E4E - f23675203a10d804"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "(2) await resume partial function for closure #2 @Sendable () async -&gt; () in BitsBytes.PasswordlessViewModel.useFido() -&gt; ()"
-                  moduleName = "BitsBytes"
+                  symbolName = "(2) await resume partial function for closure #2 () async -&gt; () in BitsBytes.PasswordlessViewModel.useFido() -&gt; ()"
+                  moduleName = "BitsBytes.debug.dylib"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/i507698/Documents/gigya-swift-sdk/example/BitsBytes/UI/ViewModels/PasswordlessViewModel.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "54"
-                  endingLineNumber = "54">
+                  startingLineNumber = "56"
+                  endingLineNumber = "56">
                </Location>
                <Location
-                  uuid = "BC35C535-9A45-42EA-8968-634201659E4E - 8c3c30d88ea0c8fe"
+                  uuid = "BC35C535-9A45-42EA-8968-634201659E4E - b8e9b5531a0d2331"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "(3) suspend resume partial function for closure #2 @Sendable () async -&gt; () in BitsBytes.PasswordlessViewModel.useFido() -&gt; ()"
-                  moduleName = "BitsBytes"
+                  symbolName = "(3) suspend resume partial function for closure #2 () async -&gt; () in BitsBytes.PasswordlessViewModel.useFido() -&gt; ()"
+                  moduleName = "BitsBytes.debug.dylib"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/i507698/Documents/gigya-swift-sdk/example/BitsBytes/UI/ViewModels/PasswordlessViewModel.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "54"
-                  endingLineNumber = "54">
+                  startingLineNumber = "56"
+                  endingLineNumber = "56">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -340,8 +340,8 @@
             filePath = "BitsBytes/UI/ViewModels/PasswordlessViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "49"
-            endingLineNumber = "49"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
             landmarkName = "useFido()"
             landmarkType = "7">
          </BreakpointContent>
@@ -404,66 +404,66 @@
             filePath = "BitsBytes/UI/ViewModels/SignInViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "53"
-            endingLineNumber = "53"
+            startingLineNumber = "54"
+            endingLineNumber = "54"
             landmarkName = "fidoLogin()"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "40BD6508-9768-4CBB-8BC0-F5FDD8AD6626 - 19126b6bf4a59e12"
+                  uuid = "40BD6508-9768-4CBB-8BC0-F5FDD8AD6626 - b59f316e8c9a71ba"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "(5) suspend resume partial function for BitsBytes.SignInViewModel.fidoLogin() async -&gt; Swift.Bool"
-                  moduleName = "BitsBytes"
+                  moduleName = "BitsBytes.debug.dylib"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/i507698/Documents/gigya-swift-sdk/example/BitsBytes/UI/ViewModels/SignInViewModel.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "53"
-                  endingLineNumber = "53">
+                  startingLineNumber = "54"
+                  endingLineNumber = "54">
                </Location>
                <Location
-                  uuid = "40BD6508-9768-4CBB-8BC0-F5FDD8AD6626 - a03f5fd18a296218"
+                  uuid = "40BD6508-9768-4CBB-8BC0-F5FDD8AD6626 - cb205d4f2168db0"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "(7) suspend resume partial function for BitsBytes.SignInViewModel.fidoLogin() async -&gt; Swift.Bool"
-                  moduleName = "BitsBytes"
+                  moduleName = "BitsBytes.debug.dylib"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/i507698/Documents/gigya-swift-sdk/example/BitsBytes/UI/ViewModels/SignInViewModel.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "53"
-                  endingLineNumber = "53">
+                  startingLineNumber = "54"
+                  endingLineNumber = "54">
                </Location>
                <Location
-                  uuid = "40BD6508-9768-4CBB-8BC0-F5FDD8AD6626 - 2758443f99bd3606"
+                  uuid = "40BD6508-9768-4CBB-8BC0-F5FDD8AD6626 - 8bd51e3ae182d9ae"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "(9) suspend resume partial function for BitsBytes.SignInViewModel.fidoLogin() async -&gt; Swift.Bool"
-                  moduleName = "BitsBytes"
+                  moduleName = "BitsBytes.debug.dylib"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/i507698/Documents/gigya-swift-sdk/example/BitsBytes/UI/ViewModels/SignInViewModel.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "53"
-                  endingLineNumber = "53">
+                  startingLineNumber = "54"
+                  endingLineNumber = "54">
                </Location>
                <Location
-                  uuid = "40BD6508-9768-4CBB-8BC0-F5FDD8AD6626 - 7f2fa2477113fcd6"
+                  uuid = "40BD6508-9768-4CBB-8BC0-F5FDD8AD6626 - d3a2f842092c137e"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "(11) suspend resume partial function for BitsBytes.SignInViewModel.fidoLogin() async -&gt; Swift.Bool"
-                  moduleName = "BitsBytes"
+                  moduleName = "BitsBytes.debug.dylib"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/i507698/Documents/gigya-swift-sdk/example/BitsBytes/UI/ViewModels/SignInViewModel.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "53"
-                  endingLineNumber = "53">
+                  startingLineNumber = "54"
+                  endingLineNumber = "54">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -625,6 +625,358 @@
             startingLineNumber = "45"
             endingLineNumber = "45"
             landmarkName = "getAccount()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C9655E3A-5F98-4475-9421-99D50237EC69"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Pods/GigyaTfa/GigyaTfa/GigyaTfa/PushNotifications/PushTfaOptInService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
+            landmarkName = "initTFA(tfaProvider:mode:arguments:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "81C2CAC8-E894-466F-803B-0453E64C6176"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Pods/GigyaTfa/GigyaTfa/GigyaTfa/PushNotifications/PushTfaOptInService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "54"
+            endingLineNumber = "54"
+            landmarkName = "initTFA(tfaProvider:mode:arguments:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "68057E56-1268-4386-BCD0-9EED393E124A"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Pods/GigyaTfa/GigyaTfa/GigyaTfa/PushNotifications/PushTfaManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "54"
+            endingLineNumber = "54"
+            landmarkName = "optInToPushTfa(completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F45D12AB-C53D-4345-BE27-0F2FD79AA1EC"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Pods/Gigya/GigyaSwift/Global/PushNotifications/PushNotificationsService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "167"
+            endingLineNumber = "167"
+            landmarkName = "sendPushKeyIfNeeded()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D6C44054-6F44-45A9-8E34-ECD257CEBF86"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BitsBytes/System/AppDelegate.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "109"
+            endingLineNumber = "109"
+            landmarkName = "messaging(_:didReceiveRegistrationToken:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "632DE87A-0FE0-4FC1-AF5B-9E0E3A89328E"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BitsBytes/System/AppDelegate.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "105"
+            endingLineNumber = "105"
+            landmarkName = "application(_:didRegisterForRemoteNotificationsWithDeviceToken:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3106BAB6-9C66-4BD1-B82D-B7732ADA3D71"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BitsBytes/System/AppDelegate.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "138"
+            endingLineNumber = "138"
+            landmarkName = "userNotificationCenter(_:willPresent:withCompletionHandler:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "BB454DC8-DFC9-4BDF-BD38-5ED4B2E13C68"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BitsBytes/System/AppDelegate.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "121"
+            endingLineNumber = "121"
+            landmarkName = "application(_:didReceiveRemoteNotification:fetchCompletionHandler:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "00F78A02-0BDE-409A-A9A7-C69F857C3A20"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BitsBytes/System/AppDelegate.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "132"
+            endingLineNumber = "132"
+            landmarkName = "userNotificationCenter(_:didReceive:withCompletionHandler:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F1E632B2-3291-41DB-9C4C-B3CEC3955682"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BitsBytes/System/AppDelegate.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "127"
+            endingLineNumber = "127"
+            landmarkName = "application(_:didFailToRegisterForRemoteNotificationsWithError:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6BC098D4-823B-49EB-AC4E-AECD417D6E17"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BitsBytes/UI/Flows/SignInInterruptionFlow.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "81"
+            endingLineNumber = "81"
+            landmarkName = "interuuptionHandle(error:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "AD32AC62-22D3-4E80-8672-421A82955D1F"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BitsBytes/UI/ViewModels/PasswordlessViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "115"
+            endingLineNumber = "115"
+            landmarkName = "pushTfaAction()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D9B343F5-383A-401A-910C-18D4F2E5474F"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BitsBytes/UI/ViewModels/OtpViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
+            landmarkName = "sendCode(sucess:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "723F03C1-F751-40DE-A1E2-802BBC088131"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BitsBytes/UI/ViewModels/OtpViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "50"
+            endingLineNumber = "50"
+            landmarkName = "sendCode(sucess:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0002B5D4-DEAC-415A-91C8-AC0B88F208C5"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BitsBytes/UI/ViewModels/OtpViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
+            landmarkName = "sendCode(sucess:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "14B23694-E6B5-4F4B-9B2B-1629380CCC04"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BitsBytes/UI/ViewModels/OtpViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "71"
+            endingLineNumber = "71"
+            landmarkName = "sendCode(sucess:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3265FD6E-EC66-4967-B64C-C2BED66A0B12"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BitsBytes/System/AppDelegate.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "40"
+            endingLineNumber = "40"
+            landmarkName = "application(_:didFinishLaunchingWithOptions:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "98A9FA51-75F5-46CB-A054-D89C2402E31E"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BitsBytes/UI/ViewModels/OtpViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "81"
+            endingLineNumber = "81"
+            landmarkName = "sendCode(sucess:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "24D25442-7050-4936-A218-78390C89A751"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BitsBytes/UI/ViewModels/Interruptions/TfaMethodsViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
+            landmarkName = "getPhones()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4C0622A7-3BD7-45CD-82AF-BFB34D45D366"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BitsBytes/UI/ViewModels/OtpViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
+            landmarkName = "init(gigya:flowManager:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "004761DE-6526-4619-9937-7522BE145B88"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Pods/GigyaTfa/GigyaTfa/GigyaTfa/Resolvers/Phone/RegistredPhonesResolver.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "60"
+            endingLineNumber = "60"
+            landmarkName = "fetchPhones(completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6E98A753-5760-4467-8110-AE4B6FA3F4E8"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Pods/GigyaTfa/GigyaTfa/GigyaTfa/Resolvers/Phone/RegistredPhonesResolver.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "78"
+            endingLineNumber = "78"
+            landmarkName = "sendVerificationCode(with:method:lang:completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

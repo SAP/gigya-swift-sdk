@@ -15,7 +15,7 @@ struct OtpScreenView: View {
         
         ZStack {
             VStack {
-                Text("Sign In With Phone")
+                Text(viewModel.title)
                     .bold()
                     .font(.system(size: 24))
                     .padding(7)

@@ -29,7 +29,7 @@ struct AddPhoneScreenView: View {
                         .accessibilityId(self, "PhoneInput")
                     
                     CustomDarkButton(action: {
-                        viewModel.sendCode(mode: .update) {
+                        viewModel.sendCode {
                             currentCordinator.routing.popToRoot()
                             currentCordinator.parent.isLoggedIn = true
                         }

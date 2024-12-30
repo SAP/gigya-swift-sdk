@@ -26,13 +26,13 @@ struct ConfigurationScreenView: View {
                 .background(.white)
                 .accessibilityId(self, "screenSetToggle")
             
-            CustomInput(label: "API Key", placeholder: "API Key", value: $viewModel.apiKey)
+            CustomInputStyle2(label: "API Key", placeholder: "API Key",secured: false, value: $viewModel.apiKey)
                 .accessibilityId(self, "apiInput")
-            CustomInput(label: "Domain", placeholder: "Domain", value: $viewModel.domain)
+            CustomInputStyle2(label: "Domain", placeholder: "Domain", secured: false,value: $viewModel.domain)
                 .accessibilityId(self, "domainInput")
-            CustomInput(label: "CNAME", placeholder: "CNAME", value: $viewModel.cname)
+            CustomInputStyle2(label: "CNAME", placeholder: "CNAME",secured: false,  value: $viewModel.cname)
                 .accessibilityId(self, "cnameInput")
-                        
+            
             CustomDarkButton(action: {
                 viewModel.reInitGigya()
             }, label: "SAVE")

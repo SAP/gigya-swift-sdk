@@ -34,7 +34,7 @@ class RoutingManager {
             let registerViewModel = RegisterViewModel(gigya: gigya, flowManager: flowManager!)
             RegisterScreenView(viewModel: registerViewModel)
         case .signinemail:
-            let signInEmailrViewModel = SignInEmailViewModel(gigya: gigya)
+            let signInEmailrViewModel = SignInEmailViewModel(gigya: gigya, flowManager: flowManager!)
             SignInEmailScreenView(viewModel: signInEmailrViewModel)
         case .aboutme:
             let aboutmeViewModel = AboutMeViewModel(gigya: gigya)
@@ -61,6 +61,10 @@ class RoutingManager {
         case .addPhone :
             let otpViewModel = OtpViewModel(gigya: gigya, flowManager: flowManager!)
             AddPhoneScreenView(viewModel: otpViewModel)
+        case .tfaMethods:
+            let tfaViewModel = TfaMethodsViewModel(gigya: gigya, flowManager: flowManager!)
+            TfaMethodsScreenView(viewModel: tfaViewModel)
+
         default:
             HomeScreenView()
         }

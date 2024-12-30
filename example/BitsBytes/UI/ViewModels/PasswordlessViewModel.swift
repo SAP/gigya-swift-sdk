@@ -7,11 +7,13 @@
 
 import Foundation
 import UIKit
+import GigyaTfa
 
 final class PasswordlessViewModel: BaseViewModel {
     @Published var fidoIsAvailable: Bool = false
     @Published var biometricAvailable: Bool = false
     @Published var error: String = ""
+    @Published var msg: String = ""
 
     override init(gigya: GigyaService) {
         super.init(gigya: gigya)
@@ -96,7 +98,28 @@ final class PasswordlessViewModel: BaseViewModel {
             case .success:
                 closure()
             case .failure:
-                self?.error = "lock failed"
+                self?.error = "Lock failed"
+            }
+        }
+    }
+    
+    // MARK: - Push Tfa
+    
+    func pushTfaAction() {
+        self.toggelLoader()
+        
+        GigyaTfa.shared.OptiInPushTfa { [weak self] res in
+            switch res {
+            case .success(let data):
+                if self?.msg == "Push tfa optIn request sent" {
+                    self?.msg = "Push tfa optIn successfully"
+                    self?.toggelLoader()
+                } else {
+                    self?.msg = "Push tfa optIn request sent"
+                }
+            case .failure(_):
+                self?.error = "Push tfa optIn in failed"
+                self?.toggelLoader()
             }
         }
     }
