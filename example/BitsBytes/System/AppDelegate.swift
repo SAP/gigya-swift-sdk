@@ -25,7 +25,8 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         LoginManager.shared.setup(channelID: "2004690310", universalLinkURL: nil)
 
         FirebaseApp.configure()
-        
+        Messaging.messaging().delegate = self
+
         // Gigya dependencies
         gigya = Gigya.sharedInstance(AccountModel.self)
 
@@ -35,6 +36,12 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         GigyaTfa.shared.registerForRemoteNotifications()
         GigyaAuth.shared.register(scheme: AccountModel.self)
         
+        GigyaAuth.shared.registerForAuthPush { res in
+            
+        }
+        
+        UNUserNotificationCenter.current().delegate = self
+
         ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
         
         // Request permissions for tracking ( for Facebook limited login )

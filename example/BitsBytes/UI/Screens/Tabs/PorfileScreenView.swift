@@ -124,6 +124,7 @@ struct LoggedIn: View {
                 }
                 Spacer()
                 CustomRow(label: "Add Phone", icon: "phone", showRightIcon: false) {
+                    currentCordinator.routing.flowManager?.otpCurrentMode = .update
                     currentCordinator.routing.push(.addPhone)
                 }
                 Spacer()

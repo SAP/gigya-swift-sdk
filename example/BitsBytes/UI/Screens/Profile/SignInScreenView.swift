@@ -83,6 +83,7 @@ struct SignInScreenView: View {
                 .accessibilityId(self, "emailButton")
                 
                 CustomButton(action: {
+                    currentCordinator.routing.flowManager?.otpCurrentMode = .login
                     currentCordinator.routing.push(.otpLogin)
                 }, label: "Sign in with Phone", icon: "phone")
                 .accessibilityId(self, "phoneButton")

@@ -5,28 +5,48 @@
 //  Created by Sagi Shmuel on 10/06/2024.
 //
 import Gigya
+import GigyaTfa
 import GigyaAuth
 
 class OtpViewModel: BaseViewModel, InterruptionFlow {    
     
+    @Published var title: String = ""
     @Published var error: String = ""
     @Published var phone: String = ""
     @Published var code: String = ""
     @Published var codeSent: Bool = false
     
     var flowManager: SignInInterruptionFlow
+        
+    var verifyCodeResolver: VerifyCodeResolverProtocol?
     
     enum Mode {
         case login
         case update
+        case tfaRegister
+        case tfaVerify
     }
     
     init(gigya: GigyaService, flowManager: SignInInterruptionFlow) {
         self.flowManager = flowManager
         super.init(gigya: gigya)
+        
+        self.phone = flowManager.selectedPhone?.obfuscated ?? ""
+        
+        switch flowManager.otpCurrentMode {
+        case .login:
+            title = "Sign In With Phone"
+        case .update:
+            title = "Add Your Phone"
+        case .tfaRegister:
+            title = "Register Tfa With Phone"
+        case .tfaVerify:
+            title = "Verify Tfa With Phone"
+        }
+
     }
     
-    func sendCode(mode: Mode = .login, sucess: @escaping ()-> Void) {
+    func sendCode(sucess: @escaping ()-> Void) {
         if phone.isEmpty {
             error = "Phone is empty"
             return
@@ -41,40 +61,81 @@ class OtpViewModel: BaseViewModel, InterruptionFlow {
             self?.error = error
         }
         
-        switch mode {
+        switch flowManager.otpCurrentMode {
         case .login:
             GigyaAuth.shared.otp.login(phone: phone, completion: flowManager.resultOtpClosure)
         case .update:
             GigyaAuth.shared.otp.update(phone: phone, completion: flowManager.resultOtpClosure)
+        case .tfaRegister:
+            flowManager.registerPhoneResolver?.registerPhone(phone: phone) { [weak self] res in
+                switch res {
+                case .verificationCodeSent(resolver: let resolver):
+                    self?.verifyCodeResolver = resolver
+                case .error(let error):
+                    self?.error = error.localizedDescription
+                }
+            }
+        case .tfaVerify:
+            switch flowManager.tfaSelectedProvider {
+            case .phone:
+                flowManager.registeredPhonesResolver?.sendVerificationCode(with: flowManager.selectedPhone!, method: .sms) { [weak self] result in
+                    switch result {
+                    case .registeredPhones(_):
+                        break
+                    case .verificationCodeSent(let resolver):
+                        self?.verifyCodeResolver = resolver
+                    case .error(_):
+                        break
+
+                    }
+                }
+            case .email:
+                flowManager.registeredEmailsResolver?.sendEmailCode(with: flowManager.selectedEmail!) { [weak self] result in
+                    switch result {
+                    case .registeredEmails(_):
+                        break
+                    case .emailVerificationCodeSent(let resolver):
+                        self?.verifyCodeResolver = resolver
+                    case .error(_):
+                        break
+                        
+                    }
+                }
+            default:
+                break
+            }
+
         }
         
         codeSent = true
-        
-//        { [weak self] (result: GigyaOtpResult<GigyaAccount>) in
-//            switch result {
-//            case .success(data: _):
-//                sucess()
-//            case .pendingOtpVerification(resolver: let resolver):
-//                self?.codeSent = true
-//                self?.otpResolver = resolver
-//            case .failure(error: let error):
-//                print(error.error)
-//                self?.error = error.error.localizedDescription
-//            }
-//            
-//            self?.toggelLoader()
-//        }
     }
-    
+
     func verifyCode() {
-        guard let otpResolver = self.flowManager.otpResolver else {
-            self.error = "Resolver not found"
-            self.codeSent = false
-            return
+        switch flowManager.otpCurrentMode {
+        case .login, .update:
+            guard let otpResolver = self.flowManager.otpResolver else {
+                self.error = "Resolver not found"
+                self.codeSent = false
+                return
+            }
+            
+            toggelLoader()
+            
+            otpResolver.verify(code: code)
+        case .tfaRegister, .tfaVerify:
+            verifyCodeResolver?.verifyCode(provider: .phone, verificationCode: code, rememberDevice: true) { [weak self] result in
+                guard let self = self else { return }
+
+                switch result {
+                case .resolved:
+                    self.flowManager.successClousre()
+                case .invalidCode:
+                    self.error = "Invalid code"
+                case .failed(let error):
+                    self.error = error.localizedDescription
+                }
+            }
         }
-        
-        toggelLoader()
-        
-        otpResolver.verify(code: code)
+
     }
 }

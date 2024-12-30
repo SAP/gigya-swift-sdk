@@ -32,6 +32,7 @@ final class SignInViewModel: BaseViewModel {
             closure()
         }
         
+        
         toggelLoader()
         
         gigya?.shared.login(with: provider, viewController: presentingViewController, completion: flowManager.resultClosure)

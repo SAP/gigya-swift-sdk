@@ -16,6 +16,7 @@
 		E73F8BCE2B99C45900E11B48 /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73F8BCD2B99C45900E11B48 /* SignInViewModel.swift */; };
 		E74A46942C748BB000C739EA /* AddPhoneScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74A46932C748BB000C739EA /* AddPhoneScreenView.swift */; };
 		E74A46962C88499600C739EA /* AccountModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74A46952C88499600C739EA /* AccountModel.swift */; };
+		E75902842D10311400DF0AD2 /* TfaMethodsScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75902832D10311400DF0AD2 /* TfaMethodsScreenView.swift */; };
 		E76A94C92C032D1700862A4B /* PasswordlessScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E76A94C82C032D1700862A4B /* PasswordlessScreenView.swift */; };
 		E76A94CB2C07073900862A4B /* PasswordlessViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E76A94CA2C07073900862A4B /* PasswordlessViewModel.swift */; };
 		E77BF0E22B94D1BB002C77C1 /* CustomRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77BF0E12B94D1BB002C77C1 /* CustomRow.swift */; };
@@ -47,7 +48,6 @@
 		E788BCF12B8357A300C8F772 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E788BCD32B8357A200C8F772 /* SceneDelegate.swift */; };
 		E788BCF22B8357A300C8F772 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E788BCD42B8357A200C8F772 /* Coordinator.swift */; };
 		E788BCF42B8357A300C8F772 /* GigyaService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E788BCD72B8357A200C8F772 /* GigyaService.swift */; };
-		E788BD142B8C832E00C8F772 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E788BD132B8C832E00C8F772 /* GoogleService-Info.plist */; };
 		E788BD172B8C8B3300C8F772 /* RegisterScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E788BD162B8C8B3300C8F772 /* RegisterScreenView.swift */; };
 		E788BD192B8CA20000C8F772 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E788BD182B8CA20000C8F772 /* RegisterViewModel.swift */; };
 		E788BD1B2B8CCF8800C8F772 /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E788BD1A2B8CCF8800C8F772 /* ProfileCoordinator.swift */; };
@@ -57,6 +57,7 @@
 		E7B16EB62BA304BB005DD81E /* GoogleWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B16EB52BA304BB005DD81E /* GoogleWrapper.swift */; };
 		E7D318102C16FF60005B03A3 /* OtpScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7D3180F2C16FF60005B03A3 /* OtpScreenView.swift */; };
 		E7D318122C171B70005B03A3 /* OtpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7D318112C171B70005B03A3 /* OtpViewModel.swift */; };
+		E7FA5C342D181FD900AC7162 /* TfaMethodsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FA5C332D181FB300AC7162 /* TfaMethodsViewModel.swift */; };
 		E7FEA4D82C245343003A3973 /* ChangePasswordScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FEA4D72C245343003A3973 /* ChangePasswordScreenView.swift */; };
 		E7FEA4DA2C245497003A3973 /* ChangePasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FEA4D92C245497003A3973 /* ChangePasswordViewModel.swift */; };
 		E7FEA4DC2C246FC7003A3973 /* ResetPasswordScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FEA4DB2C246FC7003A3973 /* ResetPasswordScreenView.swift */; };
@@ -83,6 +84,7 @@
 		E73F8BCD2B99C45900E11B48 /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
 		E74A46932C748BB000C739EA /* AddPhoneScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPhoneScreenView.swift; sourceTree = "<group>"; };
 		E74A46952C88499600C739EA /* AccountModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountModel.swift; sourceTree = "<group>"; };
+		E75902832D10311400DF0AD2 /* TfaMethodsScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TfaMethodsScreenView.swift; sourceTree = "<group>"; };
 		E76A94C82C032D1700862A4B /* PasswordlessScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordlessScreenView.swift; sourceTree = "<group>"; };
 		E76A94CA2C07073900862A4B /* PasswordlessViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordlessViewModel.swift; sourceTree = "<group>"; };
 		E77BF0E12B94D1BB002C77C1 /* CustomRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomRow.swift; sourceTree = "<group>"; };
@@ -114,7 +116,6 @@
 		E788BCD32B8357A200C8F772 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		E788BCD42B8357A200C8F772 /* Coordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		E788BCD72B8357A200C8F772 /* GigyaService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GigyaService.swift; sourceTree = "<group>"; };
-		E788BD132B8C832E00C8F772 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		E788BD152B8C88AE00C8F772 /* BitsBytes.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BitsBytes.entitlements; sourceTree = "<group>"; };
 		E788BD162B8C8B3300C8F772 /* RegisterScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterScreenView.swift; sourceTree = "<group>"; };
 		E788BD182B8CA20000C8F772 /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
@@ -125,6 +126,7 @@
 		E7B16EB52BA304BB005DD81E /* GoogleWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GoogleWrapper.swift; path = ../../../../XC/GigyaSwift_XCFramework14/GigyaProviders/GoogleV7/GoogleWrapper.swift; sourceTree = "<group>"; };
 		E7D3180F2C16FF60005B03A3 /* OtpScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtpScreenView.swift; sourceTree = "<group>"; };
 		E7D318112C171B70005B03A3 /* OtpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtpViewModel.swift; sourceTree = "<group>"; };
+		E7FA5C332D181FB300AC7162 /* TfaMethodsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TfaMethodsViewModel.swift; sourceTree = "<group>"; };
 		E7FEA4D72C245343003A3973 /* ChangePasswordScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordScreenView.swift; sourceTree = "<group>"; };
 		E7FEA4D92C245497003A3973 /* ChangePasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewModel.swift; sourceTree = "<group>"; };
 		E7FEA4DB2C246FC7003A3973 /* ResetPasswordScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordScreenView.swift; sourceTree = "<group>"; };
@@ -220,7 +222,6 @@
 				E788BCB12B8357A200C8F772 /* UI */,
 				E788BCC92B8357A200C8F772 /* Coordinators */,
 				E788BCCD2B8357A200C8F772 /* BitsBytesApp.swift */,
-				E788BD132B8C832E00C8F772 /* GoogleService-Info.plist */,
 				E788BCCE2B8357A200C8F772 /* Assets.xcassets */,
 				E788BCCF2B8357A200C8F772 /* Preview Content */,
 				E788BCD12B8357A200C8F772 /* System */,
@@ -358,6 +359,7 @@
 		E7FEA4EA2C4FA6A9003A3973 /* Interruptions */ = {
 			isa = PBXGroup;
 			children = (
+				E7FA5C332D181FB300AC7162 /* TfaMethodsViewModel.swift */,
 				E7FEA4E82C4CFFBC003A3973 /* LinkAccountViewModel.swift */,
 				E7FEA4EC2C4FA8BB003A3973 /* PenddingRegistrationViewModel.swift */,
 			);
@@ -369,6 +371,7 @@
 			children = (
 				E7FEA4E62C4CFC7F003A3973 /* LinkAccountScreenView.swift */,
 				E7FEA4EE2C4FA9B1003A3973 /* PenddingRegistrationScreenView.swift */,
+				E75902832D10311400DF0AD2 /* TfaMethodsScreenView.swift */,
 			);
 			path = Interruptions;
 			sourceTree = "<group>";
@@ -434,7 +437,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				E788BCEE2B8357A300C8F772 /* Assets.xcassets in Resources */,
-				E788BD142B8C832E00C8F772 /* GoogleService-Info.plist in Resources */,
 				E788BCEF2B8357A300C8F772 /* Preview Assets.xcassets in Resources */,
 				E78A32F22B83436A00C892D8 /* Launch Screen.storyboard in Resources */,
 			);
@@ -496,6 +498,7 @@
 				E7FEA4E52C4CF78F003A3973 /* AccessibilityHelper.swift in Sources */,
 				E788BD172B8C8B3300C8F772 /* RegisterScreenView.swift in Sources */,
 				E788BCD82B8357A300C8F772 /* ConfigurationViewModel.swift in Sources */,
+				E7FA5C342D181FD900AC7162 /* TfaMethodsViewModel.swift in Sources */,
 				E788BCEB2B8357A300C8F772 /* RoutingManager.swift in Sources */,
 				E788BCE02B8357A300C8F772 /* ConfigurationScreenView.swift in Sources */,
 				E788BCE22B8357A300C8F772 /* SignInScreenView.swift in Sources */,
@@ -504,6 +507,7 @@
 				E788BCEC2B8357A300C8F772 /* HomeCoordinator.swift in Sources */,
 				E7D318122C171B70005B03A3 /* OtpViewModel.swift in Sources */,
 				E788BD1B2B8CCF8800C8F772 /* ProfileCoordinator.swift in Sources */,
+				E75902842D10311400DF0AD2 /* TfaMethodsScreenView.swift in Sources */,
 				E7FEA4DE2C247670003A3973 /* ResetPasswordViewModel.swift in Sources */,
 				E7FEA4E92C4CFFBC003A3973 /* LinkAccountViewModel.swift in Sources */,
 				E788BCD92B8357A300C8F772 /* AppCoordinatorView.swift in Sources */,

@@ -7,6 +7,7 @@
 
 import Foundation
 import Gigya
+import GigyaTfa
 import GigyaAuth
 
 @Observable
@@ -15,6 +16,8 @@ class SignInInterruptionFlow: Identifiable {
         case none
         case penddingRegistration
         case conflitingAccount
+        case pendingTwoFactorRegistration
+        case pendingTwoFactorVerification
     }
     
     var currentFlow: Interruptions = .none {
@@ -26,9 +29,23 @@ class SignInInterruptionFlow: Identifiable {
     
     weak var currentCordinator: Coordinator?
     
+    var tfaFactoryResolver: TFAResolverFactory<AccountModel>?
     var linkAccountResolver: LinkAccountsResolver<AccountModel>?
     var penddingRegistrationResolver: PendingRegistrationResolver<AccountModel>?
     var otpResolver: OtpServiceVerifyProtocol?
+    var pendingTwoFactorVerificationResolver: PendingRegistrationResolver<AccountModel>?
+    
+    var registerPhoneResolver: RegisterPhoneResolver<AccountModel>?
+    var registeredPhonesResolver: RegisteredPhonesResolver<AccountModel>?
+    var registeredEmailsResolver: RegisteredEmailsResolver<AccountModel>?
+    
+    var totpResolver: VerifyTotpResolverProtocol?
+
+    var otpCurrentMode: OtpViewModel.Mode = .login
+    var tfaSelectedProvider: TFAProvider = .phone
+    var tfaAvailableProviders: [TFAProviderModel] = []
+    var selectedPhone: TFARegisteredPhone?
+    var selectedEmail: TFAEmail?
 
     var resultClosure: (GigyaLoginResult<AccountModel>) -> Void = { _ in }
     var resultOtpClosure: (GigyaOtpResult<AccountModel>) -> Void = { _ in }
@@ -61,7 +78,13 @@ class SignInInterruptionFlow: Identifiable {
     }
     
     func interuuptionHandle(error: LoginApiError<AccountModel>) {
-        self.errorClousre(error.error.localizedDescription)
+        switch error.error {
+        case .gigyaError(data: let data):
+            self.errorClousre(data.errorMessage ?? "")
+        default:
+            break
+        }
+        
         guard let interruption = error.interruption else { return }
         
         switch interruption {
@@ -79,10 +102,25 @@ class SignInInterruptionFlow: Identifiable {
 
             self.currentFlow = .conflitingAccount
             self.linkAccountResolver = resolver
-        case .pendingTwoFactorRegistration(response: let response, inactiveProviders: let inactiveProviders, factory: let factory):
-            break
-        case .pendingTwoFactorVerification(response: let response, activeProviders: let activeProviders, factory: let factory):
-            break
+        case .pendingTwoFactorRegistration(response: _, inactiveProviders: let inactiveProviders, factory: let factory):
+            self.currentFlow = .pendingTwoFactorRegistration
+            self.tfaAvailableProviders = inactiveProviders ?? []
+            self.tfaFactoryResolver = factory
+            self.otpCurrentMode = .tfaRegister
+            registerPhoneResolver = factory.getResolver(for: RegisterPhoneResolver.self)
+            self.currentCordinator?.routing.push(.tfaMethods)
+
+
+        case .pendingTwoFactorVerification(response: _, activeProviders: let activeProviders, factory: let factory):
+            self.currentFlow = .pendingTwoFactorVerification
+            self.tfaAvailableProviders = activeProviders ?? []
+            self.tfaFactoryResolver = factory
+            registeredPhonesResolver = factory.getResolver(for: RegisteredPhonesResolver.self)
+            
+            self.otpCurrentMode = .tfaVerify
+            
+            self.currentCordinator?.routing.push(.tfaMethods)
+
         }
     }
     

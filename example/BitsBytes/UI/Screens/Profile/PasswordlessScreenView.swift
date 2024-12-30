@@ -22,6 +22,11 @@ struct PasswordlessScreenView: View {
             }
             .accessibilityId(self, "passwordless")
             
+            CustomRowWithButton(label: "Push 2-Factor Authentication", active: .constant(false)) {
+                viewModel.pushTfaAction()
+            }
+            .accessibilityId(self, "push")
+
             CustomRowWithButton(label: "Biometrics", active: $viewModel.biometricAvailable) {
                 viewModel.biometricAction()
             }
@@ -42,6 +47,12 @@ struct PasswordlessScreenView: View {
                 .padding(10)
                 .accessibilityId(self, "errorLabel")
             
+            Text(viewModel.msg)
+                .foregroundStyle(.green)
+                .bold()
+                .padding(10)
+                .accessibilityId(self, "msgLabel")
+
             Spacer(minLength: 5)
 
         }
