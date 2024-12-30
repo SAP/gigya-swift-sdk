@@ -33,10 +33,6 @@ jobs:
           sed -i -e 's/#GOOGLE_SERVER_ID#/${{ secrets.GOOGLE_SERVER_ID }}/g' Info.plist 
           sed -i -e 's/#FACEBOOK_APPID#/${{ secrets.FACEBOOK_APPID }}/g' Info.plist 
           sed -i -e 's/#FACEBOOK_CLIENT_TOKEN#/${{ secrets.FACEBOOK_CLIENT_TOKEN }}/g' Info.plist
-          
-      - name: Google Service
-        working-directory: ./example/
-        run: sed -i -e 's/#GOOGLE_SERVICE_PLIST#/${{ secrets.GOOGLE_SERVICE_PLIST }}/g' GoogleService-Info.plist
       - name: Build
         working-directory: ./example
         run: |
