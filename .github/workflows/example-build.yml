@@ -42,7 +42,7 @@ jobs:
           sed -i -e 's/#API_KEY#/${{ secrets.API_KEY }}/g' GoogleService-Info.plist 
           sed -i -e 's/#GCM_SENDER_ID#/${{ secrets.GCM_SENDER_ID }}/g' GoogleService-Info.plist 
           sed -i -e 's/#GOOGLE_APP_ID#/${{ secrets.GOOGLE_APP_ID }}/g' GoogleService-Info.plist 
-          sed -i -e 's/#DATABASE_URL#/${{ secrets.DATABASE_URL }}/g' GoogleService-Info.plist 
+          sed -i '' "s|#DATABASE_URL#|${{ secrets.DATABASE_URL }}|g" GoogleService-Info.plist
 
       - name: Build
         working-directory: ./example
