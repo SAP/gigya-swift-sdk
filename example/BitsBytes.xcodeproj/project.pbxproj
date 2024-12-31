@@ -58,6 +58,7 @@
 		E7FA5C4C2D22F30500AC7162 /* FacebookWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FA5C482D22F30500AC7162 /* FacebookWrapper.swift */; };
 		E7FA5C4D2D22F30500AC7162 /* GoogleWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FA5C492D22F30500AC7162 /* GoogleWrapper.swift */; };
 		E7FA5C4E2D22F30500AC7162 /* AppleSignInWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FA5C472D22F30500AC7162 /* AppleSignInWrapper.swift */; };
+		E7FA5C522D23EA0300AC7162 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E7FA5C512D23EA0300AC7162 /* GoogleService-Info.plist */; };
 		E7FEA4D82C245343003A3973 /* ChangePasswordScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FEA4D72C245343003A3973 /* ChangePasswordScreenView.swift */; };
 		E7FEA4DA2C245497003A3973 /* ChangePasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FEA4D92C245497003A3973 /* ChangePasswordViewModel.swift */; };
 		E7FEA4DC2C246FC7003A3973 /* ResetPasswordScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FEA4DB2C246FC7003A3973 /* ResetPasswordScreenView.swift */; };
@@ -127,6 +128,7 @@
 		E7FA5C482D22F30500AC7162 /* FacebookWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebookWrapper.swift; sourceTree = "<group>"; };
 		E7FA5C492D22F30500AC7162 /* GoogleWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleWrapper.swift; sourceTree = "<group>"; };
 		E7FA5C4A2D22F30500AC7162 /* LineWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineWrapper.swift; sourceTree = "<group>"; };
+		E7FA5C512D23EA0300AC7162 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E7FEA4D72C245343003A3973 /* ChangePasswordScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordScreenView.swift; sourceTree = "<group>"; };
 		E7FEA4D92C245497003A3973 /* ChangePasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewModel.swift; sourceTree = "<group>"; };
 		E7FEA4DB2C246FC7003A3973 /* ResetPasswordScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordScreenView.swift; sourceTree = "<group>"; };
@@ -222,6 +224,7 @@
 				E788BCB12B8357A200C8F772 /* UI */,
 				E788BCC92B8357A200C8F772 /* Coordinators */,
 				E788BCCD2B8357A200C8F772 /* BitsBytesApp.swift */,
+				E7FA5C512D23EA0300AC7162 /* GoogleService-Info.plist */,
 				E788BCCE2B8357A200C8F772 /* Assets.xcassets */,
 				E788BCCF2B8357A200C8F772 /* Preview Content */,
 				E788BCD12B8357A200C8F772 /* System */,
@@ -437,6 +440,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E788BCEE2B8357A300C8F772 /* Assets.xcassets in Resources */,
+				E7FA5C522D23EA0300AC7162 /* GoogleService-Info.plist in Resources */,
 				E788BCEF2B8357A300C8F772 /* Preview Assets.xcassets in Resources */,
 				E78A32F22B83436A00C892D8 /* Launch Screen.storyboard in Resources */,
 			);
