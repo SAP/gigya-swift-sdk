@@ -34,7 +34,16 @@ jobs:
           sed -i -e 's/#GOOGLE_CLIENT_ID_REVERSED#/${{ secrets.GOOGLE_CLIENT_ID_REVERSED }}/g' Info.plist 
           sed -i -e 's/#GOOGLE_SERVER_ID#/${{ secrets.GOOGLE_SERVER_ID }}/g' Info.plist 
           sed -i -e 's/#FACEBOOK_APPID#/${{ secrets.FACEBOOK_APPID }}/g' Info.plist 
-          sed -i -e 's/#FACEBOOK_CLIENT_TOKEN#/${{ secrets.FACEBOOK_CLIENT_TOKEN }}/g' Info.plist
+          sed -i -e 's/#FACEBOOK_CLIENT_TOKEN#/${{ secrets.FACEBOOK_CLIENT_TOKEN }}/g' Info.plist      
+      - name: GoogleService keys
+        working-directory: ./example/BitsBytes
+        run: |
+          sed -i -e 's/#ANDROID_CLIENT_ID#/${{ secrets.ANDROID_CLIENT_ID }}/g' GoogleService-Info.plist 
+          sed -i -e 's/#API_KEY#/${{ secrets.API_KEY }}/g' GoogleService-Info.plist 
+          sed -i -e 's/#GCM_SENDER_ID#/${{ secrets.GCM_SENDER_ID }}/g' GoogleService-Info.plist 
+          sed -i -e 's/#GOOGLE_APP_ID#/${{ secrets.GOOGLE_APP_ID }}/g' GoogleService-Info.plist 
+          sed -i -e 's/#DATABASE_URL#/${{ secrets.DATABASE_URL }}/g' GoogleService-Info.plist 
+
       - name: Build
         working-directory: ./example
         run: |
