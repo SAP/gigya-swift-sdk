@@ -46,7 +46,7 @@ class RoutingManager {
             let otpViewModel = OtpViewModel(gigya: gigya, flowManager: flowManager!)
             OtpScreenView(viewModel: otpViewModel)
         case .changePass:
-            let changePassViewModel = ChangePasswordViewModel(gigya: gigya)
+            let changePassViewModel = ChangePasswordViewModel(gigya: gigya, flowManager: flowManager!)
             ChangePasswordScreenView(viewModel: changePassViewModel)
         case .resetPassword:
             let resetPassViewModel = ResetPasswordViewModel(gigya: gigya)

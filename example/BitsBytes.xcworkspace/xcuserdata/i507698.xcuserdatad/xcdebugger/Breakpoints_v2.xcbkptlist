@@ -798,8 +798,8 @@
             filePath = "BitsBytes/UI/Flows/SignInInterruptionFlow.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "81"
-            endingLineNumber = "81"
+            startingLineNumber = "84"
+            endingLineNumber = "84"
             landmarkName = "interuuptionHandle(error:)"
             landmarkType = "7">
          </BreakpointContent>

@@ -37,7 +37,13 @@ struct ChangePasswordScreenView: View {
                 
                 CustomDarkButton(action: {
                     viewModel.savePassword {
-                        currentCordinator.routing.pop()
+                        if viewModel.flowManager.regToken != nil {
+                            currentCordinator.routing.popToRoot()
+                            currentCordinator.parent.isLoggedIn = true
+
+                        } else {
+                            currentCordinator.routing.pop()
+                        }
                     }
                 }, label: "Save Password")
                 .accessibilityId(self, "saveButton")
@@ -54,5 +60,5 @@ struct ChangePasswordScreenView: View {
 }
 
 #Preview {
-    ChangePasswordScreenView(viewModel: ChangePasswordViewModel(gigya: GigyaService()))
+    ChangePasswordScreenView(viewModel: ChangePasswordViewModel(gigya: GigyaService(), flowManager: SignInInterruptionFlow()))
 }

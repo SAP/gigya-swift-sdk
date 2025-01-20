@@ -3,11 +3,11 @@
 <plist version="1.0">
 <dict>
 	<key>ANDROID_CLIENT_ID</key>
-	<string>#ANDROID_CLIENT_ID#</string>
+	<string>977811956095-40bcfgjseoeocsl9l3gg3qkab2c4i71p.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
-	<string>#API_KEY#</string>
+	<string>AIzaSyAZadGn82fSsShPnwZVcOcjSoGoHoWCpZY</string>
 	<key>GCM_SENDER_ID</key>
-	<string>#GCM_SENDER_ID#</string>
+	<string>977811956095</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
@@ -27,8 +27,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>#GOOGLE_APP_ID#</string>
+	<string>1:977811956095:ios:60b1c77b3e49d673817a4a</string>
 	<key>DATABASE_URL</key>
-	<string>#DATABASE_URL#</string>
+	<string>https://gigya-sdk-v2-1546766892216.firebaseio.com</string>
 </dict>
 </plist>

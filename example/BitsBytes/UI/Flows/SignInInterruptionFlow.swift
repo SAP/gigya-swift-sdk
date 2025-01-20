@@ -18,6 +18,7 @@ class SignInInterruptionFlow: Identifiable {
         case conflitingAccount
         case pendingTwoFactorRegistration
         case pendingTwoFactorVerification
+        case penddingPasswordChange
     }
     
     var currentFlow: Interruptions = .none {
@@ -47,6 +48,8 @@ class SignInInterruptionFlow: Identifiable {
     var selectedPhone: TFARegisteredPhone?
     var selectedEmail: TFAEmail?
 
+    var regToken: String?
+    
     var resultClosure: (GigyaLoginResult<AccountModel>) -> Void = { _ in }
     var resultOtpClosure: (GigyaOtpResult<AccountModel>) -> Void = { _ in }
 
@@ -96,7 +99,10 @@ class SignInInterruptionFlow: Identifiable {
         case .pendingVerification(regToken: let regToken):
             break
         case .pendingPasswordChange(regToken: let regToken):
-            break
+            self.regToken = regToken
+            self.currentCordinator?.routing.push(.changePass)
+
+            self.currentFlow = .penddingPasswordChange
         case .conflitingAccount(resolver: let resolver):
             self.currentCordinator?.routing.push(.linkAccount)
 

@@ -32,7 +32,7 @@
 	<key>GigyaApiDomain</key>
 	<string>us1.gigya.com</string>
 	<key>GigyaApiKey</key>
-	<string>#GIGYA_API_KEY#</string>
+	<string>4_S8VHbHlOBdJrX8CRYjIbdw</string>
 	<key>GoogleClientID</key>
 	<string>#GOOGLE_CLIENT_ID#</string>
 	<key>GoogleServerClientID</key>
