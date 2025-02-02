@@ -58,7 +58,7 @@ jobs:
             -scheme BitsBytes \
             -derivedDataPath './build' \
             -sdk iphonesimulator \
-            -destination 'platform=iOS Simulator,name=iPhone 15 Pro Simulator,OS=17.5' \
+            -destination 'platform=iOS Simulator,name=iPhone 15,OS=18.1' \
             -configuration Release \
             CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
         shell: bash
