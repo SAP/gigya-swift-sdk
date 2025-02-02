@@ -43,18 +43,22 @@ jobs:
           sed -i -e 's/#GCM_SENDER_ID#/${{ secrets.GCM_SENDER_ID }}/g' GoogleService-Info.plist 
           sed -i -e 's/#GOOGLE_APP_ID#/${{ secrets.GOOGLE_APP_ID }}/g' GoogleService-Info.plist 
           sed -i '' "s|#DATABASE_URL#|${{ secrets.DATABASE_URL }}|g" GoogleService-Info.plist
-
+          
+      - name: Available devices
+        working-directory: ./example/BitsBytes
+        run: xcrun xctrace list devices
+        
       - name: Build
         working-directory: ./example
         run: |
           xcodebuild \
-            ARCHS=x86_64 \
+            ARCHS=arm64 \
             clean build \
             -workspace BitsBytes.xcworkspace \
             -scheme BitsBytes \
             -derivedDataPath './build' \
             -sdk iphonesimulator \
-            -destination 'platform=iOS Simulator,name=iPhone 15,OS=18.2' \
+            -destination 'platform=iOS Simulator,name=iPhone 15,OS=18.0' \
             -configuration Release \
             CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
         shell: bash
