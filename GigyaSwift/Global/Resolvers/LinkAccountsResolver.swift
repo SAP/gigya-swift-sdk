@@ -64,6 +64,37 @@ final public class LinkAccountsResolver<T: GigyaAccountProtocol>: BaseResolver {
     }
     
     public func linkToSite(loginId: String, password: String) {
+        if case .gigyaError(let error) = originalError, error.errorCode == Interruption.conflitingAccounts.rawValue {
+            linkToSiteV2(loginId: loginId, password: password)
+        } else {
+            linkToSiteV1(loginId: loginId, password: password)
+        }
+    }
+    
+    public func linkToSocial(provider: GigyaSocialProviders, viewController: UIViewController) {
+        if case .gigyaError(let error) = originalError, error.errorCode == Interruption.conflitingAccounts.rawValue {
+            linkToSocialV2(provider: provider, viewController: viewController)
+        } else {
+            linkToSocialV1(provider: provider, viewController: viewController)
+        }
+    }
+    
+    private func linkToSiteV1(loginId: String, password: String) {
+        let params = ["loginMode": "link", "regToken": regToken]
+
+        businessDelegate?.callLogin(dataType: T.self, loginId: loginId, password: password, params: params, completion: self.completion)
+
+        GigyaLogger.log(with: self, message: "[linkToSiteV1]")
+    }
+    
+    private func linkToSocialV1(provider: GigyaSocialProviders, viewController: UIViewController) {
+        let params = ["loginMode": "link", "regToken": regToken]
+        businessDelegate?.callSociallogin(provider: provider, viewController: viewController, params: params, dataType: T.self, completion: self.completion)
+
+        GigyaLogger.log(with: self, message: "[linkToSocialV1], provider: \(provider.rawValue)")
+    }
+    
+    private func linkToSiteV2(loginId: String, password: String) {
         businessDelegate?.callLogin(dataType: T.self, loginId: loginId, password: password, params: [:]) { [weak self] result in
             switch result {
             case .success(data: _):
@@ -76,7 +107,7 @@ final public class LinkAccountsResolver<T: GigyaAccountProtocol>: BaseResolver {
         GigyaLogger.log(with: self, message: "[linkToSite] ")
     }
     
-    public func linkToSocial(provider: GigyaSocialProviders, viewController: UIViewController) {
+    private func linkToSocialV2(provider: GigyaSocialProviders, viewController: UIViewController) {
         businessDelegate?.callSociallogin(provider: provider, viewController: viewController, params: [:], dataType: T.self) { [weak self] result in
             switch result {
             case .success(data: _):
@@ -88,6 +119,7 @@ final public class LinkAccountsResolver<T: GigyaAccountProtocol>: BaseResolver {
 
         GigyaLogger.log(with: self, message: "[linkToSocial], provider: \(provider.rawValue)")
     }
+
     
     func connectAccount() {
         var params: [String: Any] = ["loginMode": "connect"]
