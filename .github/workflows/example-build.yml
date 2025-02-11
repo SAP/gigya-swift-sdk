@@ -13,7 +13,7 @@ jobs:
     steps:
       - uses: maxim-lobanov/setup-xcode@v1
         with:
-          xcode-version: latest
+          xcode-version: '16.1'
       - name: Checkout
         uses: actions/checkout@v4
       - name: Bundle Update
@@ -34,18 +34,31 @@ jobs:
           sed -i -e 's/#GOOGLE_CLIENT_ID_REVERSED#/${{ secrets.GOOGLE_CLIENT_ID_REVERSED }}/g' Info.plist 
           sed -i -e 's/#GOOGLE_SERVER_ID#/${{ secrets.GOOGLE_SERVER_ID }}/g' Info.plist 
           sed -i -e 's/#FACEBOOK_APPID#/${{ secrets.FACEBOOK_APPID }}/g' Info.plist 
-          sed -i -e 's/#FACEBOOK_CLIENT_TOKEN#/${{ secrets.FACEBOOK_CLIENT_TOKEN }}/g' Info.plist
+          sed -i -e 's/#FACEBOOK_CLIENT_TOKEN#/${{ secrets.FACEBOOK_CLIENT_TOKEN }}/g' Info.plist      
+      - name: GoogleService keys
+        working-directory: ./example/BitsBytes
+        run: |
+          sed -i -e 's/#ANDROID_CLIENT_ID#/${{ secrets.ANDROID_CLIENT_ID }}/g' GoogleService-Info.plist 
+          sed -i -e 's/#API_KEY#/${{ secrets.API_KEY }}/g' GoogleService-Info.plist 
+          sed -i -e 's/#GCM_SENDER_ID#/${{ secrets.GCM_SENDER_ID }}/g' GoogleService-Info.plist 
+          sed -i -e 's/#GOOGLE_APP_ID#/${{ secrets.GOOGLE_APP_ID }}/g' GoogleService-Info.plist 
+          sed -i '' "s|#DATABASE_URL#|${{ secrets.DATABASE_URL }}|g" GoogleService-Info.plist
+          
+      - name: Available devices
+        working-directory: ./example/BitsBytes
+        run: xcrun xctrace list devices
+        
       - name: Build
         working-directory: ./example
         run: |
           xcodebuild \
-            ARCHS=x86_64 \
+            ARCHS=arm64 \
             clean build \
             -workspace BitsBytes.xcworkspace \
             -scheme BitsBytes \
             -derivedDataPath './build' \
             -sdk iphonesimulator \
-            -destination 'platform=iOS Simulator,name=iPhone 15,OS=18.0' \
+            -destination 'platform=iOS Simulator,name=iPhone 15,OS=18.1' \
             -configuration Release \
             CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
         shell: bash
@@ -60,4 +73,13 @@ jobs:
         run: |
           cd build/Build/Products/Release-iphonesimulator
           curl -u '${{ secrets.SUECELABS_USER }}:${{ secrets.SUECELABS_SECRET }}' --location --request POST 'https://api.eu-central-1.saucelabs.com/v1/storage/upload' --form payload=@'BitsBytes.zip' --form name='BitsBytes.zip' --form description='e2e test app' --silent --show-error
-        
+          
+      - name: Trigger target repository workflow
+        env:
+          REPO_ACCESS_TOKEN: ${{ secrets.REPO_ACCESS_TOKEN }}
+        run: |
+          curl -X POST \
+            -H "Accept: application/vnd.github.v3+json" \
+            -H "Authorization: token $REPO_ACCESS_TOKEN" \
+            https://api.github.com/repos/SAP/gigya-mobile-sdk-tests/dispatches \
+            -d '{"event_type":"trigger_event_from_swift"}'
