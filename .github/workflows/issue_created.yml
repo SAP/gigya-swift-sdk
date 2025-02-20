@@ -6,7 +6,7 @@ on:
       - opened
 jobs:
   test-transition-issue:
-    name: Transition Issue
+    name: Open Issue
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
