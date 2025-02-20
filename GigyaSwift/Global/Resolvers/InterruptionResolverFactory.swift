@@ -45,7 +45,7 @@ final class InterruptionResolverFactory: InterruptionResolverFactoryProtocol {
                     // pending veryfication
                     let loginError = LoginApiError<T>(error: error, interruption: .pendingVerification(regToken: regToken))
                     completion(.failure(loginError))
-                case .conflitingAccounts:
+                case .conflictingAccounts:
                     // conflicting accounts
                     resolver = LinkAccountsResolver(originalError: error, regToken: regToken, businessDelegate: businessDelegate, dataResponse: dataResponse, completion: completion)
                     resolver?.start?()
