@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name          = 'GigyaNss'
-  spec.version       = '1.9.6'
+  spec.version       = '1.9.7'
   spec.license       = 'Apache 2.0'
   spec.homepage      = 'https://developers.gigya.com/display/GD/Native+Screen-Sets'
   spec.author       = 'Gigya SAP'
@@ -8,8 +8,8 @@ Pod::Spec.new do |spec|
                         This library enables you to use additional 
                         authentication methods from the standard login flow
                         DESC
+  spec.source        = {:http => "https://github.com/SAP/gigya-swift-sdk/releases/download/nss%2Fv#{spec.version}/GigyaNss.zip"  }
 
-  spec.source        = { :git => 'https://github.com/SAP/gigya-swift-sdk.git', :tag => 'nss/v1.9.6' }
   spec.module_name   = 'GigyaNss'
   spec.swift_version = '5.2'
 
@@ -19,24 +19,21 @@ Pod::Spec.new do |spec|
   
 
   spec.subspec 'Core' do |ss|
-     ss.source_files       = 'GigyaNss/GigyaNss/*.swift', 'GigyaNss/GigyaNss/*/*.swift', 'GigyaNss/GigyaNss/*/*/*.swift'
-     ss.exclude_files = 'GigyaNss/GigyaNss/services/Otp/OtpService.swift'
-
-     ss.dependency 'Gigya', '>= 1.6.0'
+     ss.source_files       = 'GigyaNss/*.swift', 'GigyaNss/*/*.swift', 'GigyaNss/*/*/*.swift'
+     ss.exclude_files = 'GigyaNss/services/Otp/OtpService.swift'
+     ss.vendored_frameworks = 'Flutter/Debug/Flutter.xcframework', 'Flutter/Debug/App.xcframework'
+     ss.dependency 'Gigya', '>= 1.7.3'
      ss.framework      = 'SystemConfiguration'
      ss.library = 'c++', 'z'
-     ss.vendored_frameworks = 'GigyaNss/Flutter/Debug/Flutter.xcframework', 'GigyaNss/Flutter/Debug/App.xcframework'
      ss.resource_bundle = {
-       "GigyaNss_Privacy" => "GigyaNss/PrivacyInfo.xcprivacy"
+       "GigyaNss_Privacy" => "PrivacyInfo.xcprivacy"
      }
   end
 
   spec.subspec 'Auth' do |ss|
-     ss.source_files       = 'GigyaNss/GigyaNss/services/*/*.swift'
+     ss.source_files       = 'GigyaNss/services/*/*.swift'
      ss.dependency 'GigyaAuth'
   end
-
-
 
   
 end
