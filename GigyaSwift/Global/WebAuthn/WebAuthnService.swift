@@ -206,7 +206,76 @@ public class WebAuthnService<T: GigyaAccountProtocol> {
             return .failure(LoginApiError(error: error))
         }
     }
-    
+
+    @available(iOS 16.0.0, *)
+    public func loginWithAvailableCredentials(viewController: UIViewController, params: [String: Any] = [:]) async -> GigyaLoginResult<T> {
+        if isActiveContinuation {
+            return .failure(.init(error: .providerError(data: "cancelled")))
+        }
+        isActiveContinuation.toggle()
+        oauthService.params = params
+
+        let assertionOptions = await getAssertionOptions()
+
+        switch assertionOptions {
+        case .success(let options):
+            return await withCheckedContinuation() { continuation in
+
+                let allowedKeys = persistenceService.webAuthnlist
+
+                webAuthnDeviceIntegration.loginWithAvailableCredentials(viewController: viewController, options: options, allowedKeys: allowedKeys) { [weak self] result in
+                    guard let self = self else {
+                        return
+                    }
+                    switch result {
+                    case .login(let token):
+                        let attestation: [String: Any] = self.attestationUtils.makeLoginData(object: token)
+
+                        Task {
+                            let result =  await self.verifyAssertion(params: ["authenticatorAssertion": attestation, "token": options.token])
+                            switch result {
+                            case .success(data: let data):
+                                let user: GigyaLoginResult<T> = await self.oauthService.authorize(token: data["idToken"]!.value as! String) // idToken for login
+                                continuation.resume(returning: user)
+                                self.isActiveContinuation.toggle()
+                            case .failure(let error):
+                                continuation.resume(returning: .failure(LoginApiError(error: error)))
+                                self.isActiveContinuation.toggle()
+                            }
+                        }
+                    case .securityLogin(let token):
+                        let attestation: [String: Any] = self.attestationUtils.makeSecurityLoginData(object: token)
+
+                        Task {
+                            let result =  await self.verifyAssertion(params: ["authenticatorAssertion": attestation, "token": options.token])
+                            switch result {
+                            case .success(data: let data):
+                                let user: GigyaLoginResult<T> = await self.oauthService.authorize(token: data["idToken"]!.value as! String) // idToken for login
+                                continuation.resume(returning: user)
+                                self.isActiveContinuation.toggle()
+                            case .failure(let error):
+                                continuation.resume(returning: .failure(LoginApiError(error: error)))
+                                self.isActiveContinuation.toggle()
+                            }
+                        }
+                    case .canceled:
+                        continuation
+                            .resume(returning: .failure(LoginApiError(error: NetworkError.providerError(data: "cancelled"))))
+                        self.isActiveContinuation.toggle()
+                    default:
+                        let error = GigyaResponseModel(statusCode: .unknown, errorCode: 400301, callId: "", errorMessage: "Operation failed", sessionInfo: nil)
+                        continuation
+                            .resume(returning: .failure(LoginApiError(error: NetworkError.gigyaError(data: error))))
+                        self.isActiveContinuation.toggle()
+                    }
+                }
+            }
+        case .failure(let error):
+            self.isActiveContinuation.toggle()
+            return .failure(LoginApiError(error: error))
+        }
+    }
+
     @available(iOS 16.0.0, *)
     private func getAssertionOptions() async -> GigyaApiResult<WebAuthnGetOptionsResponseModel> {
         return await withCheckedContinuation({
