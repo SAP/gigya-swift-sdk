@@ -64,7 +64,7 @@ public final class PersistenceService {
     
     public var webAuthnlist: [GigyaWebAuthnCredential] {
         get {
-            if let data = UserDefaults.standard.object(forKey: InternalConfig.Storage.webAuthn) as? Data {
+            if let data = GigyaKeyChainService.read(key: InternalConfig.Storage.webAuthn) {
                 do {
                     return try PropertyListDecoder().decode([GigyaWebAuthnCredential].self, from: data)
                 } catch {
@@ -102,10 +102,71 @@ public final class PersistenceService {
     func addWebAuthnKey(model: GigyaWebAuthnCredential) {
         var list = webAuthnlist
         list.append(model)
-        UserDefaults.standard.set(try? PropertyListEncoder().encode(list), forKey: InternalConfig.Storage.webAuthn)
+        if let data = try? PropertyListEncoder().encode(list) {
+            GigyaKeyChainService.save(key: InternalConfig.Storage.webAuthn, valueData: data)
+        }
     }
     
     internal func removeAllWebAuthnKeys() {
-        UserDefaults.standard.removeObject(forKey: InternalConfig.Storage.webAuthn)
+        GigyaKeyChainService.delete(key: InternalConfig.Storage.webAuthn)
+    }
+}
+
+class GigyaKeyChainService {
+    static func save(key: String, valueData: Data) {
+        var query = getQuery()
+        query[String(kSecAttrAccount)] = key
+        var attributes = getQuery()
+        attributes[String(kSecAttrAccount)] = key
+        attributes[String(kSecValueData)] = valueData
+        attributes[String(kSecAttrAccessible)] = kSecAttrAccessibleAfterFirstUnlock
+        let status = SecItemCopyMatching(query as CFDictionary, nil)
+        if status == noErr {
+            let updateStatus = SecItemUpdate(query as CFDictionary, attributes as CFDictionary)
+            if updateStatus != noErr {
+                SecItemDelete(query as CFDictionary)
+                let addStatus = SecItemAdd(attributes as CFDictionary, nil)
+                if addStatus != noErr {
+                    GigyaLogger.log(with: self, message: "Failed to store value for key = '\(addStatus)'")
+                }
+            }
+        } else {
+            SecItemDelete(query as CFDictionary)
+            let status = SecItemAdd(attributes as CFDictionary, nil)
+            if status != noErr {
+                GigyaLogger.log(with: self, message: "Failed to add value for key '\(key)'")
+            }
+        }
+    }
+
+    static func read(key: String) -> Data? {
+        var query = getQuery()
+        query[String(kSecMatchLimit)] = kSecMatchLimitOne
+        query[String(kSecReturnData)] = kCFBooleanTrue
+        query[String(kSecAttrAccount)] = key
+        var dataTypeRef: AnyObject?
+        let status = SecItemCopyMatching(query as CFDictionary, &dataTypeRef)
+        if status == noErr, let data = dataTypeRef as? Data {
+            return data
+        } else {
+            return nil
+        }
+    }
+
+    static func delete(key: String) {
+        var query = getQuery()
+        query[String(kSecAttrAccount)] = key
+        query[String(kSecAttrSynchronizable)] = kSecAttrSynchronizableAny
+        SecItemDelete(query as CFDictionary)
+    }
+
+    private class func getQuery() -> [String: Any] {
+        let bundleId = Bundle.main.bundleIdentifier ?? ""
+        var query: [String : Any] = [
+            String(kSecClass): String(kSecClassGenericPassword),
+            String(kSecAttrService): bundleId
+        ]
+        query[String(kSecAttrSynchronizable)] = kCFBooleanTrue
+        return query
     }
 }

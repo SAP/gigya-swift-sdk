@@ -212,6 +212,12 @@ public class WebAuthnService<T: GigyaAccountProtocol> {
         if isActiveContinuation {
             return .failure(.init(error: .providerError(data: "cancelled")))
         }
+
+        let allowedKeys = persistenceService.webAuthnlist
+        if allowedKeys.isEmpty {
+            return .failure(.init(error: .providerError(data: "cancelled")))
+        }
+        
         isActiveContinuation.toggle()
         oauthService.params = params
 
@@ -220,9 +226,6 @@ public class WebAuthnService<T: GigyaAccountProtocol> {
         switch assertionOptions {
         case .success(let options):
             return await withCheckedContinuation() { continuation in
-
-                let allowedKeys = persistenceService.webAuthnlist
-
                 webAuthnDeviceIntegration.loginWithAvailableCredentials(viewController: viewController, options: options, allowedKeys: allowedKeys) { [weak self] result in
                     guard let self = self else {
                         return
