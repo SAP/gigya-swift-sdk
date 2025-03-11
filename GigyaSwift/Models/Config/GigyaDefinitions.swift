@@ -56,6 +56,11 @@ public struct GigyaDefinitions {
         
         public static let isSessionValid = "accounts.session.verify"
     }
+    
+    public struct Saptcha {
+        public static let getChallenge = "accounts.risk.saptcha.getChallenge"
+        public static let verify = "accounts.risk.saptcha.verify"
+    }
 
     public struct Tfa {
         public static let email = "gigyaEmail"
