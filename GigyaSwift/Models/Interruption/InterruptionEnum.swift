@@ -16,4 +16,5 @@ public enum Interruption: Int, CaseIterable {
     case pendingTwoFactorVerification = 403101
     case accountLinked = 200009
     case pendingPasswordChange = 403100
+    case captchaRequired = 401020
 }
