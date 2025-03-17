@@ -14,5 +14,5 @@ public protocol InterruptionResolverFactoryProtocol {
 
     func setEnabled(_ sdkHandles: Bool)
 
-    func resolve<T: GigyaAccountProtocol>(error: NetworkError, businessDelegate: BusinessApiDelegate, completion: @escaping (GigyaLoginResult<T>) -> Void)
+    func resolve<T: GigyaAccountProtocol>(error: NetworkError, businessDelegate: BusinessApiDelegate, completion: @escaping (GigyaLoginResult<T>) -> Void, model: ApiRequestModel?)
 }
