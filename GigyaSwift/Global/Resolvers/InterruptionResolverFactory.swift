@@ -21,7 +21,7 @@ final class InterruptionResolverFactory: InterruptionResolverFactoryProtocol {
         enabled = sdkHandles
     }
 
-    func resolve<T: GigyaAccountProtocol>(error: NetworkError, businessDelegate: BusinessApiDelegate, completion: @escaping (GigyaLoginResult<T>) -> Void) {
+    func resolve<T: GigyaAccountProtocol>(error: NetworkError, businessDelegate: BusinessApiDelegate, completion: @escaping (GigyaLoginResult<T>) -> Void, model: ApiRequestModel?) {
         switch error {
         case .gigyaError(let data):
             // check if interruption supported
@@ -59,6 +59,10 @@ final class InterruptionResolverFactory: InterruptionResolverFactoryProtocol {
                 case .pendingPasswordChange:
                     let loginError = LoginApiError<T>(error: error, interruption: .pendingPasswordChange(regToken: regToken))
                     completion(.failure(loginError))
+                case .captchaRequired:
+                    resolver = CaptchaResolver(originalError: error, businessDelegate: businessDelegate, dataResponse: dataResponse, completion: completion, model: model)
+                    resolver?.start?()
+
                 }
             } else {
                 GigyaLogger.log(with: self, message: "[interruptionResolver] - interruption not supported")
