@@ -1,0 +1,14 @@
+name:  swift mobile e2e success
+run-name: ${{ github.actor }} is learning GitHub Actions
+
+on:
+  repository_dispatch:
+    types: [trigger_event_from_tests]
+
+jobs:
+  tests_done:
+      runs-on: ubuntu-latest
+      steps:
+        - name: Mobile Test done
+          run: echo "Successfully"
+
