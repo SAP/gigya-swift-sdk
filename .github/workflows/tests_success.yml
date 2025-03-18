@@ -1,5 +1,5 @@
 name:  swift mobile e2e success
-run-name: ${{ github.actor }} is learning GitHub Actions
+run-name: Tests Successfully
 
 on:
   repository_dispatch:
