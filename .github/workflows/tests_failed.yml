@@ -1,5 +1,5 @@
 name:  swift mobile e2e failed
-run-name: ${{ github.actor }} is learning GitHub Actions
+run-name: Tests Failed
 
 on:
   repository_dispatch:
