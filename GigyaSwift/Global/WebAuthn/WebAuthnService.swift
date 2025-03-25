@@ -356,6 +356,7 @@ public class WebAuthnService<T: GigyaAccountProtocol> {
                                 self.persistenceService.removeAllWebAuthnKeys()
                             case .failure(_):
                                 continuation.resume(returning: false)
+                                return
                             }
                         }
                         
