@@ -11,6 +11,15 @@ import Foundation
 public final class PersistenceService {
     var isStartSdk: Bool = false
     var isInitSdk: Bool = false
+    let config: GigyaConfig?
+
+    private var apiKey: String {
+        return config?.apiKey ?? "zxyt"
+    }
+
+    init(config: GigyaConfig?) {
+        self.config = config
+    }
 
     // MARK: - UserDefault
 
@@ -64,7 +73,7 @@ public final class PersistenceService {
     
     public var webAuthnlist: [GigyaWebAuthnCredential] {
         get {
-            if let data = GigyaKeyChainService.read(key: InternalConfig.Storage.webAuthn) {
+            if let data = GigyaKeyChainService.read(key: InternalConfig.Storage.webAuthnKey(apiKey: apiKey)) {
                 do {
                     return try PropertyListDecoder().decode([GigyaWebAuthnCredential].self, from: data)
                 } catch {
@@ -103,12 +112,12 @@ public final class PersistenceService {
         var list = webAuthnlist
         list.append(model)
         if let data = try? PropertyListEncoder().encode(list) {
-            GigyaKeyChainService.save(key: InternalConfig.Storage.webAuthn, valueData: data)
+            GigyaKeyChainService.save(key: InternalConfig.Storage.webAuthnKey(apiKey: apiKey), valueData: data)
         }
     }
     
     internal func removeAllWebAuthnKeys() {
-        GigyaKeyChainService.delete(key: InternalConfig.Storage.webAuthn)
+        GigyaKeyChainService.delete(key: InternalConfig.Storage.webAuthnKey(apiKey: apiKey))
     }
 }
 

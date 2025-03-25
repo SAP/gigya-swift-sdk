@@ -161,8 +161,9 @@ final class GigyaIOCContainer<T: GigyaAccountProtocol>: GigyaContainerProtocol {
             return AccountService()
         }
 
-        container.register(service: PersistenceService.self, isSingleton: true) { _ in
-            return PersistenceService()
+        container.register(service: PersistenceService.self, isSingleton: true) { resolver in
+            let config = resolver.resolve(GigyaConfig.self)
+            return PersistenceService(config: config)
         }
 
         container.register(service: InterruptionResolverFactoryProtocol.self) { _ in
