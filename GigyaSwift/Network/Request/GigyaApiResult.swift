@@ -82,6 +82,8 @@ public enum GigyaInterruptions<T: GigyaAccountProtocol> {
     case pendingTwoFactorRegistration(response: GigyaResponseModel, inactiveProviders: [TFAProviderModel]?, factory: TFAResolverFactory<T>)
 
     case pendingTwoFactorVerification(response: GigyaResponseModel, activeProviders: [TFAProviderModel]?, factory: TFAResolverFactory<T>)
+    
+    case captchaRequired
 }
 
 /**

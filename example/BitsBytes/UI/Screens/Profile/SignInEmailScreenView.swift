@@ -46,14 +46,22 @@ struct SignInEmailScreenView: View {
                     .bold()
                     .accessibilityId(self, "errorLabel")
                 
+                if viewModel.flowManager.captchaRequire {
+                    Toggle("Captcha:", isOn: $viewModel.captchaSwitch)
+                        .toggleStyle(SwitchToggleStyle(tint: .blue))
+                        .padding(EdgeInsets(top: 10, leading: 30, bottom: 10, trailing: 30))
+                        .background(.white)
+                        .accessibilityId(self, "captchaToggle")
+                }
+
                 Text("Forgot Password?")
                     .bold()
                     .font(.system(size: 14))
                     .padding(EdgeInsets(top: 12, leading: 140, bottom: 0, trailing: 0))
                     .onTapGesture {
-//                        currentCordinator.routing.push(.resetPassword)
                         viewModel.showPass()
                     }
+                
                 
                 CustomDarkButton(action: {
                     viewModel.submit() {

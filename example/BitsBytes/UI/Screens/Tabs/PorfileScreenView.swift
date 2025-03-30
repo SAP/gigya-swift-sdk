@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import Gigya
+import SafariServices
 
 struct PorfileScreenView: View {
     @Environment(ProfileCoordinator.self) var currentCordinator: ProfileCoordinator
@@ -29,6 +31,8 @@ struct LoggedIn: View {
     @Environment(AppCoordinator.self) var appCordinator: AppCoordinator
 
     @Environment(ProfileViewModel.self) var viewModel: ProfileViewModel
+
+    @State private var isPresentWebView = false
 
     var body: some View {
         ScrollView {
@@ -128,6 +132,14 @@ struct LoggedIn: View {
                     currentCordinator.routing.push(.addPhone)
                 }
                 Spacer()
+                CustomRow(label: "Exchange Token", icon: "exchangeToken", showRightIcon: false) {
+                    Task {
+                        await viewModel.getAuthcode()
+                    }
+                    
+
+                }
+                Spacer()
                 CustomRow(label: "Logout", icon: "logout", showRightIcon: false) {
                     viewModel.logout {
                         currentCordinator.parent.isLoggedIn = false
@@ -181,6 +193,11 @@ struct NotLoggedView: View {
             }, label: "Register")
             .accessibilityIdentifier("Profile_registerButton")
             
+            CustomDarkButton(action: {
+                currentCordinator.routing.push(.deviceFlow)
+            }, label: "Device Flow")
+            .accessibilityIdentifier("Profile_deviceFlowButton")
+
         }
     }
 }

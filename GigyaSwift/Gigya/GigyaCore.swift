@@ -59,7 +59,7 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
      - returns: `WebAuthnService` service
      */
     public let webAuthn: WebAuthnService<T>
-
+    
     // MARK: - Initialize
 
     internal init(config: GigyaConfig, persistenceService: PersistenceService, businessApiService: BusinessApiServiceProtocol, sessionService: SessionServiceProtocol, interruptionResolver: InterruptionResolverFactoryProtocol, biometric: BiometricServiceProtocol, plistFactory: PlistConfigFactory, sessionVerificationService: SessionVerificationServiceProtocol, webAuthn: WebAuthnService<T>, container: IOCContainer) {
@@ -537,6 +537,11 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
     public func getAuthCode(completion: @escaping (GigyaApiResult<String>) -> Void) {
         businessApiService.getAuthCode(completion: completion)
     }
+    
+    @available(iOS 13.0, *)
+    public func getSaptchaToken(completion: @escaping (GigyaApiResult<String>) -> Void) {
+        businessApiService.getSaptchaToken(completion: completion)
+    }
 
     /**
      Register Social Provider without reflection.
@@ -721,6 +726,20 @@ public extension GigyaCore {
         return try await withCheckedThrowingContinuation({
             (continuation: CheckedContinuation<String, Error>) in
             self.getAuthCode() { result in
+                switch result {
+                case .success(data: let data):
+                    continuation.resume(returning: data)
+                case .failure(let error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        })
+    }
+    
+    func getSaptchaToken() async throws -> String {
+        return try await withCheckedThrowingContinuation({
+            (continuation: CheckedContinuation<String, Error>) in
+            self.getSaptchaToken() { result in
                 switch result {
                 case .success(data: let data):
                     continuation.resume(returning: data)

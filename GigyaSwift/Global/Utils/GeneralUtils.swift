@@ -7,6 +7,7 @@
 //
 import UIKit
 import UserNotifications
+import CryptoKit
 
 public class GeneralUtils {
     public func iosVersion() -> String {
@@ -79,6 +80,41 @@ extension String {
             base64.append(String(repeating: "=", count: 4 - base64.count % 4))
         }
         return Data(base64Encoded: base64)
+    }
+    
+    @available(iOS 13.0, *)
+    public func encodeWith(_ hashFunction: any HashFunction.Type) -> String {
+        let value = self.data(using: .utf8) ?? Data()
+        let digest = hashFunction.hash(data: value)
+        let encString = digest
+            .compactMap { String(format: "%02x", $0) }
+            .joined()
+        return encString
+    }
+    
+    public func matches(_ regex: String) -> Bool {
+        return self.range(of: regex, options: .regularExpression, range: nil, locale: nil) != nil
+    }
+    
+    public func jwtDecode() -> [String: Any]? {
+        let parts = self.components(separatedBy: ".")
+        guard
+             let base64EncodedData = parts[1].data(using: .utf8),
+             let data = Data(base64Encoded: parts[1].paddedForBase64Decoding) else {
+            return nil
+        }
+        
+        do {
+            let json = try JSONSerialization.jsonObject(with: data, options: [])
+            guard let dictionary = json as? [String: Any] else { return nil }
+            return dictionary
+        } catch {
+            return nil
+        }
+    }
+    
+    var paddedForBase64Decoding: String {
+        appending(String(repeating: "=", count: (4 - count % 4) % 4))
     }
 }
 
