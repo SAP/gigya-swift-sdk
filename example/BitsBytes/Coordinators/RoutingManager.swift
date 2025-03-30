@@ -16,6 +16,8 @@ class RoutingManager {
     
     var flowManager: SignInInterruptionFlow? = SignInInterruptionFlow()
     
+    @State @ObservationIgnored private var isPresented = false
+    
     @ViewBuilder
     func navigate(to screen: Screens) -> some View {
         switch screen {
@@ -64,7 +66,12 @@ class RoutingManager {
         case .tfaMethods:
             let tfaViewModel = TfaMethodsViewModel(gigya: gigya, flowManager: flowManager!)
             TfaMethodsScreenView(viewModel: tfaViewModel)
-
+        case .sfSafari:
+            SafariWebView()
+                .ignoresSafeArea()
+        case .deviceFlow:
+            let deviceFlowViewModel = DeviceFlowViewModel(gigya: gigya)
+            DeviceFlowScreenView(viewModel: deviceFlowViewModel)
         default:
             HomeScreenView()
         }

@@ -60,8 +60,8 @@ final class InterruptionResolverFactory: InterruptionResolverFactoryProtocol {
                     let loginError = LoginApiError<T>(error: error, interruption: .pendingPasswordChange(regToken: regToken))
                     completion(.failure(loginError))
                 case .captchaRequired:
-                    resolver = CaptchaResolver(originalError: error, businessDelegate: businessDelegate, dataResponse: dataResponse, completion: completion, model: model)
-                    resolver?.start?()
+                    let loginError = LoginApiError<T>(error: error, interruption: .captchaRequired)
+                    completion(.failure(loginError))
 
                 }
             } else {

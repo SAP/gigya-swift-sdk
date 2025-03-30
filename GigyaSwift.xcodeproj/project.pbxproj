@@ -258,7 +258,6 @@
 		E7F954622D621C1600D95D74 /* GigyaNss.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E7F954602D621C1600D95D74 /* GigyaNss.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E7F954682D75DCA600D95D74 /* SaptchaUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F954672D75DC9200D95D74 /* SaptchaUtils.swift */; };
 		E7F9546A2D76E81F00D95D74 /* SaptchaService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F954692D76E81400D95D74 /* SaptchaService.swift */; };
-		E7F9546C2D801E8700D95D74 /* CaptchaResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F9546B2D801E7D00D95D74 /* CaptchaResolver.swift */; };
 		E7FEF6A6264123D900180165 /* FacebookWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7584EE822E0524D007229FE /* FacebookWrapper.swift */; };
 		E7FFD59322FB0A8A00DBE663 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		E7FFF8F6232003AD002EC944 /* WebBridgeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FFF8F5232003AD002EC944 /* WebBridgeViewController.swift */; };
@@ -626,7 +625,6 @@
 		E7F954602D621C1600D95D74 /* GigyaNss.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GigyaNss.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7F954672D75DC9200D95D74 /* SaptchaUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaptchaUtils.swift; sourceTree = "<group>"; };
 		E7F954692D76E81400D95D74 /* SaptchaService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaptchaService.swift; sourceTree = "<group>"; };
-		E7F9546B2D801E7D00D95D74 /* CaptchaResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptchaResolver.swift; sourceTree = "<group>"; };
 		E7FFF8F5232003AD002EC944 /* WebBridgeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebBridgeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1268,7 +1266,6 @@
 			children = (
 				E71D3C8A22BF7BDD00A413D7 /* Tfa */,
 				E7C859DA2289604F005C1FBE /* LinkAccountsResolver.swift */,
-				E7F9546B2D801E7D00D95D74 /* CaptchaResolver.swift */,
 				E7221D7822B8FC8700C296A9 /* PendingRegistrationResolver.swift */,
 				E71D3C8B22BF7C2E00A413D7 /* Resolver.swift */,
 				E71D3CA122BFA81F00A413D7 /* InterruptionResolverFactory.swift */,
@@ -2064,7 +2061,6 @@
 				E74E26692383E9B1002E361B /* GeneralUtils.swift in Sources */,
 				E7E80DA22252041D00D3B663 /* ResolverProtocol.swift in Sources */,
 				E73A930222F974120004F93E /* Notification.Name.swift in Sources */,
-				E7F9546C2D801E8700D95D74 /* CaptchaResolver.swift in Sources */,
 				E710951F286D89630062DCAD /* WebAuthnService.swift in Sources */,
 				D58EF441227993C6003DB878 /* Dictionary.swift in Sources */,
 				E774A54B224283DF00BC67D1 /* ApiRequestModel.swift in Sources */,

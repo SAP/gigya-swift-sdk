@@ -54,7 +54,9 @@ enum Screens: String, CaseIterable {
     case penddingRegistration
     case addPhone
     case tfaMethods
-    
+    case sfSafari
+    case deviceFlow
+
     static func onlyTabs() -> [Screens] {
         return [.home, .search, .cart, .fav, .profile]
     }
