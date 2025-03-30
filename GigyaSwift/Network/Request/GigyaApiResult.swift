@@ -83,7 +83,7 @@ public enum GigyaInterruptions<T: GigyaAccountProtocol> {
 
     case pendingTwoFactorVerification(response: GigyaResponseModel, activeProviders: [TFAProviderModel]?, factory: TFAResolverFactory<T>)
     
-    case captchaRequired(resolver: CaptchaResolver<T>)
+    case captchaRequired
 }
 
 /**

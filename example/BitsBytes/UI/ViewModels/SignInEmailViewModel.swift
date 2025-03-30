@@ -16,7 +16,8 @@ final class SignInEmailViewModel: BaseViewModel {
     @Published var email: String = ""
     @Published var pass: String = ""
     @Published var error: String = ""
-    
+    @Published var captchaSwitch: Bool = false
+
     init(gigya: GigyaService, flowManager: SignInInterruptionFlow) {
         self.flowManager = flowManager
         super.init(gigya: gigya)
@@ -42,24 +43,20 @@ final class SignInEmailViewModel: BaseViewModel {
                 self?.toggelLoader()
             }
             
-            gigya.shared.login(loginId: email, password: pass, completion: flowManager.resultClosure)
-//            { [ weak self] result in
-//                guard let self = self else { return }
-//                
-//                toggelLoader()
-//                
-//                switch result {
-//                case .success(data: _):
-//                    closure()
-//                case .failure(let error):
-//                    switch error.error {
-//                    case .gigyaError(let data):
-//                        self.error = data.errorMessage ?? "Genral Error"
-//                    default:
-//                        self.error = "Genral Error"
-//                    }
-//                }
-//            }
+            if captchaSwitch {
+                captchaSwitch = false
+                Task { [weak self] in
+                    guard let self = self else { return }
+                    
+                    let token = try await self.gigya?.shared.getSaptchaToken()
+                    let params: [String : Any] = ["captchaToken": token ?? "", "captchaType": "Saptcha"]
+                    self.gigya?.shared.login(loginId: email, password: pass, params: params ,completion: self.flowManager.resultClosure)
+
+                }
+            } else {
+                gigya.shared.login(loginId: email, password: pass, completion: flowManager.resultClosure)
+            }
+
         }
     }
     

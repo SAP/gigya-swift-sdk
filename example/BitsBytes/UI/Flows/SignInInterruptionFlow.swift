@@ -39,7 +39,7 @@ class SignInInterruptionFlow: Identifiable {
     var registerPhoneResolver: RegisterPhoneResolver<AccountModel>?
     var registeredPhonesResolver: RegisteredPhonesResolver<AccountModel>?
     var registeredEmailsResolver: RegisteredEmailsResolver<AccountModel>?
-    
+        
     var totpResolver: VerifyTotpResolverProtocol?
 
     var otpCurrentMode: OtpViewModel.Mode = .login
@@ -50,6 +50,8 @@ class SignInInterruptionFlow: Identifiable {
 
     var regToken: String?
     
+    var captchaRequire: Bool = false
+
     var resultClosure: (GigyaLoginResult<AccountModel>) -> Void = { _ in }
     var resultOtpClosure: (GigyaOtpResult<AccountModel>) -> Void = { _ in }
 
@@ -127,6 +129,8 @@ class SignInInterruptionFlow: Identifiable {
             
             self.currentCordinator?.routing.push(.tfaMethods)
 
+        case .captchaRequired:
+            self.captchaRequire = true
         }
     }
     

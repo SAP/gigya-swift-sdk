@@ -6,6 +6,7 @@
 //
 import UIKit
 import Foundation
+import SafariServices
 
 @Observable
 final class ProfileViewModel: BaseViewModel {
@@ -68,4 +69,15 @@ final class ProfileViewModel: BaseViewModel {
         }
     }
     
+    func getAuthcode() async {
+        let code = try! await gigya?.shared.getAuthCode()
+        
+        let vc = await SFSafariViewController(url: URL(string: "https://944188250303.us1.my.gigya-ext.com/pages/profile?authCode=\(code ?? "")&gig_actions=sso.login")!)
+        
+        guard let presentingViewController = await (UIApplication.shared.connectedScenes.first
+                                              as? UIWindowScene)?.windows.first?.rootViewController
+        else { return }
+        
+        await presentingViewController.present(vc, animated: true)
+    }
 }
