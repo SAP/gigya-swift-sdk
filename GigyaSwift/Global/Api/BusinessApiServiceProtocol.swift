@@ -72,4 +72,6 @@ public protocol BusinessApiServiceProtocol {
     
     func getAuthCode(completion: @escaping (GigyaApiResult<String>) -> Void)
 
+    @available(iOS 13.0, *)
+    func getSaptchaToken(completion: @escaping (GigyaApiResult<String>) -> Void)
 }

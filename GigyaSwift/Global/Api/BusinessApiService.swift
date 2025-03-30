@@ -29,6 +29,8 @@ class BusinessApiService: NSObject, BusinessApiServiceProtocol {
     var interruptionsHandler: InterruptionResolverFactoryProtocol
 
     var providersFactory: ProvidersLoginWrapper?
+    
+    var saptchaService: SaptchaService?
 
     required init(config: GigyaConfig,
                   persistenceService: PersistenceService,
@@ -46,6 +48,7 @@ class BusinessApiService: NSObject, BusinessApiServiceProtocol {
         self.accountService = accountService
         self.socialProviderFactory = providerFactory
         self.interruptionsHandler = interruptionsHandler
+
     }
 
     // Send regular request
@@ -134,7 +137,7 @@ class BusinessApiService: NSObject, BusinessApiServiceProtocol {
 
                         self?.clearOptionalObjects()
                     case .failure(let error):
-                        self?.interruptionResolver(error: error, completion: completion)
+                        self?.interruptionResolver(error: error, completion: completion, model: model)
                     }
                 }
 
@@ -169,7 +172,7 @@ class BusinessApiService: NSObject, BusinessApiServiceProtocol {
                 
                 self?.clearOptionalObjects()
             case .failure(let error):
-                self?.interruptionResolver(error: error, completion: completion)
+                self?.interruptionResolver(error: error, completion: completion, model: model)
             }
         }
     }
@@ -394,11 +397,17 @@ class BusinessApiService: NSObject, BusinessApiServiceProtocol {
         }
 
     }
+    
+    @available(iOS 13.0, *)
+    func getSaptchaToken(completion: @escaping (GigyaApiResult<String>) -> Void) {
+        saptchaService = SaptchaService(businessApiService: self, saptchaUtils: SaptchaUtils())
+        saptchaService?.startChallenge(completion: completion)
+    }
 
     // MARK: - Internal methods
 
-    func interruptionResolver<T: GigyaAccountProtocol>(error: NetworkError, completion: @escaping (GigyaLoginResult<T>) -> Void) {
-        interruptionsHandler.resolve(error: error, businessDelegate: self, completion: completion)
+    func interruptionResolver<T: GigyaAccountProtocol>(error: NetworkError, completion: @escaping (GigyaLoginResult<T>) -> Void, model: ApiRequestModel? = nil) {
+        interruptionsHandler.resolve(error: error, businessDelegate: self, completion: completion, model: model)
     }
 
     private func clearOptionalObjects() {

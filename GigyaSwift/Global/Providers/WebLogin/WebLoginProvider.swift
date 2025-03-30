@@ -50,7 +50,7 @@ final class WebLoginProvider: Provider {
                 }
 
                 var errorDetails = error!["errorDetails"] ?? ""
-                errorDetails = errorDetails.replacingOccurrences(of: "+", with: " ")
+                errorDetails = errorDetails.replacingOccurrences(of: "+", with: " ").removingPercentEncoding ?? ""
                 let errorDesc = error!["error_description"] ?? error
                 let getErrorCode = errorDesc?.split(separator: "+").first
                 let errorCode = Int(getErrorCode ?? "") ?? Int("\(error?["error_code"] ?? "-1")") ?? -1

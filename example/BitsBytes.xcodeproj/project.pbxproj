@@ -53,6 +53,10 @@
 		E78A32F22B83436A00C892D8 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E78A32F12B83436A00C892D8 /* Launch Screen.storyboard */; };
 		E7D318102C16FF60005B03A3 /* OtpScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7D3180F2C16FF60005B03A3 /* OtpScreenView.swift */; };
 		E7D318122C171B70005B03A3 /* OtpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7D318112C171B70005B03A3 /* OtpViewModel.swift */; };
+		E7F954572D61D1C000D95D74 /* SafariWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F954562D61D1C000D95D74 /* SafariWebView.swift */; };
+		E7F9546E2D953F1700D95D74 /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F9546D2D953F1100D95D74 /* ScannerViewController.swift */; };
+		E7F954702D95403B00D95D74 /* DeviceFlowScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F9546F2D95403400D95D74 /* DeviceFlowScreenView.swift */; };
+		E7F954722D95436300D95D74 /* DeviceFlowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F954712D95436200D95D74 /* DeviceFlowViewModel.swift */; };
 		E7FA5C342D181FD900AC7162 /* TfaMethodsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FA5C332D181FB300AC7162 /* TfaMethodsViewModel.swift */; };
 		E7FA5C4B2D22F30500AC7162 /* LineWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FA5C4A2D22F30500AC7162 /* LineWrapper.swift */; };
 		E7FA5C4C2D22F30500AC7162 /* FacebookWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FA5C482D22F30500AC7162 /* FacebookWrapper.swift */; };
@@ -123,6 +127,10 @@
 		E78A32F12B83436A00C892D8 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		E7D3180F2C16FF60005B03A3 /* OtpScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtpScreenView.swift; sourceTree = "<group>"; };
 		E7D318112C171B70005B03A3 /* OtpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtpViewModel.swift; sourceTree = "<group>"; };
+		E7F954562D61D1C000D95D74 /* SafariWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariWebView.swift; sourceTree = "<group>"; };
+		E7F9546D2D953F1100D95D74 /* ScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
+		E7F9546F2D95403400D95D74 /* DeviceFlowScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceFlowScreenView.swift; sourceTree = "<group>"; };
+		E7F954712D95436200D95D74 /* DeviceFlowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceFlowViewModel.swift; sourceTree = "<group>"; };
 		E7FA5C332D181FB300AC7162 /* TfaMethodsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TfaMethodsViewModel.swift; sourceTree = "<group>"; };
 		E7FA5C472D22F30500AC7162 /* AppleSignInWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleSignInWrapper.swift; sourceTree = "<group>"; };
 		E7FA5C482D22F30500AC7162 /* FacebookWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebookWrapper.swift; sourceTree = "<group>"; };
@@ -193,6 +201,7 @@
 		E73F8BC92B98721500E11B48 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				E7F9546F2D95403400D95D74 /* DeviceFlowScreenView.swift */,
 				E788BD162B8C8B3300C8F772 /* RegisterScreenView.swift */,
 				E74A46932C748BB000C739EA /* AddPhoneScreenView.swift */,
 				E76A94C82C032D1700862A4B /* PasswordlessScreenView.swift */,
@@ -253,6 +262,7 @@
 				E7FEA4EA2C4FA6A9003A3973 /* Interruptions */,
 				E788BCB32B8357A200C8F772 /* ConfigurationViewModel.swift */,
 				E7FEA4DF2C2476DC003A3973 /* BaseViewModel.swift */,
+				E7F954712D95436200D95D74 /* DeviceFlowViewModel.swift */,
 				E76A94CA2C07073900862A4B /* PasswordlessViewModel.swift */,
 				E73567A72BCFAF2D0001E89C /* AboutMeViewModel.swift */,
 				E788BD182B8CA20000C8F772 /* RegisterViewModel.swift */,
@@ -273,6 +283,7 @@
 				E788BCB62B8357A200C8F772 /* Tabs */,
 				E73F8BC92B98721500E11B48 /* Profile */,
 				E788BCBC2B8357A200C8F772 /* SplashScreenView.swift */,
+				E7F9546D2D953F1100D95D74 /* ScannerViewController.swift */,
 				E788BCBD2B8357A200C8F772 /* ConfigurationScreenView.swift */,
 				E788BCBE2B8357A200C8F772 /* TestScreenView.swift */,
 			);
@@ -301,6 +312,7 @@
 		E788BCC22B8357A200C8F772 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				E7F954562D61D1C000D95D74 /* SafariWebView.swift */,
 				E788BCC32B8357A200C8F772 /* CustomButton.swift */,
 				E788BCC42B8357A200C8F772 /* CustomInput.swift */,
 				E77BF0E12B94D1BB002C77C1 /* CustomRow.swift */,
@@ -504,6 +516,7 @@
 				E7FA5C342D181FD900AC7162 /* TfaMethodsViewModel.swift in Sources */,
 				E788BCEB2B8357A300C8F772 /* RoutingManager.swift in Sources */,
 				E788BCE02B8357A300C8F772 /* ConfigurationScreenView.swift in Sources */,
+				E7F9546E2D953F1700D95D74 /* ScannerViewController.swift in Sources */,
 				E788BCE22B8357A300C8F772 /* SignInScreenView.swift in Sources */,
 				E7FEA4DC2C246FC7003A3973 /* ResetPasswordScreenView.swift in Sources */,
 				E73567A82BCFAF2D0001E89C /* AboutMeViewModel.swift in Sources */,
@@ -532,6 +545,7 @@
 				E7FA5C4C2D22F30500AC7162 /* FacebookWrapper.swift in Sources */,
 				E7FA5C4D2D22F30500AC7162 /* GoogleWrapper.swift in Sources */,
 				E7FA5C4E2D22F30500AC7162 /* AppleSignInWrapper.swift in Sources */,
+				E7F954722D95436300D95D74 /* DeviceFlowViewModel.swift in Sources */,
 				E788BCEA2B8357A300C8F772 /* AppCoordinator.swift in Sources */,
 				E7FEA4E32C45138C003A3973 /* SignInInterruptionFlow.swift in Sources */,
 				E77BF0E22B94D1BB002C77C1 /* CustomRow.swift in Sources */,
@@ -547,8 +561,10 @@
 				E788BD192B8CA20000C8F772 /* RegisterViewModel.swift in Sources */,
 				E788BCF22B8357A300C8F772 /* Coordinator.swift in Sources */,
 				E788BCF02B8357A300C8F772 /* AppDelegate.swift in Sources */,
+				E7F954572D61D1C000D95D74 /* SafariWebView.swift in Sources */,
 				E7FEA4DA2C245497003A3973 /* ChangePasswordViewModel.swift in Sources */,
 				E74A46962C88499600C739EA /* AccountModel.swift in Sources */,
+				E7F954702D95403B00D95D74 /* DeviceFlowScreenView.swift in Sources */,
 				E788BCF12B8357A300C8F772 /* SceneDelegate.swift in Sources */,
 				E788BCF42B8357A300C8F772 /* GigyaService.swift in Sources */,
 				E73567A62BCFAEE90001E89C /* AboutMeScreenView.swift in Sources */,
@@ -693,6 +709,7 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BitsBytes/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "This app requires to access your Camera to Scan QR";
 				INFOPLIST_KEY_NSFaceIDUsageDescription = "BitsBytes Authentication with TouchId or FaceID";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -729,6 +746,7 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BitsBytes/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "This app requires to access your Camera to Scan QR";
 				INFOPLIST_KEY_NSFaceIDUsageDescription = "BitsBytes Authentication with TouchId or FaceID";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
