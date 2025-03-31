@@ -1,0 +1,10 @@
+version = 1
+SPDX-PackageName = "gigya-swift-sdk"
+SPDX-PackageSupplier = "Sagi Shmuel <sagi.shmuel@sap.com>"
+SPDX-PackageDownloadLocation = "https://github.com/SAP/gigya-swift-sdk"
+
+[[annotations]]
+path = "**"
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2020 SAP SE or an SAP affiliate company"
+SPDX-License-Identifier = "Apache-2.0"
