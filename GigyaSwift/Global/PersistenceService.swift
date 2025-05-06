@@ -78,11 +78,9 @@ public final class PersistenceService {
 
     // save gmid, ucid to userDefaults
     internal func save(ids: InitSdkIdsModel) {
-        GigyaLogger.log(with: self, message: "save Start")
         UserDefaults.standard.setValue(ids.gcid, forKey: InternalConfig.Storage.GMID)
         UserDefaults.standard.setValue(ids.ucid, forKey: InternalConfig.Storage.UCID)
         UserDefaults.standard.setValue(ids.refreshTime, forKey: InternalConfig.Storage.idsRefreshTime)
-        GigyaLogger.log(with: self, message: "save done")
     }
 
     internal func setBiometricEnable(to allow: Bool) {
