@@ -108,4 +108,9 @@ public final class PersistenceService {
     internal func removeAllWebAuthnKeys() {
         UserDefaults.standard.removeObject(forKey: InternalConfig.Storage.webAuthn)
     }
+    
+    internal func removeIds() {
+        UserDefaults.standard.removeObject(forKey: InternalConfig.Storage.GMID)
+        UserDefaults.standard.removeObject(forKey: InternalConfig.Storage.UCID)
+    }
 }
