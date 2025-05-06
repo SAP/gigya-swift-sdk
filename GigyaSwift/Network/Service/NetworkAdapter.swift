@@ -12,6 +12,8 @@ public typealias GigyaResponseHandler = (NSData?, Error?) -> Void
 
 public protocol NetworkAdapterProtocol {
     func send(model: ApiRequestModel, blocking: Bool, completion: @escaping GigyaResponseHandler)
+    
+    func release()
 }
 
 class NetworkAdapter: NetworkAdapterProtocol {
@@ -34,10 +36,6 @@ class NetworkAdapter: NetworkAdapterProtocol {
                 GigyaLogger.log(with: self, message: "Start: \(model.method)")
                 self.networkProvider.dataRequest(model: model, completion: { (data, error) in
                     completion(data, error)
-
-                    if blocking {
-                        self.release()
-                    }
                 })
             }
         )
@@ -47,7 +45,7 @@ class NetworkAdapter: NetworkAdapterProtocol {
         }
     }
 
-    private func release() {
+    func release() {
         queueHelper.release()
     }
 }

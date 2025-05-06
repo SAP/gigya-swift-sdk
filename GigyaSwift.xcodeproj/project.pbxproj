@@ -183,6 +183,7 @@
 		E7BE5793229AB29100C17D93 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BE5792229AB29100C17D93 /* UIImage.swift */; };
 		E7BE57B922A40ED100C17D93 /* WebViewWrapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BE57B822A40ED100C17D93 /* WebViewWrapperTests.swift */; };
 		E7BE57BD22A41D0B00C17D93 /* FakeNavigationAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BE57BC22A41D0B00C17D93 /* FakeNavigationAction.swift */; };
+		E7C3CD682DBA303D007B11A0 /* InvalidGMIDEvaluator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C3CD672DBA3036007B11A0 /* InvalidGMIDEvaluator.swift */; };
 		E7C859DB2289604F005C1FBE /* LinkAccountsResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C859DA2289604F005C1FBE /* LinkAccountsResolver.swift */; };
 		E7C859E02289B299005C1FBE /* InterruptionEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C859DF2289B299005C1FBE /* InterruptionEnum.swift */; };
 		E7C859E7228C52A0005C1FBE /* ConflictingAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C859E6228C52A0005C1FBE /* ConflictingAccount.swift */; };
@@ -539,6 +540,7 @@
 		E7BE5799229D284A00C17D93 /* TFAVerificationpTotpResolverTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TFAVerificationpTotpResolverTests.swift; sourceTree = "<group>"; };
 		E7BE57B822A40ED100C17D93 /* WebViewWrapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewWrapperTests.swift; sourceTree = "<group>"; };
 		E7BE57BC22A41D0B00C17D93 /* FakeNavigationAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeNavigationAction.swift; sourceTree = "<group>"; };
+		E7C3CD672DBA3036007B11A0 /* InvalidGMIDEvaluator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvalidGMIDEvaluator.swift; sourceTree = "<group>"; };
 		E7C859DA2289604F005C1FBE /* LinkAccountsResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkAccountsResolver.swift; sourceTree = "<group>"; };
 		E7C859DF2289B299005C1FBE /* InterruptionEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterruptionEnum.swift; sourceTree = "<group>"; };
 		E7C859E6228C52A0005C1FBE /* ConflictingAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConflictingAccount.swift; sourceTree = "<group>"; };
@@ -1367,6 +1369,7 @@
 			isa = PBXGroup;
 			children = (
 				E7D9C5AD23682DD400714807 /* NetworkBlockingQueueUtils.swift */,
+				E7C3CD672DBA3036007B11A0 /* InvalidGMIDEvaluator.swift */,
 				E7D9C5AF2368398500714807 /* NetworkRetryDispacher.swift */,
 				E7A6E0CD22425A910063638F /* NetworkAdapter.swift */,
 				E7CBAFB7222D17C9000B6C11 /* NetworkProvider.swift */,
@@ -1909,9 +1912,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-TestApp/Pods-TestApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-TestApp/Pods-TestApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -2118,6 +2125,7 @@
 				E7ACF9AC226C841300900C65 /* ApiServiceProtocol.swift in Sources */,
 				E71D3C9D22BF906300A413D7 /* TFAProvider.swift in Sources */,
 				E719374122D5CCCF00CD149E /* GigyaIOCContainer.swift in Sources */,
+				E7C3CD682DBA303D007B11A0 /* InvalidGMIDEvaluator.swift in Sources */,
 				E73374622268B25B00ADEDBB /* SocialProvidersManager.swift in Sources */,
 				E7791A68238542D70075BAFD /* GigyaAlertUtils.swift in Sources */,
 				E713E0FE2248C83D00181328 /* GigyaConfig.swift in Sources */,
@@ -2723,7 +2731,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.7.4;
+				MARKETING_VERSION = 1.7.5;
 				MODULEMAP_FILE = "";
 				MODULEMAP_PRIVATE_FILE = "";
 				ONLY_ACTIVE_ARCH = NO;
@@ -2785,7 +2793,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.7.4;
+				MARKETING_VERSION = 1.7.5;
 				MODULEMAP_FILE = "";
 				MODULEMAP_PRIVATE_FILE = "";
 				ONLY_ACTIVE_ARCH = NO;

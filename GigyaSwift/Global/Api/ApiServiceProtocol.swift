@@ -10,12 +10,14 @@ import Foundation
 
 public protocol ApiServiceProtocol {
     
-    init(with requst: NetworkAdapterProtocol, session: SessionServiceProtocol, persistenceService: PersistenceService, reportingService: ReportingService)
+    init(with requst: NetworkAdapterProtocol, session: SessionServiceProtocol, persistenceService: PersistenceService, reportingService: ReportingService, invalidGMIDEvaluator: InvalidGMIDEvaluator)
 
     func sendBlocking<T: Codable & Any>(model: ApiRequestModel, responseType: T.Type, completion: @escaping (GigyaApiResult<T>) -> Void)
 
     func send<T: Codable & Any>(model: ApiRequestModel, responseType: T.Type, completion: @escaping (GigyaApiResult<T>) -> Void)
 
     func getSDKConfig()
+    
+    func getSDKConfig(skipRefresh: Bool, completion: @escaping (Bool) -> Void)
 
 }
