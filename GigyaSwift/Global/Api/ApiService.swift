@@ -20,19 +20,27 @@ final class ApiService: ApiServiceProtocol {
     private let persistenceService: PersistenceService
 
     private let reportingService: ReportingService
+    
+    private let invalidGMIDEvaluator: InvalidGMIDEvaluator
 
-    required init(with networkAdapter: NetworkAdapterProtocol, session: SessionServiceProtocol, persistenceService: PersistenceService, reportingService: ReportingService) {
+    required init(with networkAdapter: NetworkAdapterProtocol, session: SessionServiceProtocol, persistenceService: PersistenceService, reportingService: ReportingService, invalidGMIDEvaluator: InvalidGMIDEvaluator) {
         self.networkAdapter = networkAdapter
         self.sessionService = session
         self.persistenceService = persistenceService
         self.reportingService = reportingService
+        self.invalidGMIDEvaluator = invalidGMIDEvaluator
     }
 
     func getSDKConfig() {
+        getSDKConfig() { _ in }
+    }
+    
+    func getSDKConfig(skipRefresh: Bool = false, completion: @escaping (Bool) -> Void) {
         persistenceService.isStartSdk = true
         
-        if let refreshTime = persistenceService.idsRefreshTime,
+        if skipRefresh == false, let refreshTime = persistenceService.idsRefreshTime,
            refreshTime > Date().millisecondsSince1970 {
+            completion(false)
             return
         }
         
@@ -40,15 +48,30 @@ final class ApiService: ApiServiceProtocol {
         let model = ApiRequestModel(method: GigyaDefinitions.API.getSdkConfig, params: params)
 
         self.sendBlocking(model: model, responseType: InitSdkIdsModel.self) { [weak self] result in
+            guard let self else {
+                completion(false)
+                return
+            }
+            
             switch result {
             case .success(let data):
-                self?.persistenceService.save(ids: data)
-                self?.persistenceService.isInitSdk = true
+                self.persistenceService.save(ids: data)
+                self.persistenceService.isInitSdk = true
+                completion(true)
             case .failure(let error):
-                self?.reportingService.sendErrorReport(msg: "getSDKConfig error", details: ["details": error.localizedDescription])
+                self.reportingService.sendErrorReport(msg: "getSDKConfig error", details: ["details": error.localizedDescription])
                 GigyaLogger.log(with: self, message: error.localizedDescription)
-                break
+                
+                if self.invalidGMIDEvaluator.retrayCount < self.invalidGMIDEvaluator.maxRetries {
+                    self.invalidGMIDEvaluator.retrayCount += 1
+                    self.getSDKConfig(skipRefresh: true, completion: completion)
+                } else {
+                    completion(false)
+                }
             }
+            
+            self.networkAdapter?.release()
+            
         }
     }
 
@@ -96,6 +119,7 @@ final class ApiService: ApiServiceProtocol {
                                                       requestData: data as Data?)
 
             completion(.failure(NetworkError.gigyaError(data: errorModel)))
+            
         }
     }
 
@@ -138,8 +162,23 @@ final class ApiService: ApiServiceProtocol {
                 }
 
             } else {
-                GigyaLogger.log(with: self, message: "Failed: \(gigyaResponse)")
-                main { completion(.failure(.gigyaError(data: gigyaResponse))) }
+                let verifyGMID = self.invalidGMIDEvaluator.evaluate(response: gigyaResponse)
+                
+                if verifyGMID {
+                    self.persistenceService.removeIds()
+                    
+                    self.getSDKConfig(skipRefresh: true) { isSuccess in
+                        if isSuccess {
+                            self.send(model: tmpData!, responseType: responseType, completion: completion)
+                        } else {
+                            main { completion(.failure(.gigyaError(data: gigyaResponse))) }
+                            self.invalidGMIDEvaluator.retrayCount = 0
+                        }
+                    }
+                } else {
+                    GigyaLogger.log(with: self, message: "Failed: \(gigyaResponse)")
+                    main { completion(.failure(.gigyaError(data: gigyaResponse))) }
+                }
             }
 
         } catch let error {

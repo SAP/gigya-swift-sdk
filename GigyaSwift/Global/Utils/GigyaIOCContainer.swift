@@ -88,9 +88,15 @@ final class GigyaIOCContainer<T: GigyaAccountProtocol>: GigyaContainerProtocol {
             let sessionService = resolver.resolve(SessionServiceProtocol.self)
             let persistenceService = resolver.resolve(PersistenceService.self)
             let reportingService = resolver.resolve(ReportingService.self)
+            let invalidGMIDEvaluator = resolver.resolve(InvalidGMIDEvaluator.self)
 
-            return ApiService(with: resolver.resolve(NetworkAdapterProtocol.self)!, session: sessionService!, persistenceService: persistenceService!, reportingService: reportingService!)
+            return ApiService(with: resolver.resolve(NetworkAdapterProtocol.self)!, session: sessionService!, persistenceService: persistenceService!, reportingService: reportingService!, invalidGMIDEvaluator: invalidGMIDEvaluator!)
         }
+        
+        container.register(service: InvalidGMIDEvaluator.self) { resolver in
+            return InvalidGMIDEvaluator()
+        }
+
 
         container.register(service: KeychainStorageFactory.self) { resolver in
             let plistFactory = resolver.resolve(PlistConfigFactory.self)
@@ -172,7 +178,7 @@ final class GigyaIOCContainer<T: GigyaAccountProtocol>: GigyaContainerProtocol {
         container.register(service: PlistConfigFactory.self) { _ in
             return PlistConfigFactory()
         }
-
+        
         container.register(service: GigyaWebBridge<T>.self) { resolver in
             let config = resolver.resolve(GigyaConfig.self)
             let persistenceService = resolver.resolve(PersistenceService.self)
