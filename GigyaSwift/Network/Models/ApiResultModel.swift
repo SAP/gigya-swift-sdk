@@ -14,6 +14,7 @@ public struct GigyaResponseModel: Codable {
     public var callId: String
 
     public let errorMessage: String?
+    public var errorFlags: String? = nil
 
     // Mark: - Internal
     let sessionInfo: SessionInfoModel?

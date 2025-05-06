@@ -33,5 +33,4 @@ struct NetworkBlockingQueueUtils {
     mutating func lock() {
         blockingState = true
     }
-    
 }
