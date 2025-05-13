@@ -113,8 +113,37 @@ class WebAuthnDeviceIntegration: NSObject {
         authController.presentationContextProvider = self
         authController.performRequests()
     }
-    
-    
+
+    @available(iOS 16.0, *)
+    func loginWithAvailableCredentials(viewController: UIViewController, options: WebAuthnGetOptionsResponseModel, allowedKeys: [GigyaWebAuthnCredential], handler: @escaping WebAuthnIntegrationHandler) {
+        self.vc = viewController
+        self.handler = handler
+
+        let publicKeyCredentialProvider = ASAuthorizationPlatformPublicKeyCredentialProvider(relyingPartyIdentifier: options.options.rpId)
+
+        let challenge = options.options.challenge.decodeBase64Url()!
+
+        let assertionRequest = publicKeyCredentialProvider.createCredentialAssertionRequest(challenge: challenge)
+
+        let publicKeys = allowedKeys.filter { $0.type == .platform }
+            .map {
+                ASAuthorizationPlatformPublicKeyCredentialDescriptor(credentialID: Data(base64Encoded: $0.key) ?? Data())
+            }
+
+        assertionRequest.allowedCredentials = publicKeys
+
+        if let userVerification = options.options.userVerification {
+            assertionRequest.userVerificationPreference = ASAuthorizationPublicKeyCredentialUserVerificationPreference.init(rawValue: userVerification)
+        }
+
+        let authorizationRequests: [ASAuthorizationRequest] = [assertionRequest]
+
+        let authController = ASAuthorizationController(authorizationRequests: authorizationRequests )
+        authController.delegate = self
+        authController.presentationContextProvider = self
+        authController.performRequests(options: .preferImmediatelyAvailableCredentials)
+    }
+
     deinit {
         GigyaLogger.log(with: self, message: "deinit")
     }
