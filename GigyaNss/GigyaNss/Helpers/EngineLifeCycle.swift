@@ -41,7 +41,7 @@ class EngineLifeCycle {
 
         regToLifeCircleOf(vc: screen)
 
-        ignitionChannel.initChannel(engine: screen.engine!)
+        ignitionChannel.initChannel(engine: screen.engine)
 
         ignitionChannel.methodHandler(scheme: IgnitionChannelEvent.self) { [weak self, weak screen] (method, data, response) in
             guard let self = self, let method = method else {
@@ -117,10 +117,9 @@ class EngineLifeCycle {
         vc?.removeSpinner()
         vc?.viewModel = nil
         self.isDisplay = false
-        vc?.engine?.destroyContext()
+        vc?.engine.destroyContext()
         ignitionChannel.flutterMethodChannel = nil
         loaderHelper.errorClosure = { _ in }
-        
     }
 
     deinit {

@@ -32,12 +32,7 @@ class NativeScreenSetsViewController<T: GigyaAccountProtocol>: FlutterViewContro
     }
 
     func build() {
-        guard let engine = engine else {
-            GigyaLogger.error(with: NativeScreenSetsViewController.self, message: "engine not exists.")
-        }
-
         viewModel?.loadChannels(with: engine)
-
     }
 
     override func viewDidLoad() {
