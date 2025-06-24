@@ -610,7 +610,7 @@ public extension GigyaCore {
         })
     }
 
-    func logout() async throws -> GigyaDictionary {
+    func logoutAsync() async throws -> GigyaDictionary {
         return try await withCheckedThrowingContinuation({
             (continuation: CheckedContinuation<GigyaDictionary, Error>) in
             self.logout() { result in
@@ -624,7 +624,7 @@ public extension GigyaCore {
         })
     }
 
-    func getAccount(_ clearAccount: Bool = false, params: [String: Any] = [:]) async throws -> T {
+    func getAccountAsync(_ clearAccount: Bool = false, params: [String: Any] = [:]) async throws -> T {
         return try await withCheckedThrowingContinuation({
             (continuation: CheckedContinuation<T, Error>) in
             self.getAccount(clearAccount, params: params) { result in
@@ -638,7 +638,7 @@ public extension GigyaCore {
         })
     }
 
-    func setAccount(with account: T) async throws -> T {
+    func setAccountAsync(with account: T) async throws -> T {
         return try await withCheckedThrowingContinuation({
             (continuation: CheckedContinuation<T, Error>) in
             self.setAccount(with: account) { result in
@@ -652,7 +652,7 @@ public extension GigyaCore {
         })
     }
 
-    func setAccount(with params: [String: Any]) async throws -> T {
+    func setAccountAsync(with params: [String: Any]) async throws -> T {
         return try await withCheckedThrowingContinuation({
             (continuation: CheckedContinuation<T, Error>) in
             self.setAccount(with: params) { result in
@@ -666,7 +666,7 @@ public extension GigyaCore {
         })
     }
 
-    func forgotPassword(loginId: String) async throws -> GigyaDictionary {
+    func forgotPasswordAsync(loginId: String) async throws -> GigyaDictionary {
         return try await withCheckedThrowingContinuation({
             (continuation: CheckedContinuation<GigyaDictionary, Error>) in
             self.forgotPassword(loginId: loginId) { result in
@@ -680,7 +680,7 @@ public extension GigyaCore {
         })
     }
 
-    func forgotPassword(params: [String: Any]) async throws -> GigyaDictionary {
+    func forgotPasswordAsync(params: [String: Any]) async throws -> GigyaDictionary {
         return try await withCheckedThrowingContinuation({
             (continuation: CheckedContinuation<GigyaDictionary, Error>) in
             self.forgotPassword(params: params) { result in
@@ -694,7 +694,7 @@ public extension GigyaCore {
         })
     }
 
-    func notifySocialLogin(params: [String: Any]) async throws -> T {
+    func notifySocialLoginAsync(params: [String: Any]) async throws -> T {
         return try await withCheckedThrowingContinuation({
             (continuation: CheckedContinuation<T, Error>) in
             self.notifySocialLogin(params: params) { result in
@@ -708,7 +708,7 @@ public extension GigyaCore {
         })
     }
 
-    func getSchema(params: [String: Any] = [:]) async throws -> GigyaSchema {
+    func getSchemaAsync(params: [String: Any] = [:]) async throws -> GigyaSchema {
         return try await withCheckedThrowingContinuation({
             (continuation: CheckedContinuation<GigyaSchema, Error>) in
             self.getSchema(params: params) { result in
@@ -722,7 +722,7 @@ public extension GigyaCore {
         })
     }
     
-    func getAuthCode() async throws -> String {
+    func getAuthCodeAsync() async throws -> String {
         return try await withCheckedThrowingContinuation({
             (continuation: CheckedContinuation<String, Error>) in
             self.getAuthCode() { result in
@@ -736,7 +736,7 @@ public extension GigyaCore {
         })
     }
     
-    func getSaptchaToken() async throws -> String {
+    func getSaptchaTokenAsync() async throws -> String {
         return try await withCheckedThrowingContinuation({
             (continuation: CheckedContinuation<String, Error>) in
             self.getSaptchaToken() { result in
