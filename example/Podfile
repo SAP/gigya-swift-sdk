@@ -14,5 +14,5 @@ target 'BitsBytes' do
   	pod 'FBSDKCoreKit'
   	pod 'FBSDKLoginKit'
   	pod 'GoogleSignIn'
-  	pod 'LineSDKSwift'
+  	pod 'LineSDKSwift', '5.11.2'
 end
