@@ -502,9 +502,6 @@ gigya.getAuthCode() { res in
 FIDO is a passwordless authentication method that enables password-only logins to be replaced with secure and fast login experiences across websites and apps.
 Our SDK provides an interface to register a passkey, login, and revoke passkeys created using Fido/Passkeys, backed by our WebAuthn service.
 ​
-### SDK limitations:
-Only one passkey is supported at a time. Once registering a new key, the client's previous key will be automatically revoked.
-​
 ### SDK prerequisites:
 iOS 16+
 ​
@@ -514,14 +511,10 @@ To use Fido authentication on mobile, make sure you have correctly set up your *
 You must have an associated domain with the webcredentials service type when making a registration or assertion request; otherwise, the request returns an error. See [Supporting associated domains](https://developer.apple.com/documentation/xcode/supporting-associated-domains) for more information.
 ​
 ### Implementation.
-The Fido interface contains 3 methods:
+The Fido interface contains 5 methods:
 ​
 **Registration:**
 Registering a new passkey can be performed only when a valid session is available.
-```
-```
-```
-```
 ```
 let result = await gigya.webAuthn.register(viewController: self)
         switch result {
@@ -544,9 +537,20 @@ Logging in using a valid passkey.
                 }
 ```
 ​
+**Get Credentials:**
+Retrieve all passkeys associated with the current user account from the server.
+```
+let result = await gigya.webAuthn.getCredentials()
+        switch result {
+        case .success(let data):
+          <#code#>
+        case .failure(let error):
+          <#code#>
+        }
+```
 ​
-**Revoke:**
-Revoking the current passkey. Logging in will not be available until registering a new one.
+**Revoke (All):**
+Revoking all passkeys associated with the current user account. This will revoke all passkeys from the server only and will not delete the actual passkeys from the device. Logging in will not be available until registering a new one.
 ```
 let result = await gigya.webAuthn.revoke()
         switch result {
@@ -556,6 +560,21 @@ let result = await gigya.webAuthn.revoke()
           <#code#>
         }
 ```
+​
+**Revoke (Specific):**
+Revoking a specific passkey by its ID. This will revoke the passkey from the server only and will not delete the actual passkey from the device. Use this method after calling `getCredentials` to obtain the specific passkey ID from the server.
+```
+let result = await gigya.webAuthn.revoke(id: "passkey-id")
+        switch result {
+        case .success(let data):
+          <#code#>
+        case .failure(let error):
+          <#code#>
+        }
+```
+
+### Interoperability with Web Screen-Sets
+Native passkey support is fully interchangeable with web screen-sets. Users can now integrate web screen-sets using passkeys, providing a seamless authentication experience across both native mobile implementations and web-based screen-sets within the same application.
 
 
 ## Logout
@@ -1093,6 +1112,3 @@ Via pull request to this repository.
 
 ## To-Do (upcoming changes)
 None
-
-
-
