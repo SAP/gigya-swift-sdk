@@ -57,6 +57,12 @@ class BusinessApiService: NSObject, BusinessApiServiceProtocol {
 
         apiService.send(model: model, responseType: GigyaDictionary.self, completion: completion)
     }
+    
+    func send(api: String, params: [String: Any] = [:], headers: [String: String] = [:], completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void ) {
+        var model = ApiRequestModel(method: api, params: params)
+        model.headers = headers
+        apiService.send(model: model, responseType: GigyaDictionary.self, completion: completion)
+    }
 
     // Send request with generic type.
     func send<T: Codable>(dataType: T.Type, api: String, params: [String: Any] = [:], completion: @escaping (GigyaApiResult<T>) -> Void ) {
