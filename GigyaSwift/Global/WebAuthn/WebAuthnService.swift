@@ -239,7 +239,7 @@ public class WebAuthnService<T: GigyaAccountProtocol> {
                         return
                     }
                     
-                    self?.oauthService.disconnect(regToken: key, idToken: idToken) { _ in
+                    self?.oauthService.disconnect(idToken: idToken) { _ in
                         continuation.resume(returning: result)
                     }
                 case .failure(_):
