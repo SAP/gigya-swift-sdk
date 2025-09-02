@@ -51,6 +51,7 @@ jobs:
       - name: Build
         working-directory: ./example
         run: |
+          DEVICE_ID=$(xcrun simctl list devices available | grep "iPhone" | head -1 | sed -n 's/.*(\([A-F0-9-]*\)).*/\1/p');
           xcodebuild \
             ARCHS=arm64 \
             clean build \
@@ -58,7 +59,7 @@ jobs:
             -scheme BitsBytes \
             -derivedDataPath './build' \
             -sdk iphonesimulator \
-            -destination 'platform=iOS Simulator' \
+            -destination "id=$DEVICE_ID" \
             -configuration Release \
             CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
         shell: bash
