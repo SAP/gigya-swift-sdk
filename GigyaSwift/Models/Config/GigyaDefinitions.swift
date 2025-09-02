@@ -84,6 +84,7 @@ public struct GigyaDefinitions {
         static let registerCredentials = "accounts.auth.fido.registerCredentials"
         static let verifyAssertion = "accounts.auth.fido.verifyAssertion"
         static let removeCredential = "accounts.auth.fido.removeCredential"
+        static let getCredentials = "accounts.auth.fido.getCredentials"
     }
     
     public struct Oauth {

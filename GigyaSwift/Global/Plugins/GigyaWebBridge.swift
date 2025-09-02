@@ -161,7 +161,8 @@ open class GigyaWebBridge<T: GigyaAccountProtocol>: NSObject, WKScriptMessageHan
                 return
             }
             // Some API methods require different handling due to mobile relevant endpoint updates.
-            mapSendRequest(callbackId: callbackId, apiMethod: apiMethod, params: params.asDictionary())
+            let headers = data["headers"]?.asDictionary() ?? [:]
+            mapSendRequest(callbackId: callbackId, apiMethod: apiMethod, params: params.asDictionary(), headers: headers)
         case "on_plugin_event":
             guard let params = data["params"]?.asDictionary() else { return }
             if let sourceContainerId = params["sourceContainerID"], !sourceContainerId.isEmpty {
@@ -233,7 +234,7 @@ open class GigyaWebBridge<T: GigyaAccountProtocol>: NSObject, WKScriptMessageHan
     /**
      Mapping received api method to the relevant "sendRequest" logic.
      */
-    private func mapSendRequest(callbackId: String, apiMethod: String, params: [String: String]) {
+    private func mapSendRequest(callbackId: String, apiMethod: String, params: [String: String], headers: [String: String]) {
         switch apiMethod {
         case GigyaDefinitions.API.socialLogin, GigyaDefinitions.API.accountsSocialLogin:
             sendOauthRequest(callbackId: callbackId, apiMethod: apiMethod, params: params)
@@ -246,7 +247,7 @@ open class GigyaWebBridge<T: GigyaAccountProtocol>: NSObject, WKScriptMessageHan
         case GigyaDefinitions.API.logout:
             logout(callbackId: callbackId)
         default:
-            sendRequest(callbackId: callbackId, apiMethod: apiMethod, params: params)
+            sendRequest(callbackId: callbackId, apiMethod: apiMethod, params: params, headers: headers)
         }
     }
 
@@ -291,10 +292,10 @@ open class GigyaWebBridge<T: GigyaAccountProtocol>: NSObject, WKScriptMessageHan
     /**
      Generic send request method.
      */
-    private func sendRequest(callbackId: String, apiMethod: String, params: [String: String]) {
+    private func sendRequest(callbackId: String, apiMethod: String, params: [String: String], headers: [String: String]) {
 
         GigyaLogger.log(with: self, message: "sendRequest: with apiMethod = \(apiMethod)")
-        businessApiService.send(api: apiMethod, params: params) { [weak self] result in
+        businessApiService.send(api: apiMethod, params: params, headers: headers) { [weak self] result in
             guard let self = self else { return }
             switch result {
             case .success(let data):

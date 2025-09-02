@@ -228,7 +228,7 @@ public class WebAuthnService<T: GigyaAccountProtocol> {
     }
     
     @available(iOS 16.0.0, *)
-    private func revoke(key: String) async -> GigyaApiResult<GigyaDictionary> {
+    private func revokeFromServer(key: String) async -> GigyaApiResult<GigyaDictionary> {
         return await withCheckedContinuation({
             continuation in
             businessApiService.send(dataType: GigyaDictionary.self, api: GigyaDefinitions.WenAuthn.removeCredential, params: ["credentialId": key]) { [weak self] result in
@@ -239,7 +239,7 @@ public class WebAuthnService<T: GigyaAccountProtocol> {
                         return
                     }
                     
-                    self?.oauthService.disconnect(regToken: key, idToken: idToken) { _ in
+                    self?.oauthService.disconnect(idToken: idToken) { _ in
                         continuation.resume(returning: result)
                     }
                 case .failure(_):
@@ -254,7 +254,7 @@ public class WebAuthnService<T: GigyaAccountProtocol> {
     @discardableResult
     public func revoke() async -> GigyaApiResult<GigyaDictionary> {
         if let lastKey = self.persistenceService.webAuthnlist.last {
-            let result = await self.revoke(key: lastKey.key)
+            let result = await self.revoke(id: lastKey.key)
             switch result {
             case .success(data: _):
                 self.persistenceService.removeAllWebAuthnKeys()
@@ -264,9 +264,22 @@ public class WebAuthnService<T: GigyaAccountProtocol> {
             return result
         } else {
             let error = GigyaResponseModel(statusCode: .unknown, errorCode: 400301, callId: "", errorMessage: "Operation failed", sessionInfo: nil)
-
+            
             return GigyaApiResult.failure(.gigyaError(data: error))
         }
+    }
+
+    @available(iOS 16.0.0, *)
+    @discardableResult
+    public func revoke(id: String) async -> GigyaApiResult<GigyaDictionary> {
+        let result = await self.revokeFromServer(key: id)
+        switch result {
+        case .success(data: _):
+            self.persistenceService.removeWebAuthnKey(id: id)
+        case .failure(_):
+            break
+        }
+        return result
     }
     
     @available(iOS 16.0, *)
@@ -277,16 +290,6 @@ public class WebAuthnService<T: GigyaAccountProtocol> {
                 switch res {
                 case .success(let account):
                     Task {
-                        if let lastKey = self.persistenceService.webAuthnlist.last {
-                            let result = await self.revoke(key: lastKey.key)
-                            switch result {
-                            case .success(data: _):
-                                self.persistenceService.removeAllWebAuthnKeys()
-                            case .failure(_):
-                                continuation.resume(returning: false)
-                            }
-                        }
-                        
                         let credential = GigyaWebAuthnCredential(name: user.name, displayName: user.displayName, type: type, key: token, uid: account.UID ?? "")
                         self.persistenceService.addWebAuthnKey(model: credential)
                         continuation.resume(returning: true)
@@ -307,6 +310,21 @@ public class WebAuthnService<T: GigyaAccountProtocol> {
 
         return false;
     }
-
+    
+    @available(iOS 16.0.0, *)
+    public func getCredentials() async -> GigyaApiResult<GigyaDictionary> {
+        return await withCheckedContinuation({
+            continuation in
+            businessApiService.send(dataType: GigyaDictionary.self, api: GigyaDefinitions.WenAuthn.getCredentials, params: [:]) { result in
+                switch result {
+                case .success(_):
+                    continuation.resume(returning: result)
+                case .failure(_):
+                    continuation.resume(returning: result)
+                }
+                
+            }
+        })
+    }
 
 }

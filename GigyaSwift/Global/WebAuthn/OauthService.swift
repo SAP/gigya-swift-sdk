@@ -24,8 +24,8 @@ class OauthService {
         }
     }
     
-    func disconnect(regToken: String, idToken: String, ignoreApiQueue: Bool = true, completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void) {
-        var model = ApiRequestModel(method: GigyaDefinitions.Oauth.disconnect, params: ["ignoreApiQueue": ignoreApiQueue, "regToken": regToken])
+    func disconnect(idToken: String, ignoreApiQueue: Bool = true, completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void) {
+        var model = ApiRequestModel(method: GigyaDefinitions.Oauth.disconnect, params: ["ignoreApiQueue": ignoreApiQueue])
         model.headers = ["Authorization": "Bearer \(idToken)"]
         businessApiService.apiService.send(model: model, responseType: GigyaDictionary.self) { result in
             completion(result)

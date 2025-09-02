@@ -12,12 +12,12 @@ target 'TestApp' do
   # Pods for TestApp
   pod 'LineSDKSwift', '~> 5.0'
 
-  pod 'GoogleSignIn', '6.0.1', :modular_headers => false
+  pod 'GoogleSignIn', '7.1.0', :modular_headers => false
   pod 'FBSDKCoreKit', '9.0.1'
   pod 'FBSDKLoginKit', '9.0.1'
 
-  pod 'Firebase/Analytics'
-  pod 'Firebase/Messaging'
+#  pod 'Firebase/Analytics'
+  pod 'Firebase/Messaging', '~> 12.2'
 
 
 end

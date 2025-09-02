@@ -31,8 +31,13 @@ final class NetworkProvider {
 
     func dataRequest(model: ApiRequestModel, method: NetworkMethod = .post, completion: @escaping GigyaResponseHandler) {
         let url = makeUrl(with: model.method)
-
-        doRequest(url: url, model: model, method: method, completion: completion)
+        let disableSign: Bool = verifySignNeeded(model: model)
+        
+        doRequest(url: url, model: model, method: method, completion: completion, disableSign: disableSign)
+    }
+    
+    private func verifySignNeeded(model: ApiRequestModel) -> Bool {
+        return model.params?["regToken"] as? String != nil
     }
 
     private func doRequest(url: String, model: ApiRequestModel, method: NetworkMethod = .post, completion: @escaping GigyaResponseHandler, disableSign: Bool = false) {

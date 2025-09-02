@@ -1902,7 +1902,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# set framework folder name\nFRAMEWORK_FOLDER_NAME=\"${PROJECT_NAME}_XCFramework\"\n# set framework name or read it from project by this variable\nFRAMEWORK_NAME=\"GigyaSwift.xcworkspace\"\nFRAMEWORK_SCHEMA=\"Gigya\"\n\n#xcframework path\nFRAMEWORK_PATH=\"${PROJECT_DIR}/XC/${FRAMEWORK_FOLDER_NAME}/${FRAMEWORK_SCHEMA}.xcframework\"\n# set path for iOS simulator archive\nSIMULATOR_ARCHIVE_PATH=\"${PROJECT_DIR}/${FRAMEWORK_FOLDER_NAME}/simulator.xcarchive\"\n# set path for iOS device archive\nIOS_DEVICE_ARCHIVE_PATH=\"${PROJECT_DIR}/${FRAMEWORK_FOLDER_NAME}/iOS.xcarchive\"\nrm -rf \"${PROJECT_DIR}/XC/${FRAMEWORK_FOLDER_NAME}/${FRAMEWORK_SCHEMA}\"\necho \"Deleted ${FRAMEWORK_FOLDER_NAME}\"\nmkdir \"${FRAMEWORK_FOLDER_NAME}\"\necho \"Created ${FRAMEWORK_FOLDER_NAME}\"\necho \"Archiving ${FRAMEWORK_NAME}\"\n\nxcodebuild archive -workspace \"${FRAMEWORK_NAME}\" -scheme ${FRAMEWORK_SCHEMA} -destination=\"iOS Simulator\" -archivePath \"${SIMULATOR_ARCHIVE_PATH}\" -sdk iphonesimulator SKIP_INSTALL=NO BUILD_LIBRARIES_FOR_DISTRIBUTION=YES\n\nxcodebuild archive -workspace \"${FRAMEWORK_NAME}\" -scheme ${FRAMEWORK_SCHEMA} -destination=\"iOS\" -archivePath \"${IOS_DEVICE_ARCHIVE_PATH}\" -sdk iphoneos SKIP_INSTALL=NO BUILD_LIBRARIES_FOR_DISTRIBUTION=YES\n#Creating XCFramework\nxcodebuild -create-xcframework -framework ${SIMULATOR_ARCHIVE_PATH}/Products/Library/Frameworks/${FRAMEWORK_SCHEMA}.framework -framework ${IOS_DEVICE_ARCHIVE_PATH}/Products/Library/Frameworks/${FRAMEWORK_SCHEMA}.framework -output \"${FRAMEWORK_PATH}\"\ncodesign --timestamp -v --sign \"Apple Development: Sagi Shmuel (M54M22QGDP)\" ${FRAMEWORK_NAME}.xcframework\n\nrm -rf \"${SIMULATOR_ARCHIVE_PATH}\"\nrm -rf \"${IOS_DEVICE_ARCHIVE_PATH}\"\nopen \"${PROJECT_DIR}/XC/${FRAMEWORK_FOLDER_NAME}\"\n\n/opt/homebrew/bin/go run \"${PROJECT_DIR}/XC/fixer/fixer.go\" \"${FRAMEWORK_PATH}\"\n";
+			shellScript = "# set framework folder name\nFRAMEWORK_FOLDER_NAME=\"${PROJECT_NAME}_XCFramework\"\n# set framework name or read it from project by this variable\nFRAMEWORK_NAME=\"GigyaSwift.xcworkspace\"\nFRAMEWORK_SCHEMA=\"Gigya\"\n\n#xcframework path\nFRAMEWORK_PATH=\"${PROJECT_DIR}/XC/${FRAMEWORK_FOLDER_NAME}/${FRAMEWORK_SCHEMA}.xcframework\"\n# set path for iOS simulator archive\nSIMULATOR_ARCHIVE_PATH=\"${PROJECT_DIR}/${FRAMEWORK_FOLDER_NAME}/simulator.xcarchive\"\n# set path for iOS device archive\nIOS_DEVICE_ARCHIVE_PATH=\"${PROJECT_DIR}/${FRAMEWORK_FOLDER_NAME}/iOS.xcarchive\"\nrm -rf \"${PROJECT_DIR}/XC/${FRAMEWORK_FOLDER_NAME}/${FRAMEWORK_SCHEMA}\"\necho \"Deleted ${FRAMEWORK_FOLDER_NAME}\"\nmkdir \"${FRAMEWORK_FOLDER_NAME}\"\necho \"Created ${FRAMEWORK_FOLDER_NAME}\"\necho \"Archiving ${FRAMEWORK_NAME}\"\n\nxcodebuild archive -workspace \"${FRAMEWORK_NAME}\" -scheme ${FRAMEWORK_SCHEMA} -destination=\"iOS Simulator\" -archivePath \"${SIMULATOR_ARCHIVE_PATH}\" -sdk iphonesimulator SKIP_INSTALL=NO BUILD_LIBRARIES_FOR_DISTRIBUTION=YES\n\nxcodebuild archive -workspace \"${FRAMEWORK_NAME}\" -scheme ${FRAMEWORK_SCHEMA} -destination=\"iOS\" -archivePath \"${IOS_DEVICE_ARCHIVE_PATH}\" -sdk iphoneos SKIP_INSTALL=NO BUILD_LIBRARIES_FOR_DISTRIBUTION=YES\n#Creating XCFramework\nxcodebuild -create-xcframework -framework ${SIMULATOR_ARCHIVE_PATH}/Products/Library/Frameworks/${FRAMEWORK_SCHEMA}.framework -framework ${IOS_DEVICE_ARCHIVE_PATH}/Products/Library/Frameworks/${FRAMEWORK_SCHEMA}.framework -output \"${FRAMEWORK_PATH}\"\ncodesign --timestamp -v --sign \"Apple Development: SAP SE Internal (KL6WTNXRDF)\" ${FRAMEWORK_NAME}.xcframework\n\nrm -rf \"${SIMULATOR_ARCHIVE_PATH}\"\nrm -rf \"${IOS_DEVICE_ARCHIVE_PATH}\"\nopen \"${PROJECT_DIR}/XC/${FRAMEWORK_FOLDER_NAME}\"\n\n/opt/homebrew/bin/go run \"${PROJECT_DIR}/XC/fixer/fixer.go\" \"${FRAMEWORK_PATH}\"\n";
 		};
 		EB7918E424CC7E8B9A7E4C27 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2713,7 +2713,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 140;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 52P2295V75;
+				DEVELOPMENT_TEAM = SQR2SK9629;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -2731,7 +2731,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.7.5;
+				MARKETING_VERSION = 1.7.6;
 				MODULEMAP_FILE = "";
 				MODULEMAP_PRIVATE_FILE = "";
 				ONLY_ACTIVE_ARCH = NO;
@@ -2775,7 +2775,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 140;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 52P2295V75;
+				DEVELOPMENT_TEAM = SQR2SK9629;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -2793,7 +2793,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.7.5;
+				MARKETING_VERSION = 1.7.6;
 				MODULEMAP_FILE = "";
 				MODULEMAP_PRIVATE_FILE = "";
 				ONLY_ACTIVE_ARCH = NO;
@@ -2842,7 +2842,7 @@
 					"$(PROJECT_DIR)/GigyaTfa",
 				);
 				INFOPLIST_FILE = TestApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2859,7 +2859,7 @@
 					"$(inherited)",
 					"-ObjC",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.gigya1.test;
+				PRODUCT_BUNDLE_IDENTIFIER = sap.cdc.example.bitsbytes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "TestApp/TestApp-Bridging-Header.h";
@@ -2892,7 +2892,7 @@
 					"$(PROJECT_DIR)/GigyaTfa",
 				);
 				INFOPLIST_FILE = TestApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2907,7 +2907,7 @@
 					"$(inherited)",
 					"-ObjC",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.gigya1.test;
+				PRODUCT_BUNDLE_IDENTIFIER = sap.cdc.example.bitsbytes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "TestApp/TestApp-Bridging-Header.h";
