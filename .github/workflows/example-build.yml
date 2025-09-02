@@ -51,7 +51,7 @@ jobs:
       - name: Build
         working-directory: ./example
         run: |
-          DEVICE_ID=$(xcrun simctl list devices available | grep "iPhone" | head -1 | sed -n 's/.*(\([A-F0-9-]*\)).*/\1/p');
+          DEVICE_ID=$(xcrun xctrace list devices | grep "iPhone" | grep "18.1" | head -1 | sed -n 's/.*(\([A-F0-9-]*\)).*/\1/p');
           xcodebuild \
             ARCHS=arm64 \
             clean build \
