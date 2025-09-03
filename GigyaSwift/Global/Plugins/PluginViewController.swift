@@ -22,6 +22,7 @@ final class PluginViewController<T: GigyaAccountProtocol>: GigyaWebViewControlle
         self.pluginEvent = pluginEvent
 
         let webViewConfiguration = WKWebViewConfiguration()
+
         webViewConfiguration.userContentController = contentController
         webViewConfiguration.preferences.javaScriptCanOpenWindowsAutomatically = true
         webViewConfiguration.preferences.javaScriptEnabled = true

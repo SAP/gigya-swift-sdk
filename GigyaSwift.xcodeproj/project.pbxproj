@@ -183,6 +183,7 @@
 		E7BE5793229AB29100C17D93 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BE5792229AB29100C17D93 /* UIImage.swift */; };
 		E7BE57B922A40ED100C17D93 /* WebViewWrapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BE57B822A40ED100C17D93 /* WebViewWrapperTests.swift */; };
 		E7BE57BD22A41D0B00C17D93 /* FakeNavigationAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BE57BC22A41D0B00C17D93 /* FakeNavigationAction.swift */; };
+		E7C3CD682DBA303D007B11A0 /* InvalidGMIDEvaluator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C3CD672DBA3036007B11A0 /* InvalidGMIDEvaluator.swift */; };
 		E7C859DB2289604F005C1FBE /* LinkAccountsResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C859DA2289604F005C1FBE /* LinkAccountsResolver.swift */; };
 		E7C859E02289B299005C1FBE /* InterruptionEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C859DF2289B299005C1FBE /* InterruptionEnum.swift */; };
 		E7C859E7228C52A0005C1FBE /* ConflictingAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C859E6228C52A0005C1FBE /* ConflictingAccount.swift */; };
@@ -539,6 +540,7 @@
 		E7BE5799229D284A00C17D93 /* TFAVerificationpTotpResolverTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TFAVerificationpTotpResolverTests.swift; sourceTree = "<group>"; };
 		E7BE57B822A40ED100C17D93 /* WebViewWrapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewWrapperTests.swift; sourceTree = "<group>"; };
 		E7BE57BC22A41D0B00C17D93 /* FakeNavigationAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeNavigationAction.swift; sourceTree = "<group>"; };
+		E7C3CD672DBA3036007B11A0 /* InvalidGMIDEvaluator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvalidGMIDEvaluator.swift; sourceTree = "<group>"; };
 		E7C859DA2289604F005C1FBE /* LinkAccountsResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkAccountsResolver.swift; sourceTree = "<group>"; };
 		E7C859DF2289B299005C1FBE /* InterruptionEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterruptionEnum.swift; sourceTree = "<group>"; };
 		E7C859E6228C52A0005C1FBE /* ConflictingAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConflictingAccount.swift; sourceTree = "<group>"; };
@@ -1367,6 +1369,7 @@
 			isa = PBXGroup;
 			children = (
 				E7D9C5AD23682DD400714807 /* NetworkBlockingQueueUtils.swift */,
+				E7C3CD672DBA3036007B11A0 /* InvalidGMIDEvaluator.swift */,
 				E7D9C5AF2368398500714807 /* NetworkRetryDispacher.swift */,
 				E7A6E0CD22425A910063638F /* NetworkAdapter.swift */,
 				E7CBAFB7222D17C9000B6C11 /* NetworkProvider.swift */,
@@ -1899,7 +1902,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# set framework folder name\nFRAMEWORK_FOLDER_NAME=\"${PROJECT_NAME}_XCFramework\"\n# set framework name or read it from project by this variable\nFRAMEWORK_NAME=\"GigyaSwift.xcworkspace\"\nFRAMEWORK_SCHEMA=\"Gigya\"\n\n#xcframework path\nFRAMEWORK_PATH=\"${PROJECT_DIR}/XC/${FRAMEWORK_FOLDER_NAME}/${FRAMEWORK_SCHEMA}.xcframework\"\n# set path for iOS simulator archive\nSIMULATOR_ARCHIVE_PATH=\"${PROJECT_DIR}/${FRAMEWORK_FOLDER_NAME}/simulator.xcarchive\"\n# set path for iOS device archive\nIOS_DEVICE_ARCHIVE_PATH=\"${PROJECT_DIR}/${FRAMEWORK_FOLDER_NAME}/iOS.xcarchive\"\nrm -rf \"${PROJECT_DIR}/XC/${FRAMEWORK_FOLDER_NAME}/${FRAMEWORK_SCHEMA}\"\necho \"Deleted ${FRAMEWORK_FOLDER_NAME}\"\nmkdir \"${FRAMEWORK_FOLDER_NAME}\"\necho \"Created ${FRAMEWORK_FOLDER_NAME}\"\necho \"Archiving ${FRAMEWORK_NAME}\"\n\nxcodebuild archive -workspace \"${FRAMEWORK_NAME}\" -scheme ${FRAMEWORK_SCHEMA} -destination=\"iOS Simulator\" -archivePath \"${SIMULATOR_ARCHIVE_PATH}\" -sdk iphonesimulator SKIP_INSTALL=NO BUILD_LIBRARIES_FOR_DISTRIBUTION=YES\n\nxcodebuild archive -workspace \"${FRAMEWORK_NAME}\" -scheme ${FRAMEWORK_SCHEMA} -destination=\"iOS\" -archivePath \"${IOS_DEVICE_ARCHIVE_PATH}\" -sdk iphoneos SKIP_INSTALL=NO BUILD_LIBRARIES_FOR_DISTRIBUTION=YES\n#Creating XCFramework\nxcodebuild -create-xcframework -framework ${SIMULATOR_ARCHIVE_PATH}/Products/Library/Frameworks/${FRAMEWORK_SCHEMA}.framework -framework ${IOS_DEVICE_ARCHIVE_PATH}/Products/Library/Frameworks/${FRAMEWORK_SCHEMA}.framework -output \"${FRAMEWORK_PATH}\"\ncodesign --timestamp -v --sign \"Apple Development: Sagi Shmuel (M54M22QGDP)\" ${FRAMEWORK_NAME}.xcframework\n\nrm -rf \"${SIMULATOR_ARCHIVE_PATH}\"\nrm -rf \"${IOS_DEVICE_ARCHIVE_PATH}\"\nopen \"${PROJECT_DIR}/XC/${FRAMEWORK_FOLDER_NAME}\"\n\n/opt/homebrew/bin/go run \"${PROJECT_DIR}/XC/fixer/fixer.go\" \"${FRAMEWORK_PATH}\"\n";
+			shellScript = "# set framework folder name\nFRAMEWORK_FOLDER_NAME=\"${PROJECT_NAME}_XCFramework\"\n# set framework name or read it from project by this variable\nFRAMEWORK_NAME=\"GigyaSwift.xcworkspace\"\nFRAMEWORK_SCHEMA=\"Gigya\"\n\n#xcframework path\nFRAMEWORK_PATH=\"${PROJECT_DIR}/XC/${FRAMEWORK_FOLDER_NAME}/${FRAMEWORK_SCHEMA}.xcframework\"\n# set path for iOS simulator archive\nSIMULATOR_ARCHIVE_PATH=\"${PROJECT_DIR}/${FRAMEWORK_FOLDER_NAME}/simulator.xcarchive\"\n# set path for iOS device archive\nIOS_DEVICE_ARCHIVE_PATH=\"${PROJECT_DIR}/${FRAMEWORK_FOLDER_NAME}/iOS.xcarchive\"\nrm -rf \"${PROJECT_DIR}/XC/${FRAMEWORK_FOLDER_NAME}/${FRAMEWORK_SCHEMA}\"\necho \"Deleted ${FRAMEWORK_FOLDER_NAME}\"\nmkdir \"${FRAMEWORK_FOLDER_NAME}\"\necho \"Created ${FRAMEWORK_FOLDER_NAME}\"\necho \"Archiving ${FRAMEWORK_NAME}\"\n\nxcodebuild archive -workspace \"${FRAMEWORK_NAME}\" -scheme ${FRAMEWORK_SCHEMA} -destination=\"iOS Simulator\" -archivePath \"${SIMULATOR_ARCHIVE_PATH}\" -sdk iphonesimulator SKIP_INSTALL=NO BUILD_LIBRARIES_FOR_DISTRIBUTION=YES\n\nxcodebuild archive -workspace \"${FRAMEWORK_NAME}\" -scheme ${FRAMEWORK_SCHEMA} -destination=\"iOS\" -archivePath \"${IOS_DEVICE_ARCHIVE_PATH}\" -sdk iphoneos SKIP_INSTALL=NO BUILD_LIBRARIES_FOR_DISTRIBUTION=YES\n#Creating XCFramework\nxcodebuild -create-xcframework -framework ${SIMULATOR_ARCHIVE_PATH}/Products/Library/Frameworks/${FRAMEWORK_SCHEMA}.framework -framework ${IOS_DEVICE_ARCHIVE_PATH}/Products/Library/Frameworks/${FRAMEWORK_SCHEMA}.framework -output \"${FRAMEWORK_PATH}\"\ncodesign --timestamp -v --sign \"Apple Development: SAP SE Internal (KL6WTNXRDF)\" ${FRAMEWORK_NAME}.xcframework\n\nrm -rf \"${SIMULATOR_ARCHIVE_PATH}\"\nrm -rf \"${IOS_DEVICE_ARCHIVE_PATH}\"\nopen \"${PROJECT_DIR}/XC/${FRAMEWORK_FOLDER_NAME}\"\n\n/opt/homebrew/bin/go run \"${PROJECT_DIR}/XC/fixer/fixer.go\" \"${FRAMEWORK_PATH}\"\n";
 		};
 		EB7918E424CC7E8B9A7E4C27 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1909,9 +1912,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-TestApp/Pods-TestApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-TestApp/Pods-TestApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -2118,6 +2125,7 @@
 				E7ACF9AC226C841300900C65 /* ApiServiceProtocol.swift in Sources */,
 				E71D3C9D22BF906300A413D7 /* TFAProvider.swift in Sources */,
 				E719374122D5CCCF00CD149E /* GigyaIOCContainer.swift in Sources */,
+				E7C3CD682DBA303D007B11A0 /* InvalidGMIDEvaluator.swift in Sources */,
 				E73374622268B25B00ADEDBB /* SocialProvidersManager.swift in Sources */,
 				E7791A68238542D70075BAFD /* GigyaAlertUtils.swift in Sources */,
 				E713E0FE2248C83D00181328 /* GigyaConfig.swift in Sources */,
@@ -2705,7 +2713,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 140;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 52P2295V75;
+				DEVELOPMENT_TEAM = SQR2SK9629;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -2723,7 +2731,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.7.4;
+				MARKETING_VERSION = 1.7.6;
 				MODULEMAP_FILE = "";
 				MODULEMAP_PRIVATE_FILE = "";
 				ONLY_ACTIVE_ARCH = NO;
@@ -2767,7 +2775,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 140;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 52P2295V75;
+				DEVELOPMENT_TEAM = SQR2SK9629;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -2785,7 +2793,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.7.4;
+				MARKETING_VERSION = 1.7.6;
 				MODULEMAP_FILE = "";
 				MODULEMAP_PRIVATE_FILE = "";
 				ONLY_ACTIVE_ARCH = NO;
@@ -2834,7 +2842,7 @@
 					"$(PROJECT_DIR)/GigyaTfa",
 				);
 				INFOPLIST_FILE = TestApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2851,7 +2859,7 @@
 					"$(inherited)",
 					"-ObjC",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.gigya1.test;
+				PRODUCT_BUNDLE_IDENTIFIER = sap.cdc.example.bitsbytes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "TestApp/TestApp-Bridging-Header.h";
@@ -2884,7 +2892,7 @@
 					"$(PROJECT_DIR)/GigyaTfa",
 				);
 				INFOPLIST_FILE = TestApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2899,7 +2907,7 @@
 					"$(inherited)",
 					"-ObjC",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.gigya1.test;
+				PRODUCT_BUNDLE_IDENTIFIER = sap.cdc.example.bitsbytes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "TestApp/TestApp-Bridging-Header.h";
