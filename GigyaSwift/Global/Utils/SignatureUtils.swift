@@ -17,15 +17,18 @@ class SignatureUtils {
         var session: GigyaSession? = session
         var token: String? = session?.token
 
-        if session != nil {
-            timestamp = String(Int(Date().timeIntervalSince1970 + config.timestampOffset))
-        }
+        // API paths which require a cleared session:
+        let unauthenticatedEndpoints: Set<String> = [
+            GigyaDefinitions.API.getSdkConfig,
+            GigyaDefinitions.API.notifyLogin
+        ]
 
-        if path.contains(GigyaDefinitions.API.getSdkConfig) {
-            // clear data for getSdkConfig request
+        if unauthenticatedEndpoints.contains(where: { path.contains($0) }) {
             session = nil
             token = nil
             timestamp = nil
+        } else if session != nil {
+            timestamp = String(Int(Date().timeIntervalSince1970 + config.timestampOffset))
         }
 
         if (config.apiKey == nil) {
