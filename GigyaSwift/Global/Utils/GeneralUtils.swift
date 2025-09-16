@@ -83,9 +83,9 @@ extension String {
     }
     
     @available(iOS 13.0, *)
-    public func encodeWith(_ hashFunction: any HashFunction.Type) -> String {
+    public func encodeWith<H: HashFunction>(_ hashFunction: H.Type) -> String {
         let value = self.data(using: .utf8) ?? Data()
-        let digest = hashFunction.hash(data: value)
+        let digest = H.hash(data: value)
         let encString = digest
             .compactMap { String(format: "%02x", $0) }
             .joined()
@@ -99,7 +99,6 @@ extension String {
     public func jwtDecode() -> [String: Any]? {
         let parts = self.components(separatedBy: ".")
         guard
-             let base64EncodedData = parts[1].data(using: .utf8),
              let data = Data(base64Encoded: parts[1].paddedForBase64Decoding) else {
             return nil
         }
