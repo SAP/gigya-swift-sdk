@@ -119,6 +119,20 @@ public final class PersistenceService {
     internal func removeAllWebAuthnKeys() {
         GigyaKeyChainService.delete(key: InternalConfig.Storage.webAuthnKey(apiKey: apiKey))
     }
+
+    internal func removeWebAuthnKey(id: String) {
+        var list = webAuthnlist
+        list.removeAll { $0.key == id }
+
+        if let data = try? PropertyListEncoder().encode(list) {
+            GigyaKeyChainService.save(key: InternalConfig.Storage.webAuthnKey(apiKey: apiKey), valueData: data)
+        }
+    }
+
+    internal func removeIds() {
+        UserDefaults.standard.removeObject(forKey: InternalConfig.Storage.GMID)
+        UserDefaults.standard.removeObject(forKey: InternalConfig.Storage.UCID)
+    }
 }
 
 class GigyaKeyChainService {
@@ -177,17 +191,5 @@ class GigyaKeyChainService {
         ]
         query[String(kSecAttrSynchronizable)] = kCFBooleanTrue
         return query
-    }
-    
-    internal func removeWebAuthnKey(id: String) {
-        var list = webAuthnlist
-        list.removeAll { $0.key == id }
-        
-        UserDefaults.standard.set(try? PropertyListEncoder().encode(list), forKey: InternalConfig.Storage.webAuthn)
-    }
-    
-    internal func removeIds() {
-        UserDefaults.standard.removeObject(forKey: InternalConfig.Storage.GMID)
-        UserDefaults.standard.removeObject(forKey: InternalConfig.Storage.UCID)
     }
 }
