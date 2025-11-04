@@ -131,7 +131,7 @@ class PluginViewWrapper<T: GigyaAccountProtocol>: PluginViewWrapperProtocol {
                 document.location.href = 'gsapi://on_js_load_error';
                 }, 10000);
             </script>
-            <script src='https://\(config.cnameEnable ? "" : "cdns.")\(apiDomain)/JS/gigya.js?apikey=\(apiKey)&lang=\(lang)&debug=1' type='text/javascript' onLoad='onJSLoad();'>
+            <script src='https://\(config.cnameEnable ? "" : "cdns.")\(apiDomain)/JS/gigya.js?apikey=\(apiKey)&lang=\(lang)' type='text/javascript' onLoad='onJSLoad();' crossorigin='anonymous'>
                 {
                     deviceType: 'mobile' // consoleLogLevel: 'error'
                 }
