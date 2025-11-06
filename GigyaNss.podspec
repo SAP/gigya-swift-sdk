@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name          = 'GigyaNss'
-  spec.version       = '1.9.8'
+  spec.version       = '1.9.9'
   spec.license       = 'Apache 2.0'
   spec.homepage      = 'https://developers.gigya.com/display/GD/Native+Screen-Sets'
   spec.author       = 'Gigya SAP'
@@ -14,7 +14,7 @@ Pod::Spec.new do |spec|
   spec.swift_version = '5.2'
 
   spec.platform = :ios
-  spec.ios.deployment_target  = '11.0'
+  spec.ios.deployment_target  = '13.0'
   spec.default_subspecs = 'Core'
   
 

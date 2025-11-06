@@ -19,7 +19,7 @@ extension GigyaResponseModel {
     static func failedResponse(with error: NetworkError) -> FlutterError {
         var code = 500
         var msg = "General error"
-        var errorData: String?
+        var errorData: String? = "{}"
 
         switch error {
         case .gigyaError(data: let data):
@@ -28,7 +28,7 @@ extension GigyaResponseModel {
             errorData = data.toDictionary().asJson
         case .providerError(data: let data):
             msg = "provider error"
-            errorData = data
+            msg = data
         case .networkError(error: let error):
             msg = error.localizedDescription
         case .emptyResponse:
