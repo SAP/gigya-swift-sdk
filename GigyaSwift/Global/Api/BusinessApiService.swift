@@ -182,6 +182,31 @@ class BusinessApiService: NSObject, BusinessApiServiceProtocol {
             }
         }
     }
+    
+    func loginWithCustomId<T: GigyaAccountProtocol>(params: [String: Any], completion: @escaping (GigyaLoginResult<T>) -> Void) {
+        let password = params["password"] as? String ?? ""
+        var tokenParams = params
+        tokenParams.removeValue(forKey: "password")
+        
+        let model = ApiRequestModel(method: GigyaDefinitions.API.identifiersCreateToken, params: tokenParams, config: config)
+
+        apiService.send(model: model, responseType: GigyaDictionary.self) { [weak self] result in
+            switch result {
+            case .success(let data):
+                guard let aToken = data["aToken"] else { return }
+                
+                var loginParams = tokenParams
+                loginParams["aToken"] = aToken
+                loginParams["password"] = password
+                
+                self?.login(params: loginParams, completion: completion)
+                
+                self?.clearOptionalObjects()
+            case .failure(let error):
+                self?.interruptionResolver(error: error, completion: completion, model: model)
+            }
+        }
+    }
 
     func login<T: GigyaAccountProtocol>(provider: GigyaSocialProviders, viewController: UIViewController,
                            params: [String: Any], dataType: T.Type, completion: @escaping (GigyaLoginResult<T>) -> Void) {
