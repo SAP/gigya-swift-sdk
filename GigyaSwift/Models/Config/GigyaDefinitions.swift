@@ -33,6 +33,7 @@ public struct GigyaDefinitions {
         public static let isAvailableLoginID = "accounts.isAvailableLoginID"
         public static let getSchema = "accounts.getSchema"
         public static let getPolicies = "accounts.getPolicies"
+        public static let identifiersCreateToken = "accounts.identifiers.createToken"
 
         // MARK:  TFA
         public static let initTFA = "accounts.tfa.initTFA"
