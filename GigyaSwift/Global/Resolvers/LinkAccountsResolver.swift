@@ -95,12 +95,12 @@ final public class LinkAccountsResolver<T: GigyaAccountProtocol>: BaseResolver {
     }
     
     private func linkToSiteV2(loginId: String, password: String) {
-        businessDelegate?.callLogin(dataType: T.self, loginId: loginId, password: password, params: [:]) { [weak self] result in
+        businessDelegate?.callLogin(dataType: T.self, loginId: loginId, password: password, params: [:]) { result in
             switch result {
             case .success(data: _):
-                self?.connectAccount()
+                self.connectAccount()
             case .failure(let error):
-                self?.completion(.failure(error))
+                self.completion(.failure(error))
             }
         }
 
@@ -108,12 +108,12 @@ final public class LinkAccountsResolver<T: GigyaAccountProtocol>: BaseResolver {
     }
     
     private func linkToSocialV2(provider: GigyaSocialProviders, viewController: UIViewController) {
-        businessDelegate?.callSociallogin(provider: provider, viewController: viewController, params: [:], dataType: T.self) { [weak self] result in
+        businessDelegate?.callSociallogin(provider: provider, viewController: viewController, params: [:], dataType: T.self) { result in
             switch result {
             case .success(data: _):
-                self?.connectAccount()
+                self.connectAccount()
             case .failure(let error):
-                self?.completion(.failure(error))
+                self.completion(.failure(error))
             }
         }
 
