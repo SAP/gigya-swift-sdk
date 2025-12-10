@@ -86,13 +86,6 @@ class WebAuthnDeviceIntegration: NSObject {
                 
         let assertionRequest = publicKeyCredentialProvider.createCredentialAssertionRequest(challenge: challenge)
         
-        let publicKeys = allowedKeys.filter { $0.type == .platform }
-            .map {
-                ASAuthorizationPlatformPublicKeyCredentialDescriptor(credentialID: Data(base64Encoded: $0.key) ?? Data())
-            }
-        
-        assertionRequest.allowedCredentials = publicKeys
-        
         if let userVerification = options.options.userVerification {
             securityRequest.userVerificationPreference = ASAuthorizationPublicKeyCredentialUserVerificationPreference.init(rawValue: userVerification)
             assertionRequest.userVerificationPreference = ASAuthorizationPublicKeyCredentialUserVerificationPreference.init(rawValue: userVerification)
