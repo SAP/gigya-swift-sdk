@@ -15,7 +15,7 @@ Pod::Spec.new do |spec|
   spec.swift_version = '5.3'
 
   spec.platform = :ios
-  spec.ios.deployment_target  = '10.0'
+  spec.ios.deployment_target  = '13.0'
 
   spec.source_files       = 'GigyaTfa/GigyaTfa/*.swift', 'GigyaTfa/GigyaTfa/*/*.swift', 'GigyaTfa/GigyaTfa/*/*/*.swift'
   spec.resource_bundle = {
