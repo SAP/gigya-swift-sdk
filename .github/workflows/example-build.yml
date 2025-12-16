@@ -22,7 +22,7 @@ jobs:
         run: pod --version
       - name: Pod install
         working-directory: ./example
-        run: pod install
+        run: pod install --repo-update
       - name: Pod fix
         working-directory: ./example/Pods/Pods.xcodeproj
         run: sed -i -e 's/10.0/12.0/g' project.pbxproj
