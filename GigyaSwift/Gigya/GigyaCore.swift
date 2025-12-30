@@ -220,6 +220,22 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
     public func login(loginId: String, password: String, params: [String: Any] = [:], completion: @escaping (GigyaLoginResult<T>) -> Void) {
         businessApiService.login(dataType: T.self, loginId: loginId, password: password, params: params, completion: completion)
     }
+    
+    /**
+     Login api
+
+     - Parameter loginId:      user identity.
+     - Parameter password:     user password.
+     - Parameter params:       Request parameters.
+     - Parameter completion:   Response `GigyaLoginResult<T>`.
+     */
+    public func login(identifier: String, identifierType: String, password: String, params: [String: Any] = [:], completion: @escaping (GigyaLoginResult<T>) -> Void) {
+        var newParams = params
+        newParams["identifierType"] = identifierType
+        newParams["identifier"] = identifier
+        newParams["password"] = password
+        businessApiService.loginWithCustomId(params: newParams, completion: completion)
+    }
 
     /**
      Login api

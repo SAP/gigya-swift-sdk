@@ -83,23 +83,8 @@ class WebAuthnDeviceIntegration: NSObject {
         let challenge = options.options.challenge.decodeBase64Url()!
 
         let securityRequest = securityKeyProvider.createCredentialAssertionRequest(challenge: challenge)
-        
-        let securityKeys = allowedKeys.filter { $0.type == .crossPlatform }
-            .map {
-                ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor(credentialID: Data(base64Encoded: $0.key) ?? Data(), transports: ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor.Transport.allSupported)
-            }
-
-        
-        securityRequest.allowedCredentials = securityKeys
-        
+                
         let assertionRequest = publicKeyCredentialProvider.createCredentialAssertionRequest(challenge: challenge)
-        
-        let publicKeys = allowedKeys.filter { $0.type == .platform }
-            .map {
-                ASAuthorizationPlatformPublicKeyCredentialDescriptor(credentialID: Data(base64Encoded: $0.key) ?? Data())
-            }
-        
-        assertionRequest.allowedCredentials = publicKeys
         
         if let userVerification = options.options.userVerification {
             securityRequest.userVerificationPreference = ASAuthorizationPublicKeyCredentialUserVerificationPreference.init(rawValue: userVerification)

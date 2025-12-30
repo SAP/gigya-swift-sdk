@@ -153,6 +153,7 @@
 		E77B181E2CF886E2009F7F50 /* GigyaAuth.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E77B181C2CF886E2009F7F50 /* GigyaAuth.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E77F71A0230AD95600E8738A /* GigyaWebBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77F719F230AD95600E8738A /* GigyaWebBridge.swift */; };
 		E77F7A2F2407EC7900FF90FB /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E77F7A2E2407EC7900FF90FB /* CoreFoundation.framework */; };
+		E788B53E2EDF066500C6AECD /* LineWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DC2C5F228055CA00A13426 /* LineWrapper.swift */; };
 		E7A535E8274A5E160070AF63 /* PKCETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A535E7274A5E160070AF63 /* PKCETests.swift */; };
 		E7A6E0AA2240F8080063638F /* GigyaApiResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A6E0A92240F8080063638F /* GigyaApiResult.swift */; };
 		E7A6E0AC224245D00063638F /* ApiResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A6E0AB224245D00063638F /* ApiResultModel.swift */; };
@@ -2182,6 +2183,7 @@
 				D584D342228D6089004CA28F /* UIFactory.swift in Sources */,
 				E7FFD59322FB0A8A00DBE663 /* (null) in Sources */,
 				E7221D8222B90C2A00C296A9 /* ValidateLoginModel.swift in Sources */,
+				E788B53E2EDF066500C6AECD /* LineWrapper.swift in Sources */,
 				E70519D822C0C8B3008ECB25 /* TfaQrCodeCell.swift in Sources */,
 				E7BE369F2224260400A108D9 /* ViewController.swift in Sources */,
 				E7221D8022B90C0C00C296A9 /* UserHostModel.swift in Sources */,
@@ -2731,7 +2733,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.7.6;
+				MARKETING_VERSION = 1.8.1;
 				MODULEMAP_FILE = "";
 				MODULEMAP_PRIVATE_FILE = "";
 				ONLY_ACTIVE_ARCH = NO;
@@ -2793,7 +2795,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.7.6;
+				MARKETING_VERSION = 1.8.1;
 				MODULEMAP_FILE = "";
 				MODULEMAP_PRIVATE_FILE = "";
 				ONLY_ACTIVE_ARCH = NO;
@@ -2842,7 +2844,7 @@
 					"$(PROJECT_DIR)/GigyaTfa",
 				);
 				INFOPLIST_FILE = TestApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2892,7 +2894,7 @@
 					"$(PROJECT_DIR)/GigyaTfa",
 				);
 				INFOPLIST_FILE = TestApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
