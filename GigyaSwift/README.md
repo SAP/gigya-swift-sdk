@@ -565,7 +565,7 @@ let result = await gigya.webAuthn.getCredentials()
         }
 ```
 **Revoke (All):**
-Revoking all passkeys associated with the current user account. This will revoke all passkeys from the server only and will not delete the actual passkeys from the device. Logging in will not be available until registering a new one.
+Revoking all passkeys associated with the current user account. This will revoke all passkeys created by the native regiter method (only) from the server and delete the record from the SDK.
 ```
 let result = await gigya.webAuthn.revoke()
         switch result {
@@ -576,7 +576,7 @@ let result = await gigya.webAuthn.revoke()
         }
 ```
 **Revoke (Specific):**
-Revoking a specific passkey by its ID. This will revoke the passkey from the server only and will not delete the actual passkey from the device. Use this method after calling `getCredentials` to obtain the specific passkey ID from the server.
+Revoking a specific passkey by its ID. This will revoke the passkey created from native and web from the server and from the device. Use this method after calling `getCredentials` to obtain the specific passkey ID from the server. 
 ```
 let result = await gigya.webAuthn.revoke(id: "passkey-id")
         switch result {
@@ -587,8 +587,11 @@ let result = await gigya.webAuthn.revoke(id: "passkey-id")
         }
 ```
 
+***Note:***
+Revoking passkeys will not remove the passkey from password managers.
+
 ### Interoperability with Web Screen-Sets
-Native passkey support is fully interchangeable with web screen-sets. Users can now integrate web screen-sets using passkeys, providing a seamless authentication experience across both native mobile implementations and web-based screen-sets within the same application.
+Native passkey support is fully interchangeable with web screen-sets when configured on the same domain. Users can now integrate web screen-sets using passkeys, providing a seamless authentication experience across both native mobile implementations and web-based screen-sets within the same application.
 
 ## Logout
 
