@@ -40,7 +40,7 @@ None
 None
 
 ## How to obtain support
-[Via SAP standard support](https://help.sap.com/viewer/8b8d6fffe113457094a17701f63e3d6a/GIGYA/en-US/4167e8a470b21014bbc5a10ce4041860.html)
+[Via SAP standard support](https://help.sap.com/docs/SAP_CUSTOMER_DATA_CLOUD/e0f596a1d9db4c318e0595bdc2e8e064/486ef9f23b554943a7d9381927c5b3f5.html)
 
 
 ## Contributing
