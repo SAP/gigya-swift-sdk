@@ -415,6 +415,11 @@ Instructions can be found at Integrating LINE Login with an iOS app.
 
 After you have completed adding Line SDK to your project you need to import "LineWrapper.swift" file from the "GigyaProviders" dictionary to your Xcode project.
 
+### Supporting LINE Email Retrieval
+
+To enable email retrieval from LINE, include the `.email` and `.openID` permissions in the LINE login request. Once authentication succeeds, extract the ID token from `loginResult.accessToken.IDTokenRaw` and add it to the `jsonData` map used in the login callback. See `LineWrapper.swift` in the packaged provider for a complete implementation example.
+
+
 ### WeChat
 
 The Gigya Swift SDK allows you to enable WeChat native login for users that have the WeChat app installed on their iOS device.
