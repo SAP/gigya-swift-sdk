@@ -347,6 +347,38 @@ For certain social providers, the SDK supports social login via the social provi
 
 This is done by using the provider’s native SDK, so this method will require you to add its required libraries and wrappers to your Swift project.
 
+## External Authentication Providers
+
+The SDK supports authentication via external social providers (for example, Facebook, Google, LINE) through External Provider classes.
+An external provider defines how a third-party identity provider supplies an identifier or access token that can be exchanged for a session within our platform.
+How It Works
+1. The client application integrates the third-party provider’s SDK (e.g., LINE Login).
+2. The provider SDK returns an access token or ID token.
+3. The client passes this token to the SDK using the corresponding External Provider class.
+4. The SDK validates the token and issues a session within our platform.
+ 
+### Responsibilities
+
+**Client responsibility**
+
+* Implement and maintain the third-party provider integration.
+* Handle provider-specific authentication flows.
+* Retrieve the required token (ID token or access token) from the provider SDK.
+
+**SDK responsibility**
+
+* Define the expected token format via External Provider configurations.
+* Validate the provided token.
+* Create and manage the platform session based on the validated token.
+
+**Reference Implementations**
+
+The SDK includes baseline example code for supported providers to demonstrate:
+* Required scopes
+* Token extraction
+* Expected data passed to the SDK
+These examples are intended as references only and may need to be adapted to fit the client application’s architecture and authentication flow.
+
 As part of this implementation, you will need to add a wrapper class to your application corresponding to the social provider, which is responsible for initiating the correct provider flow to retrieve the required token/code. If you are not adding the wrappers to your main application bundle, use the following example method to register them so that the SDK will be able to identify them.
 
 Example for registering the Apple social provider:
@@ -417,7 +449,7 @@ After you have completed adding Line SDK to your project you need to import "Lin
 
 ### Supporting LINE Email Retrieval
 
-To enable email retrieval from LINE, include the `.email` and `.openID` permissions in the LINE login request. Once authentication succeeds, extract the ID token from `loginResult.accessToken.IDTokenRaw` and add it to the `jsonData` map used in the login callback. See `LineWrapper.swift` in the packaged provider for a complete implementation example.
+To enable email retrieval from LINE, include the .email and .openID permissions in the LINE login request. After authentication, retrieve the ID token from loginResult.accessToken.IDTokenRaw and pass it in the login callback’s jsonData map. For guidance on this flow, refer to the example in LineWrapper.swift included in the packaged provider.
 
 
 ### WeChat
