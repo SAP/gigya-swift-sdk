@@ -66,6 +66,7 @@ final class ApiService: ApiServiceProtocol {
                     self.invalidGMIDEvaluator.retrayCount += 1
                     self.getSDKConfig(skipRefresh: true, completion: completion)
                 } else {
+                    persistenceService.isStartSdk = false
                     completion(false)
                 }
             }
