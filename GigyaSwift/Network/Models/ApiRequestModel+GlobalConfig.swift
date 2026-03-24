@@ -33,4 +33,18 @@ extension ApiRequestModel {
         // merge requiredParams
         self.params = self.params?.merging(includedParams) { (current, _) in current }
     }
+    
+    mutating func addGlobalHeaders() {
+        guard let globalHeaders = config?.globalHeaders else {
+            return
+        }
+        
+        // Merge global headers with existing headers
+        // Existing headers take precedence (per-request override)
+        if self.headers == nil {
+            self.headers = globalHeaders
+        } else {
+            self.headers = globalHeaders.merging(self.headers!) { (_, new) in new }
+        }
+    }
 }
