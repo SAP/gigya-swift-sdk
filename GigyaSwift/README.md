@@ -133,12 +133,28 @@ Gigya.sharedInstance().initFor(apiKey: "YOUR-API-KEY", apiDomain: "YOUR-API-DOMA
 ```
 ### CNAME initialization
 
-When using implicit initialization of the SDK, add the "GigyaCname" property to your app’s plist file.
+When using implicit initialization of the SDK, add the "GigyaCname" property to your app's plist file.
 
 When using explicit initialization of the SDK, you can use the following method:
 ```swift
 public  func  initFor(apiKey: String, apiDomain: String?  =  nil, cname: String?  =  nil)
 ```
+
+### Setting Global Headers
+
+You can configure custom HTTP headers that will be automatically applied to all API requests made through the SDK. This is useful for adding custom tracking headers, authentication tokens, or any other headers required by your infrastructure.
+
+```swift
+/*
+Set global headers that will be included in every API request.
+*/
+Gigya.sharedInstance().setGlobal(headers: [
+    "X-Custom-Header": "your-value",
+    "X-Tracking-ID": "tracking-123"
+])
+```
+
+Note: If a per-request parameter conflicts with a global header, the per-request value will take precedence.
 
 ## Sending a Request
 

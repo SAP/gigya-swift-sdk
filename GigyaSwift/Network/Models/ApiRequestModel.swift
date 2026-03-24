@@ -30,5 +30,6 @@ public struct ApiRequestModel {
         self.params = newParams
 
         addRequiredParams()
+        addGlobalHeaders()
     }
 }
