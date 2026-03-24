@@ -594,6 +594,17 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
             businessApiService.accountService.accountCacheTime = cacheTime
         }
     }
+    
+    /**
+     Set global headers that will be applied to all API requests.
+     These headers will be automatically included in every request made through the SDK.
+     Per-request headers can override global headers if needed.
+
+     - Parameter headers: Dictionary of header key-value pairs to be applied globally.
+     */
+    public func setGlobal(headers: [String: String]) {
+        config.globalHeaders = headers
+    }
 }
 
 @available(iOS 13.0.0, *)
