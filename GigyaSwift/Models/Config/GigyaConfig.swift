@@ -45,4 +45,6 @@ public class GigyaConfig {
     internal var requestTimeout = InternalConfig.Network.requestTimeoutDefult
 
     internal var accountConfig: GigyaAccountConfig?
+    
+    internal var globalHeaders: [String: String]?
 }
