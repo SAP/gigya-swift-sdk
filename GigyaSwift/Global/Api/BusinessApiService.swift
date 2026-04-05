@@ -53,20 +53,20 @@ class BusinessApiService: NSObject, BusinessApiServiceProtocol {
 
     // Send regular request
     func send(api: String, params: [String: Any] = [:], completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void ) {
-        let model = ApiRequestModel(method: api, params: params)
+        let model = ApiRequestModel(method: api, params: params, config: config)
 
         apiService.send(model: model, responseType: GigyaDictionary.self, completion: completion)
     }
     
     func send(api: String, params: [String: Any] = [:], headers: [String: String] = [:], completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void ) {
-        var model = ApiRequestModel(method: api, params: params)
+        var model = ApiRequestModel(method: api, params: params, config: config)
         model.headers = headers
         apiService.send(model: model, responseType: GigyaDictionary.self, completion: completion)
     }
 
     // Send request with generic type.
     func send<T: Codable>(dataType: T.Type, api: String, params: [String: Any] = [:], completion: @escaping (GigyaApiResult<T>) -> Void ) {
-        let model = ApiRequestModel(method: api, params: params)
+        let model = ApiRequestModel(method: api, params: params, config: config)
 
         apiService.send(model: model, responseType: T.self, completion: completion)
     }
@@ -97,7 +97,7 @@ class BusinessApiService: NSObject, BusinessApiServiceProtocol {
     func setAccount<T: Codable>(obj: T, completion: @escaping (GigyaApiResult<T>) -> Void) {
         DispatchQueue.global(qos: .utility).async { [weak self] in
             let diffParams = self?.accountService.setAccount(newAccount: obj)
-            let model = ApiRequestModel(method: GigyaDefinitions.API.setAccountInfo, params: diffParams)
+            let model = ApiRequestModel(method: GigyaDefinitions.API.setAccountInfo, params: diffParams, config: self?.config)
 
             self?.apiService.send(model: model, responseType: GigyaDictionary.self) { [weak self] result in
                 switch result {
@@ -112,7 +112,7 @@ class BusinessApiService: NSObject, BusinessApiServiceProtocol {
     }
 
     func setAccount<T: Codable>(params: [String: Any], completion: @escaping (GigyaApiResult<T>) -> Void) {
-        let model = ApiRequestModel(method: GigyaDefinitions.API.setAccountInfo, params: params)
+        let model = ApiRequestModel(method: GigyaDefinitions.API.setAccountInfo, params: params, config: config)
 
         apiService.send(model: model, responseType: T.self) { [weak self] result in
             switch result {
@@ -281,7 +281,7 @@ class BusinessApiService: NSObject, BusinessApiServiceProtocol {
     }
 
     func notifySocialLogin<T: Codable>(params: [String: Any], completion: @escaping (GigyaApiResult<T>) -> Void) {
-        let model = ApiRequestModel(method: GigyaDefinitions.API.notifySocialLogin, params: params)
+        let model = ApiRequestModel(method: GigyaDefinitions.API.notifySocialLogin, params: params, config: config)
 
         apiService.send(model: model, responseType: GigyaDictionary.self) { [weak self] result in
             switch result {
@@ -311,7 +311,7 @@ class BusinessApiService: NSObject, BusinessApiServiceProtocol {
     func removeConnection(params: [String: Any], completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void) {
         GigyaLogger.log(with: self, message: "[removeConnection]: params: \(params)")
 
-        let model = ApiRequestModel(method: GigyaDefinitions.API.removeConnection, params: params)
+        let model = ApiRequestModel(method: GigyaDefinitions.API.removeConnection, params: params, config: config)
         apiService.send(model: model, responseType: GigyaDictionary.self, completion: completion)
     }
     
@@ -320,14 +320,14 @@ class BusinessApiService: NSObject, BusinessApiServiceProtocol {
 
         GigyaLogger.log(with: self, message: "[removeConnection]: params: \(params)")
 
-        let model = ApiRequestModel(method: GigyaDefinitions.API.removeConnection, params: params)
+        let model = ApiRequestModel(method: GigyaDefinitions.API.removeConnection, params: params, config: config)
         apiService.send(model: model, responseType: GigyaDictionary.self, completion: completion)
     }
     
     func logout(completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void) {
         GigyaLogger.log(with: self, message: "[logout]")
 
-        let model = ApiRequestModel(method: GigyaDefinitions.API.logout, params: [:])
+        let model = ApiRequestModel(method: GigyaDefinitions.API.logout, params: [:], config: config)
         apiService.send(model: model, responseType: GigyaDictionary.self) { [weak self] result in
             self?.sessionService.clear()
             self?.sessionService.clearCookies()
@@ -361,7 +361,7 @@ class BusinessApiService: NSObject, BusinessApiServiceProtocol {
     }
 
     func forgotPassword(params: [String: Any], completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void) {
-        let model = ApiRequestModel(method: GigyaDefinitions.API.resetPassword, params: params)
+        let model = ApiRequestModel(method: GigyaDefinitions.API.resetPassword, params: params, config: config)
         apiService.send(model: model, responseType: GigyaDictionary.self, completion: completion)
     }
 
@@ -371,7 +371,7 @@ class BusinessApiService: NSObject, BusinessApiServiceProtocol {
         var params: [String: Any] = [:]
         params["loginID"] = loginId
 
-        let model = ApiRequestModel(method: GigyaDefinitions.API.isAvailableLoginID, params: params)
+        let model = ApiRequestModel(method: GigyaDefinitions.API.isAvailableLoginID, params: params, config: config)
 
         apiService.send(model: model, responseType: GigyaDictionary.self) { result in
             switch result {
@@ -385,7 +385,7 @@ class BusinessApiService: NSObject, BusinessApiServiceProtocol {
     }
 
     func getSchema(params: [String: Any], completion: @escaping (GigyaApiResult<GigyaSchema>) -> Void) {
-        let model = ApiRequestModel(method: GigyaDefinitions.API.getSchema, params: params)
+        let model = ApiRequestModel(method: GigyaDefinitions.API.getSchema, params: params, config: config)
 
         apiService.send(model: model, responseType: GigyaSchema.self) { result in
             switch result {
@@ -398,7 +398,7 @@ class BusinessApiService: NSObject, BusinessApiServiceProtocol {
     }
     
     func verifySession(params: [String: Any], completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void) {
-        let model = ApiRequestModel(method: GigyaDefinitions.API.isSessionValid, params: params)
+        let model = ApiRequestModel(method: GigyaDefinitions.API.isSessionValid, params: params, config: config)
 
         apiService.send(model: model, responseType: GigyaDictionary.self) { result in
             switch result {
@@ -415,7 +415,7 @@ class BusinessApiService: NSObject, BusinessApiServiceProtocol {
                       "subject_token_type": "urn:gigya:token-type:mobile",
                       "response_type": "code"
         ]
-        let model = ApiRequestModel(method: "accounts.identity.token.exchange", params: params)
+        let model = ApiRequestModel(method: "accounts.identity.token.exchange", params: params, config: config)
 
         apiService.send(model: model, responseType: GigyaDictionary.self) { result in
             switch result {

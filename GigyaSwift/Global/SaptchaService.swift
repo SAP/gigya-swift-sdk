@@ -17,7 +17,7 @@ final class SaptchaService {
     
     @available(iOS 13.0, *)
     func startChallenge(completion: @escaping (GigyaApiResult<String>) -> Void)  {
-        let model = ApiRequestModel(method: GigyaDefinitions.Saptcha.getChallenge)
+        let model = ApiRequestModel(method: GigyaDefinitions.Saptcha.getChallenge, config: businessApiService.config)
         businessApiService.apiService.send(model: model, responseType: GigyaDictionary.self) { [weak self] result in
             switch result {
             case .success(data: let data):
@@ -33,7 +33,7 @@ final class SaptchaService {
     private func verifyChallenge(token: String, completion: @escaping (GigyaApiResult<String>) -> Void)  {
         let verifyAlgo = saptchaUtils.verifySaptcha(jwt: token)
         let params = ["token": "\(token)|\(verifyAlgo)"]
-        let model = ApiRequestModel(method: GigyaDefinitions.Saptcha.verify, params: params)
+        let model = ApiRequestModel(method: GigyaDefinitions.Saptcha.verify, params: params, config: businessApiService.config)
         
         businessApiService.apiService.send(model: model, responseType: GigyaDictionary.self) { result in
             switch result {
