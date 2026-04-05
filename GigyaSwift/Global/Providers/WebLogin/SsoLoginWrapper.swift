@@ -117,7 +117,7 @@ final class SsoLoginWrapper: NSObject, ProviderWrapperProtocol {
 
         let urlString = getUrl()
 
-        networkProvider?.unsignRequest(url: urlString, model: ApiRequestModel(method: EndPoints.token, params: params), completion: { [weak self] data, error in
+        networkProvider?.unsignRequest(url: urlString, model: ApiRequestModel(method: EndPoints.token, params: params, config: config), completion: { [weak self] data, error in
 
             guard let self = self else { return }
 
