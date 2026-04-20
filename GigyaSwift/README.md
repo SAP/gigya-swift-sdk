@@ -133,12 +133,28 @@ Gigya.sharedInstance().initFor(apiKey: "YOUR-API-KEY", apiDomain: "YOUR-API-DOMA
 ```
 ### CNAME initialization
 
-When using implicit initialization of the SDK, add the "GigyaCname" property to your app’s plist file.
+When using implicit initialization of the SDK, add the "GigyaCname" property to your app's plist file.
 
 When using explicit initialization of the SDK, you can use the following method:
 ```swift
 public  func  initFor(apiKey: String, apiDomain: String?  =  nil, cname: String?  =  nil)
 ```
+
+### Setting Global Headers
+
+You can configure custom HTTP headers that will be automatically applied to all API requests made through the SDK. This is useful for adding custom tracking headers, authentication tokens, or any other headers required by your infrastructure.
+
+```swift
+/*
+Set global headers that will be included in every API request.
+*/
+Gigya.sharedInstance().setGlobal(headers: [
+    "X-Custom-Header": "your-value",
+    "X-Tracking-ID": "tracking-123"
+])
+```
+
+Note: If a per-request parameter conflicts with a global header, the per-request value will take precedence.
 
 ## Sending a Request
 
@@ -347,6 +363,38 @@ For certain social providers, the SDK supports social login via the social provi
 
 This is done by using the provider’s native SDK, so this method will require you to add its required libraries and wrappers to your Swift project.
 
+## External Authentication Providers
+
+The SDK supports authentication via external social providers (for example, Facebook, Google, LINE) through External Provider classes.
+An external provider defines how a third-party identity provider supplies an identifier or access token that can be exchanged for a session within our platform.
+How It Works
+1. The client application integrates the third-party provider’s SDK (e.g., LINE Login).
+2. The provider SDK returns an access token or ID token.
+3. The client passes this token to the SDK using the corresponding External Provider class.
+4. The SDK validates the token and issues a session within our platform.
+ 
+### Responsibilities
+
+**Client responsibility**
+
+* Implement and maintain the third-party provider integration.
+* Handle provider-specific authentication flows.
+* Retrieve the required token (ID token or access token) from the provider SDK.
+
+**SDK responsibility**
+
+* Define the expected token format via External Provider configurations.
+* Validate the provided token.
+* Create and manage the platform session based on the validated token.
+
+**Reference Implementations**
+
+The SDK includes baseline example code for supported providers to demonstrate:
+* Required scopes
+* Token extraction
+* Expected data passed to the SDK
+These examples are intended as references only and may need to be adapted to fit the client application’s architecture and authentication flow.
+
 As part of this implementation, you will need to add a wrapper class to your application corresponding to the social provider, which is responsible for initiating the correct provider flow to retrieve the required token/code. If you are not adding the wrappers to your main application bundle, use the following example method to register them so that the SDK will be able to identify them.
 
 Example for registering the Apple social provider:
@@ -414,6 +462,11 @@ The Gigya Swift SDK allows you to enable LINE native login for users that have t
 Instructions can be found at Integrating LINE Login with an iOS app.
 
 After you have completed adding Line SDK to your project you need to import "LineWrapper.swift" file from the "GigyaProviders" dictionary to your Xcode project.
+
+### Supporting LINE Email Retrieval
+
+To enable email retrieval from LINE, include the .email and .openID permissions in the LINE login request. After authentication, retrieve the ID token from loginResult.accessToken.IDTokenRaw and pass it in the login callback’s jsonData map. For guidance on this flow, refer to the example in LineWrapper.swift included in the packaged provider.
+
 
 ### WeChat
 
@@ -520,27 +573,19 @@ Where `IDENTIFIER-TYPE` follows the format: `gigya.com/identifiers/customIdentif
 ## FIDO/WebAuthn Authentication
 FIDO is a passwordless authentication method that enables password-only logins to be replaced with secure and fast login experiences across websites and apps.
 Our SDK provides an interface to register a passkey, login, and revoke passkeys created using Fido/Passkeys, backed by our WebAuthn service.
-​
-### SDK limitations:
-Only one passkey is supported at a time. Once registering a new key, the client's previous key will be automatically revoked.
-​
+
 ### SDK prerequisites:
 iOS 16+
-​
 To use Fido authentication on mobile, make sure you have correctly set up your **Fido Configuration** section under the **Identity -> Security -> Authentication** tab of your SAP Customer Data Cloud console.
-​
+
 **Interoperability with your website**
 You must have an associated domain with the webcredentials service type when making a registration or assertion request; otherwise, the request returns an error. See [Supporting associated domains](https://developer.apple.com/documentation/xcode/supporting-associated-domains) for more information.
-​
+
 ### Implementation.
-The Fido interface contains 3 methods:
-​
+The Fido interface contains 5 methods:
+
 **Registration:**
 Registering a new passkey can be performed only when a valid session is available.
-```
-```
-```
-```
 ```
 let result = await gigya.webAuthn.register(viewController: self)
         switch result {
@@ -550,7 +595,6 @@ let result = await gigya.webAuthn.register(viewController: self)
           <#code#>
         }
 ```
-​
 **Login:**
 Logging in using a valid passkey.
 ```
@@ -562,10 +606,19 @@ Logging in using a valid passkey.
                     <#code#>
                 }
 ```
-​
-​
-**Revoke:**
-Revoking the current passkey. Logging in will not be available until registering a new one.
+**Get Credentials:**
+Retrieve all passkeys associated with the current user account from the server.
+```
+let result = await gigya.webAuthn.getCredentials()
+        switch result {
+        case .success(let data):
+          <#code#>
+        case .failure(let error):
+          <#code#>
+        }
+```
+**Revoke (All):**
+Revoking all passkeys associated with the current user account. This will revoke all passkeys created by the native regiter method (only) from the server and delete the record from the SDK.
 ```
 let result = await gigya.webAuthn.revoke()
         switch result {
@@ -575,7 +628,23 @@ let result = await gigya.webAuthn.revoke()
           <#code#>
         }
 ```
+**Revoke (Specific):**
+Revoking a specific passkey by its ID. This will revoke the passkey created from native and web from the server and from the device. Use this method after calling `getCredentials` to obtain the specific passkey ID from the server. 
+```
+let result = await gigya.webAuthn.revoke(id: "passkey-id")
+        switch result {
+        case .success(let data):
+          <#code#>
+        case .failure(let error):
+          <#code#>
+        }
+```
 
+***Note:***
+Revoking passkeys will not remove the passkey from password managers.
+
+### Interoperability with Web Screen-Sets
+Native passkey support is fully interchangeable with web screen-sets when configured on the same domain. Users can now integrate web screen-sets using passkeys, providing a seamless authentication experience across both native mobile implementations and web-based screen-sets within the same application.
 
 ## Logout
 

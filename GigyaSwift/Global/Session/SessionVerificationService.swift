@@ -79,7 +79,7 @@ class SessionVerificationService: SessionVerificationServiceProtocol {
         sessionLifeCountdownTimer = Timer.scheduledTimer(withTimeInterval: timeInterval, repeats: true, block: { [weak self] (timer) in
             guard let self = self else { return }
 
-            let reqModel = ApiRequestModel(method: GigyaDefinitions.API.verifyLogin, params: ["include": "identities-all,loginIDs,profile,email,data"], isAnonymous: true)
+            let reqModel = ApiRequestModel(method: GigyaDefinitions.API.verifyLogin, params: ["include": "identities-all,loginIDs,profile,email,data"], isAnonymous: true, config: config)
 
             self.apiService.send(model: reqModel, responseType: GigyaDictionary.self, completion: { (result) in
                 switch result {
