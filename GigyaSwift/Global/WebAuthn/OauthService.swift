@@ -18,7 +18,7 @@ class OauthService {
     
     func connect(token: String, completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void) {
         var model = ApiRequestModel(method: GigyaDefinitions.Oauth.connect, config: businessApiService.config)
-        model.headers = ["Authorization": "Bearer \(token)"]
+        model.headers?["Authorization"] = "Bearer \(token)"
         businessApiService.apiService.send(model: model, responseType: GigyaDictionary.self) { result in
             completion(result)
         }
@@ -26,7 +26,7 @@ class OauthService {
     
     func disconnect(idToken: String, ignoreApiQueue: Bool = true, completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void) {
         var model = ApiRequestModel(method: GigyaDefinitions.Oauth.disconnect, params: ["ignoreApiQueue": ignoreApiQueue], config: businessApiService.config)
-        model.headers = ["Authorization": "Bearer \(idToken)"]
+        model.headers?["Authorization"] = "Bearer \(idToken)"
         businessApiService.apiService.send(model: model, responseType: GigyaDictionary.self) { result in
             completion(result)
         }
@@ -39,8 +39,8 @@ class OauthService {
             guard let self = self else { return }
             
             var model = ApiRequestModel(method: GigyaDefinitions.Oauth.authorize, params: ["response_type": "code"], config: businessApiService.config)
-            model.headers = ["Authorization": "Bearer \(token)"]
-            
+            model.headers?["Authorization"] = "Bearer \(token)"
+
             self.businessApiService.apiService.send(model: model, responseType: GigyaDictionary.self) { result in
                 switch result {
                 case .success(data: let data):

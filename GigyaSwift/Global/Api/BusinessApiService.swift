@@ -60,7 +60,7 @@ class BusinessApiService: NSObject, BusinessApiServiceProtocol {
     
     func send(api: String, params: [String: Any] = [:], headers: [String: String] = [:], completion: @escaping (GigyaApiResult<GigyaDictionary>) -> Void ) {
         var model = ApiRequestModel(method: api, params: params, config: config)
-        model.headers = headers
+        model.headers?.merge(headers) { $1 }
         apiService.send(model: model, responseType: GigyaDictionary.self, completion: completion)
     }
 

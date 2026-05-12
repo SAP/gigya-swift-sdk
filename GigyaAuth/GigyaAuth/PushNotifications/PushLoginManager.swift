@@ -14,6 +14,8 @@ final class PushLoginManager: NSObject, BasePushManagerProtocol {
 
     let container: IOCContainer
 
+    let config: GigyaConfig
+    
     let apiService: ApiServiceProtocol
 
     let sessionService: SessionServiceProtocol
@@ -33,6 +35,7 @@ final class PushLoginManager: NSObject, BasePushManagerProtocol {
         self.pushService = container.resolve(PushNotificationsServiceExternalProtocol.self)!
         self.biometricService = container.resolve(BiometricServiceProtocol.self)!
         self.generalUtils = container.resolve(GeneralUtils.self)!
+        self.config = container.resolve(GigyaConfig.self)!
 
         super.init()
 
@@ -65,7 +68,7 @@ final class PushLoginManager: NSObject, BasePushManagerProtocol {
         }
 
         let deviceInfo = ["platform": "ios", "os": generalUtils.iosVersion(), "man": "apple", "pushToken": pushToken]
-        let model = ApiRequestModel(method: GigyaDefinitions.API.pushOptinLogin, params: ["deviceInfo": deviceInfo])
+        let model = ApiRequestModel(method: GigyaDefinitions.API.pushOptinLogin, params: ["deviceInfo": deviceInfo], config: config)
 
         apiService.send(model: model, responseType: GigyaDictionary.self) { result in
             switch result {
@@ -131,7 +134,7 @@ final class PushLoginManager: NSObject, BasePushManagerProtocol {
     }
 
     private func completeVerification(verificationToken: String) {
-        let model = ApiRequestModel(method: GigyaDefinitions.API.pushVerifyLogin, params: ["vToken": verificationToken])
+        let model = ApiRequestModel(method: GigyaDefinitions.API.pushVerifyLogin, params: ["vToken": verificationToken], config: config)
 
         apiService.send(model: model, responseType: GigyaDictionary.self) { [weak self] result in
             switch result {
