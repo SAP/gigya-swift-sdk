@@ -4,6 +4,9 @@ on:
   issues:
     types:
       - opened
+permissions:
+  contents: read
+  issues: read
 jobs:
   test-transition-issue:
     name: Open Issue

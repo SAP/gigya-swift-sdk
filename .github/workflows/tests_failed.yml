@@ -5,6 +5,9 @@ on:
   repository_dispatch:
     types: [trigger_event_from_tests_failed]
 
+permissions:
+  contents: read
+
 jobs:
   tests_done:
       runs-on: ubuntu-latest
