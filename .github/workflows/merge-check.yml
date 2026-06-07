@@ -1,0 +1,25 @@
+name: Merge Check
+
+on:
+  pull_request:
+
+jobs:
+  mergeable:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check if PR is mergeable
+        uses: actions/github-script@v8
+        with:
+          script: |
+            const { data } = await github.rest.pulls.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.payload.pull_request.number
+            });
+
+            if (data.mergeable === false) {
+              core.setFailed('PR has merge conflicts');
+            }
+
+            console.log('PR is mergeable');
