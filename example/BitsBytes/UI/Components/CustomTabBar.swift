@@ -20,6 +20,7 @@ struct CustomTabBar: View {
                         .colorMultiply(tab == selectedTab ? .white : .gray)
                         .opacity(tab == selectedTab ? 1 : 0.4)
                         .scaleEffect(tab == selectedTab ? 1.25 : 1)
+                        .accessibilityElement(children: .ignore)
                         .accessibilityIdentifier("\(tab.rawValue)TabButton")
                         .onTapGesture {
                             withAnimation(.easeInOut(duration: 0.2)) {
