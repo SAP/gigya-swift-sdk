@@ -4,7 +4,7 @@ class RegistrationTests: BaseTestCase {
 
     func testRegisterSuccess() {
         navigateToRegister()
-        let randomEmail = "bitsbytes+\(Int.random(in: 10000...99999))@mailinator.com"
+        let randomEmail = "bitsbytes+\(Int.random(in: 10000...99999))@\(TestCredentials.registrationDomain)"
         app.textFields["RegisterScreenView_firstNameInput"].clearAndType(TestCredentials.firstName)
         app.textFields["RegisterScreenView_lastNameInput"].clearAndType(TestCredentials.lastName)
         app.textFields["RegisterScreenView_emailInput"].clearAndType(randomEmail)
