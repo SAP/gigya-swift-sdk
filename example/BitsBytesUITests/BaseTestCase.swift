@@ -9,6 +9,16 @@ open class BaseTestCase: XCTestCase {
         app = XCUIApplication()
         app.launchArguments = ["--Reset"]
         app.launch()
+        waitForSplash()
+    }
+
+    // Splash covers the UI for ~1s on launch — wait for it to dismiss
+    // before any test interaction, otherwise tab bar taps silently fail.
+    private func waitForSplash() {
+        let tabBar = app.otherElements["homeTabButton"]
+        let predicate = NSPredicate(format: "exists == 1")
+        expectation(for: predicate, evaluatedWith: tabBar)
+        waitForExpectations(timeout: 10)
     }
 
     override open func tearDown() {

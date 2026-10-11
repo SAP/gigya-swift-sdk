@@ -12,7 +12,9 @@ extension XCUIElement {
     }
 
     func waitAndTap(timeout: TimeInterval = 10) {
-        let predicate = NSPredicate(format: "exists == 1 AND isHittable == 1")
+        // Wait for existence only — onTapGesture elements (e.g. SwiftUI Image tabs)
+        // are never reported as isHittable by XCUITest even when fully visible.
+        let predicate = NSPredicate(format: "exists == 1")
         let expectation = XCTNSPredicateExpectation(predicate: predicate, object: self)
         XCTWaiter().wait(for: [expectation], timeout: timeout)
         tap()
