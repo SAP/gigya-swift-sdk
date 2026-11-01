@@ -5,9 +5,15 @@ struct GigyaUtils {
         let app = XCUIApplication()
         app.launchArguments = []
         app.launch()
-        let logoutButton = app.buttons["LoggedIn_logoutButton"]
-        if logoutButton.waitForExistence(timeout: 3) {
-            logoutButton.tap()
+        // Navigate to profile tab and scroll down so the logout row is visible
+        let profileTab = app.otherElements["profileTabButton"]
+        if profileTab.waitForExistence(timeout: 5) {
+            profileTab.tap()
+            app.swipeUp()
+        }
+        let logoutText = app.staticTexts["LoggedIn_logoutButton"]
+        if logoutText.waitForExistence(timeout: 3) {
+            logoutText.tap()
         }
     }
 }

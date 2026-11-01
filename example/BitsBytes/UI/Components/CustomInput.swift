@@ -8,15 +8,16 @@
 import SwiftUI
 
 struct CustomInput: View {
-    
+
     let label: String
     let placeholder: String
     var secured: Bool = false
-    
+    var accessibilityId: String = ""
+
     @Binding var value: String
     @State var disable = false
     @State var lineColor = Color(red: 217/255, green: 217/255, blue: 217/255)
-    
+
     var body: some View {
         VStack {
             VStack {
@@ -30,7 +31,7 @@ struct CustomInput: View {
                         .placeholder(when: value.isEmpty) {
                             Text(placeholder).foregroundColor(.gray).accessibilityHidden(true)
                         }
-                        .accessibilityIdentifier("SecureField")
+                        .accessibilityIdentifier(accessibilityId.isEmpty ? "SecureField" : accessibilityId)
 
                 } else {
                     TextField("", text: $value, onEditingChanged: { state in
@@ -45,7 +46,7 @@ struct CustomInput: View {
                     .placeholder(when: value.isEmpty) {
                         Text(placeholder).foregroundColor(.gray).accessibilityHidden(true)
                     }
-                    .accessibilityIdentifier("TextField")
+                    .accessibilityIdentifier(accessibilityId.isEmpty ? "TextField" : accessibilityId)
 
                 }
             }.padding(EdgeInsets(top: 10, leading: 30, bottom: 10, trailing: 30))
@@ -75,6 +76,7 @@ struct CustomInputStyle2: View {
             
             if secured  {
                 SecureField(placeholder, text: $value)
+                    .textContentType(.init(rawValue: ""))
                     .textFieldStyle(.roundedBorder)
                     .border(width: 0.6, edges: [.bottom], color: .gray)
             } else {

@@ -194,64 +194,6 @@
             endingLineNumber = "64"
             landmarkName = "useFido()"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "EAD44EAB-2A59-4633-9580-CBDEF66B59FE - a26b54c23ccaec64"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(1) suspend resume partial function for closure #2 () async -&gt; () in BitsBytes.PasswordlessViewModel.useFido() -&gt; ()"
-                  moduleName = "BitsBytes.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/i507698/Documents/gigya-swift-sdk/example/BitsBytes/UI/ViewModels/PasswordlessViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "65"
-                  endingLineNumber = "65">
-               </Location>
-               <Location
-                  uuid = "EAD44EAB-2A59-4633-9580-CBDEF66B59FE - a26b54c23ccaec64"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(1) suspend resume partial function for closure #2 () async -&gt; () in BitsBytes.PasswordlessViewModel.useFido() -&gt; ()"
-                  moduleName = "BitsBytes.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/i507698/Documents/gigya-swift-sdk/example/BitsBytes/UI/ViewModels/PasswordlessViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "65"
-                  endingLineNumber = "65">
-               </Location>
-               <Location
-                  uuid = "EAD44EAB-2A59-4633-9580-CBDEF66B59FE - b8e9b5531a0d2066"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(3) suspend resume partial function for closure #2 () async -&gt; () in BitsBytes.PasswordlessViewModel.useFido() -&gt; ()"
-                  moduleName = "BitsBytes.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/i507698/Documents/gigya-swift-sdk/example/BitsBytes/UI/ViewModels/PasswordlessViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "65"
-                  endingLineNumber = "65">
-               </Location>
-               <Location
-                  uuid = "EAD44EAB-2A59-4633-9580-CBDEF66B59FE - b8e9b5531a0d2066"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(3) suspend resume partial function for closure #2 () async -&gt; () in BitsBytes.PasswordlessViewModel.useFido() -&gt; ()"
-                  moduleName = "BitsBytes.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/i507698/Documents/gigya-swift-sdk/example/BitsBytes/UI/ViewModels/PasswordlessViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "65"
-                  endingLineNumber = "65">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -284,50 +226,6 @@
             endingLineNumber = "56"
             landmarkName = "useFido()"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "BC35C535-9A45-42EA-8968-634201659E4E - a26b54c23ccaef33"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(1) suspend resume partial function for closure #2 () async -&gt; () in BitsBytes.PasswordlessViewModel.useFido() -&gt; ()"
-                  moduleName = "BitsBytes.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/i507698/Documents/gigya-swift-sdk/example/BitsBytes/UI/ViewModels/PasswordlessViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "56"
-                  endingLineNumber = "56">
-               </Location>
-               <Location
-                  uuid = "BC35C535-9A45-42EA-8968-634201659E4E - f23675203a10d804"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(2) await resume partial function for closure #2 () async -&gt; () in BitsBytes.PasswordlessViewModel.useFido() -&gt; ()"
-                  moduleName = "BitsBytes.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/i507698/Documents/gigya-swift-sdk/example/BitsBytes/UI/ViewModels/PasswordlessViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "56"
-                  endingLineNumber = "56">
-               </Location>
-               <Location
-                  uuid = "BC35C535-9A45-42EA-8968-634201659E4E - b8e9b5531a0d2331"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(3) suspend resume partial function for closure #2 () async -&gt; () in BitsBytes.PasswordlessViewModel.useFido() -&gt; ()"
-                  moduleName = "BitsBytes.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/i507698/Documents/gigya-swift-sdk/example/BitsBytes/UI/ViewModels/PasswordlessViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "56"
-                  endingLineNumber = "56">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -408,64 +306,6 @@
             endingLineNumber = "54"
             landmarkName = "fidoLogin()"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "40BD6508-9768-4CBB-8BC0-F5FDD8AD6626 - b59f316e8c9a71ba"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(5) suspend resume partial function for BitsBytes.SignInViewModel.fidoLogin() async -&gt; Swift.Bool"
-                  moduleName = "BitsBytes.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/i507698/Documents/gigya-swift-sdk/example/BitsBytes/UI/ViewModels/SignInViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "54"
-                  endingLineNumber = "54">
-               </Location>
-               <Location
-                  uuid = "40BD6508-9768-4CBB-8BC0-F5FDD8AD6626 - cb205d4f2168db0"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(7) suspend resume partial function for BitsBytes.SignInViewModel.fidoLogin() async -&gt; Swift.Bool"
-                  moduleName = "BitsBytes.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/i507698/Documents/gigya-swift-sdk/example/BitsBytes/UI/ViewModels/SignInViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "54"
-                  endingLineNumber = "54">
-               </Location>
-               <Location
-                  uuid = "40BD6508-9768-4CBB-8BC0-F5FDD8AD6626 - 8bd51e3ae182d9ae"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(9) suspend resume partial function for BitsBytes.SignInViewModel.fidoLogin() async -&gt; Swift.Bool"
-                  moduleName = "BitsBytes.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/i507698/Documents/gigya-swift-sdk/example/BitsBytes/UI/ViewModels/SignInViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "54"
-                  endingLineNumber = "54">
-               </Location>
-               <Location
-                  uuid = "40BD6508-9768-4CBB-8BC0-F5FDD8AD6626 - d3a2f842092c137e"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(11) suspend resume partial function for BitsBytes.SignInViewModel.fidoLogin() async -&gt; Swift.Bool"
-                  moduleName = "BitsBytes.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/i507698/Documents/gigya-swift-sdk/example/BitsBytes/UI/ViewModels/SignInViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "54"
-                  endingLineNumber = "54">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -600,7 +440,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "6AAB6FB1-A623-4455-A549-2E5615C7FE13"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BitsBytes/UI/ViewModels/AboutMeViewModel.swift"

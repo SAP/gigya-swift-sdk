@@ -38,8 +38,7 @@ struct PenddingRegistrationScreenView: View {
                         currentCordinator.routing.popToRoot()
                         currentCordinator.parent.isLoggedIn = true
                     }
-                }, label: "SEND")
-                .accessibilityId(self, "saveButton")
+                }, label: "SEND", accessibilityId: "PenddingRegistrationScreenView_saveButton")
                             
                 Spacer(minLength: 5)
                 

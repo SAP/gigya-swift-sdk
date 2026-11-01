@@ -13,7 +13,7 @@ struct RegisterScreenView: View {
     @Environment(ProfileCoordinator.self) var currentCordinator: ProfileCoordinator
 
     var body: some View {
-        VStack {
+        ScrollView {
             VStack {
                 Text("Create your account")
                     .bold()
@@ -86,17 +86,17 @@ struct RegisterScreenView: View {
                         currentCordinator.routing.popToRoot()
                         currentCordinator.parent.isLoggedIn = true
                     }
-                }, label: "Register")
-                .accessibilityId(self, "registerButton")
+                }, label: "Register", accessibilityId: "RegisterScreenView_registerButton")
                                 
                 Text(viewModel.error)
                     .foregroundStyle(.red)
                     .bold()
                     .accessibilityId(self, "errorLabel")
 
-                
+
             }
         }
+        .scrollDismissesKeyboard(.interactively)
         .modifier(LoaderModifier(showSpinner: $viewModel.showLoder))
         .modifier(NavBar(Text("Register").bold()))
     }

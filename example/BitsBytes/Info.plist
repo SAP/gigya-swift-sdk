@@ -30,9 +30,9 @@
 	<key>FirebaseAppDelegateProxyEnabled</key>
 	<false/>
 	<key>GigyaApiDomain</key>
-	<string>us1.gigya.com</string>
+	<string>#GIGYA_API_DOMAIN#</string>
 	<key>GigyaApiKey</key>
-	<string>4_S8VHbHlOBdJrX8CRYjIbdw</string>
+	<string>#GIGYA_API_KEY#</string>
 	<key>GoogleClientID</key>
 	<string>#GOOGLE_CLIENT_ID#</string>
 	<key>GoogleServerClientID</key>

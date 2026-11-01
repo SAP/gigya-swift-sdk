@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -76,6 +76,16 @@
 		E7FEA4EF2C4FA9B1003A3973 /* PenddingRegistrationScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FEA4EE2C4FA9B1003A3973 /* PenddingRegistrationScreenView.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		E7DABBCE307B76B3006C353B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E73B9A472B5FC58F0018E9B4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E73B9A4E2B5FC58F0018E9B4;
+			remoteInfo = BitsBytes;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		3489883CF507FA60E79F18AE /* Pods_BitsBytes.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BitsBytes.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		36500EF345FAE48629CE033A /* Pods-BitsBytes.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BitsBytes.debug.xcconfig"; path = "Target Support Files/Pods-BitsBytes/Pods-BitsBytes.debug.xcconfig"; sourceTree = "<group>"; };
@@ -127,6 +137,7 @@
 		E78A32F12B83436A00C892D8 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		E7D3180F2C16FF60005B03A3 /* OtpScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtpScreenView.swift; sourceTree = "<group>"; };
 		E7D318112C171B70005B03A3 /* OtpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtpViewModel.swift; sourceTree = "<group>"; };
+		E7DABBCA307B76B3006C353B /* BitsBytesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BitsBytesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7F954562D61D1C000D95D74 /* SafariWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariWebView.swift; sourceTree = "<group>"; };
 		E7F9546D2D953F1100D95D74 /* ScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
 		E7F9546F2D95403400D95D74 /* DeviceFlowScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceFlowScreenView.swift; sourceTree = "<group>"; };
@@ -150,12 +161,23 @@
 		E7FEA4EE2C4FA9B1003A3973 /* PenddingRegistrationScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PenddingRegistrationScreenView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		E7DABBCB307B76B3006C353B /* BitsBytesUITests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = BitsBytesUITests; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
+
 /* Begin PBXFrameworksBuildPhase section */
 		E73B9A4C2B5FC58F0018E9B4 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				7FA82FB283C1A4E9F1A96655 /* Pods_BitsBytes.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E7DABBC7307B76B3006C353B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -184,6 +206,7 @@
 			children = (
 				E78A32F12B83436A00C892D8 /* Launch Screen.storyboard */,
 				E788BCB02B8357A200C8F772 /* BitsBytes */,
+				E7DABBCB307B76B3006C353B /* BitsBytesUITests */,
 				E73B9A502B5FC58F0018E9B4 /* Products */,
 				7329D39CD82828A16CB88EE7 /* Pods */,
 				A5F18AAC529548A5790ABB50 /* Frameworks */,
@@ -194,6 +217,7 @@
 			isa = PBXGroup;
 			children = (
 				E73B9A4F2B5FC58F0018E9B4 /* BitsBytes.app */,
+				E7DABBCA307B76B3006C353B /* BitsBytesUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -413,6 +437,29 @@
 			productReference = E73B9A4F2B5FC58F0018E9B4 /* BitsBytes.app */;
 			productType = "com.apple.product-type.application";
 		};
+		E7DABBC9307B76B3006C353B /* BitsBytesUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E7DABBD0307B76B3006C353B /* Build configuration list for PBXNativeTarget "BitsBytesUITests" */;
+			buildPhases = (
+				E7DABBC6307B76B3006C353B /* Sources */,
+				E7DABBC7307B76B3006C353B /* Frameworks */,
+				E7DABBC8307B76B3006C353B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E7DABBCF307B76B3006C353B /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				E7DABBCB307B76B3006C353B /* BitsBytesUITests */,
+			);
+			name = BitsBytesUITests;
+			packageProductDependencies = (
+			);
+			productName = BitsBytesUITests;
+			productReference = E7DABBCA307B76B3006C353B /* BitsBytesUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -420,11 +467,15 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1500;
+				LastSwiftUpdateCheck = 2700;
 				LastUpgradeCheck = 1500;
 				TargetAttributes = {
 					E73B9A4E2B5FC58F0018E9B4 = {
 						CreatedOnToolsVersion = 15.0;
+					};
+					E7DABBC9307B76B3006C353B = {
+						CreatedOnToolsVersion = 27.0;
+						TestTargetID = E73B9A4E2B5FC58F0018E9B4;
 					};
 				};
 			};
@@ -442,6 +493,7 @@
 			projectRoot = "";
 			targets = (
 				E73B9A4E2B5FC58F0018E9B4 /* BitsBytes */,
+				E7DABBC9307B76B3006C353B /* BitsBytesUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -455,6 +507,13 @@
 				E7FA5C522D23EA0300AC7162 /* GoogleService-Info.plist in Resources */,
 				E788BCEF2B8357A300C8F772 /* Preview Assets.xcassets in Resources */,
 				E78A32F22B83436A00C892D8 /* Launch Screen.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E7DABBC8307B76B3006C353B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -491,9 +550,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-BitsBytes/Pods-BitsBytes-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-BitsBytes/Pods-BitsBytes-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -572,7 +635,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E7DABBC6307B76B3006C353B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E7DABBCF307B76B3006C353B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E73B9A4E2B5FC58F0018E9B4 /* BitsBytes */;
+			targetProxy = E7DABBCE307B76B3006C353B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		E73B9A5B2B5FC5920018E9B4 /* Debug */ = {
@@ -717,7 +795,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UIUserInterfaceStyle = light;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -754,7 +832,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UIUserInterfaceStyle = light;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -765,6 +843,48 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		E7DABBD1307B76B3006C353B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = SQR2SK9629;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sap.ciam.BitsBytesUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = BitsBytes;
+			};
+			name = Debug;
+		};
+		E7DABBD2307B76B3006C353B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = SQR2SK9629;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sap.ciam.BitsBytesUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = BitsBytes;
 			};
 			name = Release;
 		};
@@ -785,6 +905,15 @@
 			buildConfigurations = (
 				E73B9A5E2B5FC5920018E9B4 /* Debug */,
 				E73B9A5F2B5FC5920018E9B4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E7DABBD0307B76B3006C353B /* Build configuration list for PBXNativeTarget "BitsBytesUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E7DABBD1307B76B3006C353B /* Debug */,
+				E7DABBD2307B76B3006C353B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

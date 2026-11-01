@@ -26,8 +26,33 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES"
-      shouldAutocreateTestPlan = "YES">
+      shouldUseLaunchSchemeArgsEnv = "YES">
+      <PreActions>
+         <ExecutionAction
+            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
+            <ActionContent
+               title = "Disable Software Keyboard"
+               scriptText = "for udid in $(xcrun simctl list devices booted -j | python3 -c &quot;import sys,json; devs=json.load(sys.stdin)[&apos;devices&apos;]; [print(d[&apos;udid&apos;]) for v in devs.values() for d in v if d[&apos;state&apos;]==&apos;Booted&apos;]&quot;); do&#10;  plutil -replace AutomaticMinimizationEnabled -bool YES ~/Library/Developer/CoreSimulator/Devices/$udid/data/Library/Preferences/com.apple.keyboard.preferences.plist 2&gt;/dev/null || true&#10;done&#10;">
+            </ActionContent>
+         </ExecutionAction>
+      </PreActions>
+      <TestPlans>
+         <TestPlanReference
+            reference = "container:BitsBytes.xcodeproj/xcshareddata/xcschemes/BitsBytesE2E.xctestplan"
+            default = "YES">
+         </TestPlanReference>
+      </TestPlans>
+      <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "E7DABBC9307B76B3006C353B"
+               BuildableName = "BitsBytesUITests.xctest"
+               ReferencedContainer = "container:BitsBytes.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+      </Testables>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"

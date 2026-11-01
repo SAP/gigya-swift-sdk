@@ -53,13 +53,15 @@ struct CustomDarkButton: View {
     let action: () -> Void
     let label: String
     let padding: Int
+    var accessibilityId: String = ""
 
-    init(action: @escaping () -> Void, label: String, padding: Int = 60) {
+    init(action: @escaping () -> Void, label: String, padding: Int = 60, accessibilityId: String = "") {
         self.action = action
         self.label = label
         self.padding = padding
+        self.accessibilityId = accessibilityId
     }
-    
+
     var body: some View {
         Button{
             action()
@@ -75,6 +77,7 @@ struct CustomDarkButton: View {
                 .padding(EdgeInsets(top: 3, leading: CGFloat(padding), bottom: 3, trailing: CGFloat(padding)))
         }
         .tint(.white)
+        .accessibilityIdentifier(accessibilityId)
     }
 }
 

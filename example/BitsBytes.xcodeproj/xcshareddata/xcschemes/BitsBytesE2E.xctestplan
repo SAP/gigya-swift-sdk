@@ -1,0 +1,44 @@
+{
+  "configurations" : [
+    {
+      "id" : "1E2E0001-0000-0000-0000-000000000001",
+      "name" : "E2E",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "defaultTestExecutionTimeAllowance" : 60,
+    "testTimeoutsEnabled" : true
+  },
+  "testTargets" : [
+    {
+      "selectedTests" : [
+        "BitsBytesUITests\/testExample()",
+        "BitsBytesUITests\/testLaunchPerformance()",
+        "T01_RegistrationTests\/testRegisterEmptyFields()",
+        "T01_RegistrationTests\/testRegisterPasswordMismatch()",
+        "T01_RegistrationTests\/testRegisterSuccess()",
+        "T02_EmailLoginTests\/testLoginDebug()",
+        "T02_EmailLoginTests\/testLoginEmptyFields()",
+        "T02_EmailLoginTests\/testLoginSuccess()",
+        "T02_EmailLoginTests\/testLoginWrongPassword()",
+        "T03_LogoutTests\/testLogout()",
+        "T03_LogoutTests\/testLogoutDebug()",
+        "T05_ProfileUpdateTests\/testUpdateFirstName()",
+        "T06_ChangePasswordTests\/testChangePasswordSuccess()",
+        "T06_ChangePasswordTests\/testChangePasswordWrongCurrent()",
+        "T07_SocialLoginTests\/testGoogleLogin()",
+        "T08_InterruptionTests\/testPendingRegistration()",
+        "T09_OtpTests\/testOtpLoginPhoneEntry()"
+      ],
+      "target" : {
+        "containerPath" : "container:BitsBytes.xcodeproj",
+        "identifier" : "E7DABBC9307B76B3006C353B",
+        "name" : "BitsBytesUITests"
+      }
+    }
+  ],
+  "version" : 1
+}
