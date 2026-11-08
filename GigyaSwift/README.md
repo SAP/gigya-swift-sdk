@@ -140,6 +140,16 @@ When using explicit initialization of the SDK, you can use the following method:
 public  func  initFor(apiKey: String, apiDomain: String?  =  nil, cname: String?  =  nil)
 ```
 
+### Setting the WebKit Base URL
+
+`GigyaWebBridge` uses `https://www.gigya.com` as the default base URL when loading HTML, including screen sets. To use a custom base URL, configure it before presenting a screen set:
+
+```swift
+Gigya.sharedInstance().setWebViewBaseURL(to: URL(string: "https://login.example.com"))
+```
+
+Changes apply to subsequent HTML loads through `GigyaWebBridge`, including in existing views. Current content is not reloaded. Web login views, API domains and directly loaded navigation URLs are unchanged. This setting does not affect HTML loaded directly by your app.
+
 ### Setting Global Headers
 
 You can configure custom HTTP headers that will be automatically applied to all API requests made through the SDK. This is useful for adding custom tracking headers, authentication tokens, or any other headers required by your infrastructure.
@@ -1181,6 +1191,4 @@ Via pull request to this repository.
 
 ## To-Do (upcoming changes)
 None
-
-
 

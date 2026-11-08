@@ -43,6 +43,7 @@ public class GigyaConfig {
 
     internal var timestampOffset: Double = 0
     internal var requestTimeout = InternalConfig.Network.requestTimeoutDefult
+    internal var webViewBaseURL = InternalConfig.General.defaultWebViewBaseURL
 
     internal var accountConfig: GigyaAccountConfig?
     
