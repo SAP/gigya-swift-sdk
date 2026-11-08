@@ -30,7 +30,9 @@ open class GigyaWebBridge<T: GigyaAccountProtocol>: NSObject, WKScriptMessageHan
     var viewController: UIViewController?
 
     let JSEventHandler = "gsapi"
-    let baseURL = "https://www.gigya.com"
+    var baseURL: String {
+        return config.webViewBaseURL
+    }
 
     var completion: (GigyaPluginEvent<T>) -> Void = { _ in }
 

@@ -1,0 +1,107 @@
+name: E2E - Build and Upload to Sauce Labs
+
+on:
+  workflow_dispatch:
+    inputs:
+      apikey:
+        description: 'Gigya API key to inject into the app'
+        required: true
+        type: string
+      server:
+        description: 'Gigya API domain (e.g. us1.gigya.com, eu1.gigya.com)'
+        required: true
+        type: string
+      ref:
+        description: 'Branch or tag to check out'
+        required: false
+        type: string
+        default: 'main'
+
+jobs:
+  build-and-upload:
+    name: Build XCUITest bundle and upload to Sauce Labs
+    runs-on: macos-latest
+
+    steps:
+      - uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: '16.4'
+
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.ref }}
+
+      - name: Bundle Update
+        run: gem install bundler:2.5.23
+
+      - name: Pod install
+        working-directory: ./example
+        run: pod install --repo-update
+
+      - name: Pod fix
+        working-directory: ./example/Pods/Pods.xcodeproj
+        run: sed -i -e 's/10.0/13.0/g' project.pbxproj
+
+      - name: Inject keys
+        working-directory: ./example/BitsBytes
+        run: |
+          sed -i -e 's/#GIGYA_API_KEY#/${{ inputs.apikey }}/g' Info.plist
+          sed -i -e 's/#GIGYA_API_DOMAIN#/${{ inputs.server }}/g' Info.plist
+          sed -i -e 's/#GOOGLE_CLIENT_ID#/${{ secrets.GOOGLE_CLIENT_ID }}/g' Info.plist
+          sed -i -e 's/#GOOGLE_CLIENT_ID_REVERSED#/${{ secrets.GOOGLE_CLIENT_ID_REVERSED }}/g' Info.plist
+          sed -i -e 's/#GOOGLE_SERVER_ID#/${{ secrets.GOOGLE_SERVER_ID }}/g' Info.plist
+          sed -i -e 's/#FACEBOOK_APPID#/${{ secrets.FACEBOOK_APPID }}/g' Info.plist
+          sed -i -e 's/#FACEBOOK_CLIENT_TOKEN#/${{ secrets.FACEBOOK_CLIENT_TOKEN }}/g' Info.plist
+
+      - name: GoogleService keys
+        working-directory: ./example/BitsBytes
+        run: |
+          sed -i -e 's/#ANDROID_CLIENT_ID#/${{ secrets.ANDROID_CLIENT_ID }}/g' GoogleService-Info.plist
+          sed -i -e 's/#API_KEY#/${{ secrets.API_KEY }}/g' GoogleService-Info.plist
+          sed -i -e 's/#GCM_SENDER_ID#/${{ secrets.GCM_SENDER_ID }}/g' GoogleService-Info.plist
+          sed -i -e 's/#GOOGLE_APP_ID#/${{ secrets.GOOGLE_APP_ID }}/g' GoogleService-Info.plist
+          sed -i '' "s|#DATABASE_URL#|${{ secrets.DATABASE_URL }}|g" GoogleService-Info.plist
+
+      - name: Build for testing
+        working-directory: ./example
+        run: |
+          xcodebuild build-for-testing \
+            -workspace BitsBytes.xcworkspace \
+            -scheme BitsBytes \
+            -derivedDataPath ./build \
+            -sdk iphonesimulator \
+            -destination "generic/platform=iOS Simulator" \
+            -configuration Debug \
+            CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO \
+            ARCHS=arm64
+        shell: bash
+
+      - name: Zip app and test runner
+        working-directory: ./example/build/Build/Products/Debug-iphonesimulator
+        run: |
+          zip -r BitsBytes.zip BitsBytes.app
+          zip -r BitsBytesUITests-Runner.zip BitsBytesUITests-Runner.app
+        shell: bash
+
+      - name: Upload app to Sauce Labs
+        working-directory: ./example/build/Build/Products/Debug-iphonesimulator
+        run: |
+          curl -u '${{ secrets.SUECELABS_USER }}:${{ secrets.SUECELABS_SECRET }}' \
+            --location --request POST \
+            'https://api.eu-central-1.saucelabs.com/v1/storage/upload' \
+            --form payload=@'BitsBytes.zip' \
+            --form name='BitsBytes.zip' \
+            --form description='BitsBytes E2E app' \
+            --silent --show-error --fail
+
+      - name: Upload test runner to Sauce Labs
+        working-directory: ./example/build/Build/Products/Debug-iphonesimulator
+        run: |
+          curl -u '${{ secrets.SUECELABS_USER }}:${{ secrets.SUECELABS_SECRET }}' \
+            --location --request POST \
+            'https://api.eu-central-1.saucelabs.com/v1/storage/upload' \
+            --form payload=@'BitsBytesUITests-Runner.zip' \
+            --form name='BitsBytesUITests-Runner.zip' \
+            --form description='BitsBytes E2E test runner' \
+            --silent --show-error --fail

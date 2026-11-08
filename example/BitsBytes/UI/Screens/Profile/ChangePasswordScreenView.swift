@@ -20,33 +20,26 @@ struct ChangePasswordScreenView: View {
             
             VStack {
                 
-                CustomInput(label: "Current Password", placeholder: "Enter your current password", secured: true, value: $viewModel.currentPass)
-                    .accessibilityId(self, "currentPassInput")
-                
-                CustomInput(label: "New Password", placeholder: "Enter new password", secured: true, value: $viewModel.newPass)
-                    .accessibilityId(self, "newPassInput")
-                
-                CustomInput(label: "Confirm New Password", placeholder: "Enter new password", secured: true, value: $viewModel.confirmPass)
-                    .accessibilityId(self, "confirmPassInput")
-                
+                CustomInput(label: "Current Password", placeholder: "Enter your current password", secured: true, accessibilityId: "ChangePasswordScreenView_currentPassInput", value: $viewModel.currentPass)
+                CustomInput(label: "New Password", placeholder: "Enter new password", secured: true, accessibilityId: "ChangePasswordScreenView_newPassInput", value: $viewModel.newPass)
+                CustomInput(label: "Confirm New Password", placeholder: "Enter new password", secured: true, accessibilityId: "ChangePasswordScreenView_confirmPassInput", value: $viewModel.confirmPass)
+
                 Text(viewModel.error)
                     .foregroundStyle(.red)
                     .bold()
                     .accessibilityId(self, "errorLabel")
                     .padding(EdgeInsets(top: 15, leading: 0, bottom: 0, trailing: 0))
-                
+
                 CustomDarkButton(action: {
                     viewModel.savePassword {
                         if viewModel.flowManager.regToken != nil {
                             currentCordinator.routing.popToRoot()
                             currentCordinator.parent.isLoggedIn = true
-
                         } else {
                             currentCordinator.routing.pop()
                         }
                     }
-                }, label: "Save Password")
-                .accessibilityId(self, "saveButton")
+                }, label: "Save Password", accessibilityId: "ChangePasswordScreenView_saveButton")
                 
                 Spacer(minLength: 5)
                 

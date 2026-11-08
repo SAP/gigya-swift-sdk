@@ -68,8 +68,7 @@ struct SignInEmailScreenView: View {
                         currentCordinator.routing.popToRoot()
                         currentCordinator.parent.isLoggedIn = true
                     }
-                }, label: "Login")
-                .accessibilityId(self, "loginButton")
+                }, label: "Login", accessibilityId: "SignInEmailScreenView_loginButton")
                             
             
             }

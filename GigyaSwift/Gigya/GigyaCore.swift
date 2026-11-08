@@ -116,6 +116,20 @@ public final class GigyaCore<T: GigyaAccountProtocol>: GigyaInstanceProtocol {
         businessApiService.apiService.getSDKConfig()
     }
 
+    // MARK: - WebKit configuration
+    /**
+     Set the base URL used when loading HTML through `GigyaWebBridge`, including screen sets.
+
+     Call before presenting a web view. Changes apply to subsequent HTML loads,
+     including in existing views, without reloading their current content.
+     This does not change web login views, API domains or URLs loaded directly.
+
+     - Parameter baseURL: Base URL, or `nil` to restore `https://www.gigya.com`.
+     */
+    public func setWebViewBaseURL(to baseURL: String) {
+        config.webViewBaseURL = baseURL
+    }
+
     // MARK: - Anonymous API
 
     /**

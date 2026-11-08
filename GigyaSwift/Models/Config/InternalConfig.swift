@@ -10,9 +10,10 @@ import Foundation
 
 struct InternalConfig {
     struct General {
-        internal static let version = "\(GigyaDefinitions.versionPrefix ?? "")ios_swift_1.8.5"
+        internal static let version = "\(GigyaDefinitions.versionPrefix ?? "")ios_swift_1.8.7"
         internal static let sdkDomain = "com.gigya.GigyaSDK"
         internal static let defaultLang = "en"
+        internal static let defaultWebViewBaseURL = "https://www.gigya.com"
     }
 
     struct Storage {
